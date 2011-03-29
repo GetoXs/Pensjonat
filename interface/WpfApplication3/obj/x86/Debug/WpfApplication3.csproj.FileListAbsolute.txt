@@ -1,0 +1,13 @@
+c:\users\marek\documents\visual studio 2010\Projects\WpfApplication3\WpfApplication3\bin\Debug\WpfApplication3.exe
+c:\users\marek\documents\visual studio 2010\Projects\WpfApplication3\WpfApplication3\bin\Debug\WpfApplication3.pdb
+c:\users\marek\documents\visual studio 2010\Projects\WpfApplication3\WpfApplication3\obj\x86\Debug\ResolveAssemblyReference.cache
+c:\users\marek\documents\visual studio 2010\Projects\WpfApplication3\WpfApplication3\obj\x86\Debug\MainWindow.baml
+c:\users\marek\documents\visual studio 2010\Projects\WpfApplication3\WpfApplication3\obj\x86\Debug\MainWindow.g.cs
+c:\users\marek\documents\visual studio 2010\Projects\WpfApplication3\WpfApplication3\obj\x86\Debug\App.g.cs
+c:\users\marek\documents\visual studio 2010\Projects\WpfApplication3\WpfApplication3\obj\x86\Debug\WpfApplication3_MarkupCompile.cache
+c:\users\marek\documents\visual studio 2010\Projects\WpfApplication3\WpfApplication3\obj\x86\Debug\WpfApplication3.g.resources
+c:\users\marek\documents\visual studio 2010\Projects\WpfApplication3\WpfApplication3\obj\x86\Debug\WpfApplication3.Properties.Resources.resources
+c:\users\marek\documents\visual studio 2010\Projects\WpfApplication3\WpfApplication3\obj\x86\Debug\GenerateResource.read.1.tlog
+c:\users\marek\documents\visual studio 2010\Projects\WpfApplication3\WpfApplication3\obj\x86\Debug\GenerateResource.write.1.tlog
+c:\users\marek\documents\visual studio 2010\Projects\WpfApplication3\WpfApplication3\obj\x86\Debug\WpfApplication3.exe
+c:\users\marek\documents\visual studio 2010\Projects\WpfApplication3\WpfApplication3\obj\x86\Debug\WpfApplication3.pdb
