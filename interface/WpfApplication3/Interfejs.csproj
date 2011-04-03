@@ -70,6 +70,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Kucharz_model\KucharzModel.cs" />
     <Compile Include="Pracownik_zadania_model\PracownikZadania.cs" />
     <Compile Include="Tools\Db.cs" />
     <Page Include="MainWindow.xaml">
