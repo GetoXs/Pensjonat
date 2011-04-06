@@ -1,1 +1,3 @@
-﻿
+﻿namespace PensjonatApp.DS
+{
+}

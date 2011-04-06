@@ -484,7 +484,7 @@ namespace PensjonatApp.DS {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public KlienciRow AddKlienciRow(string email, string imie, string nazwisko, int id_miejscowosci, string ulica, int nip, int pesel, int nr_telefonu, string nazwa) {
+            public KlienciRow AddKlienciRow(string email, string imie, string nazwisko, int id_miejscowosci, string ulica, int nip, string pesel, int nr_telefonu, string nazwa) {
                 KlienciRow rowKlienciRow = ((KlienciRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         email,
@@ -553,7 +553,7 @@ namespace PensjonatApp.DS {
                 base.Columns.Add(this.columnulica);
                 this.columnnip = new global::System.Data.DataColumn("nip", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnnip);
-                this.columnpesel = new global::System.Data.DataColumn("pesel", typeof(int), null, global::System.Data.MappingType.Element);
+                this.columnpesel = new global::System.Data.DataColumn("pesel", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnpesel);
                 this.columnid_klienta = new global::System.Data.DataColumn("id_klienta", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnid_klienta);
@@ -1104,10 +1104,10 @@ namespace PensjonatApp.DS {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int pesel {
+            public string pesel {
                 get {
                     try {
-                        return ((int)(this[this.tableKlienci.peselColumn]));
+                        return ((string)(this[this.tableKlienci.peselColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'pesel\' in table \'Klienci\' is DBNull.", e);

@@ -59,17 +59,19 @@
                             </StackPanel>
                         </Button>
                     </Grid>
-                    <Grid Name="gridRezerwacjeDeafult" Visibility="Visible" ShowGridLines="True" Opacity="1" Height="224" IsVisibleChanged="gridRezerwacjeDeafult_IsVisibleChanged">
+                    <Grid Name="gridRezerwacjeDeafult" Visibility="Visible" ShowGridLines="True" Opacity="1" Height="388" IsVisibleChanged="gridRezerwacjeDeafult_IsVisibleChanged">
                         <TextBox Height="23" HorizontalAlignment="Left" Margin="14,17,0,0" Name="textBox1" VerticalAlignment="Top" Width="129" />
                         <RadioButton Content="ID" GroupName="rezerwacjeSzukaj" Height="16" HorizontalAlignment="Left" Margin="299,24,0,0" Name="rbRezerwacjeId" VerticalAlignment="Top" IsChecked="False" />
                         <RadioButton Content="Klient" GroupName="rezerwacjeSzukaj" Height="16" HorizontalAlignment="Left" IsChecked="True" Margin="247,24,0,0" Name="rbRezerwacjeName" VerticalAlignment="Top" IsThreeState="False" />
                         <Button Content="Szukaj" Height="23" HorizontalAlignment="Left" Margin="160,17,0,0" Name="buttonRezerwacjeSearch" VerticalAlignment="Top" Width="75" Click="buttonRezerwacjeSearch_Click" />
-                        <DataGrid AutoGenerateColumns="False" Margin="14,51,9,0" MinColumnWidth="30" Name="dataGrid1" Height="139" VerticalAlignment="Top" IsReadOnly="True">
+                        <DataGrid AutoGenerateColumns="False" Margin="14,51,9,24" MinColumnWidth="30" Name="dataGrid1" IsReadOnly="True" HorizontalGridLinesBrush="#FFD5D5D5" VerticalGridLinesBrush="#FFD5D5D5">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Id" Binding="{Binding Path=id_klienta}" />
                                 <DataGridTextColumn Header="Imię" Binding="{Binding Path=imie}" />
                                 <DataGridTextColumn Header="Nazwisko" Binding="{Binding Path=nazwisko}" />
-                                <DataGridTextColumn Header="email" Binding="{Binding Path=email}" />
+                                <DataGridTextColumn Header="PESEL" Binding="{Binding Path=pesel}" />
+                                <DataGridTextColumn Header="Email" Binding="{Binding Path=email}" />
+                                <DataGridTextColumn Header="Telefon" Binding="{Binding Path=nr_telefonu}" />
                                 <DataGridTextColumn Header="Miejscowość" Binding="{Binding Path=miejscowosc}" />
                             </DataGrid.Columns>
                         </DataGrid>
