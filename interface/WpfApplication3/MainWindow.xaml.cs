@@ -11,7 +11,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using System.Text.RegularExpressions;
+using Microsoft.Windows.Controls;
 namespace WpfApplication3
 {
     /// <summary>
@@ -164,6 +165,17 @@ namespace WpfApplication3
                 zwinKlienci();
                 gridKlienciDeafult.Height = 580;
             }
+        }
+
+        private void textBoxValue_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !TextBoxTextAllowed(e.Text);
+        }
+
+        private bool TextBoxTextAllowed(string p)
+        {
+            Regex regex = new Regex("[^0-9.-]+"); //regex that matches disallowed text
+            return !regex.IsMatch(p);
         }
 
 
