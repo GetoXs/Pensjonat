@@ -15,6 +15,7 @@ using PensjonatApp.DS;
 using PensjonatApp.Tools;
 using System.Data;
 
+
 namespace PensjonatApp
 {
     /// <summary>
@@ -98,7 +99,7 @@ namespace PensjonatApp
 
         private void textBoxRezerwacjeAddIloscOsob_TextChanged(object sender, TextChangedEventArgs e)
         {
-            labelPozostaloOsob.Content = textBoxRezerwacjeAddIloscOsob.Text;
+         //   labelPozostaloOsob.Content = textBoxRezerwacjeAddIlOsob.Text;
         }
 
         private void buttonRezerwacjeAddDalej_Click(object sender, RoutedEventArgs e)
@@ -188,6 +189,18 @@ namespace PensjonatApp
 		{
 		}
 
+        private void buttonNewsletterNew_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = System.Windows.MessageBox.Show("Czy jesteś pewny?", "Nowy newsletter", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            // MessageBoxResult result = Microsoft.Windows.Controls.MessageBox.Show("Czy jesteś pewny?", "Nowy newsletter", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            //if (result == MessageBoxResult.Yes)
+                //richTextBoxNewsletter.Text = @"{\rtf1\ansi\ansicpg1252\uc1\htmautsp\deff2{\fonttbl{\f0\fcharset0 Times New Roman;}{\f2\fcharset0 Segoe UI;}}{\colortbl\red0\green0\blue0;\red255\green255\blue255;}\loch\hich\dbch\pard\plain\ltrpar\itap0{\lang1033\fs18\f2\cf0 \cf0\ql{\f2 {\ltrch }\li0\ri0\sa0\sb0\fi0\ql\par}}}";
+        }
+
+        private void dataGrid1_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
 
 
     }

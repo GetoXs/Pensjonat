@@ -65,6 +65,9 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WPFToolkit.Extended">
+      <HintPath>C:\Users\Marek\Desktop\WPFToolkit.Extended_Binaries\WPFToolkit.Extended.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -183,7 +186,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="app.config" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="DS\KlienciDS.xsc">
       <DependentUpon>KlienciDS.xsd</DependentUpon>
     </None>
@@ -385,7 +390,18 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\send322.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\email_app_icon2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\e_mailBig2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\send323.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
