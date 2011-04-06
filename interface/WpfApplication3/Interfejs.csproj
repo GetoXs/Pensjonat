@@ -77,10 +77,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Kucharz_model\KucharzModel.cs" />
-    <Compile Include="Pracownik_zadania_model\PracownikZadania.cs" />
+    <Compile Include="Model\KucharzModel.cs" />
+    <Compile Include="Model\PracownikZadania.cs" />
     <Compile Include="Tools\Db.cs" />
-    <Compile Include="Usluga_model\UslugaModel.cs" />
+    <Compile Include="Model\UslugaModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
