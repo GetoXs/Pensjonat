@@ -95,7 +95,7 @@ namespace WpfApplication3
 
         private void textBoxRezerwacjeAddIloscOsob_TextChanged(object sender, TextChangedEventArgs e)
         {
-            labelPozostaloOsob.Content = textBoxRezerwacjeAddIloscOsob.Text;
+            labelPozostaloOsob.Content = textBoxRezerwacjeAddIlOsob.Text;
         }
 
         private void buttonRezerwacjeAddDalej_Click(object sender, RoutedEventArgs e)
