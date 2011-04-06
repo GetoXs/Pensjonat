@@ -8,7 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System.IO;
 namespace PensjonatApp.Properties {
     
     
@@ -27,13 +26,11 @@ namespace PensjonatApp.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        //[global::System.Configuration.DefaultSettingValueAttribute("Driver={Microsoft Access Driver (*.mdb)};dbq=C:\\USERS\\GETOX\\DESKTOP\\STUDIA\\BD\\PRO" +
-        //    "J\\REP\\baza.mdb;uid=Administator")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Driver={Microsoft Access Driver (*.mdb)};dbq=E:\\backup\\pulpit\\polsl\\ROK 3\\Semestr" +
+            " 2\\PP\\pensjonat\\baza.mdb;uid=Administator")]
         public string DB {
             get {
-                return "Driver={Microsoft Access Driver (*.mdb)};dbq="+
-					Directory.GetCurrentDirectory()+
-					"\\..\\..\\..\\..\\..\\baza.mdb;uid=Administator";
+                return ((string)(this["DB"]));
             }
         }
     }
