@@ -37,13 +37,13 @@
                         </Grid.Background>
                         <Button BorderBrush="#FFBAD0DC" Canvas.Left="199" Canvas.Top="103" Foreground="{x:Null}" Height="40" HorizontalAlignment="Right" Margin="0,10,115,0" Name="buttonRezerwacjeAdd" Padding="0" VerticalAlignment="Top" Width="95" Click="buttonRezerwacjeAdd_Click">
                             <StackPanel Orientation="Horizontal">
-                                <Image Height="30" HorizontalAlignment="Left" Margin="2" Name="imgButtonRezerwacjeAdd" Source="/WpfApplication3;component/Images/Add-icon1.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="30" />
+                                <Image Height="32" HorizontalAlignment="Left" Margin="2" Name="imgButtonRezerwacjeAdd" Source="/WpfApplication3;component/Images/Add-icon1.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="32" />
                                 <Label Content="Dodaj" FontWeight="Bold" Height="37" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="0" Name="labelButtonRezerwacjeAdd" Padding="0" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="42" />
                             </StackPanel>
                         </Button>
                         <Button BorderBrush="#FFBAD0DC" Canvas.Left="199" Canvas.Top="103" Foreground="{x:Null}" Height="40" HorizontalAlignment="Right" Margin="0,10,14,0" Name="buttonRezerwacjeDel" Padding="0" VerticalAlignment="Top" Width="95" Click="buttonRezerwacjeDel_Click">
                             <StackPanel Orientation="Horizontal">
-                                <Image Height="30" HorizontalAlignment="Left" Margin="2" Name="imgButtonRezerwacjeDel" Source="/WpfApplication3;component/Images/Delete-icon1.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="30" />
+                                <Image Height="32" HorizontalAlignment="Left" Margin="2" Name="imgButtonRezerwacjeDel" Source="/WpfApplication3;component/Images/Delete-icon1.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="32" />
                                 <Label Content="Usuń" FontWeight="Bold" Height="37" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Name="label1" Padding="0" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="42" />
                             </StackPanel>
                         </Button>
@@ -52,7 +52,7 @@
                         <Image Height="40" HorizontalAlignment="Left" Margin="165,12,0,0" Name="separator" Source="/WpfApplication3;component/Images/separator.png" Stretch="Fill" VerticalAlignment="Top" Width="2" />
                         <Button BorderBrush="#FFBAD0DC" Canvas.Left="199" Canvas.Top="103" Foreground="{x:Null}" Height="40" Margin="0,10,215,0" Name="buttonRezerwacjeZaliczka" Padding="0" VerticalAlignment="Top" Click="buttonRezerwacjeZaliczka_Click" HorizontalAlignment="Right" Width="95">
                             <StackPanel Orientation="Horizontal">
-                                <Image Grid.RowSpan="2" Height="30" HorizontalAlignment="Left" Margin="2,3,0,3" Name="imgButtonRezerwacjeCheck" Source="/WpfApplication3;component/Images/Check-icon.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="30" />
+                                <Image Grid.RowSpan="2" Height="32" HorizontalAlignment="Left" Margin="2,3,0,3" Name="imgButtonRezerwacjeCheck" Source="/WpfApplication3;component/Images/Check-icon.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="32" />
                                 <Label Content="Zaliczka" FontWeight="Bold" Height="36" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="0" Name="label2" Padding="0" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="55" />
                             </StackPanel>
                         </Button>
@@ -170,13 +170,13 @@
                         </Grid.Background>
                         <Button BorderBrush="#FFBAD0DC" Canvas.Left="199" Canvas.Top="103" Foreground="{x:Null}" Height="40" HorizontalAlignment="Right" Margin="0,10,115,0" Name="buttonPobytySum" Padding="0" VerticalAlignment="Top" Width="95" Click="buttonPobytySum_Click" ClickMode="Press">
                             <StackPanel Orientation="Horizontal">
-                                <Image Height="30" HorizontalAlignment="Left" Margin="2" Name="image1" Source="/WpfApplication3;component/Images/coins-icon.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="30" />
+                                <Image Height="32" HorizontalAlignment="Left" Margin="2" Name="image1" Source="/WpfApplication3;component/Images/coins-icon.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="32" />
                                 <Label Content="Rozlicz" FontWeight="Bold" Height="37" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="0" Name="label38" Padding="0" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="42" IsEnabled="False" />
                             </StackPanel>
                         </Button>
                         <Button BorderBrush="#FFBAD0DC" Canvas.Left="199" Canvas.Top="103" Foreground="{x:Null}" Height="40" HorizontalAlignment="Right" Margin="0,10,14,0" Name="buttonPobytyDetails" Padding="0" VerticalAlignment="Top" Width="95" Click="buttonPobytyDetails_Click">
                             <StackPanel Orientation="Horizontal">
-                                <Image Height="30" HorizontalAlignment="Left" Margin="2" Name="image2" Source="/WpfApplication3;component/Images/Search-icon.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="30" />
+                                <Image Height="32" HorizontalAlignment="Left" Margin="2" Name="image2" Source="/WpfApplication3;component/Images/Search-icon.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="32" />
                                 <Label Content="Szczegóły" FontWeight="Bold" Height="37" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Name="label39" Padding="0" VerticalAlignment="Top" VerticalContentAlignment="Center" />
                             </StackPanel>
                         </Button>
@@ -185,7 +185,7 @@
                         <Image Height="40" HorizontalAlignment="Left" Margin="132,12,0,0" Name="image4" Source="/WpfApplication3;component/Images/separator.png" Stretch="Fill" VerticalAlignment="Top" Width="2" />
                         <Button BorderBrush="#FFBAD0DC" Canvas.Left="199" Canvas.Top="103" Foreground="{x:Null}" Height="40" HorizontalAlignment="Right" Margin="0,10,215,0" Name="buttonPobytyServices" Padding="0" VerticalAlignment="Top" Width="95" Click="buttonPobytyServices_Click">
                             <StackPanel Orientation="Horizontal">
-                                <Image Grid.RowSpan="2" Height="30" HorizontalAlignment="Left" Margin="2,3,0,3" Name="image6" Source="/WpfApplication3;component/Images/Favorites-icon.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="30" />
+                                <Image Grid.RowSpan="2" Height="32" HorizontalAlignment="Left" Margin="2,3,0,3" Name="image6" Source="/WpfApplication3;component/Images/Favorites-icon.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="32" />
                                 <Label Content="Usługi" FontWeight="Bold" Height="36" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="0" Name="label41" Padding="0" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="55" />
                             </StackPanel>
                         </Button>
@@ -313,13 +313,13 @@
                         </Grid.Background>
                         <Button BorderBrush="#FFBAD0DC" Canvas.Left="199" Canvas.Top="103" Foreground="{x:Null}" Height="40" HorizontalAlignment="Right" Margin="0,10,115,0" Name="buttonKlienciAdd" Padding="0" VerticalAlignment="Top" Width="95" Click="buttonKlienciAdd_Click">
                             <StackPanel Orientation="Horizontal">
-                                <Image Height="30" HorizontalAlignment="Left" Margin="2" Name="image3" Source="/WpfApplication3;component/Images/Add-icon1.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="30" />
+                                <Image Height="32" HorizontalAlignment="Left" Margin="2" Name="image3" Source="/WpfApplication3;component/Images/Add-icon1.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="32" />
                                 <Label Content="Dodaj" FontWeight="Bold" Height="37" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="0" Name="label71" Padding="0" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="42" />
                             </StackPanel>
                         </Button>
                         <Button BorderBrush="#FFBAD0DC" Canvas.Left="199" Canvas.Top="103" Foreground="{x:Null}" Height="40" HorizontalAlignment="Right" Margin="0,10,14,0" Name="buttonKlienciEdit" Padding="0" VerticalAlignment="Top" Width="95" Click="buttonKlienciEdit_Click">
                             <StackPanel Orientation="Horizontal">
-                                <Image Height="30" HorizontalAlignment="Left" Margin="2" Name="image7" Source="/WpfApplication3;component/Images/Synchronize-icon.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="30" />
+                                <Image Height="32" HorizontalAlignment="Left" Margin="2" Name="image7" Source="/WpfApplication3;component/Images/Synchronize-icon.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="32" />
                                 <Label Content="Edytuj" FontWeight="Bold" Height="37" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Name="label72" Padding="0" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="42" />
                             </StackPanel>
                         </Button>
@@ -407,13 +407,13 @@
                         </Grid.Background>
                         <Button Name="buttonNewsletterSend" BorderBrush="#FFBAD0DC" Canvas.Left="199" Canvas.Top="103" Foreground="{x:Null}" Height="40" HorizontalAlignment="Right" Margin="0,10,115,0"  Padding="0" VerticalAlignment="Top" Width="95">
                             <StackPanel Orientation="Horizontal">
-                                <Image Name="imgButtonNewsletterSend" Height="30" HorizontalAlignment="Left" Margin="2"  Source="/WpfApplication3;component/Images/send32.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="30" />
+                                <Image Name="imgButtonNewsletterSend" Height="32" HorizontalAlignment="Left" Margin="2"  Source="/WpfApplication3;component/Images/send32.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="32" />
                                 <Label Content="Wyślij" FontWeight="Bold" Height="37" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="0" Name="label193" Padding="0" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="42" />
                             </StackPanel>
                         </Button>
-                        <Button BorderBrush="#FFBAD0DC" Canvas.Left="199" Canvas.Top="103"  Foreground="{x:Null}" Height="40" HorizontalAlignment="Right" Margin="0,10,14,0" Name="buttonNewsletterNew" Padding="0" VerticalAlignment="Top" Width="95">
+                        <Button BorderBrush="#FFBAD0DC" Canvas.Left="199" Canvas.Top="103"  Foreground="{x:Null}" Height="40" HorizontalAlignment="Right" Margin="0,10,14,0" Name="buttonNewsletterNew" Padding="0" VerticalAlignment="Top" Width="95" Click="buttonNewsletterNew_Click">
                             <StackPanel Orientation="Horizontal">
-                                <Image  Name="imgButtonNewsletterNew" Height="30" HorizontalAlignment="Left" Margin="2" Source="/WpfApplication3;component/Images/email_app_icon.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="30" />
+                                <Image  Name="imgButtonNewsletterNew" Height="32" HorizontalAlignment="Left" Margin="2" Source="/WpfApplication3;component/Images/email_app_icon.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="32" />
                                 <Label Content="Nowy" FontWeight="Bold" Height="37" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Name="label194" Padding="0" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="42" />
                             </StackPanel>
                         </Button>
@@ -421,17 +421,16 @@
                         <Label Content="Newsletter" FontSize="18" FontWeight="Bold" Height="40" HorizontalAlignment="Left" Margin="53,11,0,0" Name="label195" Padding="0" VerticalAlignment="Top" VerticalContentAlignment="Center" />
                         <Image Height="40" HorizontalAlignment="Left" Margin="165,12,0,0" Name="image31" Source="/WpfApplication3;component/Images/separator.png" Stretch="Fill" VerticalAlignment="Top" Width="2" />
                     </Grid>
-                    <Grid Name="gridNewsletterDeafult" Height="482" Margin="0" Opacity="1" ShowGridLines="True" Visibility="Visible" Width="541">
+                    <Grid Name="gridNewsletterDeafult" Margin="0" Opacity="1" ShowGridLines="True" Visibility="Visible" MinHeight="580">
 
-                        <Grid Margin="0,0,0,-65">
-                            <Toolkit:RichTextBox Margin="0,24,0,6">
+
+                            <Toolkit:RichTextBox Name="richTextBoxNewsletter" Text="{Binding Path=Binding Notes}" Margin="15" ScrollViewer.VerticalScrollBarVisibility="Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                                 <Toolkit:RichTextBoxFormatBarManager.FormatBar>
 
                                         <Toolkit:RichTextBoxFormatBar />
 
                                 </Toolkit:RichTextBoxFormatBarManager.FormatBar>
                             </Toolkit:RichTextBox>
-                        </Grid>
 
                     </Grid>
                     </StackPanel>
