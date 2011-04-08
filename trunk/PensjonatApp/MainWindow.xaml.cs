@@ -254,6 +254,16 @@ namespace PensjonatApp
 			
 		}
 
+        private void dataGrid1_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (dataGrid1.SelectedItem != null)
+            {
+                KlienciDS.KlienciRow t = (KlienciDS.KlienciRow)((DataRowView)dataGrid1.SelectedItem).Row;
+                label68.Content = t.id_klienta;
+            }
+
+        }
+
     }
 
 }
