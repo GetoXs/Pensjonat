@@ -1521,12 +1521,20 @@ namespace PensjonatApp.DS.UslugiDSTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.Odbc.OdbcCommand[1];
+            this._commandCollection = new global::System.Data.Odbc.OdbcCommand[2];
             this._commandCollection[0] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT id_uslugi, id_pobytu, id_pracownika, dodatkowy_opis, termin, id_slownikowe" +
                 "_uslugi FROM Uslugi";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1] = new global::System.Data.Odbc.OdbcCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = @"SELECT Klienci.imie, Klienci.nazwisko, Pokoje.nr_pokoju, Uslugi_slownik.nazwa, Uslugi_slownik.opis, Uslugi.dodatkowy_opis, Uslugi.termin
+FROM     Uslugi, Uslugi_slownik, Pobyty, Klienci, Pokoje
+WHERE  Uslugi.id_slownikowe_uslugi = Uslugi_slownik.id_slownikowe_uslugi AND Uslugi.id_pobytu = Pobyty.id_pobytu AND Pobyty.id_klienta = Klienci.id_klienta AND 
+                  Pobyty.id_pokoju = Pokoje.id_pokoju AND (Uslugi.id_pracownika = ?)";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_pracownika", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_pracownika", global::System.Data.DataRowVersion.Current, false, null));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1548,6 +1556,23 @@ namespace PensjonatApp.DS.UslugiDSTableAdapters {
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
         public virtual UslugiDS.UslugiDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
+            UslugiDS.UslugiDataTable dataTable = new UslugiDS.UslugiDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual UslugiDS.UslugiDataTable GetZadaniaDlaPracownikaByID(global::System.Nullable<int> id_pracownika) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((id_pracownika.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((int)(id_pracownika.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
             UslugiDS.UslugiDataTable dataTable = new UslugiDS.UslugiDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
