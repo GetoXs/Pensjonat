@@ -331,7 +331,7 @@
                         <Label Content="Klienci" FontSize="18" FontWeight="Bold" Height="40" HorizontalAlignment="Left" Margin="53,11,0,0" Name="label73" Padding="0" VerticalAlignment="Top" VerticalContentAlignment="Center" />
                         <Image Height="40" HorizontalAlignment="Left" Margin="165,12,0,0" Name="image9" Source="/PensjonatApp;component/Images/separator.png" Stretch="Fill" VerticalAlignment="Top" Width="2" />
                     </Grid>
-                    <Grid Height="83" Name="gridKlienciDeafult" Opacity="1" ShowGridLines="True" Visibility="Visible">
+                    <Grid Height="119" Name="gridKlienciDeafult" Opacity="1" ShowGridLines="True" Visibility="Visible">
                         <TextBox Height="23" HorizontalAlignment="Left" Margin="14,17,0,0" Name="textBox6" VerticalAlignment="Top" Width="129" />
                         <RadioButton Name="rbKlienciId" Content="ID" GroupName="klienciSzukaj" Height="16" HorizontalAlignment="Left" IsChecked="False" Margin="299,24,0,0" VerticalAlignment="Top" />
                         <RadioButton Name="rbKlienciKlient" Content="Klient" GroupName="klienciSzukaj" Height="16" HorizontalAlignment="Left" IsChecked="True" IsThreeState="False" Margin="247,24,0,0" VerticalAlignment="Top" />

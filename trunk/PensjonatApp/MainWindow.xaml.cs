@@ -201,60 +201,27 @@ namespace PensjonatApp
 
 		private void buttonKlienciAddDodaj_Click(object sender, RoutedEventArgs e)
 		{
-			string mail = (textBoxKlienciAddMail.Text == "") ? null : textBoxKlienciAddMail.Text;
-			string imie = (textBoxKlienciAddImie.Text == "") ? null : textBoxKlienciAddImie.Text;
-			string nazwisko = (textBoxKlienciAddNazwisko.Text == "") ? null : textBoxKlienciAddNazwisko.Text;
-			string miejscowosc = (textBoxKlienciAddMiejscowosc.Text == "") ? null : textBoxKlienciAddMiejscowosc.Text;
-			string adres = (textBoxKlienciAddAdres.Text == "") ? null : textBoxKlienciAddAdres.Text;
-			string pesel = (textBoxKlienciAddPESEL.Text == "") ? null : textBoxKlienciAddPESEL.Text;
-			string kodP = (textBoxKlienciAddKodPocztowy.Text == "") ? null : textBoxKlienciAddKodPocztowy.Text;
-			int? nip=null;
-			int? tel=null;
-			int tmp;
-			StringBuilder dialog = new StringBuilder("");
-
-			if (textBoxKlienciAddNIP.Text == "")
-				nip = null;
-			else if (int.TryParse(textBoxKlienciAddNIP.Text, out tmp))
+			//dodawanie klienta
+			if (KlienciHelper.addKlient(
+				textBoxKlienciAddMail.Text,
+				textBoxKlienciAddImie.Text,
+				textBoxKlienciAddNazwisko.Text,
+				textBoxKlienciAddMiejscowosc.Text,
+				textBoxKlienciAddAdres.Text,
+				textBoxKlienciAddNIP.Text,
+				textBoxKlienciAddPESEL.Text,
+				textBoxKlienciAddTelefon.Text,
+				textBoxKlienciAddKodPocztowy.Text) == true)
 			{
-				nip = tmp;
+				MessageBox.Show("Pomyślnie dodano klienta do bazy", "Informacja", MessageBoxButton.OK, MessageBoxImage.Information);
 			}
 			else
-				dialog.Append("NIP nie jest liczbą\n"); //blad nie ma liczby
+				MessageBox.Show("Błąd: " + KlienciHelper.lastMsg, "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
 
-			if (textBoxKlienciAddTelefon.Text == "")
-				tel = null;
-			else if (int.TryParse(textBoxKlienciAddTelefon.Text, out tmp))
-			{
-				tel = tmp;
-			}else
-				dialog.Append("Telefon nie jest liczbą\n"); //blad nie ma liczby
-
-			if (dialog.Length != 0)
-				MessageBox.Show(dialog.ToString(), "Błąd", MessageBoxButton.OK, MessageBoxImage.Information);
-			else
-			{
-				if (KlienciHelper.addKlient(
-					mail,
-					imie,
-					nazwisko,
-					miejscowosc,
-					adres,
-					nip,
-					pesel,
-					tel,
-					"",
-					kodP) == true)
-				{
-					dialog.Append("Pomyślnie dodano klienta do bazy");
-				}
-				else
-					dialog.Append("Błąd: " + KlienciHelper.lastMsg);
-				MessageBox.Show(dialog.ToString(), "Informacja", MessageBoxButton.OK, MessageBoxImage.Information);
-
-			}
 		}
-
+		/// <summary>
+		/// Sprawdzanie na bieżąco czy 
+		/// </summary>
 		private void textBoxKlienciAdd_TextChanged(object sender, TextChangedEventArgs e)
 		{
 			int nip;
