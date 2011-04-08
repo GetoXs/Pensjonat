@@ -22,7 +22,7 @@ namespace PensjonatApp.Helpers
 			lastMsg = "";
 		}
 		/// <summary>
-		/// Sprawdza czy można dodać klienta zostawiajac info nt. bledu w lastMsg
+		/// Sprawdza parametry, ich unikalność i wyłusuje z nich informacje przekazane do DB, info nt. bledu w lastMsg
 		/// </summary>
 		/// <returns>Zwraca true jesli wszystko jest zgodne</returns>
 		public static bool addKlientVerifyParams(string email, string imie, string nazwisko, string miejscowosc, string ulica, string nip, string pesel, string nr_telefonu, string kod_pocztowy)
@@ -73,6 +73,10 @@ namespace PensjonatApp.Helpers
 				return false;
 			return true;
 		}
+		/// <summary>
+		/// Sprawdza duplikacje, parametry, ich unikalność i wyłusuje z nich informacje przekazane do DB, info nt. bledu w lastMsg
+		/// </summary>
+		/// <returns>True jeśli wszystko jest poprawne</returns>
 		public static bool addKlientVerifyParamsAndDb(string email, string imie, string nazwisko, string miejscowosc, string ulica, string nip, string pesel, string nr_telefonu, string kod_pocztowy)
 		{
 			StringBuilder dialog = new StringBuilder("");
@@ -114,7 +118,7 @@ namespace PensjonatApp.Helpers
 			return true;
 		}
 		/// <summary>
-		/// Dodaje klienta, ustawia wiadomosc powrotna z niepowodzeniem w lastMsg
+		/// Sprawdza parametry i dodaje klienta, ustawia wiadomosc powrotna z niepowodzeniem w lastMsg
 		/// </summary>
 		/// <returns>Zwraca true jeśli się udało</returns>
 		public static bool addKlient(string email, string imie, string nazwisko, string miejscowosc, string ulica, string nip, string pesel, string nr_telefonu, string kod_pocztowy)
