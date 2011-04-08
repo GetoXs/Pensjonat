@@ -7,6 +7,9 @@
 
 namespace PensjonatApp.DS.KlienciDSTableAdapters
 {
+	partial class Miejscowosci_slownikTableAdapter
+	{
+	}
     
     
     public partial class KlienciTableAdapter {

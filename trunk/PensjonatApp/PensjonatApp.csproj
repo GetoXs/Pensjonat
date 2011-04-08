@@ -140,6 +140,7 @@
       <DependentUpon>UslugiDS.xsd</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Helpers\KlienciHelper.cs" />
     <Compile Include="Tools\TableAdapetrsManager.cs" />
     <Compile Include="DS\WyposazeniaDS.cs">
       <DependentUpon>WyposazeniaDS.xsd</DependentUpon>

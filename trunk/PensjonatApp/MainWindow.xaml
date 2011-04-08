@@ -346,7 +346,7 @@
                             </DataGrid.Columns>
                         </DataGrid>
                     </Grid>
-                    <Grid Height="337" Name="gridKlienciEdit" Opacity="1" ShowGridLines="True" Visibility="Visible">
+                    <Grid Height="89" Name="gridKlienciEdit" Opacity="1" ShowGridLines="True" Visibility="Visible">
                         <Label Content="Edycja klienta:" FontSize="13" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,10,0,0" Name="label75" Padding="2" VerticalAlignment="Top" />
                         <Label Content="Imię:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,38,0,0" Name="label76" Padding="2" VerticalAlignment="Top" />
                         <Label Content="Nazwisko:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,64,0,0" Name="label77" Padding="2" VerticalAlignment="Top" />
@@ -374,24 +374,27 @@
                         <Label Content="Imię:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,39,0,0" Name="label44" Padding="2" VerticalAlignment="Top" />
                         <Label Content="Nazwisko:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,65,0,0" Name="label47" Padding="2" VerticalAlignment="Top" />
                         <Label Content="PESEL:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,91,0,0" Name="label49" Padding="2" VerticalAlignment="Top" />
-                        <Label Content="Telefon:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,195,0,0" Name="label55" Padding="2" VerticalAlignment="Top" />
-                        <Button Name="buttonKlienciAddPowrot" Content="Powrót" Height="23" HorizontalAlignment="Left" Margin="207,285,0,0" VerticalAlignment="Top" Width="75" />
-                        <Button Name="buttonKlienciAddDodaj" Content="Dodaj" Height="23" HorizontalAlignment="Left" Margin="117,285,0,0"  VerticalAlignment="Top" Width="75" />
-                        <TextBox Name="textBoxKlienciAddImie" Height="23" HorizontalAlignment="Left" Margin="160,38,0,0" Text="" VerticalAlignment="Top" Width="120" />
-                        <TextBox Name="textBoxKlienciAddNazwisko" Height="23" HorizontalAlignment="Left" Margin="160,64,0,0" Text="" VerticalAlignment="Top" Width="120" />
-                        <TextBox Name="textBoxKlienciAddPESEL" Height="23" HorizontalAlignment="Left" Margin="160,90,0,0" Text="" VerticalAlignment="Top" Width="120" />
-                        <TextBox Name="textBoxKlienciAddTelefon" Height="23" HorizontalAlignment="Left" Margin="160,194,0,0" Text="" VerticalAlignment="Top" Width="120" />
-                        <Label Content="Mail:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,220,0,0" Name="label56" Padding="2" VerticalAlignment="Top" />
-                        <TextBox Name="textBoxKlienciAddMail" Height="23" HorizontalAlignment="Left" Margin="160,220,0,0"  Text="" VerticalAlignment="Top" Width="120" />
+                        <Label Content="Telefon:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,231,0,0" Name="label55" Padding="2" VerticalAlignment="Top" />
+                        <Button Name="buttonKlienciAddPowrot" Content="Powrót" Height="23" HorizontalAlignment="Left" Margin="205,345,0,0" VerticalAlignment="Top" Width="75" />
+                        <Button Name="buttonKlienciAddDodaj" Content="Dodaj" Height="23" HorizontalAlignment="Left" Margin="115,345,0,0"  VerticalAlignment="Top" Width="75" Click="buttonKlienciAddDodaj_Click" />
+                        <TextBox Name="textBoxKlienciAddImie" Height="23" HorizontalAlignment="Left" Margin="160,38,0,0" Text="" VerticalAlignment="Top" Width="120" TextChanged="textBoxKlienciAdd_TextChanged" />
+                        <TextBox Name="textBoxKlienciAddNazwisko" Height="23" HorizontalAlignment="Left" Margin="160,64,0,0" Text="" VerticalAlignment="Top" Width="120" TextChanged="textBoxKlienciAdd_TextChanged" />
+                        <TextBox Name="textBoxKlienciAddPESEL" Height="23" HorizontalAlignment="Left" Margin="160,90,0,0" Text="" VerticalAlignment="Top" Width="120" TextChanged="textBoxKlienciAdd_TextChanged" />
+                        <TextBox Name="textBoxKlienciAddTelefon" Height="23" HorizontalAlignment="Left" Margin="160,230,0,0" Text="" VerticalAlignment="Top" Width="120" TextChanged="textBoxKlienciAdd_TextChanged" />
+                        <Label Content="Mail:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,256,0,0" Name="label56" Padding="2" VerticalAlignment="Top" />
+                        <TextBox Name="textBoxKlienciAddMail" Height="23" HorizontalAlignment="Left" Margin="160,256,0,0"  Text="" VerticalAlignment="Top" Width="120" TextChanged="textBoxKlienciAdd_TextChanged" />
                         <Label Content="NIP:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,117,0,0" Name="label57" Padding="2" VerticalAlignment="Top" />
-                        <Label Content="Miejscowość:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,143,0,0" Name="label58" Padding="2" VerticalAlignment="Top" />
-                        <Label Content="Adres:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,169,0,0" Name="label62" Padding="2" VerticalAlignment="Top" />
-                        <TextBox Name="textBoxKlienciAddNIP" Height="23" HorizontalAlignment="Left" Margin="160,116,0,0"  Text="" VerticalAlignment="Top" Width="120" />
-                        <TextBox Name="textBoxKlienciAddMiejscowosc"  Height="23" Margin="160,142,0,0" Text="" VerticalAlignment="Top" HorizontalAlignment="Left" Width="120" />
-                        <TextBox Name="textBoxKlienciAddAdres" Height="23" HorizontalAlignment="Left" Margin="160,168,0,0"  Text="" VerticalAlignment="Top" Width="120" />
-                        <Label Content="Firma:" FontWeight="Bold" HorizontalAlignment="Left" Margin="34,246,0,0" Name="label63" Padding="2" VerticalAlignment="Top" />
-                        <TextBox Name="textBoxKlienciAddFirma" Height="23" HorizontalAlignment="Left" Margin="160,246,0,0" Text="" VerticalAlignment="Top" Width="120" />
-                    </Grid>
+                        <Label Content="Miejscowość:" FontWeight="Bold" HorizontalAlignment="Left" Margin="34,175,0,0" Name="label58" Padding="2" VerticalAlignment="Top" />
+                        <Label Content="Adres:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,144,0,0" Name="label62" Padding="2" VerticalAlignment="Top" />
+                        <TextBox Name="textBoxKlienciAddNIP" Height="23" HorizontalAlignment="Left" Margin="160,116,0,0"  Text="" VerticalAlignment="Top" Width="120" TextChanged="textBoxKlienciAdd_TextChanged" />
+                        <TextBox Name="textBoxKlienciAddMiejscowosc"  Height="23" Margin="160,172,0,0" Text="" VerticalAlignment="Top" HorizontalAlignment="Left" Width="120" TextChanged="textBoxKlienciAdd_TextChanged" />
+                        <TextBox Name="textBoxKlienciAddAdres" Height="23" HorizontalAlignment="Left" Margin="160,143,0,0"  Text="" VerticalAlignment="Top" Width="120" TextChanged="textBoxKlienciAdd_TextChanged" />
+                        <Label Content="Firma:" FontWeight="Bold" HorizontalAlignment="Left" Margin="34,282,0,0" Name="label63" Padding="2" VerticalAlignment="Top" />
+                        <TextBox Name="textBoxKlienciAddFirma" Height="23" HorizontalAlignment="Left" Margin="160,282,0,0" Text="" VerticalAlignment="Top" Width="120" TextChanged="textBoxKlienciAdd_TextChanged" />
+						<Label Content="" Height="28" HorizontalAlignment="Left" Margin="35,311,0,0" Name="labelKlienciAddStatus" VerticalAlignment="Top" Width="247" Foreground="Red" />
+						<Label Content="Kod Pocztowy:" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="34,199,0,0" Name="label65" VerticalAlignment="Top" />
+						<TextBox Height="23" HorizontalAlignment="Left" Margin="160,201,0,0" Name="textBoxKlienciAddKodPocztowy" VerticalAlignment="Top" Width="120" TextChanged="textBoxKlienciAdd_TextChanged" />
+					</Grid>
                 </StackPanel>
             </TabItem>
             <TabItem Name="tabNewsletter" BorderBrush="#FF2B4865" Height="42">
