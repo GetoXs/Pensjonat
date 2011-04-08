@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using PensjonatApp.DS;
 using PensjonatApp.Tools;
 using System.Data;
+using PensjonatApp.Helpers;
 
 
 namespace PensjonatApp
@@ -154,6 +155,7 @@ namespace PensjonatApp
         {
             zwinKlienci();
             gridKlienciAdd.Height = 580;
+			buttonKlienciAddDodaj.IsEnabled = false;
         }
 
         private void buttonKlienciEdit_Click(object sender, RoutedEventArgs e)
@@ -196,6 +198,94 @@ namespace PensjonatApp
             if (result == MessageBoxResult.Yes)
                 richTextBoxNewsletter.Text = @"{\rtf1\ansi\ansicpg1252\uc1\htmautsp\deff2{\fonttbl{\f0\fcharset0 Times New Roman;}{\f2\fcharset0 Segoe UI;}}{\colortbl\red0\green0\blue0;\red255\green255\blue255;}\loch\hich\dbch\pard\plain\ltrpar\itap0{\lang1033\fs18\f2\cf0 \cf0\ql{\f2 {\ltrch }\li0\ri0\sa0\sb0\fi0\ql\par}}}";
         }
+
+		private void buttonKlienciAddDodaj_Click(object sender, RoutedEventArgs e)
+		{
+			string mail = (textBoxKlienciAddMail.Text == "") ? null : textBoxKlienciAddMail.Text;
+			string imie = (textBoxKlienciAddImie.Text == "") ? null : textBoxKlienciAddImie.Text;
+			string nazwisko = (textBoxKlienciAddNazwisko.Text == "") ? null : textBoxKlienciAddNazwisko.Text;
+			string miejscowosc = (textBoxKlienciAddMiejscowosc.Text == "") ? null : textBoxKlienciAddMiejscowosc.Text;
+			string adres = (textBoxKlienciAddAdres.Text == "") ? null : textBoxKlienciAddAdres.Text;
+			string pesel = (textBoxKlienciAddPESEL.Text == "") ? null : textBoxKlienciAddPESEL.Text;
+			string kodP = (textBoxKlienciAddKodPocztowy.Text == "") ? null : textBoxKlienciAddKodPocztowy.Text;
+			int? nip=null;
+			int? tel=null;
+			int tmp;
+			StringBuilder dialog = new StringBuilder("");
+
+			if (textBoxKlienciAddNIP.Text == "")
+				nip = null;
+			else if (int.TryParse(textBoxKlienciAddNIP.Text, out tmp))
+			{
+				nip = tmp;
+			}
+			else
+				dialog.Append("NIP nie jest liczbą\n"); //blad nie ma liczby
+
+			if (textBoxKlienciAddTelefon.Text == "")
+				tel = null;
+			else if (int.TryParse(textBoxKlienciAddTelefon.Text, out tmp))
+			{
+				tel = tmp;
+			}else
+				dialog.Append("Telefon nie jest liczbą\n"); //blad nie ma liczby
+
+			if (dialog.Length != 0)
+				MessageBox.Show(dialog.ToString(), "Błąd", MessageBoxButton.OK, MessageBoxImage.Information);
+			else
+			{
+				if (KlienciHelper.addKlient(
+					mail,
+					imie,
+					nazwisko,
+					miejscowosc,
+					adres,
+					nip,
+					pesel,
+					tel,
+					"",
+					kodP) == true)
+				{
+					dialog.Append("Pomyślnie dodano klienta do bazy");
+				}
+				else
+					dialog.Append("Błąd: " + KlienciHelper.lastMsg);
+				MessageBox.Show(dialog.ToString(), "Informacja", MessageBoxButton.OK, MessageBoxImage.Information);
+
+			}
+		}
+
+		private void textBoxKlienciAdd_TextChanged(object sender, TextChangedEventArgs e)
+		{
+			int nip;
+			int tel;
+			bool sprawdzic=true;
+
+			buttonKlienciAddDodaj.IsEnabled = false;
+			this.labelKlienciAddStatus.Content = "";
+
+			if (!int.TryParse(textBoxKlienciAddNIP.Text, out nip))
+			{
+				if (textBoxKlienciAddNIP.Text != "")
+				{
+					this.labelKlienciAddStatus.Content = "W polu NIP może być tylko liczba";
+					sprawdzic = false;
+				}
+			}
+			if (!int.TryParse(textBoxKlienciAddTelefon.Text, out tel))
+			{
+				if (textBoxKlienciAddTelefon.Text != "")
+				{
+					this.labelKlienciAddStatus.Content = "W polu telefon może być tylko liczba";
+					sprawdzic = false;
+				}
+			}
+			if (sprawdzic == true)
+			{
+				buttonKlienciAddDodaj.IsEnabled = true;
+			}
+			
+		}
 
     }
 
