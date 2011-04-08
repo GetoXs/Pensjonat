@@ -1521,11 +1521,22 @@ namespace PensjonatApp.DS.PosilkiDSTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.Odbc.OdbcCommand[1];
+            this._commandCollection = new global::System.Data.Odbc.OdbcCommand[2];
             this._commandCollection[0] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT id_posilku, id_pobytu, id_slownikowe_posilku, data FROM Posilki";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1] = new global::System.Data.Odbc.OdbcCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = @"SELECT COUNT(Posilki_slownik.sniadanie) AS Śniadania, COUNT(Posilki_slownik.drugie_sniadanie) AS [Drugie śniadania], COUNT(Posilki_slownik.lunch) AS Lunche, 
+                  COUNT(Posilki_slownik.obiad) AS Obiady, COUNT(Posilki_slownik.podwieczorek) AS Podwieczorki, COUNT(Posilki_slownik.obiadokolacja) AS Obiadokolacje, 
+                  COUNT(Posilki_slownik.kolacja) AS Kolacje
+FROM     Posilki_slownik, Posilki
+WHERE  Posilki_slownik.id_slownikowe_posilku = Posilki.id_slownikowe_posilku
+GROUP BY Posilki.data
+HAVING (Posilki.data = ?)";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("data", global::System.Data.Odbc.OdbcType.DateTime, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "data", global::System.Data.DataRowVersion.Current, false, null));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1727,6 +1738,40 @@ namespace PensjonatApp.DS.PosilkiDSTableAdapters {
                 if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
                     this.Adapter.UpdateCommand.Connection.Close();
                 }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual global::System.Nullable<int> GetSumsPosilkiByTermin(global::System.Nullable<global::System.DateTime> data) {
+            global::System.Data.Odbc.OdbcCommand command = this.CommandCollection[1];
+            if ((data.HasValue == true)) {
+                command.Parameters[0].Value = ((System.DateTime)(data.Value));
+            }
+            else {
+                command.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            object returnValue;
+            try {
+                returnValue = command.ExecuteScalar();
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            if (((returnValue == null) 
+                        || (returnValue.GetType() == typeof(global::System.DBNull)))) {
+                return new global::System.Nullable<int>();
+            }
+            else {
+                return new global::System.Nullable<int>(((int)(returnValue)));
             }
         }
     }
