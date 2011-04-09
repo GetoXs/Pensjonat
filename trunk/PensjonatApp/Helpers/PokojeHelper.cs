@@ -21,9 +21,5 @@ namespace PensjonatApp.Helpers
             doZmiany[0].nr_pokoju = nr_pokoju;
             return TablesManager.Manager.PokojeTableAdapter.Update(doZmiany);
         }
-
-        public static void usunPokoj(int id_pokoju)
-        {
-        }
     }
 }
