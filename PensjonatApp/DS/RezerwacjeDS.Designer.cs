@@ -926,12 +926,34 @@ namespace PensjonatApp.DS.RezerwacjeDSTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.Odbc.OdbcCommand[1];
+            this._commandCollection = new global::System.Data.Odbc.OdbcCommand[5];
             this._commandCollection[0] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT id_rezerwacji, zaliczka, zaplacono_zaliczke, ilosc_osob, id_klienta FROM R" +
                 "ezerwacje";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1] = new global::System.Data.Odbc.OdbcCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = "SELECT        id_rezerwacji, zaliczka, zaplacono_zaliczke, ilosc_osob, id_klienta" +
+                "\r\nFROM            Rezerwacje";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[2] = new global::System.Data.Odbc.OdbcCommand();
+            this._commandCollection[2].Connection = this.Connection;
+            this._commandCollection[2].CommandText = "SELECT        id_rezerwacji, zaliczka, zaplacono_zaliczke, ilosc_osob, id_klienta" +
+                "\r\nFROM            Rezerwacje\r\nWHERE id_rezerwacji = ?";
+            this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[2].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_rezerwacji", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_rezerwacji", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[3] = new global::System.Data.Odbc.OdbcCommand();
+            this._commandCollection[3].Connection = this.Connection;
+            this._commandCollection[3].CommandText = @"SELECT        r.id_rezerwacji, r.zaliczka, r.zaplacono_zaliczke, r.ilosc_osob, r.id_klienta, k.email, k.imie, k.nazwisko, k.id_miejscowosci, k.ulica, k.nip, k.pesel, k.nr_telefonu, k.nazwa
+FROM            Rezerwacje r, Klienci k
+WHERE        r.id_klienta = k.id_klienta";
+            this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[4] = new global::System.Data.Odbc.OdbcCommand();
+            this._commandCollection[4].Connection = this.Connection;
+            this._commandCollection[4].CommandText = "SELECT        id_rezerwacji\r\nFROM            Rezerwacje\r\nORDER BY id_rezerwacji D" +
+                "ESC";
+            this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -953,6 +975,51 @@ namespace PensjonatApp.DS.RezerwacjeDSTableAdapters {
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
         public virtual RezerwacjeDS.RezerwacjeDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
+            RezerwacjeDS.RezerwacjeDataTable dataTable = new RezerwacjeDS.RezerwacjeDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual RezerwacjeDS.RezerwacjeDataTable GetDataRezerwacje() {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            RezerwacjeDS.RezerwacjeDataTable dataTable = new RezerwacjeDS.RezerwacjeDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual RezerwacjeDS.RezerwacjeDataTable GetDataRezerwacjeByID(int id_rezerwacji) {
+            this.Adapter.SelectCommand = this.CommandCollection[2];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(id_rezerwacji));
+            RezerwacjeDS.RezerwacjeDataTable dataTable = new RezerwacjeDS.RezerwacjeDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual RezerwacjeDS.RezerwacjeDataTable GetDataRezerwacjeKlienci() {
+            this.Adapter.SelectCommand = this.CommandCollection[3];
+            RezerwacjeDS.RezerwacjeDataTable dataTable = new RezerwacjeDS.RezerwacjeDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual RezerwacjeDS.RezerwacjeDataTable GetDataRezerwacjeOstatnia() {
+            this.Adapter.SelectCommand = this.CommandCollection[4];
             RezerwacjeDS.RezerwacjeDataTable dataTable = new RezerwacjeDS.RezerwacjeDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
