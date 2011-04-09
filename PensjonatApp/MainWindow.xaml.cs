@@ -177,8 +177,19 @@ namespace PensjonatApp
         }
         private void buttonKlienciSearch_Click(object sender, RoutedEventArgs e)
         {
-            int id = int.Parse(textBoxKlienciSzukaj.Text);
-            dataGridKlienci.ItemsSource = TablesManager.Manager.KlienciTableAdapter.GetDataKlienciMiejsconowsciByIdKlienta(id);
+            if (textBoxKlienciSzukaj.Text == "")
+                dataGridKlienci.ItemsSource = TablesManager.Manager.KlienciTableAdapter.GetKlienciMiejscowosci();
+            else
+            {
+                if ((bool)rbKlienciId.IsChecked)
+                {
+                    int id;
+                    if(int.TryParse(textBoxKlienciSzukaj.Text,out id))
+                        dataGridKlienci.ItemsSource = TablesManager.Manager.KlienciTableAdapter.GetDataKlienciMiejsconowsciByIdKlienta(id);
+                    else
+                        System.Windows.MessageBox.Show("Niepoprawne ID klienta.\nNumer identyfikacyjny klienta może zawierać tylko cyfry.", "Wyszukiwanie klienta", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
         }
        
 //KLIENCI->DODAJ
