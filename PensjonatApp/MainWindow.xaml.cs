@@ -70,23 +70,6 @@ namespace PensjonatApp
         }
 
 //REZERWACJE
-        private void buttonRezerwacjeAdd_Click(object sender, RoutedEventArgs e)
-        {
-            zwinRezerwacje();
-            gridRezerwacjeAdd.Height = 580;
-        }
-
-        private void buttonRezerwacjeZaliczka_Click(object sender, RoutedEventArgs e)
-        {
-            zwinRezerwacje();
-			gridRezerwacjeCheck.Height = 580;
-        }
-
-        private void buttonRezerwacjeDel_Click(object sender, RoutedEventArgs e)
-        {
-            zwinRezerwacje();
-            gridRezerwacjeDel.Height = 580;
-        }
 
         private void tabRezerwacje_GotFocus(object sender, RoutedEventArgs e)
         {
@@ -96,25 +79,91 @@ namespace PensjonatApp
                 gridRezerwacjeDeafult.Height = 580;
             }
         }
-
-        private void textBoxRezerwacjeAddIloscOsob_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            labelPozostaloOsob.Content = textBoxRezerwacjeAddIlOsob.Text;
-        }
-
-        private void buttonRezerwacjeAddDalej_Click(object sender, RoutedEventArgs e)
-        {
-            zwinRezerwacje();
-			gridRezerwacjeAdd2.Height = 580;
-        }
-
+//REZERWACJE->DEAFULT
         private void gridRezerwacjeDeafult_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             if ((bool)(e.NewValue) == true)
             {//pojawienie sie pola
-                dataGrid1.ItemsSource = TablesManager.Manager.KlienciTableAdapter.GetKlienciMiejscowosci();
+                dataGridRezerwacjeSzukaj.ItemsSource = TablesManager.Manager.RezerwacjeTableAdapter.GetDataRezerwacjeKlienci();
             }
         }
+        private void dataGrid1_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (dataGridRezerwacjeSzukaj.SelectedItem != null)
+            {
+                RezerwacjeDS.RezerwacjeRow t = (RezerwacjeDS.RezerwacjeRow)((DataRowView)dataGridRezerwacjeSzukaj.SelectedItem).Row;
+            }
+        }
+
+        private void buttonRezerwacjeSearch_Click(object sender, RoutedEventArgs e)
+        {
+            if (textBoxRezerwacjeSzukaj.Text == "")
+                dataGridRezerwacjeSzukaj.ItemsSource = TablesManager.Manager.RezerwacjeTableAdapter.GetDataRezerwacjeKlienci();
+            else
+            {
+                if ((bool)rbRezerwacjeId.IsChecked)
+                {
+                    int id;
+                    if (int.TryParse(textBoxRezerwacjeSzukaj.Text, out id))
+                        dataGridRezerwacjeSzukaj.ItemsSource = TablesManager.Manager.RezerwacjeTableAdapter.GetDataRezerwacjeByID(id);
+                    else
+                        System.Windows.MessageBox.Show("Niepoprawne ID rezerwacje.\nNumer identyfikacyjny rezerwacji może zawierać tylko cyfry.", "Wyszukiwanie rezerwacji", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+        }
+
+//REZERWACJE->DODAJ
+        private void buttonRezerwacjeAdd_Click(object sender, RoutedEventArgs e)
+        {
+            zwinRezerwacje();
+            gridRezerwacjeAdd.Height = 580;
+        }
+        private void textBoxRezerwacjeAddIloscOsob_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            labelPozostaloOsob.Content = textBoxRezerwacjeAddIlOsob.Text;
+        }
+//REZERWACKE->DODAJ->DALEJ
+        private void buttonRezerwacjeAddDalej_Click(object sender, RoutedEventArgs e)
+        {
+            zwinRezerwacje();
+            gridRezerwacjeAdd2.Height = 580;
+        }
+//REZERWACJE->ZALICZKA
+        private void buttonRezerwacjeZaliczka_Click(object sender, RoutedEventArgs e)
+        {
+            if (dataGridRezerwacjeSzukaj.SelectedItem != null)
+            {
+                RezerwacjeDS.RezerwacjeRow selectedRow= (RezerwacjeDS.RezerwacjeRow)((DataRowView)dataGridRezerwacjeSzukaj.SelectedItem).Row;
+                if (selectedRow.zaplacono_zaliczke == false)
+                {
+                    zwinRezerwacje();
+                    gridRezerwacjeCheck.Height = 580;
+                    labelRezerwacjeCheckKlient.Content = (string)selectedRow["imie"] + (string)selectedRow["nazwisko"];
+                    labelRezerwacjeCheckPesel.Content = (string)selectedRow["pesel"];
+                    //labelRezerwacjeCheckTermin = selectedRow.termin;
+                    labelRezerwacjeCheckId.Content = selectedRow.id_rezerwacji;
+                    labelRezerwacjeCheckIlOsob.Content = selectedRow.ilosc_osob;
+                }
+                else
+                    System.Windows.MessageBox.Show("Wybrana rezerwacja ma już potwierdzoną wpłatę zaliczki", "Potwierdzenie wpłaty zaliczki", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            else
+                System.Windows.MessageBox.Show("Najpierw wybierz rezerwacje.", "Potwierdzenie wpłaty zaliczki", MessageBoxButton.OK, MessageBoxImage.Warning);
+        }
+
+        private void buttonRezerwacjeCheckCancel_Click(object sender, RoutedEventArgs e)
+        {
+            zwinRezerwacje();
+            gridRezerwacjeDeafult.Height = 580;
+        }
+//REZERWACJE->USUN
+        private void buttonRezerwacjeDel_Click(object sender, RoutedEventArgs e)
+        {
+            zwinRezerwacje();
+            gridRezerwacjeDel.Height = 580;
+        }
+
+
 
 //POBYTY
         private void tabPobyty_GotFocus(object sender, RoutedEventArgs e)
@@ -276,7 +325,7 @@ namespace PensjonatApp
                 textBoxKlienciEdycjaFirma.Text = selectedRow.IsnazwaNull() ? "" : selectedRow.nazwa;
             }
             else  
-                System.Windows.MessageBox.Show("Najpierw wybierz klienta.", "Edycja klienta", MessageBoxButton.OK, MessageBoxImage.Information);
+                System.Windows.MessageBox.Show("Najpierw wybierz klienta.", "Edycja klienta", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
 
         private void buttonKlienciEdycjaPowrot_Click(object sender, RoutedEventArgs e)
@@ -295,15 +344,8 @@ namespace PensjonatApp
         }
 
 
-        private void dataGrid1_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (dataGrid1.SelectedItem != null)
-            {
-                KlienciDS.KlienciRow t = (KlienciDS.KlienciRow)((DataRowView)dataGrid1.SelectedItem).Row;
-                label68.Content = t.id_klienta;
-            }
 
-        }
+  
 
 
     }
