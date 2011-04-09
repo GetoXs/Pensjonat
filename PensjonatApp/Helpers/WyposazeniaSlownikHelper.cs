@@ -20,9 +20,5 @@ namespace PensjonatApp.Helpers
             doZmiany[0].opis = opis;
             return TablesManager.Manager.Wyposazenia_slownikTableAdapter.Update(doZmiany);
         }
-
-        public static void usunElementWyposazenia(int id_wyposazenia)
-        {
-        }
     }
 }
