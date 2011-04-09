@@ -1375,7 +1375,7 @@ namespace PensjonatApp.DS.PokojeDSTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual PokojeDS.PokojeDataTable GetDataPokojeByID(int id_pokoju) {
+        public virtual PokojeDS.PokojeDataTable GetDataByID(int id_pokoju) {
             this.Adapter.SelectCommand = this.CommandCollection[1];
             this.Adapter.SelectCommand.Parameters[0].Value = ((int)(id_pokoju));
             PokojeDS.PokojeDataTable dataTable = new PokojeDS.PokojeDataTable();

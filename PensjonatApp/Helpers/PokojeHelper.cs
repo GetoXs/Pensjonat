@@ -16,7 +16,7 @@ namespace PensjonatApp.Helpers
 
         public static int edytujPokoj(int id_pokoju, int id_slownikowe_pokoju, string nr_pokoju)
         {
-            PokojeDS.PokojeDataTable doZmiany = TablesManager.Manager.PokojeTableAdapter.GetDataPokojeByID(id_pokoju);
+            PokojeDS.PokojeDataTable doZmiany = TablesManager.Manager.PokojeTableAdapter.GetDataByID(id_pokoju);
             doZmiany[0].id_slownikowe_pokoju = id_slownikowe_pokoju;
             doZmiany[0].nr_pokoju = nr_pokoju;
             return TablesManager.Manager.PokojeTableAdapter.Update(doZmiany);
