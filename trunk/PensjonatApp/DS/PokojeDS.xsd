@@ -59,7 +59,7 @@
               <Mapping SourceColumn="nr_pokoju" DataSetColumn="nr_pokoju" />
             </Mappings>
             <Sources>
-              <DbSource ConnectionRef="DB (Settings)" DbObjectName="[C:\Users\Dawid Myślak\Desktop\SVN\baza].Pokoje" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetDataPokojeByID" GetMethodModifier="Public" GetMethodName="GetDataPokojeByID" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataPokojeByID" UserSourceName="GetDataPokojeByID">
+              <DbSource ConnectionRef="DB (Settings)" DbObjectName="[C:\Users\Dawid Myślak\Desktop\SVN\baza].Pokoje" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByID" GetMethodModifier="Public" GetMethodName="GetDataByID" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByID" UserSourceName="GetDataByID">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT id_pokoju, id_slownikowe_pokoju, nr_pokoju
