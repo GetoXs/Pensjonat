@@ -9,7 +9,7 @@
         <Grid.Background>
             <ImageBrush ImageSource="/PensjonatApp;component/Images/ppbg.jpg" Stretch="Fill" TileMode="Tile" Viewport="0,0,1000,650" ViewportUnits="Absolute" />
         </Grid.Background>
-        <TabControl Margin="12,12,235,12" Name="tabControl1" TabStripPlacement="Left" IsEnabled="True" Padding="5" Grid.Row="0" BorderBrush="#FF2B4865" SelectionChanged="tabControl1_SelectionChanged_1">
+        <TabControl Margin="12,12,235,12" Name="tabControl1" TabStripPlacement="Left" IsEnabled="True" Padding="5" Grid.Row="0" BorderBrush="#FF2B4865">
             <TabItem Name="tabItem1" Height="55" IsEnabled="False" IsSelected="False" Opacity="0" Visibility="Hidden">
                 <Grid />
                 <TabItem.Background>
@@ -63,7 +63,7 @@
                         <TextBox Height="23" HorizontalAlignment="Left" Margin="14,17,0,0" Name="textBox1" VerticalAlignment="Top" Width="129" />
                         <RadioButton Content="ID" GroupName="rezerwacjeSzukaj" Height="16" HorizontalAlignment="Left" Margin="299,24,0,0" Name="rbRezerwacjeId" VerticalAlignment="Top" IsChecked="False" />
                         <RadioButton Content="Klient" GroupName="rezerwacjeSzukaj" Height="16" HorizontalAlignment="Left" IsChecked="True" Margin="247,24,0,0" Name="rbRezerwacjeName" VerticalAlignment="Top" IsThreeState="False" />
-                        <Button Content="Szukaj" Height="23" HorizontalAlignment="Left" Margin="160,17,0,0" Name="buttonRezerwacjeSearch" VerticalAlignment="Top" Width="75" Click="buttonRezerwacjeSearch_Click" />
+                        <Button Content="Szukaj" Height="23" HorizontalAlignment="Left" Margin="160,17,0,0" Name="buttonRezerwacjeSearch" VerticalAlignment="Top" Width="75" />
                         <DataGrid AutoGenerateColumns="False" Margin="14,51,9,24" MinColumnWidth="30" Name="dataGrid1" IsReadOnly="True" HorizontalGridLinesBrush="#FFD5D5D5" VerticalGridLinesBrush="#FFD5D5D5" SelectionChanged="dataGrid1_SelectionChanged" SelectedIndex="0">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Id" Binding="{Binding Path=id_klienta}" />
@@ -332,28 +332,30 @@
                         <Label Content="Klienci" FontSize="18" FontWeight="Bold" Height="40" HorizontalAlignment="Left" Margin="53,11,0,0" Name="label73" Padding="0" VerticalAlignment="Top" VerticalContentAlignment="Center" />
                         <Image Height="40" HorizontalAlignment="Left" Margin="165,12,0,0" Name="image9" Source="/PensjonatApp;component/Images/separator.png" Stretch="Fill" VerticalAlignment="Top" Width="2" />
                     </Grid>
-                    <Grid Height="119" Name="gridKlienciDeafult" Opacity="1" ShowGridLines="True" Visibility="Visible">
+                    <Grid Height="98" Name="gridKlienciDeafult" Opacity="1" ShowGridLines="True" Visibility="Visible">
                         <TextBox Height="23" HorizontalAlignment="Left" Margin="14,17,0,0" Name="textBox6" VerticalAlignment="Top" Width="129" />
                         <RadioButton Name="rbKlienciId" Content="ID" GroupName="klienciSzukaj" Height="16" HorizontalAlignment="Left" IsChecked="False" Margin="299,24,0,0" VerticalAlignment="Top" />
                         <RadioButton Name="rbKlienciKlient" Content="Klient" GroupName="klienciSzukaj" Height="16" HorizontalAlignment="Left" IsChecked="True" IsThreeState="False" Margin="247,24,0,0" VerticalAlignment="Top" />
                         <Button  Name="buttonKlienciSearch" Content="Szukaj" Height="23" HorizontalAlignment="Left" Margin="160,17,0,0" VerticalAlignment="Top" Width="75" />
-                        <DataGrid Name="dataGridKlienci" DataContext="{Binding}" IsEnabled="True" Margin="10,67,13,30" MinColumnWidth="30" >
+                        <DataGrid Name="dataGridKlienci" DataContext="{Binding}" IsEnabled="True" Margin="10,67,13,30" MinColumnWidth="30" IsVisibleChanged="dataGridKlienci_IsVisibleChanged" AutoGenerateColumns="False" HorizontalGridLinesBrush="#FFD5D5D5" VerticalGridLinesBrush="#FFD5D5D5" IsReadOnly="True" SelectionChanged="dataGridKlienci_SelectionChanged" SelectedIndex="0">
                             <DataGrid.Columns>
-                                <DataGridTemplateColumn Header="Nr"/>
-                                <DataGridTextColumn Header="Ilość os." />
-                                <DataGridTextColumn Header="Termin" />
-                                <DataGridTextColumn Header="Zaliczka" />
-                                <DataGridTextColumn Header="Klient" />
+                                <DataGridTextColumn Header="Id" Binding="{Binding Path=id_klienta}" />
+                                <DataGridTextColumn Header="Imię" Binding="{Binding Path=imie}" />
+                                <DataGridTextColumn Header="Nazwisko" Binding="{Binding Path=nazwisko}" />
+                                <DataGridTextColumn Header="PESEL" Binding="{Binding Path=pesel}" />
+                                <DataGridTextColumn Header="Email" Binding="{Binding Path=email}" />
+                                <DataGridTextColumn Header="Telefon" Binding="{Binding Path=nr_telefonu}" />
+                                <DataGridTextColumn Header="Miejscowość" Binding="{Binding Path=miejscowosc}" />
                             </DataGrid.Columns>
                         </DataGrid>
                     </Grid>
-                    <Grid Height="89" Name="gridKlienciEdit" Opacity="1" ShowGridLines="True" Visibility="Visible">
+                    <Grid Height="341" Name="gridKlienciEdit" Opacity="1" ShowGridLines="True" Visibility="Visible">
                         <Label Content="Edycja klienta:" FontSize="13" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,10,0,0" Name="label75" Padding="2" VerticalAlignment="Top" />
                         <Label Content="Imię:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,38,0,0" Name="label76" Padding="2" VerticalAlignment="Top" />
                         <Label Content="Nazwisko:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,64,0,0" Name="label77" Padding="2" VerticalAlignment="Top" />
                         <Label Content="PESEL:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,90,0,0" Name="label87" Padding="2" VerticalAlignment="Top" />
                         <Label Content="Telefon:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,194,0,0" Name="label88" Padding="2" VerticalAlignment="Top" />
-                        <Button Name="buttonKlienciEdycjaPowrot" Content="Powrót" Height="23" HorizontalAlignment="Left" Margin="207,284,0,0" VerticalAlignment="Top" Width="75" />
+                        <Button Name="buttonKlienciEdycjaPowrot" Content="Powrót" Height="23" HorizontalAlignment="Left" Margin="207,284,0,0" VerticalAlignment="Top" Width="75" Click="buttonKlienciEdycjaPowrot_Click" />
                         <Button Name="buttonKlienciEdycjaZapisz" Content="Zapisz" Height="23" HorizontalAlignment="Left" Margin="117,284,0,0"  VerticalAlignment="Top" Width="75" />
                         <TextBox Name="textBoxKlienciEdycjaImie"  Height="23" HorizontalAlignment="Left" Margin="160,37,0,0" VerticalAlignment="Top" Width="120" Text="Adam" />
                         <TextBox Name="textBoxKlienciEdycjaNazwisko" Height="23" HorizontalAlignment="Left" Margin="160,63,0,0"  VerticalAlignment="Top" Width="120" Text="Testowy" />
@@ -370,7 +372,7 @@
                         <Label Content="Firma:" FontWeight="Bold" HorizontalAlignment="Left" Margin="34,245,0,0" Name="label29" Padding="2" VerticalAlignment="Top" />
                         <TextBox Name="textBoxKlienciEdycjaFirma" Height="23" HorizontalAlignment="Left" Margin="160,245,0,0"  Text="TDCG" VerticalAlignment="Top" Width="120" />
                     </Grid>
-                    <Grid Height="636" Name="gridKlienciAdd" Opacity="1" ShowGridLines="True" Visibility="Visible">
+                    <Grid Height="267" Name="gridKlienciAdd" Opacity="1" ShowGridLines="True" Visibility="Visible">
                         <Label Content="Dodawanie klienta:" FontSize="13" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,10,0,0" Name="label92" Padding="2" VerticalAlignment="Top" />
                         <Label Content="Imię:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,39,0,0" Name="label44" Padding="2" VerticalAlignment="Top" />
                         <Label Content="Nazwisko:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,65,0,0" Name="label47" Padding="2" VerticalAlignment="Top" />

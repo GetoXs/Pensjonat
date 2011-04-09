@@ -145,6 +145,7 @@
     <Compile Include="Tools\TableAdapetrsManager.cs" />
     <Compile Include="DS\WyposazeniaDS.cs">
       <DependentUpon>WyposazeniaDS.xsd</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Tools\Db.cs" />
     <Compile Include="DS\UslugiDS.Designer.cs">
