@@ -332,12 +332,12 @@
                         <Label Content="Klienci" FontSize="18" FontWeight="Bold" Height="40" HorizontalAlignment="Left" Margin="53,11,0,0" Name="label73" Padding="0" VerticalAlignment="Top" VerticalContentAlignment="Center" />
                         <Image Height="40" HorizontalAlignment="Left" Margin="165,12,0,0" Name="image9" Source="/PensjonatApp;component/Images/separator.png" Stretch="Fill" VerticalAlignment="Top" Width="2" />
                     </Grid>
-                    <Grid Height="98" Name="gridKlienciDeafult" Opacity="1" ShowGridLines="True" Visibility="Visible">
-                        <TextBox Height="23" HorizontalAlignment="Left" Margin="14,17,0,0" Name="textBox6" VerticalAlignment="Top" Width="129" />
+                    <Grid Height="210" Name="gridKlienciDeafult" Opacity="1" ShowGridLines="True" Visibility="Visible">
+                        <TextBox Name="textBoxKlienciSzukaj" Height="23" HorizontalAlignment="Left" Margin="14,17,0,0" VerticalAlignment="Top" Width="129" />
                         <RadioButton Name="rbKlienciId" Content="ID" GroupName="klienciSzukaj" Height="16" HorizontalAlignment="Left" IsChecked="False" Margin="299,24,0,0" VerticalAlignment="Top" />
                         <RadioButton Name="rbKlienciKlient" Content="Klient" GroupName="klienciSzukaj" Height="16" HorizontalAlignment="Left" IsChecked="True" IsThreeState="False" Margin="247,24,0,0" VerticalAlignment="Top" />
-                        <Button  Name="buttonKlienciSearch" Content="Szukaj" Height="23" HorizontalAlignment="Left" Margin="160,17,0,0" VerticalAlignment="Top" Width="75" />
-                        <DataGrid Name="dataGridKlienci" DataContext="{Binding}" IsEnabled="True" Margin="10,67,13,30" MinColumnWidth="30" IsVisibleChanged="dataGridKlienci_IsVisibleChanged" AutoGenerateColumns="False" HorizontalGridLinesBrush="#FFD5D5D5" VerticalGridLinesBrush="#FFD5D5D5" IsReadOnly="True" SelectionChanged="dataGridKlienci_SelectionChanged" SelectedIndex="0">
+                        <Button  Name="buttonKlienciSearch" Content="Szukaj" Height="23" HorizontalAlignment="Left" Margin="160,17,0,0" VerticalAlignment="Top" Width="75" Click="buttonKlienciSearch_Click" />
+                        <DataGrid Name="dataGridKlienci" DataContext="{Binding}" IsEnabled="True" Margin="10,67,13,30" MinColumnWidth="30" IsVisibleChanged="dataGridKlienci_IsVisibleChanged" AutoGenerateColumns="False" HorizontalGridLinesBrush="#FFD5D5D5" VerticalGridLinesBrush="#FFD5D5D5" IsReadOnly="True" SelectionChanged="dataGridKlienci_SelectionChanged" SelectedIndex="-1">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Id" Binding="{Binding Path=id_klienta}" />
                                 <DataGridTextColumn Header="Imię" Binding="{Binding Path=imie}" />

@@ -1667,7 +1667,7 @@ namespace PensjonatApp.DS.KlienciDSTableAdapters {
             this._commandCollection[3] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[3].Connection = this.Connection;
             this._commandCollection[3].CommandText = @"SELECT        Klienci.email, Klienci.imie, Klienci.nazwisko, Klienci.id_miejscowosci, Klienci.ulica, Klienci.nip, Klienci.pesel, Klienci.id_klienta, Klienci.nr_telefonu, Klienci.nazwa, 
-                         Miejscowosci_slownik.nazwa AS miejsconosc, Klienci.kod_pocztowy
+                         Miejscowosci_slownik.nazwa AS miejscowosc, Klienci.kod_pocztowy
 FROM            Klienci, Miejscowosci_slownik
 WHERE        Klienci.id_miejscowosci = Miejscowosci_slownik.id_miejscowosci AND (Klienci.id_klienta = ?)";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;

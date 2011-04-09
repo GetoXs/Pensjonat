@@ -174,8 +174,12 @@ namespace PensjonatApp
             {
                 KlienciDS.KlienciRow t = (KlienciDS.KlienciRow)((DataRowView)dataGridKlienci.SelectedItem).Row;
             }
-        }  
-
+        }
+        private void buttonKlienciSearch_Click(object sender, RoutedEventArgs e)
+        {
+            int id = int.Parse(textBoxKlienciSzukaj.Text);
+            dataGridKlienci.ItemsSource = TablesManager.Manager.KlienciTableAdapter.GetDataKlienciMiejsconowsciByIdKlienta(id);
+        }
        
 //KLIENCI->DODAJ
         private void buttonKlienciAdd_Click(object sender, RoutedEventArgs e)
@@ -244,19 +248,24 @@ namespace PensjonatApp
 //KLIENCI->EDYTUJ
         private void buttonKlienciEdit_Click(object sender, RoutedEventArgs e)
         {
-            zwinKlienci();
-            gridKlienciEdit.Height = 580;
-            KlienciDS.KlienciRow selectedRow = (KlienciDS.KlienciRow)((DataRowView)dataGridKlienci.SelectedItem).Row;
-            //dataGridKlienci.ItemsSource = TablesManager.Manager.KlienciTableAdapter.GetDataKlienciMiejsconowsciByIdKlienta(selectedRow.id_klienta);
-            textBoxKlienciEdycjaImie.Text = selectedRow.imie;
-            textBoxKlienciEdycjaNazwisko.Text = selectedRow.nazwisko;
-            textBoxKlienciEdycjaPESEL.Text = selectedRow.pesel;
-            textBoxKlienciEdycjaNIP.Text = selectedRow.nip.ToString();
-            textBoxKlienciEdycjaTelefon.Text = selectedRow.nr_telefonu.ToString();
-            textBoxKlienciEdycjaMail.Text = selectedRow.email;
-            textBoxKlienciEdycjaMiejscowosc.Text = (string)selectedRow["miejscowosc"];
-            textBoxKlienciEdycjaAdres.Text = selectedRow.ulica;
-         //   textBoxKlienciEdycjaFirma.Text = selectedRow.nazwa;
+            if (dataGridKlienci.SelectedItem != null)
+            {
+                zwinKlienci();
+                gridKlienciEdit.Height = 580;
+                KlienciDS.KlienciRow selectedRow = (KlienciDS.KlienciRow)((DataRowView)dataGridKlienci.SelectedItem).Row;
+                //dataGridKlienci.ItemsSource = TablesManager.Manager.KlienciTableAdapter.GetDataKlienciMiejsconowsciByIdKlienta(selectedRow.id_klienta);
+                textBoxKlienciEdycjaImie.Text = selectedRow.imie;
+                textBoxKlienciEdycjaNazwisko.Text = selectedRow.nazwisko;
+                textBoxKlienciEdycjaPESEL.Text = selectedRow.pesel;
+                textBoxKlienciEdycjaNIP.Text = selectedRow.nip.ToString();
+                textBoxKlienciEdycjaTelefon.Text = selectedRow.nr_telefonu.ToString();
+                textBoxKlienciEdycjaMail.Text = selectedRow.email;
+                textBoxKlienciEdycjaMiejscowosc.Text = (string)selectedRow["miejscowosc"];
+                textBoxKlienciEdycjaAdres.Text = selectedRow.ulica;
+                textBoxKlienciEdycjaFirma.Text = selectedRow.IsnazwaNull() ? "" : selectedRow.nazwa;
+            }
+            else  
+                System.Windows.MessageBox.Show("Najpierw wybierz klienta.", "Edycja klienta", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private void buttonKlienciEdycjaPowrot_Click(object sender, RoutedEventArgs e)
@@ -284,7 +293,6 @@ namespace PensjonatApp
             }
 
         }
-
 
 
     }
