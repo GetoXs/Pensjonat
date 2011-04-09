@@ -15,3 +15,11 @@ namespace PensjonatApp.DS.KlienciDSTableAdapters
     public partial class KlienciTableAdapter {
     }
 }
+
+namespace PensjonatApp.DS.KlienciDSTableAdapters
+{
+    
+    
+    public partial class KlienciTableAdapter {
+    }
+}

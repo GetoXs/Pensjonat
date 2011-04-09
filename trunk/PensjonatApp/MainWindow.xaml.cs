@@ -35,7 +35,7 @@ namespace PensjonatApp
             gridKlienciDeafult.Height = 580;
 
         }
-
+// Główne metody
         private void tabControl1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
@@ -69,13 +69,12 @@ namespace PensjonatApp
             gridKlienciEdit.Height = 0;
         }
 
-
+//REZERWACJE
         private void buttonRezerwacjeAdd_Click(object sender, RoutedEventArgs e)
         {
             zwinRezerwacje();
             gridRezerwacjeAdd.Height = 580;
         }
-
 
         private void buttonRezerwacjeZaliczka_Click(object sender, RoutedEventArgs e)
         {
@@ -100,7 +99,7 @@ namespace PensjonatApp
 
         private void textBoxRezerwacjeAddIloscOsob_TextChanged(object sender, TextChangedEventArgs e)
         {
-         //   labelPozostaloOsob.Content = textBoxRezerwacjeAddIlOsob.Text;
+            labelPozostaloOsob.Content = textBoxRezerwacjeAddIlOsob.Text;
         }
 
         private void buttonRezerwacjeAddDalej_Click(object sender, RoutedEventArgs e)
@@ -109,17 +108,15 @@ namespace PensjonatApp
 			gridRezerwacjeAdd2.Height = 580;
         }
 
-        private void dataGrid9_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void gridRezerwacjeDeafult_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-
+            if ((bool)(e.NewValue) == true)
+            {//pojawienie sie pola
+                dataGrid1.ItemsSource = TablesManager.Manager.KlienciTableAdapter.GetKlienciMiejscowosci();
+            }
         }
 
-        private void buttonPobytyServices_Click(object sender, RoutedEventArgs e)
-        {
-            zwinPobyty();
-            gridPobytyServices.Height = 580;
-        }
-
+//POBYTY
         private void tabPobyty_GotFocus(object sender, RoutedEventArgs e)
         {
             if (tabPobyty.IsFocused)
@@ -129,14 +126,15 @@ namespace PensjonatApp
             }
         }
 
+        private void buttonPobytyServices_Click(object sender, RoutedEventArgs e)
+        {
+            zwinPobyty();
+            gridPobytyServices.Height = 580;
+        }
+
         private void comboBoxPobytyUslugi_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             comboBoxPobytyPracownicy.IsEnabled = true;
-        }
-
-        private void tabControl1_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
-        {
-
         }
 
         private void buttonPobytySum_Click(object sender, RoutedEventArgs e)
@@ -151,19 +149,8 @@ namespace PensjonatApp
             gridPobytyDetails.Height = 580;
         }
 
-        private void buttonKlienciAdd_Click(object sender, RoutedEventArgs e)
-        {
-            zwinKlienci();
-            gridKlienciAdd.Height = 580;
-			buttonKlienciAddDodaj.IsEnabled = false;
-        }
 
-        private void buttonKlienciEdit_Click(object sender, RoutedEventArgs e)
-        {
-            zwinKlienci();
-            gridKlienciEdit.Height = 580;
-        }
-
+// KLIENCI
         private void tabKlienci_GotFocus(object sender, RoutedEventArgs e)
         {
             if (tabKlienci.IsFocused)
@@ -173,30 +160,29 @@ namespace PensjonatApp
             }
         }
 
-		private void Window_Loaded_1(object sender, RoutedEventArgs e)
-		{
-		}
-
-		private void gridRezerwacjeDeafult_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
-		{
-			
-			if ((bool)(e.NewValue )== true)
-			{//pojawienie sie pola
-				dataGrid1.ItemsSource = TablesManager.Manager.KlienciTableAdapter.GetKlienciMiejscowosci();
-
-			}
-		}
-
-		private void buttonRezerwacjeSearch_Click(object sender, RoutedEventArgs e)
-		{
-		}
-
-        private void buttonNewsletterNew_Click(object sender, RoutedEventArgs e)
+//KLIENCI->DEAFULT
+        private void dataGridKlienci_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            MessageBoxResult result = System.Windows.MessageBox.Show("Czy jesteś pewny?", "Nowy newsletter", MessageBoxButton.YesNo, MessageBoxImage.Question);
-            // MessageBoxResult result = Microsoft.Windows.Controls.MessageBox.Show("Czy jesteś pewny?", "Nowy newsletter", MessageBoxButton.YesNo, MessageBoxImage.Question);
-            if (result == MessageBoxResult.Yes)
-                richTextBoxNewsletter.Text = @"{\rtf1\ansi\ansicpg1252\uc1\htmautsp\deff2{\fonttbl{\f0\fcharset0 Times New Roman;}{\f2\fcharset0 Segoe UI;}}{\colortbl\red0\green0\blue0;\red255\green255\blue255;}\loch\hich\dbch\pard\plain\ltrpar\itap0{\lang1033\fs18\f2\cf0 \cf0\ql{\f2 {\ltrch }\li0\ri0\sa0\sb0\fi0\ql\par}}}";
+            if ((bool)(e.NewValue) == true)
+            {//pojawienie sie pola
+                dataGridKlienci.ItemsSource = TablesManager.Manager.KlienciTableAdapter.GetKlienciMiejscowosci();
+            }
+        }
+        private void dataGridKlienci_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (dataGridKlienci.SelectedItem != null)
+            {
+                KlienciDS.KlienciRow t = (KlienciDS.KlienciRow)((DataRowView)dataGridKlienci.SelectedItem).Row;
+            }
+        }  
+
+       
+//KLIENCI->DODAJ
+        private void buttonKlienciAdd_Click(object sender, RoutedEventArgs e)
+        {
+            zwinKlienci();
+            gridKlienciAdd.Height = 580;
+            buttonKlienciAddDodaj.IsEnabled = false;
         }
 
 		private void buttonKlienciAddDodaj_Click(object sender, RoutedEventArgs e)
@@ -219,6 +205,7 @@ namespace PensjonatApp
 				MessageBox.Show("Błąd: " + KlienciHelper.lastMsg, "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
 
 		}
+
 		/// <summary>
 		/// Sprawdzanie na bieżąco czy 
 		/// </summary>
@@ -254,6 +241,40 @@ namespace PensjonatApp
 			
 		}
 
+//KLIENCI->EDYTUJ
+        private void buttonKlienciEdit_Click(object sender, RoutedEventArgs e)
+        {
+            zwinKlienci();
+            gridKlienciEdit.Height = 580;
+            KlienciDS.KlienciRow selectedRow = (KlienciDS.KlienciRow)((DataRowView)dataGridKlienci.SelectedItem).Row;
+            //dataGridKlienci.ItemsSource = TablesManager.Manager.KlienciTableAdapter.GetDataKlienciMiejsconowsciByIdKlienta(selectedRow.id_klienta);
+            textBoxKlienciEdycjaImie.Text = selectedRow.imie;
+            textBoxKlienciEdycjaNazwisko.Text = selectedRow.nazwisko;
+            textBoxKlienciEdycjaPESEL.Text = selectedRow.pesel;
+            textBoxKlienciEdycjaNIP.Text = selectedRow.nip.ToString();
+            textBoxKlienciEdycjaTelefon.Text = selectedRow.nr_telefonu.ToString();
+            textBoxKlienciEdycjaMail.Text = selectedRow.email;
+            textBoxKlienciEdycjaMiejscowosc.Text = (string)selectedRow["miejscowosc"];
+            textBoxKlienciEdycjaAdres.Text = selectedRow.ulica;
+         //   textBoxKlienciEdycjaFirma.Text = selectedRow.nazwa;
+        }
+
+        private void buttonKlienciEdycjaPowrot_Click(object sender, RoutedEventArgs e)
+        {
+            zwinKlienci();
+            gridKlienciDeafult.Height = 580;
+
+        }
+//NEWSLETTER
+        private void buttonNewsletterNew_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = System.Windows.MessageBox.Show("Czy jesteś pewny?", "Nowy newsletter", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            // MessageBoxResult result = Microsoft.Windows.Controls.MessageBox.Show("Czy jesteś pewny?", "Nowy newsletter", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result == MessageBoxResult.Yes)
+                richTextBoxNewsletter.Text = @"{\rtf1\ansi\ansicpg1252\uc1\htmautsp\deff2{\fonttbl{\f0\fcharset0 Times New Roman;}{\f2\fcharset0 Segoe UI;}}{\colortbl\red0\green0\blue0;\red255\green255\blue255;}\loch\hich\dbch\pard\plain\ltrpar\itap0{\lang1033\fs18\f2\cf0 \cf0\ql{\f2 {\ltrch }\li0\ri0\sa0\sb0\fi0\ql\par}}}";
+        }
+
+
         private void dataGrid1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (dataGrid1.SelectedItem != null)
@@ -263,6 +284,8 @@ namespace PensjonatApp
             }
 
         }
+
+
 
     }
 
