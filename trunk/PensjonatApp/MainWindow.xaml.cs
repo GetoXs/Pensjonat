@@ -159,10 +159,26 @@ namespace PensjonatApp
 //REZERWACJE->USUN
         private void buttonRezerwacjeDel_Click(object sender, RoutedEventArgs e)
         {
-            zwinRezerwacje();
-            gridRezerwacjeDel.Height = 580;
+            if (dataGridRezerwacjeSzukaj.SelectedItem != null)
+            {
+                RezerwacjeDS.RezerwacjeRow selectedRow = (RezerwacjeDS.RezerwacjeRow)((DataRowView)dataGridRezerwacjeSzukaj.SelectedItem).Row;
+                zwinRezerwacje();
+                gridRezerwacjeDel.Height = 580;
+                labelRezerwacjeDelKlient.Content = (string)selectedRow["imie"] + (string)selectedRow["nazwisko"];
+                labelRezerwacjeDelPesel.Content = (string)selectedRow["pesel"];
+                //labelRezerwacjeDelTermin = selectedRow.termin;
+                labelRezerwacjeDelId.Content = selectedRow.id_rezerwacji;
+                labelRezerwacjeDelIlOsob.Content = selectedRow.ilosc_osob;
+                checkBoxRezerwacjeDelZaliczka.IsChecked = selectedRow.zaplacono_zaliczke;
+            }
+            else
+                System.Windows.MessageBox.Show("Najpierw wybierz rezerwacje.", "Usuwanie rezerwacji", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
-
+        private void buttonRezerwacjeDelCancel_Click(object sender, RoutedEventArgs e)
+        {
+            zwinRezerwacje();
+            gridRezerwacjeDeafult.Height = 580;
+        }
 
 
 //POBYTY
@@ -342,6 +358,8 @@ namespace PensjonatApp
             if (result == MessageBoxResult.Yes)
                 richTextBoxNewsletter.Text = @"{\rtf1\ansi\ansicpg1252\uc1\htmautsp\deff2{\fonttbl{\f0\fcharset0 Times New Roman;}{\f2\fcharset0 Segoe UI;}}{\colortbl\red0\green0\blue0;\red255\green255\blue255;}\loch\hich\dbch\pard\plain\ltrpar\itap0{\lang1033\fs18\f2\cf0 \cf0\ql{\f2 {\ltrch }\li0\ri0\sa0\sb0\fi0\ql\par}}}";
         }
+
+
 
 
 
