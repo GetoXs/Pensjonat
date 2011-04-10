@@ -141,7 +141,12 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Helpers\KlienciHelper.cs" />
+    <Compile Include="Helpers\PokojeHelper.cs" />
+    <Compile Include="Helpers\PokojeSlownikHelper.cs" />
+    <Compile Include="Helpers\RezerwacjeHelper.cs" />
     <Compile Include="Helpers\UslugiHelper.cs" />
+    <Compile Include="Helpers\WyposazeniaHelper.cs" />
+    <Compile Include="Helpers\WyposazeniaSlownikHelper.cs" />
     <Compile Include="Tools\TableAdapetrsManager.cs" />
     <Compile Include="DS\WyposazeniaDS.cs">
       <DependentUpon>WyposazeniaDS.xsd</DependentUpon>
