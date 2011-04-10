@@ -95,9 +95,9 @@ WHERE id_rezerwacji = ?</CommandText>
               <DbSource ConnectionRef="DB (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetDataRezerwacjeKlienci" GetMethodModifier="Public" GetMethodName="GetDataRezerwacjeKlienci" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataRezerwacjeKlienci" UserSourceName="GetDataRezerwacjeKlienci">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT        r.id_rezerwacji, r.zaliczka, r.zaplacono_zaliczke, r.ilosc_osob, r.id_klienta, k.email, k.imie, k.nazwisko, k.id_miejscowosci, k.ulica, k.nip, k.pesel, k.nr_telefonu, k.nazwa
-FROM            Rezerwacje r, Klienci k
-WHERE        r.id_klienta = k.id_klienta</CommandText>
+                    <CommandText>SELECT        r.id_rezerwacji, p.termin_start, p.termin_koniec, r.zaliczka, r.zaplacono_zaliczke, r.ilosc_osob, k.imie, k.nazwisko, k.pesel
+FROM            Rezerwacje r, Klienci k, Pobyty p
+WHERE        r.id_klienta = k.id_klienta and p.id_klienta = k.id_klienta</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>

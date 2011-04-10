@@ -5,7 +5,8 @@
     }
 }
 
-namespace PensjonatApp.RezerwacjeDSTableAdapters {
+namespace PensjonatApp.DS.RezerwacjeDSTableAdapters
+{
     
     
     public partial class RezerwacjeTableAdapter {

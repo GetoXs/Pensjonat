@@ -10,17 +10,17 @@ namespace PensjonatApp.Helpers
     class RezerwacjeHelper
     {
         /// <summary>
-		/// Wiadomośc do pobrania z innych modułów nt. np. które pole się dubluje
-		/// </summary>
-		public static string lastMsg { get; private set; }
-		
+        /// Wiadomośc do pobrania z innych modułów nt. np. które pole się dubluje
+        /// </summary>
+        public static string lastMsg { get; private set; }
+
         /// <summary>
-		/// Bezargumentowy konstruktor statyczny, zeruje ostatnia wiadomosc
-		/// </summary>
-		static RezerwacjeHelper()
-		{
-			lastMsg = "";
-		}
+        /// Bezargumentowy konstruktor statyczny, zeruje ostatnia wiadomosc
+        /// </summary>
+        static RezerwacjeHelper()
+        {
+            lastMsg = "";
+        }
 
         /// <summary>
         /// Sprawdza poprawność id_rezerwacji, info nt. bledu w lastMsg
@@ -49,7 +49,7 @@ namespace PensjonatApp.Helpers
             lastMsg = "";
             StringBuilder dialog = new StringBuilder("");
 
-            if (id_pobytu <= 0)  
+            if (id_pobytu <= 0)
             {
                 dialog.Append("Nieprawidłowe ID Pobytu\n");
                 return false;
@@ -67,7 +67,7 @@ namespace PensjonatApp.Helpers
             lastMsg = "";
             StringBuilder dialog = new StringBuilder("");
 
-            if (id_slownikowe_posilku <= 0)  
+            if (id_slownikowe_posilku <= 0)
             {
                 dialog.Append("Nieprawidłowe ID Posilku\n");
                 return false;
@@ -85,7 +85,7 @@ namespace PensjonatApp.Helpers
             lastMsg = "";
             StringBuilder dialog = new StringBuilder("");
 
-            if (start_pobytu >= koniec_pobytu) 
+            if (start_pobytu >= koniec_pobytu)
             {
                 dialog.Append("Nieprawidłowy czas pobytu\n");
                 return false;
@@ -111,7 +111,7 @@ namespace PensjonatApp.Helpers
                 dialog.Append("Nieprawidłowa ilość osób\n");
             if (zaliczka < 0)
                 dialog.Append("Nieprawidłowa wartość zaliczki\n");
-            if(pokoje.Count == 0)
+            if (pokoje.Count == 0)
                 dialog.Append("Nieprawidłowa lista pokoi\n");
 
             if (lastMsg != "")
@@ -138,7 +138,7 @@ namespace PensjonatApp.Helpers
         /// <returns>Wolne pokoje</returns>
         public PokojeDS.PokojeDataTable pobierzPokojeWolne(DateTime start_pobytu, DateTime koniec_pobytu)
         {
-            return TablesManager.Manager.PokojeTableAdapter.GetDataWolnePokojeByTermin(koniec_pobytu, start_pobytu);
+            return TablesManager.Manager.PokojeTableAdapter.GetDataWolnePokojeByTermin(start_pobytu, start_pobytu, koniec_pobytu, koniec_pobytu, start_pobytu, koniec_pobytu);
         }
 
         /// <summary>
@@ -149,7 +149,7 @@ namespace PensjonatApp.Helpers
         public static int dodajRezerwacje(int id_klienta_rezerwujacego, int ilosc_osob, decimal zaliczka, PokojeDS.PokojeDataTable pokoje, DateTime start_pobytu, DateTime koniec_pobytu)
         {
             TablesManager.Manager.RezerwacjeTableAdapter.Insert(zaliczka, false, ilosc_osob, id_klienta_rezerwujacego);
-            RezerwacjeDS.RezerwacjeDataTable tabRez = TablesManager.Manager.RezerwacjeTableAdapter.GetDataRezerwacjaOstatnia();
+            RezerwacjeDS.RezerwacjeDataTable tabRez = TablesManager.Manager.RezerwacjeTableAdapter.GetDataRezerwacjeOstatnia();
 
             foreach (PokojeDS.PokojeRow pokoj in pokoje)
             {
@@ -166,7 +166,7 @@ namespace PensjonatApp.Helpers
         public static int dodajRezerwacjePosilki(int id_klienta_rezerwujacego, int ilosc_osob, decimal zaliczka, PokojeDS.PokojeDataTable pokoje, PosilkiDS.PosilkiDataTable posilki, DateTime start_pobytu, DateTime koniec_pobytu)
         {
             TablesManager.Manager.RezerwacjeTableAdapter.Insert(zaliczka, false, ilosc_osob, id_klienta_rezerwujacego);
-            RezerwacjeDS.RezerwacjeDataTable tabRez = TablesManager.Manager.RezerwacjeTableAdapter.GetDataRezerwacjaOstatnia();
+            RezerwacjeDS.RezerwacjeDataTable tabRez = TablesManager.Manager.RezerwacjeTableAdapter.GetDataRezerwacjeOstatnia();
 
             foreach (PokojeDS.PokojeRow pokoj in pokoje)
             {
@@ -212,7 +212,7 @@ namespace PensjonatApp.Helpers
         public static int przydzielPosilekDoPobytu(int id_pobytu, int id_slownikowe_posilku, DateTime termin)
         {
             return TablesManager.Manager.PosilkiTableAdapter.Insert(id_pobytu, id_slownikowe_posilku, termin);
-            
+
         }
     }
 }
