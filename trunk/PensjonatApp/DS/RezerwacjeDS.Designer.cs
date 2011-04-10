@@ -945,9 +945,9 @@ namespace PensjonatApp.DS.RezerwacjeDSTableAdapters {
             this._commandCollection[2].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_rezerwacji", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_rezerwacji", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[3] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = @"SELECT        r.id_rezerwacji, r.zaliczka, r.zaplacono_zaliczke, r.ilosc_osob, r.id_klienta, k.email, k.imie, k.nazwisko, k.id_miejscowosci, k.ulica, k.nip, k.pesel, k.nr_telefonu, k.nazwa
-FROM            Rezerwacje r, Klienci k
-WHERE        r.id_klienta = k.id_klienta";
+            this._commandCollection[3].CommandText = @"SELECT        r.id_rezerwacji, p.termin_start, p.termin_koniec, r.zaliczka, r.zaplacono_zaliczke, r.ilosc_osob, k.imie, k.nazwisko, k.pesel
+FROM            Rezerwacje r, Klienci k, Pobyty p
+WHERE        r.id_klienta = k.id_klienta and p.id_klienta = k.id_klienta";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[4] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[4].Connection = this.Connection;
