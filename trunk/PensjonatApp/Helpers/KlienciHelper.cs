@@ -9,7 +9,7 @@ namespace PensjonatApp.Helpers
 {
 	class KlienciHelper
 	{
-        public static int dodajKlienta(string imie, string nazwisko, string nazwa_firmy, string miejscowosc, string ulica, string kod_pocztowy, int nip, string pesel, int nr_telefonu, string email)
+        public static int dodajKlienta(string imie, string nazwisko, string nazwa_firmy, string miejscowosc, string ulica, string kod_pocztowy, int? nip, string pesel, int nr_telefonu, string email)
         {
             int id_miejscowosci;
             KlienciDS.Miejscowosci_slownikDataTable szukanaMiejscowosc = TablesManager.Manager.Miejscowosci_slownikTableAdapter.GetDataByNazwa(miejscowosc);
