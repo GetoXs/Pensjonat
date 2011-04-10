@@ -145,6 +145,7 @@
     <Compile Include="Helpers\PokojeSlownikHelper.cs" />
     <None Include="Helpers\RezerwacjeHelper.cs" />
     <Compile Include="Helpers\UslugiHelper.cs" />
+    <Compile Include="Helpers\UslugiSlownikHelper.cs" />
     <Compile Include="Helpers\WyposazeniaHelper.cs" />
     <Compile Include="Helpers\WyposazeniaSlownikHelper.cs" />
     <Compile Include="Tools\TableAdapetrsManager.cs" />
