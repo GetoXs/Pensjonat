@@ -9,6 +9,48 @@ namespace PensjonatApp.Helpers
 {
 	class KlienciHelper
 	{
+        public static int dodajKlienta(string imie, string nazwisko, string nazwa_firmy, string miejscowosc, string ulica, string kod_pocztowy, int nip, string pesel, int nr_telefonu, string email)
+        {
+            int id_miejscowosci;
+            KlienciDS.Miejscowosci_slownikDataTable szukanaMiejscowosc = TablesManager.Manager.Miejscowosci_slownikTableAdapter.GetDataByNazwa(miejscowosc);
+            if (szukanaMiejscowosc.Count > 0)
+                id_miejscowosci = szukanaMiejscowosc[0].id_miejscowosci;
+            else
+            {
+                TablesManager.Manager.Miejscowosci_slownikTableAdapter.Insert(miejscowosc);
+                id_miejscowosci = TablesManager.Manager.Miejscowosci_slownikTableAdapter.GetDataByNazwa(miejscowosc)[0].id_miejscowosci;
+            }
+            return TablesManager.Manager.KlienciTableAdapter.Insert(email, imie, nazwisko, id_miejscowosci, ulica, nip, pesel, nr_telefonu, nazwa_firmy, kod_pocztowy);
+        }
+
+        public static int edytujKlienta(int id_klienta, string imie, string nazwisko, string nazwa_firmy, string miejscowosc, string ulica, string kod_pocztowy, int nip, string pesel, int nr_telefonu, string email)
+        {
+            int id_miejscowosci;
+            KlienciDS.Miejscowosci_slownikDataTable szukanaMiejscowosc = TablesManager.Manager.Miejscowosci_slownikTableAdapter.GetDataByNazwa(miejscowosc);
+            if (szukanaMiejscowosc.Count > 0)
+                id_miejscowosci = szukanaMiejscowosc[0].id_miejscowosci;
+            else
+            {
+                TablesManager.Manager.Miejscowosci_slownikTableAdapter.Insert(miejscowosc);
+                id_miejscowosci = TablesManager.Manager.Miejscowosci_slownikTableAdapter.GetDataByNazwa(miejscowosc)[0].id_miejscowosci;
+            }
+            KlienciDS.KlienciDataTable doZmiany = TablesManager.Manager.KlienciTableAdapter.GetDataByIdKlienta(id_klienta);
+            doZmiany[0].imie = imie;
+            doZmiany[0].nazwisko = nazwisko;
+            doZmiany[0].nazwa = nazwa_firmy;
+            doZmiany[0].ulica = ulica;
+            doZmiany[0].kod_pocztowy = kod_pocztowy;
+            doZmiany[0].nip = nip;
+            doZmiany[0].pesel = pesel;
+            doZmiany[0].nr_telefonu = nr_telefonu;
+            doZmiany[0].email = email;
+            doZmiany[0].id_miejscowosci = id_miejscowosci;
+            return TablesManager.Manager.KlienciTableAdapter.Update(doZmiany);
+        }
+
+        /*
+         * Scisle tajny kod GetOxxxa
+         * 
 		private static _AddKlient _addKlient { get; set; }
 		/// <summary>
 		/// Wiadomośc do pobrania z innych modułów nt. np. które pole się dubluje
@@ -105,7 +147,7 @@ namespace PensjonatApp.Helpers
 				}//kolejne warunki
 			}
 			 * 
-			 **/
+			 *
 			//Druga metoda pobieranie tabela po tabeli
 			if (_addKlient.nip != null && TablesManager.Manager.KlienciTableAdapter.GetDataByNip(_addKlient.nip).Count > 0)
 				dialog.Append("NIP się dubluje");
@@ -163,7 +205,7 @@ namespace PensjonatApp.Helpers
 			public String pesel{get;set;}
 			public int? nr_telefonu{get;set;}
 			public String kod_pocztowy{get;set;}
-		}
+		}*/
 
 	}
 }

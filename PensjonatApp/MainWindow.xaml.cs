@@ -268,7 +268,7 @@ namespace PensjonatApp
 		private void buttonKlienciAddDodaj_Click(object sender, RoutedEventArgs e)
 		{
 			//dodawanie klienta
-			if (KlienciHelper.addKlient(
+			/*if (KlienciHelper.addKlient(
 				textBoxKlienciAddMail.Text,
 				textBoxKlienciAddImie.Text,
 				textBoxKlienciAddNazwisko.Text,
@@ -283,7 +283,7 @@ namespace PensjonatApp
 			}
 			else
 				MessageBox.Show("Błąd: " + KlienciHelper.lastMsg, "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
-
+            */
 		}
 
 		/// <summary>
