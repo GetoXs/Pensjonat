@@ -9,6 +9,12 @@ namespace PensjonatApp.Helpers
 {
 	class KlienciHelper
 	{
+        /// <summary>
+        /// Dodaje klienta i przypisuje go do odopowieniego miasta, jezeli miasto nie istnieje dodaje nowe.
+        /// Wymagane parametry to wszystkie pola niezbedne do wypelnienia bazy danych.
+        /// Jezeli jest to klient indywidualny, do pola nip nalezy przekazac null, a do pola nazwa_firmy pusty string.
+        /// W przypadku klienta firmowego do pola pesel nalezy przekazac pusty string.
+        /// </summary>
         public static int dodajKlienta(string imie, string nazwisko, string nazwa_firmy, string miejscowosc, string ulica, string kod_pocztowy, int? nip, string pesel, int nr_telefonu, string email)
         {
             int id_miejscowosci;
@@ -23,6 +29,12 @@ namespace PensjonatApp.Helpers
             return TablesManager.Manager.KlienciTableAdapter.Insert(email, imie, nazwisko, id_miejscowosci, ulica, nip, pesel, nr_telefonu, nazwa_firmy, kod_pocztowy);
         }
 
+        /// <summary>
+        /// Edytuje klienta i przypisuje go do odopowieniego miasta, jezeli miasto nie istnieje dodaje nowe.
+        /// Wymagane parametry to wszystkie pola niezbedne do wypelnienia bazy danych oraz ID edytowanego klienta.
+        /// Jezeli jest to klient indywidualny, do pola nip nalezy przekazac null, a do pola nazwa_firmy pusty string.
+        /// W przypadku klienta firmowego do pola pesel nalezy przekazac pusty string.
+        /// </summary>
         public static int edytujKlienta(int id_klienta, string imie, string nazwisko, string nazwa_firmy, string miejscowosc, string ulica, string kod_pocztowy, int nip, string pesel, int nr_telefonu, string email)
         {
             int id_miejscowosci;
