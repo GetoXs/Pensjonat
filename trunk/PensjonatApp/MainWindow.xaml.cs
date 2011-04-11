@@ -111,6 +111,32 @@ namespace PensjonatApp
                 }
             }
         }
+        private void rezerwacjeSearch()
+        {
+            if (textBoxRezerwacjeSzukaj.Text == "")
+                dataGridRezerwacjeSzukaj.ItemsSource = TablesManager.Manager.RezerwacjeTableAdapter.GetDataRezerwacjeKlienci();
+            else
+            {
+                if ((bool)rbRezerwacjeId.IsChecked)
+                {
+                    int id;
+                    if (int.TryParse(textBoxRezerwacjeSzukaj.Text, out id))
+                        dataGridRezerwacjeSzukaj.ItemsSource = TablesManager.Manager.RezerwacjeTableAdapter.GetDataRezerwacjeByID(id);
+                    else
+                        System.Windows.MessageBox.Show("Niepoprawne ID rezerwacji.\nNumer identyfikacyjny rezerwacji może zawierać tylko cyfry.", "Wyszukiwanie rezerwacji", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                else if ((bool)rbRezerwacjeName.IsChecked)
+                {
+                    if (textBoxRezerwacjeSzukaj.Text.Contains(' '))
+                    {
+                        string[] szukaj = textBoxRezerwacjeSzukaj.Text.Split(' ');
+                        //dataGridRezerwacjeSzukaj.ItemsSource = TablesManager.Manager.RezerwacjeTableAdapter.GetDataByRezerwacjeMiejscowosciByImieNazwiskoKlienta(szukaj[0], szukaj[1]);
+                    }
+                    else
+                        dataGridRezerwacjeSzukaj.ItemsSource = TablesManager.Manager.RezerwacjeTableAdapter.GetDataRezerwacjaKlienciByNazwiskoRejestrujacego(textBoxRezerwacjeSzukaj.Text);
+                }
+            }
+        }
 
 //REZERWACJE->DODAJ
         private void buttonRezerwacjeAdd_Click(object sender, RoutedEventArgs e)
@@ -122,7 +148,21 @@ namespace PensjonatApp
         {
             labelPozostaloOsob.Content = textBoxRezerwacjeAddIlOsob.Text;
         }
-//REZERWACKE->DODAJ->DALEJ
+        private void dataGridRezerwacjeAddDostepnePokoje_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if ((bool)(e.NewValue) == true)
+            {//pojawienie sie pola
+               // dataGridRezerwacjeAddDostepnePokoje.ItemsSource = TablesManager.Manager.PokojeTableAdapter.GetDataWolnePokojeByTermin();
+            }
+        }
+        private void dataGridRezerwacjeAddDostepnePokoje_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (dataGridRezerwacjeAddDostepnePokoje.SelectedItem != null)
+            {
+                PokojeDS.PokojeRow pok = (PokojeDS.PokojeRow)((DataRowView)dataGridRezerwacjeAddDostepnePokoje.SelectedItem).Row;
+            }
+        }
+//REZERWACJE->DODAJ->DALEJ
         private void buttonRezerwacjeAddDalej_Click(object sender, RoutedEventArgs e)
         {
             zwinRezerwacje();
@@ -190,24 +230,105 @@ namespace PensjonatApp
                 gridPobytyDeafult.Height = 580;
             }
         }
+//POBYTY->DEAFULT
+        private void dataGridPobytySzukaj_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if ((bool)(e.NewValue) == true)
+            {//pojawienie sie pola
+                dataGridPobytySzukaj.ItemsSource = TablesManager.Manager.PobytyTableAdapter.GetDataPobytyKlienciPokoje();
+            }
+        }
+        private void dataGridPobytySzukaj_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (dataGridPobytySzukaj.SelectedItem != null)
+            {
+                PobytyDS.PobytyRow t = (PobytyDS.PobytyRow)((DataRowView)dataGridPobytySzukaj.SelectedItem).Row;
+            }
+        }
+        private void pobytySearch()
+        {
+            if (textBoxPobytySzukaj.Text == "")
+                dataGridPobytySzukaj.ItemsSource = TablesManager.Manager.PobytyTableAdapter.GetDataPobytyKlienciPokoje();
+            else
+            {
+                if ((bool)rbPobytyId.IsChecked)
+                {
+                    int id;
+                    if (int.TryParse(textBoxPobytySzukaj.Text, out id))
+                        if ((bool)checkBoxPobytyAktualne.IsChecked)
+                           ; //dataGridPobytySzukaj.ItemsSource = TablesManager.Manager.PobytyTableAdapter.GetDataPobytyKlienciPokojeAktualne(;
+                        else
+                            dataGridPobytySzukaj.ItemsSource = TablesManager.Manager.PobytyTableAdapter.GetDataPobytyKlienciPokojeByIDKlienta(id);
+                    else
+                        System.Windows.MessageBox.Show("Niepoprawne ID pobytu.\nNumer identyfikacyjny pobytu może zawierać tylko cyfry.", "Wyszukiwanie pobytu", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                else if ((bool)rbPobytyKlient.IsChecked)
+                {
+                    if (textBoxPobytySzukaj.Text.Contains(' '))
+                    {
 
+                        string[] szukaj = textBoxPobytySzukaj.Text.Split(' ');
+                        //dataGridPobytySzukaj.ItemsSource = TablesManager.Manager.PobytyTableAdapter.GetDataPobytyKlienciPokojeAktualneByNazwiskoKlienta(szukaj[0], szukaj[1]);
+                    }
+                    else
+                    {
+                        if ((bool)checkBoxPobytyAktualne.IsChecked)
+                            ; //dataGridPobytySzukaj.ItemsSource = TablesManager.Manager.PobytyTableAdapter.GetDataPobytyKlienciPokojeAktualne(;
+                        else
+                            dataGridPobytySzukaj.ItemsSource = TablesManager.Manager.PobytyTableAdapter.GetDataPobytyKlienciPokojeByNazwisko(textBoxPobytySzukaj.Text);                  
+                    }
+                }           
+            }
+        }
+        private void buttonPobytySzukaj_Click(object sender, RoutedEventArgs e)
+        {
+            pobytySearch();
+        }
+
+
+//POBYTY->USŁUGI
         private void buttonPobytyServices_Click(object sender, RoutedEventArgs e)
         {
-            zwinPobyty();
-            gridPobytyServices.Height = 580;
+            if (dataGridPobytySzukaj.SelectedItem != null)
+            {
+                zwinPobyty();
+                gridPobytyServices.Height = 580;
+                PobytyDS.PobytyRow selectedRow = (PobytyDS.PobytyRow)((DataRowView)dataGridPobytySzukaj.SelectedItem).Row;
+                labelPobytyServicesKlient.Content = (string)selectedRow["imie"] + ' ' + (string)selectedRow["nazwisko"];
+                labelPobytyServicesPokoj.Content = (string)selectedRow["nr_pokoju"];
+                labelPobytyServicesId.Content = selectedRow.id_pobytu;
+                dataGridPobytyUslugi.ItemsSource = TablesManager.Manager.UslugiTableAdapter.GetDataUslugiUslugi_slownikByID_pobytu(selectedRow.id_pobytu);
+           }
+            else  
+                System.Windows.MessageBox.Show("Najpierw wybierz pobyt.", "Dodawanie usługi.", MessageBoxButton.OK, MessageBoxImage.Warning);
+ 
+
         }
 
         private void comboBoxPobytyUslugi_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             comboBoxPobytyPracownicy.IsEnabled = true;
         }
-
+//POBYTY->ROZLICZ
         private void buttonPobytySum_Click(object sender, RoutedEventArgs e)
         {
-            zwinPobyty();
-            gridPobytySum.Height = 580;
+            if (dataGridPobytySzukaj.SelectedItem != null)
+            {
+                zwinPobyty();
+                gridPobytySum.Height = 580;
+                PobytyDS.PobytyRow selectedRow = (PobytyDS.PobytyRow)((DataRowView)dataGridPobytySzukaj.SelectedItem).Row;
+                labelPobytySumKlient.Content = (string)selectedRow["imie"] + ' ' + (string)selectedRow["nazwisko"];
+                labelPobytySumPokoj.Content = (string)selectedRow["nr_pokoju"];
+                labelPobytySumId.Content = selectedRow.id_pobytu;
+                labelPobytySumTermin.Content = selectedRow.termin_start.ToLongDateString() + " - " + selectedRow.termin_koniec.ToLongDateString();
+                labelPobytySumCena.Content = selectedRow["cena"];
+               // dataGridPobytyUslugi.ItemsSource = TablesManager.Manager.UslugiTableAdapter.GetDataUslugiUslugi_slownikByID_pobytu(selectedRow.id_pobytu);
+            }
+            else
+                System.Windows.MessageBox.Show("Najpierw wybierz pobyt.", "Rozliczanie pobytu.", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
 
+//POBYTY->PODSUMOWANIE
         private void buttonPobytyDetails_Click(object sender, RoutedEventArgs e)
         {
             zwinPobyty();
@@ -240,7 +361,7 @@ namespace PensjonatApp
                 KlienciDS.KlienciRow t = (KlienciDS.KlienciRow)((DataRowView)dataGridKlienci.SelectedItem).Row;
             }
         }
-        private void buttonKlienciSearch_Click(object sender, RoutedEventArgs e)
+        private void klienciSearch()
         {
             if (textBoxKlienciSzukaj.Text == "")
                 dataGridKlienci.ItemsSource = TablesManager.Manager.KlienciTableAdapter.GetKlienciMiejscowosci();
@@ -249,12 +370,26 @@ namespace PensjonatApp
                 if ((bool)rbKlienciId.IsChecked)
                 {
                     int id;
-                    if(int.TryParse(textBoxKlienciSzukaj.Text,out id))
+                    if (int.TryParse(textBoxKlienciSzukaj.Text, out id))
                         dataGridKlienci.ItemsSource = TablesManager.Manager.KlienciTableAdapter.GetDataKlienciMiejsconowsciByIdKlienta(id);
                     else
                         System.Windows.MessageBox.Show("Niepoprawne ID klienta.\nNumer identyfikacyjny klienta może zawierać tylko cyfry.", "Wyszukiwanie klienta", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
+                else if ((bool)rbKlienciKlient.IsChecked)
+                {
+                    if (textBoxKlienciSzukaj.Text.Contains(' '))
+                    {
+                        string[] szukaj = textBoxKlienciSzukaj.Text.Split(' ');
+                        dataGridKlienci.ItemsSource = TablesManager.Manager.KlienciTableAdapter.GetDataByKlienciMiejscowosciByImieNazwiskoKlienta(szukaj[0],szukaj[1]);
+                    }
+                    else
+                        dataGridKlienci.ItemsSource = TablesManager.Manager.KlienciTableAdapter.GetDataByKlienciMiejscowosciByNazwiskoKlienta(textBoxKlienciSzukaj.Text);                 
+                }
             }
+        }
+        private void buttonKlienciSearch_Click(object sender, RoutedEventArgs e)
+        {
+            klienciSearch();
         }
        
 //KLIENCI->DODAJ
@@ -358,6 +493,10 @@ namespace PensjonatApp
             if (result == MessageBoxResult.Yes)
                 richTextBoxNewsletter.Text = @"{\rtf1\ansi\ansicpg1252\uc1\htmautsp\deff2{\fonttbl{\f0\fcharset0 Times New Roman;}{\f2\fcharset0 Segoe UI;}}{\colortbl\red0\green0\blue0;\red255\green255\blue255;}\loch\hich\dbch\pard\plain\ltrpar\itap0{\lang1033\fs18\f2\cf0 \cf0\ql{\f2 {\ltrch }\li0\ri0\sa0\sb0\fi0\ql\par}}}";
         }
+
+
+
+
 
 
 
