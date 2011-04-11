@@ -189,8 +189,7 @@ namespace PensjonatApp.Helpers
         public static int usunRezerwacje(int id_rezerwacji)
         {
             RezerwacjeDS.RezerwacjeDataTable tab = TablesManager.Manager.RezerwacjeTableAdapter.GetDataRezerwacjeByID(id_rezerwacji);
-            //?
-            return 1;
+            return TablesManager.Manager.RezerwacjeTableAdapter.Delete(tab[0].id_rezerwacji, tab[0].zaliczka, tab[0].zaplacono_zaliczke, tab[0].ilosc_osob, tab[0].id_klienta);
         }
 
 
