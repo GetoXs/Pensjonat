@@ -953,9 +953,10 @@ WHERE        Rezerwacje.id_klienta = Klienci.id_klienta AND (UCASE(Klienci.nazwi
             this._commandCollection[3].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_rezerwacji", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_rezerwacji", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[4] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[4].Connection = this.Connection;
-            this._commandCollection[4].CommandText = "SELECT        Rezerwacje.id_rezerwacji, Rezerwacje.zaliczka, Rezerwacje.zaplacono" +
-                "_zaliczke, Rezerwacje.ilosc_osob, Rezerwacje.id_klienta\r\nFROM            Rezerwa" +
-                "cje, Klienci\r\nWHERE        Rezerwacje.id_klienta = Klienci.id_klienta";
+            this._commandCollection[4].CommandText = @"SELECT        Rezerwacje.id_rezerwacji, Rezerwacje.zaliczka, Rezerwacje.zaplacono_zaliczke, Rezerwacje.ilosc_osob, Rezerwacje.id_klienta, Klienci.email, Klienci.imie, 
+                         Klienci.nazwisko, Klienci.id_miejscowosci, Klienci.kod_pocztowy, Klienci.ulica, Klienci.nip, Klienci.pesel, Klienci.nr_telefonu, Klienci.nazwa
+FROM            Rezerwacje, Klienci
+WHERE        Rezerwacje.id_klienta = Klienci.id_klienta";
             this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[5] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[5].Connection = this.Connection;
