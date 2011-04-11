@@ -1352,9 +1352,9 @@ FROM            Pokoje p3
 WHERE        (id_pokoju NOT IN
                              (SELECT        id_pokoju
                                FROM            Pobyty p1
-                               WHERE        (termin_start < ?) AND (termin_koniec > ?) OR
-                                                         (termin_start < ?) AND (termin_koniec > ?) OR
-                                                         (termin_start > ?) AND (termin_koniec < ?)))";
+                               WHERE        ((termin_start < ?) AND (termin_koniec > ?)) OR
+                                                         ((termin_start < ?) AND (termin_koniec > ?)) OR
+                                                         ((termin_start > ?) AND (termin_koniec < ?))))";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[2].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Param1", global::System.Data.Odbc.OdbcType.DateTime, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[2].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Param2", global::System.Data.Odbc.OdbcType.DateTime, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "", global::System.Data.DataRowVersion.Current, false, null));
