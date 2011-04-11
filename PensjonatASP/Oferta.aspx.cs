@@ -59,9 +59,9 @@ namespace PensjonatASP
                                     "WHERE        p3.id_slownikowe_pokoju = p4.id_slownikowe_pokoju AND p4.ilosc_osob = "+ile+" AND (p3.id_pokoju NOT IN " +
                                     "(SELECT        id_pokoju " +
                                     "FROM            Pobyty p1 " +
-                                    "WHERE        (termin_start < " + start + ") AND (termin_koniec > " + start + ") OR " +
-                                                             "(termin_start < " + koniec + ") AND (termin_koniec > " + koniec + ") OR " +
-                                                             "(termin_start > " + start + ") AND (termin_koniec < " + koniec + ")))";
+                                    "WHERE        (termin_start <= " + start + ") AND (termin_koniec >= " + start + ") OR " +
+                                                             "(termin_start <= " + koniec + ") AND (termin_koniec >= " + koniec + ") OR " +
+                                                             "(termin_start >= " + start + ") AND (termin_koniec <= " + koniec + ")))";
 
                 //Label1.Text = cmd.CommandText;
                 DbDataReader reader = cmd.ExecuteReader();
