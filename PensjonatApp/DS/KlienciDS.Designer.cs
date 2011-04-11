@@ -1645,7 +1645,7 @@ namespace PensjonatApp.DS.KlienciDSTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.Odbc.OdbcCommand[8];
+            this._commandCollection = new global::System.Data.Odbc.OdbcCommand[9];
             this._commandCollection[0] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT        email, imie, nazwisko, id_miejscowosci, ulica, nip, pesel, id_klien" +
@@ -1680,32 +1680,41 @@ AND (UCASE(Klienci.nazwisko) LIKE UCASE(?))";
             this._commandCollection[3].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Param2", global::System.Data.Odbc.OdbcType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[4] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[4].Connection = this.Connection;
-            this._commandCollection[4].CommandText = "SELECT email, id_klienta, id_miejscowosci, imie, kod_pocztowy, nazwa, nazwisko, n" +
-                "ip, nr_telefonu, pesel, ulica FROM Klienci WHERE (nip = ?)";
-            this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[4].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("nip", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "nip", global::System.Data.DataRowVersion.Current, false, null));
-            this._commandCollection[5] = new global::System.Data.Odbc.OdbcCommand();
-            this._commandCollection[5].Connection = this.Connection;
-            this._commandCollection[5].CommandText = "SELECT        email, imie, nazwisko, id_miejscowosci, ulica, nip, pesel, id_klien" +
-                "ta, nr_telefonu, nazwa, kod_pocztowy\r\nFROM            Klienci\r\nWHERE        (pes" +
-                "el = ?)";
-            this._commandCollection[5].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[5].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("pesel", global::System.Data.Odbc.OdbcType.NVarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "pesel", global::System.Data.DataRowVersion.Current, false, null));
-            this._commandCollection[6] = new global::System.Data.Odbc.OdbcCommand();
-            this._commandCollection[6].Connection = this.Connection;
-            this._commandCollection[6].CommandText = @"SELECT        Klienci.email, Klienci.imie, Klienci.nazwisko, Klienci.id_miejscowosci, Klienci.ulica, Klienci.nip, Klienci.pesel, Klienci.id_klienta, Klienci.nr_telefonu, Klienci.nazwa, 
+            this._commandCollection[4].CommandText = @"SELECT        Klienci.email, Klienci.imie, Klienci.nazwisko, Klienci.id_miejscowosci, Klienci.ulica, Klienci.nip, Klienci.pesel, Klienci.id_klienta, Klienci.nr_telefonu, Klienci.nazwa, 
                          Miejscowosci_slownik.nazwa AS miejscowosc, Klienci.kod_pocztowy
 FROM            Klienci, Miejscowosci_slownik
-WHERE        Klienci.id_miejscowosci = Miejscowosci_slownik.id_miejscowosci AND (Klienci.id_klienta = ?)";
+WHERE        Klienci.id_miejscowosci = Miejscowosci_slownik.id_miejscowosci
+AND (UCASE(Klienci.nazwisko) LIKE UCASE(?))";
+            this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[4].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Param1", global::System.Data.Odbc.OdbcType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[5] = new global::System.Data.Odbc.OdbcCommand();
+            this._commandCollection[5].Connection = this.Connection;
+            this._commandCollection[5].CommandText = "SELECT email, id_klienta, id_miejscowosci, imie, kod_pocztowy, nazwa, nazwisko, n" +
+                "ip, nr_telefonu, pesel, ulica FROM Klienci WHERE (nip = ?)";
+            this._commandCollection[5].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[5].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("nip", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "nip", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[6] = new global::System.Data.Odbc.OdbcCommand();
+            this._commandCollection[6].Connection = this.Connection;
+            this._commandCollection[6].CommandText = "SELECT        email, imie, nazwisko, id_miejscowosci, ulica, nip, pesel, id_klien" +
+                "ta, nr_telefonu, nazwa, kod_pocztowy\r\nFROM            Klienci\r\nWHERE        (pes" +
+                "el = ?)";
             this._commandCollection[6].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[6].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_klienta", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_klienta", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[6].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("pesel", global::System.Data.Odbc.OdbcType.NVarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "pesel", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[7] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[7].Connection = this.Connection;
             this._commandCollection[7].CommandText = @"SELECT        Klienci.email, Klienci.imie, Klienci.nazwisko, Klienci.id_miejscowosci, Klienci.ulica, Klienci.nip, Klienci.pesel, Klienci.id_klienta, Klienci.nr_telefonu, Klienci.nazwa, 
                          Miejscowosci_slownik.nazwa AS miejscowosc, Klienci.kod_pocztowy
 FROM            Klienci, Miejscowosci_slownik
-WHERE        Klienci.id_miejscowosci = Miejscowosci_slownik.id_miejscowosci";
+WHERE        Klienci.id_miejscowosci = Miejscowosci_slownik.id_miejscowosci AND (Klienci.id_klienta = ?)";
             this._commandCollection[7].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[7].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_klienta", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_klienta", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[8] = new global::System.Data.Odbc.OdbcCommand();
+            this._commandCollection[8].Connection = this.Connection;
+            this._commandCollection[8].CommandText = @"SELECT        Klienci.email, Klienci.imie, Klienci.nazwisko, Klienci.id_miejscowosci, Klienci.ulica, Klienci.nip, Klienci.pesel, Klienci.id_klienta, Klienci.nr_telefonu, Klienci.nazwa, 
+                         Miejscowosci_slownik.nazwa AS miejscowosc, Klienci.kod_pocztowy
+FROM            Klienci, Miejscowosci_slownik
+WHERE        Klienci.id_miejscowosci = Miejscowosci_slownik.id_miejscowosci";
+            this._commandCollection[8].CommandType = global::System.Data.CommandType.Text;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1788,8 +1797,25 @@ WHERE        Klienci.id_miejscowosci = Miejscowosci_slownik.id_miejscowosci";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual KlienciDS.KlienciDataTable GetDataByNip(global::System.Nullable<int> nip) {
+        public virtual KlienciDS.KlienciDataTable GetDataByKlienciMiejscowosciByNazwiskoKlienta(string Param1) {
             this.Adapter.SelectCommand = this.CommandCollection[4];
+            if ((Param1 == null)) {
+                throw new global::System.ArgumentNullException("Param1");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(Param1));
+            }
+            KlienciDS.KlienciDataTable dataTable = new KlienciDS.KlienciDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual KlienciDS.KlienciDataTable GetDataByNip(global::System.Nullable<int> nip) {
+            this.Adapter.SelectCommand = this.CommandCollection[5];
             if ((nip.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = ((int)(nip.Value));
             }
@@ -1806,7 +1832,7 @@ WHERE        Klienci.id_miejscowosci = Miejscowosci_slownik.id_miejscowosci";
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
         public virtual KlienciDS.KlienciDataTable GetDataByPesel(string pesel) {
-            this.Adapter.SelectCommand = this.CommandCollection[5];
+            this.Adapter.SelectCommand = this.CommandCollection[6];
             if ((pesel == null)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -1823,7 +1849,7 @@ WHERE        Klienci.id_miejscowosci = Miejscowosci_slownik.id_miejscowosci";
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
         public virtual KlienciDS.KlienciDataTable GetDataKlienciMiejsconowsciByIdKlienta(int id_klienta) {
-            this.Adapter.SelectCommand = this.CommandCollection[6];
+            this.Adapter.SelectCommand = this.CommandCollection[7];
             this.Adapter.SelectCommand.Parameters[0].Value = ((int)(id_klienta));
             KlienciDS.KlienciDataTable dataTable = new KlienciDS.KlienciDataTable();
             this.Adapter.Fill(dataTable);
@@ -1835,7 +1861,7 @@ WHERE        Klienci.id_miejscowosci = Miejscowosci_slownik.id_miejscowosci";
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
         public virtual KlienciDS.KlienciDataTable GetKlienciMiejscowosci() {
-            this.Adapter.SelectCommand = this.CommandCollection[7];
+            this.Adapter.SelectCommand = this.CommandCollection[8];
             KlienciDS.KlienciDataTable dataTable = new KlienciDS.KlienciDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
