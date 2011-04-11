@@ -309,6 +309,13 @@ namespace PensjonatApp
         {
             comboBoxPobytyPracownicy.IsEnabled = true;
         }
+
+        private void buttonPobytyServicesPowrot_Click(object sender, RoutedEventArgs e)
+        {
+            zwinPobyty();
+            gridPobytyDeafult.Height = 580;
+        }
+
 //POBYTY->ROZLICZ
         private void buttonPobytySum_Click(object sender, RoutedEventArgs e)
         {
@@ -321,18 +328,40 @@ namespace PensjonatApp
                 labelPobytySumPokoj.Content = (string)selectedRow["nr_pokoju"];
                 labelPobytySumId.Content = selectedRow.id_pobytu;
                 labelPobytySumTermin.Content = selectedRow.termin_start.ToLongDateString() + " - " + selectedRow.termin_koniec.ToLongDateString();
-                labelPobytySumCena.Content = selectedRow["cena"];
+              
                // dataGridPobytyUslugi.ItemsSource = TablesManager.Manager.UslugiTableAdapter.GetDataUslugiUslugi_slownikByID_pobytu(selectedRow.id_pobytu);
             }
             else
                 System.Windows.MessageBox.Show("Najpierw wybierz pobyt.", "Rozliczanie pobytu.", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
+        private void buttonPobytySumPowrot_Click(object sender, RoutedEventArgs e)
+        {
+            zwinPobyty();
+            gridPobytyDeafult.Height = 580;
+        }
 
 //POBYTY->PODSUMOWANIE
         private void buttonPobytyDetails_Click(object sender, RoutedEventArgs e)
         {
+            if (dataGridPobytySzukaj.SelectedItem != null)
+            {
+                zwinPobyty();
+                gridPobytyDetails.Height = 580;
+                PobytyDS.PobytyRow selectedRow = (PobytyDS.PobytyRow)((DataRowView)dataGridPobytySzukaj.SelectedItem).Row;
+                labelPobytyDetailsKlient.Content = (string)selectedRow["imie"] + ' ' + (string)selectedRow["nazwisko"];
+                labelPobytyDetailsPokoj.Content = (string)selectedRow["nr_pokoju"];
+                labelPobytyDetailsId.Content = selectedRow.id_pobytu;
+                labelPobytyDetailsTermin.Content = selectedRow.termin_start.ToLongDateString() + " - " + selectedRow.termin_koniec.ToLongDateString();
+
+                // dataGridPobytyUslugi.ItemsSource = TablesManager.Manager.UslugiTableAdapter.GetDataUslugiUslugi_slownikByID_pobytu(selectedRow.id_pobytu);
+            }
+            else
+                System.Windows.MessageBox.Show("Najpierw wybierz pobyt.", "Rozliczanie pobytu.", MessageBoxButton.OK, MessageBoxImage.Warning);
+        }
+        private void buttonPobytyDetailsBack_Click(object sender, RoutedEventArgs e)
+        {
             zwinPobyty();
-            gridPobytyDetails.Height = 580;
+            gridPobytyDeafult.Height = 580;
         }
 
 
@@ -472,11 +501,25 @@ namespace PensjonatApp
                 textBoxKlienciEdycjaTelefon.Text = selectedRow.nr_telefonu.ToString();
                 textBoxKlienciEdycjaMail.Text = selectedRow.email;
                 textBoxKlienciEdycjaMiejscowosc.Text = (string)selectedRow["miejscowosc"];
+                textBoxKlienciEdycjaKodPocztowy.Text = selectedRow.kod_pocztowy;
                 textBoxKlienciEdycjaAdres.Text = selectedRow.ulica;
                 textBoxKlienciEdycjaFirma.Text = selectedRow.IsnazwaNull() ? "" : selectedRow.nazwa;
+                labelKlienciEdytujId.Content = selectedRow.id_klienta;
             }
             else  
                 System.Windows.MessageBox.Show("Najpierw wybierz klienta.", "Edycja klienta", MessageBoxButton.OK, MessageBoxImage.Warning);
+        }
+        private void buttonKlienciEdycjaZapisz_Click(object sender, RoutedEventArgs e)
+        {
+            KlienciHelper.edytujKlienta(int.Parse(labelKlienciEdytujId.Content.ToString()), textBoxKlienciEdycjaImie.Text, textBoxKlienciEdycjaNazwisko.Text, textBoxKlienciEdycjaFirma.Text,
+                 textBoxKlienciEdycjaMiejscowosc.Text, textBoxKlienciEdycjaAdres.Text, textBoxKlienciEdycjaKodPocztowy.Text, int.Parse(textBoxKlienciEdycjaNIP.Text),
+                  textBoxKlienciEdycjaPESEL.Text, int.Parse(textBoxKlienciEdycjaTelefon.Text), textBoxKlienciEdycjaMail.Text);
+            dataGridKlienci.ItemsSource = TablesManager.Manager.KlienciTableAdapter.GetKlienciMiejscowosci();
+            System.Windows.MessageBox.Show("Wyedytowano pomyślnie.", "Edycja klienta", MessageBoxButton.OK, MessageBoxImage.Information);
+          
+            zwinKlienci();
+            gridKlienciDeafult.Height = 580;
+
         }
 
         private void buttonKlienciEdycjaPowrot_Click(object sender, RoutedEventArgs e)
@@ -494,13 +537,7 @@ namespace PensjonatApp
                 richTextBoxNewsletter.Text = @"{\rtf1\ansi\ansicpg1252\uc1\htmautsp\deff2{\fonttbl{\f0\fcharset0 Times New Roman;}{\f2\fcharset0 Segoe UI;}}{\colortbl\red0\green0\blue0;\red255\green255\blue255;}\loch\hich\dbch\pard\plain\ltrpar\itap0{\lang1033\fs18\f2\cf0 \cf0\ql{\f2 {\ltrch }\li0\ri0\sa0\sb0\fi0\ql\par}}}";
         }
 
-
-
-
-
-
-
-
+     
 
   
 
