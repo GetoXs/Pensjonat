@@ -105,10 +105,11 @@ WHERE id_rezerwacji = ?</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="DB (Settings)" DbObjectName="[C:\Users\ttt\Desktop\baza].Rezerwacje" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetDataRezerwacjeKlienci" GetMethodModifier="Public" GetMethodName="GetDataRezerwacjeKlienci" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataRezerwacjeKlienci" UserSourceName="GetDataRezerwacjeKlienci">
+              <DbSource ConnectionRef="DB (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetDataRezerwacjeKlienci" GetMethodModifier="Public" GetMethodName="GetDataRezerwacjeKlienci" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataRezerwacjeKlienci" UserSourceName="GetDataRezerwacjeKlienci">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT        Rezerwacje.id_rezerwacji, Rezerwacje.zaliczka, Rezerwacje.zaplacono_zaliczke, Rezerwacje.ilosc_osob, Rezerwacje.id_klienta
+                    <CommandText>SELECT        Rezerwacje.id_rezerwacji, Rezerwacje.zaliczka, Rezerwacje.zaplacono_zaliczke, Rezerwacje.ilosc_osob, Rezerwacje.id_klienta, Klienci.email, Klienci.imie, 
+                         Klienci.nazwisko, Klienci.id_miejscowosci, Klienci.kod_pocztowy, Klienci.ulica, Klienci.nip, Klienci.pesel, Klienci.nr_telefonu, Klienci.nazwa
 FROM            Rezerwacje, Klienci
 WHERE        Rezerwacje.id_klienta = Klienci.id_klienta</CommandText>
                     <Parameters />
