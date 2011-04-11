@@ -1,0 +1,10 @@
+C:\Users\ttt\Documents\Visual Studio 2010\Projects\PensjonatASP\PensjonatASP\bin\PensjonatASP.dll
+C:\Users\ttt\Documents\Visual Studio 2010\Projects\PensjonatASP\PensjonatASP\bin\PensjonatASP.pdb
+C:\Users\ttt\Documents\Visual Studio 2010\Projects\PensjonatASP\PensjonatASP\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\ttt\Documents\Visual Studio 2010\Projects\PensjonatASP\PensjonatASP\obj\Debug\PensjonatASP.dll
+C:\Users\ttt\Documents\Visual Studio 2010\Projects\PensjonatASP\PensjonatASP\obj\Debug\PensjonatASP.pdb
+C:\Users\ttt\Documents\pensjonat4\trunk\PensjonatASP\bin\PensjonatASP.dll
+C:\Users\ttt\Documents\pensjonat4\trunk\PensjonatASP\bin\PensjonatASP.pdb
+C:\Users\ttt\Documents\pensjonat4\trunk\PensjonatASP\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\ttt\Documents\pensjonat4\trunk\PensjonatASP\obj\Debug\PensjonatASP.dll
+C:\Users\ttt\Documents\pensjonat4\trunk\PensjonatASP\obj\Debug\PensjonatASP.pdb
