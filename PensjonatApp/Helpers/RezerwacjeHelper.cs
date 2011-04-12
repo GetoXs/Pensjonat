@@ -146,14 +146,14 @@ namespace PensjonatApp.Helpers
         /// pokoje wybrane w procesie rezerwacji przechowywane w typie PokojeDS.PokojeDataTable. jeżeli tak jest źle mogę to zmienić na zwykłą tablicę
         /// </summary>
         /// <returns></returns>
-        public static int dodajRezerwacje(int id_klienta_rezerwujacego, int ilosc_osob, decimal zaliczka, PokojeDS.PokojeDataTable pokoje, DateTime start_pobytu, DateTime koniec_pobytu)
+		public static int dodajRezerwacje(int id_klienta_rezerwujacego, int ilosc_osob, decimal zaliczka, IEnumerable<System.Data.DataRow> pokoje, DateTime start_pobytu, DateTime koniec_pobytu)
         {
             TablesManager.Manager.RezerwacjeTableAdapter.Insert(zaliczka, false, ilosc_osob, id_klienta_rezerwujacego);
             RezerwacjeDS.RezerwacjeDataTable tabRez = TablesManager.Manager.RezerwacjeTableAdapter.GetDataRezerwacjeOstatnia();
 
-            foreach (PokojeDS.PokojeRow pokoj in pokoje)
+			foreach (System.Data.DataRow pokoj in pokoje)
             {
-                TablesManager.Manager.PobytyTableAdapter.Insert(pokoj.id_pokoju, tabRez[0].id_rezerwacji, start_pobytu, koniec_pobytu, null, null);
+                TablesManager.Manager.PobytyTableAdapter.Insert((int?)pokoj["id_pokoju"], tabRez[0].id_rezerwacji, start_pobytu, koniec_pobytu, null, null);
             }
 
             return 1;
