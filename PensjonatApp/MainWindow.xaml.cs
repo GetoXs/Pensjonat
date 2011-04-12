@@ -248,6 +248,9 @@ namespace PensjonatApp
         private void pobytySearch()
         {
             if (textBoxPobytySzukaj.Text == "")
+				if ((bool)checkBoxPobytyAktualne.IsChecked)
+					dataGridPobytySzukaj.ItemsSource = TablesManager.Manager.PobytyTableAdapter.GetDataPobytyKlienciPokojeAktualne();
+				else
                 dataGridPobytySzukaj.ItemsSource = TablesManager.Manager.PobytyTableAdapter.GetDataPobytyKlienciPokoje();
             else
             {
@@ -256,7 +259,7 @@ namespace PensjonatApp
                     int id;
                     if (int.TryParse(textBoxPobytySzukaj.Text, out id))
                         if ((bool)checkBoxPobytyAktualne.IsChecked)
-                           ; //dataGridPobytySzukaj.ItemsSource = TablesManager.Manager.PobytyTableAdapter.GetDataPobytyKlienciPokojeAktualne(;
+                           dataGridPobytySzukaj.ItemsSource = TablesManager.Manager.PobytyTableAdapter.GetDataPobytyKlienciPokojeAktualneByIDKlienta(id);
                         else
                             dataGridPobytySzukaj.ItemsSource = TablesManager.Manager.PobytyTableAdapter.GetDataPobytyKlienciPokojeByIDKlienta(id);
                     else
@@ -273,7 +276,7 @@ namespace PensjonatApp
                     else
                     {
                         if ((bool)checkBoxPobytyAktualne.IsChecked)
-                            ; //dataGridPobytySzukaj.ItemsSource = TablesManager.Manager.PobytyTableAdapter.GetDataPobytyKlienciPokojeAktualne(;
+							dataGridPobytySzukaj.ItemsSource = TablesManager.Manager.PobytyTableAdapter.GetDataPobytyKlienciPokojeAktualneByNazwiskoKlienta(textBoxPobytySzukaj.Text);
                         else
                             dataGridPobytySzukaj.ItemsSource = TablesManager.Manager.PobytyTableAdapter.GetDataPobytyKlienciPokojeByNazwisko(textBoxPobytySzukaj.Text);                  
                     }

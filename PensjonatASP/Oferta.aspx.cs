@@ -19,7 +19,7 @@ namespace PensjonatASP
         protected void Button1_Click(object sender, EventArgs e)
         {
            
-            Db.setUpAccesFile("C:\\Users\\ttt\\Desktop\\baza.mdb", "ttt", "");
+            Db.setUpAccesFile(@"C:\Users\GetoX\Desktop\STUDIA\BD\proj\rep\baza.mdb", "Administrator", "");
             Db.Con.Open();
             DbCommand cmd = Db.Con.CreateCommand();
 
