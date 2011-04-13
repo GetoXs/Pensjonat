@@ -97,7 +97,54 @@
                             </DataGrid.Columns>
                         </DataGrid>
                     </Grid>
-                    <Grid Height="280" Name="gridRezerwacjeDel" Opacity="1" ShowGridLines="True" Visibility="Visible">
+                    <Grid Name="gridRezerwacjeAdd" Height="356" Visibility="Visible" ShowGridLines="True" Opacity="1">
+                        <Label Content="Klient:" HorizontalAlignment="Left" Margin="35,43,0,0" Name="label3" VerticalAlignment="Top" Padding="2" FontWeight="Bold" />
+                        <TextBox Name="textBoxRezerwacjeAddKlient" Height="23" HorizontalAlignment="Left" Margin="118,42,0,0" VerticalAlignment="Top" Width="109" Text="" IsReadOnly="True" IsEnabled="True" />
+                        <Label Content="Termin:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,71,0,0" Name="label4" Padding="2" VerticalAlignment="Top" />
+                        <Label Content="Liczba osób:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,155,0,0" Name="label7" Padding="2" VerticalAlignment="Top" />
+                        <TextBox Name="textBoxRezerwacjeAddIlOsob" Height="23" HorizontalAlignment="Left" Margin="118,154,0,0" VerticalAlignment="Top" Width="136" Text="" TextChanged="textBoxRezerwacjeAddIloscOsob_TextChanged" AcceptsReturn="True" />
+                        <DatePicker Name="datePickerRezeracjeAddTerminOd" Height="25" HorizontalAlignment="Left" Margin="118,92,0,0" VerticalAlignment="Top" Width="136" SelectedDateChanged="datePickerRezeracjeAddTerminOd_SelectedDateChanged" />
+                        <Label Content="od:" FontWeight="Bold" HorizontalAlignment="Left" Margin="60,94,0,0" Name="label5" Padding="2" VerticalAlignment="Top" />
+                        <Label Content="do:" FontWeight="Bold" HorizontalAlignment="Left" Margin="60,125,0,0" Name="label6" Padding="2" VerticalAlignment="Top" />
+                        <DatePicker Name="datePickerRezerwacjeAddTerminDo" Height="25" HorizontalAlignment="Left" Margin="118,123,0,0" VerticalAlignment="Top" Width="136" SelectedDateChanged="datePickerRezerwacjeAddTerminDo_SelectedDateChanged" />
+                        <DataGrid Name="dataGridRezerwacjeAddDostepnePokoje" DataContext="{Binding}" AutoGenerateColumns="False" Margin="14,233,9,88" SelectionChanged="dataGridRezerwacjeAddDostepnePokoje_SelectionChanged" IsVisibleChanged="dataGridRezerwacjeAddDostepnePokoje_IsVisibleChanged" IsReadOnly="True" SelectionMode="Single" HorizontalGridLinesBrush="#FFD5D5D5" VerticalGridLinesBrush="#FFD5D5D5">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Id" Binding="{Binding Path=id_pokoju}" />
+                                <DataGridTextColumn Header="Pokój" Binding="{Binding Path=nr_pokoju}" />
+                                <DataGridTextColumn Header="Il. osób" Binding="{Binding Path=ilosc_osob}" />
+                                <DataGridTextColumn Header="Standard" Binding="{Binding Path=dodatkowy_opis}" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <Label Content="Dostępne pokoje:" FontWeight="Bold" HorizontalAlignment="Left" Margin="14,207,0,0" Name="label8" Padding="2" VerticalAlignment="Top" />
+                        <Label Content="Wybrane pokoje:" FontWeight="Bold" HorizontalAlignment="Left" Margin="300,35,0,0" Name="label9" Padding="2" VerticalAlignment="Top" />
+                        <DataGrid Name="dataGridRezerwacjeAddWybranePokoje" AutoGenerateColumns="False" Margin="300,61,9,0" Height="87" VerticalAlignment="Top" Width="274">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Nr" />
+                                <DataGridTextColumn Header="Il. osób" />
+                                <DataGridTextColumn Header="Standard" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <Button Name="buttonRezerwacjeAddWybierz" Content="Wybierz" Margin="0,202,9,0" HorizontalAlignment="Right" Width="50" Height="25" VerticalAlignment="Top" Click="buttonRezerwacjeAddWybierz_Click" />
+                        <Label Content="Pozostało osób:" FontWeight="Bold" Margin="300,155,190,0" Name="label19" Padding="2" VerticalAlignment="Top" />
+                        <Label Name="labelRezerwacjeAddPozostaloOsob" Content="0" FontWeight="Normal" HorizontalAlignment="Left" Margin="399,155,0,0" Padding="2" VerticalAlignment="Top" />
+                        <Label Content="Dodawanie nowej rezerwacji:" FontSize="13" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,10,0,0" Name="label37" Padding="2" VerticalAlignment="Top" />
+                        <Button Content="..." Height="23" Margin="233,42,0,0" Name="buttonRezerwacjeAddKlient" VerticalAlignment="Top" Padding="0" HorizontalAlignment="Left" Width="21" Click="buttonRezerwacjeAddKlient_Click" />
+                    </Grid>
+                    <Grid Height="181" Name="gridRezerwacjeAddKlient" Opacity="1" ShowGridLines="True" Visibility="Visible">
+                        <Label Content="Wybierz klienta:" FontSize="13" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,10,0,0" Name="label93" Padding="2" VerticalAlignment="Top" />
+                        <DataGrid Name="dataGridRezerwacjeAddKlienci" AutoGenerateColumns="False" DataContext="{Binding}" HorizontalAlignment="Stretch" Margin="15,40,15,15"  VerticalAlignment="Stretch" IsVisibleChanged="dataGridRezerwacjeAddKlienci_IsVisibleChanged" IsReadOnly="True" SelectionMode="Single" HorizontalGridLinesBrush="#FFD5D5D5" VerticalGridLinesBrush="#FFD5D5D5">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Id" Binding="{Binding Path=id_klienta}" />
+                                <DataGridTextColumn Header="Imię" Binding="{Binding Path=imie}" />
+                                <DataGridTextColumn Header="Nazwisko" Binding="{Binding Path=nazwisko}" />
+                                <DataGridTextColumn Header="PESEL" Binding="{Binding Path=pesel}" />
+                                <DataGridTextColumn Header="Email" Binding="{Binding Path=email}" />
+                                <DataGridTextColumn Header="Telefon" Binding="{Binding Path=nr_telefonu}" />
+                                <DataGridTextColumn Header="Miejscowość" Binding="{Binding Path=miejscowosc}" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                    <Grid Height="39" Name="gridRezerwacjeDel" Opacity="1" ShowGridLines="True" Visibility="Visible">
                         <Label Content="Usuwanie rezerwacji:" FontSize="13" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,10,0,0" Name="label20" Padding="2" VerticalAlignment="Top" />
                         <Label Content="Klient:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,38,0,0" Name="label21" Padding="2" VerticalAlignment="Top" />
                         <Label Content="Termin:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,86,0,0" Name="label22" Padding="2" VerticalAlignment="Top" />
@@ -112,7 +159,7 @@
                         <Label Content="ID rezerwacji:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,112,0,0" Name="label36" Padding="2" VerticalAlignment="Top" />
                         <Label Name="labelRezerwacjeDelId" Content="15.07.11 - 22.07.11" FontWeight="Normal" HorizontalAlignment="Left" Margin="160,112,0,0"  Padding="2" VerticalAlignment="Top" />
                     </Grid>
-                    <Grid Name="gridRezerwacjeCheck"  Height="209" Opacity="1" ShowGridLines="False" Visibility="Visible">
+                    <Grid Name="gridRezerwacjeCheck"  Height="26" Opacity="1" ShowGridLines="False" Visibility="Visible">
                         <Label Content="Potwierdzenie wpłaty zaliczki:" FontSize="13" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,10,0,0" Name="label24" Padding="2" VerticalAlignment="Top" />
                         <Label Content="Klient:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,38,0,0" Name="label30" Padding="2" VerticalAlignment="Top" />
                         <Label Content="PESEL:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,64,0,0" Name="label31" Padding="2" VerticalAlignment="Top" />
@@ -125,46 +172,13 @@
                         <Label Content="ID rezerwacji:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,115,0,0" Name="label35" Padding="2" VerticalAlignment="Top" />
                         <Label  Name="labelRezerwacjeCheckTermin"  Content="15.07.11 - 22.07.11" FontWeight="Normal" HorizontalAlignment="Left" Margin="160,89,0,0" Padding="2" VerticalAlignment="Top" />
                         <Label Name="labelRezerwacjeCheckId" Content="123" FontWeight="Normal" HorizontalAlignment="Left" Margin="160,115,0,0" Padding="2" VerticalAlignment="Top" />
-                        <Label Content="123" FontWeight="Bold" Margin="162,167,287,0" Name="labelRezerwacjeCheckWysokosc" Padding="2" VerticalAlignment="Top" FontStyle="Normal" Width="134" />
+                        <Label FontWeight="Bold" Margin="162,167,287,0" Name="labelRezerwacjeCheckWysokosc" Padding="2" VerticalAlignment="Top" FontStyle="Normal" Width="134" />
                     </Grid>
-                    <Grid Name="gridRezerwacjeAdd" Height="396" Visibility="Visible" ShowGridLines="True" Opacity="1">
-                        <Label Content="Klient:" HorizontalAlignment="Left" Margin="35,43,0,0" Name="label3" VerticalAlignment="Top" Padding="2" FontWeight="Bold" />
-                        <TextBox Name="textBoxRezerwacjeAddKlient" Height="23" HorizontalAlignment="Left" Margin="109,42,0,0" VerticalAlignment="Top" Width="115" Text="" IsReadOnly="True" IsEnabled="True" />
-                        <Label Content="Termin:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,71,0,0" Name="label4" Padding="2" VerticalAlignment="Top" />
-                        <Label Content="Ilość osób:" FontWeight="Bold" HorizontalAlignment="Left" Margin="39,167,0,0" Name="label7" Padding="2" VerticalAlignment="Top" />
-                        <TextBox Name="textBoxRezerwacjeAddIlOsob" Height="23" HorizontalAlignment="Left" Margin="109,167,0,0"  VerticalAlignment="Top" Width="115" Text="" TextChanged="textBoxRezerwacjeAddIloscOsob_TextChanged" AcceptsReturn="True" />
-                        <DatePicker  Name="datePickerRezeracjeAddTerminOd" Height="25" HorizontalAlignment="Left" Margin="109,92,0,0" VerticalAlignment="Top" Width="115" />
-                        <Label Content="od:" FontWeight="Bold" HorizontalAlignment="Left" Margin="60,97,0,0" Name="label5" Padding="2" VerticalAlignment="Top" />
-                        <Label Content="do:" FontWeight="Bold" HorizontalAlignment="Left" Margin="60,133,0,0" Name="label6" Padding="2" VerticalAlignment="Top" />
-                        <DatePicker Name="datePickerRezerwacjeAddTerminDo" Height="25" HorizontalAlignment="Left" Margin="109,128,0,0"  VerticalAlignment="Top" Width="115" />
-                        <DataGrid Name="dataGridRezerwacjeAddDostepnePokoje" AutoGenerateColumns="False" Margin="14,233,9,88" SelectionChanged="dataGridRezerwacjeAddDostepnePokoje_SelectionChanged" IsVisibleChanged="dataGridRezerwacjeAddDostepnePokoje_IsVisibleChanged">
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Header="Id"  Binding="{Binding Path=id_pokoju}" />
-                                <DataGridTextColumn Header="Pokój"  Binding="{Binding Path=nr_pokoju}" />
-                                <DataGridTextColumn Header="Il. osób"  Binding="{Binding Path=ilosc_osob}" />
-                                <DataGridTextColumn Header="Standard"  Binding="{Binding Path=dodatkowy_opis}"/>
-                            </DataGrid.Columns>
-                        </DataGrid>
-                        <Label Content="Dostępne pokoje:" FontWeight="Bold" HorizontalAlignment="Left" Margin="14,207,0,0" Name="label8" Padding="2" VerticalAlignment="Top" />
-                        <Label Content="Wybrane pokoje:" FontWeight="Bold" HorizontalAlignment="Left" Margin="273,43,0,0" Name="label9" Padding="2" VerticalAlignment="Top" />
-                        <DataGrid Name="dataGridRezerwacjeAddWybranePokoje" AutoGenerateColumns="False" Margin="273,64,9,414" >
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Header="Nr" />
-                                <DataGridTextColumn Header="Il. osób" />
-                                <DataGridTextColumn Header="Standard" />
-                            </DataGrid.Columns>
-                        </DataGrid>
-                        <Button Name="buttonRezerwacjeAddWybierz" Content="Wybierz" Margin="0,202,9,0" HorizontalAlignment="Right" Width="50" Height="25" VerticalAlignment="Top" />
-                        <Label Content="Pozostało osób:" FontWeight="Bold" Margin="273,167,217,0" Name="label19" Padding="2" VerticalAlignment="Top" />
-                        <Label Name="labelPozostaloOsob" Content="0" FontWeight="Normal" HorizontalAlignment="Left" Margin="378,167,0,0" Padding="2" VerticalAlignment="Top" />
-                        <Button Name="buttonRezerwacjeAddDalej" Content="Dalej" Height="23" HorizontalAlignment="Right" Margin="0,0,9,59" VerticalAlignment="Bottom" Width="75" Click="buttonRezerwacjeAddDalej_Click" />
-                        <Label Content="Dodawanie nowej rezerwacji:" FontSize="13" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,10,0,0" Name="label37" Padding="2" VerticalAlignment="Top" />
-                    </Grid>
-                    <Grid Name="gridRezerwacjeAdd2" Visibility="Visible" ShowGridLines="True" Opacity="1" Height="114">
+                    <Grid Name="gridRezerwacjeAdd2" Visibility="Visible" ShowGridLines="True" Opacity="1" Height="168">
                         <Label Content="Podsumowanie:" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,10,0,0" Name="label10" Padding="2" VerticalAlignment="Top" FontSize="13" />
                         <Label Content="Klient:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,38,0,0" Name="label11" Padding="2" VerticalAlignment="Top" />
                         <Label Content="Termin:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,64,0,0" Name="label12" Padding="2" VerticalAlignment="Top" />
-                        <Label Content="Ilość osób:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,90,0,0" Name="label13" Padding="2" VerticalAlignment="Top" />
+                        <Label Content="Liczba osób:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,90,0,0" Name="label13" Padding="2" VerticalAlignment="Top" />
                         <Label Content="Wybrane pokoje:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,151,0,0" Name="label14" Padding="2" VerticalAlignment="Top" />
                         <Label Content="Wysokość zaliczki:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,116,0,0" Name="label15" Padding="2" VerticalAlignment="Top" />
                         <DataGrid Name="dataGridRezerawcjeAdd2Pokoje" Margin="35,177,19,159" Width="529">
@@ -174,12 +188,10 @@
                                 <DataGridTextColumn Header="Standard" />
                             </DataGrid.Columns>
                         </DataGrid>
-                        <Label Content="Adam Malański" FontWeight="Normal" HorizontalAlignment="Left" Margin="160,38,0,0" Name="label16" Padding="2" VerticalAlignment="Top" />
-                        <Label Content="15.07.11 - 22.07.11" FontWeight="Normal" HorizontalAlignment="Left" Margin="160,64,0,0" Name="label17" Padding="2" VerticalAlignment="Top" />
-                        <Label Content="3" FontWeight="Normal" HorizontalAlignment="Left" Margin="160,90,0,0" Name="label18" Padding="2" VerticalAlignment="Top" />
+                        <Label Content="Adam Malański" FontWeight="Normal" HorizontalAlignment="Left" Margin="160,38,0,110" Name="labelRezerwacjeAdd2Klient" Padding="2" />
+                        <Label Content="15.07.11 - 22.07.11" FontWeight="Normal" HorizontalAlignment="Left" Margin="160,64,0,0" Name="labelRezerwacjeAdd2Termin" Padding="2" VerticalAlignment="Top" />
+                        <Label Content="3" FontWeight="Normal" HorizontalAlignment="Left" Margin="160,90,0,0" Name="labelRezerwacjeAdd2IlOsob" Padding="2" VerticalAlignment="Top" />
                         <TextBox Name="textBoxRezerwacjeAdd2Zaliczka" Height="23" HorizontalAlignment="Left" Margin="160,116,0,0"  VerticalAlignment="Top" Width="47" MaxLength="5" Text="150" HorizontalContentAlignment="Right" IsEnabled="True" />
-                        <Button Name="buttonRezerwacjeAdd2Cancel" Content="Zmień" Margin="0,0,20,84" HorizontalAlignment="Right" Width="75" Height="23" VerticalAlignment="Bottom" />
-                        <Button Name="buttonRezerwacjeAdd2Ok" Content="Potwierdź" Margin="0,0,110,84" HorizontalAlignment="Right" Width="75" Height="23" VerticalAlignment="Bottom" />
                     </Grid>
                 </StackPanel>
             </TabItem>
@@ -220,7 +232,7 @@
                             </StackPanel>
                         </Button>
                     </Grid>
-                    <Grid Height="82" Name="gridPobytyDeafult" Opacity="1" ShowGridLines="True" Visibility="Visible">
+                    <Grid Height="134" Name="gridPobytyDeafult" Opacity="1" ShowGridLines="True" Visibility="Visible">
                         <TextBox Name="textBoxPobytySzukaj" Height="23" HorizontalAlignment="Left" Margin="14,17,0,0"  VerticalAlignment="Top" Width="129" />
                         <RadioButton Name="rbPobytyId" Content="ID" GroupName="pobytySzukaj" Height="16" HorizontalAlignment="Left" Margin="299,24,0,0"  VerticalAlignment="Top" />
                         <RadioButton Name="rbPobytyKlient" Content="Klient" GroupName="pobytySzukaj" Height="16" HorizontalAlignment="Left" IsChecked="True" Margin="247,24,0,0" VerticalAlignment="Top" />
