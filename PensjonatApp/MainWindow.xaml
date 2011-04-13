@@ -59,7 +59,7 @@
                                     <Label Content="Zaliczka" FontWeight="Bold" Height="36" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="0" Name="label2" Padding="0" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="55" />
                                 </StackPanel>
                             </Button>
-                            <Button BorderBrush="#FFBAD0DC" Foreground="{x:Null}" Height="40" Name="buttonRezerwacjeOk" Padding="0" Width="95" Margin="2">
+                            <Button BorderBrush="#FFBAD0DC" Foreground="{x:Null}" Height="40" Name="buttonRezerwacjeOk" Padding="0" Width="95" Margin="2" Click="buttonRezerwacjeOk_Click">
                                 <StackPanel Orientation="Horizontal" FlowDirection="LeftToRight">
                                     <Image Grid.RowSpan="2" Height="32" HorizontalAlignment="Left" Margin="2,3,0,3" Name="image10" Source="/PensjonatApp;component/Images/Check-icon2.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="32" />
                                     <Label Content="OK" FontWeight="Bold" Height="36" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="0" Name="label86" Padding="0" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="55" FlowDirection="LeftToRight" />
@@ -79,7 +79,7 @@
                             </Button>
                         </StackPanel>
                     </Grid>
-                    <Grid Name="gridRezerwacjeDeafult" Visibility="Visible" ShowGridLines="False" Opacity="1" Height="187" IsVisibleChanged="gridRezerwacjeDeafult_IsVisibleChanged">
+                    <Grid Name="gridRezerwacjeDeafult" Visibility="Visible" ShowGridLines="False" Opacity="1" Height="45" IsVisibleChanged="gridRezerwacjeDeafult_IsVisibleChanged">
                         <TextBox Name="textBoxRezerwacjeSzukaj" Height="23" HorizontalAlignment="Left" Margin="14,17,0,0"  VerticalAlignment="Top" Width="129" />
                         <RadioButton Content="ID" GroupName="rezerwacjeSzukaj" Height="16" HorizontalAlignment="Left" Margin="299,24,0,0" Name="rbRezerwacjeId" VerticalAlignment="Top" IsChecked="False" />
                         <RadioButton Content="Klient" GroupName="rezerwacjeSzukaj" Height="16" HorizontalAlignment="Left" IsChecked="True" Margin="247,24,0,0" Name="rbRezerwacjeName" VerticalAlignment="Top" IsThreeState="False" />
@@ -97,41 +97,37 @@
                             </DataGrid.Columns>
                         </DataGrid>
                     </Grid>
-                    <Grid Height="18" Name="gridRezerwacjeDel" Opacity="1" ShowGridLines="True" Visibility="Visible">
+                    <Grid Height="280" Name="gridRezerwacjeDel" Opacity="1" ShowGridLines="True" Visibility="Visible">
                         <Label Content="Usuwanie rezerwacji:" FontSize="13" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,10,0,0" Name="label20" Padding="2" VerticalAlignment="Top" />
                         <Label Content="Klient:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,38,0,0" Name="label21" Padding="2" VerticalAlignment="Top" />
                         <Label Content="Termin:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,86,0,0" Name="label22" Padding="2" VerticalAlignment="Top" />
-                        <Label Content="Ilość osób:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,138,0,0" Name="label23" Padding="2" VerticalAlignment="Top" />
+                        <Label Content="Liczba osób:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,138,0,0" Name="label23" Padding="2" VerticalAlignment="Top" />
                         <Label Content="Zaliczka:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,164,0,0" Name="label25" Padding="2" VerticalAlignment="Top" />
                         <Label Name="labelRezerwacjeDelKlient" Content="Adam Malański" FontWeight="Normal" HorizontalAlignment="Left" Margin="160,38,0,0" Padding="2" VerticalAlignment="Top" />
                         <Label Name="labelRezerwacjeDelTermin" Content="15.07.11 - 22.07.11" FontWeight="Normal" HorizontalAlignment="Left" Margin="160,86,0,0" Padding="2" VerticalAlignment="Top" />
                         <Label Name="labelRezerwacjeDelIlOsob" Content="3" FontWeight="Normal" HorizontalAlignment="Left" Margin="160,138,0,0" Padding="2" VerticalAlignment="Top" />
-                        <Button Name="buttonRezerwacjeDelCancel" Content="Powrót" Margin="197,199,0,0" Height="23" VerticalAlignment="Top" HorizontalAlignment="Left" Width="75" Click="buttonRezerwacjeDelCancel_Click" />
-                        <Button Name="buttonRezerwacjeDelOk" Content="Usuń" Height="23" Margin="107,199,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="75" />
                         <CheckBox Name="checkBoxRezerwacjeDelZaliczka" Margin="160,168,0,0" IsEnabled="False" HorizontalAlignment="Left" Width="13" Height="16" VerticalAlignment="Top" />
                         <Label Name="label68" Content="PESEL:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,61,0,0"  Padding="2" VerticalAlignment="Top" />
                         <Label Content="Adam Malański" FontWeight="Normal" HorizontalAlignment="Left" Margin="160,61,0,0" Name="labelRezerwacjeDelPesel"  Padding="2" VerticalAlignment="Top" />
                         <Label Content="ID rezerwacji:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,112,0,0" Name="label36" Padding="2" VerticalAlignment="Top" />
                         <Label Name="labelRezerwacjeDelId" Content="15.07.11 - 22.07.11" FontWeight="Normal" HorizontalAlignment="Left" Margin="160,112,0,0"  Padding="2" VerticalAlignment="Top" />
                     </Grid>
-                    <Grid Name="gridRezerwacjeCheck"  Height="37" Opacity="1" ShowGridLines="False" Visibility="Visible">
+                    <Grid Name="gridRezerwacjeCheck"  Height="209" Opacity="1" ShowGridLines="False" Visibility="Visible">
                         <Label Content="Potwierdzenie wpłaty zaliczki:" FontSize="13" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,10,0,0" Name="label24" Padding="2" VerticalAlignment="Top" />
                         <Label Content="Klient:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,38,0,0" Name="label30" Padding="2" VerticalAlignment="Top" />
                         <Label Content="PESEL:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,64,0,0" Name="label31" Padding="2" VerticalAlignment="Top" />
-                        <Label Content="Ilość osób:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,141,0,0" Name="label32" Padding="2" VerticalAlignment="Top" />
+                        <Label Content="Liczba osób:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,141,0,0" Name="label32" Padding="2" VerticalAlignment="Top" />
                         <Label Content="Wysokość zaliczki:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,167,0,0" Name="label33" Padding="2" VerticalAlignment="Top" />
                         <Label Name="labelRezerwacjeCheckKlient" Content="Adam Malański" FontWeight="Normal" HorizontalAlignment="Left" Margin="160,38,0,0"  Padding="2" VerticalAlignment="Top" />
                         <Label Name="labelRezerwacjeCheckPesel" FontWeight="Normal" HorizontalAlignment="Left" Margin="160,64,0,0" Padding="2" VerticalAlignment="Top" />
                         <Label Name="labelRezerwacjeCheckIlOsob" Content="3" FontWeight="Normal" HorizontalAlignment="Left" Margin="160,141,0,0"  Padding="2" VerticalAlignment="Top" />
-                        <Button Name="buttonRezerwacjeCheckCancel" Content="Powrót" Height="23" HorizontalAlignment="Left" Margin="197,202,0,0" VerticalAlignment="Top" Width="75" Click="buttonRezerwacjeCheckCancel_Click" />
-                        <Button Name="buttonRezerwacjeCheckOk" Content="Potwierdź" Height="23" HorizontalAlignment="Left" Margin="107,202,0,0"  VerticalAlignment="Top" Width="75" />
-                        <TextBox Name="textBoxRezerwacjeCheckWysokosc" Height="23" HorizontalAlignment="Left" Margin="160,166,0,0"  VerticalAlignment="Top" Width="103" />
                         <Label Content="Termin:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,89,0,0" Name="label34" Padding="2" VerticalAlignment="Top" />
                         <Label Content="ID rezerwacji:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,115,0,0" Name="label35" Padding="2" VerticalAlignment="Top" />
                         <Label  Name="labelRezerwacjeCheckTermin"  Content="15.07.11 - 22.07.11" FontWeight="Normal" HorizontalAlignment="Left" Margin="160,89,0,0" Padding="2" VerticalAlignment="Top" />
                         <Label Name="labelRezerwacjeCheckId" Content="123" FontWeight="Normal" HorizontalAlignment="Left" Margin="160,115,0,0" Padding="2" VerticalAlignment="Top" />
+                        <Label Content="123" FontWeight="Bold" Margin="162,167,287,0" Name="labelRezerwacjeCheckWysokosc" Padding="2" VerticalAlignment="Top" FontStyle="Normal" Width="134" />
                     </Grid>
-                    <Grid Name="gridRezerwacjeAdd" Height="492" Visibility="Visible" ShowGridLines="True" Opacity="1">
+                    <Grid Name="gridRezerwacjeAdd" Height="396" Visibility="Visible" ShowGridLines="True" Opacity="1">
                         <Label Content="Klient:" HorizontalAlignment="Left" Margin="35,43,0,0" Name="label3" VerticalAlignment="Top" Padding="2" FontWeight="Bold" />
                         <TextBox Name="textBoxRezerwacjeAddKlient" Height="23" HorizontalAlignment="Left" Margin="109,42,0,0" VerticalAlignment="Top" Width="115" Text="" IsReadOnly="True" IsEnabled="True" />
                         <Label Content="Termin:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,71,0,0" Name="label4" Padding="2" VerticalAlignment="Top" />
@@ -507,6 +503,7 @@
             <Button Canvas.Left="199" Canvas.Top="103" Height="20" Name="buttonLog" Width="20" BorderBrush="#FFBAD0DC" Padding="0" Foreground="{x:Null}">
                 <Image Source="/PensjonatApp;component/Images/logout-ico2n.png" Stretch="Fill" />
             </Button>
+            <Calendar Canvas.Left="22" Canvas.Top="436" Height="170" Name="calendar1" Width="180" />
         </Canvas>
         <Grid Name="grid1" Width="211" Margin="0,0,4,8" HorizontalAlignment="Right" Height="36" VerticalAlignment="Bottom">
             <Label Content="Aby uzyskać pomoć wciśnij F1" Height="28" Name="napisPomoc" Padding="2" Foreground="#FF767676" Margin="42,8,6,0" />

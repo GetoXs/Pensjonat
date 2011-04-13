@@ -73,6 +73,9 @@ namespace PensjonatApp
             grid.Height = 580;
             pokazButtonList(buttonList);
             currentGrid = grid;
+            if (grid == gridRezerwacjeDeafult)
+                dataGridRezerwacjeSzukaj.ItemsSource = TablesManager.Manager.RezerwacjeTableAdapter.GetDataRezerwacjeKlienci();
+      
         }
         private void zwinRezerwacje()
         {
@@ -142,6 +145,25 @@ namespace PensjonatApp
             {
                 zwinRezerwacje();
                 showWindow(gridRezerwacjeAdd2, buttonRezerwacjeBackOkList);
+            }
+        }
+        private void buttonRezerwacjeOk_Click(object sender, RoutedEventArgs e)
+        {
+            if (currentGrid == gridRezerwacjeCheck)
+            {
+                RezerwacjeHelper.potwierdzZaliczke(int.Parse(labelRezerwacjeCheckId.Content.ToString()));
+                System.Windows.MessageBox.Show("Potwierdzono wpłatę zaliczki.\nKlient: "+labelRezerwacjeCheckKlient.Content+"\nWysokość zaliczki: "+labelRezerwacjeCheckWysokosc.Content, 
+                    "Potwierdzenie wpłaty zaliczki", MessageBoxButton.OK, MessageBoxImage.Information);
+                zwinRezerwacje();
+                showWindow(gridRezerwacjeDeafult, buttonRezerwacjeDeafultList);
+            }
+            else if (currentGrid == gridRezerwacjeDel)
+            {
+                RezerwacjeHelper.usunRezerwacje(int.Parse(labelRezerwacjeDelId.Content.ToString()));
+                System.Windows.MessageBox.Show("Usunięto rezerwację.\nKlient: " + labelRezerwacjeDelKlient.Content + "\nTermin: " + labelRezerwacjeDelTermin.Content, 
+                    "Usuwanie rezerwacji", MessageBoxButton.OK, MessageBoxImage.Information);
+                zwinRezerwacje();
+                showWindow(gridRezerwacjeDeafult, buttonRezerwacjeDeafultList);
             }
         }
 //REZERWACJE->DEAFULT
@@ -244,11 +266,12 @@ namespace PensjonatApp
                 {
                     zwinRezerwacje();
                     showWindow(gridRezerwacjeCheck, buttonRezerwacjeBackOkList);
-                    labelRezerwacjeCheckKlient.Content = (string)selectedRow["imie"] + (string)selectedRow["nazwisko"];
+                    labelRezerwacjeCheckKlient.Content = (string)selectedRow["imie"] + " " + (string)selectedRow["nazwisko"];
                     labelRezerwacjeCheckPesel.Content = (string)selectedRow["pesel"];
                     //labelRezerwacjeCheckTermin = selectedRow.termin;
                     labelRezerwacjeCheckId.Content = selectedRow.id_rezerwacji;
                     labelRezerwacjeCheckIlOsob.Content = selectedRow.ilosc_osob;
+                    labelRezerwacjeCheckWysokosc.Content = selectedRow.zaliczka + " zł";
                 }
                 else
                     System.Windows.MessageBox.Show("Wybrana rezerwacja ma już potwierdzoną wpłatę zaliczki", "Potwierdzenie wpłaty zaliczki", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -257,12 +280,6 @@ namespace PensjonatApp
                 System.Windows.MessageBox.Show("Najpierw wybierz rezerwacje.", "Potwierdzenie wpłaty zaliczki", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
 
-        private void buttonRezerwacjeCheckCancel_Click(object sender, RoutedEventArgs e)
-        {
-            zwinRezerwacje();
-            showWindow(gridRezerwacjeDeafult, buttonRezerwacjeDeafultList);
-
-        }
 //REZERWACJE->USUN
         private void buttonRezerwacjeDel_Click(object sender, RoutedEventArgs e)
         {
@@ -281,12 +298,6 @@ namespace PensjonatApp
             else
                 System.Windows.MessageBox.Show("Najpierw wybierz rezerwacje.", "Usuwanie rezerwacji", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
-        private void buttonRezerwacjeDelCancel_Click(object sender, RoutedEventArgs e)
-        {
-            zwinRezerwacje();
-            showWindow(gridRezerwacjeDeafult, buttonRezerwacjeDeafultList);
-        }
-
 
 //POBYTY
         private void tabPobyty_GotFocus(object sender, RoutedEventArgs e)
@@ -606,6 +617,8 @@ namespace PensjonatApp
             if (result == MessageBoxResult.Yes)
                 richTextBoxNewsletter.Text = @"{\rtf1\ansi\ansicpg1252\uc1\htmautsp\deff2{\fonttbl{\f0\fcharset0 Times New Roman;}{\f2\fcharset0 Segoe UI;}}{\colortbl\red0\green0\blue0;\red255\green255\blue255;}\loch\hich\dbch\pard\plain\ltrpar\itap0{\lang1033\fs18\f2\cf0 \cf0\ql{\f2 {\ltrch }\li0\ri0\sa0\sb0\fi0\ql\par}}}";
         }
+
+
 
     }
 
