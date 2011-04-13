@@ -84,6 +84,7 @@ namespace PensjonatApp
             gridRezerwacjeAdd2.Height = 0;
             gridRezerwacjeDel.Height = 0;
             gridRezerwacjeCheck.Height = 0;
+            gridRezerwacjeAddKlient.Height = 0;
             zwinButtonList(buttonRezerwacjeBackForwardList);
             zwinButtonList(buttonRezerwacjeDeafultList);
             zwinButtonList(buttonRezerwacjeBackOkList); 
@@ -118,22 +119,12 @@ namespace PensjonatApp
 //REZERWACJE->BELKA
         private void buttonRezerwacjePowrot_Click(object sender, RoutedEventArgs e)
         {
-            if (currentGrid == gridRezerwacjeDel)
+         if (currentGrid == gridRezerwacjeAdd2)
             {
                 zwinRezerwacje();
-                showWindow(gridRezerwacjeDeafult, buttonRezerwacjeDeafultList);
+                showWindow(gridRezerwacjeAdd, buttonRezerwacjeBackForwardList);
             }
-            else if (currentGrid == gridRezerwacjeCheck)
-            {
-                zwinRezerwacje();
-                showWindow(gridRezerwacjeDeafult, buttonRezerwacjeDeafultList);
-            }
-            else if (currentGrid == gridRezerwacjeAdd)
-            {
-                zwinRezerwacje();
-                showWindow(gridRezerwacjeDeafult, buttonRezerwacjeDeafultList);
-            }
-            else if (currentGrid == gridRezerwacjeAdd2)
+            else
             {
                 zwinRezerwacje();
                 showWindow(gridRezerwacjeAdd, buttonRezerwacjeBackForwardList);
@@ -143,9 +134,28 @@ namespace PensjonatApp
         {
             if (currentGrid == gridRezerwacjeAdd)
             {
-                zwinRezerwacje();
-                showWindow(gridRezerwacjeAdd2, buttonRezerwacjeBackOkList);
+                if (walidacjaRezerwacjaAdd())
+                {
+                    zwinRezerwacje();
+                    showWindow(gridRezerwacjeAdd2, buttonRezerwacjeBackOkList);
+                }
             }
+        }
+        private bool walidacjaRezerwacjaAdd()
+        {
+            if (labelRezerwacjeAddPozostaloOsob.Content.ToString() != "0")
+            {
+                System.Windows.MessageBox.Show("Nie przydzielono wszystkich pokoi.", "Dodawanie rezerwacji", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return false;
+            }             
+            if (textBoxRezerwacjeAddKlient.Text == "")
+                return false;
+            if (datePickerRezeracjeAddTerminOd.SelectedDate == null)
+                return false;
+            if (datePickerRezerwacjeAddTerminDo.SelectedDate == null)
+                return false;
+            return true;
+
         }
         private void buttonRezerwacjeOk_Click(object sender, RoutedEventArgs e)
         {
@@ -164,6 +174,20 @@ namespace PensjonatApp
                     "Usuwanie rezerwacji", MessageBoxButton.OK, MessageBoxImage.Information);
                 zwinRezerwacje();
                 showWindow(gridRezerwacjeDeafult, buttonRezerwacjeDeafultList);
+            }
+            else if (currentGrid == gridRezerwacjeAddKlient)
+            {
+                if (dataGridRezerwacjeAddKlienci.SelectedItem != null)
+                {
+                    KlienciDS.KlienciRow selectedRow = (KlienciDS.KlienciRow)((DataRowView)dataGridRezerwacjeAddKlienci.SelectedItem).Row;
+                    textBoxRezerwacjeAddKlient.Text = selectedRow.imie + ' ' + selectedRow.nazwisko;
+                    zwinRezerwacje();
+                    showWindow(gridRezerwacjeAdd, buttonRezerwacjeBackForwardList);
+                }
+                else
+                {
+                    System.Windows.MessageBox.Show("Nie wybrano klienta.\n", "Wybór klienta", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
             }
         }
 //REZERWACJE->DEAFULT
@@ -230,17 +254,38 @@ namespace PensjonatApp
         {
             zwinRezerwacje();
             showWindow(gridRezerwacjeAdd, buttonRezerwacjeBackForwardList);
-
         }
         private void textBoxRezerwacjeAddIloscOsob_TextChanged(object sender, TextChangedEventArgs e)
         {
-            labelPozostaloOsob.Content = textBoxRezerwacjeAddIlOsob.Text;
+            labelRezerwacjeAddPozostaloOsob.Content = textBoxRezerwacjeAddIlOsob.Text;
+        }
+        private void sprawdzPokoje()
+        {
+            DateTime? terminOd = datePickerRezeracjeAddTerminOd.SelectedDate;
+            DateTime? terminDo = datePickerRezerwacjeAddTerminDo.SelectedDate;
+            if(terminOd!=null && terminDo!=null)
+            {
+                if (terminOd>terminDo)
+                    System.Windows.MessageBox.Show("Niepoprawny termin.\nTermin zakończenie nie może być poźniejszy od terminu rozpoczęcia.", "Dodawanie rezerwacji", MessageBoxButton.OK, MessageBoxImage.Error);
+                else
+                    dataGridRezerwacjeAddDostepnePokoje.ItemsSource = TablesManager.Manager.PokojeTableAdapter.GetDataWolnePokojeByTermin(terminOd, terminOd, terminDo, terminDo, terminOd, terminDo);      
+          
+            }
+        }
+        private void datePickerRezeracjeAddTerminOd_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            sprawdzPokoje();
+        }
+
+        private void datePickerRezerwacjeAddTerminDo_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            sprawdzPokoje();
         }
         private void dataGridRezerwacjeAddDostepnePokoje_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             if ((bool)(e.NewValue) == true)
             {//pojawienie sie pola
-               // dataGridRezerwacjeAddDostepnePokoje.ItemsSource = TablesManager.Manager.PokojeTableAdapter.GetDataWolnePokojeByTermin();
+
             }
         }
         private void dataGridRezerwacjeAddDostepnePokoje_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -250,11 +295,27 @@ namespace PensjonatApp
                 PokojeDS.PokojeRow pok = (PokojeDS.PokojeRow)((DataRowView)dataGridRezerwacjeAddDostepnePokoje.SelectedItem).Row;
             }
         }
+//REZERWACJE->DODAJ->KLIENCI
+        private void buttonRezerwacjeAddKlient_Click(object sender, RoutedEventArgs e)
+        {
+            zwinRezerwacje();
+            showWindow(gridRezerwacjeAddKlient, buttonRezerwacjeBackOkList);
+       
+        }
+        private void dataGridRezerwacjeAddKlienci_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if ((bool)(e.NewValue) == true)
+            {//pojawienie sie pola
+                dataGridRezerwacjeAddKlienci.ItemsSource = TablesManager.Manager.KlienciTableAdapter.GetKlienciMiejscowosci();
+            }
+        }
+
 //REZERWACJE->DODAJ->DALEJ
         private void buttonRezerwacjeAddDalej_Click(object sender, RoutedEventArgs e)
         {
-            zwinRezerwacje();
-            showWindow(gridRezerwacjeAdd2, buttonRezerwacjeBackOkList); ;
+            
+ 
+
         }
 //REZERWACJE->ZALICZKA
         private void buttonRezerwacjeZaliczka_Click(object sender, RoutedEventArgs e)
@@ -617,6 +678,14 @@ namespace PensjonatApp
             if (result == MessageBoxResult.Yes)
                 richTextBoxNewsletter.Text = @"{\rtf1\ansi\ansicpg1252\uc1\htmautsp\deff2{\fonttbl{\f0\fcharset0 Times New Roman;}{\f2\fcharset0 Segoe UI;}}{\colortbl\red0\green0\blue0;\red255\green255\blue255;}\loch\hich\dbch\pard\plain\ltrpar\itap0{\lang1033\fs18\f2\cf0 \cf0\ql{\f2 {\ltrch }\li0\ri0\sa0\sb0\fi0\ql\par}}}";
         }
+
+        private void buttonRezerwacjeAddWybierz_Click(object sender, RoutedEventArgs e)
+        {
+            //dataGridRezerwacjeAddKlienci.Items.RemoveAt(3);
+
+
+        }
+
 
 
 
