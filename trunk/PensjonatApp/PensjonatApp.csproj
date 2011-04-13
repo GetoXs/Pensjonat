@@ -412,6 +412,30 @@
   <ItemGroup>
     <Resource Include="Images\send323.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\tick.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\arrow_left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\wstecz.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Check-icon2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\panel_settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\document_properties.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\currency_dollar_blue2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\dalej.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

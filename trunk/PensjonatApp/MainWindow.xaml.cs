@@ -24,17 +24,28 @@ namespace PensjonatApp
     /// </summary>
     public partial class MainWindow : Window
     {
+        private List<Button> buttonRezerwacjeDeafultList = new List<Button>();
+        private List<Button> buttonRezerwacjeBackForwardList = new List<Button>();
+        private List<Button> buttonRezerwacjeBackOkList = new List<Button>();
+        public static Grid currentGrid;
         public MainWindow()
         {
-            InitializeComponent(); 
+            InitializeComponent();
+            buttonRezerwacjeDeafultList.Add(buttonRezerwacjeZaliczka);
+            buttonRezerwacjeDeafultList.Add(buttonRezerwacjeDel);
+            buttonRezerwacjeDeafultList.Add(buttonRezerwacjeAdd);
+            buttonRezerwacjeBackForwardList.Add(buttonRezerwacjePowrot);
+            buttonRezerwacjeBackForwardList.Add(buttonRezerwacjeDalej);
+            buttonRezerwacjeBackOkList.Add(buttonRezerwacjePowrot);
+            buttonRezerwacjeBackOkList.Add(buttonRezerwacjeOk);
             zwinRezerwacje();
-            gridRezerwacjeDeafult.Height = 580;
+            showWindow(gridRezerwacjeDeafult, buttonRezerwacjeDeafultList);
             zwinPobyty();
             gridPobytyDeafult.Height = 580;
             zwinKlienci();
             gridKlienciDeafult.Height = 580;
-
         }
+
 // Główne metody
         private void tabControl1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -45,6 +56,24 @@ namespace PensjonatApp
         {
 
         }
+
+        private void zwinButtonList(List<Button> buttonList)
+        {
+            foreach (Button b in buttonList)
+                b.Visibility = Visibility.Collapsed;   
+        }
+        private void pokazButtonList(List<Button> buttonList)
+        {
+            foreach (Button b in buttonList)
+                b.Visibility = Visibility.Visible;  
+        }
+       
+        private void showWindow(Grid grid,List<Button> buttonList)
+        {
+            grid.Height = 580;
+            pokazButtonList(buttonList);
+            currentGrid = grid;
+        }
         private void zwinRezerwacje()
         {
             gridRezerwacjeDeafult.Height = 0;
@@ -52,8 +81,12 @@ namespace PensjonatApp
             gridRezerwacjeAdd2.Height = 0;
             gridRezerwacjeDel.Height = 0;
             gridRezerwacjeCheck.Height = 0;
+            zwinButtonList(buttonRezerwacjeBackForwardList);
+            zwinButtonList(buttonRezerwacjeDeafultList);
+            zwinButtonList(buttonRezerwacjeBackOkList); 
         }
 
+       
         private void zwinPobyty()
         {
             gridPobytyDeafult.Height = 0;
@@ -76,7 +109,39 @@ namespace PensjonatApp
             if (tabRezerwacje.IsFocused)
             {
                 zwinRezerwacje();
-                gridRezerwacjeDeafult.Height = 580;
+                showWindow(gridRezerwacjeDeafult,buttonRezerwacjeDeafultList);
+            }
+        }
+//REZERWACJE->BELKA
+        private void buttonRezerwacjePowrot_Click(object sender, RoutedEventArgs e)
+        {
+            if (currentGrid == gridRezerwacjeDel)
+            {
+                zwinRezerwacje();
+                showWindow(gridRezerwacjeDeafult, buttonRezerwacjeDeafultList);
+            }
+            else if (currentGrid == gridRezerwacjeCheck)
+            {
+                zwinRezerwacje();
+                showWindow(gridRezerwacjeDeafult, buttonRezerwacjeDeafultList);
+            }
+            else if (currentGrid == gridRezerwacjeAdd)
+            {
+                zwinRezerwacje();
+                showWindow(gridRezerwacjeDeafult, buttonRezerwacjeDeafultList);
+            }
+            else if (currentGrid == gridRezerwacjeAdd2)
+            {
+                zwinRezerwacje();
+                showWindow(gridRezerwacjeAdd, buttonRezerwacjeBackForwardList);
+            }
+        }
+        private void buttonRezerwacjeDalej_Click(object sender, RoutedEventArgs e)
+        {
+            if (currentGrid == gridRezerwacjeAdd)
+            {
+                zwinRezerwacje();
+                showWindow(gridRezerwacjeAdd2, buttonRezerwacjeBackOkList);
             }
         }
 //REZERWACJE->DEAFULT
@@ -142,7 +207,8 @@ namespace PensjonatApp
         private void buttonRezerwacjeAdd_Click(object sender, RoutedEventArgs e)
         {
             zwinRezerwacje();
-            gridRezerwacjeAdd.Height = 580;
+            showWindow(gridRezerwacjeAdd, buttonRezerwacjeBackForwardList);
+
         }
         private void textBoxRezerwacjeAddIloscOsob_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -166,7 +232,7 @@ namespace PensjonatApp
         private void buttonRezerwacjeAddDalej_Click(object sender, RoutedEventArgs e)
         {
             zwinRezerwacje();
-            gridRezerwacjeAdd2.Height = 580;
+            showWindow(gridRezerwacjeAdd2, buttonRezerwacjeBackOkList); ;
         }
 //REZERWACJE->ZALICZKA
         private void buttonRezerwacjeZaliczka_Click(object sender, RoutedEventArgs e)
@@ -177,7 +243,7 @@ namespace PensjonatApp
                 if (selectedRow.zaplacono_zaliczke == false)
                 {
                     zwinRezerwacje();
-                    gridRezerwacjeCheck.Height = 580;
+                    showWindow(gridRezerwacjeCheck, buttonRezerwacjeBackOkList);
                     labelRezerwacjeCheckKlient.Content = (string)selectedRow["imie"] + (string)selectedRow["nazwisko"];
                     labelRezerwacjeCheckPesel.Content = (string)selectedRow["pesel"];
                     //labelRezerwacjeCheckTermin = selectedRow.termin;
@@ -194,7 +260,8 @@ namespace PensjonatApp
         private void buttonRezerwacjeCheckCancel_Click(object sender, RoutedEventArgs e)
         {
             zwinRezerwacje();
-            gridRezerwacjeDeafult.Height = 580;
+            showWindow(gridRezerwacjeDeafult, buttonRezerwacjeDeafultList);
+
         }
 //REZERWACJE->USUN
         private void buttonRezerwacjeDel_Click(object sender, RoutedEventArgs e)
@@ -203,7 +270,7 @@ namespace PensjonatApp
             {
                 RezerwacjeDS.RezerwacjeRow selectedRow = (RezerwacjeDS.RezerwacjeRow)((DataRowView)dataGridRezerwacjeSzukaj.SelectedItem).Row;
                 zwinRezerwacje();
-                gridRezerwacjeDel.Height = 580;
+                showWindow(gridRezerwacjeDel, buttonRezerwacjeBackOkList);
                 labelRezerwacjeDelKlient.Content = (string)selectedRow["imie"] + (string)selectedRow["nazwisko"];
                 labelRezerwacjeDelPesel.Content = (string)selectedRow["pesel"];
                 //labelRezerwacjeDelTermin = selectedRow.termin;
@@ -217,7 +284,7 @@ namespace PensjonatApp
         private void buttonRezerwacjeDelCancel_Click(object sender, RoutedEventArgs e)
         {
             zwinRezerwacje();
-            gridRezerwacjeDeafult.Height = 580;
+            showWindow(gridRezerwacjeDeafult, buttonRezerwacjeDeafultList);
         }
 
 
@@ -539,11 +606,6 @@ namespace PensjonatApp
             if (result == MessageBoxResult.Yes)
                 richTextBoxNewsletter.Text = @"{\rtf1\ansi\ansicpg1252\uc1\htmautsp\deff2{\fonttbl{\f0\fcharset0 Times New Roman;}{\f2\fcharset0 Segoe UI;}}{\colortbl\red0\green0\blue0;\red255\green255\blue255;}\loch\hich\dbch\pard\plain\ltrpar\itap0{\lang1033\fs18\f2\cf0 \cf0\ql{\f2 {\ltrch }\li0\ri0\sa0\sb0\fi0\ql\par}}}";
         }
-
-     
-
-  
-
 
     }
 
