@@ -121,14 +121,14 @@ namespace PensjonatApp.Helpers
 
 
         /// <summary>
-        /// Potwierdzenie zaliczki rezerwacji na podstawie id_rezerwacji, podawana wartość kwoty zaliczki (?)
+        /// Potwierdzenie zaliczki rezerwacji na podstawie id_rezerwacji
         /// </summary>
         /// <returns></returns>
-        public static int potwierdzZaliczke(int id_rezerwacji, decimal kwota)
+        public static int potwierdzZaliczke(int id_rezerwacji)
         {
             RezerwacjeDS.RezerwacjeDataTable tab = TablesManager.Manager.RezerwacjeTableAdapter.GetDataRezerwacjeByID(id_rezerwacji);
             tab[0].zaplacono_zaliczke = true;
-            tab[0].zaliczka = kwota;
+          
             return TablesManager.Manager.RezerwacjeTableAdapter.Update(tab);
         }
 
