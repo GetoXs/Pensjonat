@@ -37,29 +37,49 @@
                                 <GradientStop Color="#FFEAEAEA" Offset="1" />
                             </LinearGradientBrush>
                         </Grid.Background>
-                        <Button BorderBrush="#FFBAD0DC" Canvas.Left="199" Canvas.Top="103" Foreground="{x:Null}" Height="40" HorizontalAlignment="Right" Margin="0,10,115,0" Name="buttonRezerwacjeAdd" Padding="0" VerticalAlignment="Top" Width="95" Click="buttonRezerwacjeAdd_Click">
-                            <StackPanel Orientation="Horizontal">
-                                <Image Height="32" HorizontalAlignment="Left" Margin="2" Name="imgButtonRezerwacjeAdd" Source="/PensjonatApp;component/Images/Add-icon1.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="32" />
-                                <Label Content="Dodaj" FontWeight="Bold" Height="37" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="0" Name="labelButtonRezerwacjeAdd" Padding="0" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="42" />
-                            </StackPanel>
-                        </Button>
-                        <Button BorderBrush="#FFBAD0DC" Canvas.Left="199" Canvas.Top="103" Foreground="{x:Null}" Height="40" HorizontalAlignment="Right" Margin="0,10,14,0" Name="buttonRezerwacjeDel" Padding="0" VerticalAlignment="Top" Width="95" Click="buttonRezerwacjeDel_Click">
-                            <StackPanel Orientation="Horizontal">
-                                <Image Height="32" HorizontalAlignment="Left" Margin="2" Name="imgButtonRezerwacjeDel" Source="/PensjonatApp;component/Images/Delete-icon1.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="32" />
-                                <Label Content="Usuń" FontWeight="Bold" Height="37" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Name="label1" Padding="0" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="42" />
-                            </StackPanel>
-                        </Button>
                         <Image Height="42" HorizontalAlignment="Left" Margin="10,10,0,0" Name="imgBelkaRezerwacje" Source="/PensjonatApp;component/Images/48Calendar-icon.png" Stretch="Fill" VerticalAlignment="Top" Width="42" />
                         <Label Content="Rezerwacje" FontSize="18" FontWeight="Bold" Height="40" HorizontalAlignment="Left" Margin="53,11,0,0" Name="labelBelkaRezerwacje" Padding="0" VerticalAlignment="Top" VerticalContentAlignment="Center" />
                         <Image Height="40" HorizontalAlignment="Left" Margin="165,12,0,0" Name="separator" Source="/PensjonatApp;component/Images/separator.png" Stretch="Fill" VerticalAlignment="Top" Width="2" />
-                        <Button BorderBrush="#FFBAD0DC" Canvas.Left="199" Canvas.Top="103" Foreground="{x:Null}" Height="40" Margin="0,10,215,0" Name="buttonRezerwacjeZaliczka" Padding="0" VerticalAlignment="Top" Click="buttonRezerwacjeZaliczka_Click" HorizontalAlignment="Right" Width="95">
-                            <StackPanel Orientation="Horizontal">
-                                <Image Grid.RowSpan="2" Height="32" HorizontalAlignment="Left" Margin="2,3,0,3" Name="imgButtonRezerwacjeCheck" Source="/PensjonatApp;component/Images/Check-icon.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="32" />
-                                <Label Content="Zaliczka" FontWeight="Bold" Height="36" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="0" Name="label2" Padding="0" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="55" />
-                            </StackPanel>
-                        </Button>
+                        <StackPanel Height="47" HorizontalAlignment="Left" Margin="165,5,0,0" Name="stackPanel1" VerticalAlignment="Top" Width="423" Orientation="Horizontal" FlowDirection="RightToLeft" ClipToBounds="False" CanHorizontallyScroll="True">
+                            <Button BorderBrush="#FFBAD0DC" Foreground="{x:Null}" Height="40" Name="buttonRezerwacjeDel" Padding="0" Width="95" Click="buttonRezerwacjeDel_Click" Margin="2" FlowDirection="LeftToRight">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Height="32" HorizontalAlignment="Left" Margin="2" Name="imgButtonRezerwacjeDel" Source="/PensjonatApp;component/Images/Delete-icon1.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="32" />
+                                    <Label Content="Usuń" FontWeight="Bold" Height="37" HorizontalContentAlignment="Center" Name="label1" Padding="0" VerticalContentAlignment="Center" Width="42" />
+                                </StackPanel>
+                            </Button>
+                            <Button BorderBrush="#FFBAD0DC" Foreground="{x:Null}" Height="40" Name="buttonRezerwacjeAdd" Padding="0" Width="95" Click="buttonRezerwacjeAdd_Click" Margin="2" FlowDirection="LeftToRight">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Height="32" HorizontalAlignment="Left" Margin="2" Name="imgButtonRezerwacjeAdd" Source="/PensjonatApp;component/Images/Add-icon1.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="32" />
+                                    <Label Content="Dodaj" FontWeight="Bold" Height="37" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="0" Name="labelButtonRezerwacjeAdd" Padding="0" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="42" />
+                                </StackPanel>
+                            </Button>
+                            <Button BorderBrush="#FFBAD0DC" Foreground="{x:Null}" Height="40" Name="buttonRezerwacjeZaliczka" Padding="0" Click="buttonRezerwacjeZaliczka_Click" Width="95" Margin="2" FlowDirection="LeftToRight">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Grid.RowSpan="2" Height="32" HorizontalAlignment="Left" Margin="2,3,0,3" Name="imgButtonRezerwacjeCheck" Source="/PensjonatApp;component/Images/currency_dollar_blue2.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="32" FlowDirection="LeftToRight" />
+                                    <Label Content="Zaliczka" FontWeight="Bold" Height="36" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="0" Name="label2" Padding="0" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="55" />
+                                </StackPanel>
+                            </Button>
+                            <Button BorderBrush="#FFBAD0DC" Foreground="{x:Null}" Height="40" Name="buttonRezerwacjeOk" Padding="0" Width="95" Margin="2">
+                                <StackPanel Orientation="Horizontal" FlowDirection="LeftToRight">
+                                    <Image Grid.RowSpan="2" Height="32" HorizontalAlignment="Left" Margin="2,3,0,3" Name="image10" Source="/PensjonatApp;component/Images/Check-icon2.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="32" />
+                                    <Label Content="OK" FontWeight="Bold" Height="36" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="0" Name="label86" Padding="0" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="55" FlowDirection="LeftToRight" />
+                                </StackPanel>
+                            </Button>
+                            <Button BorderBrush="#FFBAD0DC" Foreground="{x:Null}" Height="40" Name="buttonRezerwacjeDalej" Padding="0" Width="95" Click="buttonRezerwacjeDalej_Click">
+                                <StackPanel FlowDirection="LeftToRight" Orientation="Horizontal">
+                                    <Image Grid.RowSpan="2" Height="32" HorizontalAlignment="Left" Margin="2,3,0,3" Name="image12" Source="/PensjonatApp;component/Images/dalej.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="32" />
+                                    <Label Content="Dalej" FlowDirection="LeftToRight" FontWeight="Bold" Height="36" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="0" Name="label91" Padding="0" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="55" />
+                                </StackPanel>
+                            </Button>
+                            <Button BorderBrush="#FFBAD0DC" Foreground="{x:Null}" Height="40" Name="buttonRezerwacjePowrot" Padding="0" Width="95" Margin="2" Click="buttonRezerwacjePowrot_Click">
+                                <StackPanel Orientation="Horizontal" FlowDirection="LeftToRight">
+                                    <Image Grid.RowSpan="2" Height="32" HorizontalAlignment="Left" Margin="2,3,0,3" Name="image11" Source="/PensjonatApp;component/Images/wstecz.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="32" />
+                                    <Label Content="Powrót" FontWeight="Bold" Height="36" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="0" Name="label90" Padding="0" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="55" />
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
                     </Grid>
-                    <Grid Name="gridRezerwacjeDeafult" Visibility="Visible" ShowGridLines="True" Opacity="1" Height="187" IsVisibleChanged="gridRezerwacjeDeafult_IsVisibleChanged">
+                    <Grid Name="gridRezerwacjeDeafult" Visibility="Visible" ShowGridLines="False" Opacity="1" Height="187" IsVisibleChanged="gridRezerwacjeDeafult_IsVisibleChanged">
                         <TextBox Name="textBoxRezerwacjeSzukaj" Height="23" HorizontalAlignment="Left" Margin="14,17,0,0"  VerticalAlignment="Top" Width="129" />
                         <RadioButton Content="ID" GroupName="rezerwacjeSzukaj" Height="16" HorizontalAlignment="Left" Margin="299,24,0,0" Name="rbRezerwacjeId" VerticalAlignment="Top" IsChecked="False" />
                         <RadioButton Content="Klient" GroupName="rezerwacjeSzukaj" Height="16" HorizontalAlignment="Left" IsChecked="True" Margin="247,24,0,0" Name="rbRezerwacjeName" VerticalAlignment="Top" IsThreeState="False" />
@@ -190,7 +210,7 @@
                         </Button>
                         <Button BorderBrush="#FFBAD0DC" Canvas.Left="199" Canvas.Top="103" Foreground="{x:Null}" Height="40" HorizontalAlignment="Right" Margin="0,10,14,0" Name="buttonPobytyDetails" Padding="0" VerticalAlignment="Top" Width="95" Click="buttonPobytyDetails_Click">
                             <StackPanel Orientation="Horizontal">
-                                <Image Height="32" HorizontalAlignment="Left" Margin="2" Name="image2" Source="/PensjonatApp;component/Images/Search-icon.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="32" />
+                                <Image Height="32" HorizontalAlignment="Left" Margin="2" Name="image2" Source="/PensjonatApp;component/Images/document_properties.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="32" />
                                 <Label Content="Szczegóły" FontWeight="Bold" Height="37" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Name="label39" Padding="0" VerticalAlignment="Top" VerticalContentAlignment="Center" />
                             </StackPanel>
                         </Button>
