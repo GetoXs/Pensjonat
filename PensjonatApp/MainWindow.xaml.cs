@@ -686,6 +686,18 @@ namespace PensjonatApp
 
         }
 
+        private void buttonPobytySumRabatAdd_Click(object sender, RoutedEventArgs e)
+        {
+            //do skasowania demonstracja działania zapisywania do comboBoxów
+            List<string> lst = new List<string>();
+            DS.RachunkiDS.RabatyDataTable rabatyTable = TablesManager.Manager.RabatyTableAdapter.GetDataByAktywne();
+            foreach (DS.RachunkiDS.RabatyRow row in rabatyTable)
+            {
+                lst.Add(row.nazwa + " -" + row.wartosc + ((row.procentowy == true) ? "%" : "zł"));
+            }
+            comboBoxPobytySumRabat.ItemsSource = lst;
+        }
+
 
 
 

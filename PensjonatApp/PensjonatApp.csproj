@@ -144,6 +144,9 @@
     <Compile Include="Helpers\KlienciHelper.cs" />
     <Compile Include="Helpers\PokojeHelper.cs" />
     <Compile Include="Helpers\PokojeSlownikHelper.cs" />
+    <Compile Include="Helpers\PosilkiHelper.cs" />
+    <Compile Include="Helpers\PosilkiSlownikHelper.cs" />
+    <Compile Include="Helpers\RabatyHelper.cs" />
     <Compile Include="Helpers\RezerwacjeHelper.cs" />
     <Compile Include="Helpers\UslugiHelper.cs" />
     <Compile Include="Helpers\UslugiSlownikHelper.cs" />

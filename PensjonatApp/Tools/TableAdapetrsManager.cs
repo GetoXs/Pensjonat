@@ -47,6 +47,8 @@ namespace PensjonatApp.Tools
 
 		public Pracownicy_slownikTableAdapter Pracownicy_slownikTableAdapter { get; private set; }
 
+        public RabatyTableAdapter RabatyTableAdapter { get; private set; }
+
 		public RachunkiTableAdapter RachunkiTableAdapter { get; private set; }
 
 		public RezerwacjeTableAdapter RezerwacjeTableAdapter { get; private set; }
@@ -162,7 +164,8 @@ namespace PensjonatApp.Tools
 			this.Posilki_slownikTableAdapter = new Posilki_slownikTableAdapter();
 			this.PosilkiTableAdapter = new PosilkiTableAdapter();
 			this.Pracownicy_slownikTableAdapter = new Pracownicy_slownikTableAdapter();
-			this.PracownicyTableAdapter = new PracownicyTableAdapter();
+            this.PracownicyTableAdapter = new PracownicyTableAdapter();
+            this.RabatyTableAdapter = new RabatyTableAdapter();
 			this.RachunkiTableAdapter = new RachunkiTableAdapter();
 			this.RezerwacjeTableAdapter = new RezerwacjeTableAdapter();
 			this.Uslugi_slownikTableAdapter = new Uslugi_slownikTableAdapter();
