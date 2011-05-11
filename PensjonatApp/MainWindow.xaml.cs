@@ -748,8 +748,177 @@ namespace PensjonatApp
             comboBoxPobytySumRabat.ItemsSource = lst;
         }
 
+//-----------------------------
+//----------KIEROWNIK----------
+//-----------------------------
+// POKOJE
+        private void dataGridPokojeDeafult_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if ((bool)(e.NewValue) == true)
+            {//pojawienie sie pola
+                dataGridPokojeDeafult.ItemsSource = TablesManager.Manager.Pokoje_slownikTableAdapter.GetData();
+            }
+        }
+//STANDARDY POKOI
+//WYPOSAZENIE
+
+        private void dataGridWyposazenieDeafult_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if ((bool)(e.NewValue) == true)
+            {//pojawienie sie pola
+                dataGridWyposazenieDeafult.ItemsSource = TablesManager.Manager.Wyposazenia_slownikTableAdapter.GetData();
+            }
+        }
+
+        private void buttonWyposazenieDodaj_Click(object sender, RoutedEventArgs e)
+        {
+            if (textBoxWyposazenieOpis.Text != "")
+            {
+                WyposazeniaSlownikHelper.dodajElementWyposazenia(textBoxWyposazenieOpis.Text.ToString());
+                dataGridWyposazenieDeafult.ItemsSource = TablesManager.Manager.Wyposazenia_slownikTableAdapter.GetData();
+                textBoxWyposazenieOpis.Text = "";
+            }
+            else
+            {
+                System.Windows.MessageBox.Show("Opis nie może być pusty!", "Dodawanie wyposażenia", MessageBoxButton.OK, MessageBoxImage.Error);    
+            }
+        }
+
+        private void buttonWyposazenieUsun_Click(object sender, RoutedEventArgs e)
+        {
+            if (dataGridWyposazenieDeafult.SelectedItem != null)
+            {
+                WyposazeniaDS.Wyposazenia_slownikRow selectedRow = (WyposazeniaDS.Wyposazenia_slownikRow)
+                    ((DataRowView)dataGridWyposazenieDeafult.SelectedItem).Row;
+
+                MessageBoxResult result = System.Windows.MessageBox.Show("Czy napewno chcesz usunąć: " + (string)selectedRow["opis"], "Usuwanie wyposażenia", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                if (result == MessageBoxResult.Yes)
+                {
+                    // USUWANIE
+                }
+            }
+            else
+                System.Windows.MessageBox.Show("Najpierw wybierz wyposażenie.", "Usuwanie wyposażenia", MessageBoxButton.OK, MessageBoxImage.Warning);
+       
+        }
+
+//RABATY
+        private void dataGridRabatyDeafult_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if ((bool)(e.NewValue) == true)
+            {//pojawienie sie pola
+                dataGridRabatyDeafult.ItemsSource = TablesManager.Manager.RabatyTableAdapter.GetData();
+            }
+        }
+
+        private void buttonRabatyDodaj_Click(object sender, RoutedEventArgs e)
+        {
+            if (textBoxRabatyNazwa.Text != "" && textBoxRabatyWartosc.Text != "")
+            {
+                int wartosc;
+                if (int.TryParse(textBoxRabatyWartosc.Text, out wartosc))
+                {
+                    RabatyHelper.dodajRabat(textBoxRabatyNazwa.Text, (bool)checkBoxRabatyProcentowy.IsChecked, wartosc, (bool)checkBoxRabatyAktywny.IsChecked);
+                    dataGridRabatyDeafult.ItemsSource = TablesManager.Manager.RabatyTableAdapter.GetData();
+                    textBoxRabatyNazwa.Text = "";
+                    textBoxRabatyWartosc.Text = "";
+                }
+                else
+                    System.Windows.MessageBox.Show("Pole wartość może zawierać tylko cyfry.", "Dodawanie rabatu", MessageBoxButton.OK, MessageBoxImage.Error);
+               
+            }
+            else
+            {
+                System.Windows.MessageBox.Show("Uzupełnij wszytstkie pola.", "Dodawanie rabatu", MessageBoxButton.OK, MessageBoxImage.Warning);
+       
+    
+            }
+        }
+
+        private void buttonRabatyUsun_Click(object sender, RoutedEventArgs e)
+        {
+            if (dataGridRabatyDeafult.SelectedItem != null)
+            {
+               // RabatyHDS.Wyposazenia_slownikRow selectedRow = (WyposazeniaDS.Wyposazenia_slownikRow)
+                 //   ((DataRowView)dataGridWyposazenieDeafult.SelectedItem).Row;
+                //+ (string)selectedRow["opis"]
+                MessageBoxResult result = System.Windows.MessageBox.Show("Czy napewno chcesz usunąć: " , "Usuwanie rabatu", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                if (result == MessageBoxResult.Yes)
+                {
+                    // USUWANIE
+                }
+            }
+            else
+                System.Windows.MessageBox.Show("Najpierw wybierz rabat.", "Usuwanie rabatu", MessageBoxButton.OK, MessageBoxImage.Warning);
+       
+        }
+//POSIŁKI
+        private void dataGridPosilkiDeafult_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if ((bool)(e.NewValue) == true)
+            {//pojawienie sie pola
+                dataGridPosilkiDeafult.ItemsSource = TablesManager.Manager.Posilki_slownikTableAdapter.GetData();
+            }
+        }
+
+        private void buttonPoslikiDodaj_Click(object sender, RoutedEventArgs e)
+        {
+            if (textBoxPosilkiNazwa.Text != "" && textBoxPosilkiCena.Text != "")
+            {
+                int cena;
+                if (int.TryParse(textBoxPosilkiCena.Text, out cena))
+                {
+                    PosilkiSlownikHelper.dodajTypPosilku(cena, textBoxPosilkiNazwa.Text, (bool)checkBoxPosilkiObiad.IsChecked,
+                        (bool)checkBoxPosilkiSniadanie.IsChecked, (bool)checkBoxPosilkiKolacja.IsChecked, (bool)checkBoxPosliki2Sniad.IsChecked,
+                        (bool)checkBoxPosilkiLunch.IsChecked, (bool)checkBoxPosilkiObiadokolacja.IsChecked, (bool)checkBoxPosilkiPodwieczorek.IsChecked);
+                    dataGridPosilkiDeafult.ItemsSource = TablesManager.Manager.Posilki_slownikTableAdapter.GetData();
+                    textBoxPosilkiNazwa.Text = "";
+                    textBoxPosilkiCena.Text = "";
+                    checkBoxPosilkiKolacja.IsChecked = false;
+                    checkBoxPosilkiLunch.IsChecked = false;
+                    checkBoxPosilkiObiad.IsChecked = false;
+                    checkBoxPosilkiObiadokolacja.IsChecked = false;
+                    checkBoxPosilkiPodwieczorek.IsChecked = false;
+                    checkBoxPosilkiSniadanie.IsChecked = false;
+                    checkBoxPosliki2Sniad.IsChecked = false;
+                }
+                else
+                    System.Windows.MessageBox.Show("Pole cena może zawierać tylko cyfry.", "Dodawanie pakietu posiłku", MessageBoxButton.OK, MessageBoxImage.Error);
+
+            }
+            else
+            {
+                System.Windows.MessageBox.Show("Uzupełnij wszytstkie pola.", "Dodawanie pakietu posiłku", MessageBoxButton.OK, MessageBoxImage.Warning);
 
 
+            }
+        }
+
+        private void buttonPosilkiUsun_Click(object sender, RoutedEventArgs e)
+        {
+            if (dataGridPosilkiDeafult.SelectedItem != null)
+            {
+                PosilkiDS.Posilki_slownikRow selectedRow = (PosilkiDS.Posilki_slownikRow)
+                    ((DataRowView)dataGridPosilkiDeafult.SelectedItem).Row;
+                // + (string)selectedRow["nazwa_opcji"]
+                MessageBoxResult result = System.Windows.MessageBox.Show("Czy napewno chcesz usunąć: ", "Usuwanie pakietu posiłku", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                if (result == MessageBoxResult.Yes)
+                {
+                    PosilkiHelper.usunPosilek((int)selectedRow["id_slownikowe_posilku"]);
+                    dataGridPosilkiDeafult.ItemsSource = TablesManager.Manager.Posilki_slownikTableAdapter.GetData();
+                   
+                }
+            }
+            else
+                System.Windows.MessageBox.Show("Najpierw wybierz posiłek.", "Usuwanie pakietu posiłku", MessageBoxButton.OK, MessageBoxImage.Warning);
+       
+        }
+
+
+
+ 
+
+       
 
 
 
