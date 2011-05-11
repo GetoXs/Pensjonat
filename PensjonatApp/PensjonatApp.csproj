@@ -152,6 +152,7 @@
     <Compile Include="Helpers\UslugiSlownikHelper.cs" />
     <Compile Include="Helpers\WyposazeniaHelper.cs" />
     <Compile Include="Helpers\WyposazeniaSlownikHelper.cs" />
+    <None Include="Class1.cs" />
     <Compile Include="Tools\TableAdapetrsManager.cs" />
     <Compile Include="DS\WyposazeniaDS.cs">
       <DependentUpon>WyposazeniaDS.xsd</DependentUpon>
@@ -441,6 +442,54 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Print-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\FutonS.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\uslugi.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\stock_alarmS.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\posilki.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\front_row.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\przydzialy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\checkoutS.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\vcard.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\document_edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\standPok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\fButon_bed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\addSmall.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\standPokHead.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\UslugiHeader.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\posilkiHeader.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\stock_alarm.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
