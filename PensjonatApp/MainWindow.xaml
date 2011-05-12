@@ -30,7 +30,7 @@
             <TabItem Name="tabRezerwacje" BorderBrush="#FF2B4865" IsSelected="True" Height="40" GotFocus="tabRezerwacje_GotFocus">
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal" Width="120" Height="32">
-                        <Image Name="imgRezerwacjeMenu"  Source="/PensjonatApp;component/Images/Calendar-icon.png" HorizontalAlignment="Left" VerticalAlignment="Top" Width="30" Height="30" />
+                        <Image Name="imgRezerwacjeMenu"  Source="/PensjonatApp;component/Images/rezerwacje.png" HorizontalAlignment="Left" VerticalAlignment="Top" Width="30" Height="30" />
                         <TextBlock Text="Rezerwacje" Margin="2" FontWeight="Bold" FontSize="14" TextAlignment="Center" FontStretch="Normal" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#FF202020" />
                     </StackPanel>
                 </TabItem.Header>
@@ -42,10 +42,10 @@
                                 <GradientStop Color="#FFEAEAEA" Offset="1" />
                             </LinearGradientBrush>
                         </Grid.Background>
-                        <Image Height="42" HorizontalAlignment="Left" Margin="10,10,0,0" Name="imgBelkaRezerwacje" Source="/PensjonatApp;component/Images/48Calendar-icon.png" Stretch="Fill" VerticalAlignment="Top" Width="42" />
+                        <Image Height="42" HorizontalAlignment="Left" Margin="10,10,0,0" Name="imgBelkaRezerwacje" Source="/PensjonatApp;component/Images/rezerwacjeHead.png" Stretch="Fill" VerticalAlignment="Top" Width="42" />
                         <Label Content="Rezerwacje" FontSize="18" FontWeight="Bold" Height="40" HorizontalAlignment="Left" Margin="53,11,0,0" Name="labelBelkaRezerwacje" Padding="0" VerticalAlignment="Top" VerticalContentAlignment="Center" />
                         <Image Height="40" HorizontalAlignment="Left" Margin="165,12,0,0" Name="separator" Source="/PensjonatApp;component/Images/separator.png" Stretch="Fill" VerticalAlignment="Top" Width="2" />
-                        <StackPanel Height="47" HorizontalAlignment="Right" Margin="0,5,5,0" Name="stackPanel1" VerticalAlignment="Top" Width="590" Orientation="Horizontal" FlowDirection="RightToLeft" ClipToBounds="False" CanHorizontallyScroll="True">
+                        <StackPanel Height="47" HorizontalAlignment="Right" Margin="0,5,5,0" Name="stackPanel1" VerticalAlignment="Top" Width="368" Orientation="Horizontal" FlowDirection="RightToLeft" ClipToBounds="False" CanHorizontallyScroll="True">
                             <Button BorderBrush="#FFBAD0DC" Foreground="{x:Null}" Height="40" Name="buttonRezerwacjeDel" Padding="0" Width="95" Click="buttonRezerwacjeDel_Click" Margin="2" FlowDirection="LeftToRight">
                                 <StackPanel Orientation="Horizontal">
                                     <Image Height="32" HorizontalAlignment="Left" Margin="2" Name="imgButtonRezerwacjeDel" Source="/PensjonatApp;component/Images/Delete-icon1.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="32" />
@@ -85,17 +85,11 @@
                         </StackPanel>
                     </Grid>
                     <Grid Name="gridRezerwacjeDeafult" Visibility="Visible" ShowGridLines="False" Opacity="1" Height="234" IsVisibleChanged="gridRezerwacjeDeafult_IsVisibleChanged">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="104" />
-                            <ColumnDefinition Width="18" />
-                            <ColumnDefinition Width="30" />
-                            <ColumnDefinition Width="431" />
-                        </Grid.ColumnDefinitions>
-                        <TextBox Name="textBoxRezerwacjeSzukaj" Height="23" HorizontalAlignment="Left" Margin="14,17,0,0"  VerticalAlignment="Top" Width="129" Grid.ColumnSpan="3" />
-                        <RadioButton Content="ID" GroupName="rezerwacjeSzukaj" Height="16" HorizontalAlignment="Left" Margin="147,24,0,0" Name="rbRezerwacjeId" VerticalAlignment="Top" IsChecked="False" Grid.Column="3" />
-                        <RadioButton Content="Klient" GroupName="rezerwacjeSzukaj" Height="16" HorizontalAlignment="Left" IsChecked="True" Margin="95,24,0,0" Name="rbRezerwacjeName" VerticalAlignment="Top" IsThreeState="False" Grid.Column="3" />
-                        <Button Content="Szukaj" Height="23" HorizontalAlignment="Left" Margin="8,17,0,0" Name="buttonRezerwacjeSearch" VerticalAlignment="Top" Width="75" Click="buttonRezerwacjeSearch_Click" Grid.Column="3" />
-                        <DataGrid  Name="dataGridRezerwacjeSzukaj" AutoGenerateColumns="False" Margin="14,51,9,24" MinColumnWidth="30" IsReadOnly="True" HorizontalGridLinesBrush="#FFD5D5D5" VerticalGridLinesBrush="#FFD5D5D5" SelectionChanged="dataGrid1_SelectionChanged" SelectedIndex="0" Grid.ColumnSpan="4">
+                        <TextBox Name="textBoxRezerwacjeSzukaj" Height="23" HorizontalAlignment="Left" Margin="14,17,0,0"  VerticalAlignment="Top" Width="129" TabIndex="1" />
+                        <RadioButton Content="ID" GroupName="rezerwacjeSzukaj" Height="16" HorizontalAlignment="Left" Margin="299,24,0,0" Name="rbRezerwacjeId" VerticalAlignment="Top" IsChecked="False" TabIndex="5" />
+                        <RadioButton Content="Klient" GroupName="rezerwacjeSzukaj" Height="16" HorizontalAlignment="Left" IsChecked="True" Margin="247,24,0,0" Name="rbRezerwacjeName" VerticalAlignment="Top" IsThreeState="False" TabIndex="3" />
+                        <Button Content="Szukaj" Height="23" HorizontalAlignment="Left" Margin="160,17,0,0" Name="buttonRezerwacjeSearch" VerticalAlignment="Top" Width="75" Click="buttonRezerwacjeSearch_Click" TabIndex="2" />
+                        <DataGrid  Name="dataGridRezerwacjeSzukaj" AutoGenerateColumns="False" Margin="14,51,9,24" MinColumnWidth="30" IsReadOnly="True" HorizontalGridLinesBrush="#FFD5D5D5" VerticalGridLinesBrush="#FFD5D5D5" SelectionChanged="dataGrid1_SelectionChanged" SelectedIndex="0">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Id" Binding="{Binding Path=id_rezerwacji}" />
                                 <DataGridTextColumn Header="Termin" Binding="{Binding Path=termin}" />
@@ -265,11 +259,11 @@
                         <Image Height="40" HorizontalAlignment="Left" Margin="132,12,0,0" Name="image4" Source="/PensjonatApp;component/Images/separator.png" Stretch="Fill" VerticalAlignment="Top" Width="2" />
                        
                     </Grid>
-                    <Grid Height="17" Name="gridPobytyDeafult" Opacity="1" ShowGridLines="True" Visibility="Visible">
-                        <TextBox Name="textBoxPobytySzukaj" Height="23" HorizontalAlignment="Left" Margin="14,17,0,0"  VerticalAlignment="Top" Width="129" />
-                        <RadioButton Name="rbPobytyId" Content="ID" GroupName="pobytySzukaj" Height="16" HorizontalAlignment="Left" Margin="299,24,0,0"  VerticalAlignment="Top" />
-                        <RadioButton Name="rbPobytyKlient" Content="Klient" GroupName="pobytySzukaj" Height="16" HorizontalAlignment="Left" IsChecked="True" Margin="247,24,0,0" VerticalAlignment="Top" />
-                        <Button Name="buttonPobytySzukaj" Content="Szukaj" Height="23" HorizontalAlignment="Left" Margin="160,17,0,0"  VerticalAlignment="Top" Width="75" Click="buttonPobytySzukaj_Click" />
+                    <Grid Height="126" Name="gridPobytyDeafult" Opacity="1" ShowGridLines="True" Visibility="Visible">
+                        <TextBox Name="textBoxPobytySzukaj" Height="23" HorizontalAlignment="Left" Margin="14,17,0,0"  VerticalAlignment="Top" Width="129" TabIndex="1" />
+                        <RadioButton Name="rbPobytyId" Content="ID" GroupName="pobytySzukaj" Height="16" HorizontalAlignment="Left" Margin="299,24,0,0"  VerticalAlignment="Top" TabIndex="4" />
+                        <RadioButton Name="rbPobytyKlient" Content="Klient" GroupName="pobytySzukaj" Height="16" HorizontalAlignment="Left" IsChecked="True" Margin="247,24,0,0" VerticalAlignment="Top" TabIndex="3" />
+                        <Button Name="buttonPobytySzukaj" Content="Szukaj" Height="23" HorizontalAlignment="Left" Margin="160,17,0,0"  VerticalAlignment="Top" Width="75" Click="buttonPobytySzukaj_Click" TabIndex="2" />
                         <DataGrid  Name="dataGridPobytySzukaj" DataContext="{Binding}" IsEnabled="True" Margin="12,61,11,36" MinColumnWidth="30" AutoGenerateColumns="False" IsVisibleChanged="dataGridPobytySzukaj_IsVisibleChanged" SelectionChanged="dataGridPobytySzukaj_SelectionChanged" IsReadOnly="True" HorizontalGridLinesBrush="#FFD5D5D5" VerticalGridLinesBrush="#FFD5D5D5">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Id" Binding="{Binding Path=id_pobytu}"/>
@@ -280,7 +274,7 @@
                                 <DataGridTextColumn Header="Nr pokoju" Binding="{Binding Path=nr_pokoju}"/>
                             </DataGrid.Columns>
                         </DataGrid>
-                        <CheckBox Name="checkBoxPobytyAktualne" Content="Aktualne" Height="16" HorizontalAlignment="Left" Margin="333,24,0,0" VerticalAlignment="Top" IsChecked="True" />
+                        <CheckBox Name="checkBoxPobytyAktualne" Content="Aktualne" Height="16" HorizontalAlignment="Left" Margin="333,24,0,0" VerticalAlignment="Top" IsChecked="True" TabIndex="5" />
                     </Grid>
                     <Grid Height="568" Name="gridPobytyServices" Opacity="1" ShowGridLines="True" Visibility="Visible">
                         <Label Content="Usługi:" FontSize="13" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,10,0,0" Name="label42" Padding="2" VerticalAlignment="Top" />
@@ -369,7 +363,7 @@
             <TabItem  Name="tabKlienci" BorderBrush="#FF2B4865" Height="40" GotFocus="tabKlienci_GotFocus">
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal" Width="120">
-                        <Image Height="30" Name="imgKlienciMenu" Stretch="Fill" Width="30" Source="/PensjonatApp;component/Images/32icontexto_user_web20_furl.png" />
+                        <Image Height="30" Name="imgKlienciMenu" Stretch="Fill" Width="30" Source="/PensjonatApp;component/Images/klienci.png" />
                         <TextBlock Text="Kilenci" Margin="2" FontWeight="Bold" FontSize="14" TextAlignment="Center" FontStretch="Normal" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#FF202020" />
                     </StackPanel>
                 </TabItem.Header>
@@ -395,25 +389,25 @@
                                     <Label Content="Edytuj" FontWeight="Bold" Height="37" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Name="label72" Padding="0" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="42" />
                                 </StackPanel>
                             </Button>
-                            <Button BorderBrush="#FFBAD0DC" Foreground="{x:Null}" Height="40" Name="buttonKlienciOk" Padding="0" Width="95" Click="buttonKlienciOk_Click">
+                            <Button BorderBrush="#FFBAD0DC" Foreground="{x:Null}" Height="40" Name="buttonKlienciOk" Padding="0" Width="95" Click="buttonKlienciOk_Click" Margin="2">
                                 <StackPanel FlowDirection="LeftToRight" Orientation="Horizontal">
                                     <Image Grid.RowSpan="2" Height="32" HorizontalAlignment="Left" Margin="2,3,0,3" Name="image16" Source="/PensjonatApp;component/Images/Check-icon2.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="32" />
                                     <Label Content="OK" FlowDirection="LeftToRight" FontWeight="Bold" Height="36" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="0" Name="label94" Padding="0" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="55" />
                                 </StackPanel>
                             </Button>
-                            <Button BorderBrush="#FFBAD0DC" Foreground="{x:Null}" Height="40" Name="buttonKlienciPowrot" Padding="0" Width="95" Click="buttonKlienciPowrot_Click">
+                            <Button BorderBrush="#FFBAD0DC" Foreground="{x:Null}" Height="40" Name="buttonKlienciPowrot" Padding="0" Width="95" Click="buttonKlienciPowrot_Click" Margin="2">
                                 <StackPanel FlowDirection="LeftToRight" Orientation="Horizontal">
                                     <Image Grid.RowSpan="2" Height="32" HorizontalAlignment="Left" Margin="2,3,0,3" Name="image17" Source="/PensjonatApp;component/Images/wstecz.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="32" />
                                     <Label Content="Powrót" FontWeight="Bold" Height="36" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="0" Name="label95" Padding="0" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="55" />
                                 </StackPanel>
                             </Button>
                         </StackPanel>
-                        <Image Height="42" HorizontalAlignment="Left" Margin="10,10,0,0" Name="image8" Source="/PensjonatApp;component/Images/user.png" Stretch="Fill" VerticalAlignment="Top" Width="42" />
+                        <Image Height="42" HorizontalAlignment="Left" Margin="10,10,0,0" Name="image8" Source="/PensjonatApp;component/Images/klienciHead.png" Stretch="Fill" VerticalAlignment="Top" Width="42" />
                         <Label Content="Klienci" FontSize="18" FontWeight="Bold" Height="40" HorizontalAlignment="Left" Margin="53,11,0,0" Name="label73" Padding="0" VerticalAlignment="Top" VerticalContentAlignment="Center" />
                         <Image Height="40" HorizontalAlignment="Left" Margin="165,12,0,0" Name="image9" Source="/PensjonatApp;component/Images/separator.png" Stretch="Fill" VerticalAlignment="Top" Width="2" />
                     </Grid>
                     <Grid Height="123" Name="gridKlienciDeafult" Opacity="1" ShowGridLines="True" Visibility="Visible">
-                        <TextBox Name="textBoxKlienciSzukaj" Height="23" HorizontalAlignment="Left" Margin="14,17,0,0" VerticalAlignment="Top" Width="129" />
+                        <TextBox Name="textBoxKlienciSzukaj" Height="23" HorizontalAlignment="Left" Margin="14,17,0,0" VerticalAlignment="Top" Width="129" TabIndex="1" />
                         <RadioButton Name="rbKlienciId" Content="ID" GroupName="klienciSzukaj" Height="16" HorizontalAlignment="Left" IsChecked="False" Margin="299,24,0,0" VerticalAlignment="Top" />
                         <RadioButton Name="rbKlienciKlient" Content="Klient" GroupName="klienciSzukaj" Height="16" HorizontalAlignment="Left" IsChecked="True" IsThreeState="False" Margin="247,24,0,0" VerticalAlignment="Top" />
                         <Button  Name="buttonKlienciSearch" Content="Szukaj" Height="23" HorizontalAlignment="Left" Margin="160,17,0,0" VerticalAlignment="Top" Width="75" Click="buttonKlienciSearch_Click" />
@@ -429,7 +423,7 @@
                             </DataGrid.Columns>
                         </DataGrid>
                     </Grid>
-                    <Grid Height="15" Name="gridKlienciEdit" Opacity="1" ShowGridLines="True" Visibility="Visible">
+                    <Grid Height="287" Name="gridKlienciEdit" Opacity="1" ShowGridLines="True" Visibility="Visible">
                         <Label Content="Edycja klienta:" FontSize="13" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,10,0,0" Name="label75" Padding="2" VerticalAlignment="Top" />
                         <Label Content="Imię:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,38,0,0" Name="label76" Padding="2" VerticalAlignment="Top" />
                         <Label Content="Nazwisko:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,64,0,0" Name="label77" Padding="2" VerticalAlignment="Top" />
@@ -512,9 +506,7 @@
                         <Image Height="40" HorizontalAlignment="Left" Margin="165,12,0,0" Name="image31" Source="/PensjonatApp;component/Images/separator.png" Stretch="Fill" VerticalAlignment="Top" Width="2" />
                     </Grid>
                     <Grid Name="gridNewsletterDeafult" Margin="0" Opacity="1" ShowGridLines="True" Visibility="Visible" MinHeight="580">
-
-
-                        <Toolkit:RichTextBox Name="richTextBoxNewsletter" Text="{Binding Path=Binding Notes}" Margin="15" ScrollViewer.VerticalScrollBarVisibility="Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        <Toolkit:RichTextBox Name="richTextBoxNewsletter" Text="{Binding Path=Binding Notes}" Margin="15" ScrollViewer.VerticalScrollBarVisibility="Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" TabIndex="1">
                             <Toolkit:RichTextBoxFormatBarManager.FormatBar>
 
                                 <Toolkit:RichTextBoxFormatBar />
@@ -545,29 +537,49 @@
                         <Image Height="42" HorizontalAlignment="Left" Margin="10,10,0,0" Name="imgBelkaPokoje" Source="/PensjonatApp;component/Images/fButon_bed.png" Stretch="Fill" VerticalAlignment="Top" Width="42" />
                         <Label Content="Pokoje" FontSize="18" FontWeight="Bold" Height="40" HorizontalAlignment="Left" Margin="53,11,0,0" Name="label295" Padding="0" VerticalAlignment="Top" VerticalContentAlignment="Center" />
                         <Image Height="40" HorizontalAlignment="Left" Margin="165,12,0,0" Name="image231" Source="/PensjonatApp;component/Images/separator.png" Stretch="Fill" VerticalAlignment="Top" Width="2" />
-                        <StackPanel CanHorizontallyScroll="True" ClipToBounds="False" FlowDirection="RightToLeft" HorizontalAlignment="Stretch" Margin="172,-1,5,0" Name="stackPanel4" Orientation="Horizontal" VerticalAlignment="Stretch" Width="416">
-                            <Button BorderBrush="#FFBAD0DC" Click="buttonRezerwacjeDel_Click" FlowDirection="LeftToRight" Foreground="{x:Null}" Height="40" Margin="2" Name="buttonPokojeUsun" Padding="0" Width="95">
+                        <StackPanel CanHorizontallyScroll="True" ClipToBounds="False" FlowDirection="RightToLeft" HorizontalAlignment="Right" Margin="172,-1,5,0" Name="stackPanel4" Orientation="Horizontal" VerticalAlignment="Stretch" Width="416">
+                            <Button BorderBrush="#FFBAD0DC" FlowDirection="LeftToRight" Foreground="{x:Null}" Height="40" Margin="2" Name="buttonPokojeUsun" Padding="0" Width="95" Click="buttonPokojeUsun_Click">
                                 <StackPanel Orientation="Horizontal">
                                     <Image Height="32" HorizontalAlignment="Left" Margin="2" Name="image18" Source="/PensjonatApp;component/Images/Delete-icon1.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="32" />
                                     <Label Content="Usuń" FontWeight="Bold" Height="37" HorizontalContentAlignment="Center" Name="label79" Padding="0" VerticalContentAlignment="Center" Width="42" />
                                 </StackPanel>
                             </Button>
-                            <Button BorderBrush="#FFBAD0DC" Click="buttonRezerwacjeAdd_Click" FlowDirection="LeftToRight" Foreground="{x:Null}" Height="40" Margin="2" Name="buttonPokojeEdytuj" Padding="0" Width="95">
+                            <Button BorderBrush="#FFBAD0DC" FlowDirection="LeftToRight" Foreground="{x:Null}" Height="40" Margin="2" Name="buttonPokojeEdytuj" Padding="0" Width="95" Click="buttonPokojeEdytuj_Click" TabIndex="5">
                                 <StackPanel Orientation="Horizontal">
                                     <Image Height="32" HorizontalAlignment="Left" Margin="2" Name="image19" Source="/PensjonatApp;component/Images/document_edit.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="32" />
                                     <Label Content="Edytuj" FontWeight="Bold" Height="37" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="0" Name="label80" Padding="0" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="42" />
                                 </StackPanel>
                             </Button>
+                            <Button BorderBrush="#FFBAD0DC" Foreground="{x:Null}" Height="40" Name="buttonPokojeOk" Padding="0" Width="95" Click="buttonPokojeOk_Click" Margin="2">
+                                <StackPanel FlowDirection="LeftToRight" Orientation="Horizontal">
+                                    <Image Grid.RowSpan="2" Height="32" HorizontalAlignment="Left" Margin="2,3,0,3" Name="image53" Source="/PensjonatApp;component/Images/Check-icon2.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="32" />
+                                    <Label Content="OK" FlowDirection="LeftToRight" FontWeight="Bold" Height="36" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="0" Name="label144" Padding="0" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="55" />
+                                </StackPanel>
+                            </Button>
+                            <Button BorderBrush="#FFBAD0DC" Foreground="{x:Null}" Height="40" Name="buttonPokojePowrot" Padding="0" Width="95" Click="buttonPokojePowrot_Click" Margin="2">
+                                <StackPanel FlowDirection="LeftToRight" Orientation="Horizontal">
+                                    <Image Grid.RowSpan="2" Height="32" HorizontalAlignment="Left" Margin="2,3,0,3" Name="image54" Source="/PensjonatApp;component/Images/wstecz.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="32" />
+                                    <Label Content="Powrót" FontWeight="Bold" Height="36" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="0" Name="label145" Padding="0" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="55" />
+                                </StackPanel>
+                            </Button>
                         </StackPanel>
                     </Grid>
-                    <Grid Name="gridPokojeDeafult" Margin="0" Opacity="1" ShowGridLines="True" Visibility="Visible" MinHeight="580">
+                    <Grid Name="gridPokojeEdycja" Height="116">
+                        <Label Content="Edycja pokoju:" FontSize="13" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,12,0,0" Name="label142" Padding="2" VerticalAlignment="Top" />
+                        <Label Content="Nr pokoju:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,40,0,0" Name="label143" Padding="2" VerticalAlignment="Top" />
+                        <Label Content="Label" Height="28" HorizontalAlignment="Left" IsEnabled="False" Margin="105,10,0,0" Name="labelPokojeEdycjaId" VerticalAlignment="Top" Visibility="Hidden" />
+                        <Label Content="Wybierz standard:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,69,0,0" Name="label149" Padding="2" VerticalAlignment="Top" />
+                        <ComboBox Height="23" IsEnabled="True" ItemsSource="{Binding}" Margin="160,66,192,0" Name="comboBoxPokojeEdycjaStandard" VerticalAlignment="Top" TabIndex="2" />
+                        <TextBox Height="23" Margin="160,39,192,0" Name="textBoxPokojeEdycjaNrPokoju" VerticalAlignment="Top" TabIndex="1" />
+                    </Grid>
+                    <Grid Name="gridPokojeDeafult" Margin="0" Opacity="1" ShowGridLines="True" Visibility="Visible" MinHeight="580" Height="580">
                         <GroupBox Header="Dodaj pokój" Height="126" Margin="14,19,10,0" Name="groupBox2" VerticalAlignment="Top">
                             <Grid>
                                 <Label Content="Nr pokoju:" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,6,0,0" Name="label99" Padding="2" VerticalAlignment="Top" />
                                 <Label Content="Wybierz standard:" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,44,0,0" Name="label100" Padding="2" VerticalAlignment="Top" />
-                                <ComboBox Height="23" IsEnabled="True" ItemsSource="{Binding}" Margin="150,41,166,0" Name="comboBoxPokojeStandard" VerticalAlignment="Top"></ComboBox>
-                                <TextBox Height="23" Margin="150,6,166,0" Name="textBoxPokojeNrPokoju" VerticalAlignment="Top" />
-                                <Button BorderBrush="#FFBAD0DC" FlowDirection="LeftToRight" Foreground="{x:Null}" Margin="0,75,164,4" Name="buttonPokojeDodaj" Padding="0" HorizontalAlignment="Right">
+                                <ComboBox Height="23" IsEnabled="True" ItemsSource="{Binding}" Margin="150,41,166,0" Name="comboBoxPokojeStandard" VerticalAlignment="Top" TabIndex="2"></ComboBox>
+                                <TextBox Height="23" Margin="150,6,166,0" Name="textBoxPokojeNrPokoju" VerticalAlignment="Top" TabIndex="1" />
+                                <Button BorderBrush="#FFBAD0DC" FlowDirection="LeftToRight" Foreground="{x:Null}" Margin="0,75,164,4" Name="buttonPokojeDodaj" Padding="0" HorizontalAlignment="Right" Click="buttonPokojeDodaj_Click" TabIndex="3">
                                     <StackPanel Orientation="Horizontal">
                                         <Image Height="16" HorizontalAlignment="Left" Margin="2" Name="image20" Source="/PensjonatApp;component/Images/addSmall.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="16" />
                                         <Label Content="Dodaj" FontWeight="Normal" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Margin="0" Name="label96" Padding="0" VerticalAlignment="Stretch" VerticalContentAlignment="Center" Width="42" />
@@ -575,7 +587,7 @@
                                 </Button>
                             </Grid>
                         </GroupBox>
-                        <DataGrid AutoGenerateColumns="False" HorizontalGridLinesBrush="#FFD5D5D5" IsEnabled="True" IsReadOnly="True" Margin="20,199,16,15" Name="dataGridPokojeDeafult" VerticalGridLinesBrush="#FFD5D5D5" Height="366" Width="547" IsVisibleChanged="dataGridPokojeDeafult_IsVisibleChanged">
+                        <DataGrid AutoGenerateColumns="False" HorizontalGridLinesBrush="#FFD5D5D5" IsEnabled="True" IsReadOnly="True" Margin="20,199,16,15" Name="dataGridPokojeDeafult" VerticalGridLinesBrush="#FFD5D5D5" IsVisibleChanged="dataGridPokojeDeafult_IsVisibleChanged">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding Path=id_pokoju}" Header="Id" />
                                 <DataGridTextColumn Binding="{Binding Path=nr_pokoju}" Header="Nr" />
@@ -607,7 +619,7 @@
                         <Image Height="42" HorizontalAlignment="Left" Margin="10,10,0,0" Name="image21" Source="/PensjonatApp;component/Images/standPokHead.png" Stretch="Fill" VerticalAlignment="Top" Width="42" />
                         <Label Content="Standardy Pokoi" FontSize="18" FontWeight="Bold" Height="40" HorizontalAlignment="Left" Margin="53,11,0,0" Name="label98" Padding="0" VerticalAlignment="Top" VerticalContentAlignment="Center" />
                         <Image Height="40" HorizontalAlignment="Left" Margin="200,12,0,0" Name="image22" Source="/PensjonatApp;component/Images/separator.png" Stretch="Fill" VerticalAlignment="Top" Width="2" />
-                        <StackPanel CanHorizontallyScroll="True" ClipToBounds="False" FlowDirection="RightToLeft" HorizontalAlignment="Stretch" Margin="244,-1,5,0" Name="stackPanel5" Orientation="Horizontal" VerticalAlignment="Stretch" Width="344">
+                        <StackPanel CanHorizontallyScroll="True" ClipToBounds="False" FlowDirection="RightToLeft" HorizontalAlignment="Right" Margin="244,-1,5,0" Name="stackPanel5" Orientation="Horizontal" VerticalAlignment="Stretch" Width="344">
                             <Button BorderBrush="#FFBAD0DC" Click="buttonRezerwacjeDel_Click" FlowDirection="LeftToRight" Foreground="{x:Null}" Height="40" Margin="2" Name="buttonStandPokoiUsun" Padding="0" Width="95">
                                 <StackPanel Orientation="Horizontal">
                                     <Image Height="32" HorizontalAlignment="Left" Margin="2" Name="image23" Source="/PensjonatApp;component/Images/Delete-icon1.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="32" />
@@ -629,7 +641,7 @@
                         </StackPanel>
                     </Grid>
                     <Grid Margin="0" MinHeight="580" Name="grid3" Opacity="1" ShowGridLines="True" Visibility="Visible">
-                        <DataGrid AutoGenerateColumns="False" HorizontalGridLinesBrush="#FFD5D5D5" IsEnabled="True" IsReadOnly="True" Margin="17,39,19,19" Name="dataGrid2" VerticalGridLinesBrush="#FFD5D5D5" Width="547">
+                        <DataGrid AutoGenerateColumns="False" HorizontalGridLinesBrush="#FFD5D5D5" IsEnabled="True" IsReadOnly="True" Margin="17,39,19,19" Name="dataGridStandPokoiDeafult" VerticalGridLinesBrush="#FFD5D5D5" IsVisibleChanged="dataGridStandPokoiDeafult_IsVisibleChanged">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding Path=id_slownikowe_pokoju}" Header="Id" />
                                 <DataGridTextColumn Binding="{Binding Path=cena}" Header="Cena" />
@@ -659,27 +671,45 @@
                         <Image Height="42" HorizontalAlignment="Left" Margin="10,10,0,0" Name="image43" Source="/PensjonatApp;component/Images/front_rowB.png" Stretch="Fill" VerticalAlignment="Top" Width="42" />
                         <Label Content="Wyposażenie" FontSize="18" FontWeight="Bold" Height="40" HorizontalAlignment="Left" Margin="53,11,0,0" Name="label104" Padding="0" VerticalAlignment="Top" VerticalContentAlignment="Center" />
                         <Image Height="40" HorizontalAlignment="Left" Margin="175,12,0,0" Name="image44" Source="/PensjonatApp;component/Images/separator.png" Stretch="Fill" VerticalAlignment="Top" Width="2" />
-                        <StackPanel CanHorizontallyScroll="True" ClipToBounds="False" FlowDirection="RightToLeft" HorizontalAlignment="Stretch" Margin="185,-1,5,0" Name="stackPanel9" Orientation="Horizontal" VerticalAlignment="Stretch" Width="403">
-                            <Button BorderBrush="#FFBAD0DC" FlowDirection="LeftToRight" Foreground="{x:Null}" Height="40" Margin="2" Name="buttonWyposazenieUsun" Padding="0" Width="95" Click="buttonWyposazenieUsun_Click">
+                        <StackPanel CanHorizontallyScroll="True" ClipToBounds="False" FlowDirection="RightToLeft" HorizontalAlignment="Right" Margin="185,-1,5,0" Name="stackPanel9" Orientation="Horizontal" VerticalAlignment="Stretch" Width="403">
+                            <Button BorderBrush="#FFBAD0DC" FlowDirection="LeftToRight" Foreground="{x:Null}" Height="40" Margin="2" Name="buttonWyposazenieUsun" Padding="0" Width="95" Click="buttonWyposazenieUsun_Click" TabIndex="4">
                                 <StackPanel Orientation="Horizontal">
                                     <Image Height="32" HorizontalAlignment="Left" Margin="2" Name="image45" Source="/PensjonatApp;component/Images/Delete-icon1.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="32" />
                                     <Label Content="Usuń" FontWeight="Bold" Height="37" HorizontalContentAlignment="Center" Name="label105" Padding="0" VerticalContentAlignment="Center" Width="42" />
                                 </StackPanel>
                             </Button>
-                            <Button BorderBrush="#FFBAD0DC" Click="buttonRezerwacjeAdd_Click" FlowDirection="LeftToRight" Foreground="{x:Null}" Height="40" Margin="2" Name="buttonWyposazenieEdytuj" Padding="0" Width="95">
+                            <Button BorderBrush="#FFBAD0DC" FlowDirection="LeftToRight" Foreground="{x:Null}" Height="40" Margin="2" Name="buttonWyposazenieEdytuj" Padding="0" Width="95" Click="buttonWyposazenieEdytuj_Click" TabIndex="3">
                                 <StackPanel Orientation="Horizontal">
                                     <Image Height="32" HorizontalAlignment="Left" Margin="2" Name="image46" Source="/PensjonatApp;component/Images/document_edit.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="32" />
                                     <Label Content="Edytuj" FontWeight="Bold" Height="37" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="0" Name="label131" Padding="0" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="42" />
                                 </StackPanel>
                             </Button>
+                            <Button BorderBrush="#FFBAD0DC" Foreground="{x:Null}" Height="40" Name="buttonWyposazenieOk" Padding="0" Width="95" Margin="2" Click="buttonWyposazenieOk_Click" TabIndex="6">
+                                <StackPanel FlowDirection="LeftToRight" Orientation="Horizontal">
+                                    <Image Grid.RowSpan="2" Height="32" HorizontalAlignment="Left" Margin="2,3,0,3" Name="image55" Source="/PensjonatApp;component/Images/Check-icon2.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="32" />
+                                    <Label Content="OK" FlowDirection="LeftToRight" FontWeight="Bold" Height="36" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="0" Name="label146" Padding="0" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="55" />
+                                </StackPanel>
+                            </Button>
+                            <Button BorderBrush="#FFBAD0DC" Foreground="{x:Null}" Height="40" Name="buttonWyposazeniePowrot" Padding="0" Width="95" Margin="2" Click="buttonWyposazeniePowrot_Click" TabIndex="7">
+                                <StackPanel FlowDirection="LeftToRight" Orientation="Horizontal">
+                                    <Image Grid.RowSpan="2" Height="32" HorizontalAlignment="Left" Margin="2,3,0,3" Name="image56" Source="/PensjonatApp;component/Images/wstecz.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="32" />
+                                    <Label Content="Powrót" FontWeight="Bold" Height="36" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="0" Name="label147" Padding="0" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="55" />
+                                </StackPanel>
+                            </Button>
                         </StackPanel>
                     </Grid>
-                    <Grid Margin="0" MinHeight="580" Name="grid11" Opacity="1" ShowGridLines="True" Visibility="Visible">
+                    <Grid Height="116" Name="gridWyposazenieEdytuj">
+                        <Label Content="Edycja wyposazenia" FontSize="13" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,12,0,0" Name="label148" Padding="2" VerticalAlignment="Top" />
+                        <Label Content="Opis:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,40,0,0" Name="label150" Padding="2" VerticalAlignment="Top" />
+                        <Label Content="Label" Height="28" HorizontalAlignment="Left" IsEnabled="False" Margin="105,10,0,0" Name="labelWyposazenieId" VerticalAlignment="Top" Visibility="Hidden" />
+                        <TextBox Height="23" Margin="73,39,22,0" Name="textBoxWyposazenieEdycjaOpis" VerticalAlignment="Top" Width="488" TabIndex="5" />
+                    </Grid>
+                    <Grid Margin="0" MinHeight="580" Name="gridWyposazenieDeafult" Opacity="1" ShowGridLines="True" Visibility="Visible">
                         <GroupBox Header="Dodaj wyposażenie" Height="59" Margin="14,19,10,0" Name="groupBox3" VerticalAlignment="Top">
                             <Grid>
                                 <Label Content="Opis:" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,6,0,0" Name="label132" Padding="2" VerticalAlignment="Top" />
-                                <TextBox Height="23" Margin="48,6,86,0" Name="textBoxWyposazenieOpis" VerticalAlignment="Top" Width="414" />
-                                <Button BorderBrush="#FFBAD0DC" FlowDirection="LeftToRight" Foreground="{x:Null}" HorizontalAlignment="Right" Margin="0,3,4,0" Name="buttonWyposazenieDodaj" Padding="0" Height="26" VerticalAlignment="Top" Click="buttonWyposazenieDodaj_Click">
+                                <TextBox Height="23" Margin="48,6,86,0" Name="textBoxWyposazenieOpis" VerticalAlignment="Top" Width="414" TabIndex="1" />
+                                <Button BorderBrush="#FFBAD0DC" FlowDirection="LeftToRight" Foreground="{x:Null}" HorizontalAlignment="Right" Margin="0,3,4,0" Name="buttonWyposazenieDodaj" Padding="0" Height="26" VerticalAlignment="Top" Click="buttonWyposazenieDodaj_Click" TabIndex="2">
                                     <StackPanel Orientation="Horizontal">
                                         <Image Height="16" HorizontalAlignment="Left" Margin="2" Name="image47" Source="/PensjonatApp;component/Images/addSmall.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="16" />
                                         <Label Content="Dodaj" FontWeight="Normal" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Margin="0" Name="label134" Padding="0" VerticalAlignment="Stretch" VerticalContentAlignment="Center" Width="42" />
@@ -687,7 +717,7 @@
                                 </Button>
                             </Grid>
                         </GroupBox>
-                        <DataGrid AutoGenerateColumns="False" HorizontalGridLinesBrush="#FFD5D5D5" IsEnabled="True" IsReadOnly="True" Margin="20,116,16,19" Name="dataGridWyposazenieDeafult" VerticalGridLinesBrush="#FFD5D5D5" Width="547" IsVisibleChanged="dataGridWyposazenieDeafult_IsVisibleChanged">
+                        <DataGrid AutoGenerateColumns="False" HorizontalGridLinesBrush="#FFD5D5D5" IsEnabled="True" IsReadOnly="True" Margin="20,116,16,19" Name="dataGridWyposazenieDeafult" VerticalGridLinesBrush="#FFD5D5D5" IsVisibleChanged="dataGridWyposazenieDeafult_IsVisibleChanged">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding Path=id_wyposazenia}" Header="Id" />
                                 <DataGridTextColumn Binding="{Binding Path=opis}" Header="Opis" />
@@ -715,39 +745,61 @@
                         <Image Height="42" HorizontalAlignment="Left" Margin="10,10,0,0" Name="image26" Source="/PensjonatApp;component/Images/UslugiHeader.png" Stretch="Fill" VerticalAlignment="Top" Width="42" />
                         <Label Content="Rabaty" FontSize="18" FontWeight="Bold" Height="40" HorizontalAlignment="Left" Margin="53,11,0,0" Name="label107" Padding="0" VerticalAlignment="Top" VerticalContentAlignment="Center" />
                         <Image Height="40" HorizontalAlignment="Left" Margin="165,12,0,0" Name="image27" Source="/PensjonatApp;component/Images/separator.png" Stretch="Fill" VerticalAlignment="Top" Width="2" />
-                        <StackPanel CanHorizontallyScroll="True" ClipToBounds="False" FlowDirection="RightToLeft" HorizontalAlignment="Stretch" Margin="172,-1,5,0" Name="stackPanel6" Orientation="Horizontal" VerticalAlignment="Stretch" Width="416">
-                            <Button BorderBrush="#FFBAD0DC" FlowDirection="LeftToRight" Foreground="{x:Null}" Height="40" Margin="2" Name="buttonRabatyUsun" Padding="0" Width="95" Click="buttonRabatyUsun_Click">
+                        <StackPanel CanHorizontallyScroll="True" ClipToBounds="False" FlowDirection="RightToLeft" HorizontalAlignment="Right" Margin="172,-1,5,0" Name="stackPanel6" Orientation="Horizontal" VerticalAlignment="Stretch" Width="416">
+                            <Button BorderBrush="#FFBAD0DC" FlowDirection="LeftToRight" Foreground="{x:Null}" Height="40" Margin="2" Name="buttonRabatyUsun" Padding="0" Width="95" Click="buttonRabatyUsun_Click" TabIndex="8">
                                 <StackPanel Orientation="Horizontal">
                                     <Image Height="32" HorizontalAlignment="Left" Margin="2" Name="image28" Source="/PensjonatApp;component/Images/Delete-icon1.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="32" />
                                     <Label Content="Usuń" FontWeight="Bold" Height="37" HorizontalContentAlignment="Center" Name="label108" Padding="0" VerticalContentAlignment="Center" Width="42" />
                                 </StackPanel>
                             </Button>
-                            <Button BorderBrush="#FFBAD0DC" Click="buttonRezerwacjeAdd_Click" FlowDirection="LeftToRight" Foreground="{x:Null}" Height="40" Margin="2" Name="buttonRabatyEdytuj" Padding="0" Width="95">
+                            <Button BorderBrush="#FFBAD0DC" FlowDirection="LeftToRight" Foreground="{x:Null}" Height="40" Margin="2" Name="buttonRabatyEdytuj" Padding="0" Width="95" TabIndex="7" Click="buttonRabatyEdytuj_Click">
                                 <StackPanel Orientation="Horizontal">
                                     <Image Height="32" HorizontalAlignment="Left" Margin="2" Name="image29" Source="/PensjonatApp;component/Images/document_edit.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="32" />
                                     <Label Content="Edytuj" FontWeight="Bold" Height="37" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="0" Name="label109" Padding="0" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="42" />
                                 </StackPanel>
                             </Button>
+                            <Button BorderBrush="#FFBAD0DC" Foreground="{x:Null}" Height="40" Name="buttonRabatyOk" Padding="0" TabIndex="6" Width="95" Margin="2" Click="buttonRabatyOk_Click">
+                                <StackPanel FlowDirection="LeftToRight" Orientation="Horizontal">
+                                    <Image Grid.RowSpan="2" Height="32" HorizontalAlignment="Left" Margin="2,3,0,3" Name="image57" Source="/PensjonatApp;component/Images/Check-icon2.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="32" />
+                                    <Label Content="OK" FlowDirection="LeftToRight" FontWeight="Bold" Height="36" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="0" Name="label151" Padding="0" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="55" />
+                                </StackPanel>
+                            </Button>
+                            <Button BorderBrush="#FFBAD0DC" Foreground="{x:Null}" Height="40" Name="buttonRabatyPowrot" Padding="0" TabIndex="7" Width="95" Margin="2" Click="buttonRabatyPowrot_Click">
+                                <StackPanel FlowDirection="LeftToRight" Orientation="Horizontal">
+                                    <Image Grid.RowSpan="2" Height="32" HorizontalAlignment="Left" Margin="2,3,0,3" Name="image58" Source="/PensjonatApp;component/Images/wstecz.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="32" />
+                                    <Label Content="Powrót" FontWeight="Bold" Height="36" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="0" Name="label152" Padding="0" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="55" />
+                                </StackPanel>
+                            </Button>
                         </StackPanel>
                     </Grid>
-                    <Grid Margin="0" MinHeight="580" Name="grid5" Opacity="1" ShowGridLines="True" Visibility="Visible">
+                    <Grid Height="116" Name="gridRabatyEdycja">
+                        <Label Content="Edycja rabatu:" FontSize="13" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,12,0,0" Name="label157" Padding="2" VerticalAlignment="Top" />
+                        <Label Content="Label" Height="28" HorizontalAlignment="Left" IsEnabled="False" Margin="105,10,0,0" Name="labelRabatyEdycjaId" VerticalAlignment="Top" Visibility="Hidden" />
+                        <Label Content="Nazwa:" FontWeight="Bold" HorizontalAlignment="Left" Margin="40,40,0,0" Name="label160" Padding="2" VerticalAlignment="Top" />
+                        <Label Content="Wartość:" FontWeight="Bold" HorizontalAlignment="Left" Margin="40,69,0,0" Name="label161" Padding="2" VerticalAlignment="Top" />
+                        <TextBox Height="23" Margin="116,40,172,0" Name="textBoxRabatyEdycjaNazwa" TabIndex="1" VerticalAlignment="Top" Width="295" />
+                        <TextBox Height="23" HorizontalAlignment="Left" Margin="116,68,0,0" Name="textBoxRabatyEdycjaWartosc" TabIndex="2" VerticalAlignment="Top" Width="120" />
+                        <CheckBox Content="Procentowy" Height="16" HorizontalAlignment="Left" Margin="332,73,0,0" Name="checkBoxRabatyEdycjaProcentowy" TabIndex="4" VerticalAlignment="Top" />
+                        <CheckBox Content="Aktywny" Height="16" HorizontalAlignment="Left" IsChecked="True" Margin="251,73,0,0" Name="checkBoxRabatyEdycjaAktywny" TabIndex="3" VerticalAlignment="Top" />
+                    </Grid>
+                    <Grid Margin="0" MinHeight="580" Name="gridRabatyDeafult" Opacity="1" ShowGridLines="True" Visibility="Visible">
                         <GroupBox Header="Dodaj rabat" Height="117" Margin="14,19,10,0" Name="groupBox4" VerticalAlignment="Top">
                             <Grid>
                                 <Label Content="Nazwa:" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,6,0,0" Name="label110" Padding="2" VerticalAlignment="Top" />
                                 <Label Content="Wartość:" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,35,0,0" Name="label111" Padding="2" VerticalAlignment="Top" />
-                                <TextBox Height="23" Margin="86,6,166,0" Name="textBoxRabatyNazwa" VerticalAlignment="Top" Width="295" />
-                                <Button BorderBrush="#FFBAD0DC" FlowDirection="LeftToRight" Foreground="{x:Null}" HorizontalAlignment="Right" Margin="0,65,164,0" Name="buttonRabatyDodaj" Padding="0" Height="26" VerticalAlignment="Top" Click="buttonRabatyDodaj_Click">
+                                <TextBox Height="23" Margin="86,6,166,0" Name="textBoxRabatyNazwa" VerticalAlignment="Top" Width="295" TabIndex="1" />
+                                <Button BorderBrush="#FFBAD0DC" FlowDirection="LeftToRight" Foreground="{x:Null}" HorizontalAlignment="Right" Margin="0,65,164,0" Name="buttonRabatyDodaj" Padding="0" Height="26" VerticalAlignment="Top" Click="buttonRabatyDodaj_Click" TabIndex="5">
                                     <StackPanel Orientation="Horizontal">
                                         <Image Height="16" HorizontalAlignment="Left" Margin="2" Name="image32" Source="/PensjonatApp;component/Images/addSmall.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="16" />
                                         <Label Content="Dodaj" FontWeight="Normal" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Margin="0" Name="label112" Padding="0" VerticalAlignment="Stretch" VerticalContentAlignment="Center" Width="42" />
                                     </StackPanel>
                                 </Button>
-                                <TextBox Height="23" Margin="86,34,0,0" Name="textBoxRabatyWartosc" VerticalAlignment="Top" Width="120" HorizontalAlignment="Left" />
-                                <CheckBox Content="Procentowy" Height="16" HorizontalAlignment="Left" Margin="302,39,0,0" Name="checkBoxRabatyProcentowy" VerticalAlignment="Top" />
-                                <CheckBox Content="Aktywny" Height="16" HorizontalAlignment="Left" Margin="221,39,0,0" Name="checkBoxRabatyAktywny" VerticalAlignment="Top" IsChecked="True" />
+                                <TextBox Height="23" Margin="86,34,0,0" Name="textBoxRabatyWartosc" VerticalAlignment="Top" Width="120" HorizontalAlignment="Left" TabIndex="2" />
+                                <CheckBox Content="Procentowy" Height="16" HorizontalAlignment="Left" Margin="302,39,0,0" Name="checkBoxRabatyProcentowy" VerticalAlignment="Top" TabIndex="4" />
+                                <CheckBox Content="Aktywny" Height="16" HorizontalAlignment="Left" Margin="221,39,0,0" Name="checkBoxRabatyAktywny" VerticalAlignment="Top" IsChecked="True" TabIndex="3" />
                             </Grid>
                         </GroupBox>
-                        <DataGrid AutoGenerateColumns="False" Height="366" HorizontalGridLinesBrush="#FFD5D5D5" IsEnabled="True" IsReadOnly="True" Margin="20,179,16,35" Name="dataGridRabatyDeafult" VerticalGridLinesBrush="#FFD5D5D5" Width="547" IsVisibleChanged="dataGridRabatyDeafult_IsVisibleChanged">
+                        <DataGrid AutoGenerateColumns="False" HorizontalGridLinesBrush="#FFD5D5D5" IsEnabled="True" IsReadOnly="True" Margin="20,179,16,35" Name="dataGridRabatyDeafult" VerticalGridLinesBrush="#FFD5D5D5" IsVisibleChanged="dataGridRabatyDeafult_IsVisibleChanged" TabIndex="6">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding Path=id_rabatu}" Header="Id" />
                                 <DataGridTextColumn Binding="{Binding Path=nazwa}" Header="Nazwa" />
@@ -779,7 +831,7 @@
                         <Image Height="42" HorizontalAlignment="Left" Margin="10,10,0,0" Name="image33" Source="/PensjonatApp;component/Images/posilkiHeader.png" Stretch="Fill" VerticalAlignment="Top" Width="42" />
                         <Label Content="Posiłki" FontSize="18" FontWeight="Bold" Height="40" HorizontalAlignment="Left" Margin="53,11,0,0" Name="label114" Padding="0" VerticalAlignment="Top" VerticalContentAlignment="Center" />
                         <Image Height="40" HorizontalAlignment="Left" Margin="165,12,0,0" Name="image34" Source="/PensjonatApp;component/Images/separator.png" Stretch="Fill" VerticalAlignment="Top" Width="2" />
-                        <StackPanel CanHorizontallyScroll="True" ClipToBounds="False" FlowDirection="RightToLeft" HorizontalAlignment="Stretch" Margin="172,-1,5,0" Name="stackPanel7" Orientation="Horizontal" VerticalAlignment="Stretch" Width="416">
+                        <StackPanel CanHorizontallyScroll="True" ClipToBounds="False" FlowDirection="RightToLeft" HorizontalAlignment="Right" Margin="172,-1,5,0" Name="stackPanel7" Orientation="Horizontal" VerticalAlignment="Stretch" Width="416">
                             <Button BorderBrush="#FFBAD0DC" FlowDirection="LeftToRight" Foreground="{x:Null}" Height="40" Margin="2" Name="buttonPosilkiUsun" Padding="0" Width="95" Click="buttonPosilkiUsun_Click">
                                 <StackPanel Orientation="Horizontal">
                                     <Image Height="32" HorizontalAlignment="Left" Margin="2" Name="image35" Source="/PensjonatApp;component/Images/Delete-icon1.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="32" />
@@ -792,9 +844,21 @@
                                     <Label Content="Edytuj" FontWeight="Bold" Height="37" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="0" Name="label116" Padding="0" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="42" />
                                 </StackPanel>
                             </Button>
+                            <Button BorderBrush="#FFBAD0DC" Foreground="{x:Null}" Height="40" Name="buttonPosilkiOk" Padding="0" TabIndex="6" Width="95" Margin="2">
+                                <StackPanel FlowDirection="LeftToRight" Orientation="Horizontal">
+                                    <Image Grid.RowSpan="2" Height="32" HorizontalAlignment="Left" Margin="2,3,0,3" Name="image59" Source="/PensjonatApp;component/Images/Check-icon2.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="32" />
+                                    <Label Content="OK" FlowDirection="LeftToRight" FontWeight="Bold" Height="36" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="0" Name="label153" Padding="0" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="55" />
+                                </StackPanel>
+                            </Button>
+                            <Button BorderBrush="#FFBAD0DC" Foreground="{x:Null}" Height="40" Name="buttonPosilkiPowrot" Padding="0" TabIndex="7" Width="95" Margin="2">
+                                <StackPanel FlowDirection="LeftToRight" Orientation="Horizontal">
+                                    <Image Grid.RowSpan="2" Height="32" HorizontalAlignment="Left" Margin="2,3,0,3" Name="image60" Source="/PensjonatApp;component/Images/wstecz.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="32" />
+                                    <Label Content="Powrót" FontWeight="Bold" Height="36" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="0" Name="label154" Padding="0" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="55" />
+                                </StackPanel>
+                            </Button>
                         </StackPanel>
                     </Grid>
-                    <Grid Margin="0" MinHeight="580" Name="grid7" Opacity="1" ShowGridLines="True" Visibility="Visible">
+                    <Grid Margin="0" MinHeight="580" Name="gridPosilkiDeafult" Opacity="1" ShowGridLines="True" Visibility="Visible">
                         <GroupBox Header="Dodaj posiłek" Height="174" Margin="14,19,10,0" Name="groupBox5" VerticalAlignment="Top">
                             <Grid>
                                 <Label Content="Nazwa:" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,6,0,0" Name="label117" Padding="2" VerticalAlignment="Top" />
@@ -817,7 +881,7 @@
                                 <Label Content="Dobierz rodzaj:" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,67,0,0" Name="label128" Padding="2" VerticalAlignment="Top" />
                             </Grid>
                         </GroupBox>
-                        <DataGrid AutoGenerateColumns="False" Height="350" HorizontalGridLinesBrush="#FFD5D5D5" IsEnabled="True" IsReadOnly="True" Margin="20,215,16,15" Name="dataGridPosilkiDeafult" VerticalGridLinesBrush="#FFD5D5D5" Width="547" IsVisibleChanged="dataGridPosilkiDeafult_IsVisibleChanged">
+                        <DataGrid AutoGenerateColumns="False" HorizontalGridLinesBrush="#FFD5D5D5" IsEnabled="True" IsReadOnly="True" Margin="20,215,16,15" Name="dataGridPosilkiDeafult" VerticalGridLinesBrush="#FFD5D5D5" IsVisibleChanged="dataGridPosilkiDeafult_IsVisibleChanged">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding Path=id_slownikowe_posilku}" Header="Id" />
                                 <DataGridTextColumn Binding="{Binding Path=nazwa_opcji}" Header="Nazwa" />
@@ -854,7 +918,7 @@
                         <Image Height="42" HorizontalAlignment="Left" Margin="10,10,0,0" Name="image38" Source="/PensjonatApp;component/Images/stock_alarm.png" Stretch="Fill" VerticalAlignment="Top" Width="42" />
                         <Label Content="Usługi" FontSize="18" FontWeight="Bold" Height="40" HorizontalAlignment="Left" Margin="53,11,0,0" Name="label121" Padding="0" VerticalAlignment="Top" VerticalContentAlignment="Center" />
                         <Image Height="40" HorizontalAlignment="Left" Margin="165,12,0,0" Name="image39" Source="/PensjonatApp;component/Images/separator.png" Stretch="Fill" VerticalAlignment="Top" Width="2" />
-                        <StackPanel CanHorizontallyScroll="True" ClipToBounds="False" FlowDirection="RightToLeft" HorizontalAlignment="Stretch" Margin="172,-1,5,0" Name="stackPanel8" Orientation="Horizontal" VerticalAlignment="Stretch" Width="416">
+                        <StackPanel CanHorizontallyScroll="True" ClipToBounds="False" FlowDirection="RightToLeft" HorizontalAlignment="Right" Margin="172,-1,5,0" Name="stackPanel8" Orientation="Horizontal" VerticalAlignment="Stretch" Width="416">
                             <Button BorderBrush="#FFBAD0DC" Click="buttonRezerwacjeDel_Click" FlowDirection="LeftToRight" Foreground="{x:Null}" Height="40" Margin="2" Name="buttonUslugiUsun" Padding="0" Width="95">
                                 <StackPanel Orientation="Horizontal">
                                     <Image Height="32" HorizontalAlignment="Left" Margin="2" Name="image40" Source="/PensjonatApp;component/Images/Delete-icon1.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="32" />
@@ -867,9 +931,21 @@
                                     <Label Content="Edytuj" FontWeight="Bold" Height="37" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="0" Name="label123" Padding="0" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="42" />
                                 </StackPanel>
                             </Button>
+                            <Button BorderBrush="#FFBAD0DC" Foreground="{x:Null}" Height="40" Name="buttonUslugiOk" Padding="0" TabIndex="6" Width="95" Margin="2">
+                                <StackPanel FlowDirection="LeftToRight" Orientation="Horizontal">
+                                    <Image Grid.RowSpan="2" Height="32" HorizontalAlignment="Left" Margin="2,3,0,3" Name="image61" Source="/PensjonatApp;component/Images/Check-icon2.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="32" />
+                                    <Label Content="OK" FlowDirection="LeftToRight" FontWeight="Bold" Height="36" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="0" Name="label155" Padding="0" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="55" />
+                                </StackPanel>
+                            </Button>
+                            <Button BorderBrush="#FFBAD0DC" Foreground="{x:Null}" Height="40" Name="buttonUslugiPowrot" Padding="0" TabIndex="7" Width="95" Margin="2">
+                                <StackPanel FlowDirection="LeftToRight" Orientation="Horizontal">
+                                    <Image Grid.RowSpan="2" Height="32" HorizontalAlignment="Left" Margin="2,3,0,3" Name="image62" Source="/PensjonatApp;component/Images/wstecz.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="32" />
+                                    <Label Content="Powrót" FontWeight="Bold" Height="36" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="0" Name="label156" Padding="0" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="55" />
+                                </StackPanel>
+                            </Button>
                         </StackPanel>
                     </Grid>
-                    <Grid Margin="0" MinHeight="580" Name="grid9" Opacity="1" ShowGridLines="True" Visibility="Visible">
+                    <Grid Margin="0" MinHeight="580" Name="gridUslugiDeafult" Opacity="1" ShowGridLines="True" Visibility="Visible">
                         <GroupBox Header="Dodaj usługę:" Height="184" Margin="14,19,10,0" Name="groupBox6" VerticalAlignment="Top">
                             <Grid>
                                 <Label Content="Nazwa:" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,6,0,0" Name="label124" Padding="2" VerticalAlignment="Top" />
@@ -888,7 +964,7 @@
                                 <ComboBox Height="23" IsEnabled="True" ItemsSource="{Binding}" Margin="101,99,215,0" Name="comboBoxUslugiWykonawca" VerticalAlignment="Top" IsVisibleChanged="comboBoxUslugiWykonawca_IsVisibleChanged" />
                             </Grid>
                         </GroupBox>
-                        <DataGrid AutoGenerateColumns="False" Height="333" HorizontalGridLinesBrush="#FFD5D5D5" IsEnabled="True" IsReadOnly="True" Margin="20,232,16,15" Name="dataGridUslugiDeafult" VerticalGridLinesBrush="#FFD5D5D5" Width="547" IsVisibleChanged="dataGridUslugiDeafult_IsVisibleChanged">
+                        <DataGrid AutoGenerateColumns="False" HorizontalGridLinesBrush="#FFD5D5D5" IsEnabled="True" IsReadOnly="True" Margin="20,232,16,15" Name="dataGridUslugiDeafult" VerticalGridLinesBrush="#FFD5D5D5" IsVisibleChanged="dataGridUslugiDeafult_IsVisibleChanged">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding Path=id_slownikowe_uslugi}" Header="Id" />
                                 <DataGridTextColumn Binding="{Binding Path=nazwa}" Header="Nazwa" />
@@ -903,7 +979,7 @@
 
             <TabItem Name="tabPrzydzialy" Height="40">
                 <TabItem.Header>
-                    <StackPanel Orientation="Horizontal" Width="120">
+                    <StackPanel Orientation="Horizontal" Width="120" HorizontalAlignment="Right">
                         <Image Height="30" Name="imgPrzydzialyMenu" Stretch="Fill" Width="30" Source="/PensjonatApp;component/Images/przydzialy.png" />
                         <TextBlock Text="Pracownicy" Margin="2" FontWeight="Bold" FontSize="13" TextAlignment="Center" FontStretch="Normal" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#FF202020" />
                     </StackPanel>
@@ -935,7 +1011,7 @@
                         </StackPanel>
                     </Grid>
                     <Grid Margin="0" MinHeight="580" Name="grid13" Opacity="1" ShowGridLines="True" Visibility="Visible">
-                        <GroupBox Header="Dodaj pokój" Height="126" Margin="14,19,10,0" Name="groupBox7" VerticalAlignment="Top">
+                        <GroupBox Header="Dodaj pracownika:" Height="126" Margin="14,19,10,0" Name="groupBox7" VerticalAlignment="Top">
                             <Grid>
                                 <Label Content="Nr pokoju:" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,6,0,0" Name="label138" Padding="2" VerticalAlignment="Top" />
                                 <Label Content="Wybierz standard:" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,44,0,0" Name="label139" Padding="2" VerticalAlignment="Top" />
@@ -958,7 +1034,7 @@
                                 <DataGridTextColumn Binding="{Binding Path=dodatkowy_opis}" Header="Opis" />
                             </DataGrid.Columns>
                         </DataGrid>
-                        <Label Content="Lista pokoi:" FontWeight="Bold" HorizontalAlignment="Left" Margin="14,173,0,0" Name="label141" Padding="2" VerticalAlignment="Top" />
+                        <Label Content="Lista pracowników:" FontWeight="Bold" HorizontalAlignment="Left" Margin="14,173,0,0" Name="label141" Padding="2" VerticalAlignment="Top" />
                     </Grid>
                 </StackPanel>
             </TabItem>
@@ -971,7 +1047,7 @@
                     <GradientStop Color="#FFF9F9F9" Offset="0.574" />
                 </LinearGradientBrush>
             </Canvas.Background>
-            <Image Canvas.Left="17" Canvas.Top="12" Name="image5" Stretch="None" Source="/PensjonatApp;component/Images/logo1.png" />
+            <Image Canvas.Left="17" Canvas.Top="25" Name="image5" Stretch="None" Source="/PensjonatApp;component/Images/logo.png" Height="75" Width="206" HorizontalAlignment="Left" VerticalAlignment="Center" StretchDirection="Both" />
             <Label Canvas.Left="17" Canvas.Top="100" Content="Zalogowano:" Height="Auto" Name="napisZalogwano" Padding="2" FontWeight="Bold" FontSize="13" />
             <Label Canvas.Left="29" Canvas.Top="127" Content="Imię:" Name="napisImie" Padding="2" Margin="2" FontWeight="Bold" />
             <Label Canvas.Left="29" Canvas.Top="144" Content="Nazwisko:" Name="napisNazwisko" Padding="2" Margin="2" FontWeight="Bold" />

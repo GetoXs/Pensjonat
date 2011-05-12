@@ -33,6 +33,16 @@ namespace PensjonatApp
         private List<Button> buttonPobytyBackOkPrintList = new List<Button>();
         private List<Button> buttonKlienciDeafultList = new List<Button>();
         private List<Button> buttonKlienciBackOkList = new List<Button>();
+        private List<Button> buttonPokojeDeafultList = new List<Button>();
+        private List<Button> buttonPokojeBackOkList = new List<Button>();
+        private List<Button> buttonWyposazenieDeafultList = new List<Button>();
+        private List<Button> buttonWyposazenieBackOkList = new List<Button>();
+        private List<Button> buttonRabatyDeafultList = new List<Button>();
+        private List<Button> buttonRabatyBackOkList = new List<Button>();
+        private List<Button> buttonPosilkiDeafultList = new List<Button>();
+        private List<Button> buttonPosilkiBackOkList = new List<Button>();
+        private List<Button> buttonUslugiDeafultList = new List<Button>();
+        private List<Button> buttonUslugiBackOkList = new List<Button>();
         public static Grid currentGrid;
         public MainWindow()
         {
@@ -61,12 +71,48 @@ namespace PensjonatApp
             buttonKlienciBackOkList.Add(buttonKlienciPowrot);
             buttonKlienciBackOkList.Add(buttonKlienciOk);
 
+            buttonPokojeDeafultList.Add(buttonPokojeUsun);
+            buttonPokojeDeafultList.Add(buttonPokojeEdytuj);
+            buttonPokojeBackOkList.Add(buttonPokojeOk);
+            buttonPokojeBackOkList.Add(buttonPokojePowrot);
+
+            buttonWyposazenieDeafultList.Add(buttonWyposazenieUsun);
+            buttonWyposazenieDeafultList.Add(buttonWyposazenieEdytuj);
+            buttonWyposazenieBackOkList.Add(buttonWyposazenieOk);
+            buttonWyposazenieBackOkList.Add(buttonWyposazeniePowrot);
+
+            buttonRabatyDeafultList.Add(buttonRabatyUsun);
+            buttonRabatyDeafultList.Add(buttonRabatyEdytuj);
+            buttonRabatyBackOkList.Add(buttonRabatyOk);
+            buttonRabatyBackOkList.Add(buttonRabatyPowrot);
+
+            buttonPosilkiDeafultList.Add(buttonPosilkiUsun);
+            buttonPosilkiDeafultList.Add(buttonPosilkiEdytuj);
+            buttonPosilkiBackOkList.Add(buttonPosilkiOk);
+            buttonPosilkiBackOkList.Add(buttonPosilkiPowrot);
+
+            buttonUslugiDeafultList.Add(buttonUslugiUsun);
+            buttonUslugiDeafultList.Add(buttonUslugiEdytuj);
+            buttonUslugiBackOkList.Add(buttonUslugiOk);
+            buttonUslugiBackOkList.Add(buttonUslugiPowrot);
+
+
             zwinRezerwacje();
             showWindow(gridRezerwacjeDeafult, buttonRezerwacjeDeafultList);
             zwinPobyty();
             showWindow(gridPobytyDeafult, buttonPobytyDeafultList);
             zwinKlienci();
             showWindow(gridKlienciDeafult, buttonKlienciDeafultList);
+            zwinPokoje();
+            showWindow(gridPokojeDeafult, buttonPokojeDeafultList);
+            zwinWyposazenie();
+            showWindow(gridWyposazenieDeafult, buttonWyposazenieDeafultList);
+            zwinRabaty();
+            showWindow(gridRabatyDeafult, buttonRabatyDeafultList);
+            zwinPosilki();
+            showWindow(gridPosilkiDeafult, buttonPosilkiDeafultList);
+            zwinUslugi();
+            showWindow(gridUslugiDeafult, buttonUslugiDeafultList);
         }
 
 // Główne metody
@@ -94,6 +140,7 @@ namespace PensjonatApp
         private void showWindow(Grid grid,List<Button> buttonList)
         {
             grid.Height = 580;
+            grid.Visibility = Visibility.Visible;
             pokazButtonList(buttonList);
             currentGrid = grid;
             if (grid == gridRezerwacjeDeafult)
@@ -134,6 +181,41 @@ namespace PensjonatApp
             gridKlienciEdit.Height = 0;
             zwinButtonList(buttonKlienciBackOkList);
             zwinButtonList(buttonKlienciDeafultList);
+        }
+        private void zwinPokoje()
+        {
+            gridPokojeDeafult.Visibility = Visibility.Collapsed;
+            gridPokojeEdycja.Visibility = Visibility.Collapsed;
+            zwinButtonList(buttonPokojeDeafultList);
+            zwinButtonList(buttonPokojeBackOkList);
+        }
+        private void zwinWyposazenie()
+        {
+            gridWyposazenieDeafult.Visibility = Visibility.Collapsed;
+            gridWyposazenieEdytuj.Visibility = Visibility.Collapsed;
+            zwinButtonList(buttonWyposazenieDeafultList);
+            zwinButtonList(buttonWyposazenieBackOkList);
+        }
+        private void zwinRabaty()
+        {
+            gridRabatyDeafult.Visibility = Visibility.Collapsed;
+            gridRabatyEdycja.Visibility = Visibility.Collapsed;
+            zwinButtonList(buttonRabatyDeafultList);
+            zwinButtonList(buttonRabatyBackOkList);
+        }
+        private void zwinPosilki()
+        {
+            gridPosilkiDeafult.Visibility = Visibility.Collapsed;
+            //gridPosilkiEdytcja.Visibility = Visibility.Collapsed;
+            zwinButtonList(buttonPosilkiDeafultList);
+            zwinButtonList(buttonPosilkiBackOkList);
+        }
+        private void zwinUslugi()
+        {
+            gridUslugiDeafult.Visibility = Visibility.Collapsed;
+            //gridUslugiEdycja.Visibility = Visibility.Collapsed;
+            zwinButtonList(buttonUslugiDeafultList);
+            zwinButtonList(buttonUslugiBackOkList);
         }
 
 //REZERWACJE
@@ -756,10 +838,88 @@ namespace PensjonatApp
         {
             if ((bool)(e.NewValue) == true)
             {//pojawienie sie pola
-                dataGridPokojeDeafult.ItemsSource = TablesManager.Manager.Pokoje_slownikTableAdapter.GetData();
+                dataGridPokojeDeafult.ItemsSource = TablesManager.Manager.PokojeTableAdapter.GetData();
             }
         }
+
+        private void buttonPokojePowrot_Click(object sender, RoutedEventArgs e)
+        {
+            zwinPokoje();
+            showWindow(gridPokojeDeafult, buttonPokojeDeafultList);
+        }
+
+        private void buttonPokojeOk_Click(object sender, RoutedEventArgs e)
+        {
+            if (textBoxPokojeEdycjaNrPokoju.Text != "" && comboBoxPokojeEdycjaStandard.SelectedItem != null)
+            {
+                PokojeHelper.edytujPokoj((int)labelPokojeEdycjaId.Content,comboBoxPokojeEdycjaStandard.SelectedIndex, textBoxPokojeEdycjaNrPokoju.Text);
+                dataGridPokojeDeafult.ItemsSource = TablesManager.Manager.Pokoje_slownikTableAdapter.GetData();
+                zwinPokoje();
+                showWindow(gridPokojeDeafult, buttonPokojeDeafultList);
+            }
+            else
+            {
+                System.Windows.MessageBox.Show("Wypełnij wszystkie pola.", "Edycja pokoju", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void buttonPokojeDodaj_Click(object sender, RoutedEventArgs e)
+        {
+            if (textBoxPokojeNrPokoju.Text != "" && comboBoxPokojeStandard.SelectedItem != null)
+            {
+                PokojeHelper.dodajPokoj(comboBoxPokojeStandard.SelectedIndex, textBoxPokojeNrPokoju.Text);
+                dataGridPokojeDeafult.ItemsSource = TablesManager.Manager.Pokoje_slownikTableAdapter.GetData();
+                textBoxPokojeNrPokoju.Text = "";
+                comboBoxPokojeStandard.SelectedItem = null;
+            }
+            else
+            {
+                System.Windows.MessageBox.Show("Wypełnij wszystkie pola.", "Dodawanie pokoju", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void buttonPokojeEdytuj_Click(object sender, RoutedEventArgs e)
+        {
+            
+            if (dataGridPokojeDeafult.SelectedItem != null)
+            {
+                zwinPokoje();
+                showWindow(gridPokojeEdycja, buttonPokojeBackOkList);
+
+                PokojeDS.PokojeRow selectedRow = ( PokojeDS.PokojeRow)((DataRowView)dataGridPokojeDeafult.SelectedItem).Row;
+                textBoxPokojeEdycjaNrPokoju.Text = selectedRow.nr_pokoju;
+                comboBoxPokojeEdycjaStandard.SelectedIndex = selectedRow.id_pokoju;
+                labelPokojeEdycjaId.Content = selectedRow.id_pokoju;
+            }
+            else  
+                System.Windows.MessageBox.Show("Najpierw wybierz pokój.", "Edycja pokoju", MessageBoxButton.OK, MessageBoxImage.Warning);
+        }
+
+        private void buttonPokojeUsun_Click(object sender, RoutedEventArgs e)
+        {
+            if (dataGridPokojeDeafult.SelectedItem != null)
+            {
+                PokojeDS.PokojeRow selectedRow = (PokojeDS.PokojeRow)
+                    ((DataRowView)dataGridPokojeDeafult.SelectedItem).Row;
+
+                MessageBoxResult result = System.Windows.MessageBox.Show("Czy napewno chcesz usunąć pokój nr: " + (string)selectedRow["nr_pokoju"], "Usuwanie wyposażenia", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                if (result == MessageBoxResult.Yes)
+                {
+                    //USUWANIE
+                }
+            } 
+        }
+
 //STANDARDY POKOI
+
+        private void dataGridStandPokoiDeafult_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if ((bool)(e.NewValue) == true)
+            {//pojawienie sie pola
+                dataGridStandPokoiDeafult.ItemsSource = TablesManager.Manager.Pokoje_slownikTableAdapter.GetData();
+            }
+        }
+
 //WYPOSAZENIE
 
         private void dataGridWyposazenieDeafult_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
@@ -782,6 +942,44 @@ namespace PensjonatApp
             {
                 System.Windows.MessageBox.Show("Opis nie może być pusty!", "Dodawanie wyposażenia", MessageBoxButton.OK, MessageBoxImage.Error);    
             }
+            
+        }
+        private void buttonWyposazeniePowrot_Click(object sender, RoutedEventArgs e)
+        {
+            zwinWyposazenie();
+            showWindow(gridWyposazenieDeafult, buttonWyposazenieDeafultList);
+        }
+
+        private void buttonWyposazenieOk_Click(object sender, RoutedEventArgs e)
+        {
+            if (textBoxWyposazenieEdycjaOpis.Text != "")
+            {
+                WyposazeniaSlownikHelper.edytujElementWyposazenia((int)labelWyposazenieId.Content, textBoxWyposazenieEdycjaOpis.Text);
+                dataGridWyposazenieDeafult.ItemsSource = TablesManager.Manager.Wyposazenia_slownikTableAdapter.GetData();
+                zwinWyposazenie();
+                showWindow(gridWyposazenieDeafult, buttonWyposazenieDeafultList);
+            }
+            else
+            {
+                System.Windows.MessageBox.Show("Wypełnij wszystkie pola.", "Edycja wyposażenia", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+           }
+
+        private void buttonWyposazenieEdytuj_Click(object sender, RoutedEventArgs e)
+        {
+            if (dataGridWyposazenieDeafult.SelectedItem != null)
+            {
+                zwinWyposazenie();
+                showWindow(gridWyposazenieEdytuj, buttonWyposazenieBackOkList);
+
+                WyposazeniaDS.Wyposazenia_slownikRow selectedRow = (WyposazeniaDS.Wyposazenia_slownikRow)((DataRowView)dataGridWyposazenieDeafult.SelectedItem).Row;
+                textBoxWyposazenieEdycjaOpis.Text = selectedRow.opis;
+                labelWyposazenieId.Content = selectedRow.id_wyposazenia;
+            }
+            else
+                System.Windows.MessageBox.Show("Najpierw wybierz wyposażenie.", "Edycja wyposażenia", MessageBoxButton.OK, MessageBoxImage.Warning);
+  
+
         }
 
         private void buttonWyposazenieUsun_Click(object sender, RoutedEventArgs e)
@@ -810,6 +1008,33 @@ namespace PensjonatApp
                 dataGridRabatyDeafult.ItemsSource = TablesManager.Manager.RabatyTableAdapter.GetData();
             }
         }
+        private void buttonRabatyPowrot_Click(object sender, RoutedEventArgs e)
+        {
+            zwinRabaty();
+            showWindow(gridRabatyDeafult, buttonRabatyDeafultList);
+        }
+
+        private void buttonRabatyOk_Click(object sender, RoutedEventArgs e)
+        {
+             if (textBoxRabatyEdycjaNazwa.Text != "" && textBoxRabatyEdycjaWartosc.Text != "" )
+            {
+                int wartosc;
+                if (int.TryParse(textBoxRabatyEdycjaWartosc.Text, out wartosc))
+                {
+                    RabatyHelper.edytujRabat((int)labelRabatyEdycjaId.Content, textBoxRabatyEdycjaNazwa.Text,
+                        (bool) checkBoxRabatyEdycjaProcentowy.IsChecked,wartosc, (bool)checkBoxRabatyEdycjaAktywny.IsChecked);
+                    dataGridRabatyDeafult.ItemsSource = TablesManager.Manager.RabatyTableAdapter.GetData();
+                    zwinRabaty();
+                    showWindow(gridRabatyDeafult, buttonRabatyDeafultList);
+                }
+                else
+                    System.Windows.MessageBox.Show("Pole wartość może zawierać tylko cyfry.", "Edycja rabatu", MessageBoxButton.OK, MessageBoxImage.Error);                        
+            }
+            else
+            {
+                System.Windows.MessageBox.Show("Wypełnij wszystkie pola.", "Edycja rabatu", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
 
         private void buttonRabatyDodaj_Click(object sender, RoutedEventArgs e)
         {
@@ -824,17 +1049,32 @@ namespace PensjonatApp
                     textBoxRabatyWartosc.Text = "";
                 }
                 else
-                    System.Windows.MessageBox.Show("Pole wartość może zawierać tylko cyfry.", "Dodawanie rabatu", MessageBoxButton.OK, MessageBoxImage.Error);
-               
+                    System.Windows.MessageBox.Show("Pole wartość może zawierać tylko cyfry.", "Dodawanie rabatu", MessageBoxButton.OK, MessageBoxImage.Error);               
             }
             else
             {
-                System.Windows.MessageBox.Show("Uzupełnij wszytstkie pola.", "Dodawanie rabatu", MessageBoxButton.OK, MessageBoxImage.Warning);
-       
-    
+                System.Windows.MessageBox.Show("Uzupełnij wszytstkie pola.", "Dodawanie rabatu", MessageBoxButton.OK, MessageBoxImage.Warning);        
             }
-        }
+        }  
+      
+        private void buttonRabatyEdytuj_Click(object sender, RoutedEventArgs e)
+        {
+            if (dataGridRabatyDeafult.SelectedItem != null)
+            {
+                zwinRabaty();
+                showWindow(gridRabatyEdycja, buttonRabatyBackOkList);
 
+                RachunkiDS.RabatyRow selectedRow = (RachunkiDS.RabatyRow)((DataRowView)dataGridRabatyDeafult.SelectedItem).Row;
+                textBoxRabatyEdycjaNazwa.Text = selectedRow.nazwa;
+                textBoxRabatyEdycjaWartosc.Text = selectedRow.wartosc.ToString();
+                checkBoxRabatyEdycjaAktywny.IsChecked = selectedRow.aktywny;
+                checkBoxRabatyEdycjaProcentowy.IsChecked = selectedRow.procentowy;
+                labelRabatyEdycjaId.Content = selectedRow.id_rabatu;
+            }
+            else
+                System.Windows.MessageBox.Show("Najpierw wybierz rabat.", "Edycja rabatu", MessageBoxButton.OK, MessageBoxImage.Warning);
+        }
+        
         private void buttonRabatyUsun_Click(object sender, RoutedEventArgs e)
         {
             if (dataGridRabatyDeafult.SelectedItem != null)
@@ -850,7 +1090,6 @@ namespace PensjonatApp
             }
             else
                 System.Windows.MessageBox.Show("Najpierw wybierz rabat.", "Usuwanie rabatu", MessageBoxButton.OK, MessageBoxImage.Warning);
-       
         }
 //POSIŁKI
         private void dataGridPosilkiDeafult_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
@@ -926,27 +1165,28 @@ namespace PensjonatApp
         private void comboBoxUslugiWykonawca_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             List<string> lst = new List<string>();
-            PracownicyDS.PracownicyDataTable uslugiTable = TablesManager.Manager.PracownicyTableAdapter.GetData();
-            foreach (PracownicyDS.PracownicyRow row in uslugiTable)
+            PracownicyDS.Pracownicy_slownikDataTable uslugiTable = TablesManager.Manager.Pracownicy_slownikTableAdapter.GetData();
+            foreach (PracownicyDS.Pracownicy_slownikRow row in uslugiTable)
             {
-                lst.Add(row.imie + " -" + row.nazwisko);
+                lst.Add(row.nazwa +" ("+ row.opis+")");
             }
-            comboBoxPobytySumRabat.ItemsSource = lst;
+            comboBoxUslugiWykonawca.ItemsSource = lst;
         }
 
 
         private void buttonUslugiDodaj_Click(object sender, RoutedEventArgs e)
         {
-            if (textBoxUslugiNazwa.Text != "" && textBoxUslugiCena.Text != "" && textBoxUslugiOpis.Text != "")
+            if (textBoxUslugiNazwa.Text != "" && textBoxUslugiCena.Text != "" && textBoxUslugiOpis.Text != "" && comboBoxUslugiWykonawca.SelectedItem !=null)
             {
                 int cena;
                 if (int.TryParse(textBoxUslugiCena.Text, out cena))
                 {
                     UslugiSlownikHelper.dodajTypUslugi(cena,textBoxUslugiNazwa.Text,textBoxUslugiOpis.Text,comboBoxUslugiWykonawca.SelectedIndex);
-                    dataGridUslugiDeafult.ItemsSource = TablesManager.Manager.UslugiTableAdapter.GetData();
+                    dataGridUslugiDeafult.ItemsSource = TablesManager.Manager.Uslugi_slownikTableAdapter.GetData();
                     textBoxUslugiNazwa.Text = "";
                     textBoxUslugiCena.Text = "";
                     textBoxUslugiOpis.Text = "";
+                    comboBoxUslugiWykonawca.SelectedItem = null;
                 }
                 else
                     System.Windows.MessageBox.Show("Pole wartość może zawierać tylko cyfry.", "Dodawanie rabatu", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -959,14 +1199,6 @@ namespace PensjonatApp
 
             }
         }
-
-
-
-
- 
-
-       
-
 
 
 
