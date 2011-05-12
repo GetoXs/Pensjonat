@@ -838,14 +838,14 @@ namespace PensjonatApp
         private void buttonRabatyUsun_Click(object sender, RoutedEventArgs e)
         {
             if (dataGridRabatyDeafult.SelectedItem != null)
-            {
-               // RabatyHDS.Wyposazenia_slownikRow selectedRow = (WyposazeniaDS.Wyposazenia_slownikRow)
-                 //   ((DataRowView)dataGridWyposazenieDeafult.SelectedItem).Row;
-                //+ (string)selectedRow["opis"]
-                MessageBoxResult result = System.Windows.MessageBox.Show("Czy napewno chcesz usunąć: " , "Usuwanie rabatu", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            { DS.RachunkiDS.RabatyRow selectedRow = (RachunkiDS.RabatyRow)((DataRowView)dataGridRabatyDeafult.SelectedItem).Row;
+               
+
+                MessageBoxResult result = System.Windows.MessageBox.Show("Czy napewno chcesz usunąć: " + (string)selectedRow["nazwa"], "Usuwanie rabatu", MessageBoxButton.YesNo, MessageBoxImage.Warning);
                 if (result == MessageBoxResult.Yes)
                 {
-                    // USUWANIE
+                    RabatyHelper.kasujRabat((int)selectedRow["id_rabatu"]);
+                    dataGridRabatyDeafult.ItemsSource = TablesManager.Manager.RabatyTableAdapter.GetData();
                 }
             }
             else
@@ -913,6 +913,53 @@ namespace PensjonatApp
                 System.Windows.MessageBox.Show("Najpierw wybierz posiłek.", "Usuwanie pakietu posiłku", MessageBoxButton.OK, MessageBoxImage.Warning);
        
         }
+//USŁUGI
+
+        private void dataGridUslugiDeafult_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if ((bool)(e.NewValue) == true)
+            {//pojawienie sie pola
+                dataGridUslugiDeafult.ItemsSource = TablesManager.Manager.Uslugi_slownikTableAdapter.GetData();
+            }
+        }
+
+        private void comboBoxUslugiWykonawca_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            List<string> lst = new List<string>();
+            PracownicyDS.PracownicyDataTable uslugiTable = TablesManager.Manager.PracownicyTableAdapter.GetData();
+            foreach (PracownicyDS.PracownicyRow row in uslugiTable)
+            {
+                lst.Add(row.imie + " -" + row.nazwisko);
+            }
+            comboBoxPobytySumRabat.ItemsSource = lst;
+        }
+
+
+        private void buttonUslugiDodaj_Click(object sender, RoutedEventArgs e)
+        {
+            if (textBoxUslugiNazwa.Text != "" && textBoxUslugiCena.Text != "" && textBoxUslugiOpis.Text != "")
+            {
+                int cena;
+                if (int.TryParse(textBoxUslugiCena.Text, out cena))
+                {
+                    UslugiSlownikHelper.dodajTypUslugi(cena,textBoxUslugiNazwa.Text,textBoxUslugiOpis.Text,comboBoxUslugiWykonawca.SelectedIndex);
+                    dataGridUslugiDeafult.ItemsSource = TablesManager.Manager.UslugiTableAdapter.GetData();
+                    textBoxUslugiNazwa.Text = "";
+                    textBoxUslugiCena.Text = "";
+                    textBoxUslugiOpis.Text = "";
+                }
+                else
+                    System.Windows.MessageBox.Show("Pole wartość może zawierać tylko cyfry.", "Dodawanie rabatu", MessageBoxButton.OK, MessageBoxImage.Error);
+
+            }
+            else
+            {
+                System.Windows.MessageBox.Show("Uzupełnij wszytstkie pola.", "Dodawanie rabatu", MessageBoxButton.OK, MessageBoxImage.Warning);
+
+
+            }
+        }
+
 
 
 
