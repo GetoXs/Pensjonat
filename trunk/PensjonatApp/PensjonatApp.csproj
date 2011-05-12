@@ -152,7 +152,6 @@
     <Compile Include="Helpers\UslugiSlownikHelper.cs" />
     <Compile Include="Helpers\WyposazeniaHelper.cs" />
     <Compile Include="Helpers\WyposazeniaSlownikHelper.cs" />
-    <None Include="Class1.cs" />
     <Compile Include="Tools\TableAdapetrsManager.cs" />
     <Compile Include="DS\WyposazeniaDS.cs">
       <DependentUpon>WyposazeniaDS.xsd</DependentUpon>
