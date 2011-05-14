@@ -35,7 +35,7 @@ namespace PensjonatApp.Helpers
             doZmiany[0].dodatkowy_opis = dodatkowy_opis;
             doZmiany[0].ilosc_osob = ilosc_osob;
             TablesManager.Manager.Pokoje_slownikTableAdapter.Update(doZmiany);
-            TablesManager.Manager.WyposazeniaTableAdapter.DeleteData(id_slownikowe_pokoju);
+            TablesManager.Manager.WyposazeniaTableAdapter.DeleteByID(id_slownikowe_pokoju);
             for (int i = 0; i < tablicaIdElementowWyposazenia.Length; i++)
                 WyposazeniaHelper.dodajWyposazenie(id_slownikowe_pokoju, tablicaIdElementowWyposazenia[i]);
             return 1;
