@@ -141,6 +141,11 @@
       <DependentUpon>UslugiDS.xsd</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="DS\WyposazeniaDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WyposazeniaDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Helpers\KlienciHelper.cs" />
     <Compile Include="Helpers\PokojeHelper.cs" />
     <Compile Include="Helpers\PokojeSlownikHelper.cs" />
@@ -162,11 +167,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>UslugiDS.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="DS\WyposazeniaDS.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>WyposazeniaDS.xsd</DependentUpon>
     </Compile>
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -300,8 +300,8 @@
     </None>
     <None Include="DS\WyposazeniaDS.xsd">
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>WyposazeniaDS.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>WyposazeniaDS.Designer.cs</LastGenOutput>
     </None>
     <None Include="DS\WyposazeniaDS.xss">
       <DependentUpon>WyposazeniaDS.xsd</DependentUpon>
