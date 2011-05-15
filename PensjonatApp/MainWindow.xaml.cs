@@ -1127,7 +1127,8 @@ namespace PensjonatApp
                 MessageBoxResult result = System.Windows.MessageBox.Show("Czy napewno chcesz usunąć: " + (string)selectedRow["opis"], "Usuwanie wyposażenia", MessageBoxButton.YesNo, MessageBoxImage.Warning);
                 if (result == MessageBoxResult.Yes)
                 {
-                    // USUWANIE
+                    TablesManager.Manager.Wyposazenia_slownikTableAdapter.DeleteByID(selectedRow.id_wyposazenia);
+                    dataGridWyposazenieDeafult.ItemsSource = TablesManager.Manager.Wyposazenia_slownikTableAdapter.GetData();
                 }
             }
             else

@@ -92,10 +92,11 @@
                         <DataGrid  Name="dataGridRezerwacjeSzukaj" AutoGenerateColumns="False" Margin="14,51,9,24" MinColumnWidth="30" IsReadOnly="True" HorizontalGridLinesBrush="#FFD5D5D5" VerticalGridLinesBrush="#FFD5D5D5" SelectionChanged="dataGrid1_SelectionChanged" SelectedIndex="0" SelectionMode="Single">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Id" Binding="{Binding Path=id_rezerwacji}" />
-                                <DataGridTextColumn Header="Termin" Binding="{Binding Path=termin}" />
+                                <DataGridTextColumn Header="Termin od " Binding="{Binding Path=termin_start}" Width="65" />
+                                <DataGridTextColumn Header="Termin do " Binding="{Binding Path=termin_koniec}" Width="65" />
                                 <DataGridTextColumn Header="Il. osób" Binding="{Binding Path=ilosc_osob}" />
                                 <DataGridTextColumn Header="Wysokość zaliczki" Binding="{Binding Path=zaliczka}" />
-                                <DataGridCheckBoxColumn Header="Zapłacono" Binding="{Binding Path=zaplacono_zaliczke}" HeaderStringFormat="bool" />
+                                <DataGridCheckBoxColumn Header=" √" Binding="{Binding Path=zaplacono_zaliczke}" HeaderStringFormat="bool" Width="30" />
                                 <DataGridTextColumn Header="Imię" Binding="{Binding Path=imie}" />
                                 <DataGridTextColumn Header="Nazwisko" Binding="{Binding Path=nazwisko}" />
                                 <DataGridTextColumn Header="PESEL" Binding="{Binding Path=pesel}" />
