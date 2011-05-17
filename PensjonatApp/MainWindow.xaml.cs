@@ -259,8 +259,8 @@ namespace PensjonatApp
         private void zwinPracownicy()
         {
             gridPracownicyDeafult.Visibility = Visibility.Collapsed;
-            //gridPracownicyDodaj.Visibility = Visibility.Collapsed;
-           // gridPracownicyEdycja.Visibility = Visibility.Collapsed;
+            gridPracownicyDodaj.Visibility = Visibility.Collapsed;
+            gridPracownicyEdycja.Visibility = Visibility.Collapsed;
             zwinButtonList(buttonPracownicyDeafultList);
             zwinButtonList(buttonPracownicyBackOkList);
         }
@@ -272,7 +272,7 @@ namespace PensjonatApp
             zwinButtonList(buttonStanowiskaBackOkList);
         }
 
-//REZERWACJE
+//----------------------------------------------REZERWACJE----------------------------------------------
 
         private void tabRezerwacje_GotFocus(object sender, RoutedEventArgs e)
         {
@@ -282,7 +282,7 @@ namespace PensjonatApp
                 showWindow(gridRezerwacjeDeafult,buttonRezerwacjeDeafultList);
             }
         }
-//REZERWACJE->BELKA
+        //----------------------------------------------REZERWACJE->BELKA----------------------------------------------
         private void buttonRezerwacjePowrot_Click(object sender, RoutedEventArgs e)
         {
          if (currentGrid == gridRezerwacjeAdd2)
@@ -356,7 +356,7 @@ namespace PensjonatApp
                 }
             }
         }
-//REZERWACJE->DEAFULT
+        //----------------------------------------------REZERWACJE->DEAFULT----------------------------------------------
         private void gridRezerwacjeDeafult_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             if ((bool)(e.NewValue) == true)
@@ -415,7 +415,7 @@ namespace PensjonatApp
             }
         }
 
-//REZERWACJE->DODAJ
+        //----------------------------------------------REZERWACJE->DODAJ----------------------------------------------
         private void buttonRezerwacjeAdd_Click(object sender, RoutedEventArgs e)
         {
             zwinRezerwacje();
@@ -466,7 +466,7 @@ namespace PensjonatApp
                 PokojeDS.PokojeRow pok = (PokojeDS.PokojeRow)((DataRowView)dataGridRezerwacjeAddDostepnePokoje.SelectedItem).Row;
             }
         }
-//REZERWACJE->DODAJ->KLIENCI
+        //----------------------------------------------REZERWACJE->DODAJ->KLIENCI----------------------------------------------
         private void buttonRezerwacjeAddKlient_Click(object sender, RoutedEventArgs e)
         {
             zwinRezerwacje();
@@ -481,14 +481,14 @@ namespace PensjonatApp
             }
         }
 
-//REZERWACJE->DODAJ->DALEJ
+        //----------------------------------------------REZERWACJE->DODAJ->DALEJ----------------------------------------------
         private void buttonRezerwacjeAddDalej_Click(object sender, RoutedEventArgs e)
         {
             
  
 
         }
-//REZERWACJE->ZALICZKA
+        //----------------------------------------------REZERWACJE->ZALICZKA----------------------------------------------
         private void buttonRezerwacjeZaliczka_Click(object sender, RoutedEventArgs e)
         {
             if (dataGridRezerwacjeSzukaj.SelectedItem != null)
@@ -512,7 +512,7 @@ namespace PensjonatApp
                 System.Windows.MessageBox.Show("Najpierw wybierz rezerwacje.", "Potwierdzenie wpłaty zaliczki", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
 
-//REZERWACJE->USUN
+        //----------------------------------------------REZERWACJE->USUN----------------------------------------------
         private void buttonRezerwacjeDel_Click(object sender, RoutedEventArgs e)
         {
             if (dataGridRezerwacjeSzukaj.SelectedItem != null)
@@ -531,7 +531,7 @@ namespace PensjonatApp
                 System.Windows.MessageBox.Show("Najpierw wybierz rezerwacje.", "Usuwanie rezerwacji", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
 
-//POBYTY
+//----------------------------------------------POBYTY----------------------------------------------
         private void tabPobyty_GotFocus(object sender, RoutedEventArgs e)
         {
             if (tabPobyty.IsFocused)
@@ -550,7 +550,7 @@ namespace PensjonatApp
         {
 
         }
-//POBYTY->DEAFULT
+        //----------------------------------------------POBYTY->DEAFULT----------------------------------------------
         private void dataGridPobytySzukaj_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             if ((bool)(e.NewValue) == true)
@@ -609,7 +609,7 @@ namespace PensjonatApp
         }
 
 
-//POBYTY->USŁUGI
+        //----------------------------------------------POBYTY->USŁUGI----------------------------------------------
         private void buttonPobytyServices_Click(object sender, RoutedEventArgs e)
         {
             if (dataGridPobytySzukaj.SelectedItem != null)
@@ -642,7 +642,7 @@ namespace PensjonatApp
         }
 
 
-//POBYTY->ROZLICZ
+        //----------------------------------------------POBYTY->ROZLICZ----------------------------------------------
         private void buttonPobytySum_Click(object sender, RoutedEventArgs e)
         {
             if (dataGridPobytySzukaj.SelectedItem != null)
@@ -670,7 +670,7 @@ namespace PensjonatApp
         }
 
 
-//POBYTY->PODSUMOWANIE
+        //----------------------------------------------POBYTY->PODSUMOWANIE----------------------------------------------
         private void buttonPobytyDetails_Click(object sender, RoutedEventArgs e)
         {
             if (dataGridPobytySzukaj.SelectedItem != null)
@@ -690,7 +690,7 @@ namespace PensjonatApp
         }
 
 
-// KLIENCI
+// ----------------------------------------------KLIENCI----------------------------------------------
         private void tabKlienci_GotFocus(object sender, RoutedEventArgs e)
         {
             if (tabKlienci.IsFocused)
@@ -719,7 +719,7 @@ namespace PensjonatApp
             }
 
         }
-//KLIENCI->DEAFULT
+        //----------------------------------------------KLIENCI->DEAFULT----------------------------------------------
         private void dataGridKlienci_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             if ((bool)(e.NewValue) == true)
@@ -764,8 +764,8 @@ namespace PensjonatApp
         {
             klienciSearch();
         }
-       
-//KLIENCI->DODAJ
+
+        //----------------------------------------------KLIENCI->DODAJ----------------------------------------------
         private void buttonKlienciAdd_Click(object sender, RoutedEventArgs e)
         {
             zwinKlienci();
@@ -830,7 +830,7 @@ namespace PensjonatApp
 			
 		}
 
-//KLIENCI->EDYTUJ
+        //----------------------------------------------KLIENCI->EDYTUJ----------------------------------------------
         private void buttonKlienciEdit_Click(object sender, RoutedEventArgs e)
         {
             if (dataGridKlienci.SelectedItem != null)
@@ -856,7 +856,7 @@ namespace PensjonatApp
                 System.Windows.MessageBox.Show("Najpierw wybierz klienta.", "Edycja klienta", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
 
-//NEWSLETTER
+//----------------------------------------------NEWSLETTER----------------------------------------------
         private void buttonNewsletterNew_Click(object sender, RoutedEventArgs e)
         {
             MessageBoxResult result = System.Windows.MessageBox.Show("Czy jesteś pewny?", "Nowy newsletter", MessageBoxButton.YesNo, MessageBoxImage.Question);
@@ -884,10 +884,10 @@ namespace PensjonatApp
             comboBoxPobytySumRabat.ItemsSource = lst;
         }
 
-//-----------------------------
+//---------------------------------------------------------------------------------------
 //----------KIEROWNIK----------
-//-----------------------------
-// POKOJE
+//---------------------------------------------------------------------------------------
+//----------------------------------------------POKOJE----------------------------------------------
         private void dataGridPokojeDeafult_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             if ((bool)(e.NewValue) == true)
@@ -974,7 +974,7 @@ namespace PensjonatApp
             } 
         }
 
-//STANDARDY POKOI
+//----------------------------------------------STANDARDY POKOI----------------------------------------------
 
         private void dataGridStandPokoiDeafult_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
@@ -1026,6 +1026,7 @@ namespace PensjonatApp
                 textBoxStandPokoiEdycjaIlOsob.Text = selectedRow.ilosc_osob.ToString();
                 comboBoxStandPokoiEdycjaWyposazenie.SelectedItem = null;
                // PokojeSlownikHelper.
+                dataGridStandPokoiEdycjaWyposazenie.ItemsSource = TablesManager.Manager.Pokoje_slownikTableAdapter.GetDataListaWyposazenByID(selectedRow.id_slownikowe_pokoju);
             }
             else
                 System.Windows.MessageBox.Show("Najpierw wybierz pokój.", "Edycja pokoju", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -1055,7 +1056,7 @@ namespace PensjonatApp
       
         }
 
-//WYPOSAZENIE
+//----------------------------------------------WYPOSAZENIE----------------------------------------------
 
         private void dataGridWyposazenieDeafult_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
@@ -1136,7 +1137,7 @@ namespace PensjonatApp
        
         }
 
-//RABATY
+//----------------------------------------------RABATY----------------------------------------------
         private void dataGridRabatyDeafult_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             if ((bool)(e.NewValue) == true)
@@ -1227,7 +1228,8 @@ namespace PensjonatApp
             else
                 System.Windows.MessageBox.Show("Najpierw wybierz rabat.", "Usuwanie rabatu", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
-//POSIŁKI
+
+//----------------------------------------------POSIŁKI----------------------------------------------
         private void dataGridPosilkiDeafult_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             if ((bool)(e.NewValue) == true)
@@ -1338,8 +1340,8 @@ namespace PensjonatApp
                 System.Windows.MessageBox.Show("Najpierw wybierz posiłek.", "Usuwanie pakietu posiłku", MessageBoxButton.OK, MessageBoxImage.Warning);
        
         }
-//USŁUGI
 
+//----------------------------------------------USŁUGI----------------------------------------------
         private void dataGridUslugiDeafult_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             if ((bool)(e.NewValue) == true)
@@ -1450,7 +1452,7 @@ namespace PensjonatApp
        
         }
 
-//PRACOWNICY
+//----------------------------------------------PRACOWNICY----------------------------------------------
         private void dataGridPracownicyDeafult_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             if ((bool)(e.NewValue) == true)
@@ -1458,30 +1460,48 @@ namespace PensjonatApp
                 dataGridPracownicyDeafult.ItemsSource = TablesManager.Manager.PracownicyTableAdapter.GetData();
             }
         }
-
+        //----------------------------------------------PRACOWNICY->MENU
         private void buttonPracownicySzukaj_Click(object sender, RoutedEventArgs e)
         {
             SzukajPracownika();
         }
-        private void SzukajPracownika()
+       
+
+        private void buttonPracownicyDodaj_Click(object sender, RoutedEventArgs e)
         {
-            if (textBoxPracownicySzukaj.Text == "")
-                dataGridPracownicyDeafult.ItemsSource = TablesManager.Manager.PracownicyTableAdapter.GetData();
-            else
+            zwinPracownicy();
+            showWindow(gridPracownicyDodaj, buttonPracownicyBackOkList);
+        }
+
+        private void buttonPracownicyPowrot_Click(object sender, RoutedEventArgs e)
+        {
+            zwinPracownicy();
+            showWindow(gridPracownicyDeafult, buttonPracownicyDeafultList);
+        }
+
+        private void buttonPracownicyEdytuj_Click(object sender, RoutedEventArgs e)
+        {
+            if (dataGridPracownicyDeafult.SelectedItem != null)
             {
-                if ((bool)radioButtonPracownicyId.IsChecked)
-                {
-                    int id;
-                    if (int.TryParse(textBoxPracownicySzukaj.Text, out id))
-                        dataGridPracownicyDeafult.ItemsSource = TablesManager.Manager.PracownicyTableAdapter.GetData();
-                    else
-                        System.Windows.MessageBox.Show("Niepoprawne ID pracownika.\nNumer identyfikacyjny pracownika może zawierać tylko cyfry.", "Wyszukiwanie pracownika", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-                else if ((bool)radioButtonPracownicyNazwisko.IsChecked)
-                {
-                    dataGridPracownicyDeafult.ItemsSource = TablesManager.Manager.PracownicyTableAdapter.GetData();
-                 }
+                zwinPracownicy();
+                showWindow(gridPracownicyEdycja, buttonPracownicyBackOkList);
+                PracownicyDS.PracownicyRow selectedRow = (PracownicyDS.PracownicyRow)((DataRowView)dataGridPracownicyDeafult.SelectedItem).Row;
+                textBoxPracownicyEdycjaImie.Text = selectedRow.imie;
+                textBoxPracownicyEdycjaNazwisko.Text = selectedRow.nazwisko;
+                textBoxPracownicyEdycjaLogin.Text = selectedRow.login;
+                /*
+                textBoxPracownicyEdycjaPESEL.Text = selectedRow.Pesel;
+                textBoxPracownicyEdycjaNIP.Text = selectedRow.Nip;
+                textBoxPracownicyEdycjaAdres.Text = selectedRow.Adres;
+                textBoxPracownicyEdycjaMiejscowosc.Text = selectedRow.Miejscowosc;
+                textBoxPracownicyEdycjaKodPocztowy.Text = selectedRow.KodPocztowy;
+                textBoxPracownicyEdycjaTelefon.Text = selectedRow.Telefon;
+                */
             }
+            else
+                System.Windows.MessageBox.Show("Najpierw wybierz pracownika.", "Edycja pracownika", MessageBoxButton.OK, MessageBoxImage.Warning);
+       
+            
         }
 
         private void buttonPracownicyUsun_Click(object sender, RoutedEventArgs e)
@@ -1500,10 +1520,31 @@ namespace PensjonatApp
                 }
             }
             else
-                System.Windows.MessageBox.Show("Najpierw wybierz usługę.", "Usuwanie usługi", MessageBoxButton.OK, MessageBoxImage.Warning);
+                System.Windows.MessageBox.Show("Najpierw wybierz pracownika.", "Usuwanie pracownika", MessageBoxButton.OK, MessageBoxImage.Warning);
        
         }
-//STANOWISKA
+
+        private void SzukajPracownika()
+        {
+            if (textBoxPracownicySzukaj.Text == "")
+                dataGridPracownicyDeafult.ItemsSource = TablesManager.Manager.PracownicyTableAdapter.GetData();
+            else
+            {
+                if ((bool)radioButtonPracownicyId.IsChecked)
+                {
+                    int id;
+                    if (int.TryParse(textBoxPracownicySzukaj.Text, out id))
+                        dataGridPracownicyDeafult.ItemsSource = TablesManager.Manager.PracownicyTableAdapter.GetData();
+                    else
+                        System.Windows.MessageBox.Show("Niepoprawne ID pracownika.\nNumer identyfikacyjny pracownika może zawierać tylko cyfry.", "Wyszukiwanie pracownika", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                else if ((bool)radioButtonPracownicyNazwisko.IsChecked)
+                {
+                    dataGridPracownicyDeafult.ItemsSource = TablesManager.Manager.PracownicyTableAdapter.GetData();
+                }
+            }
+        }
+//----------------------------------------------STANOWISKA----------------------------------------------
         private void dataGridStanowiskaDeafult_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             if ((bool)(e.NewValue) == true)
@@ -1537,23 +1578,59 @@ namespace PensjonatApp
             showWindow(gridStanowiskaDeafult, buttonStanowiskaDeafultList);
         }
 
+        private void buttonStanowiskaOk_Click(object sender, RoutedEventArgs e)
+        {
+            if (textBoxStanowiskaEdycjaNazwa.Text != "" && textBoxStanowiskaEdycjaOpis.Text != "" )
+            {              
+                // edycja
+                dataGridStanowiskaDeafult.ItemsSource = TablesManager.Manager.Pracownicy_slownikTableAdapter.GetData();
+                zwinStanowiska();
+                showWindow(gridStanowiskaDeafult, buttonStanowiskaDeafultList);
+            }
+            else
+            {
+                System.Windows.MessageBox.Show("Wypełnij wszystkie pola.", "Edycja stanowiska", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
         private void buttonStanowiskaDodaj_Click(object sender, RoutedEventArgs e)
         {
             if (textBoxStanowiskaNazwa.Text != "" && textBoxStanowiskaOpis.Text != "" )
             {
-                
-                
+                // dodawanie                
                 dataGridUslugiDeafult.ItemsSource = TablesManager.Manager.Uslugi_slownikTableAdapter.GetData();
                 textBoxStanowiskaNazwa.Text = "";
-                textBoxStanowiskaOpis.Text = "";
-
-                
+                textBoxStanowiskaOpis.Text = ""; 
             }
             else
             {
                 System.Windows.MessageBox.Show("Uzupełnij wszytstkie pola.", "Dodawanie rabatu", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
+
+        private void buttonStanowiskaUsun_Click(object sender, RoutedEventArgs e)
+        {
+            if (dataGridStanowiskaDeafult.SelectedItem != null)
+            {
+                PracownicyDS.Pracownicy_slownikRow selectedRow = (PracownicyDS.Pracownicy_slownikRow)
+                    ((DataRowView)dataGridStanowiskaDeafult.SelectedItem).Row;
+                // + (string)selectedRow["nazwa_opcji"]
+                MessageBoxResult result = System.Windows.MessageBox.Show("Czy napewno chcesz usunąć: " + (string)selectedRow["nazwa"], "Usuwanie stanowiska", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                if (result == MessageBoxResult.Yes)
+                {
+                    //Pracow
+                    dataGridStanowiskaDeafult.ItemsSource = TablesManager.Manager.Pracownicy_slownikTableAdapter.GetData();
+
+                }
+            }
+            else
+                System.Windows.MessageBox.Show("Najpierw wybierz stanowisko.", "Usuwanie stanowiska", MessageBoxButton.OK, MessageBoxImage.Warning);
+       
+        }
+
+
+
+
 
 
 
