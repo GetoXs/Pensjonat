@@ -48,5 +48,10 @@ namespace PensjonatApp.Helpers
 		{
 			return przydzielPracownika(id_uslugi, null);
 		}
+
+        public static PensjonatApp.DS.UslugiDS.UslugiDataTable znajdzWolnegoPracownika(DateTime? terminStart, DateTime? terminKoniec, int? id_slownikoweUslugi)
+        {
+            return TablesManager.Manager.UslugiTableAdapter.GetIdPracownikaWolnyWPodanymTerminieWykonujacyPodanyTypUslug(id_slownikoweUslugi, terminKoniec, terminStart);
+        }
     }
 }
