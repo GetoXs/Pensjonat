@@ -1470,16 +1470,14 @@ WHERE  Pracownicy.id_stanowiska = Pracownicy_slownik.id_stanowiska AND (Pracowni
             this._commandCollection[4].Connection = this.Connection;
             this._commandCollection[4].CommandText = @"SELECT Pracownicy.id_pracownika, Pracownicy.id_stanowiska, Pracownicy.imie, Pracownicy.nazwisko, Pracownicy_slownik.nazwa, Pracownicy_slownik.opis, Pracownicy.login
 FROM     Pracownicy, Pracownicy_slownik
-WHERE  Pracownicy.id_stanowiska = Pracownicy_slownik.id_stanowiska AND (Pracownicy.login = ?)";
+WHERE  Pracownicy.id_stanowiska = Pracownicy_slownik.id_stanowiska AND (Pracownicy.login LIKE 'CASE(?)')";
             this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[4].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("login", global::System.Data.Odbc.OdbcType.NVarChar, 1024, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "login", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[5] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[5].Connection = this.Connection;
             this._commandCollection[5].CommandText = @"SELECT Pracownicy.id_pracownika, Pracownicy.id_stanowiska, Pracownicy.imie, Pracownicy.nazwisko, Pracownicy_slownik.nazwa, Pracownicy_slownik.opis, Pracownicy.login
 FROM     Pracownicy, Pracownicy_slownik
-WHERE  Pracownicy.id_stanowiska = Pracownicy_slownik.id_stanowiska AND (Pracownicy.nazwisko = ?)";
+WHERE  Pracownicy.id_stanowiska = Pracownicy_slownik.id_stanowiska AND (Pracownicy.nazwisko LIKE 'CASE(?)')";
             this._commandCollection[5].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[5].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("nazwisko", global::System.Data.Odbc.OdbcType.NVarChar, 1024, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "nazwisko", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[6] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[6].Connection = this.Connection;
             this._commandCollection[6].CommandText = "INSERT INTO [Pracownicy] ([id_stanowiska], [imie], [nazwisko], [login], [haslo]) " +
@@ -1555,14 +1553,8 @@ WHERE  Pracownicy.id_stanowiska = Pracownicy_slownik.id_stanowiska AND (Pracowni
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual PracownicyDS.PracownicyDataTable GetPracownicyStanowiskaByLogin(string login) {
+        public virtual PracownicyDS.PracownicyDataTable GetPracownicyStanowiskaByLogin() {
             this.Adapter.SelectCommand = this.CommandCollection[4];
-            if ((login == null)) {
-                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(login));
-            }
             PracownicyDS.PracownicyDataTable dataTable = new PracownicyDS.PracownicyDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
@@ -1572,14 +1564,8 @@ WHERE  Pracownicy.id_stanowiska = Pracownicy_slownik.id_stanowiska AND (Pracowni
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual PracownicyDS.PracownicyDataTable GetPracownicyStanowiskaByNazwisko(string nazwisko) {
+        public virtual PracownicyDS.PracownicyDataTable GetPracownicyStanowiskaByNazwisko() {
             this.Adapter.SelectCommand = this.CommandCollection[5];
-            if ((nazwisko == null)) {
-                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(nazwisko));
-            }
             PracownicyDS.PracownicyDataTable dataTable = new PracownicyDS.PracownicyDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
