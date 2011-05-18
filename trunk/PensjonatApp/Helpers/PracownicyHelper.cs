@@ -32,5 +32,19 @@ namespace PensjonatApp.Helpers
         {
             return TablesManager.Manager.PracownicyTableAdapter.DeleteQuery(id_p);
         }
+
+        public static int dodajStanowisko(string nazwa, string opis)
+        {
+            return TablesManager.Manager.Pracownicy_slownikTableAdapter.DodajStanowisko(nazwa, opis);
+        }
+        public static int edytujStanowisko(string nazwa, string opis,int id)
+        {
+            return TablesManager.Manager.Pracownicy_slownikTableAdapter.EdytujStanowiskoByID(nazwa, opis,id);
+        }
+        public static int usunStanowisko(int id)
+        {
+            return TablesManager.Manager.Pracownicy_slownikTableAdapter.UsunStanowiskoById(id);
+        }
+       
     }
 }

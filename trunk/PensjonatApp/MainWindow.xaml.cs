@@ -639,6 +639,16 @@ namespace PensjonatApp
         private void comboBoxPobytyUslugi_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             comboBoxPobytyPracownicy.IsEnabled = true;
+            List<string> lst = new List<string>();
+             /*  UslugiDS.UslugiDataTable pracownicyTable = TablesManager.Manager.UslugiTableAdapter.
+                    GetIdPracownikaWolnyWPodanymTerminieWykonujacyPodanyTypUslug(comboBoxPobytyUslugi.SelectedIndex, datePickerPobytyServicesTerminOd.SelectedDate, datePickerPobytyServicesTerminOd.SelectedDate);
+
+               foreach (UslugiDS.UslugiRow row in pracownicyTable)
+                {
+                    lst.Add(row.imie + " " + row.nazwisko);
+                }
+                comboBoxPobytyPracownicy.ItemsSource = lst;*/
+
         }
 
 
@@ -895,15 +905,24 @@ namespace PensjonatApp
                 dataGridPokojeDeafult.ItemsSource = TablesManager.Manager.PokojeTableAdapter.GetData();
             }
         }
-        private void comboBoxPokojeStandard_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        List<int> PokojeIdLst = new List<int>();
+        List<string> PokojeStringLst = new List<string>();
+
+        private void comboBoxPokojeStandard_Loaded(object sender, RoutedEventArgs e)
         {
-           List<string> lst = new List<string>();
-           PokojeDS.Pokoje_slownikDataTable standardyTable = TablesManager.Manager.Pokoje_slownikTableAdapter.GetData();
-           foreach (PokojeDS.Pokoje_slownikRow row in standardyTable)
+            PokojeIdLst.Clear();
+            PokojeStringLst.Clear();
+            PokojeDS.Pokoje_slownikDataTable standardyTable = TablesManager.Manager.Pokoje_slownikTableAdapter.GetData();
+            foreach (PokojeDS.Pokoje_slownikRow row in standardyTable)
             {
-                lst.Add(row.dodatkowy_opis);
+                PokojeStringLst.Add(row.dodatkowy_opis);
+                PokojeIdLst.Add(row.id_slownikowe_pokoju);
             }
-            comboBoxPokojeStandard.ItemsSource = lst;              
+            comboBoxPokojeStandard.ItemsSource = PokojeStringLst;
+        }
+        private void comboBoxPokojeEdycjaStandard_Loaded(object sender, RoutedEventArgs e)
+        {
+            comboBoxPokojeEdycjaStandard.ItemsSource = PokojeStringLst;    
         }
 
         private void buttonPokojePowrot_Click(object sender, RoutedEventArgs e)
@@ -916,8 +935,8 @@ namespace PensjonatApp
         {
             if (textBoxPokojeEdycjaNrPokoju.Text != "" && comboBoxPokojeEdycjaStandard.SelectedItem != null)
             {
-                PokojeHelper.edytujPokoj((int)labelPokojeEdycjaId.Content,comboBoxPokojeEdycjaStandard.SelectedIndex, textBoxPokojeEdycjaNrPokoju.Text);
-                dataGridPokojeDeafult.ItemsSource = TablesManager.Manager.Pokoje_slownikTableAdapter.GetData();
+                PokojeHelper.edytujPokoj((int)labelPokojeEdycjaId.Content,PokojeIdLst[comboBoxPokojeEdycjaStandard.SelectedIndex], textBoxPokojeEdycjaNrPokoju.Text);
+                dataGridPokojeDeafult.ItemsSource = TablesManager.Manager.PokojeTableAdapter.GetData();
                 zwinPokoje();
                 showWindow(gridPokojeDeafult, buttonPokojeDeafultList);
             }
@@ -931,8 +950,8 @@ namespace PensjonatApp
         {
             if (textBoxPokojeNrPokoju.Text != "" && comboBoxPokojeStandard.SelectedItem != null)
             {
-                PokojeHelper.dodajPokoj(comboBoxPokojeStandard.SelectedIndex, textBoxPokojeNrPokoju.Text);
-                dataGridPokojeDeafult.ItemsSource = TablesManager.Manager.Pokoje_slownikTableAdapter.GetData();
+                PokojeHelper.dodajPokoj(PokojeIdLst[comboBoxPokojeStandard.SelectedIndex], textBoxPokojeNrPokoju.Text);
+                dataGridPokojeDeafult.ItemsSource = TablesManager.Manager.PokojeTableAdapter.GetData();
                 textBoxPokojeNrPokoju.Text = "";
                 comboBoxPokojeStandard.SelectedItem = null;
             }
@@ -952,7 +971,7 @@ namespace PensjonatApp
 
                 PokojeDS.PokojeRow selectedRow = ( PokojeDS.PokojeRow)((DataRowView)dataGridPokojeDeafult.SelectedItem).Row;
                 textBoxPokojeEdycjaNrPokoju.Text = selectedRow.nr_pokoju;
-                comboBoxPokojeEdycjaStandard.SelectedIndex = selectedRow.id_pokoju;
+                comboBoxPokojeEdycjaStandard.SelectedIndex = PokojeIdLst.IndexOf(selectedRow.id_slownikowe_pokoju);
                 labelPokojeEdycjaId.Content = selectedRow.id_pokoju;
             }
             else  
@@ -990,27 +1009,97 @@ namespace PensjonatApp
         }
 
         List<WyposazeniaDS.Wyposazenia_slownikRow> StandPokoiDodajList = new List<WyposazeniaDS.Wyposazenia_slownikRow>();
+        List<PokojeDS.Pokoje_slownikRow> StandPokoiEdytujList = new List<PokojeDS.Pokoje_slownikRow>();
+        List<WyposazeniaDS.Wyposazenia_slownikRow> StandPokoiList = new List<WyposazeniaDS.Wyposazenia_slownikRow>();
+        List<string> StandPokoiLabelLst = new List<string>();
         private void buttonStandPokoiDodaj_Click(object sender, RoutedEventArgs e)
         {
             zwinStandPokoi();
             showWindow(gridStandPokoiDodaj, buttonStandPokoiBackOkList);
-            List<WyposazeniaDS.Wyposazenia_slownikRow> lst = new List<WyposazeniaDS.Wyposazenia_slownikRow>();
+
+            StandPokoiList.Clear();
             WyposazeniaDS.Wyposazenia_slownikDataTable standardyTable = TablesManager.Manager.Wyposazenia_slownikTableAdapter.GetData();
             foreach (WyposazeniaDS.Wyposazenia_slownikRow row in standardyTable)
             {
-                lst.Add(row);
+                StandPokoiList.Add(row);
+                StandPokoiLabelLst.Add(row.opis);
             }
-            comboBoxStandPokoiDodajWyposazenie.ItemsSource = lst;
-
+            comboBoxStandPokoiDodajWyposazenie.ItemsSource = StandPokoiLabelLst;
             StandPokoiDodajList.Clear();
             dataGridStandPokoiDodajWyposazenie.ItemsSource = StandPokoiDodajList;
           
         }
+        private void comboBoxStandPokoiEdycjaWyposazenie_Loaded(object sender, RoutedEventArgs e)
+        {
+            comboBoxStandPokoiEdycjaWyposazenie.ItemsSource = StandPokoiLabelLst;
+        }
 
+        private void buttonStandPokoiOk_Click(object sender, RoutedEventArgs e)
+        {
+            if (currentGrid == gridStandPokoiEdycja)
+            {
+                if (textBoxStandPokoiEdycjaCena.Text != "" && textBoxStandPokoiEdycjaIlOsob.Text!="" &&  textBoxStandPokoiEdycjaOpis.Text!="")
+                {
+                    int cena;
+                    int ilOsob;
+                    if (int.TryParse(textBoxStandPokoiEdycjaCena.Text, out cena) && int.TryParse(textBoxStandPokoiEdycjaIlOsob.Text, out ilOsob))
+                    {
+                    
+                    List<int> idLst = new List<int>();
+                    foreach (WyposazeniaDS.Wyposazenia_slownikRow row in StandPokoiDodajList)
+                    {
+                        idLst.Add(row.id_wyposazenia);
+                    }
+                    PokojeSlownikHelper.edytujKlasePokoi((int)labelStandPokoiEdycjaId.Content, cena, textBoxStandPokoiEdycjaOpis.Text, ilOsob, idLst.ToArray());
+
+                    zwinStandPokoi();
+                    showWindow(gridStandPokoiDeafult, buttonStandPokoiDeafultList);
+                    }
+                    else
+                        System.Windows.MessageBox.Show("Pola cena i liczba osób może zawierać tylko cyfry.", "Edycja standardu pokoi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                else
+                {
+                    System.Windows.MessageBox.Show("Wypełnij wszystkie pola.", "Edycja standardu pokoi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            else if (currentGrid == gridStandPokoiDodaj)
+            {
+                if (textBoxStandPokoiDodajCena.Text != "" && textBoxStandPokoiDodajIlOsob.Text != "" && textBoxStandPokoiDodajOpis.Text != "")
+                {
+                    int cena;
+                    int ilOsob;
+                    if (int.TryParse(textBoxStandPokoiDodajCena.Text, out cena) && int.TryParse(textBoxStandPokoiDodajIlOsob.Text, out ilOsob))
+                    {
+
+                        List<int> idLst = new List<int>();
+                        foreach (WyposazeniaDS.Wyposazenia_slownikRow row in StandPokoiDodajList)
+                        {
+                            idLst.Add(row.id_wyposazenia);
+                        }
+                        PokojeSlownikHelper.dodajKlasePokoi(cena, textBoxStandPokoiDodajOpis.Text, ilOsob, idLst.ToArray());
+
+                        zwinStandPokoi();
+                        showWindow(gridStandPokoiDeafult, buttonStandPokoiDeafultList);
+                    }
+                    else
+                        System.Windows.MessageBox.Show("Pola cena i liczba osób może zawierać tylko cyfry.", "Dodaj standard pokoi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                else
+                {
+                    System.Windows.MessageBox.Show("Wypełnij wszystkie pola.", "Dodaj standard pokoi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+        }
         private void buttonStandPokoiDodajWyposazenie_Click(object sender, RoutedEventArgs e)
         {
-            StandPokoiDodajList.Add((WyposazeniaDS.Wyposazenia_slownikRow)comboBoxStandPokoiDodajWyposazenie.SelectedItem);
+            StandPokoiDodajList.Add(StandPokoiList[comboBoxStandPokoiDodajWyposazenie.SelectedIndex]);
             dataGridStandPokoiDodajWyposazenie.Items.Refresh();
+        }
+        private void buttonStandPokoiEdycjaWyposazenie_Click(object sender, RoutedEventArgs e)
+        {
+            StandPokoiDodajList.Add(StandPokoiList[comboBoxStandPokoiEdycjaWyposazenie.SelectedIndex]);
+            dataGridStandPokoiEdycjaWyposazenie.Items.Refresh();
         }
 
         private void buttonStandPokoiEdytuj_Click(object sender, RoutedEventArgs e)
@@ -1019,23 +1108,28 @@ namespace PensjonatApp
             {
                 zwinStandPokoi();
                 showWindow(gridStandPokoiEdycja, buttonStandPokoiBackOkList);
+                StandPokoiDodajList.Clear();
 
                 PokojeDS.Pokoje_slownikRow selectedRow = (PokojeDS.Pokoje_slownikRow)((DataRowView)dataGridStandPokoiDeafult.SelectedItem).Row;
                 textBoxStandPokoiEdycjaOpis.Text = selectedRow.dodatkowy_opis;
                 textBoxStandPokoiEdycjaCena.Text = selectedRow.cena.ToString();
                 textBoxStandPokoiEdycjaIlOsob.Text = selectedRow.ilosc_osob.ToString();
+                labelStandPokoiEdycjaId.Content = selectedRow.id_slownikowe_pokoju;
                 comboBoxStandPokoiEdycjaWyposazenie.SelectedItem = null;
-               // PokojeSlownikHelper.
+
+                PokojeDS.Pokoje_slownikDataTable standTable = TablesManager.Manager.Pokoje_slownikTableAdapter.GetDataListaWyposazenByID(selectedRow.id_slownikowe_pokoju);
+
+                foreach (PokojeDS.Pokoje_slownikRow row in standTable)
+                {
+                    StandPokoiEdytujList.Add(row);
+                }
+                dataGridStandPokoiEdycjaWyposazenie.ItemsSource = StandPokoiEdytujList;
                 dataGridStandPokoiEdycjaWyposazenie.ItemsSource = TablesManager.Manager.Pokoje_slownikTableAdapter.GetDataListaWyposazenByID(selectedRow.id_slownikowe_pokoju);
             }
             else
                 System.Windows.MessageBox.Show("Najpierw wybierz pokój.", "Edycja pokoju", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
 
-        private void buttonStandPokoiEdycjaWyposazenie_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
 
         private void buttonStandPokoiUsun_Click(object sender, RoutedEventArgs e)
         {
@@ -1346,19 +1440,27 @@ namespace PensjonatApp
         {
             if ((bool)(e.NewValue) == true)
             {//pojawienie sie pola
-                dataGridUslugiDeafult.ItemsSource = TablesManager.Manager.Uslugi_slownikTableAdapter.GetData();
+                dataGridUslugiDeafult.ItemsSource = TablesManager.Manager.Uslugi_slownikTableAdapter.GetDataPlusSlownikPracownicy();
             }
         }
-
+        List<int> uslugiStanowiskaIdLst = new List<int>();
+        List<string> uslugiStanowiskaStringLst = new List<string>();
         private void comboBoxUslugiWykonawca_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            List<string> lst = new List<string>();
+            uslugiStanowiskaIdLst.Clear();
+            uslugiStanowiskaStringLst.Clear();
             PracownicyDS.Pracownicy_slownikDataTable uslugiTable = TablesManager.Manager.Pracownicy_slownikTableAdapter.GetData();
             foreach (PracownicyDS.Pracownicy_slownikRow row in uslugiTable)
             {
-                lst.Add(row.nazwa +" ("+ row.opis+")");
+                uslugiStanowiskaStringLst.Add(row.nazwa + " (" + row.opis + ")");
+                uslugiStanowiskaIdLst.Add(row.id_stanowiska);
             }
-            comboBoxUslugiWykonawca.ItemsSource = lst;
+            comboBoxUslugiWykonawca.ItemsSource = uslugiStanowiskaStringLst;
+        }
+
+        private void comboBoxUslugiEdycjaWykonawca_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            comboBoxUslugiEdycjaWykonawca.ItemsSource = uslugiStanowiskaStringLst;
         }
 
         private void buttonUslugiPowrot_Click(object sender, RoutedEventArgs e)
@@ -1376,8 +1478,8 @@ namespace PensjonatApp
                 if (int.TryParse(textBoxUslugiEdycjaCena.Text, out cena))
                 {
                     UslugiSlownikHelper.edytujTypUslugi((int)labelUslugiEdycjaId.Content, cena, textBoxUslugiEdycjaNazwa.Text, textBoxUslugiEdycjaOpis.Text,
-                        comboBoxUslugiEdycjaWykonawca.SelectedIndex);
-                    dataGridUslugiDeafult.ItemsSource = TablesManager.Manager.Uslugi_slownikTableAdapter.GetData();
+                        uslugiStanowiskaIdLst[comboBoxUslugiEdycjaWykonawca.SelectedIndex]);
+                    dataGridUslugiDeafult.ItemsSource = TablesManager.Manager.Uslugi_slownikTableAdapter.GetDataPlusSlownikPracownicy();
                     zwinRabaty();
                     showWindow(gridRabatyDeafult, buttonRabatyDeafultList);
                 }
@@ -1398,11 +1500,11 @@ namespace PensjonatApp
                 showWindow(gridUslugiEdycja, buttonUslugiBackOkList);
 
                 UslugiDS.Uslugi_slownikRow selectedRow = (UslugiDS.Uslugi_slownikRow)((DataRowView)dataGridUslugiDeafult.SelectedItem).Row;
-                textBoxUslugiEdycjaNazwa.Text = selectedRow.nazwa;
-                textBoxUslugiEdycjaOpis.Text = selectedRow.opis;
+                textBoxUslugiEdycjaNazwa.Text = (string)selectedRow["nazwaUslugi"];
+                textBoxUslugiEdycjaOpis.Text = (string)selectedRow["opisUslugi"]; 
                 textBoxUslugiEdycjaCena.Text = selectedRow.cena.ToString();
-                comboBoxUslugiEdycjaWykonawca.SelectedItem = selectedRow.id_stanowiska;
-                labelRabatyEdycjaId.Content = selectedRow.id_slownikowe_uslugi;
+                comboBoxUslugiEdycjaWykonawca.SelectedIndex = uslugiStanowiskaIdLst.IndexOf(selectedRow.id_stanowiska);
+                labelUslugiEdycjaId.Content = selectedRow.id_slownikowe_uslugi;
             }
             else
                 System.Windows.MessageBox.Show("Najpierw wybierz usługę.", "Edycja usługi", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -1416,8 +1518,8 @@ namespace PensjonatApp
                 int cena;
                 if (int.TryParse(textBoxUslugiCena.Text, out cena))
                 {
-                    UslugiSlownikHelper.dodajTypUslugi(cena,textBoxUslugiNazwa.Text,textBoxUslugiOpis.Text,comboBoxUslugiWykonawca.SelectedIndex);
-                    dataGridUslugiDeafult.ItemsSource = TablesManager.Manager.Uslugi_slownikTableAdapter.GetData();
+                    UslugiSlownikHelper.dodajTypUslugi(cena,textBoxUslugiNazwa.Text,textBoxUslugiOpis.Text,uslugiStanowiskaIdLst[comboBoxUslugiWykonawca.SelectedIndex]);
+                    dataGridUslugiDeafult.ItemsSource = TablesManager.Manager.Uslugi_slownikTableAdapter.GetDataPlusSlownikPracownicy();
                     textBoxUslugiNazwa.Text = "";
                     textBoxUslugiCena.Text = "";
                     textBoxUslugiOpis.Text = "";
@@ -1442,8 +1544,8 @@ namespace PensjonatApp
                 MessageBoxResult result = System.Windows.MessageBox.Show("Czy napewno chcesz usunąć: "+ (string)selectedRow["nazwa"], "Usuwanie uslugi", MessageBoxButton.YesNo, MessageBoxImage.Warning);
                 if (result == MessageBoxResult.Yes)
                 {
-                    UslugiHelper.usunUsluge((int)selectedRow["id_slownikowe_uslugi"]);
-                    dataGridUslugiDeafult.ItemsSource = TablesManager.Manager.Uslugi_slownikTableAdapter.GetData();
+                    UslugiHelper.usunUsluge((int)selectedRow.id_slownikowe_uslugi);
+                    dataGridUslugiDeafult.ItemsSource = TablesManager.Manager.Uslugi_slownikTableAdapter.GetDataPlusSlownikPracownicy();
 
                 }
             }
@@ -1457,9 +1559,30 @@ namespace PensjonatApp
         {
             if ((bool)(e.NewValue) == true)
             {//pojawienie sie pola
-                dataGridPracownicyDeafult.ItemsSource = TablesManager.Manager.PracownicyTableAdapter.GetData();
+                dataGridPracownicyDeafult.ItemsSource = TablesManager.Manager.PracownicyTableAdapter.GetPracownicyStanowiska();
             }
         }
+        List<int> stanowiskaIdList = new List<int>();
+        List<string> stanowiskaStringList = new List<string>();
+        private void comboBoxPracownicyDodajStanowisko_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            stanowiskaIdList.Clear();
+            stanowiskaStringList.Clear();
+            PracownicyDS.Pracownicy_slownikDataTable uslugiTable = TablesManager.Manager.Pracownicy_slownikTableAdapter.GetData();
+            foreach (PracownicyDS.Pracownicy_slownikRow row in uslugiTable)
+            {
+                stanowiskaStringList.Add(row.nazwa + " (" + row.opis +")");
+                stanowiskaIdList.Add(row.id_stanowiska);
+            }
+            comboBoxPracownicyDodajStanowisko.ItemsSource = stanowiskaStringList;
+        }
+
+        private void comboBoxPracownicyEdycjaStanowisko_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+
+            comboBoxPracownicyEdycjaStanowisko.ItemsSource = stanowiskaStringList;
+        }
+
         //----------------------------------------------PRACOWNICY->MENU
         private void buttonPracownicySzukaj_Click(object sender, RoutedEventArgs e)
         {
@@ -1471,6 +1594,49 @@ namespace PensjonatApp
         {
             zwinPracownicy();
             showWindow(gridPracownicyDodaj, buttonPracownicyBackOkList);
+        }
+
+        private void buttonPracownicyOk_Click(object sender, RoutedEventArgs e)
+        {
+            if (currentGrid == gridPracownicyDodaj)
+            {
+                if (textBoxPracownicyDodajImie.Text != "" && textBoxPracownicyDodajNazwisko.Text != "" && textBoxPracownicyDodajLogin.Text != ""
+                    && comboBoxPracownicyDodajStanowisko.SelectedItem != null)
+                {
+                    PracownicyHelper.dodajPracownika(textBoxPracownicyDodajImie.Text, textBoxPracownicyDodajNazwisko.Text,
+                        textBoxPracownicyDodajLogin.Text, textBoxPracownicyDodajLogin.Text, 1, stanowiskaIdList[comboBoxPracownicyDodajStanowisko.SelectedIndex]);
+                    dataGridPracownicyDeafult.ItemsSource = TablesManager.Manager.PracownicyTableAdapter.GetPracownicyStanowiska(); 
+                    textBoxPracownicyDodajImie.Text = "";
+                    textBoxPracownicyDodajNazwisko.Text = "";
+                    textBoxPracownicyDodajLogin.Text = "";
+                    zwinPracownicy();
+                    showWindow(gridPracownicyDeafult, buttonPracownicyDeafultList);
+               
+                }
+                else
+                {
+                    System.Windows.MessageBox.Show("Uzupełnij wszytstkie pola.", "Dodawanie pracownika", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+            }
+            else if (currentGrid == gridPracownicyEdycja)
+            {
+                if (textBoxPracownicyEdycjaImie.Text != "" && textBoxPracownicyEdycjaNazwisko.Text != "" && textBoxPracownicyEdycjaLogin.Text != ""
+                     && comboBoxPracownicyEdycjaStanowisko.SelectedItem != null)
+                {
+
+                PracownicyHelper.edytujPracownikaByIdPr(textBoxPracownicyEdycjaImie.Text,textBoxPracownicyEdycjaNazwisko.Text,
+                    textBoxPracownicyEdycjaLogin.Text, textBoxPracownicyEdycjaLogin.Text, 1, stanowiskaIdList[comboBoxPracownicyEdycjaStanowisko.SelectedIndex]);    
+
+                dataGridPracownicyDeafult.ItemsSource = TablesManager.Manager.PracownicyTableAdapter.GetPracownicyStanowiska(); 
+                   
+                zwinPracownicy();
+                showWindow(gridPracownicyDeafult, buttonPracownicyDeafultList);
+            }
+            else
+            {
+                System.Windows.MessageBox.Show("Wypełnij wszystkie pola.", "Edycja usługi", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            }
         }
 
         private void buttonPracownicyPowrot_Click(object sender, RoutedEventArgs e)
@@ -1514,8 +1680,8 @@ namespace PensjonatApp
                     + (string)selectedRow["nazwisko"], "Usuwanie pracownika", MessageBoxButton.YesNo, MessageBoxImage.Warning);
                 if (result == MessageBoxResult.Yes)
                 {
-                   // PracownicyHelper.usunUsluge((int)selectedRow["id_pracownika"]);
-                   // dataGridUslugiDeafult.ItemsSource = TablesManager.Manager.Uslugi_slownikTableAdapter.GetData();
+                    PracownicyHelper.usunPracownika(selectedRow.id_pracownika);
+                    dataGridPracownicyDeafult.ItemsSource = TablesManager.Manager.PracownicyTableAdapter.GetPracownicyStanowiska();
 
                 }
             }
@@ -1527,20 +1693,20 @@ namespace PensjonatApp
         private void SzukajPracownika()
         {
             if (textBoxPracownicySzukaj.Text == "")
-                dataGridPracownicyDeafult.ItemsSource = TablesManager.Manager.PracownicyTableAdapter.GetData();
+                dataGridPracownicyDeafult.ItemsSource = TablesManager.Manager.PracownicyTableAdapter.GetPracownicyStanowiska();
             else
             {
                 if ((bool)radioButtonPracownicyId.IsChecked)
                 {
                     int id;
                     if (int.TryParse(textBoxPracownicySzukaj.Text, out id))
-                        dataGridPracownicyDeafult.ItemsSource = TablesManager.Manager.PracownicyTableAdapter.GetData();
+                        dataGridPracownicyDeafult.ItemsSource = TablesManager.Manager.PracownicyTableAdapter.GetPracownicyStanowiskaById(id);
                     else
                         System.Windows.MessageBox.Show("Niepoprawne ID pracownika.\nNumer identyfikacyjny pracownika może zawierać tylko cyfry.", "Wyszukiwanie pracownika", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
                 else if ((bool)radioButtonPracownicyNazwisko.IsChecked)
                 {
-                    dataGridPracownicyDeafult.ItemsSource = TablesManager.Manager.PracownicyTableAdapter.GetData();
+                    dataGridPracownicyDeafult.ItemsSource = TablesManager.Manager.PracownicyTableAdapter.GetPracownicyStanowiskaByNazwisko(textBoxPracownicySzukaj.Text);
                 }
             }
         }
@@ -1564,7 +1730,7 @@ namespace PensjonatApp
                     ((DataRowView)dataGridStanowiskaDeafult.SelectedItem).Row;
                 textBoxStanowiskaEdycjaNazwa.Text = selectedRow.nazwa;
                 textBoxStanowiskaEdycjaOpis.Text = selectedRow.opis;               
-                labelRabatyEdycjaId.Content = selectedRow.id_stanowiska;
+                labelStanowiskaEdycjaId.Content = selectedRow.id_stanowiska;
             }
             else
                 System.Windows.MessageBox.Show("Najpierw wybierz stanowisko.", "Edycja stanowiska", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -1581,8 +1747,8 @@ namespace PensjonatApp
         private void buttonStanowiskaOk_Click(object sender, RoutedEventArgs e)
         {
             if (textBoxStanowiskaEdycjaNazwa.Text != "" && textBoxStanowiskaEdycjaOpis.Text != "" )
-            {              
-                // edycja
+            {
+                PracownicyHelper.edytujStanowisko(textBoxStanowiskaEdycjaNazwa.Text, textBoxStanowiskaEdycjaOpis.Text,int.Parse(labelStanowiskaEdycjaId.Content.ToString()));               
                 dataGridStanowiskaDeafult.ItemsSource = TablesManager.Manager.Pracownicy_slownikTableAdapter.GetData();
                 zwinStanowiska();
                 showWindow(gridStanowiskaDeafult, buttonStanowiskaDeafultList);
@@ -1597,14 +1763,15 @@ namespace PensjonatApp
         {
             if (textBoxStanowiskaNazwa.Text != "" && textBoxStanowiskaOpis.Text != "" )
             {
-                // dodawanie                
-                dataGridUslugiDeafult.ItemsSource = TablesManager.Manager.Uslugi_slownikTableAdapter.GetData();
+                PracownicyHelper.dodajStanowisko(textBoxStanowiskaNazwa.Text, textBoxStanowiskaOpis.Text);
+                dataGridStanowiskaDeafult.ItemsSource = TablesManager.Manager.Pracownicy_slownikTableAdapter.GetData();
+               
                 textBoxStanowiskaNazwa.Text = "";
                 textBoxStanowiskaOpis.Text = ""; 
             }
             else
             {
-                System.Windows.MessageBox.Show("Uzupełnij wszytstkie pola.", "Dodawanie rabatu", MessageBoxButton.OK, MessageBoxImage.Warning);
+                System.Windows.MessageBox.Show("Uzupełnij wszytstkie pola.", "Dodawanie stanowiska", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
@@ -1618,7 +1785,7 @@ namespace PensjonatApp
                 MessageBoxResult result = System.Windows.MessageBox.Show("Czy napewno chcesz usunąć: " + (string)selectedRow["nazwa"], "Usuwanie stanowiska", MessageBoxButton.YesNo, MessageBoxImage.Warning);
                 if (result == MessageBoxResult.Yes)
                 {
-                    //Pracow
+                    PracownicyHelper.usunStanowisko(selectedRow.id_stanowiska);
                     dataGridStanowiskaDeafult.ItemsSource = TablesManager.Manager.Pracownicy_slownikTableAdapter.GetData();
 
                 }
@@ -1627,6 +1794,14 @@ namespace PensjonatApp
                 System.Windows.MessageBox.Show("Najpierw wybierz stanowisko.", "Usuwanie stanowiska", MessageBoxButton.OK, MessageBoxImage.Warning);
        
         }
+
+
+
+
+
+
+
+
 
 
 
