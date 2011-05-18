@@ -1440,7 +1440,7 @@ namespace PensjonatApp.DS.PracownicyDSTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.Odbc.OdbcCommand[2];
+            this._commandCollection = new global::System.Data.Odbc.OdbcCommand[5];
             this._commandCollection[0] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT id_pracownika, id_stanowiska, imie, nazwisko, login, haslo FROM Pracownicy" +
@@ -1454,6 +1454,27 @@ namespace PensjonatApp.DS.PracownicyDSTableAdapters {
                 ")";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_slownikowe_uslugi", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_slownikowe_uslugi", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[2] = new global::System.Data.Odbc.OdbcCommand();
+            this._commandCollection[2].Connection = this.Connection;
+            this._commandCollection[2].CommandText = @"SELECT Pracownicy.id_pracownika, Pracownicy.id_stanowiska, Pracownicy.imie, Pracownicy.nazwisko, Pracownicy_slownik.nazwa, Pracownicy_slownik.opis, Pracownicy.login
+FROM     Pracownicy, Pracownicy_slownik
+WHERE  Pracownicy.id_stanowiska = Pracownicy_slownik.id_stanowiska AND (Pracownicy.id_pracownika = ?)";
+            this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[2].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_pracownika", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_pracownika", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[3] = new global::System.Data.Odbc.OdbcCommand();
+            this._commandCollection[3].Connection = this.Connection;
+            this._commandCollection[3].CommandText = @"SELECT Pracownicy.id_pracownika, Pracownicy.id_stanowiska, Pracownicy.imie, Pracownicy.nazwisko, Pracownicy_slownik.nazwa, Pracownicy_slownik.opis, Pracownicy.login
+FROM     Pracownicy, Pracownicy_slownik
+WHERE  Pracownicy.id_stanowiska = Pracownicy_slownik.id_stanowiska AND (Pracownicy.login = ?)";
+            this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[3].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("login", global::System.Data.Odbc.OdbcType.NVarChar, 1024, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "login", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[4] = new global::System.Data.Odbc.OdbcCommand();
+            this._commandCollection[4].Connection = this.Connection;
+            this._commandCollection[4].CommandText = @"SELECT Pracownicy.id_pracownika, Pracownicy.id_stanowiska, Pracownicy.imie, Pracownicy.nazwisko, Pracownicy_slownik.nazwa, Pracownicy_slownik.opis, Pracownicy.login
+FROM     Pracownicy, Pracownicy_slownik
+WHERE  Pracownicy.id_stanowiska = Pracownicy_slownik.id_stanowiska AND (Pracownicy.nazwisko = ?)";
+            this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[4].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("nazwisko", global::System.Data.Odbc.OdbcType.NVarChar, 1024, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "nazwisko", global::System.Data.DataRowVersion.Current, false, null));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1487,6 +1508,52 @@ namespace PensjonatApp.DS.PracownicyDSTableAdapters {
         public virtual PracownicyDS.PracownicyDataTable GetDataByIdSlownikoweUslugi(int id_slownikowe_uslugi) {
             this.Adapter.SelectCommand = this.CommandCollection[1];
             this.Adapter.SelectCommand.Parameters[0].Value = ((int)(id_slownikowe_uslugi));
+            PracownicyDS.PracownicyDataTable dataTable = new PracownicyDS.PracownicyDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual PracownicyDS.PracownicyDataTable GetPracownicyStanowiskaById(int id_pracownika) {
+            this.Adapter.SelectCommand = this.CommandCollection[2];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(id_pracownika));
+            PracownicyDS.PracownicyDataTable dataTable = new PracownicyDS.PracownicyDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual PracownicyDS.PracownicyDataTable GetPracownicyStanowiskaByLogin(string login) {
+            this.Adapter.SelectCommand = this.CommandCollection[3];
+            if ((login == null)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(login));
+            }
+            PracownicyDS.PracownicyDataTable dataTable = new PracownicyDS.PracownicyDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual PracownicyDS.PracownicyDataTable GetPracownicyStanowiskaByNazwisko(string nazwisko) {
+            this.Adapter.SelectCommand = this.CommandCollection[4];
+            if ((nazwisko == null)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(nazwisko));
+            }
             PracownicyDS.PracownicyDataTable dataTable = new PracownicyDS.PracownicyDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
