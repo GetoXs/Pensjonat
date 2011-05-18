@@ -1604,7 +1604,7 @@ WHERE  Uslugi.id_slownikowe_uslugi = Uslugi_slownik.id_slownikowe_uslugi AND (Us
             this._commandCollection[4].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_pobytu", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_pobytu", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[5] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[5].Connection = this.Connection;
-            this._commandCollection[5].CommandText = @"SELECT DISTINCT Uslugi.id_pracownika, Uslugi.id_slownikowe_uslugi
+            this._commandCollection[5].CommandText = @"SELECT DISTINCT Uslugi.id_pracownika, Uslugi.id_slownikowe_uslugi, Pracownicy.imie, Pracownicy.nazwisko, Pracownicy.id_pracownika AS Expr1
 FROM     Uslugi, Pracownicy, Uslugi_slownik
 WHERE  Uslugi.id_pracownika = Pracownicy.id_pracownika AND Uslugi.id_slownikowe_uslugi = Uslugi_slownik.id_slownikowe_uslugi AND 
                   Pracownicy.id_stanowiska = Uslugi_slownik.id_stanowiska AND (Uslugi.id_pracownika NOT IN
