@@ -135,10 +135,10 @@ WHERE  Uslugi.id_slownikowe_uslugi = Uslugi_slownik.id_slownikowe_uslugi AND (Us
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="DB (Settings)" DbObjectName="[C:\__informatyka\bd\_projekt\pensjonat\baza_nowa].Uslugi" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetIdPracownikaWolnyWPodanymTerminieWykonujacyPodanyTypUslug" GetMethodModifier="Public" GetMethodName="GetIdPracownikaWolnyWPodanymTerminieWykonujacyPodanyTypUslug" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetIdPracownikaWolnyWPodanymTerminieWykonujacyPodanyTypUslug" UserSourceName="GetIdPracownikaWolnyWPodanymTerminieWykonujacyPodanyTypUslug">
+              <DbSource ConnectionRef="DB (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetIdPracownikaWolnyWPodanymTerminieWykonujacyPodanyTypUslug" GetMethodModifier="Public" GetMethodName="GetIdPracownikaWolnyWPodanymTerminieWykonujacyPodanyTypUslug" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetIdPracownikaWolnyWPodanymTerminieWykonujacyPodanyTypUslug" UserSourceName="GetIdPracownikaWolnyWPodanymTerminieWykonujacyPodanyTypUslug">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT DISTINCT Uslugi.id_pracownika, Uslugi.id_slownikowe_uslugi
+                    <CommandText>SELECT DISTINCT Uslugi.id_pracownika, Uslugi.id_slownikowe_uslugi, Pracownicy.imie, Pracownicy.nazwisko, Pracownicy.id_pracownika AS Expr1
 FROM     Uslugi, Pracownicy, Uslugi_slownik
 WHERE  Uslugi.id_pracownika = Pracownicy.id_pracownika AND Uslugi.id_slownikowe_uslugi = Uslugi_slownik.id_slownikowe_uslugi AND 
                   Pracownicy.id_stanowiska = Uslugi_slownik.id_stanowiska AND (Uslugi.id_pracownika NOT IN
