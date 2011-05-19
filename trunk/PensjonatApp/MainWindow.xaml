@@ -1247,12 +1247,58 @@
                         </GroupBox>
                         <DataGrid AutoGenerateColumns="False" HorizontalGridLinesBrush="#FFD5D5D5" IsEnabled="True" IsReadOnly="True" Margin="21,186,15,60" Name="dataGridStanowiskaDeafult" SelectionMode="Single" VerticalGridLinesBrush="#FFD5D5D5" IsVisibleChanged="dataGridStanowiskaDeafult_IsVisibleChanged">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Binding="{Binding Path=id_stanowiska}" Header="Id" />
-                                <DataGridTextColumn Binding="{Binding Path=nazwa}" Header="Nazwa" />
-                                <DataGridTextColumn Binding="{Binding Path=opis}" Header="Opis" />
+
+                                <DataGridTextColumn Binding="{Binding Path=nr_pokoju}" Header="Nr pokoju" />
                             </DataGrid.Columns>
                         </DataGrid>
                         <Label Content="Lista stanowisk:" FontWeight="Bold" HorizontalAlignment="Left" Margin="14,164,0,0" Name="label191" Padding="2" VerticalAlignment="Top" />
+                    </Grid>
+                </StackPanel>
+            </TabItem>
+            <TabItem BorderBrush="#FF2B4865" Height="40" Name="tabItem3">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal" Width="120">
+                        <Image Height="30" Name="image83" Source="/PensjonatApp;component/Images/Zadania1.png" Stretch="Fill" Width="30" />
+                        <TextBlock FontSize="13" FontStretch="Normal" FontWeight="Bold" Foreground="#FF202020" HorizontalAlignment="Left" Margin="2" Text="Zadania" TextAlignment="Center" VerticalAlignment="Center" />
+                    </StackPanel>
+                </TabItem.Header>
+                <StackPanel Orientation="Vertical">
+                    <Grid Height="58" Margin="-5" Name="grid5">
+                        <Grid.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FFF9F9F9" Offset="0.496" />
+                                <GradientStop Color="#FFEAEAEA" Offset="1" />
+                            </LinearGradientBrush>
+                        </Grid.Background>
+                        <Image Height="42" HorizontalAlignment="Left" Margin="10,10,0,0" Name="image76" Source="/PensjonatApp;component/Images/Zadania.png" Stretch="Fill" VerticalAlignment="Top" Width="42" />
+                        <Label Content="Zadania" FontSize="18" FontWeight="Bold" Height="40" HorizontalAlignment="Left" Margin="53,11,0,0" Name="label216" Padding="0" VerticalAlignment="Top" VerticalContentAlignment="Center" />
+                        <Image Height="40" HorizontalAlignment="Left" Margin="145,12,0,0" Name="image77" Source="/PensjonatApp;component/Images/separator.png" Stretch="Fill" VerticalAlignment="Top" Width="2" />
+                        <StackPanel CanHorizontallyScroll="True" ClipToBounds="False" FlowDirection="RightToLeft" HorizontalAlignment="Right" Margin="185,-1,5,0" Name="stackPanel12" Orientation="Horizontal" VerticalAlignment="Stretch" Width="403">
+                            <Button BorderBrush="#FFBAD0DC" Click="buttonZadaniaArchiwum_Click" FlowDirection="LeftToRight" Foreground="{x:Null}" Height="40" Margin="2" Name="button2" Padding="0" TabIndex="5" Width="112">
+                                <StackPanel Orientation="Horizontal" Width="103">
+                                    <Image Height="32" HorizontalAlignment="Left" Margin="2" Name="image78" Source="/PensjonatApp;component/Images/Zadania2.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="32" />
+                                    <Label Content="Archiwum" FontWeight="Bold" Height="37" HorizontalContentAlignment="Center" Name="label219" Padding="0" VerticalContentAlignment="Center" Width="64" />
+                                </StackPanel>
+                            </Button>
+                            <Button BorderBrush="#FFBAD0DC" Click="buttonZadaniaPowrot_Click" Foreground="{x:Null}" Height="40" Margin="2" Name="button5" Padding="0" TabIndex="7" Width="95">
+                                <StackPanel FlowDirection="LeftToRight" Orientation="Horizontal">
+                                    <Image Grid.RowSpan="2" Height="32" HorizontalAlignment="Left" Margin="2,3,0,3" Name="image81" Source="/PensjonatApp;component/Images/wstecz.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="32" />
+                                    <Label Content="Powrót" FontWeight="Bold" Height="36" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="0" Name="label222" Padding="0" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="55" />
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+                    </Grid>
+                    <Grid Margin="0" MinHeight="580" Name="grid9" Opacity="1" ShowGridLines="True" Visibility="Visible">
+                        <DataGrid AutoGenerateColumns="False" HorizontalGridLinesBrush="#FFD5D5D5" IsEnabled="True" IsReadOnly="True" IsVisibleChanged="dataGridZadaniaDeafult_IsVisibleChanged" Margin="21,24,15,25" Name="dataGridZadaniaDeafult" SelectionMode="Single" VerticalGridLinesBrush="#FFD5D5D5">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding Path=nr_pokoju}" Header="Nr pokoju" />
+                                <DataGridTextColumn Binding="{Binding Path=imie}" Header="Imię" />
+                                <DataGridTextColumn Binding="{Binding Path=nazwisko}" Header="Nazwisko" />
+                                <DataGridTextColumn Binding="{Binding Path=nazwa}" Header="Nazwa" />
+                                <DataGridTextColumn Binding="{Binding Path=opis}" Header="Opis" />
+                                <DataGridTextColumn Binding="{Binding Path=dodatkowy_opis}" Header="Dodatkowy opis" />
+                            </DataGrid.Columns>
+                        </DataGrid>
                     </Grid>
                 </StackPanel>
             </TabItem>
