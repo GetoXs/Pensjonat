@@ -1141,15 +1141,15 @@ namespace PensjonatApp
                 textBoxStandPokoiEdycjaIlOsob.Text = selectedRow.ilosc_osob.ToString();
                 labelStandPokoiEdycjaId.Content = selectedRow.id_slownikowe_pokoju;
                 comboBoxStandPokoiEdycjaWyposazenie.SelectedItem = null;
-
-                WyposazeniaDS.Wyposazenia_slownikDataTable standTable = TablesManager.Manager.Wyposazenia_slownikTableAdapter.GetDataWyposazeniaSlownikByIdPokojeSlownik(selectedRow.id_slownikowe_pokoju);
+                
+                WyposazeniaDS.Wyposazenia_slownikDataTable standTable = TablesManager.Manager.Wyposazenia_slownikTableAdapter.GetDataListaWyposazenByID(selectedRow.id_slownikowe_pokoju);
 
                 foreach (WyposazeniaDS.Wyposazenia_slownikRow row in standTable)
                 {
-                    StandPokoiEdytujList.Add(row);
+                    //StandPokoiEdytujList.Add(row);
                 }
                 dataGridStandPokoiEdycjaWyposazenie.ItemsSource = StandPokoiEdytujList;
-                dataGridStandPokoiEdycjaWyposazenie.ItemsSource = TablesManager.Manager.Pokoje_slownikTableAdapter.GetDataListaWyposazenByID(selectedRow.id_slownikowe_pokoju);
+               // dataGridStandPokoiEdycjaWyposazenie.ItemsSource = TablesManager.Manager.Wyposazenia_slownikTableAdapter.GetDataListaWyposazenByID(selectedRow.id_slownikowe_pokoju);
             }
             else
                 System.Windows.MessageBox.Show("Najpierw wybierz pokój.", "Edycja pokoju", MessageBoxButton.OK, MessageBoxImage.Warning);

@@ -84,7 +84,7 @@
                             </Button>
                         </StackPanel>
                     </Grid>
-                    <Grid Name="gridRezerwacjeDeafult" Visibility="Visible" ShowGridLines="False" Opacity="1" Height="234" IsVisibleChanged="gridRezerwacjeDeafult_IsVisibleChanged">
+                    <Grid Name="gridRezerwacjeDeafult" Visibility="Visible" ShowGridLines="False" Opacity="1" Height="122" IsVisibleChanged="gridRezerwacjeDeafult_IsVisibleChanged">
                         <TextBox Name="textBoxRezerwacjeSzukaj" Height="23" HorizontalAlignment="Left" Margin="14,17,0,0"  VerticalAlignment="Top" Width="129" TabIndex="1" />
                         <RadioButton Content="ID" GroupName="rezerwacjeSzukaj" Height="16" HorizontalAlignment="Left" Margin="299,24,0,0" Name="rbRezerwacjeId" VerticalAlignment="Top" IsChecked="False" TabIndex="5" />
                         <RadioButton Content="Klient" GroupName="rezerwacjeSzukaj" Height="16" HorizontalAlignment="Left" IsChecked="True" Margin="247,24,0,0" Name="rbRezerwacjeName" VerticalAlignment="Top" IsThreeState="False" TabIndex="3" />
@@ -103,7 +103,7 @@
                             </DataGrid.Columns>
                         </DataGrid>
                     </Grid>
-                    <Grid Name="gridRezerwacjeAdd" Height="356" Visibility="Visible" ShowGridLines="True" Opacity="1">
+                    <Grid Name="gridRezerwacjeAdd" Height="107" Visibility="Visible" ShowGridLines="True" Opacity="1">
                         <Label Content="Klient:" HorizontalAlignment="Left" Margin="35,43,0,0" Name="label3" VerticalAlignment="Top" Padding="2" FontWeight="Bold" />
                         <TextBox Name="textBoxRezerwacjeAddKlient" Height="23" HorizontalAlignment="Left" Margin="118,42,0,0" VerticalAlignment="Top" Width="109" Text="" IsReadOnly="True" IsEnabled="True" />
                         <Label Content="Termin:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,71,0,0" Name="label4" Padding="2" VerticalAlignment="Top" />
@@ -653,7 +653,7 @@
                             </Button>
                         </StackPanel>
                     </Grid>
-                    <Grid Height="43" Name="gridStandPokoiDodaj">
+                    <Grid Height="27" Name="gridStandPokoiDodaj">
                         <Label Content="Dodawanie standardu pokoi:" FontSize="13" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,12,0,0" Name="label165" Padding="2" VerticalAlignment="Top" />
                         <Label Content="Opis:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,40,0,0" Name="label166" Padding="2" VerticalAlignment="Top" />
                         <ComboBox Height="23" IsEnabled="True" Text="Binding Path=opis" ItemsSource="{Binding}" Margin="47,158,109,0" Name="comboBoxStandPokoiDodajWyposazenie" TabIndex="2" VerticalAlignment="Top" Width="427">
@@ -1096,7 +1096,7 @@
                             </Button>
                             <Button BorderBrush="#FFBAD0DC" FlowDirection="LeftToRight" Foreground="{x:Null}" Height="40" Name="buttonPracownicyZadania" Padding="0" Width="95" Margin="2">
                                 <StackPanel Orientation="Horizontal">
-                                    <Image Height="32" HorizontalAlignment="Left" Margin="2" Name="image65" Source="/PensjonatApp;component/Images/Zadania2.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="32" />
+                                    <Image Height="32" HorizontalAlignment="Left" Margin="2" Name="image65" Source="/PensjonatApp;component/Images/zadaniaS.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="32" />
                                     <Label Content="Zadania" FontWeight="Bold" Height="37" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="0" Name="label181" Padding="0" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="49" FontSize="12" />
                                 </StackPanel>
                             </Button>
@@ -1129,7 +1129,7 @@
                             </DataGrid.Columns>
                         </DataGrid>
                     </Grid>
-                    <Grid Height="109" Name="gridPracownicyDodaj" Opacity="1" ShowGridLines="True" Visibility="Visible">
+                    <Grid Height="33" Name="gridPracownicyDodaj" Opacity="1" ShowGridLines="True" Visibility="Visible">
                         <Label Content="Dodawanie pracownika:" FontSize="13" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,10,0,0" Name="label188" Padding="2" VerticalAlignment="Top" />
                         <Label Content="Imię:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,39,0,0" Name="label196" Padding="2" VerticalAlignment="Top" />
                         <Label Content="Nazwisko:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,66,0,0" Name="label198" Padding="2" VerticalAlignment="Top" />
@@ -1174,6 +1174,27 @@
                         <TextBox Height="23" HorizontalAlignment="Left" Margin="159,226,0,0" Name="textBoxPracownicyEdycjaKodPocztowy" TextChanged="textBoxKlienciAdd_TextChanged" VerticalAlignment="Top" Width="120" />
                         <Label Content="Stanowisko:" FontWeight="Bold" HorizontalAlignment="Left" Margin="34,0,0,177" Name="label218" Padding="2" VerticalAlignment="Bottom" />
                         <ComboBox Height="23" HorizontalAlignment="Left" Margin="159,282,0,0" Name="comboBoxPracownicyEdycjaStanowisko" VerticalAlignment="Top" Width="201" IsVisibleChanged="comboBoxPracownicyEdycjaStanowisko_IsVisibleChanged" />
+                    </Grid>
+                    <Grid MinHeight="580" Name="grid7" Opacity="1" ShowGridLines="True" Visibility="Visible">
+                        <GroupBox Header="Dodaj wyposażenie" Height="59" Margin="14,19,10,0" Name="groupBox8" VerticalAlignment="Top">
+                            <Grid>
+                                <Label Content="Opis:" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,6,0,0" Name="label221" Padding="2" VerticalAlignment="Top" />
+                                <TextBox Height="23" Margin="48,6,86,0" Name="textBox1" TabIndex="1" VerticalAlignment="Top" Width="414" />
+                                <Button BorderBrush="#FFBAD0DC" Click="buttonWyposazenieDodaj_Click" FlowDirection="LeftToRight" Foreground="{x:Null}" Height="26" HorizontalAlignment="Right" Margin="0,3,4,0" Name="button2" Padding="0" TabIndex="2" VerticalAlignment="Top">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Height="16" HorizontalAlignment="Left" Margin="2" Name="image79" Source="/PensjonatApp;component/Images/addSmall.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="16" />
+                                        <Label Content="Dodaj" FontWeight="Normal" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Margin="0" Name="label223" Padding="0" VerticalAlignment="Stretch" VerticalContentAlignment="Center" Width="42" />
+                                    </StackPanel>
+                                </Button>
+                            </Grid>
+                        </GroupBox>
+                        <DataGrid AutoGenerateColumns="False" HorizontalGridLinesBrush="#FFD5D5D5" IsEnabled="True" IsReadOnly="True" IsVisibleChanged="dataGridWyposazenieDeafult_IsVisibleChanged" Margin="20,116,16,19" Name="dataGrid1" SelectionMode="Single" VerticalGridLinesBrush="#FFD5D5D5">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding Path=id_wyposazenia}" Header="Id" />
+                                <DataGridTextColumn Binding="{Binding Path=opis}" Header="Opis" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <Label Content="Lista wyposażeń:" FontWeight="Bold" HorizontalAlignment="Left" Margin="14,90,0,0" Name="label224" Padding="2" VerticalAlignment="Top" />
                     </Grid>
                 </StackPanel>
             </TabItem>
