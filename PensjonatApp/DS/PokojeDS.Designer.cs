@@ -1352,9 +1352,9 @@ namespace PensjonatApp.DS.PokojeDSTableAdapters {
             this._commandCollection[2].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_pokoju", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_pokoju", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[3] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = "SELECT p.id_pokoju, p.nr_pokoju, ps.cena, ps.ilosc_osob, ps.dodatkowy_opis\r\nFROM " +
-                "Pokoje p, Pokoje_slownik ps\r\nWHERE p.id_slownikowe_pokoju=ps.id_slownikowe_pokoj" +
-                "u";
+            this._commandCollection[3].CommandText = "SELECT p.id_pokoju, p.nr_pokoju, ps.cena, ps.ilosc_osob, ps.dodatkowy_opis, p.id_" +
+                "slownikowe_pokoju\r\nFROM Pokoje p, Pokoje_slownik ps\r\nWHERE p.id_slownikowe_pokoj" +
+                "u=ps.id_slownikowe_pokoju";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[4] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[4].Connection = this.Connection;
