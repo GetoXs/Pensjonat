@@ -53,6 +53,13 @@ namespace PensjonatApp
         public static Grid currentGrid;
         public MainWindow()
         {
+            //WyposazeniaDS.Wyposazenia_slownikDataTable tmp = TablesManager.Manager.Wyposazenia_slownikTableAdapter.GetDataListaWyposazenByIdSlownikowePokoju(4);
+            //PokojeDS.Pokoje_slownikDataTable lol = TablesManager.Manager.Pokoje_slownikTableAdapter.GetDataListaWyposazenByID(4);
+            //PokojeHelper.dodajPokoj(4, "10");
+            //TablesManager.Manager.PokojeTableAdapter.DeletByID(11);
+            //TablesManager.Manager.Pokoje_slownikTableAdapter.DeleteByID(4);
+
+
             InitializeComponent();
             buttonRezerwacjeDeafultList.Add(buttonRezerwacjeZaliczka);
             buttonRezerwacjeDeafultList.Add(buttonRezerwacjeDel);
@@ -170,13 +177,15 @@ namespace PensjonatApp
        
         private void showWindow(Grid grid,List<Button> buttonList)
         {
+     
+
             grid.Height = 580;
             grid.Visibility = Visibility.Visible;
             pokazButtonList(buttonList);
             currentGrid = grid;
             if (grid == gridRezerwacjeDeafult)
                 dataGridRezerwacjeSzukaj.ItemsSource = TablesManager.Manager.RezerwacjeTableAdapter.GetDataRezerwacjeKlienci();
-      
+            
         }
         private void zwinRezerwacje()
         {
@@ -1604,7 +1613,7 @@ namespace PensjonatApp
                     && comboBoxPracownicyDodajStanowisko.SelectedItem != null)
                 {
                     PracownicyHelper.dodajPracownika(textBoxPracownicyDodajImie.Text, textBoxPracownicyDodajNazwisko.Text,
-                        textBoxPracownicyDodajLogin.Text, textBoxPracownicyDodajLogin.Text, 1, stanowiskaIdList[comboBoxPracownicyDodajStanowisko.SelectedIndex]);
+                        textBoxPracownicyDodajLogin.Text, textBoxPracownicyDodajLogin.Text, stanowiskaIdList[comboBoxPracownicyDodajStanowisko.SelectedIndex]);
                     dataGridPracownicyDeafult.ItemsSource = TablesManager.Manager.PracownicyTableAdapter.GetPracownicyStanowiska(); 
                     textBoxPracownicyDodajImie.Text = "";
                     textBoxPracownicyDodajNazwisko.Text = "";
@@ -1795,9 +1804,24 @@ namespace PensjonatApp
        
         }
 
+        //----------------------------------------------ZADANIA----------------------------------------------
+        private void dataGridZadaniaDeafult_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if ((bool)(e.NewValue) == true)
+            {//pojawienie sie pola
+                //dataGridZadaniaDeafult.ItemsSource = TablesManager.Manager.UslugiTableAdapter.GetDataByIdPracownikaPrzedzialCzasu(1, DateTime.Now, DateTime.Now);
+            }
+        }
 
+        private void buttonZadaniaPowrot_Click(object sender, RoutedEventArgs e)
+        {
+            System.Windows.MessageBox.Show("Powrót", "Lulz", MessageBoxButton.OK, MessageBoxImage.Warning);
+        }
 
-
+        private void buttonZadaniaArchiwum_Click(object sender, RoutedEventArgs e)
+        {
+            System.Windows.MessageBox.Show("Wyświetlenie archiwum", "Lulz", MessageBoxButton.OK, MessageBoxImage.Warning);
+        }
 
 
 
