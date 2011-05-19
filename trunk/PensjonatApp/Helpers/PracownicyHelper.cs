@@ -18,7 +18,7 @@ namespace PensjonatApp.Helpers
         /// <param name="id_p"></param>
         /// <param name="id_s"></param>
         /// <returns></returns>
-        public static int dodajPracownika(string imie, string nazwisko, string login, string haslo, int id_p, int? id_s)
+        public static int dodajPracownika(string imie, string nazwisko, string login, string haslo, int? id_s)
         {
             return TablesManager.Manager.PracownicyTableAdapter.InsertQuery(id_s, imie, nazwisko, login, haslo);
         }
