@@ -1808,7 +1808,7 @@ namespace PensjonatApp
         private void dataGridZadaniaDeafult_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             if ((bool)(e.NewValue) == true)
-            {//pojawienie sie pola
+            {
                 //dataGridZadaniaDeafult.ItemsSource = TablesManager.Manager.UslugiTableAdapter.GetDataByIdPracownikaPrzedzialCzasu(1, DateTime.Now, DateTime.Now);
             }
         }
