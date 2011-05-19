@@ -49,6 +49,9 @@ namespace PensjonatApp
         private List<Button> buttonPracownicyBackOkList = new List<Button>();
         private List<Button> buttonStanowiskaDeafultList = new List<Button>();
         private List<Button> buttonStanowiskaBackOkList = new List<Button>();
+        private List<Button> buttonZadaniaDeafultList = new List<Button>();
+        private List<Button> buttonZadaniaBackList = new List<Button>();
+
 
         public static Grid currentGrid;
         public MainWindow()
@@ -128,6 +131,10 @@ namespace PensjonatApp
             buttonStanowiskaBackOkList.Add(buttonStanowiskaOk);
             buttonStanowiskaBackOkList.Add(buttonStanowiskaPowrot);
 
+            buttonZadaniaDeafultList.Add(buttonZadaniaArchiwum);
+            buttonZadaniaBackList.Add(buttonZadaniaPowrot);
+
+
             zwinRezerwacje();
             showWindow(gridRezerwacjeDeafult, buttonRezerwacjeDeafultList);
             zwinPobyty();
@@ -150,6 +157,8 @@ namespace PensjonatApp
             showWindow(gridPracownicyDeafult, buttonPracownicyDeafultList);
             zwinStanowiska();
             showWindow(gridStanowiskaDeafult, buttonStanowiskaDeafultList);
+            zwinZadania();
+            showWindow(gridZadaniaDeafult, buttonZadaniaDeafultList);
 
         }
 
@@ -279,6 +288,13 @@ namespace PensjonatApp
             gridStanowiskaEdycja.Visibility = Visibility.Collapsed;
             zwinButtonList(buttonStanowiskaDeafultList);
             zwinButtonList(buttonStanowiskaBackOkList);
+        }
+        private void zwinZadania()
+        {
+            gridZadaniaDeafult.Visibility = Visibility.Collapsed;
+            gridZadaniaArchiwum.Visibility = Visibility.Collapsed;
+            zwinButtonList(buttonZadaniaDeafultList);
+            zwinButtonList(buttonZadaniaBackList);
         }
 
 //----------------------------------------------REZERWACJE----------------------------------------------
@@ -911,7 +927,7 @@ namespace PensjonatApp
         {
             if ((bool)(e.NewValue) == true)
             {//pojawienie sie pola
-                dataGridPokojeDeafult.ItemsSource = TablesManager.Manager.PokojeTableAdapter.GetData();
+                dataGridPokojeDeafult.ItemsSource = TablesManager.Manager.PokojeTableAdapter.GetDataPokojeStandardy();
             }
         }
         List<int> PokojeIdLst = new List<int>();
@@ -945,7 +961,7 @@ namespace PensjonatApp
             if (textBoxPokojeEdycjaNrPokoju.Text != "" && comboBoxPokojeEdycjaStandard.SelectedItem != null)
             {
                 PokojeHelper.edytujPokoj((int)labelPokojeEdycjaId.Content,PokojeIdLst[comboBoxPokojeEdycjaStandard.SelectedIndex], textBoxPokojeEdycjaNrPokoju.Text);
-                dataGridPokojeDeafult.ItemsSource = TablesManager.Manager.PokojeTableAdapter.GetData();
+                dataGridPokojeDeafult.ItemsSource = TablesManager.Manager.PokojeTableAdapter.GetDataPokojeStandardy();
                 zwinPokoje();
                 showWindow(gridPokojeDeafult, buttonPokojeDeafultList);
             }
@@ -960,7 +976,7 @@ namespace PensjonatApp
             if (textBoxPokojeNrPokoju.Text != "" && comboBoxPokojeStandard.SelectedItem != null)
             {
                 PokojeHelper.dodajPokoj(PokojeIdLst[comboBoxPokojeStandard.SelectedIndex], textBoxPokojeNrPokoju.Text);
-                dataGridPokojeDeafult.ItemsSource = TablesManager.Manager.PokojeTableAdapter.GetData();
+                dataGridPokojeDeafult.ItemsSource = TablesManager.Manager.PokojeTableAdapter.GetDataPokojeStandardy();
                 textBoxPokojeNrPokoju.Text = "";
                 comboBoxPokojeStandard.SelectedItem = null;
             }
@@ -1018,7 +1034,7 @@ namespace PensjonatApp
         }
 
         List<WyposazeniaDS.Wyposazenia_slownikRow> StandPokoiDodajList = new List<WyposazeniaDS.Wyposazenia_slownikRow>();
-        List<PokojeDS.Pokoje_slownikRow> StandPokoiEdytujList = new List<PokojeDS.Pokoje_slownikRow>();
+        List<WyposazeniaDS.Wyposazenia_slownikRow> StandPokoiEdytujList = new List<WyposazeniaDS.Wyposazenia_slownikRow>();
         List<WyposazeniaDS.Wyposazenia_slownikRow> StandPokoiList = new List<WyposazeniaDS.Wyposazenia_slownikRow>();
         List<string> StandPokoiLabelLst = new List<string>();
         private void buttonStandPokoiDodaj_Click(object sender, RoutedEventArgs e)
@@ -1126,9 +1142,9 @@ namespace PensjonatApp
                 labelStandPokoiEdycjaId.Content = selectedRow.id_slownikowe_pokoju;
                 comboBoxStandPokoiEdycjaWyposazenie.SelectedItem = null;
 
-                PokojeDS.Pokoje_slownikDataTable standTable = TablesManager.Manager.Pokoje_slownikTableAdapter.GetDataListaWyposazenByID(selectedRow.id_slownikowe_pokoju);
+                WyposazeniaDS.Wyposazenia_slownikDataTable standTable = TablesManager.Manager.Wyposazenia_slownikTableAdapter.GetDataWyposazeniaSlownikByIdPokojeSlownik(selectedRow.id_slownikowe_pokoju);
 
-                foreach (PokojeDS.Pokoje_slownikRow row in standTable)
+                foreach (WyposazeniaDS.Wyposazenia_slownikRow row in standTable)
                 {
                     StandPokoiEdytujList.Add(row);
                 }
@@ -1804,7 +1820,7 @@ namespace PensjonatApp
        
         }
 
-        //----------------------------------------------ZADANIA----------------------------------------------
+//----------------------------------------------ZADANIA----------------------------------------------
         private void dataGridZadaniaDeafult_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             if ((bool)(e.NewValue) == true)
@@ -1815,12 +1831,14 @@ namespace PensjonatApp
 
         private void buttonZadaniaPowrot_Click(object sender, RoutedEventArgs e)
         {
-            System.Windows.MessageBox.Show("Powrót", "Lulz", MessageBoxButton.OK, MessageBoxImage.Warning);
+            zwinZadania();
+            showWindow(gridZadaniaDeafult, buttonZadaniaDeafultList);
         }
 
         private void buttonZadaniaArchiwum_Click(object sender, RoutedEventArgs e)
         {
-            System.Windows.MessageBox.Show("Wyświetlenie archiwum", "Lulz", MessageBoxButton.OK, MessageBoxImage.Warning);
+            zwinZadania();
+            showWindow(gridZadaniaArchiwum, buttonZadaniaBackList);
         }
 
 
