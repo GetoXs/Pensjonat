@@ -147,6 +147,7 @@
       <DependentUpon>WyposazeniaDS.xsd</DependentUpon>
     </Compile>
     <Compile Include="Helpers\KlienciHelper.cs" />
+    <Compile Include="Helpers\LogowanieHelper.cs" />
     <Compile Include="Helpers\PokojeHelper.cs" />
     <Compile Include="Helpers\PokojeSlownikHelper.cs" />
     <Compile Include="Helpers\PosilkiHelper.cs" />
@@ -158,6 +159,9 @@
     <Compile Include="Helpers\UslugiSlownikHelper.cs" />
     <Compile Include="Helpers\WyposazeniaHelper.cs" />
     <Compile Include="Helpers\WyposazeniaSlownikHelper.cs" />
+    <Compile Include="Logowanie.xaml.cs">
+      <DependentUpon>Logowanie.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Tools\TableAdapetrsManager.cs" />
     <Compile Include="DS\WyposazeniaDS.cs">
       <DependentUpon>WyposazeniaDS.xsd</DependentUpon>
@@ -173,6 +177,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Logowanie.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
