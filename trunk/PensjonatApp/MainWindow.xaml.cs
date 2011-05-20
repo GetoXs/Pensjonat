@@ -1013,7 +1013,9 @@ namespace PensjonatApp
                 MessageBoxResult result = System.Windows.MessageBox.Show("Czy napewno chcesz usunąć pokój nr: " + (string)selectedRow["nr_pokoju"], "Usuwanie wyposażenia", MessageBoxButton.YesNo, MessageBoxImage.Warning);
                 if (result == MessageBoxResult.Yes)
                 {
+                   // PokojeHelper.
                     //USUWANIE
+                    dataGridPokojeDeafult.ItemsSource = TablesManager.Manager.PokojeTableAdapter.GetDataPokojeStandardy();
                 }
             } 
         }
@@ -1042,18 +1044,23 @@ namespace PensjonatApp
             zwinStandPokoi();
             showWindow(gridStandPokoiDodaj, buttonStandPokoiBackOkList);
 
+            comboBoxStandPokoiDodajWyposazenie.ItemsSource = StandPokoiLabelLst;
+            StandPokoiDodajList.Clear();
+            dataGridStandPokoiDodajWyposazenie.ItemsSource = StandPokoiDodajList;
+          
+        }
+        private void comboBoxStandPokoiDodajWyposazenie_Loaded(object sender, RoutedEventArgs e)
+        {
             StandPokoiList.Clear();
+            StandPokoiLabelLst.Clear();
             WyposazeniaDS.Wyposazenia_slownikDataTable standardyTable = TablesManager.Manager.Wyposazenia_slownikTableAdapter.GetData();
             foreach (WyposazeniaDS.Wyposazenia_slownikRow row in standardyTable)
             {
                 StandPokoiList.Add(row);
                 StandPokoiLabelLst.Add(row.opis);
             }
-            comboBoxStandPokoiDodajWyposazenie.ItemsSource = StandPokoiLabelLst;
-            StandPokoiDodajList.Clear();
-            dataGridStandPokoiDodajWyposazenie.ItemsSource = StandPokoiDodajList;
-          
         }
+
         private void comboBoxStandPokoiEdycjaWyposazenie_Loaded(object sender, RoutedEventArgs e)
         {
             comboBoxStandPokoiEdycjaWyposazenie.ItemsSource = StandPokoiLabelLst;
@@ -1118,14 +1125,53 @@ namespace PensjonatApp
         }
         private void buttonStandPokoiDodajWyposazenie_Click(object sender, RoutedEventArgs e)
         {
-            StandPokoiDodajList.Add(StandPokoiList[comboBoxStandPokoiDodajWyposazenie.SelectedIndex]);
+            if(comboBoxStandPokoiDodajWyposazenie.SelectedItem != null)
+                StandPokoiDodajList.Add(StandPokoiList[comboBoxStandPokoiDodajWyposazenie.SelectedIndex]);
             dataGridStandPokoiDodajWyposazenie.Items.Refresh();
         }
-        private void buttonStandPokoiEdycjaWyposazenie_Click(object sender, RoutedEventArgs e)
+        private void buttonStandPokoiDodajWyposazenieUsun_Click(object sender, RoutedEventArgs e)
         {
-            StandPokoiDodajList.Add(StandPokoiList[comboBoxStandPokoiEdycjaWyposazenie.SelectedIndex]);
-            dataGridStandPokoiEdycjaWyposazenie.Items.Refresh();
+            if (comboBoxStandPokoiDodajWyposazenie.SelectedItem != null)
+            {
+                foreach (var row in StandPokoiDodajList)
+                {
+                    if (row.id_wyposazenia == StandPokoiList[comboBoxStandPokoiDodajWyposazenie.SelectedIndex].id_wyposazenia)
+                    {
+                        StandPokoiDodajList.Remove(row);
+                        break;
+                    }
+                }
+            }
+            dataGridStandPokoiDodajWyposazenie.Items.Refresh();
+
         }
+
+        private void buttonStandPokoEdytujWyposazenie_Click(object sender, RoutedEventArgs e)
+        {
+            if (comboBoxStandPokoiEdycjaWyposazenie.SelectedItem != null)
+                StandPokoiEdytujList.Add(StandPokoiList[comboBoxStandPokoiEdycjaWyposazenie.SelectedIndex]);
+            dataGridStandPokoiEdycjaWyposazenie.Items.Refresh();
+
+        }
+
+        private void buttonStandPokoiEdytujWyposazenieUsun_Click(object sender, RoutedEventArgs e)
+        {
+            if (comboBoxStandPokoiEdycjaWyposazenie.SelectedItem != null)
+            {
+                foreach(var row in StandPokoiEdytujList)
+                {
+                    if(row.id_wyposazenia ==  StandPokoiList[comboBoxStandPokoiEdycjaWyposazenie.SelectedIndex].id_wyposazenia)
+                    {
+                        StandPokoiEdytujList.Remove(row);
+                        break;
+                    }
+                    
+                }
+            }
+            dataGridStandPokoiEdycjaWyposazenie.Items.Refresh();
+
+        } 
+
 
         private void buttonStandPokoiEdytuj_Click(object sender, RoutedEventArgs e)
         {
@@ -1140,13 +1186,13 @@ namespace PensjonatApp
                 textBoxStandPokoiEdycjaCena.Text = selectedRow.cena.ToString();
                 textBoxStandPokoiEdycjaIlOsob.Text = selectedRow.ilosc_osob.ToString();
                 labelStandPokoiEdycjaId.Content = selectedRow.id_slownikowe_pokoju;
-                comboBoxStandPokoiEdycjaWyposazenie.SelectedItem = null;
+
                 
                 WyposazeniaDS.Wyposazenia_slownikDataTable standTable = TablesManager.Manager.Wyposazenia_slownikTableAdapter.GetDataListaWyposazenByID(selectedRow.id_slownikowe_pokoju);
 
                 foreach (WyposazeniaDS.Wyposazenia_slownikRow row in standTable)
                 {
-                    //StandPokoiEdytujList.Add(row);
+                    StandPokoiEdytujList.Add(row);
                 }
                 dataGridStandPokoiEdycjaWyposazenie.ItemsSource = StandPokoiEdytujList;
                // dataGridStandPokoiEdycjaWyposazenie.ItemsSource = TablesManager.Manager.Wyposazenia_slownikTableAdapter.GetDataListaWyposazenByID(selectedRow.id_slownikowe_pokoju);
@@ -1166,8 +1212,9 @@ namespace PensjonatApp
                 MessageBoxResult result = System.Windows.MessageBox.Show("Czy napewno chcesz usunąć: " + (string)selectedRow["dodatkowy_opis"], "Usuwanie standardu pokoi", MessageBoxButton.YesNo, MessageBoxImage.Warning);
                 if (result == MessageBoxResult.Yes)
                 {
-                     //PokojeSlownikHelper.kasujRabat((int)selectedRow["id_rabatu"]);
-                    //dataGridRabatyDeafult.ItemsSource = TablesManager.Manager.RabatyTableAdapter.GetData();
+                    //PokojeSlownikHelper.PokojeSlownikHelper.
+                    dataGridStandPokoiDeafult.ItemsSource = TablesManager.Manager.Pokoje_slownikTableAdapter.GetData();
+
                 }
             }
             else
@@ -1840,7 +1887,6 @@ namespace PensjonatApp
             zwinZadania();
             showWindow(gridZadaniaArchiwum, buttonZadaniaBackList);
         }
-
 
 
 
