@@ -440,7 +440,14 @@ namespace PensjonatApp
             }
         }
 
-        //----------------------------------------------REZERWACJE->DODAJ----------------------------------------------
+        //----------------------------------------------REZERWACJE->DODAJ---------------------------------------------- 
+        List<string> RezerwacjePokojeStringList = new List<string>();
+        List<PokojeDS.PokojeRow> RezerwacjePokojeList = new List<PokojeDS.PokojeRow>();
+        List<PokojeDS.PokojeRow> RezerwacjePokojeDodajList = new List<PokojeDS.PokojeRow>();
+        private void dataGridRezerwacjeAddWybranePokoje_Loaded(object sender, RoutedEventArgs e)
+        {
+            dataGridRezerwacjeAddWybranePokoje.ItemsSource = RezerwacjePokojeDodajList;
+        }
         private void buttonRezerwacjeAdd_Click(object sender, RoutedEventArgs e)
         {
             zwinRezerwacje();
@@ -448,7 +455,32 @@ namespace PensjonatApp
         }
         private void textBoxRezerwacjeAddIloscOsob_TextChanged(object sender, TextChangedEventArgs e)
         {
+
             labelRezerwacjeAddPozostaloOsob.Content = textBoxRezerwacjeAddIlOsob.Text;
+        }
+        
+        private void buttonRezerwacjeAddDodajPokoj_Click(object sender, RoutedEventArgs e)
+        {
+            if (comboBoxRezerwacjeAddPokoje.SelectedItem != null && !RezerwacjePokojeDodajList.Contains(RezerwacjePokojeList[comboBoxRezerwacjeAddPokoje.SelectedIndex]))
+                RezerwacjePokojeDodajList.Add(RezerwacjePokojeList[comboBoxRezerwacjeAddPokoje.SelectedIndex]);
+            dataGridRezerwacjeAddWybranePokoje.ItemsSource = RezerwacjePokojeDodajList;
+            dataGridRezerwacjeAddWybranePokoje.Items.Refresh();
+        }
+
+        private void buttonRezerwacjeAddUsunPokoj_Click(object sender, RoutedEventArgs e)
+        {
+            if (comboBoxRezerwacjeAddPokoje.SelectedItem != null)
+            {
+                foreach (var row in RezerwacjePokojeDodajList)
+                {
+                    if (row.id_pokoju == RezerwacjePokojeList[comboBoxRezerwacjeAddPokoje.SelectedIndex].id_pokoju)
+                    {
+                        RezerwacjePokojeDodajList.Remove(row);
+                        break;
+                    }
+                }
+            }
+            dataGridRezerwacjeAddWybranePokoje.Items.Refresh();
         }
         private void sprawdzPokoje()
         {
@@ -459,12 +491,21 @@ namespace PensjonatApp
                 if (terminOd > terminDo)
                 {
                     System.Windows.MessageBox.Show("Niepoprawny termin.\nTermin zakończenie nie może być poźniejszy od terminu rozpoczęcia.", "Dodawanie rezerwacji", MessageBoxButton.OK, MessageBoxImage.Error);
-                    datePickerRezeracjeAddTerminOd.SelectedDate = null; 
+                    datePickerRezeracjeAddTerminOd.SelectedDate = null;
                     datePickerRezerwacjeAddTerminDo.SelectedDate = null;
 
                 }
                 else
-                    dataGridRezerwacjeAddDostepnePokoje.ItemsSource = TablesManager.Manager.PokojeTableAdapter.GetDataWolnePokojeByTermin(terminOd, terminOd, terminDo, terminDo, terminOd, terminDo);      
+                {
+                    PokojeDS.PokojeDataTable pokojeTable =  TablesManager.Manager.PokojeTableAdapter.GetDataWolnePokojeStandardy(terminOd, terminOd, terminDo, terminDo, terminOd, terminDo);
+                    foreach (PokojeDS.PokojeRow row in pokojeTable)
+                    {
+                        RezerwacjePokojeList.Add(row);
+                        RezerwacjePokojeStringList.Add(row.nr_pokoju + " | ");
+                    }
+                    comboBoxRezerwacjeAddPokoje.ItemsSource = RezerwacjePokojeStringList;
+                }
+                    ;  //;      
           
             }
         }
@@ -482,13 +523,6 @@ namespace PensjonatApp
             if ((bool)(e.NewValue) == true)
             {//pojawienie sie pola
 
-            }
-        }
-        private void dataGridRezerwacjeAddDostepnePokoje_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (dataGridRezerwacjeAddDostepnePokoje.SelectedItem != null)
-            {
-                PokojeDS.PokojeRow pok = (PokojeDS.PokojeRow)((DataRowView)dataGridRezerwacjeAddDostepnePokoje.SelectedItem).Row;
             }
         }
         //----------------------------------------------REZERWACJE->DODAJ->KLIENCI----------------------------------------------
@@ -1123,6 +1157,7 @@ namespace PensjonatApp
                 }
             }
         }
+
         private void buttonStandPokoiDodajWyposazenie_Click(object sender, RoutedEventArgs e)
         {
             if(comboBoxStandPokoiDodajWyposazenie.SelectedItem != null)
@@ -1887,6 +1922,10 @@ namespace PensjonatApp
             zwinZadania();
             showWindow(gridZadaniaArchiwum, buttonZadaniaBackList);
         }
+
+
+
+
 
 
 
