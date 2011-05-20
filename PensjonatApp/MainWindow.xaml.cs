@@ -52,18 +52,25 @@ namespace PensjonatApp
         private List<Button> buttonZadaniaDeafultList = new List<Button>();
         private List<Button> buttonZadaniaBackList = new List<Button>();
 
+        private int id;
+        private string imie;
+        private string nazwisko;
+        private string stanowisko;
 
         public static Grid currentGrid;
-        public MainWindow()
+        public MainWindow(int id, string imie, string nazwisko, string stanowisko)
         {
-            //WyposazeniaDS.Wyposazenia_slownikDataTable tmp = TablesManager.Manager.Wyposazenia_slownikTableAdapter.GetDataListaWyposazenByIdSlownikowePokoju(4);
-            //PokojeDS.Pokoje_slownikDataTable lol = TablesManager.Manager.Pokoje_slownikTableAdapter.GetDataListaWyposazenByID(4);
-            //PokojeHelper.dodajPokoj(4, "10");
-            //TablesManager.Manager.PokojeTableAdapter.DeletByID(11);
-            //TablesManager.Manager.Pokoje_slownikTableAdapter.DeleteByID(4);
-
-
             InitializeComponent();
+
+            this.id = id;
+            this.imie = imie;
+            this.nazwisko = nazwisko;
+            this.stanowisko = stanowisko;
+
+            this.labelLoginImie.Content = this.imie;
+            this.LabelLoginNazwisko.Content = this.nazwisko;
+            this.labelLoginId.Content = this.id;
+
             buttonRezerwacjeDeafultList.Add(buttonRezerwacjeZaliczka);
             buttonRezerwacjeDeafultList.Add(buttonRezerwacjeDel);
             buttonRezerwacjeDeafultList.Add(buttonRezerwacjeAdd);
@@ -497,13 +504,13 @@ namespace PensjonatApp
                 }
                 else
                 {
-                    PokojeDS.PokojeDataTable pokojeTable =  TablesManager.Manager.PokojeTableAdapter.GetDataWolnePokojeStandardy(terminOd, terminOd, terminDo, terminDo, terminOd, terminDo);
+                    /*PokojeDS.PokojeDataTable pokojeTable =  TablesManager.Manager.PokojeTableAdapter.GetDataWolnePokojeStandardy(terminOd, terminOd, terminDo, terminDo, terminOd, terminDo);
                     foreach (PokojeDS.PokojeRow row in pokojeTable)
                     {
                         RezerwacjePokojeList.Add(row);
                         RezerwacjePokojeStringList.Add(row.nr_pokoju + " | ");
                     }
-                    comboBoxRezerwacjeAddPokoje.ItemsSource = RezerwacjePokojeStringList;
+                    comboBoxRezerwacjeAddPokoje.ItemsSource = RezerwacjePokojeStringList;*/
                 }
                     ;  //;      
           
@@ -1907,7 +1914,7 @@ namespace PensjonatApp
         {
             if ((bool)(e.NewValue) == true)
             {
-                //dataGridZadaniaDeafult.ItemsSource = TablesManager.Manager.UslugiTableAdapter.GetDataByIdPracownikaPrzedzialCzasu(1, DateTime.Now, DateTime.Now);
+                dataGridZadaniaDeafult.ItemsSource = TablesManager.Manager.UslugiTableAdapter.GetDataByIdPracownikaPrzedzialCzasu(this.id, DateTime.Now, DateTime.Now);
             }
         }
 
