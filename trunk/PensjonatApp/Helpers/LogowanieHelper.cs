@@ -9,7 +9,12 @@ namespace PensjonatApp.Helpers
 {
     class LogowanieHelper
     {
-        public static string zalogujPracownika(string login, string haslo)
+        public static int ID;
+        public static string Imie;
+        public static string Nazwisko;
+        public static string Stanowisko;
+
+        public static void zalogujPracownika(string login, string haslo)
         {
             int id_stanowiska;
             PracownicyDS.PracownicyDataTable pracownik = TablesManager.Manager.PracownicyTableAdapter.GetPracownicyByLoginHaslo(login, haslo);
@@ -18,7 +23,10 @@ namespace PensjonatApp.Helpers
             else
                 throw new Exception();
             PracownicyDS.Pracownicy_slownikDataTable stanowisko = TablesManager.Manager.Pracownicy_slownikTableAdapter.GetDataByID(id_stanowiska);
-            return stanowisko[0].nazwa;
+            ID = pracownik[0].id_pracownika;
+            Imie = pracownik[0].imie;
+            Nazwisko = pracownik[0].nazwisko;
+            Stanowisko = stanowisko[0].nazwa;
         }
     }
 }
