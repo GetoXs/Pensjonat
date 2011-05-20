@@ -1679,7 +1679,7 @@ WHERE        (id_pokoju NOT IN
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
-        public virtual int Update1(global::System.Nullable<int> id_slownikowe_pokoju, string nr_pokoju, int Original_id_pokoju) {
+        public virtual int UpdateById(global::System.Nullable<int> id_slownikowe_pokoju, string nr_pokoju, int Original_id_pokoju) {
             global::System.Data.Odbc.OdbcCommand command = this.CommandCollection[6];
             if ((id_slownikowe_pokoju.HasValue == true)) {
                 command.Parameters[0].Value = ((int)(id_slownikowe_pokoju.Value));

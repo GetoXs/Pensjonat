@@ -13,7 +13,7 @@ namespace PensjonatApp.Helpers
         /// Dodaje pokoj.
         /// Wymagane parametry to id_slownikowe_pokoju wskazujace klase/kategorie pokoju oraz nr_pokoju.
         /// </summary>
-        public static int dodajPokoj(int id_slownikowe_pokoju, string nr_pokoju)
+        public static int dodajPokoj(int? id_slownikowe_pokoju, string nr_pokoju)
         {
             return TablesManager.Manager.PokojeTableAdapter.Insert(id_slownikowe_pokoju, nr_pokoju);
         }
@@ -24,10 +24,12 @@ namespace PensjonatApp.Helpers
         /// </summary>
         public static int edytujPokoj(int id_pokoju, int id_slownikowe_pokoju, string nr_pokoju)
         {
-            PokojeDS.PokojeDataTable doZmiany = TablesManager.Manager.PokojeTableAdapter.GetDataByID(id_pokoju);
-            doZmiany[0].id_slownikowe_pokoju = id_slownikowe_pokoju;
-            doZmiany[0].nr_pokoju = nr_pokoju;
-            return TablesManager.Manager.PokojeTableAdapter.Update(doZmiany);
+			return TablesManager.Manager.PokojeTableAdapter.UpdateById(id_slownikowe_pokoju, nr_pokoju, id_slownikowe_pokoju);
         }
+
+		public static int kasujPokoj(int idPokoju)
+		{
+			return TablesManager.Manager.PokojeTableAdapter.DeletByID(idPokoju);
+		}
     }
 }
