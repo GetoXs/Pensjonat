@@ -66,7 +66,7 @@
               <Mapping SourceColumn="data" DataSetColumn="data" />
             </Mappings>
             <Sources>
-              <DbSource ConnectionRef="DB (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="DeleteQueryById" Modifier="Public" Name="DeleteQueryById" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy2" UserSourceName="DeleteQueryById">
+              <DbSource ConnectionRef="DB (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="DeleteQueryById" Modifier="Public" Name="DeleteQueryById" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="DeleteQueryById">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>DELETE FROM Posilki
@@ -101,7 +101,7 @@ WHERE        (id_pobytu = ?)</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="DB (Settings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="GetSumsPosilkiByTermin" Modifier="Public" Name="GetSumsPosilkiByTermin" QueryType="Scalar" ScalarCallRetval="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="GetSumsPosilkiByTermin">
+              <DbSource ConnectionRef="DB (Settings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="GetSumsPosilkiByTermin" Modifier="Public" Name="GetSumsPosilkiByTermin" QueryType="Scalar" ScalarCallRetval="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="GetSumsPosilkiByTermin">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT COUNT(Posilki_slownik.sniadanie) AS Śniadania, COUNT(Posilki_slownik.drugie_sniadanie) AS [Drugie śniadania], COUNT(Posilki_slownik.lunch) AS Lunche, 
@@ -117,7 +117,7 @@ HAVING (Posilki.data = ?)</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="DB (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="UpdateQuery" Modifier="Public" Name="UpdateQuery" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="UpdateQuery">
+              <DbSource ConnectionRef="DB (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="UpdateQuery" Modifier="Public" Name="UpdateQuery" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy2" UserSourceName="UpdateQuery">
                 <UpdateCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>UPDATE       Posilki
@@ -221,7 +221,7 @@ WHERE        (id_posilku = ?)</CommandText>
               <Mapping SourceColumn="podwieczorek" DataSetColumn="podwieczorek" />
             </Mappings>
             <Sources>
-              <DbSource ConnectionRef="DB (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="DeleteQueryById" Modifier="Public" Name="DeleteQueryById" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="DeleteQueryById">
+              <DbSource ConnectionRef="DB (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="DeleteQueryById" Modifier="Public" Name="DeleteQueryById" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="DeleteQueryById">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>DELETE FROM Posilki_slownik
@@ -314,7 +314,7 @@ WHERE        (sniadanie = 1)</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="DB (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="UpdateQuery" Modifier="Public" Name="UpdateQuery" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="UpdateQuery">
+              <DbSource ConnectionRef="DB (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="UpdateQuery" Modifier="Public" Name="UpdateQuery" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="UpdateQuery">
                 <UpdateCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>UPDATE       Posilki_slownik
@@ -322,7 +322,7 @@ SET                cena = ?, nazwa_opcji = ?, obiad = ?, sniadanie = ?, kolacja 
 WHERE        (id_slownikowe_posilku = ?)</CommandText>
                     <Parameters>
                       <Parameter AllowDbNull="true" AutogeneratedName="Param1" ColumnName="cena" DataSourceName="[C:\USERS\SIWY\DESKTOP\STUDIA\BD\PROJ\REP\baza].Posilki_slownik" DataTypeServer="CURRENCY" DbType="Decimal" Direction="Input" ParameterName="cena" Precision="19" ProviderType="Numeric" Scale="4" Size="0" SourceColumn="cena" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="Param2" ColumnName="nazwa_opcji" DataSourceName="[C:\USERS\SIWY\DESKTOP\STUDIA\BD\PROJ\REP\baza].Posilki_slownik" DataTypeServer="VARCHAR" DbType="String" Direction="Input" ParameterName="nazwa_opcji" Precision="0" ProviderType="NVarChar" Scale="0" Size="1024" SourceColumn="nazwa_opcji" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="Param2" ColumnName="nazwa_opcji" DataSourceName="[C:\USERS\SIWY\DESKTOP\STUDIA\BD\PROJ\REP\baza].Posilki_slownik" DataTypeServer="VARCHAR" DbType="String" Direction="Input" ParameterName="nazwa_opcji" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="nazwa_opcji" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="false" AutogeneratedName="Param3" ColumnName="obiad" DataSourceName="[C:\USERS\SIWY\DESKTOP\STUDIA\BD\PROJ\REP\baza].Posilki_slownik" DataTypeServer="BIT" DbType="Boolean" Direction="Input" ParameterName="obiad" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="obiad" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="false" AutogeneratedName="Param4" ColumnName="sniadanie" DataSourceName="[C:\USERS\SIWY\DESKTOP\STUDIA\BD\PROJ\REP\baza].Posilki_slownik" DataTypeServer="BIT" DbType="Boolean" Direction="Input" ParameterName="sniadanie" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="sniadanie" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="false" AutogeneratedName="Param5" ColumnName="kolacja" DataSourceName="[C:\USERS\SIWY\DESKTOP\STUDIA\BD\PROJ\REP\baza].Posilki_slownik" DataTypeServer="BIT" DbType="Boolean" Direction="Input" ParameterName="kolacja" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="kolacja" SourceColumnNullMapping="false" SourceVersion="Current" />
