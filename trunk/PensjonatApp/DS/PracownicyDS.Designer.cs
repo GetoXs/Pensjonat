@@ -1471,14 +1471,13 @@ WHERE  Uslugi.id_slownikowe_uslugi = Uslugi_slownik.id_slownikowe_uslugi AND Usl
             this._commandCollection[3].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("termin_start", global::System.Data.Odbc.OdbcType.DateTime, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "termin_start", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[4] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[4].Connection = this.Connection;
-            this._commandCollection[4].CommandText = @"SELECT DISTINCT Pracownicy.imie, Pracownicy.nazwisko, Pracownicy.id_pracownika , Pracownicy.id_stanowiska, Pracownicy.login
+            this._commandCollection[4].CommandText = @"SELECT Pracownicy.imie, Pracownicy.nazwisko, Pracownicy.id_pracownika, Pracownicy.id_stanowiska, Pracownicy.login
 FROM     Uslugi, Pracownicy, Uslugi_slownik
 WHERE  Uslugi.id_pracownika = Pracownicy.id_pracownika AND Uslugi.id_slownikowe_uslugi = Uslugi_slownik.id_slownikowe_uslugi AND 
-                  Pracownicy.id_stanowiska = Uslugi_slownik.id_stanowiska AND (Uslugi.id_pracownika NOT IN
+                  Pracownicy.id_stanowiska = Uslugi_slownik.id_stanowiska AND (Pracownicy.id_pracownika NOT IN
                       (SELECT id_pracownika
                        FROM      Uslugi Uslugi_1
-                       WHERE   (termin_start <= ?) AND (termin_koniec >= ?))) AND (Uslugi.id_slownikowe_uslugi = ?)
-";
+                       WHERE   (termin_start <= ?) AND (termin_koniec >= ?))) AND (Uslugi.id_slownikowe_uslugi = ?)";
             this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[4].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_slownikowe_uslugi", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_slownikowe_uslugi", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[4].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Param2", global::System.Data.Odbc.OdbcType.DateTime, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "", global::System.Data.DataRowVersion.Current, false, null));
