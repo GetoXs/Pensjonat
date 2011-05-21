@@ -290,7 +290,7 @@
                             </DataGrid.Columns> 
                         </DataGrid>
                         <Label Content="Aktualne usługi:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,133,0,0" Name="label46" Padding="2" VerticalAlignment="Top" />
-                        <Button Content="Usuń" Height="25" Margin="0,133,12,0" Name="button1" VerticalAlignment="Top" HorizontalAlignment="Right" Width="50" />
+                        <Button Content="Usuń" Height="25" Margin="0,133,12,0" Name="buttonPobytyUslugiUsun" VerticalAlignment="Top" HorizontalAlignment="Right" Width="50" Click="buttonPobytyUslugiUsun_Click" />
                         <GroupBox Header="Dodaj usługę" Height="189" HorizontalAlignment="Left" Margin="35,298,0,0" Name="groupBox1" VerticalAlignment="Top" Width="535">
                             <Grid Width="529" Height="163">
                                 <Label Content="Wybierz usługę:" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,13,0,0" Name="label48" Padding="2" VerticalAlignment="Top" />
@@ -299,7 +299,7 @@
                                 <DatePicker Name="datePickerPobytyServicesTerminOd" Height="25" HorizontalAlignment="Left" Margin="150,43,0,0" VerticalAlignment="Top" Width="150" IsEnabled="False" SelectedDateChanged="datePickerPobytyServicesTerminOd_SelectedDateChanged" />
                                 <Label Content="Wybierz pracownika:" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,81,0,0" Name="label81" Padding="2" VerticalAlignment="Top" />
                                 <ComboBox Name="comboBoxPobytyPracownicy" Height="23" HorizontalAlignment="Left" ItemsSource="{Binding}" Margin="150,78,0,0" VerticalAlignment="Top" Width="150" IsEnabled="False"></ComboBox>
-                                <Button Name="buttonPobytyServicesAdd" Content="Dodaj" Height="23" HorizontalAlignment="Left" Margin="225,115,0,0" VerticalAlignment="Top" Width="75" />
+                                <Button Name="buttonPobytyServicesAdd" Content="Dodaj" Height="23" HorizontalAlignment="Left" Margin="225,115,0,0" VerticalAlignment="Top" Width="75" Click="buttonPobytyServicesAdd_Click" />
                             </Grid>
                         </GroupBox>
                     </Grid>

@@ -677,6 +677,7 @@ namespace PensjonatApp
 
         //----------------------------------------------POBYTY->USŁUGI----------------------------------------------
         List<int> PobytyUslugiIdList = new List<int>();
+        List<int> PobytyUslugiIdPracownikaList = new List<int>();
         private void buttonPobytyServices_Click(object sender, RoutedEventArgs e)
         {
             if (dataGridPobytySzukaj.SelectedItem != null)
@@ -696,7 +697,7 @@ namespace PensjonatApp
                 labelPobytyServicesKlient.Content = (string)selectedRow["imie"] + ' ' + (string)selectedRow["nazwisko"];
                 labelPobytyServicesPokoj.Content = (string)selectedRow["nr_pokoju"];
                 labelPobytyServicesId.Content = selectedRow.id_pobytu;
-                //dataGridPobytyUslugi.ItemsSource = TablesManager.Manager.UslugiTableAdapter.GetDataUslugiUslugi_slownikByID_pobytu(selectedRow.id_pobytu);
+                dataGridPobytyUslugi.ItemsSource = TablesManager.Manager.UslugiTableAdapter.GetDataUslugiUslugi_slownikByID_pobytu(selectedRow.id_pobytu);
            }
             else  
                 System.Windows.MessageBox.Show("Najpierw wybierz pobyt.", "Dodawanie usługi.", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -716,13 +717,23 @@ namespace PensjonatApp
             comboBoxPobytyPracownicy.ItemsSource = lst;
             DateTime koniec = (DateTime)datePickerPobytyServicesTerminOd.SelectedDate;
             koniec = koniec.AddDays(5.0);
-            /*PracownicyDS.PracownicyDataTable pracownicyTable = UslugiHelper.znajdzWolnegoPracownika(datePickerPobytyServicesTerminOd.SelectedDate, koniec, comboBoxPobytyUslugi.SelectedIndex);//TablesManager.Manager.PracownicyTableAdapter.
-                GetDataPracownicyWykonujacyUslugeWPodanymTerminie(PobytyUslugiIdList[comboBoxPobytyUslugi.SelectedIndex], koniec, datePickerPobytyServicesTerminOd.SelectedDate);
+            PracownicyDS.PracownicyDataTable pracownicyTable = UslugiHelper.znajdzWolnegoPracownika(datePickerPobytyServicesTerminOd.SelectedDate, koniec, comboBoxPobytyUslugi.SelectedIndex);//TablesManager.Manager.PracownicyTableAdapter.
+               // GetDataPracownicyWykonujacyUslugeWPodanymTerminie(PobytyUslugiIdList[comboBoxPobytyUslugi.SelectedIndex], koniec, datePickerPobytyServicesTerminOd.SelectedDate);
 
             foreach (PracownicyDS.PracownicyRow row in pracownicyTable)
             {
                 lst.Add(row.imie + " " + row.nazwisko);
-            }*/
+                PobytyUslugiIdPracownikaList.Add(row.id_pracownika);
+            }
+
+        }
+        private void buttonPobytyServicesAdd_Click(object sender, RoutedEventArgs e)
+        {
+            if(comboBoxPobytyUslugi.SelectedItem!=null && datePickerPobytyServicesTerminOd.SelectedDate != null && comboBoxPobytyPracownicy.SelectedItem!=null)
+                UslugiHelper.przydzielPracownika(PobytyUslugiIdList[comboBoxPobytyUslugi.SelectedIndex], PobytyUslugiIdPracownikaList[comboBoxPobytyPracownicy.SelectedIndex]);
+            else
+                System.Windows.MessageBox.Show("Wybierz usługę.", "Anulowanie usługi", MessageBoxButton.OK, MessageBoxImage.Warning);
+ 
 
         }
 
@@ -781,7 +792,18 @@ namespace PensjonatApp
 
         }
 
-       
+
+        private void buttonPobytyUslugiUsun_Click(object sender, RoutedEventArgs e)
+        {
+           
+            if (dataGridPobytyUslugi.SelectedItem != null)
+            {
+                UslugiDS.UslugiRow selectedRow = (UslugiDS.UslugiRow)((DataRowView)dataGridPobytyUslugi.SelectedItem).Row;
+                UslugiHelper.usunUsluge(selectedRow.id_uslugi);
+            }
+        }
+
+
 
         //----------------------------------------------POBYTY->PODSUMOWANIE----------------------------------------------
         private void buttonPobytyDetails_Click(object sender, RoutedEventArgs e)
