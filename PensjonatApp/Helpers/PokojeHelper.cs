@@ -27,7 +27,10 @@ namespace PensjonatApp.Helpers
 			return TablesManager.Manager.PokojeTableAdapter.UpdateById(id_slownikowe_pokoju, nr_pokoju, id_slownikowe_pokoju);
         }
 
-		public static int kasujPokoj(int idPokoju)
+        /// <summary>
+        /// Usuwa pokoj.
+        /// </summary>
+		public static int usunPokoj(int idPokoju)
 		{
 			return TablesManager.Manager.PokojeTableAdapter.DeletByID(idPokoju);
 		}
