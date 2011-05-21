@@ -2344,10 +2344,10 @@ WHERE  Uslugi_slownik.id_stanowiska = Pracownicy_slownik.id_stanowiska AND (Uslu
             this._commandCollection[2].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_slownikowe_uslugi", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_slownikowe_uslugi", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[3] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = @"SELECT Uslugi_slownik.id_slownikowe_uslugi AS Expr4, Uslugi_slownik.cena, Uslugi_slownik.nazwa AS nazwaUslugi, Uslugi_slownik.opis AS opisUslugi, 
-                  Uslugi_slownik.id_stanowiska AS Expr3, Pracownicy_slownik.id_stanowiska, Pracownicy_slownik.nazwa, Pracownicy_slownik.opis
-FROM     Uslugi_slownik, Pracownicy_slownik
-WHERE  Uslugi_slownik.id_stanowiska = Pracownicy_slownik.id_stanowiska";
+            this._commandCollection[3].CommandText = @"SELECT        Uslugi_slownik.id_slownikowe_uslugi, Uslugi_slownik.cena, Uslugi_slownik.nazwa AS nazwaUslugi, Uslugi_slownik.opis AS opisUslugi, 
+                         Pracownicy_slownik.nazwa, Pracownicy_slownik.opis, Uslugi_slownik.id_stanowiska
+FROM            Uslugi_slownik, Pracownicy_slownik
+WHERE        Uslugi_slownik.id_stanowiska = Pracownicy_slownik.id_stanowiska";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[4] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[4].Connection = this.Connection;
