@@ -38,9 +38,9 @@ namespace PensjonatApp.Helpers
             return 1;
         }
 		/// <summary>
-		/// Kasuje klase pokoi
+        /// Usuwa klase pokoi (slownik).
 		/// </summary>
-		public static int kasujKlasePokoi(int id_slownikowe_pokoju)
+		public static int usunKlasePokoi(int id_slownikowe_pokoju)
 		{
 			TablesManager.Manager.WyposazeniaTableAdapter.DeleteByID(id_slownikowe_pokoju);
 			return TablesManager.Manager.Pokoje_slownikTableAdapter.DeleteByID(id_slownikowe_pokoju);
