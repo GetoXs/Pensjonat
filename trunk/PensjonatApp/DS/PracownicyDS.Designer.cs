@@ -1473,11 +1473,13 @@ WHERE  Uslugi.id_slownikowe_uslugi = Uslugi_slownik.id_slownikowe_uslugi AND Usl
             this._commandCollection[4].Connection = this.Connection;
             this._commandCollection[4].CommandText = @"SELECT Pracownicy.imie, Pracownicy.nazwisko, Pracownicy.id_pracownika, Pracownicy.id_stanowiska, Pracownicy.login
 FROM     Uslugi, Pracownicy, Uslugi_slownik
-WHERE  Uslugi.id_pracownika = Pracownicy.id_pracownika AND Uslugi.id_slownikowe_uslugi = Uslugi_slownik.id_slownikowe_uslugi AND 
-                  Pracownicy.id_stanowiska = Uslugi_slownik.id_stanowiska AND (Pracownicy.id_pracownika NOT IN
+WHERE 
+(Uslugi_slownik.id_slownikowe_uslugi = ?) AND
+Pracownicy.id_stanowiska = Uslugi_slownik.id_stanowiska AND  
+(Pracownicy.id_pracownika NOT IN
                       (SELECT id_pracownika
                        FROM      Uslugi Uslugi_1
-                       WHERE   (termin_start <= ?) AND (termin_koniec >= ?))) AND (Uslugi.id_slownikowe_uslugi = ?)";
+                       WHERE   (termin_start <= ?) AND (termin_koniec >= ?))) ";
             this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[4].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_slownikowe_uslugi", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_slownikowe_uslugi", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[4].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Param2", global::System.Data.Odbc.OdbcType.DateTime, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "", global::System.Data.DataRowVersion.Current, false, null));
@@ -1611,14 +1613,9 @@ WHERE  Pracownicy.id_stanowiska = Pracownicy_slownik.id_stanowiska AND (UCASE(Pr
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual PracownicyDS.PracownicyDataTable GetIdPracownikaWolny(global::System.Nullable<int> id_slownikowe_uslugi, global::System.Nullable<global::System.DateTime> Param2, global::System.Nullable<global::System.DateTime> Param3) {
+        public virtual PracownicyDS.PracownicyDataTable GetIdPracownikaWolny(int id_slownikowe_uslugi, global::System.Nullable<global::System.DateTime> Param2, global::System.Nullable<global::System.DateTime> Param3) {
             this.Adapter.SelectCommand = this.CommandCollection[4];
-            if ((id_slownikowe_uslugi.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[0].Value = ((int)(id_slownikowe_uslugi.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
-            }
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(id_slownikowe_uslugi));
             if ((Param2.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[1].Value = ((System.DateTime)(Param2.Value));
             }
