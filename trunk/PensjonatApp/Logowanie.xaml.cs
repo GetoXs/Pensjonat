@@ -29,17 +29,14 @@ namespace PensjonatApp
 
         private void button1_Click(object sender, RoutedEventArgs e)
         {
-            try
+            if (LogowanieHelper.zalogujPracownika(textBox1.Text, passwordBox1.Password))
             {
-                LogowanieHelper.zalogujPracownika(textBox1.Text, passwordBox1.Password);
                 MainWindow oknoGlowne = new MainWindow(LogowanieHelper.ID, LogowanieHelper.Imie, LogowanieHelper.Nazwisko, LogowanieHelper.Stanowisko);
                 this.Close();
                 oknoGlowne.ShowDialog();
             }
-            catch
-            {
+            else
                 System.Windows.MessageBox.Show("Wprowadzono błędne dane!", "Logowanie", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
         }
     }
 }
