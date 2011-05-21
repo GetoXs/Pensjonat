@@ -145,30 +145,30 @@ namespace PensjonatApp.Helpers
         /// Czy pokoj jest wolny w danym retminie?
         /// </summary>
         /// <returns>czy wolny- bool</returns>
-        public static bool czyPokojWolny(int id_pokoju, DateTime start_pobytu, DateTime koniec_pobytu)
-        {
-            PokojeDS.PokojeDataTable tabPo = this.pobierzPokojeWolne(start_pobytu, koniec_pobytu);
-            if (tabPo.Count == 0)
-                return false;
-            else
-            {
-                bool jest = false;
-                foreach (PokojeDS.PokojeRow pokoj in tabPo)
-                {
-                    if (pokoj.id_pokoju == id_pokoju)
-                    {
-                        jest = true;
-                        break;
-                    }
-                }
+         public static bool czyPokojWolny(int id_pokoju, DateTime start_pobytu, DateTime koniec_pobytu)
+         {
+             PokojeDS.PokojeDataTable tabPo = pobierzPokojeWolne(start_pobytu, koniec_pobytu);
+             if (tabPo.Count == 0)
+                 return false;
+             else
+             {
+                 bool jest = false;
+                 foreach (PokojeDS.PokojeRow pokoj in tabPo)
+                 {
+                     if (pokoj.id_pokoju == id_pokoju)
+                     {
+                         jest = true;
+                         break;
+                     }
+                 }
 
-                if (jest)
-                    return true;
-                else
-                    return false;
-            }
-        }
-
+                 if (jest)
+                     return true;
+                 else
+                     return false;
+             }
+         }
+         
         /// <summary>
         /// Sprawdzanie czy pobyt jest aktualny
         /// Na podstawie wystawienia rachunku.
@@ -255,7 +255,7 @@ namespace PensjonatApp.Helpers
             return TablesManager.Manager.PosilkiTableAdapter.Insert(id_pobytu, id_slownikowe_posilku, termin);
 
         }
-
+        
         /// <summary>
         /// Tworzy kompletne dodanie klienta który przychodzi z ulicy i chce się zakwaterować, pobiera id_klinta, id_pokokju oraz termin zakwaterowania
         /// </summary>

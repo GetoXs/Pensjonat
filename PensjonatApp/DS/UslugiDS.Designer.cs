@@ -1599,9 +1599,9 @@ WHERE  Uslugi.id_slownikowe_uslugi = Uslugi_slownik.id_slownikowe_uslugi AND Usl
             this._commandCollection[3].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_uslugi", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_uslugi", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[4] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[4].Connection = this.Connection;
-            this._commandCollection[4].CommandText = @"SELECT Uslugi.id_pracownika, Uslugi.dodatkowy_opis, Uslugi.termin, Uslugi.id_pobytu, Uslugi_slownik.cena, Uslugi_slownik.nazwa, Uslugi_slownik.opis
-FROM     Uslugi, Uslugi_slownik
-WHERE  Uslugi.id_slownikowe_uslugi = Uslugi_slownik.id_slownikowe_uslugi AND (Uslugi.id_pobytu = ?)";
+            this._commandCollection[4].CommandText = "SELECT        Uslugi_slownik.*, Uslugi.*\r\nFROM            Uslugi, Uslugi_slownik\r" +
+                "\nWHERE        Uslugi.id_slownikowe_uslugi = Uslugi_slownik.id_slownikowe_uslugi " +
+                "AND (Uslugi.id_pobytu = ?)";
             this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[4].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_pobytu", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_pobytu", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[5] = new global::System.Data.Odbc.OdbcCommand();

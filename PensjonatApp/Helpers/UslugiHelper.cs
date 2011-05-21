@@ -49,7 +49,7 @@ namespace PensjonatApp.Helpers
 			return przydzielPracownika(id_uslugi, null);
 		}
 
-        public static PensjonatApp.DS.PracownicyDS.PracownicyDataTable znajdzWolnegoPracownika(DateTime? terminStart, DateTime? terminKoniec, int? id_slownikoweUslugi)
+        public static PensjonatApp.DS.PracownicyDS.PracownicyDataTable znajdzWolnegoPracownika(DateTime? terminStart, DateTime? terminKoniec, int id_slownikoweUslugi)
         {
             //return TablesManager.Manager.UslugiTableAdapter.GetIdPracownikaWolnyWPodanymTerminieWykonujacyPodanyTypUslug(id_slownikoweUslugi, terminKoniec, terminStart);
             return TablesManager.Manager.PracownicyTableAdapter.GetIdPracownikaWolny(id_slownikoweUslugi, terminKoniec, terminStart);
