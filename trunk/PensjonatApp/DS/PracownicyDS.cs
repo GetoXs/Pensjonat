@@ -11,3 +11,11 @@ namespace PensjonatApp.DS.PracownicyDSTableAdapters {
     public partial class PracownicyTableAdapter {
     }
 }
+
+namespace PensjonatApp.DS.PracownicyDSTableAdapters
+{
+    
+    
+    public partial class PracownicyTableAdapter {
+    }
+}

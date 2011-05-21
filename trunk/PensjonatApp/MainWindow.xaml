@@ -255,7 +255,7 @@
                         <Image Height="40" HorizontalAlignment="Left" Margin="132,12,0,0" Name="image4" Source="/PensjonatApp;component/Images/separator.png" Stretch="Fill" VerticalAlignment="Top" Width="2" />
                        
                     </Grid>
-                    <Grid Height="126" Name="gridPobytyDeafult" Opacity="1" ShowGridLines="True" Visibility="Visible">
+                    <Grid Height="30" Name="gridPobytyDeafult" Opacity="1" ShowGridLines="True" Visibility="Visible">
                         <TextBox Name="textBoxPobytySzukaj" Height="23" HorizontalAlignment="Left" Margin="14,17,0,0"  VerticalAlignment="Top" Width="129" TabIndex="1" />
                         <RadioButton Name="rbPobytyId" Content="ID" GroupName="pobytySzukaj" Height="16" HorizontalAlignment="Left" Margin="299,24,0,0"  VerticalAlignment="Top" TabIndex="4" />
                         <RadioButton Name="rbPobytyKlient" Content="Klient" GroupName="pobytySzukaj" Height="16" HorizontalAlignment="Left" IsChecked="True" Margin="247,24,0,0" VerticalAlignment="Top" TabIndex="3" />
@@ -272,7 +272,7 @@
                         </DataGrid>
                         <CheckBox Name="checkBoxPobytyAktualne" Content="Aktualne" Height="16" HorizontalAlignment="Left" Margin="333,24,0,0" VerticalAlignment="Top" IsChecked="True" TabIndex="5" />
                     </Grid>
-                    <Grid Height="568" Name="gridPobytyServices" Opacity="1" ShowGridLines="True" Visibility="Visible">
+                    <Grid Height="514" Name="gridPobytyServices" Opacity="1" ShowGridLines="True" Visibility="Visible">
                         <Label Content="Usługi:" FontSize="13" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,10,0,0" Name="label42" Padding="2" VerticalAlignment="Top" />
                         <Label Content="Klient:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,38,0,0" Name="label43" Padding="2" VerticalAlignment="Top" />
                         <Label Content="Pokój:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,88,0,0" Name="label45" Padding="2" VerticalAlignment="Top" />
@@ -296,63 +296,73 @@
                                 <Label Content="Wybierz usługę:" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,13,0,0" Name="label48" Padding="2" VerticalAlignment="Top" />
                                 <ComboBox Name="comboBoxPobytyUslugi" Height="23" HorizontalAlignment="Left" ItemsSource="{Binding}" Margin="150,10,0,0" VerticalAlignment="Top" Width="150" SelectionChanged="comboBoxPobytyUslugi_SelectionChanged"></ComboBox>
                                 <Label Content="Termin:" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,48,0,0" Name="label78" Padding="2" VerticalAlignment="Top" />
-                                <DatePicker Name="datePickerPobytyServicesTerminOd" Height="25" HorizontalAlignment="Left" Margin="150,43,0,0" VerticalAlignment="Top" Width="150" />
+                                <DatePicker Name="datePickerPobytyServicesTerminOd" Height="25" HorizontalAlignment="Left" Margin="150,43,0,0" VerticalAlignment="Top" Width="150" IsEnabled="False" SelectedDateChanged="datePickerPobytyServicesTerminOd_SelectedDateChanged" />
                                 <Label Content="Wybierz pracownika:" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,81,0,0" Name="label81" Padding="2" VerticalAlignment="Top" />
-                                <ComboBox Name="comboBoxPobytyPracownicy" Height="23" HorizontalAlignment="Left" ItemsSource="{Binding}" Margin="150,78,0,0" VerticalAlignment="Top" Width="150" IsEnabled="False">
-                                    <ComboBoxItem Content="Zdzichu Mocny" />
-                                    <ComboBoxItem Content="Dawid Budzik" />
-                                    <ComboBoxItem Content="Daniel Pobudliwy" />
-                                </ComboBox>
+                                <ComboBox Name="comboBoxPobytyPracownicy" Height="23" HorizontalAlignment="Left" ItemsSource="{Binding}" Margin="150,78,0,0" VerticalAlignment="Top" Width="150" IsEnabled="False"></ComboBox>
                                 <Button Name="buttonPobytyServicesAdd" Content="Dodaj" Height="23" HorizontalAlignment="Left" Margin="225,115,0,0" VerticalAlignment="Top" Width="75" />
                             </Grid>
                         </GroupBox>
                     </Grid>
-                    <Grid Height="138" Name="gridPobytySum" Opacity="1" ShowGridLines="True" Visibility="Visible">
+                    <Grid Height="38" Name="gridPobytySum" Opacity="1" ShowGridLines="True" Visibility="Visible">
+                        <Border BorderBrush="#FF2F82C1" BorderThickness="2" Height="75" Margin="0,68,67,0" Name="border1" VerticalAlignment="Top" FlowDirection="LeftToRight" CornerRadius="10" HorizontalAlignment="Right" Width="118">
+                            <Border BorderBrush="Silver" BorderThickness="1" Height="24" Name="border2" VerticalAlignment="Top" CornerRadius="8">
+                                <Border.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FFD5D5D5" Offset="1" />
+                                        <GradientStop Color="White" Offset="0" />
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <Label Content="Do zapłaty:" FontWeight="Normal" Name="label85" Padding="0" FontSize="15" HorizontalAlignment="Center" Foreground="#FF717271" />
+                            </Border>
+                        </Border>
                         <Label Content="Rozliczanie pobytu:" FontSize="13" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,10,0,0" Name="label59" Padding="2" VerticalAlignment="Top" />
                         <Label Content="Klient:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,38,0,0" Name="label60" Padding="2" VerticalAlignment="Top" />
                         <Label Content="Pokój:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,88,0,0" Name="label61" Padding="2" VerticalAlignment="Top" />
                         <Label Name="labelPobytySumKlient" Content="Adam Malański" FontWeight="Normal" HorizontalAlignment="Left" Margin="160,38,0,0" Padding="2" VerticalAlignment="Top" />
                         <Label Name="labelPobytySumPokoj" Content="311" FontWeight="Normal" HorizontalAlignment="Left" Margin="160,88,0,0" Padding="2" VerticalAlignment="Top" />
-                        <Label Content="ID:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,64,0,0" Name="label64" Padding="2" VerticalAlignment="Top" />
+                        <Label Content="Id pobytu:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,64,0,0" Name="label64" Padding="2" VerticalAlignment="Top" />
                         <Label Name="labelPobytySumId" Content="21452" FontWeight="Normal" HorizontalAlignment="Left" Margin="160,64,0,0" Padding="2" VerticalAlignment="Top" />
-                        <DataGrid  Name="dataGridPobytySumRabaty" Height="93" Margin="35,233,12,0" VerticalAlignment="Top" IsEnabled="True">
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Header="Nr" />
-                                <DataGridTextColumn Header="Nazwa" />
-                                <DataGridTextColumn Header="Termin" />
-                                <DataGridTextColumn Header="Opis" />
-                            </DataGrid.Columns>
-                        </DataGrid>
-                        <Label Content="Aktualne rabaty:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,207,0,0" Name="label66" Padding="2" VerticalAlignment="Top" />
-                        <Button Name="buttonPobytySumRabatyDel" Content="Usuń" Height="25" HorizontalAlignment="Right" Margin="0,207,12,0" VerticalAlignment="Top" Width="50" />
+                        <Label Content="Aktualne rabaty:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,170,0,0" Name="label66" Padding="2" VerticalAlignment="Top" />
                         <Label Content="Cena:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,140,0,0" Name="label67" Padding="2" VerticalAlignment="Top" />
                         <Label Name="labelPobytySumCena" Content="1200 zł" FontWeight="Normal" HorizontalAlignment="Left" Margin="161,140,0,0" Padding="2" VerticalAlignment="Top" />
                         <Label Content="Termin:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,114,0,0" Name="label82" Padding="2" VerticalAlignment="Top" />
                         <Label Name="labelPobytySumTermin" Content="22.07.11 - 31.07.11" FontWeight="Normal" HorizontalAlignment="Left" Margin="161,114,0,0" Padding="2" VerticalAlignment="Top" />
-                        <Label Content="Rabat:" FontWeight="Bold" HorizontalAlignment="Left" Margin="34,170,0,0" Name="label84" Padding="2" VerticalAlignment="Top" />
-                        <ComboBox Name="comboBoxPobytySumRabat" Height="23" HorizontalAlignment="Left" Margin="161,170,0,0"  VerticalAlignment="Top" Width="174">
+                        <ComboBox Name="comboBoxPobytySumRabat" Height="23" Margin="60,193,100,0"  VerticalAlignment="Top">
 
                         </ComboBox>
-                        <Button Name="buttonPobytySumRabatAdd" Content="Dodaj" Height="23" HorizontalAlignment="Left" Margin="346,170,0,0"  VerticalAlignment="Top" Width="75" Click="buttonPobytySumRabatAdd_Click" />
-                        <Label Content="Do zapłaty:" FontWeight="Bold" HorizontalAlignment="Left" Margin="34,347,0,0" Name="label85" Padding="2" VerticalAlignment="Top" FontSize="13" />
-                        <Label Name="labelPobytySumDoZaplaty" Content="1200 zł" FontWeight="Bold" HorizontalAlignment="Left" Margin="159,347,0,0" Padding="2" VerticalAlignment="Top" Foreground="ForestGreen" FontStyle="Normal" FontSize="13" />
+                        <Label Name="labelPobytySumDoZaplaty" Content="1200 zł" FontWeight="Bold" Margin="0,99,81,0" Padding="2" VerticalAlignment="Top" Foreground="#FF717271" FontStyle="Normal" FontSize="24" HorizontalAlignment="Right" Width="85" />
+                        <Button Content="+" Height="23" HorizontalAlignment="Right" Margin="0,193,57,0" Name="PobytySumRabatyDodaj" VerticalAlignment="Top" Width="22" Click="PobytySumRabatyDodaj_Click" />
+                        <Button Content="-" Height="23" HorizontalAlignment="Right" Margin="0,193,25,0" Name="buttonPobytySumRabatyUsun" VerticalAlignment="Top" Width="22" Click="buttonPobytySumRabatyUsun_Click" />
+                        <DataGrid AutoGenerateColumns="False" HorizontalGridLinesBrush="#FFD5D5D5" IsEnabled="True" IsReadOnly="True" Margin="60,224,22,21" Name="dataGridPobytySumRabaty" SelectionMode="Single" TabIndex="6" VerticalGridLinesBrush="#FFD5D5D5">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding Path=id_rabatu}" Header="Id" />
+                                <DataGridTextColumn Binding="{Binding Path=nazwa}" Header="Nazwa" />
+                                <DataGridTextColumn Binding="{Binding Path=wartosc}" Header="Wartość" />
+                                <DataGridCheckBoxColumn Binding="{Binding Path=procentowy}" Header="%" />
+                                <DataGridCheckBoxColumn Binding="{Binding Path=aktywny}" Header="Aktywny" />
+                            </DataGrid.Columns>
+                        </DataGrid>
                     </Grid>
-                    <Grid Height="222" Name="gridPobytyDetails" Opacity="1" ShowGridLines="True" Visibility="Visible">
+                    <Grid Height="358" Name="gridPobytyDetails" Opacity="1" ShowGridLines="True" Visibility="Visible">
                         <Label Content="Szczegóły pobytu:" FontSize="13" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,10,0,0" Name="label50" Padding="2" VerticalAlignment="Top" />
                         <Label Content="Klient:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,38,0,0" Name="label51" Padding="2" VerticalAlignment="Top" />
                         <Label Content="Termin:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,64,0,0" Name="label52" Padding="2" VerticalAlignment="Top" />
-                        <Label Content="Ilość osób:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,140,0,0" Name="label53" Padding="2" VerticalAlignment="Top" />
-                        <Label Content="Wymeldowano:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,166,0,0" Name="label54" Padding="2" VerticalAlignment="Top" />
+                        <Label Content="Ilość osób:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,204,0,0" Name="label53" Padding="2" VerticalAlignment="Top" />
+                        <Label Content="Wymeldowano:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,230,0,0" Name="label54" Padding="2" VerticalAlignment="Top" />
                         <Label Name="labelPobytyDetailsKlient" Content="Adam Malański" FontWeight="Normal" HorizontalAlignment="Left" Margin="160,38,0,0" Padding="2" VerticalAlignment="Top" />
                         <Label Name="labelPobytyDetailsTermin" Content="15.07.11 - 22.07.11" FontWeight="Normal" HorizontalAlignment="Left" Margin="160,64,0,0" Padding="2" VerticalAlignment="Top" />
-                        <Label Name="labelPobytyDetailsIlOsob" Content="3" FontWeight="Normal" HorizontalAlignment="Left" Margin="160,140,0,0" Padding="2" VerticalAlignment="Top" />
-                        <Label Name="labelPobytyDetailsWymeldowano" Content="Tak" FontWeight="Normal" Margin="160,166,0,0" Padding="2" VerticalAlignment="Top" HorizontalAlignment="Left" Width="22" />
-                        <Label Content="Koszt:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,194,0,0" Name="label69" Padding="2" VerticalAlignment="Top" />
-                        <Label Name="labelPobytyDetailsKoszt" Content="1200zł" FontWeight="Normal" HorizontalAlignment="Left" Margin="160,194,0,0" Padding="2" VerticalAlignment="Top" Width="47" />
-                        <Label Content="Pokój:" FontWeight="Bold" HorizontalAlignment="Left" Margin="36,114,0,0" Name="label70" Padding="2" VerticalAlignment="Top" />
-                        <Label Name="labelPobytyDetailsPokoj" Content="311" FontWeight="Normal" HorizontalAlignment="Left" Margin="161,114,0,0"  Padding="2" VerticalAlignment="Top" />
-                        <Label Content="ID:" FontWeight="Bold" HorizontalAlignment="Left" Margin="36,90,0,0" Name="label83" Padding="2" VerticalAlignment="Top" />
-                        <Label Name="labelPobytyDetailsId" Content="" FontWeight="Normal" HorizontalAlignment="Left" Margin="161,90,0,0"  Padding="2" VerticalAlignment="Top" />
+                        <Label Name="labelPobytyDetailsIlOsob" Content="3" FontWeight="Normal" HorizontalAlignment="Left" Margin="160,204,0,0" Padding="2" VerticalAlignment="Top" />
+                        <Label Name="labelPobytyDetailsWymeldowano" Content="Tak" FontWeight="Normal" Margin="160,230,0,0" Padding="2" VerticalAlignment="Top" HorizontalAlignment="Left" Width="22" />
+                        <Label Content="Koszt:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,258,0,0" Name="label69" Padding="2" VerticalAlignment="Top" />
+                        <Label Name="labelPobytyDetailsKoszt" Content="1200zł" FontWeight="Normal" HorizontalAlignment="Left" Margin="160,258,0,0" Padding="2" VerticalAlignment="Top" Width="47" />
+                        <Label Content="Pokój:" FontWeight="Bold" HorizontalAlignment="Left" Margin="36,178,0,0" Name="label70" Padding="2" VerticalAlignment="Top" />
+                        <Label Name="labelPobytyDetailsPokoj" Content="311" FontWeight="Normal" HorizontalAlignment="Left" Margin="161,178,0,0"  Padding="2" VerticalAlignment="Top" />
+                        <Label Content="PESEL:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,92,0,0" Name="label9" Padding="2" VerticalAlignment="Top" />
+                        <Label Content="Adam Malański" FontWeight="Normal" HorizontalAlignment="Left" Margin="160,92,0,0" Name="labelPobytyDetailsPesel" Padding="2" VerticalAlignment="Top" />
+                        <Label Content="Telefon:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,122,0,0" Name="label225" Padding="2" VerticalAlignment="Top" />
+                        <Label Content="15.07.11 - 22.07.11" FontWeight="Normal" HorizontalAlignment="Left" Margin="160,122,0,0" Name="labelPobytyDetailsTelefon" Padding="2" VerticalAlignment="Top" />
+                        <Label Content="Id pobytu:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,150,0,0" Name="label227" Padding="2" VerticalAlignment="Top" />
+                        <Label Content="Adam Malański" FontWeight="Normal" HorizontalAlignment="Left" Margin="159,150,0,0" Name="labelPobytyDetailsId" Padding="2" VerticalAlignment="Top" />
                     </Grid>
                 </StackPanel>
             </TabItem>
@@ -750,7 +760,7 @@
                         <Label Content="Edycja wyposazenia" FontSize="13" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,12,0,0" Name="label148" Padding="2" VerticalAlignment="Top" />
                         <Label Content="Opis:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,40,0,0" Name="label150" Padding="2" VerticalAlignment="Top" />
                         <Label Content="Label" Height="28" HorizontalAlignment="Left" IsEnabled="False" Margin="105,10,0,0" Name="labelWyposazenieId" VerticalAlignment="Top" Visibility="Hidden" />
-                        <TextBox Height="23" Margin="73,39,22,0" Name="textBoxWyposazenieEdycjaOpis" VerticalAlignment="Top" Width="488" TabIndex="5" />
+                        <TextBox Height="23" Margin="73,39,22,0" Name="textBoxWyposazenieEdycjaOpis" VerticalAlignment="Top" TabIndex="5" />
                     </Grid>
                     <Grid Margin="0" MinHeight="580" Name="gridWyposazenieDeafult" Opacity="1" ShowGridLines="True" Visibility="Visible">
                         <GroupBox Header="Dodaj wyposażenie" Height="59" Margin="14,19,10,0" Name="groupBox3" VerticalAlignment="Top">

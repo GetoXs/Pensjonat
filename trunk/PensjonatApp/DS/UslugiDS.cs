@@ -19,3 +19,11 @@ namespace PensjonatApp.DS.UslugiDSTableAdapters
     public partial class Uslugi_slownikTableAdapter {
     }
 }
+
+namespace PensjonatApp.DS.UslugiDSTableAdapters
+{
+    
+    
+    public partial class UslugiTableAdapter {
+    }
+}
