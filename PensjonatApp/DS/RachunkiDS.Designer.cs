@@ -601,6 +601,12 @@ namespace PensjonatApp.DS {
             
             private global::System.Data.DataColumn columnaktywny;
             
+            private global::System.Data.DataColumn columnna_pobyt;
+            
+            private global::System.Data.DataColumn columnna_uslugi;
+            
+            private global::System.Data.DataColumn columnna_posilki;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public RabatyDataTable() {
@@ -676,6 +682,30 @@ namespace PensjonatApp.DS {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn na_pobytColumn {
+                get {
+                    return this.columnna_pobyt;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn na_uslugiColumn {
+                get {
+                    return this.columnna_uslugi;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn na_posilkiColumn {
+                get {
+                    return this.columnna_posilki;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -711,14 +741,17 @@ namespace PensjonatApp.DS {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public RabatyRow AddRabatyRow(string nazwa, bool procentowy, int wartosc, bool aktywny) {
+            public RabatyRow AddRabatyRow(string nazwa, bool procentowy, int wartosc, bool aktywny, bool na_pobyt, bool na_uslugi, bool na_posilki) {
                 RabatyRow rowRabatyRow = ((RabatyRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         nazwa,
                         procentowy,
                         wartosc,
-                        aktywny};
+                        aktywny,
+                        na_pobyt,
+                        na_uslugi,
+                        na_posilki};
                 rowRabatyRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowRabatyRow);
                 return rowRabatyRow;
@@ -753,6 +786,9 @@ namespace PensjonatApp.DS {
                 this.columnprocentowy = base.Columns["procentowy"];
                 this.columnwartosc = base.Columns["wartosc"];
                 this.columnaktywny = base.Columns["aktywny"];
+                this.columnna_pobyt = base.Columns["na_pobyt"];
+                this.columnna_uslugi = base.Columns["na_uslugi"];
+                this.columnna_posilki = base.Columns["na_posilki"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -768,6 +804,12 @@ namespace PensjonatApp.DS {
                 base.Columns.Add(this.columnwartosc);
                 this.columnaktywny = new global::System.Data.DataColumn("aktywny", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnaktywny);
+                this.columnna_pobyt = new global::System.Data.DataColumn("na_pobyt", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnna_pobyt);
+                this.columnna_uslugi = new global::System.Data.DataColumn("na_uslugi", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnna_uslugi);
+                this.columnna_posilki = new global::System.Data.DataColumn("na_posilki", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnna_posilki);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnid_rabatu}, true));
                 this.columnid_rabatu.AutoIncrement = true;
@@ -779,6 +821,9 @@ namespace PensjonatApp.DS {
                 this.columnnazwa.MaxLength = 255;
                 this.columnprocentowy.AllowDBNull = false;
                 this.columnaktywny.AllowDBNull = false;
+                this.columnna_pobyt.AllowDBNull = false;
+                this.columnna_uslugi.AllowDBNull = false;
+                this.columnna_posilki.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1018,6 +1063,39 @@ namespace PensjonatApp.DS {
                 }
                 set {
                     this[this.tableRabaty.aktywnyColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool na_pobyt {
+                get {
+                    return ((bool)(this[this.tableRabaty.na_pobytColumn]));
+                }
+                set {
+                    this[this.tableRabaty.na_pobytColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool na_uslugi {
+                get {
+                    return ((bool)(this[this.tableRabaty.na_uslugiColumn]));
+                }
+                set {
+                    this[this.tableRabaty.na_uslugiColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool na_posilki {
+                get {
+                    return ((bool)(this[this.tableRabaty.na_posilkiColumn]));
+                }
+                set {
+                    this[this.tableRabaty.na_posilkiColumn] = value;
                 }
             }
             
@@ -1273,11 +1351,34 @@ namespace PensjonatApp.DS.RachunkiDSTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.Odbc.OdbcCommand[1];
+            this._commandCollection = new global::System.Data.Odbc.OdbcCommand[5];
             this._commandCollection[0] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT id_rachunku, zaplacono FROM Rachunki";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1] = new global::System.Data.Odbc.OdbcCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = "DELETE FROM Rachunki\r\nWHERE        (id_rachunku = ?)";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_rachunku", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_rachunku", global::System.Data.DataRowVersion.Original, false, null));
+            this._commandCollection[2] = new global::System.Data.Odbc.OdbcCommand();
+            this._commandCollection[2].Connection = this.Connection;
+            this._commandCollection[2].CommandText = "SELECT        id_rachunku, zaplacono\r\nFROM            Rachunki\r\nWHERE        (id_" +
+                "rachunku = ?)";
+            this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[2].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_rachunku", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_rachunku", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[3] = new global::System.Data.Odbc.OdbcCommand();
+            this._commandCollection[3].Connection = this.Connection;
+            this._commandCollection[3].CommandText = "SELECT        id_rachunku, zaplacono\r\nFROM            Rachunki\r\nWHERE        (zap" +
+                "lacono = 0)";
+            this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[4] = new global::System.Data.Odbc.OdbcCommand();
+            this._commandCollection[4].Connection = this.Connection;
+            this._commandCollection[4].CommandText = "UPDATE       Rachunki\r\nSET                zaplacono = ?\r\nWHERE        (id_rachunk" +
+                "u = ?)";
+            this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[4].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("zaplacono", global::System.Data.Odbc.OdbcType.Bit, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "zaplacono", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[4].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_id_rachunku", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_rachunku", global::System.Data.DataRowVersion.Original, false, null));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1299,6 +1400,29 @@ namespace PensjonatApp.DS.RachunkiDSTableAdapters {
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
         public virtual RachunkiDS.RachunkiDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
+            RachunkiDS.RachunkiDataTable dataTable = new RachunkiDS.RachunkiDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual RachunkiDS.RachunkiDataTable GetDataById(int id_rachunku) {
+            this.Adapter.SelectCommand = this.CommandCollection[2];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(id_rachunku));
+            RachunkiDS.RachunkiDataTable dataTable = new RachunkiDS.RachunkiDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual RachunkiDS.RachunkiDataTable GetDataNiezaplacone() {
+            this.Adapter.SelectCommand = this.CommandCollection[3];
             RachunkiDS.RachunkiDataTable dataTable = new RachunkiDS.RachunkiDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
@@ -1400,6 +1524,55 @@ namespace PensjonatApp.DS.RachunkiDSTableAdapters {
                     this.Adapter.UpdateCommand.Connection.Close();
                 }
             }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, false)]
+        public virtual int DeleteById(int id_rachunku) {
+            global::System.Data.Odbc.OdbcCommand command = this.CommandCollection[1];
+            command.Parameters[0].Value = ((int)(id_rachunku));
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            int returnValue;
+            try {
+                returnValue = command.ExecuteNonQuery();
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
+        public virtual int UpdateById(bool zaplacono, int Original_id_rachunku) {
+            global::System.Data.Odbc.OdbcCommand command = this.CommandCollection[4];
+            command.Parameters[0].Value = ((bool)(zaplacono));
+            command.Parameters[1].Value = ((int)(Original_id_rachunku));
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            int returnValue;
+            try {
+                returnValue = command.ExecuteNonQuery();
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            return returnValue;
         }
     }
     
@@ -1529,12 +1702,13 @@ namespace PensjonatApp.DS.RachunkiDSTableAdapters {
             tableMapping.ColumnMappings.Add("procentowy", "procentowy");
             tableMapping.ColumnMappings.Add("wartosc", "wartosc");
             tableMapping.ColumnMappings.Add("aktywny", "aktywny");
+            tableMapping.ColumnMappings.Add("na_pobyt", "na_pobyt");
+            tableMapping.ColumnMappings.Add("na_uslugi", "na_uslugi");
+            tableMapping.ColumnMappings.Add("na_posilki", "na_posilki");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.Odbc.OdbcCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [Rabaty] WHERE (([id_rabatu] = ?) AND ((? = 1 AND [nazwa] IS NULL) OR" +
-                " ([nazwa] = ?)) AND ([procentowy] = ?) AND ((? = 1 AND [wartosc] IS NULL) OR ([w" +
-                "artosc] = ?)) AND ([aktywny] = ?))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [Rabaty] WHERE (([id_rabatu] = ?) AND ((? = 1 AND [nazwa] IS NULL) OR ([nazwa] = ?)) AND ([procentowy] = ?) AND ((? = 1 AND [wartosc] IS NULL) OR ([wartosc] = ?)) AND ([aktywny] = ?) AND ([na_pobyt] = ?) AND ([na_uslugi] = ?) AND ([na_posilki] = ?))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_id_rabatu", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_rabatu", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_nazwa", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "nazwa", global::System.Data.DataRowVersion.Original, true, null));
@@ -1543,26 +1717,32 @@ namespace PensjonatApp.DS.RachunkiDSTableAdapters {
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_wartosc", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "wartosc", global::System.Data.DataRowVersion.Original, true, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_wartosc", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "wartosc", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_aktywny", global::System.Data.Odbc.OdbcType.Bit, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "aktywny", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_na_pobyt", global::System.Data.Odbc.OdbcType.Bit, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "na_pobyt", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_na_uslugi", global::System.Data.Odbc.OdbcType.Bit, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "na_uslugi", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_na_posilki", global::System.Data.Odbc.OdbcType.Bit, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "na_posilki", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.InsertCommand = new global::System.Data.Odbc.OdbcCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [Rabaty] ([nazwa], [procentowy], [wartosc], [aktywny]) VALUES (?, ?, " +
-                "?, ?)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [Rabaty] ([nazwa], [procentowy], [wartosc], [aktywny], [na_pobyt], [n" +
+                "a_uslugi], [na_posilki]) VALUES (?, ?, ?, ?, ?, ?, ?)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("nazwa", global::System.Data.Odbc.OdbcType.NVarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "nazwa", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("procentowy", global::System.Data.Odbc.OdbcType.Bit, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "procentowy", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("wartosc", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "wartosc", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("aktywny", global::System.Data.Odbc.OdbcType.Bit, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "aktywny", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("na_pobyt", global::System.Data.Odbc.OdbcType.Bit, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "na_pobyt", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("na_uslugi", global::System.Data.Odbc.OdbcType.Bit, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "na_uslugi", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("na_posilki", global::System.Data.Odbc.OdbcType.Bit, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "na_posilki", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand = new global::System.Data.Odbc.OdbcCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = "UPDATE [Rabaty] SET [nazwa] = ?, [procentowy] = ?, [wartosc] = ?, [aktywny] = ? W" +
-                "HERE (([id_rabatu] = ?) AND ((? = 1 AND [nazwa] IS NULL) OR ([nazwa] = ?)) AND (" +
-                "[procentowy] = ?) AND ((? = 1 AND [wartosc] IS NULL) OR ([wartosc] = ?)) AND ([a" +
-                "ktywny] = ?))";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [Rabaty] SET [nazwa] = ?, [procentowy] = ?, [wartosc] = ?, [aktywny] = ?, [na_pobyt] = ?, [na_uslugi] = ?, [na_posilki] = ? WHERE (([id_rabatu] = ?) AND ((? = 1 AND [nazwa] IS NULL) OR ([nazwa] = ?)) AND ([procentowy] = ?) AND ((? = 1 AND [wartosc] IS NULL) OR ([wartosc] = ?)) AND ([aktywny] = ?) AND ([na_pobyt] = ?) AND ([na_uslugi] = ?) AND ([na_posilki] = ?))";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("nazwa", global::System.Data.Odbc.OdbcType.NVarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "nazwa", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("procentowy", global::System.Data.Odbc.OdbcType.Bit, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "procentowy", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("wartosc", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "wartosc", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("aktywny", global::System.Data.Odbc.OdbcType.Bit, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "aktywny", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("na_pobyt", global::System.Data.Odbc.OdbcType.Bit, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "na_pobyt", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("na_uslugi", global::System.Data.Odbc.OdbcType.Bit, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "na_uslugi", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("na_posilki", global::System.Data.Odbc.OdbcType.Bit, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "na_posilki", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_id_rabatu", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_rabatu", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_nazwa", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "nazwa", global::System.Data.DataRowVersion.Original, true, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_nazwa", global::System.Data.Odbc.OdbcType.NVarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "nazwa", global::System.Data.DataRowVersion.Original, false, null));
@@ -1570,6 +1750,9 @@ namespace PensjonatApp.DS.RachunkiDSTableAdapters {
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("IsNull_wartosc", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "wartosc", global::System.Data.DataRowVersion.Original, true, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_wartosc", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "wartosc", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_aktywny", global::System.Data.Odbc.OdbcType.Bit, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "aktywny", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_na_pobyt", global::System.Data.Odbc.OdbcType.Bit, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "na_pobyt", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_na_uslugi", global::System.Data.Odbc.OdbcType.Bit, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "na_uslugi", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_na_posilki", global::System.Data.Odbc.OdbcType.Bit, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "na_posilki", global::System.Data.DataRowVersion.Original, false, null));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1585,8 +1768,8 @@ namespace PensjonatApp.DS.RachunkiDSTableAdapters {
             this._commandCollection = new global::System.Data.Odbc.OdbcCommand[4];
             this._commandCollection[0] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT        id_rabatu, nazwa, procentowy, wartosc, aktywny\r\nFROM            Rab" +
-                "aty";
+            this._commandCollection[0].CommandText = "SELECT        id_rabatu, nazwa, procentowy, wartosc, aktywny, na_pobyt, na_uslugi" +
+                ", na_posilki\r\nFROM            Rabaty";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[1].Connection = this.Connection;
@@ -1601,12 +1784,16 @@ namespace PensjonatApp.DS.RachunkiDSTableAdapters {
             this._commandCollection[3] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[3].Connection = this.Connection;
             this._commandCollection[3].CommandText = "UPDATE       Rabaty\r\nSET                nazwa = ?, procentowy = ?, wartosc = ?, a" +
-                "ktywny = ?\r\nWHERE        (id_rabatu = ?)";
+                "ktywny = ?, na_pobyt = ?, na_uslugi = ?, na_posilki = ?\r\nWHERE        (id_rabatu" +
+                " = ?)";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[3].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("nazwa", global::System.Data.Odbc.OdbcType.NVarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "nazwa", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[3].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("nazwa", global::System.Data.Odbc.OdbcType.NVarChar, 1024, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "nazwa", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[3].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("procentowy", global::System.Data.Odbc.OdbcType.Bit, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "procentowy", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[3].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("wartosc", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "wartosc", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[3].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("aktywny", global::System.Data.Odbc.OdbcType.Bit, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "aktywny", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[3].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("na_pobyt", global::System.Data.Odbc.OdbcType.Bit, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "na_pobyt", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[3].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("na_uslugi", global::System.Data.Odbc.OdbcType.Bit, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "na_uslugi", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[3].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("na_posilki", global::System.Data.Odbc.OdbcType.Bit, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "na_posilki", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[3].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_id_rabatu", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_rabatu", global::System.Data.DataRowVersion.Original, false, null));
         }
         
@@ -1678,7 +1865,7 @@ namespace PensjonatApp.DS.RachunkiDSTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_id_rabatu, string Original_nazwa, bool Original_procentowy, global::System.Nullable<int> Original_wartosc, bool Original_aktywny) {
+        public virtual int Delete(int Original_id_rabatu, string Original_nazwa, bool Original_procentowy, global::System.Nullable<int> Original_wartosc, bool Original_aktywny, bool Original_na_pobyt, bool Original_na_uslugi, bool Original_na_posilki) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_id_rabatu));
             if ((Original_nazwa == null)) {
                 this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(1));
@@ -1698,6 +1885,9 @@ namespace PensjonatApp.DS.RachunkiDSTableAdapters {
                 this.Adapter.DeleteCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
             this.Adapter.DeleteCommand.Parameters[6].Value = ((bool)(Original_aktywny));
+            this.Adapter.DeleteCommand.Parameters[7].Value = ((bool)(Original_na_pobyt));
+            this.Adapter.DeleteCommand.Parameters[8].Value = ((bool)(Original_na_uslugi));
+            this.Adapter.DeleteCommand.Parameters[9].Value = ((bool)(Original_na_posilki));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -1718,7 +1908,7 @@ namespace PensjonatApp.DS.RachunkiDSTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string nazwa, bool procentowy, global::System.Nullable<int> wartosc, bool aktywny) {
+        public virtual int Insert(string nazwa, bool procentowy, global::System.Nullable<int> wartosc, bool aktywny, bool na_pobyt, bool na_uslugi, bool na_posilki) {
             if ((nazwa == null)) {
                 this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -1733,6 +1923,9 @@ namespace PensjonatApp.DS.RachunkiDSTableAdapters {
                 this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
             this.Adapter.InsertCommand.Parameters[3].Value = ((bool)(aktywny));
+            this.Adapter.InsertCommand.Parameters[4].Value = ((bool)(na_pobyt));
+            this.Adapter.InsertCommand.Parameters[5].Value = ((bool)(na_uslugi));
+            this.Adapter.InsertCommand.Parameters[6].Value = ((bool)(na_posilki));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -1753,7 +1946,7 @@ namespace PensjonatApp.DS.RachunkiDSTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string nazwa, bool procentowy, global::System.Nullable<int> wartosc, bool aktywny, int Original_id_rabatu, string Original_nazwa, bool Original_procentowy, global::System.Nullable<int> Original_wartosc, bool Original_aktywny) {
+        public virtual int Update(string nazwa, bool procentowy, global::System.Nullable<int> wartosc, bool aktywny, bool na_pobyt, bool na_uslugi, bool na_posilki, int Original_id_rabatu, string Original_nazwa, bool Original_procentowy, global::System.Nullable<int> Original_wartosc, bool Original_aktywny, bool Original_na_pobyt, bool Original_na_uslugi, bool Original_na_posilki) {
             if ((nazwa == null)) {
                 this.Adapter.UpdateCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -1768,25 +1961,31 @@ namespace PensjonatApp.DS.RachunkiDSTableAdapters {
                 this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
             this.Adapter.UpdateCommand.Parameters[3].Value = ((bool)(aktywny));
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Original_id_rabatu));
+            this.Adapter.UpdateCommand.Parameters[4].Value = ((bool)(na_pobyt));
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((bool)(na_uslugi));
+            this.Adapter.UpdateCommand.Parameters[6].Value = ((bool)(na_posilki));
+            this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(Original_id_rabatu));
             if ((Original_nazwa == null)) {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(Original_nazwa));
-            }
-            this.Adapter.UpdateCommand.Parameters[7].Value = ((bool)(Original_procentowy));
-            if ((Original_wartosc.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((int)(Original_wartosc.Value));
-            }
-            else {
                 this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
             }
-            this.Adapter.UpdateCommand.Parameters[10].Value = ((bool)(Original_aktywny));
+            else {
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(Original_nazwa));
+            }
+            this.Adapter.UpdateCommand.Parameters[10].Value = ((bool)(Original_procentowy));
+            if ((Original_wartosc.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((int)(Original_wartosc.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[12].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[13].Value = ((bool)(Original_aktywny));
+            this.Adapter.UpdateCommand.Parameters[14].Value = ((bool)(Original_na_pobyt));
+            this.Adapter.UpdateCommand.Parameters[15].Value = ((bool)(Original_na_uslugi));
+            this.Adapter.UpdateCommand.Parameters[16].Value = ((bool)(Original_na_posilki));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -1831,7 +2030,7 @@ namespace PensjonatApp.DS.RachunkiDSTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
-        public virtual int UpdateQuery(string nazwa, bool procentowy, global::System.Nullable<int> wartosc, bool aktywny, int Original_id_rabatu) {
+        public virtual int UpdateQuery(string nazwa, bool procentowy, global::System.Nullable<int> wartosc, bool aktywny, bool na_pobyt, bool na_uslugi, bool na_posilki, int Original_id_rabatu) {
             global::System.Data.Odbc.OdbcCommand command = this.CommandCollection[3];
             if ((nazwa == null)) {
                 command.Parameters[0].Value = global::System.DBNull.Value;
@@ -1847,7 +2046,10 @@ namespace PensjonatApp.DS.RachunkiDSTableAdapters {
                 command.Parameters[2].Value = global::System.DBNull.Value;
             }
             command.Parameters[3].Value = ((bool)(aktywny));
-            command.Parameters[4].Value = ((int)(Original_id_rabatu));
+            command.Parameters[4].Value = ((bool)(na_pobyt));
+            command.Parameters[5].Value = ((bool)(na_uslugi));
+            command.Parameters[6].Value = ((bool)(na_posilki));
+            command.Parameters[7].Value = ((int)(Original_id_rabatu));
             global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {

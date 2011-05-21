@@ -989,7 +989,7 @@ namespace PensjonatApp
         }
 
         private void buttonPobytySumRabatAdd_Click(object sender, RoutedEventArgs e)
-        {
+		{
             //do skasowania demonstracja działania zapisywania do comboBoxów
             List<string> lst = new List<string>();
             DS.RachunkiDS.RabatyDataTable rabatyTable = TablesManager.Manager.RabatyTableAdapter.GetDataByAktywne();
@@ -1406,8 +1406,9 @@ namespace PensjonatApp
                 int wartosc;
                 if (int.TryParse(textBoxRabatyEdycjaWartosc.Text, out wartosc))
                 {
-                    RabatyHelper.edytujRabat((int)labelRabatyEdycjaId.Content, textBoxRabatyEdycjaNazwa.Text,
-                        (bool) checkBoxRabatyEdycjaProcentowy.IsChecked,wartosc, (bool)checkBoxRabatyEdycjaAktywny.IsChecked);
+					//TODO: zmiana liczby argumentów
+                    //RabatyHelper.edytujRabat((int)labelRabatyEdycjaId.Content, textBoxRabatyEdycjaNazwa.Text,
+                    //    (bool) checkBoxRabatyEdycjaProcentowy.IsChecked,wartosc, (bool)checkBoxRabatyEdycjaAktywny.IsChecked);
                     dataGridRabatyDeafult.ItemsSource = TablesManager.Manager.RabatyTableAdapter.GetData();
                     zwinRabaty();
                     showWindow(gridRabatyDeafult, buttonRabatyDeafultList);
@@ -1428,7 +1429,8 @@ namespace PensjonatApp
                 int wartosc;
                 if (int.TryParse(textBoxRabatyWartosc.Text, out wartosc))
                 {
-                    RabatyHelper.dodajRabat(textBoxRabatyNazwa.Text, (bool)checkBoxRabatyProcentowy.IsChecked, wartosc, (bool)checkBoxRabatyAktywny.IsChecked);
+					//TODO: Zmiana liczby argumentow
+                    //RabatyHelper.dodajRabat(textBoxRabatyNazwa.Text, (bool)checkBoxRabatyProcentowy.IsChecked, wartosc, (bool)checkBoxRabatyAktywny.IsChecked);
                     dataGridRabatyDeafult.ItemsSource = TablesManager.Manager.RabatyTableAdapter.GetData();
                     textBoxRabatyNazwa.Text = "";
                     textBoxRabatyWartosc.Text = "";
