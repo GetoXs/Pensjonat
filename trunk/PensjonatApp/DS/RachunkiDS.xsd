@@ -50,7 +50,7 @@
               <Mapping SourceColumn="zaplacono" DataSetColumn="zaplacono" />
             </Mappings>
             <Sources>
-              <DbSource ConnectionRef="DB (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="DeleteById" Modifier="Public" Name="DeleteById" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="DeleteById">
+              <DbSource ConnectionRef="DB (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="DeleteById" Modifier="Public" Name="DeleteById" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="DeleteById">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>DELETE FROM Rachunki
@@ -83,7 +83,7 @@ WHERE        (zaplacono = 0)</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="DB (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="UpdateById" Modifier="Public" Name="UpdateById" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="UpdateById">
+              <DbSource ConnectionRef="DB (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="UpdateById" Modifier="Public" Name="UpdateById" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="UpdateById">
                 <UpdateCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>UPDATE       Rachunki
@@ -187,10 +187,10 @@ WHERE        (id_rabatu = ?)</CommandText>
                   </DbCommand>
                 </DeleteCommand>
               </DbSource>
-              <DbSource ConnectionRef="DB (Settings)" DbObjectName="[C:\Users\SIWY\Desktop\STUDIA\BD\proj\rep\baza].Rabaty" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByAktywne" GetMethodModifier="Public" GetMethodName="GetDataByAktywne" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByAktywne" UserSourceName="GetDataByAktywne">
+              <DbSource ConnectionRef="DB (Settings)" DbObjectName="[C:\Users\GetoX\Desktop\STUDIA\BD\proj\rep\baza].Rabaty" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByAktywne" GetMethodModifier="Public" GetMethodName="GetDataByAktywne" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByAktywne" UserSourceName="GetDataByAktywne">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT        id_rabatu, nazwa, procentowy, wartosc, aktywny
+                    <CommandText>SELECT        id_rabatu, nazwa, procentowy, wartosc, aktywny, na_pobyt, na_uslugi, na_posilki
 FROM            Rabaty
 WHERE        (aktywny = 1)</CommandText>
                     <Parameters />
