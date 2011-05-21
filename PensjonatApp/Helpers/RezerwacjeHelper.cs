@@ -136,9 +136,37 @@ namespace PensjonatApp.Helpers
         /// Zwaraca pokoje wolne w podanym terminie
         /// </summary>
         /// <returns>Wolne pokoje</returns>
-        public PokojeDS.PokojeDataTable pobierzPokojeWolne(DateTime start_pobytu, DateTime koniec_pobytu)
+        public static PokojeDS.PokojeDataTable pobierzPokojeWolne(DateTime start_pobytu, DateTime koniec_pobytu)
         {
             return TablesManager.Manager.PokojeTableAdapter.GetDataWolnePokojeByTermin(start_pobytu, start_pobytu, koniec_pobytu, koniec_pobytu, start_pobytu, koniec_pobytu);
+        }
+
+        /// <summary>
+        /// Czy pokoj jest wolny w danym retminie?
+        /// </summary>
+        /// <returns>czy wolny- bool</returns>
+        public static bool czyPokojWolny(int id_pokoju, DateTime start_pobytu, DateTime koniec_pobytu)
+        {
+            PokojeDS.PokojeDataTable tabPo = this.pobierzPokojeWolne(start_pobytu, koniec_pobytu);
+            if (tabPo.Count == 0)
+                return false;
+            else
+            {
+                bool jest = false;
+                foreach (PokojeDS.PokojeRow pokoj in tabPo)
+                {
+                    if (pokoj.id_pokoju == id_pokoju)
+                    {
+                        jest = true;
+                        break;
+                    }
+                }
+
+                if (jest)
+                    return true;
+                else
+                    return false;
+            }
         }
 
         /// <summary>
@@ -227,5 +255,51 @@ namespace PensjonatApp.Helpers
             return TablesManager.Manager.PosilkiTableAdapter.Insert(id_pobytu, id_slownikowe_posilku, termin);
 
         }
+
+        /// <summary>
+        /// Tworzy kompletne dodanie klienta który przychodzi z ulicy i chce się zakwaterować, pobiera id_klinta, id_pokokju oraz termin zakwaterowania
+        /// </summary>
+        /// <returns>-2 :błąd wewnętrzny, -1:podany pokój nie jest wolny, 1:udało się</returns>
+        public static int dodajRezerwacjeIZakwaterowanieOdRazu(int id_klienta, int id_pokoju, DateTime termin_start, DateTime termin_koniec)
+        {
+            if (RezerwacjeHelper.czyPokojWolny(id_pokoju, termin_start, termin_koniec))
+            {
+                List<int> listaPo = new List<int>();
+                listaPo.Add(id_pokoju);
+                RezerwacjeHelper.dodajRezerwacje(id_klienta, 1, 0, listaPo, termin_start, termin_koniec);
+                RezerwacjeDS.RezerwacjeDataTable tabRez = TablesManager.Manager.RezerwacjeTableAdapter.GetDataRezerwacjeOstatnia();
+                if(tabRez[0].id_klienta == id_klienta)
+                {
+                    RezerwacjeHelper.dodajKlientaDoPobytuNaPodstawieRezerwacji(tabRez[0].id_rezerwacji, id_klienta, id_pokoju);
+                    return 1;
+                }
+                else
+                    return -2;
+
+            }else
+                return -1;
+        }
+        
+
+        /// <summary>
+        /// Na podstawie isniejącej rezerwacji(id_rezerwacji), w której zostały stworzone rekody dla pobytów, z id zarezerwowanych pokojów, przydziela klienta(id_klienta) do danego pokoju(id_pokoju).
+        /// </summary>
+        /// <returns>- 1: nie ma takiej rezerwacji, lub dany pokój nie jest zarazerwowany dla tej rezerwacji, -2 :ten pokoj ma już przydzielonego klienta w ramach danej rezerwacji, 1 :udało się</returns>
+        public static int dodajKlientaDoPobytuNaPodstawieRezerwacji(int id_rezerwacji, int id_klient, int id_pokoju)
+        {
+            PobytyDS.PobytyDataTable tabPo = TablesManager.Manager.PobytyTableAdapter.GetDataPobytyByIdPokojuIdRezerwacji(id_pokoju, id_rezerwacji);
+            if (tabPo.Count == 0)
+                return -1;  //nie ma takiej rezerwacji, lub dany pokój nie jest zarazerwowany dla tej rezerwacji
+            else
+                if (tabPo[0].id_klienta != null)
+                    return -2;  //ten pokoj ma już przydzielonego klienta w ramach danej rezerwacji
+                else
+                {
+                    TablesManager.Manager.PobytyTableAdapter.UpdatePobytyIdKlientaByIdRezerwacjiIdPokoju(id_klient, id_rezerwacji, id_pokoju);
+                    return 1;
+                }
+
+        }
+
     }
 }
