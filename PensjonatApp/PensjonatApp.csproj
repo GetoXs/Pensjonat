@@ -570,6 +570,18 @@
   <ItemGroup>
     <Resource Include="Images\format_indent_more.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\pracownik.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\pracownikSmall.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\logo3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\logo4.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

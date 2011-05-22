@@ -2,7 +2,7 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:Toolkit="clr-namespace:Microsoft.Windows.Controls;assembly=WPFToolkit.Extended"
-        Title="Pensjonat" Height="700" Width="1000" Icon="/PensjonatApp;component/Images/Futon-bed-icon.png" Topmost="False" MinWidth="1000" MinHeight="700" xmlns:my="clr-namespace:PensjonatApp" WindowStartupLocation="CenterScreen">
+        Title="Pensjonat" Height="700" Width="1000" Icon="/PensjonatApp;component/Images/logo3.png" Topmost="False" MinWidth="1000" MinHeight="700" xmlns:my="clr-namespace:PensjonatApp" WindowStartupLocation="CenterScreen">
 	<Window.Resources>
 	</Window.Resources>
     <Grid>
@@ -1396,20 +1396,24 @@
                     <GradientStop Color="#FFF9F9F9" Offset="0.574" />
                 </LinearGradientBrush>
             </Canvas.Background>
-            <Image Canvas.Left="17" Canvas.Top="25" Name="image5" Stretch="None" Source="/PensjonatApp;component/Images/logo.png" Height="75" Width="206" HorizontalAlignment="Left" VerticalAlignment="Center" StretchDirection="Both" />
-            <Label Canvas.Left="17" Canvas.Top="100" Content="Zalogowano:" Height="Auto" Name="napisZalogwano" Padding="2" FontWeight="Bold" FontSize="13" />
-            <Label Canvas.Left="29" Canvas.Top="127" Content="Imię:" Name="napisImie" Padding="2" Margin="2" FontWeight="Bold" />
-            <Label Canvas.Left="29" Canvas.Top="144" Content="Nazwisko:" Name="napisNazwisko" Padding="2" Margin="2" FontWeight="Bold" />
-            <Label Canvas.Left="29" Canvas.Top="162" Content="ID:" Name="napisID" Padding="2" Margin="2" FontWeight="Bold" />
-            <Label Canvas.Left="94" Canvas.Top="126" Content="Danuta" Name="labelLoginImie" Padding="2" Margin="2" />
-            <Label Canvas.Left="96" Canvas.Top="146" Content="Rokczewska" Name="LabelLoginNazwisko" Padding="2" />
-            <Label Canvas.Left="96" Canvas.Top="164" Content="25978745" Name="labelLoginId" Padding="2" />
-            <Button Canvas.Left="199" Canvas.Top="103" Height="20" Name="buttonLog" Width="20" BorderBrush="#FFBAD0DC" Padding="0" Foreground="{x:Null}">
-                <Image Source="/PensjonatApp;component/Images/logout-ico2n.png" Stretch="Fill" />
+            <Image Canvas.Left="17" Canvas.Top="18" Name="image5" Stretch="None" Source="/PensjonatApp;component/Images/logo4.png" Height="75" Width="206" HorizontalAlignment="Left" VerticalAlignment="Center" StretchDirection="Both" />
+            <Label Canvas.Left="13" Canvas.Top="114" Content="Zalogowano:" Height="Auto" Name="napisZalogwano" Padding="2" FontWeight="Normal" FontSize="15" />
+            <Label Canvas.Left="96" Canvas.Top="140" Content="Danuta" Name="labelLoginImie" Padding="2" Margin="2" FontSize="14" />
+            <Label Canvas.Left="98" Canvas.Top="159" Content="Rokczewska" Name="LabelLoginNazwisko" Padding="2" FontSize="14" />
+            <Label Canvas.Left="98" Canvas.Top="178" Content="25978745" Name="labelLoginId" Padding="2" FontSize="11" />
+            <Calendar Canvas.Left="23" Canvas.Top="433" Height="170" Name="calendar1" Width="180" SelectionMode="MultipleRange" />
+            <Image Canvas.Left="24" Canvas.Top="145" Name="image79" Stretch="Fill" Source="/PensjonatApp;component/Images/pracownikSmall.png" StretchDirection="DownOnly" />
+            <Button BorderBrush="#FFBAD0DC" Canvas.Left="146" Canvas.Top="209" FlowDirection="LeftToRight" Foreground="{x:Null}" Height="20" Name="buttonWyloguj" Padding="0" Width="70">
+                <StackPanel Orientation="Horizontal">
+                    <Image HorizontalAlignment="Left" Margin="2" Name="image82" Source="/PensjonatApp;component/Images/logout-ico2n.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="16" Height="16" />
+                    <Label Content="Wyloguj" FontSize="11" FontWeight="Normal" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Margin="0" Name="label223" Padding="0" VerticalAlignment="Center" VerticalContentAlignment="Center" Width="42" />
+                </StackPanel>
             </Button>
-            <Calendar Canvas.Left="22" Canvas.Top="436" Height="170" Name="calendar1" Width="180" />
+            <Separator Canvas.Left="16" Canvas.Top="110" Height="5" Name="separator2" Width="200" />
+            <Separator Canvas.Left="16" Canvas.Top="230" Height="5" Name="separator3" Width="200" />
+            <Separator Canvas.Left="17" Canvas.Top="616" Height="5" Name="separator4" Width="200" />
         </Canvas>
-        <Grid Name="grid1" Width="211" Margin="0,0,4,8" HorizontalAlignment="Right" Height="36" VerticalAlignment="Bottom">
+        <Grid Name="grid1" Width="211" Margin="0,0,4,8" HorizontalAlignment="Right" VerticalAlignment="Bottom">
             <Label Content="Aby uzyskać pomoć wciśnij F1" Height="28" Name="napisPomoc" Padding="2" Foreground="#FF767676" Margin="42,8,6,0" />
             <Image Name="imgHelp" Stretch="Fill" Source="/PensjonatApp;component/Images/help_book_3d.png" Width="20" Height="20" Margin="11,10,180,6" />
         </Grid>
