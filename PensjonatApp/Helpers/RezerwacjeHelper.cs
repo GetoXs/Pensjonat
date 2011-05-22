@@ -267,7 +267,7 @@ namespace PensjonatApp.Helpers
                 List<int> listaPo = new List<int>();
                 listaPo.Add(id_pokoju);
                 RezerwacjeHelper.dodajRezerwacje(id_klienta, 1, 0, listaPo, termin_start, termin_koniec);
-                RezerwacjeDS.RezerwacjeDataTable tabRez = TablesManager.Manager.RezerwacjeTableAdapter.GetDataRezerwacjeOstatnia();
+                RezerwacjeDS.RezerwacjeDataTable tabRez = TablesManager.Manager.RezerwacjeTableAdapter.GetDataRezerwacjeByIdKlintaTerminStartTeminKoniec(id_klienta, termin_start, termin_koniec);
                 if(tabRez[0].id_klienta == id_klienta)
                 {
                     RezerwacjeHelper.dodajKlientaDoPobytuNaPodstawieRezerwacji(tabRez[0].id_rezerwacji, id_klienta, id_pokoju);
@@ -291,7 +291,7 @@ namespace PensjonatApp.Helpers
             if (tabPo.Count == 0)
                 return -1;  //nie ma takiej rezerwacji, lub dany pokój nie jest zarazerwowany dla tej rezerwacji
             else
-                if (tabPo[0].id_klienta != null)
+                if (!tabPo[0].Isid_klientaNull())
                     return -2;  //ten pokoj ma już przydzielonego klienta w ramach danej rezerwacji
                 else
                 {
