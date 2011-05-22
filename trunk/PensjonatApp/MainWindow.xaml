@@ -555,21 +555,23 @@
                                 <GradientStop Color="#FFEAEAEA" Offset="1" />
                             </LinearGradientBrush>
                         </Grid.Background>
-                        <Button Name="buttonNewsletterSend" BorderBrush="#FFBAD0DC" Canvas.Left="199" Canvas.Top="103" Foreground="{x:Null}" Height="35" HorizontalAlignment="Right" Margin="0,12,111,0"  Padding="0" VerticalAlignment="Top" Width="95">
-                            <StackPanel Orientation="Horizontal">
-                                <Image Name="imgButtonNewsletterSend" Height="24" HorizontalAlignment="Left" Margin="2"  Source="/PensjonatApp;component/Images/send323.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="24" />
-                                <Label Content="Wyślij" FontWeight="Normal" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="0" Name="label193" Padding="0" VerticalAlignment="Center" VerticalContentAlignment="Center" Width="42" FontSize="13" />
-                            </StackPanel>
-                        </Button>
-                        <Button BorderBrush="#FFBAD0DC" Canvas.Left="199" Canvas.Top="103"  Foreground="{x:Null}" Height="35" HorizontalAlignment="Right" Margin="0,12,10,0" Name="buttonNewsletterNew" Padding="0" VerticalAlignment="Top" Width="95" Click="buttonNewsletterNew_Click">
-                            <StackPanel Orientation="Horizontal">
-                                <Image  Name="imgButtonNewsletterNew" Height="24" HorizontalAlignment="Left" Margin="2" Source="/PensjonatApp;component/Images/email_app_icon2.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="24" />
-                                <Label Content="Nowy" FontWeight="Normal" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Name="label194" Padding="0" VerticalAlignment="Center" VerticalContentAlignment="Center" Width="42" FontSize="13" />
-                            </StackPanel>
-                        </Button>
                         <Image Height="42" HorizontalAlignment="Left" Margin="10,10,0,0" Name="image30" Source="/PensjonatApp;component/Images/e_mailBig2.png" Stretch="Fill" VerticalAlignment="Top" Width="42" />
                         <Label Content="Newsletter" FontSize="20" FontWeight="Normal" Height="40" HorizontalAlignment="Left" Margin="53,11,0,0" Name="label195" Padding="0" VerticalAlignment="Top" VerticalContentAlignment="Center" />
                         <Image Height="40" HorizontalAlignment="Left" Margin="165,12,0,0" Name="image31" Source="/PensjonatApp;component/Images/separator.png" Stretch="Fill" VerticalAlignment="Top" Width="2" />
+                        <StackPanel CanHorizontallyScroll="True" ClipToBounds="False" FlowDirection="RightToLeft" Height="47" HorizontalAlignment="Right" Margin="0,5,5,0" Name="stackPanel13" Orientation="Horizontal" VerticalAlignment="Top" Width="578">
+                            <Button BorderBrush="#FFBAD0DC" Canvas.Left="199" Canvas.Top="103" Foreground="{x:Null}" Height="35" Name="buttonNewsletterSend" Padding="0" Width="95" Margin="2">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Height="24" HorizontalAlignment="Left" Margin="2" Name="imgButtonNewsletterSend" Source="/PensjonatApp;component/Images/send323.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="24" />
+                                    <Label Content="Wyślij" FontSize="13" FontWeight="Normal" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="0" Name="label193" Padding="0" VerticalAlignment="Center" VerticalContentAlignment="Center" Width="42" />
+                                </StackPanel>
+                            </Button>
+                            <Button BorderBrush="#FFBAD0DC" Canvas.Left="199" Canvas.Top="103" Foreground="{x:Null}" Height="35" Name="buttonNewsletterNew" Padding="0" Width="95" Margin="2">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Height="24" HorizontalAlignment="Left" Margin="2" Name="imgButtonNewsletterNew" Source="/PensjonatApp;component/Images/email_app_icon2.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="24" />
+                                    <Label Content="Nowy" FontSize="13" FontWeight="Normal" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Name="label194" Padding="0" VerticalAlignment="Center" VerticalContentAlignment="Center" Width="42" />
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
                     </Grid>
                     <Grid Name="gridNewsletterDeafult" Margin="0" Opacity="1" ShowGridLines="True" Visibility="Visible" MinHeight="580">
                         <Toolkit:RichTextBox Name="richTextBoxNewsletter" Text="{Binding Path=Binding Notes}" Margin="15" ScrollViewer.VerticalScrollBarVisibility="Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" TabIndex="1">
@@ -1142,7 +1144,7 @@
                         <Image Height="42" HorizontalAlignment="Left" Margin="10,10,0,0" Name="image48" Source="/PensjonatApp;component/Images/pracownicyHead.png" Stretch="Fill" VerticalAlignment="Top" Width="42" />
                         <Label Content="Pracownicy" FontSize="20" FontWeight="Normal" Height="40" HorizontalAlignment="Left" Margin="53,11,0,0" Name="label133" Padding="0" VerticalAlignment="Top" VerticalContentAlignment="Center" />
                         <Image Height="40" HorizontalAlignment="Left" Margin="165,12,0,0" Name="image49" Source="/PensjonatApp;component/Images/separator.png" Stretch="Fill" VerticalAlignment="Top" Width="2" />
-                        <StackPanel CanHorizontallyScroll="True" ClipToBounds="False" FlowDirection="RightToLeft" HorizontalAlignment="Stretch" Margin="16,0,5,0" Name="stackPanel10" Orientation="Horizontal" VerticalAlignment="Stretch" Width="572">
+                        <StackPanel CanHorizontallyScroll="True" ClipToBounds="False" FlowDirection="RightToLeft" HorizontalAlignment="Right" Margin="0,5,5,0" Name="stackPanel10" Orientation="Horizontal" VerticalAlignment="Top" Width="572" Height="47">
                             <Button BorderBrush="#FFBAD0DC" FlowDirection="LeftToRight" Foreground="{x:Null}" Height="35" Margin="2" Name="buttonPracownicyUsun" Padding="0" Width="95" Click="buttonPracownicyUsun_Click">
                                 <StackPanel Orientation="Horizontal">
                                     <Image Height="24" HorizontalAlignment="Left" Margin="2" Name="image50" Source="/PensjonatApp;component/Images/Delete-icon1.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="24" />
@@ -1400,18 +1402,14 @@
             <Label Canvas.Left="13" Canvas.Top="114" Content="Zalogowano:" Height="Auto" Name="napisZalogwano" Padding="2" FontWeight="Normal" FontSize="15" />
             <Label Canvas.Left="96" Canvas.Top="140" Content="Danuta" Name="labelLoginImie" Padding="2" Margin="2" FontSize="14" />
             <Label Canvas.Left="98" Canvas.Top="159" Content="Rokczewska" Name="LabelLoginNazwisko" Padding="2" FontSize="14" />
-            <Label Canvas.Left="98" Canvas.Top="178" Content="25978745" Name="labelLoginId" Padding="2" FontSize="11" />
+            <Label Canvas.Left="117" Canvas.Top="180" Content="25978745" Name="labelLoginId" Padding="2" FontSize="11" />
             <Calendar Canvas.Left="23" Canvas.Top="433" Height="170" Name="calendar1" Width="180" SelectionMode="MultipleRange" />
             <Image Canvas.Left="24" Canvas.Top="145" Name="image79" Stretch="Fill" Source="/PensjonatApp;component/Images/pracownikSmall.png" StretchDirection="DownOnly" />
-            <Button BorderBrush="#FFBAD0DC" Canvas.Left="146" Canvas.Top="209" FlowDirection="LeftToRight" Foreground="{x:Null}" Height="20" Name="buttonWyloguj" Padding="0" Width="70">
-                <StackPanel Orientation="Horizontal">
-                    <Image HorizontalAlignment="Left" Margin="2" Name="image82" Source="/PensjonatApp;component/Images/logout-ico2n.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="16" Height="16" />
-                    <Label Content="Wyloguj" FontSize="11" FontWeight="Normal" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Margin="0" Name="label223" Padding="0" VerticalAlignment="Center" VerticalContentAlignment="Center" Width="42" />
-                </StackPanel>
-            </Button>
             <Separator Canvas.Left="16" Canvas.Top="110" Height="5" Name="separator2" Width="200" />
             <Separator Canvas.Left="16" Canvas.Top="230" Height="5" Name="separator3" Width="200" />
             <Separator Canvas.Left="17" Canvas.Top="616" Height="5" Name="separator4" Width="200" />
+            <Label Canvas.Left="98" Canvas.Top="180" Content="ID:" FontSize="11" Name="label226" Padding="2" />
+            <Button Canvas.Left="152" Canvas.Top="210" Content="Wyloguj..." Height="20" Name="buttonWyloguj" Width="65" FontSize="11" />
         </Canvas>
         <Grid Name="grid1" Width="211" Margin="0,0,4,8" HorizontalAlignment="Right" VerticalAlignment="Bottom">
             <Label Content="Aby uzyskać pomoć wciśnij F1" Height="28" Name="napisPomoc" Padding="2" Foreground="#FF767676" Margin="42,8,6,0" />
