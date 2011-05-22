@@ -91,7 +91,17 @@ TEXTAREA, SELECT {
         </asp:GridView>
     </div>
     </div>
-    
+    <div id="Div1">
+    Sprawdź zaliczkę:<br />
+        Id rezerwacji: <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox> <br />
+        PESEL: <asp:TextBox ID="TextBox3" runat="server"></asp:TextBox> <br />
+        <asp:Button ID="Button2" runat="server" Text="Sprawdź" 
+            onclick="Button2_Click" /><br />
+        <br />
+        <asp:Label ID="Label2" runat="server" Text="---"></asp:Label>
+    </div>
+
+
     </form>
             
 </body>
