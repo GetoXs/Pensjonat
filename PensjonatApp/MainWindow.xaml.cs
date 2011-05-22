@@ -47,11 +47,12 @@ namespace PensjonatApp
         private List<Button> buttonStandPokoiBackOkList = new List<Button>();
         private List<Button> buttonPracownicyDeafultList = new List<Button>();
         private List<Button> buttonPracownicyBackOkList = new List<Button>();
+        private List<Button> buttonPracownicyBackList = new List<Button>();
         private List<Button> buttonStanowiskaDeafultList = new List<Button>();
         private List<Button> buttonStanowiskaBackOkList = new List<Button>();
         private List<Button> buttonZadaniaDeafultList = new List<Button>();
         private List<Button> buttonZadaniaBackList = new List<Button>();
-
+        private List<Button> buttonEmptyList = new List<Button>();
         private int id;
         private string imie;
         private string nazwisko;
@@ -82,6 +83,7 @@ namespace PensjonatApp
             buttonPobytyDeafultList.Add(buttonPobytyServices);
             buttonPobytyDeafultList.Add(buttonPobytySum);
             buttonPobytyDeafultList.Add(buttonPobytyDetails);
+            buttonPobytyDeafultList.Add(buttonPobytyNowy);
             buttonPobytyBackOkList.Add(buttonPobytyPowrot);
             buttonPobytyBackOkList.Add(buttonPobytyOk);
             buttonPobytyBackOkPrintList.Add(buttonPobytyPowrot);
@@ -132,6 +134,7 @@ namespace PensjonatApp
             buttonPracownicyDeafultList.Add(buttonPracownicyEdytuj);
             buttonPracownicyBackOkList.Add(buttonPracownicyOk);
             buttonPracownicyBackOkList.Add(buttonPracownicyPowrot);
+            buttonPracownicyBackList.Add(buttonPracownicyPowrot);
 
             buttonStanowiskaDeafultList.Add(buttonStanowiskaUsun);
             buttonStanowiskaDeafultList.Add(buttonStanowiskaEdytuj);
@@ -223,6 +226,8 @@ namespace PensjonatApp
             gridPobytyServices.Height = 0;
             gridPobytySum.Height = 0;
             gridPobytyDetails.Height = 0;
+            gridPobytyNowy.Height = 0;
+            gridPobytyWybierzKlienta.Height = 0;
             zwinButtonList(buttonPobytyBackOkList);
             zwinButtonList(buttonPobytyBackOkPrintList);
             zwinButtonList(buttonPobytyBackPrintList);
@@ -286,8 +291,10 @@ namespace PensjonatApp
             gridPracownicyDeafult.Visibility = Visibility.Collapsed;
             gridPracownicyDodaj.Visibility = Visibility.Collapsed;
             gridPracownicyEdycja.Visibility = Visibility.Collapsed;
+            gridPracownicyZadania.Visibility = Visibility.Collapsed;
             zwinButtonList(buttonPracownicyDeafultList);
             zwinButtonList(buttonPracownicyBackOkList);
+            zwinButtonList(buttonPracownicyBackList);
         }
         private void zwinStanowiska()
         {
@@ -302,6 +309,7 @@ namespace PensjonatApp
             gridZadaniaArchiwum.Visibility = Visibility.Collapsed;
             zwinButtonList(buttonZadaniaDeafultList);
             zwinButtonList(buttonZadaniaBackList);
+            
         }
 
 //----------------------------------------------REZERWACJE----------------------------------------------
@@ -406,19 +414,7 @@ namespace PensjonatApp
 
         private void buttonRezerwacjeSearch_Click(object sender, RoutedEventArgs e)
         {
-            if (textBoxRezerwacjeSzukaj.Text == "")
-                dataGridRezerwacjeSzukaj.ItemsSource = TablesManager.Manager.RezerwacjeTableAdapter.GetDataRezerwacjeKlienci();
-            else
-            {
-                if ((bool)rbRezerwacjeId.IsChecked)
-                {
-                    int id;
-                    if (int.TryParse(textBoxRezerwacjeSzukaj.Text, out id))
-                        dataGridRezerwacjeSzukaj.ItemsSource = TablesManager.Manager.RezerwacjeTableAdapter.GetDataRezerwacjeByID(id);
-                    else
-                        System.Windows.MessageBox.Show("Niepoprawne ID rezerwacje.\nNumer identyfikacyjny rezerwacji może zawierać tylko cyfry.", "Wyszukiwanie rezerwacji", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-            }
+            rezerwacjeSearch();
         }
         private void rezerwacjeSearch()
         {
@@ -489,21 +485,25 @@ namespace PensjonatApp
             }
             dataGridRezerwacjeAddWybranePokoje.Items.Refresh();
         }
-        private void sprawdzPokoje()
+        private enum wolnePokoje
         {
-            DateTime? terminOd = datePickerRezeracjeAddTerminOd.SelectedDate;
-            DateTime? terminDo = datePickerRezerwacjeAddTerminDo.SelectedDate;
-            if(terminOd!=null && terminDo!=null)
+            errTermin,errSelection,Ok
+        }
+        private wolnePokoje sprawdzPokoje(ref DatePicker terminOd,ref DatePicker terminDo)
+        {
+
+            if(terminOd.SelectedDate!=null && terminDo.SelectedDate!=null)
             {
-                if (terminOd > terminDo)
+                if (terminOd.SelectedDate > terminDo.SelectedDate)
                 {
                     System.Windows.MessageBox.Show("Niepoprawny termin.\nTermin zakończenie nie może być poźniejszy od terminu rozpoczęcia.", "Dodawanie rezerwacji", MessageBoxButton.OK, MessageBoxImage.Error);
-                    datePickerRezeracjeAddTerminOd.SelectedDate = null;
-                    datePickerRezerwacjeAddTerminDo.SelectedDate = null;
+                    terminOd.SelectedDate = null;
+                    terminDo.SelectedDate = null;
 
                 }
                 else
                 {
+                    return wolnePokoje.Ok;
                     /*PokojeDS.PokojeDataTable pokojeTable =  TablesManager.Manager.PokojeTableAdapter.GetDataWolnePokojeStandardy(terminOd, terminOd, terminDo, terminDo, terminOd, terminDo);
                     foreach (PokojeDS.PokojeRow row in pokojeTable)
                     {
@@ -513,17 +513,17 @@ namespace PensjonatApp
                     comboBoxRezerwacjeAddPokoje.ItemsSource = RezerwacjePokojeStringList;*/
                 }
                     ;  //;      
-          
             }
+            return wolnePokoje.errSelection;
         }
         private void datePickerRezeracjeAddTerminOd_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-            sprawdzPokoje();
+            sprawdzPokoje(ref datePickerRezeracjeAddTerminOd,ref datePickerRezerwacjeAddTerminDo);
         }
 
         private void datePickerRezerwacjeAddTerminDo_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-            sprawdzPokoje();
+            sprawdzPokoje(ref datePickerRezeracjeAddTerminOd, ref datePickerRezerwacjeAddTerminDo);
         }
         private void dataGridRezerwacjeAddDostepnePokoje_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
@@ -614,7 +614,54 @@ namespace PensjonatApp
         }
         private void buttonPobytyOk_Click(object sender, RoutedEventArgs e)
         {
+            if (currentGrid == gridPobytyWybierzKlienta)
+            {
+                if (dataGridPobytyNowyKlienci.SelectedItem != null)
+                {
+                    KlienciDS.KlienciRow selectedRow = (KlienciDS.KlienciRow)((DataRowView)dataGridPobytyNowyKlienci.SelectedItem).Row;
+                    textBoxPobytyNowyKlient.Text = selectedRow.imie + ' ' + selectedRow.nazwisko;
+                    labelPobytyNowyIdKlienta.Content = selectedRow.id_klienta;
+                    zwinPobyty();
+                    showWindow(gridPobytyNowy, buttonPobytyBackOkList);
+                }
+                else
+                {
+                    System.Windows.MessageBox.Show("Nie wybrano klienta.\n", "Wybór klienta", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+            }
+            else if (currentGrid == gridPobytyNowy)
+            {
+                if (expander1.IsExpanded == true)
+                {
+                    if (textBoxPobytyNowyKlient.Text != null && textBoxPobytyNowyIlOsob != null && comboBoxPobytyNowyPokoj.SelectedItem != null
+                        && datePickerPobytyNowyTerminDo.SelectedDate != null && datePickerPobytyNowyTerminOd.SelectedDate != null)
+                    {
+                        RezerwacjeHelper.dodajRezerwacjeIZakwaterowanieOdRazu((int)labelPobytyNowyIdKlienta.Content,
+                            PobytyNowyIdPokoje[comboBoxPobytyNowyPokoj.SelectedIndex],(DateTime) datePickerPobytyNowyTerminOd.SelectedDate,
+                            (DateTime)datePickerPobytyNowyTerminDo.SelectedDate);
+                        zwinPobyty();
+                        showWindow(gridPobytyDeafult, buttonPobytyDeafultList);
+                    }
+                    else
+                    {
+                        System.Windows.MessageBox.Show("Wypełnij wszytkie pola", "Dodawanie pobytu", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+                else
+                {
+                    if (dataGridPobytyNowyRezerwacje.SelectedItem != null)
+                    {
+                        RezerwacjeDS.RezerwacjeRow selectedRow = (RezerwacjeDS.RezerwacjeRow)((DataRowView)dataGridPobytyNowyRezerwacje.SelectedItem).Row;
+               //RezerwacjeHelper.dodajKlientaDoPobytuNaPodstawieRezerwacji(selectedRow.id_rezerwacji,selectedRow.id_klienta,selectedRow.id
+                        zwinPobyty();
+                        showWindow(gridPobytyDeafult, buttonPobytyDeafultList);
+                    }
+                    else
+                        System.Windows.MessageBox.Show("Wybierz rezerwację", "Dodawanie pobytu", MessageBoxButton.OK, MessageBoxImage.Error);
+                  
+                }
 
+            }
         }
         //----------------------------------------------POBYTY->DEAFULT----------------------------------------------
         private void dataGridPobytySzukaj_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
@@ -802,9 +849,87 @@ namespace PensjonatApp
                 UslugiHelper.usunUsluge(selectedRow.id_uslugi);
             }
         }
+        //----------------------------------------------POBYTY->NOWY----------------------------------------------
+        private void buttonPobytyNowy_Click(object sender, RoutedEventArgs e)
+        {
+            zwinPobyty();
+            showWindow(gridPobytyNowy, buttonPobytyBackOkList);
+        }
 
+        private void expander2_Expanded(object sender, RoutedEventArgs e)
+        {
+            if (expander1 != null)
+                expander1.IsExpanded = false;
 
+        }
+        private void expander2_Collapsed(object sender, RoutedEventArgs e)
+        {
+            if (expander1 != null)
+                expander1.IsExpanded = true;
+        }
+        private void expander1_Expanded(object sender, RoutedEventArgs e)
+        {
+            if (expander2 != null)
+                expander2.IsExpanded = false;
+        }
 
+        private void expander1_Collapsed(object sender, RoutedEventArgs e)
+        {
+            if (expander2 != null)
+                expander2.IsExpanded = true;
+        }
+        private void buttonPobytyNowyKlient_Click(object sender, RoutedEventArgs e)
+        {
+            zwinPobyty();
+            showWindow(gridPobytyWybierzKlienta, buttonPobytyBackOkList);
+        }
+
+        private void dataGridPobytyNowyKlienci_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if ((bool)(e.NewValue) == true)
+            {//pojawienie sie pola
+                dataGridPobytyNowyKlienci.ItemsSource = TablesManager.Manager.KlienciTableAdapter.GetKlienciMiejscowosci();
+            }
+        }
+        private void dataGridPobytyNowyRezerwacje_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if ((bool)(e.NewValue) == true)
+            {//pojawienie sie pola
+                dataGridPobytyNowyRezerwacje.ItemsSource = TablesManager.Manager.RezerwacjeTableAdapter.GetDataRezerwacjeKlienci();
+            }
+        }
+        List<int> PobytyNowyIdPokoje = new List<int>();
+        List<string> PobytyNowyStringPokoje = new List<string>();
+        private void PrzypiszWolnePokoje()
+        {
+            DateTime terminOd = (DateTime)datePickerPobytyNowyTerminOd.SelectedDate;
+            DateTime terminDo = (DateTime)datePickerPobytyNowyTerminDo.SelectedDate;
+            PobytyNowyIdPokoje.Clear();
+            PobytyNowyStringPokoje.Clear();
+            PokojeDS.PokojeDataTable pokojeTable = TablesManager.Manager.PokojeTableAdapter.GetDataWolnePokojeByTermin(terminOd, terminOd, terminDo, terminDo, terminOd, terminDo);
+            foreach (PokojeDS.PokojeRow row in pokojeTable)
+            {
+                PobytyNowyIdPokoje.Add(row.id_pokoju);
+                PobytyNowyStringPokoje.Add(row.nr_pokoju + " | ");
+            }
+            comboBoxPobytyNowyPokoj.ItemsSource = PobytyNowyStringPokoje;
+        }
+
+        private void datePickerPobytyNowyTerminDo_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (sprawdzPokoje(ref datePickerPobytyNowyTerminOd, ref datePickerPobytyNowyTerminDo) == wolnePokoje.Ok)
+            {
+                PrzypiszWolnePokoje();
+            }
+        }
+
+        private void datePickerPobytyNowyTerminOd_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (sprawdzPokoje(ref datePickerPobytyNowyTerminOd, ref datePickerPobytyNowyTerminDo) == wolnePokoje.Ok)
+            {
+                PrzypiszWolnePokoje();
+            }
+        }
         //----------------------------------------------POBYTY->PODSUMOWANIE----------------------------------------------
         private void buttonPobytyDetails_Click(object sender, RoutedEventArgs e)
         {
@@ -1753,6 +1878,7 @@ namespace PensjonatApp
                 stanowiskaIdList.Add(row.id_stanowiska);
             }
             comboBoxPracownicyDodajStanowisko.ItemsSource = stanowiskaStringList;
+            comboBoxPracownicyEdycjaStanowisko.ItemsSource = stanowiskaStringList;
         }
 
         private void comboBoxPracownicyEdycjaStanowisko_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
@@ -1888,6 +2014,21 @@ namespace PensjonatApp
                 }
             }
         }
+        private void buttonPracownicyZadania_Click(object sender, RoutedEventArgs e)
+        { 
+            if (dataGridPracownicyDeafult.SelectedItem != null)
+            {
+                zwinPracownicy();
+                showWindow(gridPracownicyZadania, buttonPracownicyBackList);
+                PracownicyDS.PracownicyRow selectedRow = (PracownicyDS.PracownicyRow)((DataRowView)dataGridPracownicyDeafult.SelectedItem).Row;
+                dataGridPracownicyZadania.ItemsSource = 
+                TablesManager.Manager.UslugiTableAdapter.GetDataByIdPracownikaPrzedzialCzasu(selectedRow.id_pracownika, DateTime.Now, DateTime.Now);
+               
+            }
+            else
+                System.Windows.MessageBox.Show("Najpierw wybierz pracownika.", "Usuwanie pracownika", MessageBoxButton.OK, MessageBoxImage.Warning);       
+        }
+       
 //----------------------------------------------STANOWISKA----------------------------------------------
         private void dataGridStanowiskaDeafult_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
@@ -1995,6 +2136,21 @@ namespace PensjonatApp
         }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
 
 
 
