@@ -12,14 +12,15 @@ namespace PensjonatASP
     public partial class Oferta : System.Web.UI.Page
     {
         Int32 ile;
+        Int32 id_rez;
+        String pesel;
         protected void Page_Load(object sender, EventArgs e)
         {
         }
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-           
-            Db.setUpAccesFile(@"C:\Users\GetoX\Desktop\STUDIA\BD\proj\rep\baza.mdb", "Administrator", "");
+            Db.setUpAccesFile(@"C:\Users\ttt\Documents\pensjonat\baza.mdb", "Administrator", "");
             Db.Con.Open();
             DbCommand cmd = Db.Con.CreateCommand();
 
@@ -56,7 +57,7 @@ namespace PensjonatASP
             {
                 cmd.CommandText = "SELECT        p3.id_pokoju AS ID, p3.nr_pokoju AS NUMER, p4.cena AS CENA, p4.dodatkowy_opis AS OPIS " +
                                     "FROM            Pokoje p3, Pokoje_slownik p4 " +
-                                    "WHERE        p3.id_slownikowe_pokoju = p4.id_slownikowe_pokoju AND p4.ilosc_osob = "+ile+" AND (p3.id_pokoju NOT IN " +
+                                    "WHERE        p3.id_slownikowe_pokoju = p4.id_slownikowe_pokoju AND p4.ilosc_osob = " + ile + " AND (p3.id_pokoju NOT IN " +
                                     "(SELECT        id_pokoju " +
                                     "FROM            Pobyty p1 " +
                                     "WHERE        (termin_start <= " + start + ") AND (termin_koniec >= " + start + ") OR " +
@@ -81,6 +82,57 @@ namespace PensjonatASP
 
                 Db.Con.Close();
             }
+
         }
+
+         
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            Db.setUpAccesFile(@"C:\Users\ttt\Documents\pensjonat\baza.mdb", "Administrator", "");
+            Db.Con.Open();
+            DbCommand cmd = Db.Con.CreateCommand();
+
+            bool blad = false;
+            pesel = TextBox3.Text;
+
+            try
+            {
+                id_rez = Int32.Parse(TextBox2.Text);
+            }
+            catch (Exception ex)
+            {
+                blad = true;
+                Label1.Text = "Nieprawidłowe id rezerwacji.";
+            }
+
+            if (id_rez <= 0)
+            {
+                blad = true;
+                Label1.Text = "Nieprawidłowe id rezerwacji.";
+
+            }
+
+            if (!blad)
+            {
+                cmd.CommandText = "SELECT r1.zaliczka FROM Rezerwacje r1, Pobyty p1, Klienci k1 WHERE r1.id_rezerwacji = p1.id_rezerwacji AND p1.id_klienta = k1.id_klienta AND r1.id_rezerwacji =" + id_rez + " AND k1.pesel LIKE '"+ pesel +"'";
+
+                //Label1.Text = cmd.CommandText;
+                DbDataReader reader = cmd.ExecuteReader();
+                 
+                //int test = reader.GetInt32(0);
+                if (reader.HasRows)
+                {
+                    Label2.Text = "Zaliczka: ";
+                }
+                else
+                {
+                    Label2.Text = "Nie ma takiej rezerwacji.";
+                }
+
+                Db.Con.Close();
+            }
+        }
+
+            
     }
 }
