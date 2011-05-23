@@ -1260,7 +1260,7 @@
                     </Grid>
                 </StackPanel>
             </TabItem>
-            <TabItem Height="40" Name="tabItem2" BorderBrush="#FF2B4865">
+            <TabItem Height="40" Name="tabStanowiska" BorderBrush="#FF2B4865">
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal" Width="120">
                         <Image Height="30" Name="image75" Source="/PensjonatApp;component/Images/stanowiska.png" Stretch="Fill" Width="30" />
@@ -1339,7 +1339,7 @@
                     </Grid>
                 </StackPanel>
             </TabItem>
-            <TabItem BorderBrush="#FF2B4865" Height="40" Name="tabItem3">
+            <TabItem BorderBrush="#FF2B4865" Height="40" Name="tabZadania">
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal" Width="120">
                         <Image Height="30" Name="image83" Source="/PensjonatApp;component/Images/zadaniaS.png" Stretch="Fill" Width="30" />

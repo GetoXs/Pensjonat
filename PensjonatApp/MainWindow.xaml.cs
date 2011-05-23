@@ -72,6 +72,54 @@ namespace PensjonatApp
             this.LabelLoginNazwisko.Content = this.nazwisko;
             this.labelLoginId.Content = this.id;
 
+            tabNewsletter.Visibility = Visibility.Collapsed;
+            switch (this.stanowisko)
+            {
+                case "Kierownik":
+                    tabZadania.Visibility = Visibility.Collapsed;
+                    break;
+
+                case "Recepcjonista":
+                    tabPokoje.Visibility = Visibility.Collapsed;
+                    tabStandardyPokoi.Visibility = Visibility.Collapsed;
+                    tabWyposazenie.Visibility = Visibility.Collapsed;
+                    tabRabaty.Visibility = Visibility.Collapsed;
+                    tabPosilki.Visibility = Visibility.Collapsed;
+                    tabUslugi.Visibility = Visibility.Collapsed;
+                    tabPrzydzialy.Visibility = Visibility.Collapsed;
+                    tabStanowiska.Visibility = Visibility.Collapsed;
+                    tabZadania.Visibility = Visibility.Collapsed;
+                    break;
+
+                case "Kucharz":
+                    tabRezerwacje.Visibility = Visibility.Collapsed;
+                    tabPobyty.Visibility = Visibility.Collapsed;
+                    tabKlienci.Visibility = Visibility.Collapsed;
+                    tabPokoje.Visibility = Visibility.Collapsed;
+                    tabStandardyPokoi.Visibility = Visibility.Collapsed;
+                    tabWyposazenie.Visibility = Visibility.Collapsed;
+                    tabRabaty.Visibility = Visibility.Collapsed;
+                    tabPosilki.Visibility = Visibility.Collapsed;
+                    tabUslugi.Visibility = Visibility.Collapsed;
+                    tabPrzydzialy.Visibility = Visibility.Collapsed;
+                    tabStanowiska.Visibility = Visibility.Collapsed;
+                    break;
+
+                default:
+                    tabRezerwacje.Visibility = Visibility.Collapsed;
+                    tabPobyty.Visibility = Visibility.Collapsed;
+                    tabKlienci.Visibility = Visibility.Collapsed;
+                    tabPokoje.Visibility = Visibility.Collapsed;
+                    tabStandardyPokoi.Visibility = Visibility.Collapsed;
+                    tabWyposazenie.Visibility = Visibility.Collapsed;
+                    tabRabaty.Visibility = Visibility.Collapsed;
+                    tabPosilki.Visibility = Visibility.Collapsed;
+                    tabUslugi.Visibility = Visibility.Collapsed;
+                    tabPrzydzialy.Visibility = Visibility.Collapsed;
+                    tabStanowiska.Visibility = Visibility.Collapsed;
+                    break;
+            }
+
             buttonRezerwacjeDeafultList.Add(buttonRezerwacjeZaliczka);
             buttonRezerwacjeDeafultList.Add(buttonRezerwacjeDel);
             buttonRezerwacjeDeafultList.Add(buttonRezerwacjeAdd);
