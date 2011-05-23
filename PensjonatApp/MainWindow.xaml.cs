@@ -554,26 +554,35 @@ namespace PensjonatApp
                 else
                 {
                     return wolnePokoje.Ok;
-                    /*PokojeDS.PokojeDataTable pokojeTable =  TablesManager.Manager.PokojeTableAdapter.GetDataWolnePokojeStandardy(terminOd, terminOd, terminDo, terminDo, terminOd, terminDo);
-                    foreach (PokojeDS.PokojeRow row in pokojeTable)
-                    {
-                        RezerwacjePokojeList.Add(row);
-                        RezerwacjePokojeStringList.Add(row.nr_pokoju + " | ");
-                    }
-                    comboBoxRezerwacjeAddPokoje.ItemsSource = RezerwacjePokojeStringList;*/
-                }
-                    ;  //;      
+                   
+                }     
             }
             return wolnePokoje.errSelection;
         }
+        private void DodajPokojdeDoComboBoxa()
+        {
+            sprawdzPokoje(ref datePickerRezeracjeAddTerminOd, ref datePickerRezerwacjeAddTerminDo);
+            RezerwacjePokojeList.Clear();
+            RezerwacjePokojeStringList.Clear();
+            PokojeDS.PokojeDataTable pokojeTable = TablesManager.Manager.PokojeTableAdapter.GetDataWolnePokojeByTermin(datePickerRezeracjeAddTerminOd.SelectedDate
+                       , datePickerRezeracjeAddTerminOd.SelectedDate, datePickerRezerwacjeAddTerminDo.SelectedDate, datePickerRezerwacjeAddTerminDo.SelectedDate, 
+                       datePickerRezeracjeAddTerminOd.SelectedDate, datePickerRezerwacjeAddTerminDo.SelectedDate);
+            foreach (PokojeDS.PokojeRow row in pokojeTable)
+            {
+                RezerwacjePokojeList.Add(row);
+                RezerwacjePokojeStringList.Add(row.nr_pokoju + " | ");
+            }
+            comboBoxRezerwacjeAddPokoje.ItemsSource = RezerwacjePokojeStringList;
+        }
         private void datePickerRezeracjeAddTerminOd_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-            sprawdzPokoje(ref datePickerRezeracjeAddTerminOd,ref datePickerRezerwacjeAddTerminDo);
+            DodajPokojdeDoComboBoxa();
         }
 
         private void datePickerRezerwacjeAddTerminDo_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-            sprawdzPokoje(ref datePickerRezeracjeAddTerminOd, ref datePickerRezerwacjeAddTerminDo);
+            DodajPokojdeDoComboBoxa();
+
         }
         private void dataGridRezerwacjeAddDostepnePokoje_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
@@ -702,7 +711,7 @@ namespace PensjonatApp
                     if (dataGridPobytyNowyRezerwacje.SelectedItem != null)
                     {
                         RezerwacjeDS.RezerwacjeRow selectedRow = (RezerwacjeDS.RezerwacjeRow)((DataRowView)dataGridPobytyNowyRezerwacje.SelectedItem).Row;
-               //RezerwacjeHelper.dodajKlientaDoPobytuNaPodstawieRezerwacji(selectedRow.id_rezerwacji,selectedRow.id_klienta,selectedRow.id
+               RezerwacjeHelper.dodajKlientaDoPobytuNaPodstawieRezerwacji(selectedRow.id_rezerwacji,selectedRow.id_klienta,(int)selectedRow["id_pokoju"]);
                         zwinPobyty();
                         showWindow(gridPobytyDeafult, buttonPobytyDeafultList);
                     }
@@ -811,10 +820,10 @@ namespace PensjonatApp
         {
             comboBoxPobytyPracownicy.IsEnabled = true;
             List<string> lst = new List<string>();
-            comboBoxPobytyPracownicy.ItemsSource = lst;
+            PobytyUslugiIdPracownikaList.Clear();
             DateTime koniec = (DateTime)datePickerPobytyServicesTerminOd.SelectedDate;
-            koniec = koniec.AddDays(5.0);
-            PracownicyDS.PracownicyDataTable pracownicyTable = UslugiHelper.znajdzWolnegoPracownika(datePickerPobytyServicesTerminOd.SelectedDate, koniec, comboBoxPobytyUslugi.SelectedIndex);//TablesManager.Manager.PracownicyTableAdapter.
+            koniec = koniec.AddDays(1.0);
+            PracownicyDS.PracownicyDataTable pracownicyTable = UslugiHelper.znajdzWolnegoPracownika(datePickerPobytyServicesTerminOd.SelectedDate, koniec, PobytyUslugiIdList[comboBoxPobytyUslugi.SelectedIndex]);//TablesManager.Manager.PracownicyTableAdapter.
                // GetDataPracownicyWykonujacyUslugeWPodanymTerminie(PobytyUslugiIdList[comboBoxPobytyUslugi.SelectedIndex], koniec, datePickerPobytyServicesTerminOd.SelectedDate);
 
             foreach (PracownicyDS.PracownicyRow row in pracownicyTable)
@@ -822,12 +831,16 @@ namespace PensjonatApp
                 lst.Add(row.imie + " " + row.nazwisko);
                 PobytyUslugiIdPracownikaList.Add(row.id_pracownika);
             }
+            comboBoxPobytyPracownicy.ItemsSource = lst;
 
         }
         private void buttonPobytyServicesAdd_Click(object sender, RoutedEventArgs e)
         {
-            if(comboBoxPobytyUslugi.SelectedItem!=null && datePickerPobytyServicesTerminOd.SelectedDate != null && comboBoxPobytyPracownicy.SelectedItem!=null)
+            if (comboBoxPobytyUslugi.SelectedItem != null && datePickerPobytyServicesTerminOd.SelectedDate != null && comboBoxPobytyPracownicy.SelectedItem != null)
+            {
                 UslugiHelper.przydzielPracownika(PobytyUslugiIdList[comboBoxPobytyUslugi.SelectedIndex], PobytyUslugiIdPracownikaList[comboBoxPobytyPracownicy.SelectedIndex]);
+                dataGridPobytyUslugi.Items.Refresh();
+            }
             else
                 System.Windows.MessageBox.Show("Wybierz usługę.", "Anulowanie usługi", MessageBoxButton.OK, MessageBoxImage.Warning);
  
@@ -945,7 +958,7 @@ namespace PensjonatApp
         {
             if ((bool)(e.NewValue) == true)
             {//pojawienie sie pola
-                dataGridPobytyNowyRezerwacje.ItemsSource = TablesManager.Manager.RezerwacjeTableAdapter.GetDataRezerwacjeKlienci();
+                dataGridPobytyNowyRezerwacje.ItemsSource = TablesManager.Manager.RezerwacjeTableAdapter.GetDataRezerwacjeKlienciPokoje();
             }
         }
         List<int> PobytyNowyIdPokoje = new List<int>();
