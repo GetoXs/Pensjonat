@@ -2182,7 +2182,13 @@ namespace PensjonatApp
         {
             if ((bool)(e.NewValue) == true)
             {
-                dataGridZadaniaDeafult.ItemsSource = TablesManager.Manager.UslugiTableAdapter.GetDataByIdPracownikaPrzedzialCzasu(this.id, DateTime.Now, DateTime.Now);
+                DateTime czasObecny = DateTime.Now;
+                int rok = czasObecny.Year;
+                int miesiac = czasObecny.Month;
+                int dzien = czasObecny.Day;
+                DateTime czasStart = new DateTime(rok, miesiac, dzien, 0, 0, 0);
+                DateTime czasStop = new DateTime(rok, miesiac, dzien, 23, 59, 59);
+                dataGridZadaniaDeafult.ItemsSource = TablesManager.Manager.UslugiTableAdapter.GetDataByIdPracownikaPrzedzialCzasu(this.id, czasStop, czasStart);
             }
         }
 
