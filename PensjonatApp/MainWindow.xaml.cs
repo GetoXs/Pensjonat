@@ -871,7 +871,13 @@ namespace PensjonatApp
                 labelPobytySumPokoj.Content = (string)selectedRow["nr_pokoju"];
                 labelPobytySumId.Content = selectedRow.id_pobytu;
                 labelPobytySumTermin.Content = selectedRow.termin_start.ToLongDateString() + " - " + selectedRow.termin_koniec.ToLongDateString();
-                dataGridPobytySumRabaty.ItemsSource = PobytyRabatyDodajList;
+				//zerowanie listy rabatow
+                PobytyRabatyDodajList = new List<RachunkiDS.RabatyRow>();
+				dataGridPobytySumRabaty.ItemsSource = PobytyRabatyDodajList;
+
+				labelPobytySumDoZaplaty.Content = RozliczenieHelper.pobierzRabatowaCena(selectedRow.id_pobytu, PobytyRabatyDodajList).ToString(".00");
+				labelPobytySumCena.Content = RozliczenieHelper.pobierzPodstawowaCenaLaczna(selectedRow.id_pobytu).ToString(".00");
+
                // dataGridPobytyUslugi.ItemsSource = TablesManager.Manager.UslugiTableAdapter.GetDataUslugiUslugi_slownikByID_pobytu(selectedRow.id_pobytu);
             }
             else
@@ -880,8 +886,12 @@ namespace PensjonatApp
 
         private void PobytySumRabatyDodaj_Click(object sender, RoutedEventArgs e)
         {
-            if (comboBoxPobytySumRabat.SelectedItem != null && !PobytyRabatyDodajList.Contains(PobytyRabatyList[comboBoxPobytySumRabat.SelectedIndex]))
-                PobytyRabatyDodajList.Add(PobytyRabatyList[comboBoxPobytySumRabat.SelectedIndex]);
+			if (comboBoxPobytySumRabat.SelectedItem != null && !PobytyRabatyDodajList.Contains(PobytyRabatyList[comboBoxPobytySumRabat.SelectedIndex]))
+			{
+				PobytyRabatyDodajList.Add(PobytyRabatyList[comboBoxPobytySumRabat.SelectedIndex]);
+
+				labelPobytySumDoZaplaty.Content = RozliczenieHelper.pobierzRabatowaCena((int)labelPobytySumId.Content, PobytyRabatyDodajList).ToString(".00");
+			}
             dataGridPobytySumRabaty.Items.Refresh();
 
         }
@@ -891,9 +901,10 @@ namespace PensjonatApp
             {
                 foreach (var row in PobytyRabatyDodajList)
                 {
-                    if (row.id_rabatu == StandPokoiList[comboBoxStandPokoiDodajWyposazenie.SelectedIndex].id_wyposazenia)
+					if (row.id_rabatu == PobytyRabatyList[comboBoxPobytySumRabat.SelectedIndex].id_rabatu)
                     {
-                        PobytyRabatyDodajList.Remove(row);
+						PobytyRabatyDodajList.Remove(row);
+						labelPobytySumDoZaplaty.Content = RozliczenieHelper.pobierzRabatowaCena((int)labelPobytySumId.Content, PobytyRabatyDodajList).ToString(".00");
                         break;
                     }
                 }
