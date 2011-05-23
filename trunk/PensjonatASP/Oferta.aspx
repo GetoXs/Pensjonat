@@ -32,12 +32,22 @@ TEXTAREA, SELECT {
 {
     float:left;
 }
-</style>
+     .style1
+     {
+         width: 100%;
+     }
+     .style2
+     {
+         width: 438px;
+     }
+ </style>
 </head>
 <body>
+<b>Rezerwacja:</b><table class="style1">
+        <tr>
+            <td class="style2">
     <form id="form1" runat="server" >
-    <div id="content">
-    <div id="start">
+<div id="start">
         <p>Termin rozpoczęcia: </p><asp:Calendar ID="Calendar1" runat="server" 
             BackColor="White" BorderColor="#999999" CellPadding="4" 
             DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt" ForeColor="Black" 
@@ -52,6 +62,9 @@ TEXTAREA, SELECT {
             <WeekendDayStyle BackColor="#FFFFCC" />
         </asp:Calendar>
     </div>
+    
+   <div id="content">
+    
     <div id="zakonczenie">
         <p>Termin zakończenia: </p>
     <asp:Calendar ID="Calendar2" runat="server" BackColor="White" 
@@ -67,16 +80,18 @@ TEXTAREA, SELECT {
         <TodayDayStyle BackColor="#CCCCCC" ForeColor="Black" />
         <WeekendDayStyle BackColor="#FFFFCC" />
     </asp:Calendar>   
-    </div>
+        </div>
     <div id="ilosc_osob">
     Ilość osób w pokoju: 
         <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox> 
         <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="Sprawdź" /><br />
     </div>
     <div id="grid">    
-        <asp:Label ID="Label1" runat="server" Text="---"></asp:Label><br />
-        <asp:GridView ID="GridView1" runat="server"  autogeneratecolumns="true" CellPadding="4" ForeColor="#333333" 
-            GridLines="None">
+        <asp:Label ID="Label1" runat="server" Text="              "></asp:Label>
+        <asp:GridView ID="GridView1" runat="server"  autogeneratecolumns="true" 
+            CellPadding="4" ForeColor="#333333" 
+            GridLines="None" SelectedIndex="0" 
+            onselectedindexchanged="GridView1_SelectedIndexChanged">
             <AlternatingRowStyle BackColor="White" />
             <EditRowStyle BackColor="#2461BF" />
             <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
@@ -89,20 +104,35 @@ TEXTAREA, SELECT {
             <SortedDescendingCellStyle BackColor="#E9EBEF" />
             <SortedDescendingHeaderStyle BackColor="#4870BE" />
         </asp:GridView>
+        <asp:Button ID="Button4" runat="server" onclick="Button4_Click" Text="*" 
+            Visible="False" />
+&nbsp;<asp:Button ID="Button3" runat="server" Text="Wybierz" Visible="False" 
+            onclick="Button3_Click" />
     </div>
     </div>
+    <hr />
     <div id="Div1">
-    Sprawdź zaliczkę:<br />
+    <b>Sprawdź zaliczkę:</b><br />
         Id rezerwacji: <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox> <br />
         PESEL: <asp:TextBox ID="TextBox3" runat="server"></asp:TextBox> <br />
         <asp:Button ID="Button2" runat="server" Text="Sprawdź" 
             onclick="Button2_Click" /><br />
         <br />
-        <asp:Label ID="Label2" runat="server" Text="---"></asp:Label>
+        <asp:Label ID="Label2" runat="server" Text="             "></asp:Label>
     </div>
 
 
     </form>
+            
+            </td>
+            <td valign="top">
+                <strong>Wybrane pokoje:<br />
+                </strong>
+                <asp:Label ID="Label3" runat="server"></asp:Label>
+            </td>
+        </tr>
+    </table>
+&nbsp;
             
 </body>
 </html>

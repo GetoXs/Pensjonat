@@ -190,7 +190,7 @@ namespace PensjonatApp.Helpers
         /// <returns></returns>
 		public static int dodajRezerwacje(int id_klienta_rezerwujacego, int ilosc_osob, decimal zaliczka, List<int> pokoje, DateTime start_pobytu, DateTime koniec_pobytu)
         {
-            TablesManager.Manager.RezerwacjeTableAdapter.Insert(zaliczka, false, ilosc_osob, id_klienta_rezerwujacego);
+            TablesManager.Manager.RezerwacjeTableAdapter.InsertQuery(zaliczka, false, ilosc_osob, id_klienta_rezerwujacego);
             RezerwacjeDS.RezerwacjeDataTable tabRez = TablesManager.Manager.RezerwacjeTableAdapter.GetDataRezerwacjeOstatnia();
 
 			foreach (int pokoj_id in pokoje)
@@ -268,6 +268,7 @@ namespace PensjonatApp.Helpers
                 listaPo.Add(id_pokoju);
                 RezerwacjeHelper.dodajRezerwacje(id_klienta, 1, 0, listaPo, termin_start, termin_koniec);
                 RezerwacjeDS.RezerwacjeDataTable tabRez = TablesManager.Manager.RezerwacjeTableAdapter.GetDataRezerwacjeByIdKlintaTerminStartTeminKoniec(id_klienta, termin_start, termin_koniec);
+                int tmp = tabRez[0].id_klienta;
                 if(tabRez[0].id_klienta == id_klienta)
                 {
                     RezerwacjeHelper.dodajKlientaDoPobytuNaPodstawieRezerwacji(tabRez[0].id_rezerwacji, id_klienta, id_pokoju);

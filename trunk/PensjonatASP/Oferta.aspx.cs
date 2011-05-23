@@ -14,8 +14,11 @@ namespace PensjonatASP
         Int32 ile;
         Int32 id_rez;
         String pesel;
+        List<int> wybranePokoje;
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            
         }
 
         protected void Button1_Click(object sender, EventArgs e)
@@ -29,11 +32,10 @@ namespace PensjonatASP
 
             String start = Calendar1.SelectedDate.ToString("#MM/dd/yy#");
             String koniec = Calendar2.SelectedDate.ToString("#MM/dd/yy#");
-            if (Calendar1.SelectedDate >= Calendar2.SelectedDate)
+            if (Calendar1.SelectedDate >= Calendar2.SelectedDate || Calendar1.SelectedDate < Calendar1.TodaysDate)
             {
                 blad = true;
                 Label1.Text = "Nieprawidłowy termin pobytu.";
-
             }
 
             try
@@ -73,11 +75,17 @@ namespace PensjonatASP
                     GridView1.DataBind();
                     Label1.Text = "Dostępne pokoje: ";
                     GridView1.Visible = true;
+                    Button3.Visible = true;
+                    Button4.Visible = true;
+                    GridView1.EnablePersistedSelection = true;
+                    
                 }
                 else
                 {
                     Label1.Text = "Brak dostępnych pokojów.";
                     GridView1.Visible = false;
+                    Button3.Visible = false;
+                    Button4.Visible = false;
                 }
 
                 Db.Con.Close();
@@ -102,35 +110,56 @@ namespace PensjonatASP
             catch (Exception ex)
             {
                 blad = true;
-                Label1.Text = "Nieprawidłowe id rezerwacji.";
+                Label2.Text = "Nie ma takiej rezerwacji, bądź nieprawidłowe dane!";
             }
 
             if (id_rez <= 0)
             {
                 blad = true;
-                Label1.Text = "Nieprawidłowe id rezerwacji.";
-
+                Label2.Text = "Nie ma takiej rezerwacji, bądź nieprawidłowe dane!";
             }
 
             if (!blad)
             {
-                cmd.CommandText = "SELECT r1.zaliczka FROM Rezerwacje r1, Pobyty p1, Klienci k1 WHERE r1.id_rezerwacji = p1.id_rezerwacji AND p1.id_klienta = k1.id_klienta AND r1.id_rezerwacji =" + id_rez + " AND k1.pesel LIKE '"+ pesel +"'";
-
-                //Label1.Text = cmd.CommandText;
+                cmd.CommandText = "SELECT r1.zaplacono_zaliczke, r1.zaliczka FROM Rezerwacje r1, Klienci k1 WHERE r1.id_klienta = k1.id_klienta AND r1.id_rezerwacji = " + id_rez + " AND k1.pesel LIKE '"+ pesel +"'";
                 DbDataReader reader = cmd.ExecuteReader();
-                 
-                //int test = reader.GetInt32(0);
+                
                 if (reader.HasRows)
                 {
-                    Label2.Text = "Zaliczka: ";
+                    reader.Read();
+                    Label2.Text = "Zaliczka: " + reader.GetFloat(1).ToString() + " - " + (reader.GetBoolean(0) ? "wpłacono" : "nie wpłacono");
                 }
                 else
                 {
-                    Label2.Text = "Nie ma takiej rezerwacji.";
+                    Label2.Text = "Nie ma takiej rezerwacji, bądź nieprawidłowe dane!";
                 }
 
                 Db.Con.Close();
             }
+        }
+
+        protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+          
+        }
+
+        protected void Button3_Click(object sender, EventArgs e)
+        {
+            if (GridView1.SelectedIndex != -1)
+            {
+                wybranePokoje.Add(Convert.ToInt32(GridView1.SelectedRow.Cells[0].Text));
+                Label3.Text = "Id: ";
+                foreach (int pokoj in wybranePokoje)
+                   Label3.Text += pokoj + ", ";
+            }
+        }
+
+        protected void Button4_Click(object sender, EventArgs e)
+        {
+            if (GridView1.Rows.Count-1 == GridView1.SelectedIndex)
+                GridView1.SelectRow(0);
+            else
+                GridView1.SelectRow(GridView1.SelectedIndex + 1);
         }
 
             
