@@ -1374,7 +1374,7 @@
                         </StackPanel>
                     </Grid>
                     <Grid Margin="0" Name="gridZadaniaDeafult" Opacity="1" ShowGridLines="True" Visibility="Visible" Height="266">
-                        <DataGrid AutoGenerateColumns="False" HorizontalGridLinesBrush="#FFD5D5D5" IsEnabled="True" IsReadOnly="True" IsVisibleChanged="dataGridZadaniaDeafult_IsVisibleChanged" Margin="21,24,15,25" Name="dataGridZadaniaDeafult" SelectionMode="Single" VerticalGridLinesBrush="#FFD5D5D5">
+                        <DataGrid AutoGenerateColumns="False" HorizontalGridLinesBrush="#FFD5D5D5" IsEnabled="True" IsReadOnly="True" IsVisibleChanged="dataGridZadaniaDeafult_IsVisibleChanged" Margin="21,46,15,25" Name="dataGridZadaniaDeafult" SelectionMode="Single" VerticalGridLinesBrush="#FFD5D5D5">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding Path=nr_pokoju}" Header="Nr pokoju" />
                                 <DataGridTextColumn Binding="{Binding Path=imie}" Header="Imię" />
@@ -1384,6 +1384,7 @@
                                 <DataGridTextColumn Binding="{Binding Path=dodatkowy_opis}" Header="Dodatkowy opis" />
                             </DataGrid.Columns>
                         </DataGrid>
+                        <Label Content="Dzisiejsze zadania" FontSize="15" FontWeight="Normal" HorizontalAlignment="Left" Margin="10,10,0,0" Name="label223" Padding="2" VerticalAlignment="Top" />
                     </Grid>
                     <Grid Height="266" Name="gridZadaniaArchiwum" Opacity="1" ShowGridLines="True" Visibility="Visible">
                         <Label Content="Archiwum" FontSize="15" FontWeight="Normal" HorizontalAlignment="Left" Margin="10,10,0,0" Name="label220" Padding="2" VerticalAlignment="Top" />

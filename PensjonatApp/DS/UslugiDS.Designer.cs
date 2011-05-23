@@ -1586,7 +1586,7 @@ namespace PensjonatApp.DS.UslugiDSTableAdapters {
             this._commandCollection[2].CommandText = @"SELECT Klienci.imie, Klienci.nazwisko, Pokoje.nr_pokoju, Uslugi_slownik.nazwa, Uslugi_slownik.opis, Uslugi.dodatkowy_opis
 FROM     Uslugi, Uslugi_slownik, Pobyty, Klienci, Pokoje
 WHERE  Uslugi.id_slownikowe_uslugi = Uslugi_slownik.id_slownikowe_uslugi AND Uslugi.id_pobytu = Pobyty.id_pobytu AND Pobyty.id_klienta = Klienci.id_klienta AND 
-                  Pobyty.id_pokoju = Pokoje.id_pokoju AND (Uslugi.id_pracownika = ?) AND (Uslugi.termin_koniec >= ?) AND (Uslugi.termin_start <= ?)";
+                  Pobyty.id_pokoju = Pokoje.id_pokoju AND (Uslugi.id_pracownika = ?) AND (Uslugi.termin_koniec <= ?) AND (Uslugi.termin_start >= ?)";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[2].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_pracownika", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_pracownika", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[2].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("termin_koniec", global::System.Data.Odbc.OdbcType.DateTime, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "termin_koniec", global::System.Data.DataRowVersion.Current, false, null));
