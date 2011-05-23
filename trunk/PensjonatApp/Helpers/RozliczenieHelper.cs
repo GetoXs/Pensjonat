@@ -89,17 +89,17 @@ namespace PensjonatApp.Helpers
 			{
 				if (row.na_pobyt == true)
 					if (row.procentowy == true)
-						rabatPobytu += row.wartosc * cenaPobytu;
+						rabatPobytu += (row.wartosc * cenaPobytu) / 100;
 					else
 						rabatPobytu += row.wartosc;
 				else if (row.na_posilki == true)
 					if (row.procentowy == true)
-						rabatPosilku += row.wartosc * cenaPosilku;
+						rabatPosilku += (row.wartosc * cenaPosilku) / 100;
 					else
 						rabatPosilku += row.wartosc;
 				else if (row.na_uslugi == true)
 					if (row.procentowy == true)
-						rabatUslug += row.wartosc * cenaUslug;
+						rabatUslug += (row.wartosc * cenaUslug) / 100;
 					else
 						rabatUslug += row.wartosc;
 			}
