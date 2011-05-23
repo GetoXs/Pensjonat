@@ -2185,51 +2185,16 @@ namespace PensjonatApp
             showWindow(gridZadaniaArchiwum, buttonZadaniaBackList);
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
+        private void buttonWyloguj_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = System.Windows.MessageBox.Show("Czy na pewno chcesz się wylogować?", "Wylogowanie", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if (result == MessageBoxResult.Yes)
+            {
+                Logowanie oknoLogowania = new Logowanie();
+                this.Close();
+                oknoLogowania.ShowDialog();
+            }
+        }
 
 
 

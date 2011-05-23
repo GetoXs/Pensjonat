@@ -36,7 +36,7 @@ namespace PensjonatApp
                 oknoGlowne.ShowDialog();
             }
             else
-                System.Windows.MessageBox.Show("Wprowadzono błędne dane!", "Logowanie", MessageBoxButton.OK, MessageBoxImage.Error);
+                System.Windows.MessageBox.Show("Wprowadzono błędne dane.", "Logowanie", MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
 }
