@@ -1409,7 +1409,7 @@
             <Separator Canvas.Left="16" Canvas.Top="230" Height="5" Name="separator3" Width="200" />
             <Separator Canvas.Left="17" Canvas.Top="616" Height="5" Name="separator4" Width="200" />
             <Label Canvas.Left="98" Canvas.Top="180" Content="ID:" FontSize="11" Name="label226" Padding="2" />
-            <Button Canvas.Left="152" Canvas.Top="210" Content="Wyloguj..." Height="20" Name="buttonWyloguj" Width="65" FontSize="11" />
+            <Button Canvas.Left="152" Canvas.Top="210" Content="Wyloguj..." Height="20" Name="buttonWyloguj" Width="65" FontSize="11" Click="buttonWyloguj_Click" />
         </Canvas>
         <Grid Name="grid1" Width="211" Margin="0,0,4,8" HorizontalAlignment="Right" VerticalAlignment="Bottom">
             <Label Content="Aby uzyskać pomoć wciśnij F1" Height="28" Name="napisPomoc" Padding="2" Foreground="#FF767676" Margin="42,8,6,0" />
