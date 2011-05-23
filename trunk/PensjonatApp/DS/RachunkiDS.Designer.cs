@@ -1787,7 +1787,7 @@ namespace PensjonatApp.DS.RachunkiDSTableAdapters {
                 "ktywny = ?, na_pobyt = ?, na_uslugi = ?, na_posilki = ?\r\nWHERE        (id_rabatu" +
                 " = ?)";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[3].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("nazwa", global::System.Data.Odbc.OdbcType.NVarChar, 1024, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "nazwa", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[3].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("nazwa", global::System.Data.Odbc.OdbcType.NVarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "nazwa", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[3].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("procentowy", global::System.Data.Odbc.OdbcType.Bit, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "procentowy", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[3].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("wartosc", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "wartosc", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[3].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("aktywny", global::System.Data.Odbc.OdbcType.Bit, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "aktywny", global::System.Data.DataRowVersion.Current, false, null));

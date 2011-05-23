@@ -1960,7 +1960,7 @@ WHERE        (id_pokoju NOT IN
                 "sc_osob = ?\r\nWHERE        (id_slownikowe_pokoju = ?)";
             this._commandCollection[6].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[6].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("cena", global::System.Data.Odbc.OdbcType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(19)), ((byte)(4)), "cena", global::System.Data.DataRowVersion.Current, false, null));
-            this._commandCollection[6].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("dodatkowy_opis", global::System.Data.Odbc.OdbcType.NVarChar, 1024, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "dodatkowy_opis", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[6].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("dodatkowy_opis", global::System.Data.Odbc.OdbcType.NVarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "dodatkowy_opis", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[6].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("ilosc_osob", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ilosc_osob", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[6].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_id_slownikowe_pokoju", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_slownikowe_pokoju", global::System.Data.DataRowVersion.Original, false, null));
         }
