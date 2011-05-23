@@ -92,6 +92,7 @@ namespace PensjonatApp
                     break;
 
                 case "Kucharz":
+                    tabControl1.SelectedIndex = 13;
                     tabRezerwacje.Visibility = Visibility.Collapsed;
                     tabPobyty.Visibility = Visibility.Collapsed;
                     tabKlienci.Visibility = Visibility.Collapsed;
@@ -106,6 +107,7 @@ namespace PensjonatApp
                     break;
 
                 default:
+                    tabControl1.SelectedIndex = 13;
                     tabRezerwacje.Visibility = Visibility.Collapsed;
                     tabPobyty.Visibility = Visibility.Collapsed;
                     tabKlienci.Visibility = Visibility.Collapsed;
