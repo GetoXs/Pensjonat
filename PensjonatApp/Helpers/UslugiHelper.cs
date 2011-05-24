@@ -54,5 +54,10 @@ namespace PensjonatApp.Helpers
             //return TablesManager.Manager.UslugiTableAdapter.GetIdPracownikaWolnyWPodanymTerminieWykonujacyPodanyTypUslug(id_slownikoweUslugi, terminKoniec, terminStart);
             return TablesManager.Manager.PracownicyTableAdapter.GetIdPracownikaWolny(id_slownikoweUslugi, terminKoniec, terminStart);
         }
+
+        public static PensjonatApp.DS.UslugiDS.UslugiDataTable znajdzZadaniaDlaPracownikaWCzasie(int? id_pracownika, DateTime? poczatekCzasu, DateTime? koniecCZasu)
+        {
+            return TablesManager.Manager.UslugiTableAdapter.GetDataByIdPracownikaPrzedzialCzasu(id_pracownika, poczatekCzasu, koniecCZasu);
+        }
     }
 }
