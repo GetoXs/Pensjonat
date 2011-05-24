@@ -126,7 +126,7 @@ TEXTAREA, SELECT {
             
             </td>
             <td valign="top">
-                <strong>Wybrane pokoje:<br />
+                <strong><br />
                 </strong>
                 <asp:Label ID="Label3" runat="server"></asp:Label>
             </td>
