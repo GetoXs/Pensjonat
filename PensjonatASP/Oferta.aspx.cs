@@ -9,6 +9,8 @@ using PensjonatASP;
 
 namespace PensjonatASP
 {
+    
+
     public partial class Oferta : System.Web.UI.Page
     {
         Int32 ile;
@@ -16,14 +18,17 @@ namespace PensjonatASP
         String pesel;
         List<int> wybranePokoje;
 
+        const String baza = @"C:\Users\ttt\Documents\pensjonat\baza.mdb";
+        const String login = "Administrator";
+        const String haslo = "";
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            Db.setUpAccesFile(baza, login, haslo);   
         }
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            Db.setUpAccesFile(@"C:\Users\ttt\Documents\pensjonat\baza.mdb", "Administrator", "");
             Db.Con.Open();
             DbCommand cmd = Db.Con.CreateCommand();
 
@@ -75,17 +80,17 @@ namespace PensjonatASP
                     GridView1.DataBind();
                     Label1.Text = "Dostępne pokoje: ";
                     GridView1.Visible = true;
-                    Button3.Visible = true;
-                    Button4.Visible = true;
-                    GridView1.EnablePersistedSelection = true;
+                    //Button3.Visible = true;
+                    //Button4.Visible = true;
+                    
                     
                 }
                 else
                 {
                     Label1.Text = "Brak dostępnych pokojów.";
                     GridView1.Visible = false;
-                    Button3.Visible = false;
-                    Button4.Visible = false;
+                    //Button3.Visible = false;
+                    //Button4.Visible = false;
                 }
 
                 Db.Con.Close();
@@ -96,8 +101,7 @@ namespace PensjonatASP
          
         protected void Button2_Click(object sender, EventArgs e)
         {
-            Db.setUpAccesFile(@"C:\Users\ttt\Documents\pensjonat\baza.mdb", "Administrator", "");
-            Db.Con.Open();
+            Db.Con.Open(); 
             DbCommand cmd = Db.Con.CreateCommand();
 
             bool blad = false;
