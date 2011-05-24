@@ -899,7 +899,7 @@
                             </Button>
                         </StackPanel>
                     </Grid>
-                    <Grid Margin="0" Name="gridRabatyDeafult" Opacity="1" ShowGridLines="True" Visibility="Visible" Height="245">
+                    <Grid Margin="0" Name="gridRabatyDeafult" Opacity="1" ShowGridLines="True" Visibility="Visible" Height="315">
                         <GroupBox Header="Dodaj rabat" Margin="14,19,10,0" Name="groupBox4" Height="174" VerticalAlignment="Top">
                             <Grid>
                                 <Label Content="Nazwa:" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,6,0,0" Name="label110" Padding="2" VerticalAlignment="Top" />
@@ -925,8 +925,11 @@
                                 <DataGridTextColumn Binding="{Binding Path=id_rabatu}" Header="Id" />
                                 <DataGridTextColumn Binding="{Binding Path=nazwa}" Header="Nazwa" />
                                 <DataGridTextColumn Binding="{Binding Path=wartosc}" Header="Wartość" />
-                                <DataGridCheckBoxColumn Binding="{Binding Path=procentowy}" Header="%" />
-                                <DataGridCheckBoxColumn Binding="{Binding Path=aktywny}" Header="Aktywny" />
+								<DataGridCheckBoxColumn Binding="{Binding Path=procentowy}" Header="%" />
+								<DataGridCheckBoxColumn Binding="{Binding Path=na_pobyt}" Header="Na pobyt" />
+								<DataGridCheckBoxColumn Binding="{Binding Path=na_posilki}" Header="Na posilki" />
+								<DataGridCheckBoxColumn Binding="{Binding Path=na_uslugi}" Header="Na usługi" />
+								<DataGridCheckBoxColumn Binding="{Binding Path=aktywny}" Header="Aktywny" />
                             </DataGrid.Columns>
                         </DataGrid>
                         <Label Content="Lista rabatów:" FontWeight="Bold" HorizontalAlignment="Left" Margin="14,225,0,0" Name="label113" Padding="2" VerticalAlignment="Top" />
