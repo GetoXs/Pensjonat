@@ -188,14 +188,21 @@ namespace PensjonatApp.Helpers
         /// pokoje wybrane w procesie rezerwacji przechowywane w typie PokojeDS.PokojeDataTable. jeżeli tak jest źle mogę to zmienić na zwykłą tablicę
         /// </summary>
         /// <returns></returns>
-		public static int dodajRezerwacje(int id_klienta_rezerwujacego, int ilosc_osob, decimal zaliczka, List<int> pokoje, DateTime start_pobytu, DateTime koniec_pobytu)
+        public static int dodajRezerwacje(Int32 id_klienta_rezerwujacego, Int32 ilosc_osob, Decimal zaliczka, List<Int32> pokoje, DateTime start_pobytu, DateTime koniec_pobytu)
         {
-            TablesManager.Manager.RezerwacjeTableAdapter.InsertQuery(zaliczka, false, ilosc_osob, id_klienta_rezerwujacego);
+            int a = TablesManager.Manager.RezerwacjeTableAdapter.InsertQuery(zaliczka, false, ilosc_osob, id_klienta_rezerwujacego);
             RezerwacjeDS.RezerwacjeDataTable tabRez = TablesManager.Manager.RezerwacjeTableAdapter.GetDataRezerwacjeOstatnia();
 
-			foreach (int pokoj_id in pokoje)
+            if (tabRez.Count > 0 && tabRez[0].id_klienta == id_klienta_rezerwujacego)
             {
-                TablesManager.Manager.PobytyTableAdapter.Insert(pokoj_id, tabRez[0].id_rezerwacji, start_pobytu, koniec_pobytu, null, null);
+                //dodaje klienta, który zamówił
+                TablesManager.Manager.PobytyTableAdapter.Insert(pokoje[0], tabRez[0].id_rezerwacji, start_pobytu, koniec_pobytu, null, id_klienta_rezerwujacego);
+                pokoje.RemoveAt(0);
+
+                foreach (int pokoj_id in pokoje)
+                {
+                    TablesManager.Manager.PobytyTableAdapter.Insert(pokoj_id, tabRez[0].id_rezerwacji, start_pobytu, koniec_pobytu, null, null);
+                }
             }
 
             return 1;
@@ -231,7 +238,15 @@ namespace PensjonatApp.Helpers
         public static int usunRezerwacje(int id_rezerwacji)
         {
             RezerwacjeDS.RezerwacjeDataTable tab = TablesManager.Manager.RezerwacjeTableAdapter.GetDataRezerwacjeByID(id_rezerwacji);
+/*            PobytyDS.PobytyDataTable tabPo = TablesManager.Manager.PobytyTableAdapter.GetDataPobytyByIdRezerwacji(id_rezerwacji);
+
+            for (int i = 0; i < tabPo.Count; i++)
+            {
+                TablesManager.Manager.PobytyTableAdapter.Delete(tabPo[i].id_pobytu, tabPo[i].id_pokoju, tabPo[i].id_rezerwacji, tabPo[i].termin_start, tabPo[i].termin_koniec, tabPo[i].id_rachunku, tabPo[i].id_klienta);
+            }
+            */
             return TablesManager.Manager.RezerwacjeTableAdapter.Delete(tab[0].id_rezerwacji, tab[0].zaliczka, tab[0].zaplacono_zaliczke, tab[0].ilosc_osob, tab[0].id_klienta);
+
         }
 
 
@@ -267,15 +282,18 @@ namespace PensjonatApp.Helpers
                 List<int> listaPo = new List<int>();
                 listaPo.Add(id_pokoju);
                 RezerwacjeHelper.dodajRezerwacje(id_klienta, 1, 0, listaPo, termin_start, termin_koniec);
-                RezerwacjeDS.RezerwacjeDataTable tabRez = TablesManager.Manager.RezerwacjeTableAdapter.GetDataRezerwacjeByIdKlintaTerminStartTeminKoniec(id_klienta, termin_start, termin_koniec);
-                int tmp = tabRez[0].id_klienta;
+                RezerwacjeDS.RezerwacjeDataTable tabRez = TablesManager.Manager.RezerwacjeTableAdapter.GetDataRezerwacjeOstatnia();
+
+                return 1;
+
+                /*int tmp = tabRez[0].id_klienta;
                 if(tabRez[0].id_klienta == id_klienta)
                 {
                     RezerwacjeHelper.dodajKlientaDoPobytuNaPodstawieRezerwacji(tabRez[0].id_rezerwacji, id_klienta, id_pokoju);
                     return 1;
                 }
                 else
-                    return -2;
+                    return -2;*/
 
             }else
                 return -1;

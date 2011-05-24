@@ -985,10 +985,8 @@ WHERE        r.id_klienta = k.id_klienta AND r.id_rezerwacji = p.id_rezerwacji A
             this._commandCollection[7].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[8] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[8].Connection = this.Connection;
-            this._commandCollection[8].CommandText = @"SELECT        r.id_rezerwacji, r.zaliczka, r.zaplacono_zaliczke, r.ilosc_osob, r.id_klienta, p.termin_start, p.termin_koniec
-FROM            Rezerwacje r, Pobyty p
-WHERE        r.id_rezerwacji = p.id_rezerwacji AND r.id_klienta = p.id_klienta
-ORDER BY r.id_rezerwacji DESC";
+            this._commandCollection[8].CommandText = "SELECT        r.id_rezerwacji, r.zaliczka, r.zaplacono_zaliczke, r.ilosc_osob, r." +
+                "id_klienta\r\nFROM            Rezerwacje r\r\nORDER BY r.id_rezerwacji DESC";
             this._commandCollection[8].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[9] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[9].Connection = this.Connection;
