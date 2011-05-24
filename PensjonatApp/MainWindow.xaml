@@ -1396,15 +1396,27 @@
                                 <DataGridTextColumn Binding="{Binding Path=nr_pokoju}" Header="Nr pokoju" />
                                 <DataGridTextColumn Binding="{Binding Path=imie}" Header="Imię" />
                                 <DataGridTextColumn Binding="{Binding Path=nazwisko}" Header="Nazwisko" />
-                                <DataGridTextColumn Binding="{Binding Path=nazwa}" Header="Nazwa" />
                                 <DataGridTextColumn Binding="{Binding Path=opis}" Header="Opis" />
-                                <DataGridTextColumn Binding="{Binding Path=dodatkowy_opis}" Header="Dodatkowy opis" />
+                                <DataGridTextColumn Binding="{Binding Path=dodatkowy_opis}" Header="Dod. opis" />
+                                <DataGridTextColumn Binding="{Binding Path=termin_start}" Header="Godz. rozpączecia" />
+                                <DataGridTextColumn Binding="{Binding Path=termin_koniec}" Header="Godz. zakończenia" />
                             </DataGrid.Columns>
                         </DataGrid>
                         <Label Content="Dzisiejsze zadania" FontSize="15" FontWeight="Normal" HorizontalAlignment="Left" Margin="10,10,0,0" Name="label223" Padding="2" VerticalAlignment="Top" />
                     </Grid>
                     <Grid Height="266" Name="gridZadaniaArchiwum" Opacity="1" ShowGridLines="True" Visibility="Visible">
-                        <Label Content="Archiwum" FontSize="15" FontWeight="Normal" HorizontalAlignment="Left" Margin="10,10,0,0" Name="label220" Padding="2" VerticalAlignment="Top" />
+                        <Label Content="Archiwum zadań" FontSize="15" FontWeight="Normal" HorizontalAlignment="Left" Margin="10,10,0,0" Name="label220" Padding="2" VerticalAlignment="Top" />
+                        <DataGrid AutoGenerateColumns="False" HorizontalGridLinesBrush="#FFD5D5D5" IsEnabled="True" IsReadOnly="True" Margin="21,46,15,27" Name="dataGridArchiwumDeafult" SelectionMode="Single" VerticalGridLinesBrush="#FFD5D5D5" IsVisibleChanged="dataGridArchiwumDeafult_IsVisibleChanged" Width="547">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding Path=nr_pokoju}" Header="Nr pokoju" />
+                                <DataGridTextColumn Binding="{Binding Path=imie}" Header="Imię" />
+                                <DataGridTextColumn Binding="{Binding Path=nazwisko}" Header="Nazwisko" />
+                                <DataGridTextColumn Binding="{Binding Path=opis}" Header="Opis" />
+                                <DataGridTextColumn Binding="{Binding Path=dodatkowy_opis}" Header="Dod. opis" />
+                                <DataGridTextColumn Binding="{Binding Path=termin_start}" Header="Godz. rozpączecia" />
+                                <DataGridTextColumn Binding="{Binding Path=termin_koniec}" Header="Godz. zakończenia" />
+                            </DataGrid.Columns>
+                        </DataGrid>
                     </Grid>
                 </StackPanel>
             </TabItem>
