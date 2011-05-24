@@ -1471,7 +1471,7 @@ WHERE  Uslugi.id_slownikowe_uslugi = Uslugi_slownik.id_slownikowe_uslugi AND Usl
             this._commandCollection[3].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("termin_start", global::System.Data.Odbc.OdbcType.DateTime, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "termin_start", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[4] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[4].Connection = this.Connection;
-            this._commandCollection[4].CommandText = @"SELECT Pracownicy.imie, Pracownicy.nazwisko, Pracownicy.id_pracownika, Pracownicy.id_stanowiska, Pracownicy.login
+            this._commandCollection[4].CommandText = @"SELECT distinct Pracownicy.id_pracownika, Pracownicy.imie, Pracownicy.nazwisko, Pracownicy.id_stanowiska, Pracownicy.login
 FROM     Uslugi, Pracownicy, Uslugi_slownik
 WHERE 
 (Uslugi_slownik.id_slownikowe_uslugi = ?) AND
