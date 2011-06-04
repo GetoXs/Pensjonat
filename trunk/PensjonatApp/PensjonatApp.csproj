@@ -146,6 +146,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>WyposazeniaDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\InterfaceHelper.cs" />
     <Compile Include="Helpers\KlienciHelper.cs" />
     <Compile Include="Helpers\LogowanieHelper.cs" />
     <Compile Include="Helpers\PokojeHelper.cs" />
