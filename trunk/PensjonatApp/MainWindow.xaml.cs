@@ -28,6 +28,7 @@ namespace PensjonatApp
         private List<Button> buttonRezerwacjeBackForwardList = new List<Button>();
         private List<Button> buttonRezerwacjeBackOkList = new List<Button>();
         private List<Button> buttonPobytyDeafultList = new List<Button>();
+        private List<Button> buttonPobytyZarzadzajList = new List<Button>();
         private List<Button> buttonPobytyBackOkList = new List<Button>();
         private List<Button> buttonPobytyBackPrintList = new List<Button>();
         private List<Button> buttonPobytyBackOkPrintList = new List<Button>();
@@ -131,6 +132,9 @@ namespace PensjonatApp
             buttonRezerwacjeBackOkList.Add(buttonRezerwacjeOk);
 
             buttonPobytyDeafultList.Add(buttonPobytyServices);
+            buttonPobytyZarzadzajList.Add(buttonPobytyPowrot);
+            buttonPobytyZarzadzajList.Add(buttonPobytyZarzadzajPosilki);
+            buttonPobytyZarzadzajList.Add(buttonPobytyZarzadzajUslugi);
             buttonPobytyDeafultList.Add(buttonPobytySum);
             buttonPobytyDeafultList.Add(buttonPobytyNowy);
             buttonPobytyBackOkList.Add(buttonPobytyPowrot);
@@ -245,8 +249,6 @@ namespace PensjonatApp
        
         private void showWindow(Grid grid,List<Button> buttonList)
         {
-     
-
             grid.Height = 580;
             grid.Visibility = Visibility.Visible;
             pokazButtonList(buttonList);
@@ -271,17 +273,18 @@ namespace PensjonatApp
        
         private void zwinPobyty()
         {
-            gridPobytyDeafult.Height = 0;
-            gridPobytyServices.Height = 0;
-            gridPobytySum.Height = 0;
-            gridPobytyDetails.Height = 0;
-            gridPobytyNowy.Height = 0;
+            gridPobytyDeafult.Visibility = Visibility.Collapsed;
+            gridPobytyServices.Visibility = Visibility.Collapsed;
+            gridPobytySum.Visibility = Visibility.Collapsed;
+            gridPobytyUslugi.Visibility = Visibility.Collapsed;
+            gridPobytyPosilki.Visibility = Visibility.Collapsed;
+            gridPobytyNowy.Visibility = Visibility.Collapsed;
             gridPobytyWybierzKlienta.Height = 0;
             zwinButtonList(buttonPobytyBackOkList);
             zwinButtonList(buttonPobytyBackOkPrintList);
             zwinButtonList(buttonPobytyBackPrintList);
             zwinButtonList(buttonPobytyDeafultList);
-
+            zwinButtonList(buttonPobytyZarzadzajList);
         }
 
         private void zwinKlienci()
@@ -581,7 +584,7 @@ namespace PensjonatApp
         {
             errTermin,errSelection,Ok
         }
-        private wolnePokoje sprawdzPokoje(ref DatePicker terminOd,ref DatePicker terminDo)
+        private wolnePokoje sprawdzTermin(ref DatePicker terminOd,ref DatePicker terminDo)
         {
 
             if(terminOd.SelectedDate!=null && terminDo.SelectedDate!=null)
@@ -603,7 +606,7 @@ namespace PensjonatApp
         }
         private void DodajPokojdeDoComboBoxa()
         {
-            sprawdzPokoje(ref datePickerRezeracjeAddTerminOd, ref datePickerRezerwacjeAddTerminDo);
+            sprawdzTermin(ref datePickerRezeracjeAddTerminOd, ref datePickerRezerwacjeAddTerminDo);
             RezerwacjePokojeList.Clear();
             RezerwacjePokojeStringList.Clear();
             PokojeDS.PokojeDataTable pokojeTable = TablesManager.Manager.PokojeTableAdapter.GetDataWolnePokojeByTermin(datePickerRezeracjeAddTerminOd.SelectedDate
@@ -711,7 +714,12 @@ namespace PensjonatApp
         private void buttonPobytyPowrot_Click(object sender, RoutedEventArgs e)
         {
             zwinPobyty();
-            showWindow(gridPobytyDeafult, buttonPobytyDeafultList);
+            if (currentGrid == gridPobytyPosilki || currentGrid == gridPobytyUslugi)
+            {
+                showWindow(gridPobytyServices, buttonPobytyZarzadzajList);
+            }
+            else
+                showWindow(gridPobytyDeafult, buttonPobytyDeafultList);
         }
         private void buttonPobytyOk_Click(object sender, RoutedEventArgs e)
         {
@@ -819,7 +827,69 @@ namespace PensjonatApp
         }
 
 
-        //----------------------------------------------POBYTY->USŁUGI----------------------------------------------
+        //----------------------------------------------POBYTY->ZARZADZANIE----------------------------------------------
+        //-----ZARZADZANIE->POSIŁKI
+        List<int> PobytyPosilkiIdList = new List<int>();
+        private void buttonPobytyZarzadzajPosilki_Click(object sender, RoutedEventArgs e)
+        {
+            zwinPobyty();
+            showWindow(gridPobytyPosilki, buttonPobytyBackOkList);
+            List<string> lst = new List<string>();
+            DS.PosilkiDS.Posilki_slownikDataTable posilkiTable = TablesManager.Manager.Posilki_slownikTableAdapter.GetData();
+            foreach (DS.PosilkiDS.Posilki_slownikRow row in posilkiTable)
+            {
+                lst.Add(row.nazwa_opcji + ":" +row.cena+ "zł");
+                PobytyPosilkiIdList.Add(row.id_slownikowe_posilku);
+            }
+            comboBoxPobytyZarzadzaniePosilki.ItemsSource = lst;
+            dataGridPobytyZarzadzaniePosilki.ItemsSource = TablesManager.Manager.PosilkiTableAdapter.GetDataWithPosilkiSlownikById(((int)labelPobytyServicesId.Content));
+            PobytyDS.PobytyRow selectedRow = (PobytyDS.PobytyRow)((DataRowView)dataGridPobytySzukaj.SelectedItem).Row;
+            datePickerPobytyZarzadzaniePosilkiTerminOd.SelectedDate = selectedRow.termin_start;
+            datePickerPobytyZarzadzaniePosilkiTerminDo.SelectedDate = selectedRow.termin_koniec;            
+        }
+        private void buttonPobytyZarzadzaniePosilkiDodaj_Click(object sender, RoutedEventArgs e)
+        {
+            if (comboBoxPobytyZarzadzaniePosilki.SelectedItem != null && datePickerPobytyZarzadzaniePosilkiTerminOd.SelectedDate != null
+                && datePickerPobytyZarzadzaniePosilkiTerminDo.SelectedDate != null)
+            {
+                DateTime data = (DateTime)datePickerPobytyZarzadzaniePosilkiTerminOd.SelectedDate;
+                while(data <= (DateTime)datePickerPobytyZarzadzaniePosilkiTerminDo.SelectedDate)
+                {
+                    PosilkiHelper.dodajPosilek((int)labelPobytyServicesId.Content,PobytyPosilkiIdList[comboBoxPobytyZarzadzaniePosilki.SelectedIndex],data);
+                    data = data.AddDays(1.0); 
+                }               
+            }
+            else
+                System.Windows.MessageBox.Show("Wypełnij wszystkie pola.", "Dodawanie posiłku", MessageBoxButton.OK, MessageBoxImage.Warning);
+
+        }
+        private void datePickerPobytyZarzadzaniePosilkiTerminOd_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            sprawdzTermin(ref datePickerPobytyZarzadzaniePosilkiTerminOd, ref datePickerPobytyZarzadzaniePosilkiTerminDo);
+        }
+
+        private void datePickerPobytyZarzadzaniePosilkiTerminDo_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            sprawdzTermin(ref datePickerPobytyZarzadzaniePosilkiTerminOd, ref datePickerPobytyZarzadzaniePosilkiTerminDo);
+        }
+
+        private void buttonPobytyZarzadzanieUsun_Click(object sender, RoutedEventArgs e)
+        {
+            if (dataGridPobytyZarzadzaniePosilki.SelectedItem != null)
+            {
+                PosilkiDS.PosilkiRow selectedRow = (PosilkiDS.PosilkiRow)((DataRowView)dataGridPobytyZarzadzaniePosilki.SelectedItem).Row;
+                PosilkiHelper.usunPosilek(selectedRow.id_posilku);
+                dataGridPobytyZarzadzaniePosilki.ItemsSource = TablesManager.Manager.PosilkiTableAdapter.GetDataWithPosilkiSlownikById(((int)labelPobytyServicesId.Content));
+            }
+        }
+        //-----ZARZADZANIE->USŁUGI
+        private void buttonPobytyZarzadzajUslugi_Click(object sender, RoutedEventArgs e)
+        {
+            zwinPobyty();
+            showWindow(gridPobytyUslugi, buttonPobytyBackOkList);
+            //datePickerPobytyServicesTermin.Set = DateTime.Today;
+        }
+
         List<int> PobytyUslugiIdList = new List<int>();
         List<int> PobytyUslugiIdPracownikaList = new List<int>();
         private void buttonPobytyServices_Click(object sender, RoutedEventArgs e)
@@ -827,7 +897,7 @@ namespace PensjonatApp
             if (dataGridPobytySzukaj.SelectedItem != null)
             {
                 zwinPobyty();
-                showWindow(gridPobytyServices, buttonPobytyBackOkList);
+                showWindow(gridPobytyServices, buttonPobytyZarzadzajList);
                 List<string> lst = new List<string>();
                 DS.UslugiDS.Uslugi_slownikDataTable rabatyTable = TablesManager.Manager.Uslugi_slownikTableAdapter.GetData();
                 foreach (DS.UslugiDS.Uslugi_slownikRow row in rabatyTable)
@@ -842,10 +912,12 @@ namespace PensjonatApp
                 labelPobytyZarzadzajPESEL.Content = (string)selectedRow["pesel"];
                 labelPobytyZarzadzajTelefon.Content = (string)selectedRow["nr_telefonu"].ToString();
                 labelPobytyZarzadzajPokoj.Content = (string)selectedRow["nr_pokoju"];
+                //labelPobytyZarzadzanieWyzywienieOpis.Content = PosilkiHelper.
                // labelPobytyZarzadzajLOsob.Content = (string)selectedRow["
                 labelPobytyServicesId.Content = selectedRow.id_pobytu;
                 labelPobytyZarzadzajTermin.Content = selectedRow.termin_start.ToLongDateString() + " - " + selectedRow.termin_koniec.ToLongDateString();
-              
+
+                dataGridPobytyPosilki.ItemsSource = TablesManager.Manager.PosilkiTableAdapter.GetDataWithPosilkiSlownikById(((int)labelPobytyServicesId.Content));
                 dataGridPobytyUslugi.ItemsSource = TablesManager.Manager.UslugiTableAdapter.GetDataUslugiUslugi_slownikByID_pobytu(selectedRow.id_pobytu);
            }
             else  
@@ -854,14 +926,58 @@ namespace PensjonatApp
 
         }
 
-        private void comboBoxPobytyUslugi_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void buttonPobytyZarzadzajCzysc_Click(object sender, RoutedEventArgs e)
         {
+            comboBoxPobytyUslugi.IsEnabled = true;
             datePickerPobytyServicesTermin.IsEnabled = true;
+            comboBoxPobytyUslugi.SelectedItem = null;
+            datePickerPobytyServicesTermin.Value = null;
+            comboBoxPobytyPracownicy.IsEnabled = false;
+            comboBoxPobytyPracownicy.SelectedItem = null;
+
+
         }
+
+        private void buttonPobytyUslugiUsun_Click(object sender, RoutedEventArgs e)
+        {
+
+            if (dataGridPobytyZarzadzajUslug.SelectedItem != null)
+            {
+                UslugiDS.UslugiRow selectedRow = (UslugiDS.UslugiRow)((DataRowView)dataGridPobytyZarzadzajUslug.SelectedItem).Row;
+                UslugiHelper.usunUsluge(selectedRow.id_uslugi);
+                dataGridPobytyZarzadzajUslug.ItemsSource = TablesManager.Manager.UslugiTableAdapter.GetDataUslugiUslugi_slownikByID_pobytu((int)labelPobytyServicesId.Content);
+            }
+        }
+
+        private void buttonPobytyZarzadzajSzukaj_Click(object sender, RoutedEventArgs e)
+        {
+            if (comboBoxPobytyUslugi.SelectedItem != null && datePickerPobytyServicesTermin.Value != null)
+            {
+
+                List<string> lst = new List<string>();
+                PobytyUslugiIdPracownikaList.Clear();
+                DateTime koniec = (DateTime)datePickerPobytyServicesTermin.Value.Value.Date;
+                koniec = koniec.AddDays(1.0);
+                PracownicyDS.PracownicyDataTable pracownicyTable = UslugiHelper.znajdzWolnegoPracownika(datePickerPobytyServicesTermin.Value.Value.Date, koniec, PobytyUslugiIdList[comboBoxPobytyUslugi.SelectedIndex]);//TablesManager.Manager.PracownicyTableAdapter.
+
+                foreach (PracownicyDS.PracownicyRow row in pracownicyTable)
+                {
+                    lst.Add(row.imie + " " + row.nazwisko);
+                    PobytyUslugiIdPracownikaList.Add(row.id_pracownika);
+                }
+                comboBoxPobytyPracownicy.ItemsSource = lst;
+                comboBoxPobytyPracownicy.IsEnabled = true;
+                comboBoxPobytyUslugi.IsEnabled = false;
+                datePickerPobytyServicesTermin.IsEnabled = false;
+            }
+            else
+                System.Windows.MessageBox.Show("Wypełnij wszystkie pola.", "Dodawanie usługi", MessageBoxButton.OK, MessageBoxImage.Warning);
+      
+        }
+
 
         private void datePickerPobytyServicesTerminOd_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-            comboBoxPobytyPracownicy.IsEnabled = true;
             List<string> lst = new List<string>();
             PobytyUslugiIdPracownikaList.Clear();
             DateTime koniec = (DateTime)datePickerPobytyServicesTermin.Value.Value.Date;
@@ -877,28 +993,24 @@ namespace PensjonatApp
             comboBoxPobytyPracownicy.ItemsSource = lst;
 
         }
+
+
+        
+
         private void buttonPobytyServicesAdd_Click(object sender, RoutedEventArgs e)
         {
             if (comboBoxPobytyUslugi.SelectedItem != null && datePickerPobytyServicesTermin.Value!= null && comboBoxPobytyPracownicy.SelectedItem != null)
             {
                 UslugiHelper.przydzielPracownika(PobytyUslugiIdList[comboBoxPobytyUslugi.SelectedIndex], PobytyUslugiIdPracownikaList[comboBoxPobytyPracownicy.SelectedIndex]);
+                //UslugiHelper.dodajUsluge(labelPobytyServicesId.Content,
                 dataGridPobytyUslugi.ItemsSource = TablesManager.Manager.UslugiTableAdapter.GetDataUslugiUslugi_slownikByID_pobytu((int)labelPobytyServicesId.Content);
+            
             }
             else
                 System.Windows.MessageBox.Show("Wypełnij wszystkie pola.", "Dodawanie usługi", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
 
-
-        private void buttonPobytyUslugiUsun_Click(object sender, RoutedEventArgs e)
-        {
-
-            if (dataGridPobytyUslugi.SelectedItem != null)
-            {
-                UslugiDS.UslugiRow selectedRow = (UslugiDS.UslugiRow)((DataRowView)dataGridPobytyUslugi.SelectedItem).Row;
-                UslugiHelper.usunUsluge(selectedRow.id_uslugi);
-                dataGridPobytyUslugi.ItemsSource = TablesManager.Manager.UslugiTableAdapter.GetDataUslugiUslugi_slownikByID_pobytu((int)labelPobytyServicesId.Content);
-            }
-        }
+        
 
         //----------------------------------------------POBYTY->ROZLICZ----------------------------------------------
         List<RachunkiDS.RabatyRow> PobytyRabatyList = new List<RachunkiDS.RabatyRow>();
@@ -1025,7 +1137,7 @@ namespace PensjonatApp
 
         private void datePickerPobytyNowyTerminDo_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (sprawdzPokoje(ref datePickerPobytyNowyTerminOd, ref datePickerPobytyNowyTerminDo) == wolnePokoje.Ok)
+            if (sprawdzTermin(ref datePickerPobytyNowyTerminOd, ref datePickerPobytyNowyTerminDo) == wolnePokoje.Ok)
             {
                 PrzypiszWolnePokoje();
             }
@@ -1033,32 +1145,13 @@ namespace PensjonatApp
 
         private void datePickerPobytyNowyTerminOd_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (sprawdzPokoje(ref datePickerPobytyNowyTerminOd, ref datePickerPobytyNowyTerminDo) == wolnePokoje.Ok)
+            if (sprawdzTermin(ref datePickerPobytyNowyTerminOd, ref datePickerPobytyNowyTerminDo) == wolnePokoje.Ok)
             {
                 PrzypiszWolnePokoje();
             }
         }
         //----------------------------------------------POBYTY->PODSUMOWANIE----------------------------------------------
-        private void buttonPobytyDetails_Click(object sender, RoutedEventArgs e)
-        {
-            if (dataGridPobytySzukaj.SelectedItem != null)
-            {
-                zwinPobyty();
-                showWindow(gridPobytyDetails, buttonPobytyBackPrintList);
-                PobytyDS.PobytyRow selectedRow = (PobytyDS.PobytyRow)((DataRowView)dataGridPobytySzukaj.SelectedItem).Row;
-                labelPobytyDetailsKlient.Content = (string)selectedRow["imie"] + ' ' + (string)selectedRow["nazwisko"];
-                labelPobytyDetailsTelefon.Content = (string)selectedRow["nr_telefonu"].ToString();
-                labelPobytyDetailsPesel.Content = (string)selectedRow["pesel"];
-                labelPobytyDetailsPokoj.Content = (string)selectedRow["nr_pokoju"];
-                labelPobytyDetailsId.Content = selectedRow.id_pobytu;
-                //labelPobytyDetailsWymeldowano.Content = 
-                labelPobytyDetailsTermin.Content = selectedRow.termin_start.ToLongDateString() + " - " + selectedRow.termin_koniec.ToLongDateString();
-
-                // dataGridPobytyUslugi.ItemsSource = TablesManager.Manager.UslugiTableAdapter.GetDataUslugiUslugi_slownikByID_pobytu(selectedRow.id_pobytu);
-            }
-            else
-                System.Windows.MessageBox.Show("Najpierw wybierz pobyt.", "Rozliczanie pobytu.", MessageBoxButton.OK, MessageBoxImage.Warning);
-        }
+       
 
 
 // ----------------------------------------------KLIENCI----------------------------------------------
@@ -2277,6 +2370,14 @@ namespace PensjonatApp
                 oknoLogowania.ShowDialog();
             }
         }
+
+
+
+
+
+
+
+
 
 
 
