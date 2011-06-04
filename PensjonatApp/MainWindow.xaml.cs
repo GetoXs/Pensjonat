@@ -1078,13 +1078,30 @@ namespace PensjonatApp
         }
 
         //----------------------------------------------POBYTY->NOWY----------------------------------------------
+        List<PokojeKlienci> PobytyNowyPokojeKlienciList = new List<PokojeKlienci>();
         private void buttonPobytyNowy_Click(object sender, RoutedEventArgs e)
         {
             zwinPobyty();
             showWindow(gridPobytyNowy, buttonPobytyBackOkList);
+
+
         }
 
-       
+
+        private void buttonPobytyNowyDodaj_Click(object sender, RoutedEventArgs e)
+        {
+            if (comboBoxPobytyNowyPokoj.SelectedItem != null && textBoxPobytyNowyKlient.Text != "")
+            {
+                KlienciDS.KlienciRow selectedRow = (KlienciDS.KlienciRow)((DataRowView)dataGridPobytyNowyKlienci.SelectedItem).Row;
+                PobytyNowyPokojeKlienciList.Add(new PokojeKlienci(selectedRow.imie, selectedRow.nazwisko, selectedRow.pesel, PobytyNowyStringPokoje[comboBoxPobytyNowyPokoj.SelectedIndex]));
+                dataGridPobytyNowyLOsob.DataContext = PobytyNowyPokojeKlienciList;
+                dataGridPobytyNowyLOsob.Items.Refresh();
+            }
+            else
+                System.Windows.MessageBox.Show("Uzupełnij wszystkie pola", "Dodawanie osoby do pobytu", MessageBoxButton.OK, MessageBoxImage.Warning);
+    
+        }
+
         private void buttonPobytyNowyKlient_Click(object sender, RoutedEventArgs e)
         {
             zwinPobyty();
@@ -1130,7 +1147,7 @@ namespace PensjonatApp
             foreach (PokojeDS.PokojeRow row in pokojeTable)
             {
                 PobytyNowyIdPokoje.Add(row.id_pokoju);
-                PobytyNowyStringPokoje.Add(row.nr_pokoju + " | ");
+                PobytyNowyStringPokoje.Add(row.nr_pokoju);
             }
             comboBoxPobytyNowyPokoj.ItemsSource = PobytyNowyStringPokoje;
         }
@@ -2370,6 +2387,7 @@ namespace PensjonatApp
                 oknoLogowania.ShowDialog();
             }
         }
+
 
 
 
