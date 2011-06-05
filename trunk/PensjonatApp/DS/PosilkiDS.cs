@@ -5,7 +5,8 @@
     }
 }
 
-namespace PensjonatApp.PosilkiDSTableAdapters {
+namespace PensjonatApp.DS.PosilkiDSTableAdapters
+{
     
     
     public partial class PosilkiTableAdapter {

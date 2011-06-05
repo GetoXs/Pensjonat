@@ -1502,6 +1502,112 @@
                     </Grid>
                 </StackPanel>
             </TabItem>
+            <TabItem BorderBrush="#FF2B4865" Height="40" Name="tabKucharz">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal" Width="120">
+                        <Image Height="30" Name="image88" Source="/PensjonatApp;component/Images/cheff32.png" Stretch="Fill" Width="30" />
+                        <TextBlock FontSize="16" FontStretch="Normal" FontWeight="Normal" Foreground="#FF202020" HorizontalAlignment="Left" Margin="2" Text="Posiłki" TextAlignment="Center" VerticalAlignment="Center" />
+                    </StackPanel>
+                </TabItem.Header>
+                <StackPanel Orientation="Vertical">
+                    <Grid Height="58" Margin="-5" Name="grid7">
+                        <Grid.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FFF9F9F9" Offset="0.496" />
+                                <GradientStop Color="#FFEAEAEA" Offset="1" />
+                            </LinearGradientBrush>
+                        </Grid.Background>
+                        <Image Height="42" HorizontalAlignment="Left" Margin="10,10,0,0" Name="image84" Source="/PensjonatApp;component/Images/cheff48.png" Stretch="Fill" VerticalAlignment="Top" Width="42" />
+                        <Label Content="Rozkład posiłków" FontSize="20" FontWeight="Normal" Height="40" HorizontalAlignment="Left" Margin="53,11,0,0" Name="label39" Padding="0" VerticalAlignment="Top" VerticalContentAlignment="Center" />
+                        <Image Height="40" Name="image85" Source="/PensjonatApp;component/Images/separator.png" Stretch="Fill" Width="2" Margin="218,11,373,7" />
+                    </Grid>
+                    <Grid Height="571" Margin="0" Name="gridKucharz" Opacity="1" ShowGridLines="True" Visibility="Visible" Initialized="gridKucharz_Initialized">
+                        <Rectangle Height="92" Margin="18,40,14,0" Name="rectangle1" VerticalAlignment="Top" Stroke="#FFC1C1C1">
+                            <Rectangle.Fill>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#FFF0F0F0" Offset="0" />
+                                    <GradientStop Color="White" Offset="0.467" />
+                                </LinearGradientBrush>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <Label Content="Spis posiłków:" FontSize="15" FontWeight="Normal" HorizontalAlignment="Left" Margin="10,10,0,0" Name="label78" Padding="2" VerticalAlignment="Top" />
+                        <Label Content="05-05-2011" FontSize="14" FontWeight="Normal" HorizontalAlignment="Left" Margin="20,40,0,0" Name="labelKucharz1day" Padding="2" VerticalAlignment="Top" />
+                        <Separator Height="5" Margin="19,58,14,0" Name="separator1" VerticalAlignment="Top" />
+                        <DataGrid AutoGenerateColumns="False" HorizontalGridLinesBrush="#FFD5D5D5" IsEnabled="True" IsReadOnly="True" Margin="79,70,27,453" Name="dataGridKucharz1day" SelectionMode="Single" VerticalGridLinesBrush="#FFD5D5D5">
+                            <DataGrid.Columns>
+
+                                <DataGridCheckBoxColumn Binding="{Binding Path=sniadanie}" Header="Śniadanie" />
+                                <DataGridCheckBoxColumn Binding="{Binding Path=drugie_sniadanie}" Header="Dr. śniadanie" />
+                                <DataGridCheckBoxColumn Binding="{Binding Path=lunch}" Header="Lunch" />
+                                <DataGridCheckBoxColumn Binding="{Binding Path=obiad}" Header="Obiad" />
+                                <DataGridCheckBoxColumn Binding="{Binding Path=podwieczorek}" Header="Podwieczorek" />
+                                <DataGridCheckBoxColumn Binding="{Binding Path=obiadokolacja}" Header="Obiadokolacja" />
+                                <DataGridCheckBoxColumn Binding="{Binding Path=kolacja}" Header="Kolacja" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <Label Content="Ilość:" FontSize="13" FontWeight="Normal" HorizontalAlignment="Left" Margin="38,93,0,0" Name="label225" Padding="2" VerticalAlignment="Top" />
+                        <Label Content="06-05-2011" FontSize="14" FontWeight="Normal" HorizontalAlignment="Left" Margin="20,148,0,0" Name="labelKucharz2day" Padding="2" VerticalAlignment="Top" Foreground="SlateGray" />
+                        <Separator Height="5" Margin="19,166,14,0" Name="separator6" VerticalAlignment="Top" />
+                        <Separator Height="5" Margin="19,236,14,0" Name="separator7" VerticalAlignment="Top" />
+                        <DataGrid AutoGenerateColumns="False" HorizontalGridLinesBrush="#FFD5D5D5" IsEnabled="True" IsReadOnly="True" Margin="79,178,27,345" Name="dataGridKucharz2day" SelectionMode="Single" VerticalGridLinesBrush="#FFD5D5D5">
+                            <DataGrid.Columns>
+                                <DataGridCheckBoxColumn Binding="{Binding Path=sniadanie}" Header="Śniadanie" />
+                                <DataGridCheckBoxColumn Binding="{Binding Path=drugie_sniadanie}" Header="Dr. śniadanie" />
+                                <DataGridCheckBoxColumn Binding="{Binding Path=lunch}" Header="Lunch" />
+                                <DataGridCheckBoxColumn Binding="{Binding Path=obiad}" Header="Obiad" />
+                                <DataGridCheckBoxColumn Binding="{Binding Path=podwieczorek}" Header="Podwieczorek" />
+                                <DataGridCheckBoxColumn Binding="{Binding Path=obiadokolacja}" Header="Obiadokolacja" />
+                                <DataGridCheckBoxColumn Binding="{Binding Path=kolacja}" Header="Kolacja" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <Label Content="Ilość:" FontSize="13" FontWeight="Normal" HorizontalAlignment="Left" Margin="38,201,0,0" Name="label242" Padding="2" VerticalAlignment="Top" />
+                        <Label Content="07-05-2011" FontSize="14" FontWeight="Normal" HorizontalAlignment="Left" Margin="20,262,0,0" Name="labelKucharz3day" Padding="2" VerticalAlignment="Top" IsEnabled="False" Foreground="SlateGray" />
+                        <Separator Height="5" Margin="19,280,14,0" Name="separator8" VerticalAlignment="Top" />
+                        <Separator Height="5" Margin="19,350,14,0" Name="separator9" VerticalAlignment="Top" />
+                        <DataGrid AutoGenerateColumns="False" HorizontalGridLinesBrush="#FFD5D5D5" IsEnabled="True" IsReadOnly="True" Margin="79,292,27,231" Name="dataGridKucharz3day" SelectionMode="Single" VerticalGridLinesBrush="#FFD5D5D5">
+                            <DataGrid.Columns>
+                                <DataGridCheckBoxColumn Binding="{Binding Path=sniadanie}" Header="Śniadanie" />
+                                <DataGridCheckBoxColumn Binding="{Binding Path=drugie_sniadanie}" Header="Dr. śniadanie" />
+                                <DataGridCheckBoxColumn Binding="{Binding Path=lunch}" Header="Lunch" />
+                                <DataGridCheckBoxColumn Binding="{Binding Path=obiad}" Header="Obiad" />
+                                <DataGridCheckBoxColumn Binding="{Binding Path=podwieczorek}" Header="Podwieczorek" />
+                                <DataGridCheckBoxColumn Binding="{Binding Path=obiadokolacja}" Header="Obiadokolacja" />
+                                <DataGridCheckBoxColumn Binding="{Binding Path=kolacja}" Header="Kolacja" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <Label Content="Ilość:" FontSize="13" FontWeight="Normal" HorizontalAlignment="Left" Margin="38,315,0,0" Name="label246" Padding="2" VerticalAlignment="Top" />
+                        <Label Content="08-05-2011" FontSize="14" FontWeight="Normal" HorizontalAlignment="Left" Margin="20,370,0,0" Name="labelKucharz4day" Padding="2" VerticalAlignment="Top" Foreground="SlateGray" />
+                        <Separator Height="5" Margin="19,388,14,0" Name="separator10" VerticalAlignment="Top" />
+                        <Separator Height="5" Margin="19,458,14,0" Name="separator11" VerticalAlignment="Top" />
+                        <DataGrid AutoGenerateColumns="False" HorizontalGridLinesBrush="#FFD5D5D5" IsEnabled="True" IsReadOnly="True" Margin="79,400,27,123" Name="dataGridKucharz4day" SelectionMode="Single" VerticalGridLinesBrush="#FFD5D5D5">
+                            <DataGrid.Columns>
+                                <DataGridCheckBoxColumn Binding="{Binding Path=sniadanie}" Header="Śniadanie" />
+                                <DataGridCheckBoxColumn Binding="{Binding Path=drugie_sniadanie}" Header="Dr. śniadanie" />
+                                <DataGridCheckBoxColumn Binding="{Binding Path=lunch}" Header="Lunch" />
+                                <DataGridCheckBoxColumn Binding="{Binding Path=obiad}" Header="Obiad" />
+                                <DataGridCheckBoxColumn Binding="{Binding Path=podwieczorek}" Header="Podwieczorek" />
+                                <DataGridCheckBoxColumn Binding="{Binding Path=obiadokolacja}" Header="Obiadokolacja" />
+                                <DataGridCheckBoxColumn Binding="{Binding Path=kolacja}" Header="Kolacja" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <Label Content="Ilość:" FontSize="13" FontWeight="Normal" HorizontalAlignment="Left" Margin="38,423,0,0" Name="label249" Padding="2" VerticalAlignment="Top" />
+                        <Label Content="09-05-2011" FontSize="14" FontWeight="Normal" HorizontalAlignment="Left" Margin="23,476,0,0" Name="labelKucharz5day" Padding="2" VerticalAlignment="Top" Foreground="SlateGray" />
+                        <Separator Height="5" Margin="22,494,11,0" Name="separator12" VerticalAlignment="Top" />
+                        <DataGrid AutoGenerateColumns="False" HorizontalGridLinesBrush="#FFD5D5D5" IsEnabled="True" IsReadOnly="True" Margin="82,506,27,17" Name="dataGridKucharz5day" SelectionMode="Single" VerticalGridLinesBrush="#FFD5D5D5">
+                            <DataGrid.Columns>
+                                <DataGridCheckBoxColumn Binding="{Binding Path=sniadanie}" Header="Śniadanie" />
+                                <DataGridCheckBoxColumn Binding="{Binding Path=drugie_sniadanie}" Header="Dr. śniadanie" />
+                                <DataGridCheckBoxColumn Binding="{Binding Path=lunch}" Header="Lunch" />
+                                <DataGridCheckBoxColumn Binding="{Binding Path=obiad}" Header="Obiad" />
+                                <DataGridCheckBoxColumn Binding="{Binding Path=podwieczorek}" Header="Podwieczorek" />
+                                <DataGridCheckBoxColumn Binding="{Binding Path=obiadokolacja}" Header="Obiadokolacja" />
+                                <DataGridCheckBoxColumn Binding="{Binding Path=kolacja}" Header="Kolacja" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <Label Content="Ilość:" FontSize="13" FontWeight="Normal" HorizontalAlignment="Left" Margin="38,528,0,0" Name="label251" Padding="2" VerticalAlignment="Top" />
+                    </Grid>
+                </StackPanel>
+            </TabItem>
         </TabControl>
         
         <Canvas Name="canvas1" HorizontalAlignment="Right" Width="223">

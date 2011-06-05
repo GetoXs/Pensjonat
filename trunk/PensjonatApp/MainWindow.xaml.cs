@@ -2402,6 +2402,15 @@ namespace PensjonatApp
             }
         }
 
+        private void gridKucharz_Initialized(object sender, EventArgs e)
+        {
+            labelKucharz1day.Content = DateTime.Today.ToLongDateString();
+            labelKucharz2day.Content = DateTime.Today.AddDays(1.0).ToLongDateString();
+            labelKucharz3day.Content = DateTime.Today.AddDays(2.0).ToLongDateString();
+            labelKucharz4day.Content = DateTime.Today.AddDays(3.0).ToLongDateString();
+            labelKucharz5day.Content = DateTime.Today.AddDays(4.0).ToLongDateString();
+        }
+
 
 
 
