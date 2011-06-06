@@ -26,13 +26,13 @@ namespace PensjonatApp.Helpers
         {
             SumaPosilkow suma = new SumaPosilkow();
 
-            suma.Sniadania = TablesManager.Manager.PosilkiTableAdapter.GetSumSniadaniabyTermin(data).GetValueOrDefault(0);
-            suma.Dsniadania = TablesManager.Manager.PosilkiTableAdapter.GetSumDsniadania(data).GetValueOrDefault(0);
-            suma.Obiady = TablesManager.Manager.PosilkiTableAdapter.GetSumObiadyByTermin(data).GetValueOrDefault(0);
-            suma.Lunche = TablesManager.Manager.PosilkiTableAdapter.GetSumLunchbyTermin(data).GetValueOrDefault(0);
-            suma.Podwieczorki = TablesManager.Manager.PosilkiTableAdapter.GetSumPodw(data).GetValueOrDefault(0);
-            suma.Obiadokolacje = TablesManager.Manager.PosilkiTableAdapter.GetSumObiadokolacjeByTermin(data).GetValueOrDefault(0);
-            suma.Kolacje = TablesManager.Manager.PosilkiTableAdapter.GetSumKolacjeByTermin(data).GetValueOrDefault(0);
+            suma.Sniadania = ((int?)TablesManager.Manager.PosilkiTableAdapter.GetSumSniadaniabyTermin(data)).GetValueOrDefault(0);
+            suma.Dsniadania = ((int?)TablesManager.Manager.PosilkiTableAdapter.GetSumDsniadania(data)).GetValueOrDefault(0);
+            suma.Obiady = ((int?)TablesManager.Manager.PosilkiTableAdapter.GetSumObiadyByTermin(data)).GetValueOrDefault(0);
+            suma.Lunche = ((int?)TablesManager.Manager.PosilkiTableAdapter.GetSumLunchbyTermin(data)).GetValueOrDefault(0);
+            suma.Podwieczorki = ((int?)TablesManager.Manager.PosilkiTableAdapter.GetSumPodw(data)).GetValueOrDefault(0);
+            suma.Obiadokolacje = ((int?)TablesManager.Manager.PosilkiTableAdapter.GetSumObiadokolacjeByTermin(data)).GetValueOrDefault(0);
+            suma.Kolacje = ((int?)TablesManager.Manager.PosilkiTableAdapter.GetSumKolacjeByTermin(data)).GetValueOrDefault(0);
 
             return suma;
         }

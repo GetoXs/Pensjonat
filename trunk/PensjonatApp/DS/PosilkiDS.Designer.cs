@@ -1554,51 +1554,56 @@ WHERE        Posilki.id_slownikowe_posilku = Posilki_slownik.id_slownikowe_posil
             this._commandCollection[4].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_pobytu", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_pobytu", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[5] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[5].Connection = this.Connection;
-            this._commandCollection[5].CommandText = "SELECT COUNT (Posilki_slownik.drugie_sniadanie) \r\nFROM     Posilki_slownik, Posil" +
-                "ki\r\nWHERE  Posilki_slownik.id_slownikowe_posilku = Posilki.id_slownikowe_posilku" +
-                "\r\nGROUP BY Posilki.data\r\nHAVING (Posilki.data = ?)";
+            this._commandCollection[5].CommandText = @"SELECT COUNT(Posilki_slownik.drugie_sniadanie) AS Expr1
+FROM     Posilki_slownik, Posilki
+WHERE  Posilki_slownik.id_slownikowe_posilku = Posilki.id_slownikowe_posilku AND (Posilki_slownik.drugie_sniadanie = 1)
+GROUP BY Posilki.data
+HAVING (Posilki.data = ?)";
             this._commandCollection[5].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[5].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("data", global::System.Data.Odbc.OdbcType.DateTime, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "data", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[6] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[6].Connection = this.Connection;
             this._commandCollection[6].CommandText = "SELECT\r\n                  COUNT(Posilki_slownik.kolacja)\r\nFROM     Posilki_slowni" +
                 "k, Posilki\r\nWHERE  Posilki_slownik.id_slownikowe_posilku = Posilki.id_slownikowe" +
-                "_posilku\r\nGROUP BY Posilki.data\r\nHAVING (Posilki.data = ?)";
+                "_posilku AND (Posilki_slownik.kolacja = 1)\r\nGROUP BY Posilki.data\r\nHAVING (Posil" +
+                "ki.data = ?)";
             this._commandCollection[6].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[6].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("data", global::System.Data.Odbc.OdbcType.DateTime, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "data", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[7] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[7].Connection = this.Connection;
             this._commandCollection[7].CommandText = "SELECT COUNT(Posilki_slownik.lunch)\r\nFROM     Posilki_slownik, Posilki\r\nWHERE  Po" +
-                "silki_slownik.id_slownikowe_posilku = Posilki.id_slownikowe_posilku\r\nGROUP BY Po" +
-                "silki.data\r\nHAVING (Posilki.data = ?)";
+                "silki_slownik.id_slownikowe_posilku = Posilki.id_slownikowe_posilku AND (Posilki" +
+                "_slownik.lunch = 1)\r\nGROUP BY Posilki.data\r\nHAVING (Posilki.data = ?)";
             this._commandCollection[7].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[7].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("data", global::System.Data.Odbc.OdbcType.DateTime, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "data", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[8] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[8].Connection = this.Connection;
             this._commandCollection[8].CommandText = "SELECT COUNT(Posilki_slownik.obiadokolacja)\r\nFROM     Posilki_slownik, Posilki\r\nW" +
-                "HERE  Posilki_slownik.id_slownikowe_posilku = Posilki.id_slownikowe_posilku\r\nGRO" +
-                "UP BY Posilki.data\r\nHAVING (Posilki.data = ?)";
+                "HERE  Posilki_slownik.id_slownikowe_posilku = Posilki.id_slownikowe_posilku AND " +
+                "(Posilki_slownik.obiadokolacja = 1)\r\nGROUP BY Posilki.data\r\nHAVING (Posilki.data" +
+                " = ?)";
             this._commandCollection[8].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[8].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("data", global::System.Data.Odbc.OdbcType.DateTime, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "data", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[9] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[9].Connection = this.Connection;
             this._commandCollection[9].CommandText = "SELECT   COUNT(Posilki_slownik.obiad) \r\nFROM     Posilki_slownik, Posilki\r\nWHERE " +
-                " Posilki_slownik.id_slownikowe_posilku = Posilki.id_slownikowe_posilku\r\nGROUP BY" +
-                " Posilki.data\r\nHAVING (Posilki.data = ?)";
+                " Posilki_slownik.id_slownikowe_posilku = Posilki.id_slownikowe_posilku AND (Posi" +
+                "lki_slownik.obiad = 1)\r\nGROUP BY Posilki.data\r\nHAVING (Posilki.data = ?)";
             this._commandCollection[9].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[9].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("data", global::System.Data.Odbc.OdbcType.DateTime, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "data", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[10] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[10].Connection = this.Connection;
             this._commandCollection[10].CommandText = "SELECT COUNT (Posilki_slownik.podwieczorek) \r\nFROM     Posilki_slownik, Posilki\r\n" +
-                "WHERE  Posilki_slownik.id_slownikowe_posilku = Posilki.id_slownikowe_posilku\r\nGR" +
-                "OUP BY Posilki.data\r\nHAVING (Posilki.data = ?)";
+                "WHERE  Posilki_slownik.id_slownikowe_posilku = Posilki.id_slownikowe_posilku AND" +
+                " (Posilki_slownik.podwieczorek = 1)\r\nGROUP BY Posilki.data\r\nHAVING (Posilki.data" +
+                " = ?)";
             this._commandCollection[10].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[10].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("data", global::System.Data.Odbc.OdbcType.DateTime, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "data", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[11] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[11].Connection = this.Connection;
             this._commandCollection[11].CommandText = "SELECT COUNT(Posilki_slownik.sniadanie) \r\nFROM     Posilki_slownik, Posilki\r\nWHER" +
-                "E  Posilki_slownik.id_slownikowe_posilku = Posilki.id_slownikowe_posilku\r\nGROUP " +
-                "BY Posilki.data\r\nHAVING (Posilki.data = ?)";
+                "E  Posilki_slownik.id_slownikowe_posilku = Posilki.id_slownikowe_posilku AND (Po" +
+                "silki_slownik.sniadanie = 1)\r\nGROUP BY Posilki.data\r\nHAVING (Posilki.data = ?)";
             this._commandCollection[11].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[11].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("data", global::System.Data.Odbc.OdbcType.DateTime, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "data", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[12] = new global::System.Data.Odbc.OdbcCommand();
@@ -1903,7 +1908,7 @@ HAVING (Posilki.data = ?)";
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual global::System.Nullable<int> GetSumDsniadania(global::System.Nullable<global::System.DateTime> data) {
+        public virtual object GetSumDsniadania(global::System.Nullable<global::System.DateTime> data) {
             global::System.Data.Odbc.OdbcCommand command = this.CommandCollection[5];
             if ((data.HasValue == true)) {
                 command.Parameters[0].Value = ((System.DateTime)(data.Value));
@@ -1927,17 +1932,17 @@ HAVING (Posilki.data = ?)";
             }
             if (((returnValue == null) 
                         || (returnValue.GetType() == typeof(global::System.DBNull)))) {
-                return new global::System.Nullable<int>();
+                return null;
             }
             else {
-                return new global::System.Nullable<int>(((int)(returnValue)));
+                return ((object)(returnValue));
             }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual global::System.Nullable<int> GetSumKolacjeByTermin(global::System.Nullable<global::System.DateTime> data) {
+        public virtual object GetSumKolacjeByTermin(global::System.Nullable<global::System.DateTime> data) {
             global::System.Data.Odbc.OdbcCommand command = this.CommandCollection[6];
             if ((data.HasValue == true)) {
                 command.Parameters[0].Value = ((System.DateTime)(data.Value));
@@ -1961,17 +1966,17 @@ HAVING (Posilki.data = ?)";
             }
             if (((returnValue == null) 
                         || (returnValue.GetType() == typeof(global::System.DBNull)))) {
-                return new global::System.Nullable<int>();
+                return null;
             }
             else {
-                return new global::System.Nullable<int>(((int)(returnValue)));
+                return ((object)(returnValue));
             }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual global::System.Nullable<int> GetSumLunchbyTermin(global::System.Nullable<global::System.DateTime> data) {
+        public virtual object GetSumLunchbyTermin(global::System.Nullable<global::System.DateTime> data) {
             global::System.Data.Odbc.OdbcCommand command = this.CommandCollection[7];
             if ((data.HasValue == true)) {
                 command.Parameters[0].Value = ((System.DateTime)(data.Value));
@@ -1995,17 +2000,17 @@ HAVING (Posilki.data = ?)";
             }
             if (((returnValue == null) 
                         || (returnValue.GetType() == typeof(global::System.DBNull)))) {
-                return new global::System.Nullable<int>();
+                return null;
             }
             else {
-                return new global::System.Nullable<int>(((int)(returnValue)));
+                return ((object)(returnValue));
             }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual global::System.Nullable<int> GetSumObiadokolacjeByTermin(global::System.Nullable<global::System.DateTime> data) {
+        public virtual object GetSumObiadokolacjeByTermin(global::System.Nullable<global::System.DateTime> data) {
             global::System.Data.Odbc.OdbcCommand command = this.CommandCollection[8];
             if ((data.HasValue == true)) {
                 command.Parameters[0].Value = ((System.DateTime)(data.Value));
@@ -2029,10 +2034,10 @@ HAVING (Posilki.data = ?)";
             }
             if (((returnValue == null) 
                         || (returnValue.GetType() == typeof(global::System.DBNull)))) {
-                return new global::System.Nullable<int>();
+                return null;
             }
             else {
-                return new global::System.Nullable<int>(((int)(returnValue)));
+                return ((object)(returnValue));
             }
         }
         
@@ -2073,7 +2078,7 @@ HAVING (Posilki.data = ?)";
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual global::System.Nullable<int> GetSumPodw(global::System.Nullable<global::System.DateTime> data) {
+        public virtual object GetSumPodw(global::System.Nullable<global::System.DateTime> data) {
             global::System.Data.Odbc.OdbcCommand command = this.CommandCollection[10];
             if ((data.HasValue == true)) {
                 command.Parameters[0].Value = ((System.DateTime)(data.Value));
@@ -2097,17 +2102,17 @@ HAVING (Posilki.data = ?)";
             }
             if (((returnValue == null) 
                         || (returnValue.GetType() == typeof(global::System.DBNull)))) {
-                return new global::System.Nullable<int>();
+                return null;
             }
             else {
-                return new global::System.Nullable<int>(((int)(returnValue)));
+                return ((object)(returnValue));
             }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual global::System.Nullable<int> GetSumSniadaniabyTermin(global::System.Nullable<global::System.DateTime> data) {
+        public virtual object GetSumSniadaniabyTermin(global::System.Nullable<global::System.DateTime> data) {
             global::System.Data.Odbc.OdbcCommand command = this.CommandCollection[11];
             if ((data.HasValue == true)) {
                 command.Parameters[0].Value = ((System.DateTime)(data.Value));
@@ -2131,10 +2136,10 @@ HAVING (Posilki.data = ?)";
             }
             if (((returnValue == null) 
                         || (returnValue.GetType() == typeof(global::System.DBNull)))) {
-                return new global::System.Nullable<int>();
+                return null;
             }
             else {
-                return new global::System.Nullable<int>(((int)(returnValue)));
+                return ((object)(returnValue));
             }
         }
         
