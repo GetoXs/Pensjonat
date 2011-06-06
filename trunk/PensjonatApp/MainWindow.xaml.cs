@@ -1196,19 +1196,21 @@ namespace PensjonatApp
         }
         private void buttonKlienciPowrot_Click(object sender, RoutedEventArgs e)
         {
-                zwinKlienci();
-                showWindow(gridKlienciDeafult, buttonKlienciDeafultList);
+			textBoxKlienciEdycjaMiejscowoscAuto.Visibility = System.Windows.Visibility.Hidden;
+            zwinKlienci();
+            showWindow(gridKlienciDeafult, buttonKlienciDeafultList);
         }
         private void buttonKlienciOk_Click(object sender, RoutedEventArgs e)
         {
             if (currentGrid == gridKlienciEdit)
             {
                 KlienciHelper.edytujKlienta(int.Parse(labelKlienciEdytujId.Content.ToString()), textBoxKlienciEdycjaImie.Text, textBoxKlienciEdycjaNazwisko.Text, textBoxKlienciEdycjaFirma.Text,
-                    textBoxKlienciEdycjaMiejscowosc.Text, textBoxKlienciEdycjaAdres.Text, textBoxKlienciEdycjaKodPocztowy.Text, int.Parse(textBoxKlienciEdycjaNIP.Text),
+                    textBoxKlienciEdycjaMiejscowoscAuto.Text, textBoxKlienciEdycjaAdres.Text, textBoxKlienciEdycjaKodPocztowy.Text, int.Parse(textBoxKlienciEdycjaNIP.Text),
                        textBoxKlienciEdycjaPESEL.Text, int.Parse(textBoxKlienciEdycjaTelefon.Text), textBoxKlienciEdycjaMail.Text);
                 dataGridKlienci.ItemsSource = TablesManager.Manager.KlienciTableAdapter.GetKlienciMiejscowosci();
                 System.Windows.MessageBox.Show("Wyedytowano pomyślnie.", "Edycja klienta", MessageBoxButton.OK, MessageBoxImage.Information);
 
+				textBoxKlienciEdycjaMiejscowoscAuto.Visibility = System.Windows.Visibility.Hidden;
                 zwinKlienci();
                 showWindow(gridKlienciDeafult, buttonKlienciDeafultList);
             }
@@ -1219,7 +1221,17 @@ namespace PensjonatApp
         {
             if ((bool)(e.NewValue) == true)
             {//pojawienie sie pola
-                dataGridKlienci.ItemsSource = TablesManager.Manager.KlienciTableAdapter.GetKlienciMiejscowosci();
+				dataGridKlienci.ItemsSource = TablesManager.Manager.KlienciTableAdapter.GetKlienciMiejscowosci(); 
+				
+				//wypelnianie pól z miejscowością
+				KlienciDS.Miejscowosci_slownikDataTable tab = TablesManager.Manager.Miejscowosci_slownikTableAdapter.GetData();
+				foreach (KlienciDS.Miejscowosci_slownikRow row in tab)
+				{
+					textBoxKlienciAddMiejscowoscAuto.AddItem(new WPFAutoCompleteTextbox.AutoCompleteEntry(row.nazwa, row.nazwa));
+					textBoxKlienciEdycjaMiejscowoscAuto.AddItem(new WPFAutoCompleteTextbox.AutoCompleteEntry(row.nazwa, row.nazwa));
+				}
+				//chowanie kontrolki edycji 
+				textBoxKlienciEdycjaMiejscowoscAuto.Visibility = System.Windows.Visibility.Hidden;
             }
         }
         private void dataGridKlienci_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -1341,7 +1353,8 @@ namespace PensjonatApp
                 textBoxKlienciEdycjaNIP.Text = selectedRow.nip.ToString();
                 textBoxKlienciEdycjaTelefon.Text = selectedRow.nr_telefonu.ToString();
                 textBoxKlienciEdycjaMail.Text = selectedRow.email;
-                textBoxKlienciEdycjaMiejscowosc.Text = (string)selectedRow["miejscowosc"];
+				textBoxKlienciEdycjaMiejscowoscAuto.Visibility = System.Windows.Visibility.Visible;
+                textBoxKlienciEdycjaMiejscowoscAuto.Text = (string)selectedRow["miejscowosc"];
                 textBoxKlienciEdycjaKodPocztowy.Text = selectedRow.kod_pocztowy;
                 textBoxKlienciEdycjaAdres.Text = selectedRow.ulica;
                 textBoxKlienciEdycjaFirma.Text = selectedRow.IsnazwaNull() ? "" : selectedRow.nazwa;
@@ -2410,6 +2423,31 @@ namespace PensjonatApp
             labelKucharz4day.Content = DateTime.Today.AddDays(3.0).ToLongDateString();
             labelKucharz5day.Content = DateTime.Today.AddDays(4.0).ToLongDateString();
         }
+
+		private void textBoxKlienciAddMiejscowoscAuto_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+		{
+            /*if ((bool)(e.NewValue) == true)
+            {//pojawienie sie pola
+				KlienciDS.Miejscowosci_slownikDataTable tab = TablesManager.Manager.Miejscowosci_slownikTableAdapter.GetData();
+				foreach(KlienciDS.Miejscowosci_slownikRow row in tab)
+				{
+					//WPFAutoCompleteTextbox.AutoCompleteEntry tmp = new WPFAutoCompleteTextbox.AutoCompleteEntry(row.nazwa, row.nazwa);
+					textBoxKlienciAddMiejscowoscAuto.AddItem(new WPFAutoCompleteTextbox.AutoCompleteEntry(row.nazwa, row.nazwa));
+				}
+            }*/
+		}
+
+		private void textBoxKlienciEdycjaMiejscowoscAuto_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+		{
+			/*if ((bool)(e.NewValue) == true)
+			{//pojawienie sie pola
+				KlienciDS.Miejscowosci_slownikDataTable tab = TablesManager.Manager.Miejscowosci_slownikTableAdapter.GetData();
+				foreach (KlienciDS.Miejscowosci_slownikRow row in tab)
+				{
+					textBoxKlienciEdycjaMiejscowoscAuto.AddItem(new WPFAutoCompleteTextbox.AutoCompleteEntry(row.nazwa, row.nazwa));
+				}
+			}*/
+		}
 
 
 
