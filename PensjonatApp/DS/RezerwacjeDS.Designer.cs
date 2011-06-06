@@ -943,7 +943,7 @@ namespace PensjonatApp.DS.RezerwacjeDSTableAdapters {
             this._commandCollection[2].CommandText = @"SELECT        Rezerwacje.id_rezerwacji, Rezerwacje.zaliczka, Rezerwacje.zaplacono_zaliczke, Rezerwacje.ilosc_osob, Rezerwacje.id_klienta, Klienci.email, Klienci.imie, 
                          Klienci.nazwisko, Klienci.id_miejscowosci, Klienci.kod_pocztowy, Klienci.ulica, Klienci.nip, Klienci.pesel, Klienci.nr_telefonu, Klienci.nazwa
 FROM            Rezerwacje, Klienci
-WHERE        Rezerwacje.id_klienta = Klienci.id_klienta AND (UCASE(Klienci.nazwisko) = UCASE(?))";
+WHERE        Rezerwacje.id_klienta = Klienci.id_klienta AND (UCASE(Klienci.nazwisko) = UCASE('%' + ? + '%'))";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[2].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Param1", global::System.Data.Odbc.OdbcType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[3] = new global::System.Data.Odbc.OdbcCommand();
