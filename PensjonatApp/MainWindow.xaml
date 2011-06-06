@@ -2,7 +2,8 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:Toolkit="clr-namespace:Microsoft.Windows.Controls;assembly=WPFToolkit.Extended"
-        Title="Pensjonat" Height="700" Width="1000" Icon="/PensjonatApp;component/Images/fButon_bed.png" Topmost="False" MinWidth="1000" MinHeight="700" xmlns:my="clr-namespace:PensjonatApp" WindowStartupLocation="CenterScreen">
+        Title="Pensjonat" Height="700" Width="1000" Icon="/PensjonatApp;component/Images/fButon_bed.png" Topmost="False" MinWidth="1000" MinHeight="700" xmlns:my="clr-namespace:PensjonatApp" WindowStartupLocation="CenterScreen"
+		xmlns:local="clr-namespace:WPFAutoCompleteTextbox">
 	<Window.Resources>
 	</Window.Resources>
     <Grid>
@@ -561,7 +562,7 @@
                         <Label Content="Klienci" FontSize="20" FontWeight="Normal" Height="40" HorizontalAlignment="Left" Margin="53,11,0,0" Name="label73" Padding="0" VerticalAlignment="Top" VerticalContentAlignment="Center" />
                         <Image Height="40" HorizontalAlignment="Left" Margin="165,12,0,0" Name="image9" Source="/PensjonatApp;component/Images/separator.png" Stretch="Fill" VerticalAlignment="Top" Width="2" />
                     </Grid>
-                    <Grid Height="123" Name="gridKlienciDeafult" Opacity="1" ShowGridLines="True" Visibility="Visible">
+                    <Grid Height="46" Name="gridKlienciDeafult" Opacity="1" ShowGridLines="True" Visibility="Visible">
                         <TextBox Name="textBoxKlienciSzukaj" Height="23" HorizontalAlignment="Left" Margin="14,17,0,0" VerticalAlignment="Top" Width="129" TabIndex="1" />
                         <RadioButton Name="rbKlienciId" Content="ID" GroupName="klienciSzukaj" Height="16" HorizontalAlignment="Left" IsChecked="False" Margin="299,24,0,0" VerticalAlignment="Top" />
                         <RadioButton Name="rbKlienciKlient" Content="Klient" GroupName="klienciSzukaj" Height="16" HorizontalAlignment="Left" IsChecked="True" IsThreeState="False" Margin="247,24,0,0" VerticalAlignment="Top" />
@@ -578,54 +579,54 @@
                             </DataGrid.Columns>
                         </DataGrid>
                     </Grid>
-                    <Grid Height="287" Name="gridKlienciEdit" Opacity="1" ShowGridLines="True" Visibility="Visible">
+                    <Grid Height="231" Name="gridKlienciEdit" Opacity="1" ShowGridLines="True" Visibility="Visible">
                         <Label Content="Edycja klienta:" FontSize="15" FontWeight="Normal" HorizontalAlignment="Left" Margin="10,10,0,0" Name="label75" Padding="2" VerticalAlignment="Top" />
                         <Label Content="Imię:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,38,0,0" Name="label76" Padding="2" VerticalAlignment="Top" />
                         <Label Content="Nazwisko:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,64,0,0" Name="label77" Padding="2" VerticalAlignment="Top" />
                         <Label Content="PESEL:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,90,0,0" Name="label87" Padding="2" VerticalAlignment="Top" />
-                        <Label Content="Telefon:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,220,0,0" Name="label88" Padding="2" VerticalAlignment="Top" />
+                        <Label Content="Telefon:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,225,0,0" Name="label88" Padding="2" VerticalAlignment="Top" />
                         <TextBox Name="textBoxKlienciEdycjaImie"  Height="23" HorizontalAlignment="Left" Margin="160,37,0,0" VerticalAlignment="Top" Width="120" Text="Adam" />
                         <TextBox Name="textBoxKlienciEdycjaNazwisko" Height="23" HorizontalAlignment="Left" Margin="160,63,0,0"  VerticalAlignment="Top" Width="120" Text="Testowy" />
                         <TextBox Name="textBoxKlienciEdycjaPESEL" Height="23" HorizontalAlignment="Left" Margin="160,89,0,0"  VerticalAlignment="Top" Width="120" Text="88543452321" />
-                        <TextBox Name="textBoxKlienciEdycjaTelefon" HorizontalAlignment="Left" Margin="160,219,0,0" Width="120" Text="52055535" Height="23" VerticalAlignment="Top" />
-                        <Label Content="Mail:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,245,0,0" Name="label89" Padding="2" VerticalAlignment="Top" />
-                        <TextBox Name="textBoxKlienciEdycjaMail" Height="23" HorizontalAlignment="Left" Margin="160,245,0,0"  VerticalAlignment="Top" Width="120" Text="niunia@wp.pl" />
+                        <TextBox Name="textBoxKlienciEdycjaTelefon" HorizontalAlignment="Left" Margin="160,224,0,0" Width="120" Text="52055535" Height="23" VerticalAlignment="Top" />
+                        <Label Content="Mail:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,250,0,0" Name="label89" Padding="2" VerticalAlignment="Top" />
+                        <TextBox Name="textBoxKlienciEdycjaMail" Height="23" HorizontalAlignment="Left" Margin="160,250,0,0"  VerticalAlignment="Top" Width="120" Text="niunia@wp.pl" />
                         <Label Content="NIP:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,116,0,0" Name="label26" Padding="2" VerticalAlignment="Top" />
-                        <Label Content="Miejscowość:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,168,0,0" Name="label27" Padding="2" VerticalAlignment="Top" />
+                        <Label Content="Miejscowość:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,173,0,0" Name="label27" Padding="2" VerticalAlignment="Top" />
                         <Label Content="Adres:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,142,0,0" Name="label28" Padding="2" VerticalAlignment="Top" />
                         <TextBox Name="textBoxKlienciEdycjaNIP" Height="23" HorizontalAlignment="Left" Margin="160,115,0,0"  Text="2154521" VerticalAlignment="Top" Width="120" />
-                        <TextBox Name="textBoxKlienciEdycjaMiejscowosc"  Height="23" Margin="160,167,0,0" Text="Gliwice" VerticalAlignment="Top" HorizontalAlignment="Left" Width="120" />
-                        <TextBox Name="textBoxKlienciEdycjaAdres"  Height="23" HorizontalAlignment="Left" Margin="160,141,0,0" Text="ul. Porzeczkowa 22" VerticalAlignment="Top" Width="120" />
-                        <Label Content="Firma:" FontWeight="Bold" HorizontalAlignment="Left" Margin="34,271,0,0" Name="label29" Padding="2" VerticalAlignment="Top" />
-                        <TextBox Name="textBoxKlienciEdycjaFirma" Height="23" HorizontalAlignment="Left" Margin="160,271,0,0"  Text="TDCG" VerticalAlignment="Top" Width="120" />
-                        <Label Content="Kod Pocztowy:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,194,0,0" Name="label74" Padding="2" VerticalAlignment="Top" />
-                        <TextBox Name="textBoxKlienciEdycjaKodPocztowy" Height="23" HorizontalAlignment="Left" Margin="160,193,0,0"  VerticalAlignment="Top" Width="120" />
+						<TextBox Name="textBoxKlienciEdycjaAdres"  Height="23" HorizontalAlignment="Left" Margin="160,141,0,0" Text="ul. Porzeczkowa 22" VerticalAlignment="Top" Width="120" />
+                        <Label Content="Firma:" FontWeight="Bold" HorizontalAlignment="Left" Margin="34,276,0,0" Name="label29" Padding="2" VerticalAlignment="Top" />
+                        <TextBox Name="textBoxKlienciEdycjaFirma" Height="23" HorizontalAlignment="Left" Margin="160,276,0,0"  Text="TDCG" VerticalAlignment="Top" Width="120" />
+                        <Label Content="Kod Pocztowy:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,199,0,0" Name="label74" Padding="2" VerticalAlignment="Top" />
+                        <TextBox Name="textBoxKlienciEdycjaKodPocztowy" Height="23" HorizontalAlignment="Left" Margin="160,198,0,0"  VerticalAlignment="Top" Width="120" />
                         <Label Content="Label" Height="28" HorizontalAlignment="Left" Margin="105,8,0,0" Name="labelKlienciEdytujId" VerticalAlignment="Top" IsEnabled="False" Visibility="Hidden" />
-                    </Grid>
-                    <Grid Height="512" Name="gridKlienciAdd" Opacity="1" ShowGridLines="True" Visibility="Visible">
+						<local:AutoCompleteTextBox DelayTime="500" Height="23" Margin="160,170,0,0" x:Name="textBoxKlienciEdycjaMiejscowoscAuto" Threshold="3" VerticalAlignment="Top" HorizontalAlignment="Left" Width="120" HorizontalAlignment="Left" IsVisibleChanged="textBoxKlienciEdycjaMiejscowoscAuto_IsVisibleChanged" AllowDrop="True" Focusable="True" />
+					</Grid>
+                    <Grid Height="543" Name="gridKlienciAdd" Opacity="1" ShowGridLines="True" Visibility="Visible">
                         <Label Content="Dodawanie klienta:" FontSize="15" FontWeight="Normal" HorizontalAlignment="Left" Margin="10,10,0,0" Name="label92" Padding="2" VerticalAlignment="Top" />
                         <Label Content="Imię:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,39,0,0" Name="label44" Padding="2" VerticalAlignment="Top" />
                         <Label Content="Nazwisko:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,66,0,0" Name="label47" Padding="2" VerticalAlignment="Top" />
                         <Label Content="PESEL:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,92,0,0" Name="label49" Padding="2" VerticalAlignment="Top" />
-                        <Label Content="Telefon:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,225,0,0" Name="label55" Padding="2" VerticalAlignment="Top" />
-                        <Button Name="buttonKlienciAddDodaj" Content="Dodaj" Height="23" HorizontalAlignment="Left" Margin="115,345,0,0"  VerticalAlignment="Top" Width="75" Click="buttonKlienciAddDodaj_Click" />
+                        <Label Content="Telefon:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,230,0,0" Name="label55" Padding="2" VerticalAlignment="Top" />
+                        <Button Name="buttonKlienciAddDodaj" Content="Dodaj" Height="23" HorizontalAlignment="Left" Margin="115,377,0,0"  VerticalAlignment="Top" Width="75" Click="buttonKlienciAddDodaj_Click" />
                         <TextBox Name="textBoxKlienciAddImie" Height="23" HorizontalAlignment="Left" Margin="160,38,0,0" Text="" VerticalAlignment="Top" Width="120" TextChanged="textBoxKlienciAdd_TextChanged" />
                         <TextBox Name="textBoxKlienciAddNazwisko" Height="23" HorizontalAlignment="Left" Margin="160,65,0,0" Text="" VerticalAlignment="Top" Width="120" TextChanged="textBoxKlienciAdd_TextChanged" />
                         <TextBox Name="textBoxKlienciAddPESEL" Height="23" HorizontalAlignment="Left" Margin="160,91,0,0" Text="" VerticalAlignment="Top" Width="120" TextChanged="textBoxKlienciAdd_TextChanged" />
-                        <TextBox Name="textBoxKlienciAddTelefon" Height="23" HorizontalAlignment="Left" Margin="160,251,0,0" Text="" VerticalAlignment="Top" Width="120" TextChanged="textBoxKlienciAdd_TextChanged" />
-                        <Label Content="Mail:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,252,0,0" Name="label56" Padding="2" VerticalAlignment="Top" />
-                        <TextBox Name="textBoxKlienciAddMail" Height="23" HorizontalAlignment="Left" Margin="160,224,0,0"  Text="" VerticalAlignment="Top" Width="120" TextChanged="textBoxKlienciAdd_TextChanged" />
+                        <TextBox Name="textBoxKlienciAddTelefon" Height="23" HorizontalAlignment="Left" Margin="160,256,0,0" Text="" VerticalAlignment="Top" Width="120" TextChanged="textBoxKlienciAdd_TextChanged" />
+                        <Label Content="Mail:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,257,0,0" Name="label56" Padding="2" VerticalAlignment="Top" />
+                        <TextBox Name="textBoxKlienciAddMail" Height="23" HorizontalAlignment="Left" Margin="160,229,0,0"  Text="" VerticalAlignment="Top" Width="120" TextChanged="textBoxKlienciAdd_TextChanged" />
                         <Label Content="NIP:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,118,0,0" Name="label57" Padding="2" VerticalAlignment="Top" />
-                        <Label Content="Miejscowość:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,171,0,0" Name="label58" Padding="2" VerticalAlignment="Top" />
+                        <Label Content="Miejscowość:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,175,0,0" Name="label58" Padding="2" VerticalAlignment="Top" />
+						<local:AutoCompleteTextBox Height="23" Width="120" DelayTime="500" x:Name="textBoxKlienciAddMiejscowoscAuto" Threshold="3" IsVisibleChanged="textBoxKlienciAddMiejscowoscAuto_IsVisibleChanged" Margin="160,172,303,0" VerticalAlignment="Top" HorizontalAlignment="Left" AllowDrop="True" Focusable="True" />
                         <Label Content="Adres:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,144,0,0" Name="label62" Padding="2" VerticalAlignment="Top" />
                         <TextBox Name="textBoxKlienciAddNIP" Height="23" HorizontalAlignment="Left" Margin="160,117,0,0"  Text="" VerticalAlignment="Top" Width="120" TextChanged="textBoxKlienciAdd_TextChanged" />
-                        <TextBox Name="textBoxKlienciAddMiejscowosc"  Height="23" Margin="160,170,0,0" Text="" VerticalAlignment="Top" HorizontalAlignment="Left" Width="120" TextChanged="textBoxKlienciAdd_TextChanged" />
-                        <TextBox Name="textBoxKlienciAddAdres" Height="23" HorizontalAlignment="Left" Margin="160,143,0,0"  Text="" VerticalAlignment="Top" Width="120" TextChanged="textBoxKlienciAdd_TextChanged" />
-                        <Label Content="Firma:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,280,0,0" Name="label63" Padding="2" VerticalAlignment="Top" />
-                        <TextBox Name="textBoxKlienciAddFirma" Height="23" HorizontalAlignment="Left" Margin="160,279,0,0" Text="" VerticalAlignment="Top" Width="120" TextChanged="textBoxKlienciAdd_TextChanged" />
-						<Label Content="" Height="28" HorizontalAlignment="Left" Margin="35,311,0,0" Name="labelKlienciAddStatus" VerticalAlignment="Top" Width="247" Foreground="Red" />
-						<Label Content="Kod Pocztowy:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,198,0,0" Name="label65" VerticalAlignment="Top" Padding="2" />
-						<TextBox Height="23" HorizontalAlignment="Left" Margin="160,197,0,0" Name="textBoxKlienciAddKodPocztowy" VerticalAlignment="Top" Width="120" TextChanged="textBoxKlienciAdd_TextChanged" />
+						<TextBox Name="textBoxKlienciAddAdres" Height="23" HorizontalAlignment="Left" Margin="160,143,0,0"  Text="" VerticalAlignment="Top" Width="120" TextChanged="textBoxKlienciAdd_TextChanged" />
+                        <Label Content="Firma:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,285,0,0" Name="label63" Padding="2" VerticalAlignment="Top" />
+                        <TextBox Name="textBoxKlienciAddFirma" Height="23" HorizontalAlignment="Left" Margin="160,284,0,0" Text="" VerticalAlignment="Top" Width="120" TextChanged="textBoxKlienciAdd_TextChanged" />
+						<Label Content="" Height="28" HorizontalAlignment="Left" Margin="35,343,0,0" Name="labelKlienciAddStatus" VerticalAlignment="Top" Width="247" Foreground="Red" />
+						<Label Content="Kod Pocztowy:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,203,0,0" Name="label65" VerticalAlignment="Top" Padding="2" />
+						<TextBox Height="23" HorizontalAlignment="Left" Margin="160,202,0,0" Name="textBoxKlienciAddKodPocztowy" VerticalAlignment="Top" Width="120" TextChanged="textBoxKlienciAdd_TextChanged" />
 					</Grid>
                 </StackPanel>
             </TabItem>
