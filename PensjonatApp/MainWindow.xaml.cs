@@ -1049,10 +1049,24 @@ namespace PensjonatApp
                 PobytyRabatyDodajList = new List<RachunkiDS.RabatyRow>();
 				dataGridPobytySumRabaty.ItemsSource = PobytyRabatyDodajList;
 
-				labelPobytySumDoZaplaty.Content = RozliczenieHelper.pobierzRabatowaCena(selectedRow.id_pobytu, PobytyRabatyDodajList).ToString(".00");
-				labelPobytySumCena.Content = RozliczenieHelper.pobierzPodstawowaCenaLaczna(selectedRow.id_pobytu).ToString(".00");
-
-               // dataGridPobytyUslugi.ItemsSource = TablesManager.Manager.UslugiTableAdapter.GetDataUslugiUslugi_slownikByID_pobytu(selectedRow.id_pobytu);
+				//wypenienie labeli i przyciskow związanych z ceną
+				decimal cenaTmp;
+				cenaTmp = RozliczenieHelper.pobierzPodstawowaCenaUslug(selectedRow.id_pobytu);
+				labelPobytySumCenaUslugi.Content = cenaTmp.ToString("0.00");
+				buttonPobytySumRozwinUslugi.Content = "+";
+				buttonPobytySumRozwinUslugi.IsEnabled = (cenaTmp == 0) ? false : true;
+				cenaTmp = RozliczenieHelper.pobierzPodstawowaCenaPosilkow(selectedRow.id_pobytu);
+				labelPobytySumCenaPosilki.Content = cenaTmp.ToString("0.00");
+				buttonPobytySumRozwinPosilki.Content = "+";
+				buttonPobytySumRozwinPosilki.IsEnabled = (cenaTmp == 0) ? false : true;
+				labelPobytySumCenaPobyt.Content = RozliczenieHelper.pobierzPodstawowaCenaPobytu(selectedRow.id_pobytu).ToString("0.00");
+				labelPobytySumCena.Content = RozliczenieHelper.pobierzPodstawowaCenaLaczna(selectedRow.id_pobytu).ToString("0.00");
+				labelPobytySumDoZaplaty.Content = RozliczenieHelper.pobierzRabatowaCena(selectedRow.id_pobytu, PobytyRabatyDodajList).ToString("0.00");
+				dataGridPobytySumLista.Visibility = System.Windows.Visibility.Collapsed;
+				dataGridPobytySumLista.ItemsSource = null;
+				dataGridPobytySumLista.Columns.Clear();
+				
+                //dataGridPobytyUslugi.ItemsSource = TablesManager.Manager.UslugiTableAdapter.GetDataUslugiUslugi_slownikByID_pobytu(selectedRow.id_pobytu);
             }
             else
                 System.Windows.MessageBox.Show("Najpierw wybierz pobyt.", "Rozliczanie pobytu.", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -1064,7 +1078,7 @@ namespace PensjonatApp
 			{
 				PobytyRabatyDodajList.Add(PobytyRabatyList[comboBoxPobytySumRabat.SelectedIndex]);
 
-				labelPobytySumDoZaplaty.Content = RozliczenieHelper.pobierzRabatowaCena((int)labelPobytySumId.Content, PobytyRabatyDodajList).ToString(".00");
+				labelPobytySumDoZaplaty.Content = RozliczenieHelper.pobierzRabatowaCena((int)labelPobytySumId.Content, PobytyRabatyDodajList).ToString("0.00");
 			}
             dataGridPobytySumRabaty.Items.Refresh();
 
@@ -1078,7 +1092,7 @@ namespace PensjonatApp
 					if (row.id_rabatu == PobytyRabatyList[comboBoxPobytySumRabat.SelectedIndex].id_rabatu)
                     {
 						PobytyRabatyDodajList.Remove(row);
-						labelPobytySumDoZaplaty.Content = RozliczenieHelper.pobierzRabatowaCena((int)labelPobytySumId.Content, PobytyRabatyDodajList).ToString(".00");
+						labelPobytySumDoZaplaty.Content = RozliczenieHelper.pobierzRabatowaCena((int)labelPobytySumId.Content, PobytyRabatyDodajList).ToString("0.00");
                         break;
                     }
                 }
@@ -2434,42 +2448,62 @@ namespace PensjonatApp
             labelKucharz4day.Content = DateTime.Today.AddDays(3.0).ToLongDateString();
             labelKucharz5day.Content = DateTime.Today.AddDays(4.0).ToLongDateString();
         }
-
-		private void textBoxKlienciAddMiejscowoscAuto_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+		/// <summary>
+		/// Wyświetlanie w datagridzie listy ze szczegółowymi informacjami nt. posiłków, bądź ew. jej zwinięcie
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void buttonPobytySumRozwinUslugi_Click(object sender, RoutedEventArgs e)
 		{
-            /*if ((bool)(e.NewValue) == true)
-            {//pojawienie sie pola
-				KlienciDS.Miejscowosci_slownikDataTable tab = TablesManager.Manager.Miejscowosci_slownikTableAdapter.GetData();
-				foreach(KlienciDS.Miejscowosci_slownikRow row in tab)
-				{
-					//WPFAutoCompleteTextbox.AutoCompleteEntry tmp = new WPFAutoCompleteTextbox.AutoCompleteEntry(row.nazwa, row.nazwa);
-					textBoxKlienciAddMiejscowoscAuto.AddItem(new WPFAutoCompleteTextbox.AutoCompleteEntry(row.nazwa, row.nazwa));
-				}
-            }*/
-		}
+			if (((String)((Button)sender).Content).Equals("+"))
+			{
+				((Button)sender).Content = "-";
+				buttonPobytySumRozwinPosilki.Content = "+";
+				dataGridPobytySumLista.ItemsSource = null;
+				dataGridPobytySumLista.Columns.Clear();
 
-		private void textBoxKlienciEdycjaMiejscowoscAuto_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+				DataGridTextColumn column = new DataGridTextColumn(); 
+				column.Header = "Początek"; column.Binding = new Binding("termin_start"); dataGridPobytySumLista.Columns.Add(column);
+				column = new DataGridTextColumn(); column.Header = "Koniec"; column.Binding = new Binding("termin_koniec");	dataGridPobytySumLista.Columns.Add(column);
+				column = new DataGridTextColumn(); column.Header = "Nazwa usługi"; column.Binding = new Binding("nazwa"); dataGridPobytySumLista.Columns.Add(column);
+				dataGridPobytySumLista.ItemsSource = TablesManager.Manager.UslugiTableAdapter.GetDataUslugiUslugi_slownikByID_pobytu((int)labelPobytySumId.Content);
+				dataGridPobytySumLista.Visibility = System.Windows.Visibility.Visible;
+			}
+			else
+			{
+				//czyszczenie
+				((Button)sender).Content = "+";
+				dataGridPobytySumLista.Visibility = System.Windows.Visibility.Collapsed;
+
+			}
+		}
+		/// <summary>
+		/// Wyświetlanie w datagridzie listy ze szczegółowymi informacjami nt. posiłków, bądź ew. jej zwinięcie
+		/// </summary>
+		private void buttonPobytySumRozwinPosilki_Click(object sender, RoutedEventArgs e)
 		{
-			/*if ((bool)(e.NewValue) == true)
-			{//pojawienie sie pola
-				KlienciDS.Miejscowosci_slownikDataTable tab = TablesManager.Manager.Miejscowosci_slownikTableAdapter.GetData();
-				foreach (KlienciDS.Miejscowosci_slownikRow row in tab)
-				{
-					textBoxKlienciEdycjaMiejscowoscAuto.AddItem(new WPFAutoCompleteTextbox.AutoCompleteEntry(row.nazwa, row.nazwa));
-				}
-			}*/
+			if (((String)((Button)sender).Content).Equals("+"))
+			{
+				((Button)sender).Content = "-";
+				buttonPobytySumRozwinUslugi.Content = "+";
+				dataGridPobytySumLista.ItemsSource = null;
+				dataGridPobytySumLista.Columns.Clear();
+
+				DataGridTextColumn column = new DataGridTextColumn();
+				column.Header = "Data"; column.Binding = new Binding("data"); dataGridPobytySumLista.Columns.Add(column);
+				column = new DataGridTextColumn(); column.Header = "Nazwa"; column.Binding = new Binding("nazwa_opcji"); dataGridPobytySumLista.Columns.Add(column);
+				column = new DataGridTextColumn(); column.Header = "Cena"; column.Binding = new Binding("cena"); dataGridPobytySumLista.Columns.Add(column);
+				dataGridPobytySumLista.ItemsSource = TablesManager.Manager.PosilkiTableAdapter.GetDataWithPosilkiSlownikById((int)labelPobytySumId.Content);
+				dataGridPobytySumLista.Visibility = System.Windows.Visibility.Visible;
+			}
+			else
+			{
+				//czyszczenie
+				((Button)sender).Content = "+";
+				dataGridPobytySumLista.Visibility = System.Windows.Visibility.Collapsed;
+
+			}
 		}
-
-
-
-
-
-
-
-
-
-
-
 
 
 
