@@ -18,7 +18,8 @@ namespace PensjonatApp.Helpers
 		{
 			PobytyDS.PobytyDataTable data = TablesManager.Manager.PobytyTableAdapter.GetDataPobytyKlienciPokojeStandardByIdPobytu(idPobytu);
 			if (data.Count != 1)
-				return -1;
+				throw new ArgumentException("Podano id pobytu nie posiadające bądź posiadające więcej niż swoich odpowiedników w bazie");
+
 			decimal cena = 0;
 			PobytyDS.PobytyRow row = data[0];
 			TimeSpan diff = row.termin_koniec - row.termin_start;
