@@ -1102,6 +1102,60 @@ namespace PensjonatApp
 
         }
 
+		/// <summary>
+		/// Wyświetlanie w datagridzie listy ze szczegółowymi informacjami nt. posiłków, bądź ew. jej zwinięcie
+		/// </summary>
+		private void buttonPobytySumRozwinUslugi_Click(object sender, RoutedEventArgs e)
+		{
+			if (((String)((Button)sender).Content).Equals("+"))
+			{
+				((Button)sender).Content = "-";
+				buttonPobytySumRozwinPosilki.Content = "+";
+				dataGridPobytySumLista.ItemsSource = null;
+				dataGridPobytySumLista.Columns.Clear();
+
+				DataGridTextColumn column = new DataGridTextColumn();
+				column.Header = "Początek"; column.Binding = new Binding("termin_start"); dataGridPobytySumLista.Columns.Add(column);
+				column = new DataGridTextColumn(); column.Header = "Koniec"; column.Binding = new Binding("termin_koniec"); dataGridPobytySumLista.Columns.Add(column);
+				column = new DataGridTextColumn(); column.Header = "Nazwa usługi"; column.Binding = new Binding("nazwa"); dataGridPobytySumLista.Columns.Add(column);
+				dataGridPobytySumLista.ItemsSource = TablesManager.Manager.UslugiTableAdapter.GetDataUslugiUslugi_slownikByID_pobytu((int)labelPobytySumId.Content);
+				dataGridPobytySumLista.Visibility = System.Windows.Visibility.Visible;
+			}
+			else
+			{
+				//czyszczenie
+				((Button)sender).Content = "+";
+				dataGridPobytySumLista.Visibility = System.Windows.Visibility.Collapsed;
+
+			}
+		}
+		/// <summary>
+		/// Wyświetlanie w datagridzie listy ze szczegółowymi informacjami nt. posiłków, bądź ew. jej zwinięcie
+		/// </summary>
+		private void buttonPobytySumRozwinPosilki_Click(object sender, RoutedEventArgs e)
+		{
+			if (((String)((Button)sender).Content).Equals("+"))
+			{
+				((Button)sender).Content = "-";
+				buttonPobytySumRozwinUslugi.Content = "+";
+				dataGridPobytySumLista.ItemsSource = null;
+				dataGridPobytySumLista.Columns.Clear();
+
+				DataGridTextColumn column = new DataGridTextColumn();
+				column.Header = "Data"; column.Binding = new Binding("data"); dataGridPobytySumLista.Columns.Add(column);
+				column = new DataGridTextColumn(); column.Header = "Nazwa"; column.Binding = new Binding("nazwa_opcji"); dataGridPobytySumLista.Columns.Add(column);
+				column = new DataGridTextColumn(); column.Header = "Cena"; column.Binding = new Binding("cena"); dataGridPobytySumLista.Columns.Add(column);
+				dataGridPobytySumLista.ItemsSource = TablesManager.Manager.PosilkiTableAdapter.GetDataWithPosilkiSlownikById((int)labelPobytySumId.Content);
+				dataGridPobytySumLista.Visibility = System.Windows.Visibility.Visible;
+			}
+			else
+			{
+				//czyszczenie
+				((Button)sender).Content = "+";
+				dataGridPobytySumLista.Visibility = System.Windows.Visibility.Collapsed;
+
+			}
+		}
         //----------------------------------------------POBYTY->NOWY----------------------------------------------
         List<PokojeKlienci> PobytyNowyPokojeKlienciList = new List<PokojeKlienci>();
         private void buttonPobytyNowy_Click(object sender, RoutedEventArgs e)
@@ -2449,62 +2503,6 @@ namespace PensjonatApp
             labelKucharz4day.Content = DateTime.Today.AddDays(3.0).ToLongDateString();
             labelKucharz5day.Content = DateTime.Today.AddDays(4.0).ToLongDateString();
         }
-		/// <summary>
-		/// Wyświetlanie w datagridzie listy ze szczegółowymi informacjami nt. posiłków, bądź ew. jej zwinięcie
-		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
-		private void buttonPobytySumRozwinUslugi_Click(object sender, RoutedEventArgs e)
-		{
-			if (((String)((Button)sender).Content).Equals("+"))
-			{
-				((Button)sender).Content = "-";
-				buttonPobytySumRozwinPosilki.Content = "+";
-				dataGridPobytySumLista.ItemsSource = null;
-				dataGridPobytySumLista.Columns.Clear();
-
-				DataGridTextColumn column = new DataGridTextColumn(); 
-				column.Header = "Początek"; column.Binding = new Binding("termin_start"); dataGridPobytySumLista.Columns.Add(column);
-				column = new DataGridTextColumn(); column.Header = "Koniec"; column.Binding = new Binding("termin_koniec");	dataGridPobytySumLista.Columns.Add(column);
-				column = new DataGridTextColumn(); column.Header = "Nazwa usługi"; column.Binding = new Binding("nazwa"); dataGridPobytySumLista.Columns.Add(column);
-				dataGridPobytySumLista.ItemsSource = TablesManager.Manager.UslugiTableAdapter.GetDataUslugiUslugi_slownikByID_pobytu((int)labelPobytySumId.Content);
-				dataGridPobytySumLista.Visibility = System.Windows.Visibility.Visible;
-			}
-			else
-			{
-				//czyszczenie
-				((Button)sender).Content = "+";
-				dataGridPobytySumLista.Visibility = System.Windows.Visibility.Collapsed;
-
-			}
-		}
-		/// <summary>
-		/// Wyświetlanie w datagridzie listy ze szczegółowymi informacjami nt. posiłków, bądź ew. jej zwinięcie
-		/// </summary>
-		private void buttonPobytySumRozwinPosilki_Click(object sender, RoutedEventArgs e)
-		{
-			if (((String)((Button)sender).Content).Equals("+"))
-			{
-				((Button)sender).Content = "-";
-				buttonPobytySumRozwinUslugi.Content = "+";
-				dataGridPobytySumLista.ItemsSource = null;
-				dataGridPobytySumLista.Columns.Clear();
-
-				DataGridTextColumn column = new DataGridTextColumn();
-				column.Header = "Data"; column.Binding = new Binding("data"); dataGridPobytySumLista.Columns.Add(column);
-				column = new DataGridTextColumn(); column.Header = "Nazwa"; column.Binding = new Binding("nazwa_opcji"); dataGridPobytySumLista.Columns.Add(column);
-				column = new DataGridTextColumn(); column.Header = "Cena"; column.Binding = new Binding("cena"); dataGridPobytySumLista.Columns.Add(column);
-				dataGridPobytySumLista.ItemsSource = TablesManager.Manager.PosilkiTableAdapter.GetDataWithPosilkiSlownikById((int)labelPobytySumId.Content);
-				dataGridPobytySumLista.Visibility = System.Windows.Visibility.Visible;
-			}
-			else
-			{
-				//czyszczenie
-				((Button)sender).Content = "+";
-				dataGridPobytySumLista.Visibility = System.Windows.Visibility.Collapsed;
-
-			}
-		}
 
 
 
