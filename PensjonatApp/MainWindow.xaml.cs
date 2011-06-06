@@ -461,17 +461,18 @@ namespace PensjonatApp
             }
             else if (currentGrid == gridRezerwacjeAdd2)
             {
-                int zaliczka;
-                if(int.TryParse(textBoxRezerwacjeAdd2Zaliczka.Text,out zaliczka)){
+				decimal zaliczka;
+				if (decimal.TryParse(textBoxRezerwacjeAdd2Zaliczka.Text, out zaliczka))
+				{
                     List<int> idList = new List<int>();
                     foreach(var elem in RezerwacjePokojeDodajList)
                     {
                         idList.Add(elem.id_pokoju);
                     }
-                RezerwacjeHelper.dodajRezerwacje((int)labelRezerwacjeAddId.Content, int.Parse(labelRezerwacjeAdd2IlOsob.Content.ToString()),zaliczka,
-                    idList, (DateTime)datePickerRezeracjeAddTerminOd.SelectedDate, (DateTime)datePickerRezerwacjeAddTerminDo.SelectedDate);
-                zwinRezerwacje();
-                showWindow(gridRezerwacjeDeafult, buttonRezerwacjeDeafultList);
+					RezerwacjeHelper.dodajRezerwacje((int)labelRezerwacjeAddId.Content, int.Parse(labelRezerwacjeAdd2IlOsob.Content.ToString()),zaliczka,
+						idList, (DateTime)datePickerRezeracjeAddTerminOd.SelectedDate, (DateTime)datePickerRezerwacjeAddTerminDo.SelectedDate);
+					zwinRezerwacje();
+					showWindow(gridRezerwacjeDeafult, buttonRezerwacjeDeafultList);
                 }
                 else{
                     System.Windows.MessageBox.Show("Pole zaliczka może zawierać tylko cyfry.","Dodawanie rezerwacji", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -1570,9 +1571,9 @@ namespace PensjonatApp
             {
                 if (textBoxStandPokoiEdycjaCena.Text != "" && textBoxStandPokoiEdycjaIlOsob.Text!="" &&  textBoxStandPokoiEdycjaOpis.Text!="")
                 {
-                    int cena;
+					decimal cena;
                     int ilOsob;
-                    if (int.TryParse(textBoxStandPokoiEdycjaCena.Text, out cena) && int.TryParse(textBoxStandPokoiEdycjaIlOsob.Text, out ilOsob))
+                    if (decimal.TryParse(textBoxStandPokoiEdycjaCena.Text, out cena) && int.TryParse(textBoxStandPokoiEdycjaIlOsob.Text, out ilOsob))
                     {
                     
                     List<int> idLst = new List<int>();
@@ -1597,9 +1598,9 @@ namespace PensjonatApp
             {
                 if (textBoxStandPokoiDodajCena.Text != "" && textBoxStandPokoiDodajIlOsob.Text != "" && textBoxStandPokoiDodajOpis.Text != "")
                 {
-                    int cena;
+					decimal cena;
                     int ilOsob;
-                    if (int.TryParse(textBoxStandPokoiDodajCena.Text, out cena) && int.TryParse(textBoxStandPokoiDodajIlOsob.Text, out ilOsob))
+                    if (decimal.TryParse(textBoxStandPokoiDodajCena.Text, out cena) && int.TryParse(textBoxStandPokoiDodajIlOsob.Text, out ilOsob))
                     {
 
                         List<int> idLst = new List<int>();
@@ -1919,8 +1920,8 @@ namespace PensjonatApp
         {
             if (textBoxPosilkiEdycjaNazwa.Text != "" && textBoxPosilkiEdycjaCena.Text != "")
             {
-                int cena;
-                if (int.TryParse(textBoxPosilkiEdycjaCena.Text, out cena))
+				decimal cena;
+				if (decimal.TryParse(textBoxPosilkiEdycjaCena.Text, out cena))
                 {
                     PosilkiSlownikHelper.edytujTypPosilku((int)labelPosilkiEdycjaID.Content, cena, textBoxPosilkiEdycjaNazwa.Text, (bool)checkBoxPosilkiEdycjaObiad.IsChecked,
                         (bool)checkBoxPosilkiEdycjaSniad.IsChecked, (bool)checkBoxPosilkiEdycjaKolacja.IsChecked, (bool)checkBoxPosilkiEdycjaDrSniad.IsChecked,
@@ -1966,8 +1967,8 @@ namespace PensjonatApp
         {
             if (textBoxPosilkiNazwa.Text != "" && textBoxPosilkiCena.Text != "")
             {
-                int cena;
-                if (int.TryParse(textBoxPosilkiCena.Text, out cena))
+				decimal cena;
+				if (decimal.TryParse(textBoxPosilkiCena.Text, out cena))
                 {
                     PosilkiSlownikHelper.dodajTypPosilku(cena, textBoxPosilkiNazwa.Text, (bool)checkBoxPosilkiObiad.IsChecked,
                         (bool)checkBoxPosilkiSniadanie.IsChecked, (bool)checkBoxPosilkiKolacja.IsChecked, (bool)checkBoxPosliki2Sniad.IsChecked,
@@ -2052,8 +2053,8 @@ namespace PensjonatApp
             if (textBoxUslugiEdycjaNazwa.Text != "" && textBoxUslugiEdycjaOpis.Text != "" && textBoxUslugiEdycjaCena.Text != "" 
                 && comboBoxUslugiEdycjaWykonawca.SelectedItem != null)
             {
-                int cena;
-                if (int.TryParse(textBoxUslugiEdycjaCena.Text, out cena))
+				decimal cena;
+				if (decimal.TryParse(textBoxUslugiEdycjaCena.Text, out cena))
                 {
                     UslugiSlownikHelper.edytujTypUslugi((int)labelUslugiEdycjaId.Content, cena, textBoxUslugiEdycjaNazwa.Text, textBoxUslugiEdycjaOpis.Text,
                         uslugiStanowiskaIdLst[comboBoxUslugiEdycjaWykonawca.SelectedIndex]);
@@ -2093,8 +2094,8 @@ namespace PensjonatApp
         {
             if (textBoxUslugiNazwa.Text != "" && textBoxUslugiCena.Text != "" && textBoxUslugiOpis.Text != "" && comboBoxUslugiWykonawca.SelectedItem !=null)
             {
-                int cena;
-                if (int.TryParse(textBoxUslugiCena.Text, out cena))
+				decimal cena;
+				if (decimal.TryParse(textBoxUslugiCena.Text, out cena))
                 {
                     UslugiSlownikHelper.dodajTypUslugi(cena,textBoxUslugiNazwa.Text,textBoxUslugiOpis.Text,uslugiStanowiskaIdLst[comboBoxUslugiWykonawca.SelectedIndex]);
                     dataGridUslugiDeafult.ItemsSource = TablesManager.Manager.Uslugi_slownikTableAdapter.GetDataPlusSlownikPracownicy();
