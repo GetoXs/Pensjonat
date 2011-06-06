@@ -2504,9 +2504,12 @@ namespace PensjonatApp
             labelKucharz3day.Content = DateTime.Today.AddDays(2.0).ToLongDateString();
             labelKucharz4day.Content = DateTime.Today.AddDays(3.0).ToLongDateString();
             labelKucharz5day.Content = DateTime.Today.AddDays(4.0).ToLongDateString();
+            dataGridKucharz1day.Items.Add(PosilkiHelper.getPosilkiPoTerminie(DateTime.Today));
+            dataGridKucharz2day.Items.Add(PosilkiHelper.getPosilkiPoTerminie(DateTime.Today.AddDays(1.0)));
+            dataGridKucharz3day.Items.Add(PosilkiHelper.getPosilkiPoTerminie(DateTime.Today.AddDays(2.0)));
+            dataGridKucharz4day.Items.Add(PosilkiHelper.getPosilkiPoTerminie(DateTime.Today.AddDays(3.0)));
+            dataGridKucharz5day.Items.Add(PosilkiHelper.getPosilkiPoTerminie(DateTime.Today.AddDays(4.0)));
         }
-
-
 
     }
 
