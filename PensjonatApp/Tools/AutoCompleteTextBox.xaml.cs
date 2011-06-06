@@ -89,6 +89,11 @@ namespace WPFAutoCompleteTextbox
             autoCompletionList.Add(entry);
         }
 
+		public void clearItems()
+		{
+			autoCompletionList.Clear();
+		}
+
         private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (null != comboBox.SelectedItem)

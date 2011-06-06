@@ -1305,6 +1305,8 @@ namespace PensjonatApp
 				
 				//wypelnianie pól z miejscowością
 				KlienciDS.Miejscowosci_slownikDataTable tab = TablesManager.Manager.Miejscowosci_slownikTableAdapter.GetData();
+				textBoxKlienciAddMiejscowoscAuto.clearItems();
+				textBoxKlienciEdycjaMiejscowoscAuto.clearItems();
 				foreach (KlienciDS.Miejscowosci_slownikRow row in tab)
 				{
 					textBoxKlienciAddMiejscowoscAuto.AddItem(new WPFAutoCompleteTextbox.AutoCompleteEntry(row.nazwa, row.nazwa));
