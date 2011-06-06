@@ -1518,7 +1518,7 @@ WHERE  Pracownicy.id_stanowiska = Pracownicy_slownik.id_stanowiska AND (UCASE(Pr
             this._commandCollection[9].Connection = this.Connection;
             this._commandCollection[9].CommandText = @"SELECT Pracownicy.id_pracownika, Pracownicy.id_stanowiska, Pracownicy.imie, Pracownicy.nazwisko, Pracownicy_slownik.nazwa, Pracownicy_slownik.opis, Pracownicy.login
 FROM     Pracownicy, Pracownicy_slownik
-WHERE  Pracownicy.id_stanowiska = Pracownicy_slownik.id_stanowiska AND (UCASE(Pracownicy.nazwisko) LIKE UCASE(?))";
+WHERE  Pracownicy.id_stanowiska = Pracownicy_slownik.id_stanowiska AND (UCASE(Pracownicy.nazwisko) LIKE UCASE('%' + ? + '%'))";
             this._commandCollection[9].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[9].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Param1", global::System.Data.Odbc.OdbcType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[10] = new global::System.Data.Odbc.OdbcCommand();

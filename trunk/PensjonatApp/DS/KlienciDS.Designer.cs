@@ -1673,8 +1673,8 @@ AND (UCASE(Klienci.imie) LIKE UCASE(?))";
                          Miejscowosci_slownik.nazwa AS miejscowosc, Klienci.kod_pocztowy
 FROM            Klienci, Miejscowosci_slownik
 WHERE        Klienci.id_miejscowosci = Miejscowosci_slownik.id_miejscowosci
-AND (UCASE(Klienci.imie) LIKE UCASE(?))
-AND (UCASE(Klienci.nazwisko) LIKE UCASE(?))";
+AND (UCASE(Klienci.imie) LIKE UCASE('%' + ? + '%'))
+AND (UCASE(Klienci.nazwisko) LIKE UCASE('%' + ? + '%'))";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[3].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Param1", global::System.Data.Odbc.OdbcType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[3].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Param2", global::System.Data.Odbc.OdbcType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "", global::System.Data.DataRowVersion.Current, false, null));
@@ -1684,7 +1684,7 @@ AND (UCASE(Klienci.nazwisko) LIKE UCASE(?))";
                          Miejscowosci_slownik.nazwa AS miejscowosc, Klienci.kod_pocztowy
 FROM            Klienci, Miejscowosci_slownik
 WHERE        Klienci.id_miejscowosci = Miejscowosci_slownik.id_miejscowosci
-AND (UCASE(Klienci.nazwisko) LIKE UCASE(?))";
+AND (UCASE(Klienci.nazwisko) LIKE UCASE('%' + ? + '%'))";
             this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[4].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Param1", global::System.Data.Odbc.OdbcType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[5] = new global::System.Data.Odbc.OdbcCommand();

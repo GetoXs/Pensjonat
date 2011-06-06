@@ -1117,7 +1117,7 @@ WHERE        Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_pokoju = Pokoj
                          Klienci.imie, Klienci.nazwisko, Klienci.id_miejscowosci, Klienci.kod_pocztowy, Klienci.ulica, Klienci.nip, Klienci.pesel, Klienci.nr_telefonu, Klienci.nazwa, 
                          Pokoje.id_slownikowe_pokoju, Pokoje.nr_pokoju
 FROM            Pobyty, Klienci, Pokoje
-WHERE        Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_pokoju = Pokoje.id_pokoju AND (UCASE(Klienci.nazwisko) LIKE UCASE(?)) AND 
+WHERE        Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_pokoju = Pokoje.id_pokoju AND (UCASE(Klienci.nazwisko) LIKE UCASE('%' + ? + '%')) AND 
                          (Pobyty.id_rachunku IS NOT NULL) AND (Pobyty.id_klienta IS NULL)";
             this._commandCollection[10].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[10].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Param1", global::System.Data.Odbc.OdbcType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "", global::System.Data.DataRowVersion.Current, false, null));
@@ -1146,7 +1146,7 @@ WHERE        Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_rezerwacji = R
                          Klienci.imie, Klienci.nazwisko, Klienci.id_miejscowosci, Klienci.kod_pocztowy, Klienci.ulica, Klienci.nip, Klienci.pesel, Klienci.nr_telefonu, Klienci.nazwa, 
                          Pokoje.id_slownikowe_pokoju, Pokoje.nr_pokoju
 FROM            Pobyty, Klienci, Pokoje
-WHERE        Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_pokoju = Pokoje.id_pokoju AND (UCASE(Klienci.nazwisko) LIKE UCASE(?))";
+WHERE        Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_pokoju = Pokoje.id_pokoju AND (UCASE(Klienci.nazwisko) LIKE UCASE('%' + ? + '%'))";
             this._commandCollection[13].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[13].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Param1", global::System.Data.Odbc.OdbcType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[14] = new global::System.Data.Odbc.OdbcCommand();
