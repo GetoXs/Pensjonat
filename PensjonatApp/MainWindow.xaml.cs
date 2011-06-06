@@ -1093,10 +1093,19 @@ namespace PensjonatApp
         {
             zwinPobyty();
             showWindow(gridPobytyNowy, buttonPobytyBackOkList);
-
-
         }
 
+        private void buttonPobytyNowyRezerwacjeWybierz_Click(object sender, RoutedEventArgs e)
+        {
+            gridPobytyNowyNowy.Visibility = Visibility.Visible;
+            gridPobytyNowyZRez.Visibility = Visibility.Collapsed;
+            RezerwacjeDS.RezerwacjeRow selectedRow = (RezerwacjeDS.RezerwacjeRow)((DataRowView)dataGridPobytyNowyRezerwacje.SelectedItem).Row;
+            datePickerPobytyNowyTerminOd.SelectedDate = (DateTime)selectedRow["termin_start"];
+            datePickerPobytyNowyTerminDo.SelectedDate = (DateTime)selectedRow["termin_koniec"];
+            textBoxPobytyNowyKlient.Text = (string)selectedRow["imie"] + " " + (string)selectedRow["nazwisko"];
+            labelPobytyNowyIdKlienta.Content = selectedRow.id_klienta;
+            textBoxPobytyNowyIlOsob.Text = selectedRow.ilosc_osob.ToString();
+        }
 
         private void buttonPobytyNowyDodaj_Click(object sender, RoutedEventArgs e)
         {
@@ -1124,6 +1133,7 @@ namespace PensjonatApp
         {
             gridPobytyNowyNowy.Visibility = Visibility.Visible;
             gridPobytyNowyZRez.Visibility = Visibility.Collapsed;
+            buttonPobytyNowyZmien.Visibility = Visibility.Hidden;
         }
 
         private void radioButtonPobytyNowyZRez_Checked(object sender, RoutedEventArgs e)
@@ -1131,6 +1141,7 @@ namespace PensjonatApp
             gridPobytyNowyZRez.Margin = new Thickness(25, 50, 25, 0);
             gridPobytyNowyNowy.Visibility = Visibility.Collapsed;
             gridPobytyNowyZRez.Visibility = Visibility.Visible;
+            buttonPobytyNowyZmien.Visibility = Visibility.Visible;
         }
 
         private void dataGridPobytyNowyKlienci_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
@@ -2448,6 +2459,8 @@ namespace PensjonatApp
 				}
 			}*/
 		}
+
+
 
 
 

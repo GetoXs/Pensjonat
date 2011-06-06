@@ -272,7 +272,7 @@
                         <Image Height="40" HorizontalAlignment="Left" Margin="132,12,0,0" Name="image4" Source="/PensjonatApp;component/Images/separator.png" Stretch="Fill" VerticalAlignment="Top" Width="2" />
                        
                     </Grid>
-                    <Grid Height="45" Name="gridPobytyNowy" Opacity="1" ShowGridLines="False" Visibility="Visible">
+                    <Grid Height="682" Name="gridPobytyNowy" Opacity="1" ShowGridLines="False" Visibility="Visible">
                         <Label Content="Nowy pobyt:" FontSize="15" FontWeight="Normal" HorizontalAlignment="Left" Margin="10,10,0,0" Name="label228" Padding="2" VerticalAlignment="Top" />
                         <Grid Margin="25,50,25,0" Height="353" VerticalAlignment="Top" Name="gridPobytyNowyNowy">
                             <Label Content="Termin" FontWeight="Bold" HorizontalAlignment="Left" Margin="15,10,0,0" Name="label230" Padding="2" VerticalAlignment="Top" />
@@ -300,6 +300,7 @@
                                     <Button Content="Dodaj" Height="23" HorizontalAlignment="Left" Margin="400,25,0,0" Name="buttonPobytyNowyDodaj" VerticalAlignment="Top" Width="75" Click="buttonPobytyNowyDodaj_Click" />
                                 </Grid>
                             </GroupBox>
+                            <Button Content="Zmień rezerwację" Height="23" HorizontalAlignment="Left" Margin="398,40,0,0" Name="buttonPobytyNowyZmien" VerticalAlignment="Top" Width="118" Visibility="Hidden" />
                         </Grid>
                         <Grid Margin="28,412,16,0" Height="400" VerticalAlignment="Top" Name="gridPobytyNowyZRez">
                             <DataGrid AutoGenerateColumns="False" HorizontalGridLinesBrush="#FFD5D5D5" IsReadOnly="True" IsVisibleChanged="dataGridPobytyNowyRezerwacje_IsVisibleChanged" Margin="6,35,7,0" MinColumnWidth="30" Name="dataGridPobytyNowyRezerwacje" SelectedIndex="0" SelectionMode="Single" VerticalGridLinesBrush="#FFD5D5D5" VerticalAlignment="Top" Height="350">
@@ -317,11 +318,32 @@
                                 </DataGrid.Columns>
                             </DataGrid>
                             <Label Content="Wybierz rezerwację:" Height="28" HorizontalAlignment="Left" Margin="7,6,0,0" Name="label232" VerticalAlignment="Top" FontWeight="Bold" />
-                            <Button Content="Wybierz" Height="20" HorizontalAlignment="Left" Margin="473,9,0,0" Name="button1" VerticalAlignment="Top" Width="60" Padding="0" />
+                            <Button Content="Wybierz" Height="20" HorizontalAlignment="Left" Margin="473,9,0,0" Name="buttonPobytyNowyRezerwacjeWybierz" VerticalAlignment="Top" Width="60" Padding="0" Click="buttonPobytyNowyRezerwacjeWybierz_Click" />
                         </Grid>
-                        <RadioButton Content="Z rezerwacji" Height="16" HorizontalAlignment="Right" Margin="0,16,16,0" Name="radioButtonPobytyNowyZRez" VerticalAlignment="Top" GroupName="NowyPobyt" FontSize="13" Checked="radioButtonPobytyNowyZRez_Checked" />
+                        <RadioButton Content="Z rezerwacji" Height="16" HorizontalAlignment="Right" Margin="0,16,25,0" Name="radioButtonPobytyNowyZRez" VerticalAlignment="Top" GroupName="NowyPobyt" FontSize="13" Checked="radioButtonPobytyNowyZRez_Checked" />
                         <RadioButton Content="Nowy" GroupName="NowyPobyt" Height="16" HorizontalAlignment="Right" Margin="0,16,123,0" Name="radioButtonPobytyNowyNowy" VerticalAlignment="Top" FontSize="13" IsChecked="True" Checked="radioButtonPobytyNowyNowy_Checked" />
                         <Label Height="28" HorizontalAlignment="Left" IsEnabled="False" Margin="349,12,0,0" Name="labelPobytyNowyIdKlienta" VerticalAlignment="Top" Visibility="Collapsed" />
+                    </Grid>
+                    <Grid Height="72" Name="gridPobytyDeafult" Opacity="1" ShowGridLines="True" Visibility="Visible">
+                        <TextBox Name="textBoxPobytySzukaj" Height="23" HorizontalAlignment="Left" Margin="12,44,0,0" VerticalAlignment="Top" Width="129" TabIndex="1" />
+                        <RadioButton Name="rbPobytyId" Content="ID" GroupName="pobytySzukaj" Height="16" HorizontalAlignment="Left" Margin="297,51,0,0" VerticalAlignment="Top" TabIndex="4" />
+                        <RadioButton Name="rbPobytyKlient" Content="Klient" GroupName="pobytySzukaj" Height="16" HorizontalAlignment="Left" IsChecked="True" Margin="245,51,0,0" VerticalAlignment="Top" TabIndex="3" />
+                        <Button Name="buttonPobytySzukaj" Content="Szukaj" Height="23" HorizontalAlignment="Left" Margin="158,44,0,0" VerticalAlignment="Top" Width="75" Click="buttonPobytySzukaj_Click" TabIndex="2" />
+                        <DataGrid Name="dataGridPobytySzukaj" DataContext="{Binding}" IsEnabled="True" Margin="10,79,13,10" MinColumnWidth="30" AutoGenerateColumns="False" IsVisibleChanged="dataGridPobytySzukaj_IsVisibleChanged" SelectionChanged="dataGridPobytySzukaj_SelectionChanged" IsReadOnly="True" HorizontalGridLinesBrush="#FFD5D5D5" VerticalGridLinesBrush="#FFD5D5D5" SelectionMode="Single">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Id" Binding="{Binding Path=id_pobytu}" />
+                                <DataGridTextColumn Header="Imię" Binding="{Binding Path=imie}" />
+                                <DataGridTextColumn Header="Nazwisko" Binding="{Binding Path=nazwisko}" />
+                                <DataGridTextColumn Header="Termin od " Binding="{Binding Path=termin_start}" />
+                                <DataGridTextColumn Header="Termin do " Binding="{Binding Path=termin_koniec}" />
+                                <DataGridTextColumn Header="Nr pokoju" Binding="{Binding Path=nr_pokoju}" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <CheckBox Name="checkBoxPobytyAktualne" Content="Aktualne" Height="16" HorizontalAlignment="Left" Margin="331,51,0,0" VerticalAlignment="Top" IsChecked="True" TabIndex="5" />
+                        <RadioButton Content="indywidualny" Height="16" HorizontalAlignment="Right" Margin="0,11,86,0" Name="radioButtonPobytyIndywidualne" VerticalAlignment="Top" GroupName="PobytyGrupowe" IsChecked="True" />
+                        <RadioButton Content="grupowy" Height="16" HorizontalAlignment="Right" Margin="0,11,15,0" Name="radioButtonPobytyGrupowe" VerticalAlignment="Top" GroupName="PobytyGrupowe" />
+                        <Label Content="Kontekst:" Height="28" Margin="0,5,180,0" Name="label45" VerticalAlignment="Top" FontSize="13" HorizontalAlignment="Right" Width="63" />
+                        <Separator Height="5" Margin="0,27,7,0" Name="separator5" VerticalAlignment="Top" HorizontalAlignment="Right" Width="235" />
                     </Grid>
                     <Grid Height="84" Name="gridPobytyUslugi" Opacity="1" ShowGridLines="True" Visibility="Visible">
                         <Label Content="Usługi:" FontSize="15" FontWeight="Normal" HorizontalAlignment="Left" Margin="10,10,0,0" Name="label50" Padding="2" VerticalAlignment="Top" FontStretch="Normal" />
@@ -353,7 +375,7 @@
                             </Grid>
                         </GroupBox>
                     </Grid>
-                    <Grid Height="360" Name="gridPobytyServices" Opacity="1" ShowGridLines="True" Visibility="Visible">
+                    <Grid Height="401" Name="gridPobytyServices" Opacity="1" ShowGridLines="True" Visibility="Visible">
                         <Label Content="Zarządzanie pobytem:" FontSize="15" FontWeight="Normal" HorizontalAlignment="Left" Margin="10,10,0,0" Name="label42" Padding="2" VerticalAlignment="Top" />
                         <Label Name="labelPobytyServicesId" Content="21452" FontWeight="Normal" HorizontalAlignment="Left" Margin="202,11,0,0" Padding="2" VerticalAlignment="Top" FontSize="14" />
                         <Label Content="ID:" FontSize="14" FontWeight="Normal" HorizontalAlignment="Left" Margin="175,11,0,0" Name="label238" Padding="2" VerticalAlignment="Top" />
@@ -439,23 +461,6 @@
                                 <DatePicker Height="25" HorizontalAlignment="Left" Margin="278,40,0,0" Name="datePickerPobytyZarzadzaniePosilkiTerminDo" VerticalAlignment="Top" Width="136" SelectedDateChanged="datePickerPobytyZarzadzaniePosilkiTerminDo_SelectedDateChanged" />
                             </Grid>
                         </GroupBox>
-                    </Grid>
-                    <Grid Height="206" Name="gridPobytyDeafult" Opacity="1" ShowGridLines="True" Visibility="Visible">
-                        <TextBox Name="textBoxPobytySzukaj" Height="23" HorizontalAlignment="Left" Margin="14,17,0,0"  VerticalAlignment="Top" Width="129" TabIndex="1" />
-                        <RadioButton Name="rbPobytyId" Content="ID" GroupName="pobytySzukaj" Height="16" HorizontalAlignment="Left" Margin="299,24,0,0"  VerticalAlignment="Top" TabIndex="4" />
-                        <RadioButton Name="rbPobytyKlient" Content="Klient" GroupName="pobytySzukaj" Height="16" HorizontalAlignment="Left" IsChecked="True" Margin="247,24,0,0" VerticalAlignment="Top" TabIndex="3" />
-                        <Button Name="buttonPobytySzukaj" Content="Szukaj" Height="23" HorizontalAlignment="Left" Margin="160,17,0,0"  VerticalAlignment="Top" Width="75" Click="buttonPobytySzukaj_Click" TabIndex="2" />
-                        <DataGrid  Name="dataGridPobytySzukaj" DataContext="{Binding}" IsEnabled="True" Margin="12,61,11,22" MinColumnWidth="30" AutoGenerateColumns="False" IsVisibleChanged="dataGridPobytySzukaj_IsVisibleChanged" SelectionChanged="dataGridPobytySzukaj_SelectionChanged" IsReadOnly="True" HorizontalGridLinesBrush="#FFD5D5D5" VerticalGridLinesBrush="#FFD5D5D5" SelectionMode="Single">
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Header="Id" Binding="{Binding Path=id_pobytu}"/>
-                                <DataGridTextColumn Header="Imię" Binding="{Binding Path=imie}"/>
-                                <DataGridTextColumn Header="Nazwisko" Binding="{Binding Path=nazwisko}"/>
-                                <DataGridTextColumn Header="Termin od " Binding="{Binding Path=termin_start}"/>
-                                <DataGridTextColumn Header="Termin do " Binding="{Binding Path=termin_koniec}"/>
-                                <DataGridTextColumn Header="Nr pokoju" Binding="{Binding Path=nr_pokoju}"/>
-                            </DataGrid.Columns>
-                        </DataGrid>
-                        <CheckBox Name="checkBoxPobytyAktualne" Content="Aktualne" Height="16" HorizontalAlignment="Left" Margin="333,24,0,0" VerticalAlignment="Top" IsChecked="True" TabIndex="5" />
                     </Grid>
                     <Grid Height="62" Name="gridPobytyWybierzKlienta" Opacity="1" ShowGridLines="True" Visibility="Visible">
                         <Label Content="Wybierz klienta:" FontSize="15" FontWeight="Normal" HorizontalAlignment="Left" Margin="10,10,0,0" Name="label84" Padding="2" VerticalAlignment="Top" />
