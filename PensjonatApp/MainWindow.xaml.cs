@@ -62,6 +62,7 @@ namespace PensjonatApp
         public static Grid currentGrid;
         public MainWindow(int id, string imie, string nazwisko, string stanowisko)
         {
+            this.stanowisko = stanowisko;
             InitializeComponent();
 
             this.id = id;
@@ -2610,16 +2611,19 @@ namespace PensjonatApp
 
         private void gridKucharz_Initialized(object sender, EventArgs e)
         {
-            labelKucharz1day.Content = DateTime.Today.ToLongDateString();
-            labelKucharz2day.Content = DateTime.Today.AddDays(1.0).ToLongDateString();
-            labelKucharz3day.Content = DateTime.Today.AddDays(2.0).ToLongDateString();
-            labelKucharz4day.Content = DateTime.Today.AddDays(3.0).ToLongDateString();
-            labelKucharz5day.Content = DateTime.Today.AddDays(4.0).ToLongDateString();
-            dataGridKucharz1day.Items.Add(PosilkiHelper.getPosilkiPoTerminie(DateTime.Today));
-            dataGridKucharz2day.Items.Add(PosilkiHelper.getPosilkiPoTerminie(DateTime.Today.AddDays(1.0)));
-            dataGridKucharz3day.Items.Add(PosilkiHelper.getPosilkiPoTerminie(DateTime.Today.AddDays(2.0)));
-            dataGridKucharz4day.Items.Add(PosilkiHelper.getPosilkiPoTerminie(DateTime.Today.AddDays(3.0)));
-            dataGridKucharz5day.Items.Add(PosilkiHelper.getPosilkiPoTerminie(DateTime.Today.AddDays(4.0)));
+            if (this.stanowisko == "Kucharz")
+            {
+                labelKucharz1day.Content = DateTime.Today.ToLongDateString();
+                labelKucharz2day.Content = DateTime.Today.AddDays(1.0).ToLongDateString();
+                labelKucharz3day.Content = DateTime.Today.AddDays(2.0).ToLongDateString();
+                labelKucharz4day.Content = DateTime.Today.AddDays(3.0).ToLongDateString();
+                labelKucharz5day.Content = DateTime.Today.AddDays(4.0).ToLongDateString();
+                dataGridKucharz1day.Items.Add(PosilkiHelper.getPosilkiPoTerminie(DateTime.Today));
+                dataGridKucharz2day.Items.Add(PosilkiHelper.getPosilkiPoTerminie(DateTime.Today.AddDays(1.0)));
+                dataGridKucharz3day.Items.Add(PosilkiHelper.getPosilkiPoTerminie(DateTime.Today.AddDays(2.0)));
+                dataGridKucharz4day.Items.Add(PosilkiHelper.getPosilkiPoTerminie(DateTime.Today.AddDays(3.0)));
+                dataGridKucharz5day.Items.Add(PosilkiHelper.getPosilkiPoTerminie(DateTime.Today.AddDays(4.0)));
+            }
         }
 
 
