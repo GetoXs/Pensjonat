@@ -619,18 +619,20 @@ namespace PensjonatApp
         }
         private void DodajPokojdeDoComboBoxa()
         {
-            sprawdzTermin(ref datePickerRezeracjeAddTerminOd, ref datePickerRezerwacjeAddTerminDo);
-            RezerwacjePokojeList.Clear();
-            RezerwacjePokojeStringList.Clear();
-            PokojeDS.PokojeDataTable pokojeTable = TablesManager.Manager.PokojeTableAdapter.GetDataWolnePokojeByTermin(datePickerRezeracjeAddTerminOd.SelectedDate
-                       , datePickerRezeracjeAddTerminOd.SelectedDate, datePickerRezerwacjeAddTerminDo.SelectedDate, datePickerRezerwacjeAddTerminDo.SelectedDate, 
-                       datePickerRezeracjeAddTerminOd.SelectedDate, datePickerRezerwacjeAddTerminDo.SelectedDate);
-            foreach (PokojeDS.PokojeRow row in pokojeTable)
-            {
-                RezerwacjePokojeList.Add(row);
-                RezerwacjePokojeStringList.Add(row.nr_pokoju + " | "+ row["cena"]);
-            }
-            comboBoxRezerwacjeAddPokoje.ItemsSource = RezerwacjePokojeStringList;
+			if (sprawdzTermin(ref datePickerRezeracjeAddTerminOd, ref datePickerRezerwacjeAddTerminDo) == wolnePokoje.Ok)
+			{
+				RezerwacjePokojeList.Clear();
+				RezerwacjePokojeStringList.Clear();
+				PokojeDS.PokojeDataTable pokojeTable = TablesManager.Manager.PokojeTableAdapter.GetDataWolnePokojeByTermin(datePickerRezeracjeAddTerminOd.SelectedDate
+						   , datePickerRezeracjeAddTerminOd.SelectedDate, datePickerRezerwacjeAddTerminDo.SelectedDate, datePickerRezerwacjeAddTerminDo.SelectedDate,
+						   datePickerRezeracjeAddTerminOd.SelectedDate, datePickerRezerwacjeAddTerminDo.SelectedDate);
+				foreach (PokojeDS.PokojeRow row in pokojeTable)
+				{
+					RezerwacjePokojeList.Add(row);
+					RezerwacjePokojeStringList.Add(row.nr_pokoju + " | " + row["cena"]);
+				}
+				comboBoxRezerwacjeAddPokoje.ItemsSource = RezerwacjePokojeStringList;
+			}
         }
         private void datePickerRezeracjeAddTerminOd_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
