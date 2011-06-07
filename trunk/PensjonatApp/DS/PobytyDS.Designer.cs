@@ -1077,7 +1077,7 @@ namespace PensjonatApp.DS.PobytyDSTableAdapters {
             this._commandCollection[5].Connection = this.Connection;
             this._commandCollection[5].CommandText = @"SELECT        Pobyty.id_pobytu, Pobyty.id_pokoju, Pobyty.id_rezerwacji, Pobyty.termin_start, Pobyty.termin_koniec, Pobyty.id_rachunku, Pobyty.id_klienta
 FROM            Pobyty, Klienci
-WHERE        Pobyty.id_klienta = Klienci.id_klienta AND (UCASE(Klienci.nazwisko) LIKE UCASE(?))";
+WHERE        Pobyty.id_klienta = Klienci.id_klienta AND (UCASE(Klienci.nazwisko) LIKE UCASE('%' + ? + '%'))";
             this._commandCollection[5].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[5].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Param1", global::System.Data.Odbc.OdbcType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[6] = new global::System.Data.Odbc.OdbcCommand();
@@ -1196,7 +1196,7 @@ WHERE        Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_pokoju = Pokoj
                          Klienci.imie, Klienci.nazwisko, Klienci.id_miejscowosci, Klienci.kod_pocztowy, Klienci.ulica, Klienci.nip, Klienci.pesel, Klienci.nr_telefonu, Klienci.nazwa, 
                          Pokoje.id_slownikowe_pokoju, Pokoje.nr_pokoju, Pokoje_slownik.cena, Pokoje_slownik.dodatkowy_opis, Pokoje_slownik.ilosc_osob
 FROM            Pobyty, Klienci, Pokoje, Pokoje_slownik
-WHERE        Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_pokoju = Pokoje.id_pokoju AND Pokoje.id_slownikowe_pokoju = Pokoje_slownik.id_slownikowe_pokoju AND (UCASE(Klienci.nazwisko) = UCASE(?))";
+WHERE        Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_pokoju = Pokoje.id_pokoju AND Pokoje.id_slownikowe_pokoju = Pokoje_slownik.id_slownikowe_pokoju AND (UCASE(Klienci.nazwisko) = UCASE('%' + ? + '%'))";
             this._commandCollection[19].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[19].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Param1", global::System.Data.Odbc.OdbcType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[20] = new global::System.Data.Odbc.OdbcCommand();
