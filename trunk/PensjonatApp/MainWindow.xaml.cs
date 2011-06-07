@@ -1403,7 +1403,7 @@ namespace PensjonatApp
             if(radioButtonPobytyNowyNowy.IsChecked == true)
                  pokojeTable= TablesManager.Manager.PokojeTableAdapter.GetDataWolnePokojeByTermin(terminOd, terminOd, terminDo, terminDo, terminOd, terminDo);
             else
-                pokojeTable = TablesManager.Manager.PokojeTableAdapter.GetDataRezerwacjeBy3((int)labelPobytyNowyIdRezerwacji.Content); 
+                pokojeTable = TablesManager.Manager.PokojeTableAdapter.GetDataRezerwacjeByIdRezerwacji((int)labelPobytyNowyIdRezerwacji.Content); 
             
             foreach (PokojeDS.PokojeRow row in pokojeTable)
             {
