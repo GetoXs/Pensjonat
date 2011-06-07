@@ -800,7 +800,7 @@ namespace PensjonatApp
                     {
                         foreach (var pozycja in PobytyNowyPokojeKlienciList)
                         {
-                            RezerwacjeHelper.dodajRezerwacjeIZakwaterowanieOdRazu(pozycja.Id_osoby,
+                            RezerwacjeHelper. dodajRezerwacjeIZakwaterowanieOdRazu(pozycja.Id_osoby,
                             pozycja.Id_pokoju, (DateTime)datePickerPobytyNowyTerminOd.SelectedDate,
                             (DateTime)datePickerPobytyNowyTerminDo.SelectedDate);
                         }
@@ -1314,7 +1314,7 @@ namespace PensjonatApp
             PobytyNowyPokojeKlienciList.Clear();
             dataGridPobytyNowyLOsob.Items.Refresh();
             PobytyNowyStringPokoje.Clear();
-            comboBoxPobytyNowyPokoj.ItemsSource = PobytyNowyStringPokoje;
+            comboBoxPobytyNowyPokoj.Items.Refresh();
         }
         private void buttonPobytyNowyZnajdzPokoje_Click(object sender, RoutedEventArgs e)
         {
@@ -1399,19 +1399,21 @@ namespace PensjonatApp
             DateTime terminDo = (DateTime)datePickerPobytyNowyTerminDo.SelectedDate;
             PobytyNowyIdPokoje.Clear();
             PobytyNowyStringPokoje.Clear();
+            PobytyNowyLOsobList.Clear();
             PokojeDS.PokojeDataTable pokojeTable;
             if(radioButtonPobytyNowyNowy.IsChecked == true)
-                 pokojeTable= TablesManager.Manager.PokojeTableAdapter.GetDataWolnePokojeByTermin(terminOd, terminOd, terminDo, terminDo, terminOd, terminDo);
+                 pokojeTable= TablesManager.Manager.PokojeTableAdapter.GetDataWolnePokojeStandardByTermin(terminOd, terminOd, terminDo, terminDo, terminOd, terminDo);
             else
                 pokojeTable = TablesManager.Manager.PokojeTableAdapter.GetDataRezerwacjeByIdRezerwacji((int)labelPobytyNowyIdRezerwacji.Content); 
             
             foreach (PokojeDS.PokojeRow row in pokojeTable)
             {
                 PobytyNowyIdPokoje.Add(row.id_pokoju);
-                PobytyNowyStringPokoje.Add(row.nr_pokoju + " (" + TablesManager.Manager.Pokoje_slownikTableAdapter.GetDodatkowyOpisById(row.id_slownikowe_pokoju)+")" );
-                PobytyNowyLOsobList.Add((int)(TablesManager.Manager.Pokoje_slownikTableAdapter.GetIloscOsobById(row.id_slownikowe_pokoju)));
+                PobytyNowyStringPokoje.Add(row.nr_pokoju + " (" + (string)row["dodatkowy_opis"]+")" );
+                PobytyNowyLOsobList.Add((int)row["ilosc_osob"]);
             }
             comboBoxPobytyNowyPokoj.ItemsSource = PobytyNowyStringPokoje;
+            comboBoxPobytyNowyPokoj.Items.Refresh();
         }
 
         private void datePickerPobytyNowyTerminDo_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
