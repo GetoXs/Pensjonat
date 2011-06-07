@@ -1586,10 +1586,10 @@ namespace PensjonatApp.DS.UslugiDSTableAdapters {
             this._commandCollection[2].CommandText = @"SELECT Klienci.imie, Klienci.nazwisko, Pokoje.nr_pokoju, Uslugi_slownik.nazwa, Uslugi_slownik.opis, Uslugi.dodatkowy_opis, Uslugi.termin_start, Uslugi.termin_koniec
 FROM     Uslugi, Uslugi_slownik, Pobyty, Klienci, Pokoje
 WHERE  Uslugi.id_slownikowe_uslugi = Uslugi_slownik.id_slownikowe_uslugi AND Uslugi.id_pobytu = Pobyty.id_pobytu AND Pobyty.id_klienta = Klienci.id_klienta AND 
-                  Pobyty.id_pokoju = Pokoje.id_pokoju AND (Uslugi.id_pracownika = ?) AND (Uslugi.termin_start <= ?)";
+                  Pobyty.id_pokoju = Pokoje.id_pokoju AND (Uslugi.id_pracownika = ?) AND (Uslugi.termin_koniec <= ?)";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[2].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_pracownika", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_pracownika", global::System.Data.DataRowVersion.Current, false, null));
-            this._commandCollection[2].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("termin_start", global::System.Data.Odbc.OdbcType.DateTime, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "termin_start", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("termin_koniec", global::System.Data.Odbc.OdbcType.DateTime, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "termin_koniec", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[3] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[3].Connection = this.Connection;
             this._commandCollection[3].CommandText = @"SELECT Klienci.imie, Klienci.nazwisko, Pokoje.nr_pokoju, Uslugi_slownik.nazwa, Uslugi_slownik.opis, Uslugi.dodatkowy_opis, Uslugi.termin_start, Uslugi.termin_koniec
@@ -1669,7 +1669,7 @@ WHERE  Uslugi.id_slownikowe_uslugi = Uslugi_slownik.id_slownikowe_uslugi AND Usl
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual UslugiDS.UslugiDataTable GetDataByIDPracownikaDoCzasu(global::System.Nullable<int> id_pracownika, global::System.Nullable<global::System.DateTime> termin_start) {
+        public virtual UslugiDS.UslugiDataTable GetDataByIDPracownikaDoCzasu(global::System.Nullable<int> id_pracownika, global::System.Nullable<global::System.DateTime> termin_koniec) {
             this.Adapter.SelectCommand = this.CommandCollection[2];
             if ((id_pracownika.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = ((int)(id_pracownika.Value));
@@ -1677,8 +1677,8 @@ WHERE  Uslugi.id_slownikowe_uslugi = Uslugi_slownik.id_slownikowe_uslugi AND Usl
             else {
                 this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
-            if ((termin_start.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[1].Value = ((System.DateTime)(termin_start.Value));
+            if ((termin_koniec.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((System.DateTime)(termin_koniec.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
