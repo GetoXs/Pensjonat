@@ -1245,12 +1245,17 @@ namespace PensjonatApp
             {
                 gridPobytyNowyNowy.Visibility = Visibility.Visible;
                 gridPobytyNowyZRez.Visibility = Visibility.Collapsed;
+                textBoxPobytyNowyIlOsob.IsEnabled = false;
+                datePickerPobytyNowyTerminOd.IsEnabled = false;
+                datePickerPobytyNowyTerminDo.IsEnabled = false;
                 RezerwacjeDS.RezerwacjeRow selectedRow = (RezerwacjeDS.RezerwacjeRow)((DataRowView)dataGridPobytyNowyRezerwacje.SelectedItem).Row;
                 datePickerPobytyNowyTerminOd.SelectedDate = (DateTime)selectedRow["termin_start"];
                 datePickerPobytyNowyTerminDo.SelectedDate = (DateTime)selectedRow["termin_koniec"];
                 textBoxPobytyNowyKlient.Text = (string)selectedRow["imie"] + " " + (string)selectedRow["nazwisko"];
                 labelPobytyNowyIdKlienta.Content = selectedRow.id_klienta;
                 textBoxPobytyNowyIlOsob.Text = selectedRow.ilosc_osob.ToString();
+                labelPobytyNowyIdRezerwacji.Content = selectedRow.id_rezerwacji;
+                PrzypiszWolnePokoje();
             }
             else 
                 System.Windows.MessageBox.Show("Najpierw wybierz rezerwację.", "Nowy pobyt.", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -1300,20 +1305,70 @@ namespace PensjonatApp
             zwinPobyty();
             showWindow(gridPobytyWybierzKlienta, buttonPobytyBackOkList);
         }
+        private void pobytyNowyClear()
+        {
+            textBoxPobytyNowyIlOsob.Text = "";
+            textBoxPobytyNowyKlient.Text = "";
+            datePickerPobytyNowyTerminOd.SelectedDate = null;
+            datePickerPobytyNowyTerminDo.SelectedDate = null;
+            PobytyNowyPokojeKlienciList.Clear();
+            dataGridPobytyNowyLOsob.Items.Refresh();
+            PobytyNowyStringPokoje.Clear();
+            comboBoxPobytyNowyPokoj.ItemsSource = PobytyNowyStringPokoje;
+        }
+        private void buttonPobytyNowyZnajdzPokoje_Click(object sender, RoutedEventArgs e)
+        {
+            if (textBoxPobytyNowyIlOsob.Text != null && datePickerPobytyNowyTerminDo.SelectedDate != null &&
+                datePickerPobytyNowyTerminOd.SelectedDate != null)
+            {
+                textBoxPobytyNowyIlOsob.IsEnabled = false;
+                datePickerPobytyNowyTerminOd.IsEnabled = false;
+                datePickerPobytyNowyTerminDo.IsEnabled = false;
+                PrzypiszWolnePokoje();
+            }
+            else
+                System.Windows.MessageBox.Show("Uzupełnij wszystkie pola", "Nowy pobyt", MessageBoxButton.OK, MessageBoxImage.Warning);
 
+        }
+
+        private void buttonPobytyNowyCzysc_Click(object sender, RoutedEventArgs e)
+        {
+            if (radioButtonPobytyNowyNowy.IsChecked == true)
+            {
+                pobytyNowyClear();
+                textBoxPobytyNowyIlOsob.IsEnabled = true;
+                datePickerPobytyNowyTerminOd.IsEnabled = true;
+                datePickerPobytyNowyTerminDo.IsEnabled = true;
+            }
+            else
+            {
+                pobytyNowyClear();
+                gridPobytyNowyZRez.Margin = new Thickness(25, 50, 25, 0);
+                gridPobytyNowyNowy.Visibility = Visibility.Collapsed;
+                gridPobytyNowyZRez.Visibility = Visibility.Visible;
+            }
+        }
         private void radioButtonPobytyNowyNowy_Checked(object sender, RoutedEventArgs e)
         {
+            pobytyNowyClear();
+            textBoxPobytyNowyIlOsob.IsEnabled = true;
+            datePickerPobytyNowyTerminOd.IsEnabled = true;
+            datePickerPobytyNowyTerminDo.IsEnabled = true;
             gridPobytyNowyNowy.Visibility = Visibility.Visible;
             gridPobytyNowyZRez.Visibility = Visibility.Collapsed;
-            buttonPobytyNowyZmien.Visibility = Visibility.Hidden;
+            buttonPobytyNowyCzysc.Content = "Czyść";
         }
 
         private void radioButtonPobytyNowyZRez_Checked(object sender, RoutedEventArgs e)
         {
+            pobytyNowyClear();
+            PobytyNowyPokojeKlienciList.Clear();
+            dataGridPobytyNowyLOsob.Items.Refresh();
             gridPobytyNowyZRez.Margin = new Thickness(25, 50, 25, 0);
             gridPobytyNowyNowy.Visibility = Visibility.Collapsed;
             gridPobytyNowyZRez.Visibility = Visibility.Visible;
-            buttonPobytyNowyZmien.Visibility = Visibility.Visible;
+            buttonPobytyNowyCzysc.Content = "Zmień";
+
         }
         private void buttonPobytyNowyZmien_Click(object sender, RoutedEventArgs e)
         {
@@ -1344,7 +1399,12 @@ namespace PensjonatApp
             DateTime terminDo = (DateTime)datePickerPobytyNowyTerminDo.SelectedDate;
             PobytyNowyIdPokoje.Clear();
             PobytyNowyStringPokoje.Clear();
-            PokojeDS.PokojeDataTable pokojeTable = TablesManager.Manager.PokojeTableAdapter.GetDataWolnePokojeByTermin(terminOd, terminOd, terminDo, terminDo, terminOd, terminDo);
+            PokojeDS.PokojeDataTable pokojeTable;
+            if(radioButtonPobytyNowyNowy.IsChecked == true)
+                 pokojeTable= TablesManager.Manager.PokojeTableAdapter.GetDataWolnePokojeByTermin(terminOd, terminOd, terminDo, terminDo, terminOd, terminDo);
+            else
+                pokojeTable = TablesManager.Manager.PokojeTableAdapter.GetDataRezerwacjeBy3((int)labelPobytyNowyIdRezerwacji.Content); 
+            
             foreach (PokojeDS.PokojeRow row in pokojeTable)
             {
                 PobytyNowyIdPokoje.Add(row.id_pokoju);
@@ -1356,18 +1416,14 @@ namespace PensjonatApp
 
         private void datePickerPobytyNowyTerminDo_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (sprawdzTermin(ref datePickerPobytyNowyTerminOd, ref datePickerPobytyNowyTerminDo) == wolnePokoje.Ok)
-            {
-                PrzypiszWolnePokoje();
-            }
+            sprawdzTermin(ref datePickerPobytyNowyTerminOd, ref datePickerPobytyNowyTerminDo);
+
         }
 
         private void datePickerPobytyNowyTerminOd_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (sprawdzTermin(ref datePickerPobytyNowyTerminOd, ref datePickerPobytyNowyTerminDo) == wolnePokoje.Ok)
-            {
-                PrzypiszWolnePokoje();
-            }
+            sprawdzTermin(ref datePickerPobytyNowyTerminOd, ref datePickerPobytyNowyTerminDo);
+
         }
         //----------------------------------------------POBYTY->PODSUMOWANIE----------------------------------------------
        
@@ -2664,6 +2720,9 @@ namespace PensjonatApp
                 dataGridKucharz5day.Items.Add(PosilkiHelper.getPosilkiPoTerminie(DateTime.Today.AddDays(4.0)));
             }
         }
+
+
+
 
 
 
