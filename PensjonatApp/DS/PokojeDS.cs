@@ -19,3 +19,11 @@ namespace PensjonatApp.DS.PokojeDSTableAdapters
     public partial class PokojeTableAdapter {
     }
 }
+
+namespace PensjonatApp.DS.PokojeDSTableAdapters
+{
+    
+    
+    public partial class PokojeTableAdapter {
+    }
+}
