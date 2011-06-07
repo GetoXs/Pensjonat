@@ -1456,7 +1456,26 @@ namespace PensjonatApp
 			}
 			
 		}
-
+		/// <summary>
+		/// Ustawia pola odpowiednio dla "osoby prytwantej"/firmy
+		/// </summary>
+		private void klienciAddUstawPola()
+		{
+			if (radioButtonKlientAddOsoba.IsChecked==true)
+			{
+				groupBoxKlienciAdd1.Header = "Dane klienta";
+				groupBoxKlienciAdd2.Visibility = System.Windows.Visibility.Collapsed;
+			}
+			else if (radioButtonKlientAddFirma.IsChecked == true)
+			{
+				groupBoxKlienciAdd1.Header = "Dane przedstawiciela";
+				groupBoxKlienciAdd2.Visibility = System.Windows.Visibility.Visible;
+			}
+		}
+		private void radioButtonKlientAdd_Checked(object sender, RoutedEventArgs e)
+		{
+			this.klienciAddUstawPola();
+		}
         //----------------------------------------------KLIENCI->EDYTUJ----------------------------------------------
         private void buttonKlienciEdit_Click(object sender, RoutedEventArgs e)
         {
