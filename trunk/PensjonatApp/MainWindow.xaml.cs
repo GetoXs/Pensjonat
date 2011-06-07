@@ -78,6 +78,7 @@ namespace PensjonatApp
             {
                 case "Kierownik":
                     tabZadania.Visibility = Visibility.Collapsed;
+                    tabKucharz.Visibility = Visibility.Collapsed;
                     break;
 
                 case "Recepcjonista":
@@ -90,10 +91,11 @@ namespace PensjonatApp
                     tabPrzydzialy.Visibility = Visibility.Collapsed;
                     tabStanowiska.Visibility = Visibility.Collapsed;
                     tabZadania.Visibility = Visibility.Collapsed;
+                    tabKucharz.Visibility = Visibility.Collapsed;
                     break;
 
                 case "Kucharz":
-                    tabControl1.SelectedIndex = 13;
+                    tabControl1.SelectedIndex = 14;
                     tabRezerwacje.Visibility = Visibility.Collapsed;
                     tabPobyty.Visibility = Visibility.Collapsed;
                     tabKlienci.Visibility = Visibility.Collapsed;
@@ -105,6 +107,7 @@ namespace PensjonatApp
                     tabUslugi.Visibility = Visibility.Collapsed;
                     tabPrzydzialy.Visibility = Visibility.Collapsed;
                     tabStanowiska.Visibility = Visibility.Collapsed;
+                    tabZadania.Visibility = Visibility.Collapsed;
                     break;
 
                 default:
@@ -120,6 +123,7 @@ namespace PensjonatApp
                     tabUslugi.Visibility = Visibility.Collapsed;
                     tabPrzydzialy.Visibility = Visibility.Collapsed;
                     tabStanowiska.Visibility = Visibility.Collapsed;
+                    tabKucharz.Visibility = Visibility.Collapsed;
                     break;
             }
 
@@ -2467,13 +2471,19 @@ namespace PensjonatApp
                 PracownicyDS.Pracownicy_slownikRow selectedRow = (PracownicyDS.Pracownicy_slownikRow)
                     ((DataRowView)dataGridStanowiskaDeafult.SelectedItem).Row;
                 // + (string)selectedRow["nazwa_opcji"]
-                MessageBoxResult result = System.Windows.MessageBox.Show("Czy napewno chcesz usunąć: " + (string)selectedRow["nazwa"], "Usuwanie stanowiska", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-                if (result == MessageBoxResult.Yes)
-                {
-                    PracownicyHelper.usunStanowisko(selectedRow.id_stanowiska);
-                    dataGridStanowiskaDeafult.ItemsSource = TablesManager.Manager.Pracownicy_slownikTableAdapter.GetData();
 
+                if (selectedRow.id_stanowiska > 3)
+                {
+                    MessageBoxResult result = System.Windows.MessageBox.Show("Czy napewno chcesz usunąć: " + (string)selectedRow["nazwa"], "Usuwanie stanowiska", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        PracownicyHelper.usunStanowisko(selectedRow.id_stanowiska);
+                        dataGridStanowiskaDeafult.ItemsSource = TablesManager.Manager.Pracownicy_slownikTableAdapter.GetData();
+
+                    }
                 }
+                else
+                    System.Windows.MessageBox.Show("Nie można usunąć stanowiska.", "Usuwanie stanowiska", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
             else
                 System.Windows.MessageBox.Show("Najpierw wybierz stanowisko.", "Usuwanie stanowiska", MessageBoxButton.OK, MessageBoxImage.Warning);
