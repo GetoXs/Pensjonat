@@ -1664,7 +1664,7 @@ namespace PensjonatApp.DS.KlienciDSTableAdapters {
                          Miejscowosci_slownik.nazwa AS miejscowosc, Klienci.kod_pocztowy
 FROM            Klienci, Miejscowosci_slownik
 WHERE        Klienci.id_miejscowosci = Miejscowosci_slownik.id_miejscowosci
-AND (UCASE(Klienci.imie) LIKE UCASE(?))";
+AND (UCASE(Klienci.imie) LIKE UCASE('%' + ? + '%'))";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[2].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Param1", global::System.Data.Odbc.OdbcType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[3] = new global::System.Data.Odbc.OdbcCommand();
@@ -1696,10 +1696,10 @@ AND (UCASE(Klienci.nazwisko) LIKE UCASE('%' + ? + '%'))";
             this._commandCollection[6] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[6].Connection = this.Connection;
             this._commandCollection[6].CommandText = "SELECT        email, imie, nazwisko, id_miejscowosci, ulica, nip, pesel, id_klien" +
-                "ta, nr_telefonu, nazwa, kod_pocztowy\r\nFROM            Klienci\r\nWHERE        (pes" +
-                "el = ?)";
+                "ta, nr_telefonu, nazwa, kod_pocztowy\r\nFROM            Klienci\r\nWHERE        (UCA" +
+                "SE(pesel) = UCASE(\'%\' + ? + \'%\'))";
             this._commandCollection[6].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[6].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("pesel", global::System.Data.Odbc.OdbcType.NVarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "pesel", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[6].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Param1", global::System.Data.Odbc.OdbcType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[7] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[7].Connection = this.Connection;
             this._commandCollection[7].CommandText = @"SELECT        Klienci.email, Klienci.imie, Klienci.nazwisko, Klienci.id_miejscowosci, Klienci.ulica, Klienci.nip, Klienci.pesel, Klienci.id_klienta, Klienci.nr_telefonu, Klienci.nazwa, 
@@ -1831,13 +1831,13 @@ WHERE        Klienci.id_miejscowosci = Miejscowosci_slownik.id_miejscowosci";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual KlienciDS.KlienciDataTable GetDataByPesel(string pesel) {
+        public virtual KlienciDS.KlienciDataTable GetDataByPesel(string Param1) {
             this.Adapter.SelectCommand = this.CommandCollection[6];
-            if ((pesel == null)) {
-                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            if ((Param1 == null)) {
+                throw new global::System.ArgumentNullException("Param1");
             }
             else {
-                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(pesel));
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(Param1));
             }
             KlienciDS.KlienciDataTable dataTable = new KlienciDS.KlienciDataTable();
             this.Adapter.Fill(dataTable);
@@ -2435,7 +2435,7 @@ WHERE        Klienci.id_miejscowosci = Miejscowosci_slownik.id_miejscowosci";
             this._commandCollection[2] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[2].Connection = this.Connection;
             this._commandCollection[2].CommandText = "SELECT        id_miejscowosci, nazwa\r\nFROM            Miejscowosci_slownik\r\nWHERE" +
-                "        (UCASE(nazwa) LIKE UCASE(?))";
+                "        (UCASE(nazwa) LIKE UCASE(\'%\' + ? + \'%\'))";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[2].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Param1", global::System.Data.Odbc.OdbcType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "", global::System.Data.DataRowVersion.Current, false, null));
         }

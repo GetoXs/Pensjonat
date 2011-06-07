@@ -2435,9 +2435,9 @@ HAVING (Posilki.data = ?)";
             this._commandCollection[2].Connection = this.Connection;
             this._commandCollection[2].CommandText = "SELECT        id_slownikowe_posilku, cena, nazwa_opcji, obiad, sniadanie, kolacja" +
                 ", drugie_sniadanie, lunch, obiadokolacja, podwieczorek\r\nFROM            Posilki_" +
-                "slownik\r\nWHERE        (nazwa_opcji = ?)";
+                "slownik\r\nWHERE        (UCASE(nazwa_opcji) = UCASE(\'%\' + ? + \'%\'))";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[2].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("nazwa_opcji", global::System.Data.Odbc.OdbcType.NVarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "nazwa_opcji", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Param1", global::System.Data.Odbc.OdbcType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[3] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[3].Connection = this.Connection;
             this._commandCollection[3].CommandText = "SELECT        id_slownikowe_posilku, cena, nazwa_opcji\r\nFROM            Posilki_s" +
@@ -2519,13 +2519,13 @@ HAVING (Posilki.data = ?)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual PosilkiDS.Posilki_slownikDataTable GetDataByNazwa(string nazwa_opcji) {
+        public virtual PosilkiDS.Posilki_slownikDataTable GetDataByNazwa(string Param1) {
             this.Adapter.SelectCommand = this.CommandCollection[2];
-            if ((nazwa_opcji == null)) {
-                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            if ((Param1 == null)) {
+                throw new global::System.ArgumentNullException("Param1");
             }
             else {
-                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(nazwa_opcji));
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(Param1));
             }
             PosilkiDS.Posilki_slownikDataTable dataTable = new PosilkiDS.Posilki_slownikDataTable();
             this.Adapter.Fill(dataTable);
