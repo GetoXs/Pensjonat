@@ -2582,7 +2582,7 @@ namespace PensjonatApp
         {
             if ((bool)(e.NewValue) == true)
             {
-                dataGridZadaniaDeafult.ItemsSource = UslugiHelper.znajdzZadaniaPracownikaDoCzasu(this.id, DateTime.Now);
+                dataGridArchiwumDeafult.ItemsSource = UslugiHelper.znajdzZadaniaPracownikaDoCzasu(this.id, DateTime.Now);
             }
         }
 
