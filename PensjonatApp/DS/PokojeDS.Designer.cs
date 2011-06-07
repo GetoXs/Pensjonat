@@ -1358,8 +1358,10 @@ namespace PensjonatApp.DS.PokojeDSTableAdapters {
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[4] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[4].Connection = this.Connection;
-            this._commandCollection[4].CommandText = "SELECT p2.id_pokoju\r\nFROM Rezerwacje r, Pobyty p1, Pokoje p2\r\nWHERE r.id_rezerwac" +
-                "ji = p1.id_rezerwacji AND p1.id_pokoju = p2.id_pokoju AND r.id_rezerwacji = ?";
+            this._commandCollection[4].CommandText = @"SELECT        Pokoje.id_pokoju, Rezerwacje.id_rezerwacji, Rezerwacje.zaliczka, Rezerwacje.zaplacono_zaliczke, Rezerwacje.ilosc_osob, Rezerwacje.id_klienta, 
+                         Pobyty.id_pobytu, Pobyty.termin_start, Pobyty.termin_koniec, Pobyty.id_rachunku, Pokoje.id_slownikowe_pokoju, Pokoje.nr_pokoju
+FROM            Rezerwacje, Pobyty, Pokoje
+WHERE        Rezerwacje.id_rezerwacji = Pobyty.id_rezerwacji AND Pobyty.id_pokoju = Pokoje.id_pokoju AND (Rezerwacje.id_rezerwacji = ?)";
             this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[4].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_rezerwacji", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_rezerwacji", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[5] = new global::System.Data.Odbc.OdbcCommand();
@@ -1470,14 +1472,9 @@ WHERE        Pokoje.id_slownikowe_pokoju = Pokoje_slownik.id_slownikowe_pokoju A
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual PokojeDS.PokojeDataTable GetDataRezerwacjeBy3(global::System.Nullable<int> id_rezerwacji) {
+        public virtual PokojeDS.PokojeDataTable GetDataRezerwacjeByIdRezerwacji(int id_rezerwacji) {
             this.Adapter.SelectCommand = this.CommandCollection[4];
-            if ((id_rezerwacji.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[0].Value = ((int)(id_rezerwacji.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
-            }
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(id_rezerwacji));
             PokojeDS.PokojeDataTable dataTable = new PokojeDS.PokojeDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
