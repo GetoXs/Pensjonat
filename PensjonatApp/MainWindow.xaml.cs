@@ -1457,7 +1457,7 @@ namespace PensjonatApp
 			
 		}
 		/// <summary>
-		/// Ustawia pola odpowiednio dla "osoby prytwantej"/firmy
+		/// Ustawia pola w Gridzie add klienta odpowiednio dla "osoby prytwantej"/firmy
 		/// </summary>
 		private void klienciAddUstawPola()
 		{
@@ -1486,7 +1486,11 @@ namespace PensjonatApp
      
                 KlienciDS.KlienciRow selectedRow = (KlienciDS.KlienciRow)((DataRowView)dataGridKlienci.SelectedItem).Row;
                 //dataGridKlienci.ItemsSource = TablesManager.Manager.KlienciTableAdapter.GetDataKlienciMiejsconowsciByIdKlienta(selectedRow.id_klienta);
-                textBoxKlienciEdycjaImie.Text = selectedRow.imie;
+				if (!selectedRow.IsnazwaNull() && !selectedRow.nazwa.Equals(""))
+					radioButtonKlientEdycjaFirma.IsChecked = true;
+				else
+					radioButtonKlientEdycjaOsoba.IsChecked = true;
+				textBoxKlienciEdycjaImie.Text = selectedRow.imie;
                 textBoxKlienciEdycjaNazwisko.Text = selectedRow.nazwisko;
                 textBoxKlienciEdycjaPESEL.Text = selectedRow.pesel;
                 textBoxKlienciEdycjaNIP.Text = selectedRow.nip.ToString();
@@ -1502,6 +1506,26 @@ namespace PensjonatApp
             else  
                 System.Windows.MessageBox.Show("Najpierw wybierz klienta.", "Edycja klienta", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
+		/// <summary>
+		/// Ustawia pola w Gridzie edycji klienta odpowiednio dla "osoby prytwantej"/firmy
+		/// </summary>
+		private void klienciEditUstawPola()
+		{
+			if (radioButtonKlientEdycjaOsoba.IsChecked == true)
+			{
+				groupBoxKlienciEdycja1.Header = "Dane klienta";
+				groupBoxKlienciEdycja2.Visibility = System.Windows.Visibility.Collapsed;
+			}
+			else if (radioButtonKlientEdycjaFirma.IsChecked == true)
+			{
+				groupBoxKlienciEdycja2.Header = "Dane przedstawiciela";
+				groupBoxKlienciEdycja2.Visibility = System.Windows.Visibility.Visible;
+			}
+		}
+		private void radioButtonKlientEdycja_Checked(object sender, RoutedEventArgs e)
+		{
+			this.klienciEditUstawPola();
+		}
 
 //----------------------------------------------NEWSLETTER----------------------------------------------
         private void buttonNewsletterNew_Click(object sender, RoutedEventArgs e)
@@ -2573,6 +2597,7 @@ namespace PensjonatApp
             dataGridKucharz4day.Items.Add(PosilkiHelper.getPosilkiPoTerminie(DateTime.Today.AddDays(3.0)));
             dataGridKucharz5day.Items.Add(PosilkiHelper.getPosilkiPoTerminie(DateTime.Today.AddDays(4.0)));
         }
+
 
 
 
