@@ -142,6 +142,15 @@ namespace PensjonatApp.Helpers
         }
 
         /// <summary>
+        /// Zwaraca pokoje wolne w podanym terminie (z standardem)
+        /// </summary>
+        /// <returns>Wolne pokoje</returns>
+        public static PokojeDS.PokojeDataTable pobierzPokojeWolneStandard(DateTime start_pobytu, DateTime koniec_pobytu)
+        {
+            return TablesManager.Manager.PokojeTableAdapter.GetDataWolnePokojeStandardByTermin(start_pobytu, start_pobytu, koniec_pobytu, koniec_pobytu, start_pobytu, koniec_pobytu);
+        }
+
+        /// <summary>
         /// Czy pokoj jest wolny w danym retminie?
         /// </summary>
         /// <returns>czy wolny- bool</returns>
