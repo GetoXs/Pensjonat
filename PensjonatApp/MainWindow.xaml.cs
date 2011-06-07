@@ -1040,8 +1040,8 @@ namespace PensjonatApp
                 {
                     DateTime koniec = (DateTime)datePickerPobytyServicesTermin.Value.Value.Date;
                     koniec = koniec.AddMinutes(czasTrwania);
-                    UslugiHelper.przydzielPracownika((int)PobytyUslugiIdList[comboBoxPobytyUslugi.SelectedIndex], (int)PobytyUslugiIdPracownikaList[comboBoxPobytyPracownicy.SelectedIndex]);
-                    UslugiHelper.dodajUsluge((int)labelPobytyServicesId.Content, datePickerPobytyServicesTermin.Value.Value.Date, koniec, textBoxPobytyUslugiUwagi.Text, PobytyUslugiIdList[comboBoxPobytyUslugi.SelectedIndex]);
+                    //UslugiHelper.przydzielPracownika((int)PobytyUslugiIdList[comboBoxPobytyUslugi.SelectedIndex], (int)PobytyUslugiIdPracownikaList[comboBoxPobytyPracownicy.SelectedIndex]);
+                    UslugiHelper.dodajUsluge((int)labelPobytyServicesId.Content, (int)PobytyUslugiIdPracownikaList[comboBoxPobytyPracownicy.SelectedIndex], datePickerPobytyServicesTermin.Value.Value.Date, koniec, textBoxPobytyUslugiUwagi.Text, PobytyUslugiIdList[comboBoxPobytyUslugi.SelectedIndex]);
                     dataGridPobytyUslugi.ItemsSource = TablesManager.Manager.UslugiTableAdapter.GetDataUslugiUslugi_slownikByID_pobytu((int)labelPobytyServicesId.Content);
                     dataGridPobytyZarzadzajUslug.ItemsSource = TablesManager.Manager.UslugiTableAdapter.GetDataUslugiUslugi_slownikByID_pobytu((int)labelPobytyServicesId.Content); 
        
@@ -2581,12 +2581,7 @@ namespace PensjonatApp
         {
             if ((bool)(e.NewValue) == true)
             {
-                DateTime czasObecny = DateTime.Now;
-                int rok = czasObecny.Year;
-                int miesiac = czasObecny.Month;
-                int dzien = czasObecny.Day - 1;
-                DateTime czasStop = new DateTime(rok, miesiac, dzien, 23, 59, 59);
-                dataGridZadaniaDeafult.ItemsSource = UslugiHelper.znajdzZadaniaPracownikaDoCzasu(this.id, czasStop);
+                dataGridZadaniaDeafult.ItemsSource = UslugiHelper.znajdzZadaniaPracownikaDoCzasu(this.id, DateTime.Now);
             }
         }
 

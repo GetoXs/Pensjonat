@@ -13,9 +13,9 @@ namespace PensjonatApp.Helpers
 		/// <summary>
 		/// dodaje uslugę o danym typie, terminie do danego pobytu
 		/// </summary>
-        public static int dodajUsluge(int id_pobytu, DateTime terminStart, DateTime terminKoniec, string d_opis, int? id_slownikowe)
+        public static int dodajUsluge(int id_pobytu, int id_pracownika, DateTime terminStart, DateTime terminKoniec, string d_opis, int? id_slownikowe)
         {
-            return TablesManager.Manager.UslugiTableAdapter.Insert(id_pobytu, null, d_opis, terminStart, terminKoniec, id_slownikowe);
+            return TablesManager.Manager.UslugiTableAdapter.Insert(id_pobytu, id_pracownika, d_opis, terminStart, terminKoniec, id_slownikowe);
         }
 		/// <summary>
 		/// edytuje w usludze o danym id: typ, termin i id pobytu
