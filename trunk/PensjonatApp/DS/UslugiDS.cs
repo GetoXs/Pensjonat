@@ -27,3 +27,11 @@ namespace PensjonatApp.DS.UslugiDSTableAdapters
     public partial class UslugiTableAdapter {
     }
 }
+
+namespace PensjonatApp.DS.UslugiDSTableAdapters
+{
+    
+    
+    public partial class UslugiTableAdapter {
+    }
+}
