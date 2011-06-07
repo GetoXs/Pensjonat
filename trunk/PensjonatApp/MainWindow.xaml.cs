@@ -1038,10 +1038,10 @@ namespace PensjonatApp
                 int czasTrwania;
                  if(int.TryParse(textBoxPobytyUslugiCzas.Text,out czasTrwania))
                 {
-                    DateTime koniec = (DateTime)datePickerPobytyServicesTermin.Value.Value.Date;
+                    DateTime koniec = (DateTime)datePickerPobytyServicesTermin.Value.Value;
                     koniec = koniec.AddMinutes(czasTrwania);
                     //UslugiHelper.przydzielPracownika((int)PobytyUslugiIdList[comboBoxPobytyUslugi.SelectedIndex], (int)PobytyUslugiIdPracownikaList[comboBoxPobytyPracownicy.SelectedIndex]);
-                    UslugiHelper.dodajUsluge((int)labelPobytyServicesId.Content, (int)PobytyUslugiIdPracownikaList[comboBoxPobytyPracownicy.SelectedIndex], datePickerPobytyServicesTermin.Value.Value.Date, koniec, textBoxPobytyUslugiUwagi.Text, PobytyUslugiIdList[comboBoxPobytyUslugi.SelectedIndex]);
+                    UslugiHelper.dodajUsluge((int)labelPobytyServicesId.Content, (int)PobytyUslugiIdPracownikaList[comboBoxPobytyPracownicy.SelectedIndex], datePickerPobytyServicesTermin.Value.Value, koniec, textBoxPobytyUslugiUwagi.Text, PobytyUslugiIdList[comboBoxPobytyUslugi.SelectedIndex]);
                     dataGridPobytyUslugi.ItemsSource = TablesManager.Manager.UslugiTableAdapter.GetDataUslugiUslugi_slownikByID_pobytu((int)labelPobytyServicesId.Content);
                     dataGridPobytyZarzadzajUslug.ItemsSource = TablesManager.Manager.UslugiTableAdapter.GetDataUslugiUslugi_slownikByID_pobytu((int)labelPobytyServicesId.Content); 
        
