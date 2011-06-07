@@ -46,7 +46,7 @@ namespace PensjonatApp.Helpers
         public string Nr_pokoju { get { return nr_pokoju; } set { nr_pokoju = value; } }
         public int L_osob { get { return l_osob; } set { l_osob = value; } }
         public int Id_pokoju { get { return id_pokoju; } set { id_pokoju = value; } }
-        public PokojeStandardy(string opis, int id_pokoju, string nr_pokoju, int l_osob,int cena)
+        public PokojeStandardy(string opis, int id_pokoju, string nr_pokoju, int l_osob, decimal cena)
         {
             this.nr_pokoju = nr_pokoju;
             this.l_osob = l_osob;

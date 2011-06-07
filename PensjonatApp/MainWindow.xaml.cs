@@ -403,6 +403,7 @@ namespace PensjonatApp
                     showWindow(gridRezerwacjeAdd2, buttonRezerwacjeBackOkList);
                     labelRezerwacjeAdd2IlOsob.Content = textBoxRezerwacjeAddIlOsob.Text;
                     labelRezerwacjeAdd2Klient.Content = textBoxRezerwacjeAddKlient.Text;
+                    //textBoxRezerwacjeAdd2Zaliczka.Text = (int)labelRezerwacjeAdd2IlOsob.Content * 50;
                     datePickerRezeracjeAddTerminOd.SelectedDateFormat = DatePickerFormat.Long;
                     datePickerRezerwacjeAddTerminDo.SelectedDateFormat = DatePickerFormat.Long;
                     labelRezerwacjeAdd2Termin.Content = datePickerRezeracjeAddTerminOd.SelectedDate.ToString().Remove(11)
@@ -415,11 +416,19 @@ namespace PensjonatApp
         }
         private bool walidacjaRezerwacjaAdd()
         {
-            //if (labelRezerwacjeAddPozostaloOsob.Content.ToString() != "0")
-            //{
-                //System.Windows.MessageBox.Show("Nie przydzielono wszystkich pokoi.", "Dodawanie rezerwacji", MessageBoxButton.OK, MessageBoxImage.Warning);
-               // return false;
-           // }             
+            if (rezerwacjePokojeIloscOsob > 0)
+            {
+                System.Windows.MessageBox.Show("Przydzielono zbyt mało pokoi.", "Dodawanie rezerwacji", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return false;
+            }
+            else if (rezerwacjePokojeIloscOsob < 0)
+            {
+                MessageBoxResult result = System.Windows.MessageBox.Show("Wybrano większą liczbę pokoi niż osób. Czy chcesz kontynuować?", "Dodawanie rezerwacji", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                if (result == MessageBoxResult.Yes)
+                    return true;
+                else
+                    return false;
+            }
             if (textBoxRezerwacjeAddKlient.Text == "")
                 return false;
             if (datePickerRezeracjeAddTerminOd.SelectedDate == null)
@@ -472,7 +481,7 @@ namespace PensjonatApp
                     List<int> idList = new List<int>();
                     foreach(var elem in RezerwacjePokojeDodajList)
                     {
-                        idList.Add(elem.id_pokoju);
+                        idList.Add(elem.Id_pokoju);
                     }
 					RezerwacjeHelper.dodajRezerwacje((int)labelRezerwacjeAddId.Content, int.Parse(labelRezerwacjeAdd2IlOsob.Content.ToString()),zaliczka,
 						idList, (DateTime)datePickerRezeracjeAddTerminOd.SelectedDate, (DateTime)datePickerRezerwacjeAddTerminDo.SelectedDate);
@@ -534,26 +543,60 @@ namespace PensjonatApp
 
         //----------------------------------------------REZERWACJE->DODAJ---------------------------------------------- 
         List<string> RezerwacjePokojeStringList = new List<string>();
-        List<PokojeDS.PokojeRow> RezerwacjePokojeList = new List<PokojeDS.PokojeRow>();
-        List<PokojeDS.PokojeRow> RezerwacjePokojeDodajList = new List<PokojeDS.PokojeRow>();
+        List<PokojeStandardy> RezerwacjePokojeList = new List<PokojeStandardy>();
+        List<PokojeStandardy> RezerwacjePokojeDodajList = new List<PokojeStandardy>();
         List<PokojeDS.Pokoje_slownikRow> RezerwacjePokojeSlownikList = new List<PokojeDS.Pokoje_slownikRow>();
         int rezerwacjePokojeIloscOsob;
         private void dataGridRezerwacjeAddWybranePokoje_Loaded(object sender, RoutedEventArgs e)
         {
             dataGridRezerwacjeAddWybranePokoje.ItemsSource = RezerwacjePokojeDodajList;
         }
-        private void textBoxRezerwacjeAddIlOsob_LostFocus(object sender, RoutedEventArgs e)
+
+ 
+        private void buttonRezerwacjeDodajPokoje_Click(object sender, RoutedEventArgs e)
         {
-            int liczbaOsob;
-            if (!int.TryParse(textBoxRezerwacjeAddIlOsob.Text, out liczbaOsob) && textBoxRezerwacjeAddIlOsob.Text != "")
+            if (textBoxRezerwacjeAddKlient.Text != "" && datePickerRezeracjeAddTerminOd.SelectedDate != null && datePickerRezerwacjeAddTerminDo.SelectedDate != null
+                && textBoxRezerwacjeAddIlOsob.Text != "")
             {
-                System.Windows.MessageBox.Show("Pole liczba osób może zawierać tylko cyfry.", "Nowa rezerwacja", MessageBoxButton.OK, MessageBoxImage.Warning);
-                textBoxRezerwacjeAddIlOsob.Focus();
-                textBoxRezerwacjeAddIlOsob.Text = "";
+                int liczbaOsob;
+                if (int.TryParse(textBoxRezerwacjeAddIlOsob.Text, out liczbaOsob))
+                {
+                    buttonRezerwacjeAddKlient.IsEnabled = false;
+                    textBoxRezerwacjeAddIlOsob.IsEnabled = false;
+                    datePickerRezeracjeAddTerminOd.IsEnabled = false;
+                    datePickerRezerwacjeAddTerminDo.IsEnabled = false;
+                    DodajPokojdeDoComboBoxa();
+                    rezerwacjePokojeIloscOsob = liczbaOsob;
+                    labelRezerwacjeAddPozostaloOsob.Content = rezerwacjePokojeIloscOsob;
+                }
+                else
+                    System.Windows.MessageBox.Show("Pole liczba osób może zawierać tylko cyfry.", "Nowa rezerwacja", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
             else
-                rezerwacjePokojeIloscOsob = liczbaOsob;
+                System.Windows.MessageBox.Show("Wypełnij wszystkie pola!", "Nowa rezerwacja", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
+        private void buttonRezerwacjeDodajZmien_Click(object sender, RoutedEventArgs e)
+        {
+            buttonRezerwacjeAddKlient.IsEnabled = true;
+            textBoxRezerwacjeAddIlOsob.IsEnabled = true;
+            datePickerRezeracjeAddTerminOd.IsEnabled = true;
+            datePickerRezerwacjeAddTerminDo.IsEnabled = true;
+            labelRezerwacjeAddPozostaloOsob.Content = "";
+            rezerwacjePokojeIloscOsob = 0;
+            RezerwacjePokojeDodajList.Clear();
+        }
+        private void datePickerRezeracjeAddTerminOd_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            sprawdzTermin(ref datePickerRezeracjeAddTerminOd, ref datePickerRezerwacjeAddTerminDo);
+        }
+
+        private void datePickerRezerwacjeAddTerminDo_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            sprawdzTermin(ref datePickerRezeracjeAddTerminOd, ref datePickerRezerwacjeAddTerminDo);
+        }
+
+      
+
         private void buttonRezerwacjeAdd_Click(object sender, RoutedEventArgs e)
         {
             zwinRezerwacje();
@@ -571,8 +614,10 @@ namespace PensjonatApp
             if (comboBoxRezerwacjeAddPokoje.SelectedItem != null && !RezerwacjePokojeDodajList.Contains(RezerwacjePokojeList[comboBoxRezerwacjeAddPokoje.SelectedIndex]))
             {
                 RezerwacjePokojeDodajList.Add(RezerwacjePokojeList[comboBoxRezerwacjeAddPokoje.SelectedIndex]);
-              //PokojeHel++
+                rezerwacjePokojeIloscOsob -= RezerwacjePokojeList[comboBoxRezerwacjeAddPokoje.SelectedIndex].L_osob;
+                labelRezerwacjeAddPozostaloOsob.Content = rezerwacjePokojeIloscOsob;
             }
+
             dataGridRezerwacjeAddWybranePokoje.ItemsSource = RezerwacjePokojeDodajList;
             dataGridRezerwacjeAddWybranePokoje.Items.Refresh();
         }
@@ -583,9 +628,11 @@ namespace PensjonatApp
             {
                 foreach (var row in RezerwacjePokojeDodajList)
                 {
-                    if (row.id_pokoju == RezerwacjePokojeList[comboBoxRezerwacjeAddPokoje.SelectedIndex].id_pokoju)
+                    if (row.Id_pokoju == RezerwacjePokojeList[comboBoxRezerwacjeAddPokoje.SelectedIndex].Id_pokoju)
                     {
                         RezerwacjePokojeDodajList.Remove(row);
+                        rezerwacjePokojeIloscOsob += RezerwacjePokojeList[comboBoxRezerwacjeAddPokoje.SelectedIndex].L_osob;
+                        labelRezerwacjeAddPozostaloOsob.Content = rezerwacjePokojeIloscOsob;
                         //POkeje --
                         break;
                     }
@@ -628,22 +675,13 @@ namespace PensjonatApp
 						   datePickerRezeracjeAddTerminOd.SelectedDate, datePickerRezerwacjeAddTerminDo.SelectedDate);
 				foreach (PokojeDS.PokojeRow row in pokojeTable)
 				{
-					RezerwacjePokojeList.Add(row);
-					RezerwacjePokojeStringList.Add(row.nr_pokoju + " | " + row["cena"]);
+					RezerwacjePokojeList.Add(new PokojeStandardy((string)row["dodatkowy_opis"],row.id_pokoju, row.nr_pokoju,(int)row["ilosc_osob"],(decimal)row["cena"]));
+					RezerwacjePokojeStringList.Add("Nr. " + row.nr_pokoju + " (" + row["dodatkowy_opis"]+")"+ " - "+row["cena"]+" zł.");
 				}
 				comboBoxRezerwacjeAddPokoje.ItemsSource = RezerwacjePokojeStringList;
 			}
         }
-        private void datePickerRezeracjeAddTerminOd_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
-        {
-            DodajPokojdeDoComboBoxa();
-        }
 
-        private void datePickerRezerwacjeAddTerminDo_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
-        {
-            DodajPokojdeDoComboBoxa();
-
-        }
         private void dataGridRezerwacjeAddDostepnePokoje_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             if ((bool)(e.NewValue) == true)
@@ -2626,6 +2664,8 @@ namespace PensjonatApp
                 dataGridKucharz5day.Items.Add(PosilkiHelper.getPosilkiPoTerminie(DateTime.Today.AddDays(4.0)));
             }
         }
+
+
 
 
 
