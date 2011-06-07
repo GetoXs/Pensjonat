@@ -623,7 +623,7 @@ namespace PensjonatApp
 			{
 				RezerwacjePokojeList.Clear();
 				RezerwacjePokojeStringList.Clear();
-				PokojeDS.PokojeDataTable pokojeTable = TablesManager.Manager.PokojeTableAdapter.GetDataWolnePokojeByTermin(datePickerRezeracjeAddTerminOd.SelectedDate
+				PokojeDS.PokojeDataTable pokojeTable = TablesManager.Manager.PokojeTableAdapter.GetDataWolnePokojeStandardByTermin(datePickerRezeracjeAddTerminOd.SelectedDate
 						   , datePickerRezeracjeAddTerminOd.SelectedDate, datePickerRezerwacjeAddTerminDo.SelectedDate, datePickerRezerwacjeAddTerminDo.SelectedDate,
 						   datePickerRezeracjeAddTerminOd.SelectedDate, datePickerRezerwacjeAddTerminDo.SelectedDate);
 				foreach (PokojeDS.PokojeRow row in pokojeTable)
