@@ -1364,9 +1364,9 @@ WHERE        Pokoje.id_slownikowe_pokoju = Pokoje_slownik.id_slownikowe_pokoju";
             this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[5] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[5].Connection = this.Connection;
-            this._commandCollection[5].CommandText = @"SELECT        p3.id_pokoju, p3.id_slownikowe_pokoju, p3.nr_pokoju, Pokoje_slownik.cena, Pokoje_slownik.dodatkowy_opis, Pokoje_slownik.ilosc_osob
-FROM            Pokoje p3, Pokoje_slownik
-WHERE        p3.id_slownikowe_pokoju = Pokoje_slownik.id_slownikowe_pokoju AND (p3.id_pokoju NOT IN
+            this._commandCollection[5].CommandText = @"SELECT        id_pokoju, id_slownikowe_pokoju, nr_pokoju
+FROM            Pokoje p3
+WHERE        (id_pokoju NOT IN
                              (SELECT        id_pokoju
                                FROM            Pobyty p1
                                WHERE        (termin_start <= ?) AND (termin_koniec >= ?) OR
@@ -1381,14 +1381,14 @@ WHERE        p3.id_slownikowe_pokoju = Pokoje_slownik.id_slownikowe_pokoju AND (
             this._commandCollection[5].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Param6", global::System.Data.Odbc.OdbcType.DateTime, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[6] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[6].Connection = this.Connection;
-            this._commandCollection[6].CommandText = @"SELECT        p3,id_pokoju, p3.id_slownikowe_pokoju, p3.nr_pokoju, p4.opis, p4.cena, p4.opis
-FROM            Pokoje p3, Pokoje_slownik p4
-WHERE        p3.id_slownikowe_pokoju = p4.id_slownikowe_pokoju AND (id_pokoju NOT IN
+            this._commandCollection[6].CommandText = @"SELECT        Pokoje.id_pokoju, Pokoje.id_slownikowe_pokoju, Pokoje.nr_pokoju, Pokoje_slownik.cena, Pokoje_slownik.dodatkowy_opis, Pokoje_slownik.ilosc_osob
+FROM            Pokoje, Pokoje_slownik
+WHERE        Pokoje.id_slownikowe_pokoju = Pokoje_slownik.id_slownikowe_pokoju AND (Pokoje.id_pokoju NOT IN
                              (SELECT        id_pokoju
-                               FROM            Pobyty p1
-                               WHERE        ((termin_start <= ?) AND (termin_koniec >= ?)) OR
-                                                         ((termin_start <= ?) AND (termin_koniec >= ?)) OR
-                                                         ((termin_start >= ?) AND (termin_koniec <= ?))))";
+                               FROM            Pobyty
+                               WHERE        (termin_start <= ?) AND (termin_koniec >= ?) OR
+                                                         (termin_start <= ?) AND (termin_koniec >= ?) OR
+                                                         (termin_start >= ?) AND (termin_koniec <= ?)))";
             this._commandCollection[6].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[6].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Param1", global::System.Data.Odbc.OdbcType.DateTime, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[6].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Param2", global::System.Data.Odbc.OdbcType.DateTime, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "", global::System.Data.DataRowVersion.Current, false, null));
