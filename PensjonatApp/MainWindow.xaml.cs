@@ -1827,6 +1827,27 @@ namespace PensjonatApp
             }
         }
 
+
+        private void buttonPokojeSzczegoly_Click(object sender, RoutedEventArgs e)
+        {
+            if (dataGridPokojeDeafult.SelectedItem != null)
+            {
+                zwinPokoje();
+                showWindow(gridPokojeSzczegoly, buttonPokojeBackOkList);
+
+                PokojeDS.PokojeRow selectedRow = (PokojeDS.PokojeRow)((DataRowView)dataGridPokojeDeafult.SelectedItem).Row;
+                labelPokojeSzczegolyNr.Content = selectedRow.nr_pokoju;
+                labelPokojeSzczegolyStandard.Content = selectedRow["dodatkowy_opis"];
+                labelPokojeSzczegolyCena.Content = selectedRow["cena"];
+                labelPokojeSzczegolyLosob.Content = selectedRow["ilosc_osob"];
+                dataGridPokojeSzczegolyWyposazenie.ItemsSource = TablesManager.Manager.Wyposazenia_slownikTableAdapter.GetDataListaWyposazenByID(selectedRow.id_slownikowe_pokoju);
+
+            }
+            else
+                System.Windows.MessageBox.Show("Najpierw wybierz pokój.", "Podgląd pokoju", MessageBoxButton.OK, MessageBoxImage.Warning);
+     
+        }
+
         private void buttonPokojeEdytuj_Click(object sender, RoutedEventArgs e)
         {
             
