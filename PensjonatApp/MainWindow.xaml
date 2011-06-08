@@ -641,7 +641,7 @@
 								<Label Content="Firma" Height="28" HorizontalAlignment="Left" Margin="132,89,0,0" Name="labelKlienciSearchFirmaGroup" VerticalAlignment="Top" FontWeight="Bold" FontSize="11" />
 								<Label Content="Kontakt" FontSize="11" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="120,60,0,0" Name="labelKlienciSearchKontaktGroup" VerticalAlignment="Top" />
                                 <Separator Height="5" HorizontalAlignment="Stretch" Margin="5,118,5,0" Name="separator17" VerticalAlignment="Top" />
-                                <Separator Height="5" HorizontalAlignment="Stretch" Margin="120,57,13,0" Name="separator18" VerticalAlignment="Top" Background="#FFCFCFCF" />
+                                <Separator Height="5" HorizontalAlignment="Stretch" Margin="120,56,13,0" Name="separator18" VerticalAlignment="Top" Background="#FFCFCFCF" />
                                 <Separator Background="#FFCFCFCF" Height="5" HorizontalAlignment="Stretch" Margin="120,85,13,0" Name="separator19" VerticalAlignment="Top" />
                             </Grid>
 							<DataGrid Name="dataGridKlienci" DataContext="{Binding}" IsEnabled="True" MinColumnWidth="30" IsVisibleChanged="dataGridKlienci_IsVisibleChanged" AutoGenerateColumns="False" HorizontalGridLinesBrush="#FFD5D5D5" VerticalGridLinesBrush="#FFD5D5D5" IsReadOnly="True" SelectionChanged="dataGridKlienci_SelectionChanged" SelectedIndex="-1" SelectionMode="Single" Height="370" Margin="15">

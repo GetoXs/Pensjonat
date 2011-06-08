@@ -1617,29 +1617,37 @@ namespace PensjonatApp
         }
         private void klienciSearch()
         {
-            if (textBoxKlienciSearch.Text == "")
-                dataGridKlienci.ItemsSource = TablesManager.Manager.KlienciTableAdapter.GetKlienciMiejscowosci();
-            else
-            {
-                if ((bool)radioButtonKlienciSearchIdKlienta.IsChecked)
-                {
-                    int id;
-					if (int.TryParse(textBoxKlienciSearch.Text, out id))
-                        dataGridKlienci.ItemsSource = TablesManager.Manager.KlienciTableAdapter.GetDataKlienciMiejsconowsciByIdKlienta(id);
-                    else
-                        System.Windows.MessageBox.Show("Niepoprawne ID klienta.\nNumer identyfikacyjny klienta może zawierać tylko cyfry.", "Wyszukiwanie klienta", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-				else if ((bool)radioButtonKlienciSearchKlient.IsChecked)
-                {
-					if (textBoxKlienciSearch.Text.Contains(' '))
-                    {
-                        string[] szukaj = textBoxKlienciSearch.Text.Split(' ');
-                        dataGridKlienci.ItemsSource = TablesManager.Manager.KlienciTableAdapter.GetDataByKlienciMiejscowosciByImieNazwiskoKlienta(szukaj[0],szukaj[1]);
-                    }
-                    else
-                        dataGridKlienci.ItemsSource = TablesManager.Manager.KlienciTableAdapter.GetDataByKlienciMiejscowosciByNazwiskoKlienta(textBoxKlienciSearch.Text);                 
-                }
-            }
+			if (toggleButtonKlienciSearchExtend.IsChecked == false)
+			{
+				if (textBoxKlienciSearch.Text == "")
+					dataGridKlienci.ItemsSource = TablesManager.Manager.KlienciTableAdapter.GetKlienciMiejscowosci();
+				else
+				{
+					if ((bool)radioButtonKlienciSearchIdKlienta.IsChecked)
+					{
+						int id;
+						if (int.TryParse(textBoxKlienciSearch.Text, out id))
+							dataGridKlienci.ItemsSource = TablesManager.Manager.KlienciTableAdapter.GetDataKlienciMiejsconowsciByIdKlienta(id);
+						else
+							System.Windows.MessageBox.Show("Niepoprawne ID klienta.\nNumer identyfikacyjny klienta może zawierać tylko cyfry.", "Wyszukiwanie klienta", MessageBoxButton.OK, MessageBoxImage.Error);
+					}
+					else if ((bool)radioButtonKlienciSearchKlient.IsChecked)
+					{
+						if (textBoxKlienciSearch.Text.Contains(' '))
+						{
+							string[] szukaj = textBoxKlienciSearch.Text.Split(' ');
+							dataGridKlienci.ItemsSource = TablesManager.Manager.KlienciTableAdapter.GetDataByKlienciMiejscowosciByImieNazwiskoKlienta(szukaj[0], szukaj[1]);
+						}
+						else
+							dataGridKlienci.ItemsSource = TablesManager.Manager.KlienciTableAdapter.GetDataByKlienciMiejscowosciByNazwiskoKlienta(textBoxKlienciSearch.Text);
+					}
+				}
+			}
+			else
+			{
+
+
+			}
         }
         private void buttonKlienciSearch_Click(object sender, RoutedEventArgs e)
         {
