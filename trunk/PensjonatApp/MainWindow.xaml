@@ -626,15 +626,15 @@
 								<Label Content="Adres:" FontSize="10" Height="28" HorizontalAlignment="Left" Margin="5,31,0,0" Name="labelKlienciSearchExtendAdres" VerticalAlignment="Top" />
 								<TextBox FontSize="10" Height="20" HorizontalAlignment="Left" Margin="253,33,0,0" Name="textBoxKlienciSearchExtendMiejscowosc" VerticalAlignment="Top" Width="120" />
 								<Label Content="Miejscowość:" FontSize="10" Height="28" HorizontalAlignment="Left" Margin="179,31,0,0" Name="labelKlienciSearchExtendMiejscowosc" VerticalAlignment="Top" />
-								<TextBox FontSize="10" Height="20" HorizontalAlignment="Left" Margin="466,33,0,0" Name="textBoxKlienciSearchKodPocztowy" VerticalAlignment="Top" Width="104" />
+								<TextBox FontSize="10" Height="20" HorizontalAlignment="Left" Margin="466,33,0,0" Name="textBoxKlienciSearchExtendKodPocztowy" VerticalAlignment="Top" Width="104" />
 								<Label Content="Kod Pocztowy:" FontSize="10" Height="28" HorizontalAlignment="Left" Margin="386,31,0,0" Name="labelKlienciSearchKodPocztowy" VerticalAlignment="Top" />
-								<TextBox FontSize="10" Height="20" HorizontalAlignment="Left" Margin="253,63,0,0" Name="textBoxKlienciSearchTelefon" VerticalAlignment="Top" Width="120" />
+								<TextBox FontSize="10" Height="20" HorizontalAlignment="Left" Margin="253,63,0,0" Name="textBoxKlienciSearchExtendTelefon" VerticalAlignment="Top" Width="120" />
 								<Label Content="Telefon:" FontSize="10" Height="28" HorizontalAlignment="Left" Margin="179,61,0,0" Name="labelKlienciSearchTelefon" VerticalAlignment="Top" />
-								<TextBox FontSize="10" Height="20" HorizontalAlignment="Left" Margin="466,63,0,0" Name="textBoxKlienciSearchMail" VerticalAlignment="Top" Width="104" />
+								<TextBox FontSize="10" Height="20" HorizontalAlignment="Left" Margin="466,63,0,0" Name="textBoxKlienciSearchExtendMail" VerticalAlignment="Top" Width="104" />
 								<Label Content="E-mail:" FontSize="10" Height="28" HorizontalAlignment="Left" Margin="386,61,0,0" Name="labelKlienciSearchMail" VerticalAlignment="Top" />
-								<TextBox FontSize="10" Height="20" HorizontalAlignment="Left" Margin="253,92,0,0" Name="textBoxKlienciSearchFirma" VerticalAlignment="Top" Width="120" />
+								<TextBox FontSize="10" Height="20" HorizontalAlignment="Left" Margin="253,92,0,0" Name="textBoxKlienciSearchExtendFirma" VerticalAlignment="Top" Width="120" />
 								<Label Content="Nazwa:" FontSize="10" Height="28" HorizontalAlignment="Left" Margin="179,90,0,0" Name="labelKlienciSearchFirma" VerticalAlignment="Top" />
-								<TextBox FontSize="10" Height="20" HorizontalAlignment="Left" Margin="466,92,0,0" Name="textBoxKlienciSearchNip" VerticalAlignment="Top" Width="104" />
+								<TextBox FontSize="10" Height="20" HorizontalAlignment="Left" Margin="466,92,0,0" Name="textBoxKlienciSearchExtendNip" VerticalAlignment="Top" Width="104" />
 								<Label Content="NIP:" FontSize="10" Height="28" HorizontalAlignment="Left" Margin="386,90,0,0" Name="labelKlienciSearchNip" VerticalAlignment="Top" />
 								<Label Content="Firma" Height="28" HorizontalAlignment="Left" Margin="132,89,0,0" Name="labelKlienciSearchFirmaGroup" VerticalAlignment="Top" FontWeight="Bold" FontSize="11" />
 								<Label Content="Kontakt" FontSize="11" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="120,60,0,0" Name="labelKlienciSearchKontaktGroup" VerticalAlignment="Top" />
