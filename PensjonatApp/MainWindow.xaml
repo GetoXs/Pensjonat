@@ -1767,6 +1767,15 @@
             <Separator Canvas.Left="17" Canvas.Top="616" Height="5" Name="separator4" Width="200" />
             <Label Canvas.Left="98" Canvas.Top="180" Content="ID:" FontSize="11" Name="label226" Padding="2" />
             <Button Canvas.Left="152" Canvas.Top="210" Content="Wyloguj..." Height="20" Name="buttonWyloguj" Width="65" FontSize="11" Click="buttonWyloguj_Click" />
+            <Grid Height="128" Name="grid9" Width="197" Canvas.Left="16" Canvas.Top="252">
+                <Label Content="Obecne hasło:" Height="28" HorizontalAlignment="Left" Margin="0,6,0,0" Name="label202" VerticalAlignment="Top" />
+                <Label Content="Nowe hasło:" HorizontalAlignment="Left" Margin="0,32,0,68" Name="label203" />
+                <Label Content="Powtórz:" Height="28" HorizontalAlignment="Left" Margin="0,58,0,0" Name="label204" VerticalAlignment="Top" />
+                <PasswordBox Height="23" HorizontalAlignment="Left" Margin="90,9,0,0" Name="obecneHaslo" VerticalAlignment="Top" Width="96" />
+                <PasswordBox Height="23" HorizontalAlignment="Left" Margin="90,35,0,0" Name="noweHaslo" VerticalAlignment="Top" Width="96" />
+                <PasswordBox Height="23" HorizontalAlignment="Left" Margin="90,61,0,0" Name="powtorzHaslo" VerticalAlignment="Top" Width="96" />
+                <Button Content="Zmień" Height="23" HorizontalAlignment="Left" Margin="111,94,0,0" Name="button1" VerticalAlignment="Top" Width="75" Click="button1_Click" />
+            </Grid>
         </Canvas>
         <Grid Name="grid1" Width="211" Margin="0,0,4,8" HorizontalAlignment="Right" VerticalAlignment="Bottom">
             <Label Content="Aby uzyskać pomoć wciśnij F1" Height="28" Name="napisPomoc" Padding="2" Foreground="#FF767676" Margin="42,8,6,0" />
