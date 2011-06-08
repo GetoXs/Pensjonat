@@ -9,13 +9,13 @@ namespace PensjonatApp.Helpers
 {
 	class RachunkiHelper
 	{
-		public static int dodajRachunek(bool zaplacono)
+		public static int dodajRachunek(bool zaplacono, decimal? wartosc)
 		{
-			return TablesManager.Manager.RachunkiTableAdapter.Insert(zaplacono);
+			return TablesManager.Manager.RachunkiTableAdapter.Insert(zaplacono, wartosc);
 		}
-		public static int edytujRachunek(int Original_id_rachunku, bool zaplacono)
+		public static int edytujRachunek(int Original_id_rachunku, bool zaplacono, decimal? wartosc)
 		{
-			return TablesManager.Manager.RachunkiTableAdapter.UpdateById(zaplacono, Original_id_rachunku);
+			return TablesManager.Manager.RachunkiTableAdapter.UpdateById(zaplacono, wartosc, Original_id_rachunku);
 		}
 		public static int kasujRachunek(int id_rachunku)
 		{
