@@ -1783,7 +1783,7 @@
                     <PasswordBox Height="23" HorizontalAlignment="Left" Margin="81,11,0,0" Name="obecneHaslo" VerticalAlignment="Top" Width="96" />
                     <PasswordBox Height="23" HorizontalAlignment="Left" Margin="81,38,0,0" Name="noweHaslo" VerticalAlignment="Top" Width="96" />
                     <PasswordBox Height="23" HorizontalAlignment="Left" Margin="81,68,0,0" Name="powtorzHaslo" VerticalAlignment="Top" Width="96" />
-                    <Button Content="Zmień" Height="23" HorizontalAlignment="Left" Margin="102,101,0,0" Name="button1" VerticalAlignment="Top" Width="75" />
+                    <Button Content="Zmień" Height="23" HorizontalAlignment="Left" Margin="102,101,0,0" Name="button1" VerticalAlignment="Top" Width="75" Click="button1_Click" />
                 </Grid>
             </GroupBox>
               </Canvas>
