@@ -403,7 +403,8 @@ namespace PensjonatApp
                     showWindow(gridRezerwacjeAdd2, buttonRezerwacjeBackOkList);
                     labelRezerwacjeAdd2IlOsob.Content = textBoxRezerwacjeAddIlOsob.Text;
                     labelRezerwacjeAdd2Klient.Content = textBoxRezerwacjeAddKlient.Text;
-                    //textBoxRezerwacjeAdd2Zaliczka.Text = (int)labelRezerwacjeAdd2IlOsob.Content * 50;
+                    TimeSpan liczbaDni = datePickerRezerwacjeAddTerminDo.SelectedDate.Value.Date - datePickerRezeracjeAddTerminOd.SelectedDate.Value.Date;
+                    textBoxRezerwacjeAdd2Zaliczka.Text = RozliczenieHelper.liczZaliczke(RezerwacjePokojeDodajList, liczbaDni.Days, 0.1).ToString();
                     datePickerRezeracjeAddTerminOd.SelectedDateFormat = DatePickerFormat.Long;
                     datePickerRezerwacjeAddTerminDo.SelectedDateFormat = DatePickerFormat.Long;
                     labelRezerwacjeAdd2Termin.Content = datePickerRezeracjeAddTerminOd.SelectedDate.ToString().Remove(11)
@@ -806,7 +807,7 @@ namespace PensjonatApp
                             idPokoiList.Add(pozycja.Id_pokoju);
                         }
 
-                         RezerwacjeHelper.dodajNowyPobyt( idKlientowList,
+                         RezerwacjeHelper.dodajNowyPobyt(idKlientowList,
                             idPokoiList, (DateTime)datePickerPobytyNowyTerminOd.SelectedDate,
                             (DateTime)datePickerPobytyNowyTerminDo.SelectedDate);
                         zwinPobyty();
