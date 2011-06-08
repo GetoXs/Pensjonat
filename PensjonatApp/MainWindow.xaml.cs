@@ -953,6 +953,9 @@ namespace PensjonatApp
 
                 dataGridPobytyPosilki.ItemsSource = TablesManager.Manager.PosilkiTableAdapter.GetDataWithPosilkiSlownikById(((int)labelPobytyServicesId.Content));
                 dataGridPobytyUslugi.ItemsSource = TablesManager.Manager.UslugiTableAdapter.GetDataUslugiUslugi_slownikByID_pobytu(selectedRow.id_pobytu);
+
+                dataGridPobytyZarzadzajOsoby.ItemsSource = TablesManager.Manager.KlienciTableAdapter.GetDataKlienciNierozliczoneByIdRezerwacji(selectedRow.id_rezerwacji);
+            
             }
             else
                 System.Windows.MessageBox.Show("Najpierw wybierz pobyt.", "Dodawanie usługi.", MessageBoxButton.OK, MessageBoxImage.Warning);
