@@ -769,6 +769,15 @@ namespace PensjonatApp
 
             }
         }
+
+        private void deafultGridRefresh()
+        {
+            if(radioButtonPobytyIndywidualne.IsChecked == true)
+                dataGridPobytySzukaj.ItemsSource = TablesManager.Manager.PobytyTableAdapter.GetDataPobytyKlienciPokoje();
+            else
+                dataGridPobytySzukaj.ItemsSource = TablesManager.Manager.PobytyTableAdapter.GetDataPobytyUnikalneAktualne();        
+        }
+
         private void buttonPobytyPowrot_Click(object sender, RoutedEventArgs e)
         {
             zwinPobyty();
@@ -780,8 +789,10 @@ namespace PensjonatApp
             {
                 showWindow(gridPobytyNowy, buttonPobytyBackOkList);
             }
-            else
+            else{
                 showWindow(gridPobytyDeafult, buttonPobytyDeafultList);
+                deafultGridRefresh();
+            }
         }
         private void buttonPobytyOk_Click(object sender, RoutedEventArgs e)
         {
@@ -959,9 +970,8 @@ namespace PensjonatApp
             }
             else
                 System.Windows.MessageBox.Show("Najpierw wybierz pobyt.", "Dodawanie usługi.", MessageBoxButton.OK, MessageBoxImage.Warning);
-
-
         }
+        
         //-----ZARZADZANIE->POSIŁKI
         List<int> PobytyPosilkiIdList = new List<int>();
         private void buttonPobytyZarzadzajPosilki_Click(object sender, RoutedEventArgs e)
@@ -1917,6 +1927,7 @@ namespace PensjonatApp
                 dataGridStandPokoiDeafult.ItemsSource = TablesManager.Manager.Pokoje_slownikTableAdapter.GetData();
             }
         }
+
         private void buttonStandPokoiPowrot_Click(object sender, RoutedEventArgs e)
         {
             zwinStandPokoi();
