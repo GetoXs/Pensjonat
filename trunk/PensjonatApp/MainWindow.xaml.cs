@@ -410,7 +410,7 @@ namespace PensjonatApp
                     labelRezerwacjeAdd2IlOsob.Content = textBoxRezerwacjeAddIlOsob.Text;
                     labelRezerwacjeAdd2Klient.Content = textBoxRezerwacjeAddKlient.Text;
                     TimeSpan liczbaDni = datePickerRezerwacjeAddTerminDo.SelectedDate.Value.Date - datePickerRezeracjeAddTerminOd.SelectedDate.Value.Date;
-                    textBoxRezerwacjeAdd2Zaliczka.Text = RozliczenieHelper.liczZaliczke(RezerwacjePokojeDodajList, liczbaDni.Days, 0.1).ToString();
+                    textBoxRezerwacjeAdd2Zaliczka.Text = RozliczenieHelper.liczZaliczke(RezerwacjePokojeDodajList, liczbaDni.Days, 0.2).ToString();
                     datePickerRezeracjeAddTerminOd.SelectedDateFormat = DatePickerFormat.Long;
                     datePickerRezerwacjeAddTerminDo.SelectedDateFormat = DatePickerFormat.Long;
                     labelRezerwacjeAdd2Termin.Content = datePickerRezeracjeAddTerminOd.SelectedDate.ToString().Remove(11)
@@ -615,9 +615,17 @@ namespace PensjonatApp
             showWindow(gridRezerwacjeAdd, buttonRezerwacjeBackForwardList);
             rezerwacjePokojeIloscOsob = 0;
             textBoxRezerwacjeAddIlOsob.Text = "";
-          //  textBoxRezerwacjeAddKlient.Text == "";
+            textBoxRezerwacjeAddKlient.Text = "";
+            labelRezerwacjeAddId.Content = "";
             datePickerRezeracjeAddTerminOd.SelectedDate = null;
             datePickerRezerwacjeAddTerminDo.SelectedDate = null;
+            buttonRezerwacjeAddKlient.IsEnabled = true;
+            textBoxRezerwacjeAddIlOsob.IsEnabled = true;
+            datePickerRezeracjeAddTerminOd.IsEnabled = true;
+            datePickerRezerwacjeAddTerminDo.IsEnabled = true;
+            comboBoxRezerwacjeAddPokoje.ItemsSource = null;
+            RezerwacjePokojeDodajList.Clear();
+            dataGridRezerwacjeAddWybranePokoje.Items.Refresh();
         }
 
         
@@ -1337,6 +1345,7 @@ namespace PensjonatApp
         {
             zwinPobyty();
             showWindow(gridPobytyNowy, buttonPobytyBackOkList);
+            pobytyNowyClear();
         }
 
         private void buttonPobytyNowyRezerwacjeWybierz_Click(object sender, RoutedEventArgs e)
@@ -1449,6 +1458,8 @@ namespace PensjonatApp
             dataGridPobytyNowyLOsob.Items.Refresh();
             PobytyNowyStringPokoje.Clear();
             comboBoxPobytyNowyPokoj.Items.Refresh();
+            PobytyNowyPokojePozostaloList.Clear();
+            dataGridPobytyNowyPozostalo.Items.Refresh();
             buttonPobytyNowyKlient.IsEnabled = true;
 
         }
@@ -1726,7 +1737,16 @@ namespace PensjonatApp
         {
             zwinKlienci();
             showWindow(gridKlienciAdd, buttonKlienciBackOkList);
-     
+			textBoxKlienciAddMail.Text = "";
+			textBoxKlienciAddImie.Text = "";
+			textBoxKlienciAddNazwisko.Text = "";
+			textBoxKlienciAddMiejscowoscAuto.Text = "";
+			textBoxKlienciAddAdres.Text = "";
+			textBoxKlienciAddNIP.Text = "";
+            textBoxKlienciAddFirma.Text = "";
+			textBoxKlienciAddPESEL.Text = "";
+			textBoxKlienciAddTelefon.Text = "";
+            textBoxKlienciAddKodPocztowy.Text = "";
             buttonKlienciAddDodaj.IsEnabled = false;
         }
 
@@ -2037,13 +2057,16 @@ namespace PensjonatApp
         {
             zwinStandPokoi();
             showWindow(gridStandPokoiDodaj, buttonStandPokoiBackOkList);
-
-            comboBoxStandPokoiDodajWyposazenie.ItemsSource = StandPokoiLabelLst;
+            przypiszWyposazeniaDoComboBoxa();
             StandPokoiDodajList.Clear();
+            comboBoxStandPokoiDodajWyposazenie.ItemsSource = StandPokoiLabelLst;
             dataGridStandPokoiDodajWyposazenie.ItemsSource = StandPokoiDodajList;
-          
+            textBoxStandPokoiDodajCena.Text = "";
+            textBoxStandPokoiDodajIlOsob.Text = "";
+            textBoxStandPokoiDodajOpis.Text = "";
         }
-        private void comboBoxStandPokoiDodajWyposazenie_Loaded(object sender, RoutedEventArgs e)
+
+        private void przypiszWyposazeniaDoComboBoxa()
         {
             StandPokoiList.Clear();
             StandPokoiLabelLst.Clear();
@@ -2053,6 +2076,11 @@ namespace PensjonatApp
                 StandPokoiList.Add(row);
                 StandPokoiLabelLst.Add(row.opis);
             }
+        }
+
+        private void comboBoxStandPokoiDodajWyposazenie_Loaded(object sender, RoutedEventArgs e)
+        {
+           przypiszWyposazeniaDoComboBoxa();
         }
 
         private void comboBoxStandPokoiEdycjaWyposazenie_Loaded(object sender, RoutedEventArgs e)
@@ -2367,6 +2395,11 @@ namespace PensjonatApp
                     dataGridRabatyDeafult.ItemsSource = TablesManager.Manager.RabatyTableAdapter.GetData();
                     textBoxRabatyNazwa.Text = "";
                     textBoxRabatyWartosc.Text = "";
+                    checkBoxRabatyPobyty.IsChecked = true;
+                    checkBoxRabatyPosilki.IsChecked = false;
+                    checkBoxRabatyUslugi.IsChecked = false;
+                    checkBoxRabatyAktywny.IsChecked = true;
+                    checkBoxRabatyEdycjaProcentowy.IsChecked = false;
                 }
                 else
                     System.Windows.MessageBox.Show("Pole wartość może zawierać tylko cyfry.", "Dodawanie rabatu", MessageBoxButton.OK, MessageBoxImage.Error);               
@@ -2689,6 +2722,12 @@ namespace PensjonatApp
             zwinPracownicy();
             showWindow(gridPracownicyDodaj, buttonPracownicyBackOkList);
             przypiszStanowiskaDoComboBoxa(ref comboBoxPracownicyDodajStanowisko);
+            textBoxPracownicyDodajImie.Text = "";
+            textBoxPracownicyDodajNazwisko.Text = "";
+            textBoxPracownicyDodajLogin.Text = "";
+            textBoxPracownicyDodajPESEL.Text = "";
+            textBoxPracownicyDodajTelefon.Text = "";
+            
         }
 
         private void buttonPracownicyOk_Click(object sender, RoutedEventArgs e)
@@ -2701,9 +2740,7 @@ namespace PensjonatApp
                     PracownicyHelper.dodajPracownika(textBoxPracownicyDodajImie.Text, textBoxPracownicyDodajNazwisko.Text,
                         textBoxPracownicyDodajLogin.Text, textBoxPracownicyDodajLogin.Text, stanowiskaIdList[comboBoxPracownicyDodajStanowisko.SelectedIndex]);
                     dataGridPracownicyDeafult.ItemsSource = TablesManager.Manager.PracownicyTableAdapter.GetPracownicyStanowiska(); 
-                    textBoxPracownicyDodajImie.Text = "";
-                    textBoxPracownicyDodajNazwisko.Text = "";
-                    textBoxPracownicyDodajLogin.Text = "";
+
                     zwinPracownicy();
                     showWindow(gridPracownicyDeafult, buttonPracownicyDeafultList);
                
