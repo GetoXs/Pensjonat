@@ -116,8 +116,11 @@ namespace PensjonatApp.Helpers
 
             PobytyDS.PobytyDataTable pobyt = TablesManager.Manager.PobytyTableAdapter.GetDataPobytyKlienciPokojeStandardByIdPobytu(idPobytu);
             RezerwacjeDS.RezerwacjeDataTable rezerwacja = TablesManager.Manager.RezerwacjeTableAdapter.GetDataRezerwacjeByID(pobyt[0].id_rezerwacji);
-            if (pobyt[0].id_klienta == rezerwacja[0].id_klienta)
-                suma -= rezerwacja[0].zaliczka;
+			if (rezerwacja.Count == 1)	//odejmowanie zaliczki
+			{
+				if (pobyt[0].id_klienta == rezerwacja[0].id_klienta)
+					suma -= rezerwacja[0].zaliczka;
+			}
 
             return suma; 
 		}
