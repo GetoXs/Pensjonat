@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:Toolkit="clr-namespace:Microsoft.Windows.Controls;assembly=WPFToolkit.Extended"
         Title="Pensjonat" Height="700" Width="1000" Icon="/PensjonatApp;component/Images/fButon_bed.png" Topmost="False" MinWidth="1000" MinHeight="700" xmlns:my="clr-namespace:PensjonatApp" WindowStartupLocation="CenterScreen"
-		xmlns:local="clr-namespace:WPFAutoCompleteTextbox" xmlns:my1="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Layout.Toolkit" xmlns:my2="clr-namespace:System.Windows.Controls.Primitives;assembly=System.Windows.Controls.Layout.Toolkit">
+		xmlns:local="clr-namespace:WPFAutoCompleteTextbox">
 	<Window.Resources>
 	</Window.Resources>
     <Grid>
@@ -606,25 +606,54 @@
                         <Label Content="Klienci" FontSize="20" FontWeight="Normal" Height="40" HorizontalAlignment="Left" Margin="53,11,0,0" Name="label73" Padding="0" VerticalAlignment="Top" VerticalContentAlignment="Center" />
                         <Image Height="40" HorizontalAlignment="Left" Margin="165,12,0,0" Name="image9" Source="/PensjonatApp;component/Images/separator.png" Stretch="Fill" VerticalAlignment="Top" Width="2" />
                     </Grid>
-                    <Grid Height="237" Name="gridKlienciDeafult" Opacity="1" ShowGridLines="True" Visibility="Visible">
-                        <TextBox Name="textBoxKlienciSzukaj" Height="23" HorizontalAlignment="Left" Margin="14,17,0,0" VerticalAlignment="Top" Width="129" TabIndex="1" />
-                        <RadioButton Name="rbKlienciId" Content="ID" GroupName="klienciSzukaj" Height="16" HorizontalAlignment="Left" IsChecked="False" Margin="299,24,0,0" VerticalAlignment="Top" />
-                        <RadioButton Name="rbKlienciKlient" Content="Klient" GroupName="klienciSzukaj" Height="16" HorizontalAlignment="Left" IsChecked="True" IsThreeState="False" Margin="247,24,0,0" VerticalAlignment="Top" />
-                        <Button  Name="buttonKlienciSearch" Content="Szukaj" Height="23" HorizontalAlignment="Left" Margin="160,17,0,0" VerticalAlignment="Top" Width="75" Click="buttonKlienciSearch_Click" />
-                        <DataGrid Name="dataGridKlienci" DataContext="{Binding}" IsEnabled="True" Margin="10,67,13,30" MinColumnWidth="30" IsVisibleChanged="dataGridKlienci_IsVisibleChanged" AutoGenerateColumns="False" HorizontalGridLinesBrush="#FFD5D5D5" VerticalGridLinesBrush="#FFD5D5D5" IsReadOnly="True" SelectionChanged="dataGridKlienci_SelectionChanged" SelectedIndex="-1" SelectionMode="Single">
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Header="Id" Binding="{Binding Path=id_klienta}" />
-                                <DataGridTextColumn Header="Imię" Binding="{Binding Path=imie}" />
-                                <DataGridTextColumn Header="Nazwisko" Binding="{Binding Path=nazwisko}" />
-                                <DataGridTextColumn Header="PESEL" Binding="{Binding Path=pesel}" />
-                                <DataGridTextColumn Header="Email" Binding="{Binding Path=email}" />
-                                <DataGridTextColumn Header="Telefon" Binding="{Binding Path=nr_telefonu}" />
-								<DataGridTextColumn Header="Miejscowość" Binding="{Binding Path=miejscowosc}" />
-								<DataGridTextColumn Header="Firma" Binding="{Binding Path=nazwa}" />
-							</DataGrid.Columns>
-                        </DataGrid>
-                    </Grid>
-                    <Grid Height="416" Name="gridKlienciEdit" Opacity="1" ShowGridLines="True" Visibility="Visible">
+                    <Grid Height="574" Name="gridKlienciDeafult" Opacity="1" ShowGridLines="True" Visibility="Visible">
+						<StackPanel HorizontalAlignment="Left" Name="stackPanel17" Width="583" Margin="0,0,0,17" ClipToBounds="False">
+							<Grid Height="41" Name="gridKlienciSearch" Width="579">
+								<TextBox Name="textBoxKlienciSearch" Height="23" HorizontalAlignment="Left" Margin="12,12,0,0" VerticalAlignment="Top" Width="129" TabIndex="1" />
+								<Button Name="buttonKlienciSearch" Content="Szukaj" Height="23" HorizontalAlignment="Left" Margin="468,11,0,0" VerticalAlignment="Top" Width="75" Click="buttonKlienciSearch_Click" />
+								<RadioButton Name="radioButtonKlienciSearchKlient" Content="Klient" GroupName="klienciSzukaj" Height="16" HorizontalAlignment="Left" IsChecked="True" IsThreeState="False" Margin="147,15,0,0" VerticalAlignment="Top" />
+								<RadioButton Name="radioButtonKlienciSearchIdKlienta" Content="Id klienta" GroupName="klienciSzukaj" Height="16" HorizontalAlignment="Left" IsChecked="False" Margin="204,15,0,0" VerticalAlignment="Top" />
+								<ToggleButton Height="23" HorizontalAlignment="Left" Margin="549,11,0,0" Name="toggleButtonKlienciSearchExtend" VerticalAlignment="Top" Width="24" Content="+" Click="toggleButtonKlienciSearchExtend_Checked" />
+							</Grid>
+							<Grid Height="111" Name="gridKlienciSearchExtend" Width="583" Visibility="Collapsed">
+								<TextBox Height="20" Margin="51,7,0,0" Name="textBoxKlienciSearchExtendImie" VerticalAlignment="Top" HorizontalAlignment="Left" Width="120" FontSize="10" />
+								<Label Content="Imię:" Height="28" HorizontalAlignment="Left" Margin="5,5,0,0" Name="labelKlienciSearchExtendImie" VerticalAlignment="Top" FontSize="10" />
+								<TextBox Height="20" HorizontalAlignment="Left" Margin="253,7,0,0" Name="textBoxKlienciSearchExtendNazwisko" VerticalAlignment="Top" Width="120" FontSize="10" />
+								<Label Content="Nazwisko:" Height="28" HorizontalAlignment="Left" Margin="179,5,0,0" Name="labelKlienciSearchExtendNazwisko" VerticalAlignment="Top" FontSize="10" />
+								<TextBox FontSize="10" Height="20" HorizontalAlignment="Left" Margin="450,7,0,0" Name="textBoxKlienciSearchExtendPesel" VerticalAlignment="Top" Width="120" />
+								<Label Content="PESEL:" FontSize="10" Height="28" HorizontalAlignment="Left" Margin="386,5,0,0" Name="labelKlienciSearchExtendPesel" VerticalAlignment="Top" />
+								<TextBox FontSize="10" Height="20" HorizontalAlignment="Left" Margin="51,33,0,0" Name="textBoxKlienciSearchExtendAdres" VerticalAlignment="Top" Width="120" />
+								<Label Content="Adres:" FontSize="10" Height="28" HorizontalAlignment="Left" Margin="5,31,0,0" Name="labelKlienciSearchExtendAdres" VerticalAlignment="Top" />
+								<TextBox FontSize="10" Height="20" HorizontalAlignment="Left" Margin="253,33,0,0" Name="textBoxKlienciSearchExtendMiejscowosc" VerticalAlignment="Top" Width="120" />
+								<Label Content="Miejscowość:" FontSize="10" Height="28" HorizontalAlignment="Left" Margin="179,31,0,0" Name="labelKlienciSearchExtendMiejscowosc" VerticalAlignment="Top" />
+								<TextBox FontSize="10" Height="20" HorizontalAlignment="Left" Margin="466,33,0,0" Name="textBoxKlienciSearchKodPocztowy" VerticalAlignment="Top" Width="104" />
+								<Label Content="Kod Pocztowy:" FontSize="10" Height="28" HorizontalAlignment="Left" Margin="386,31,0,0" Name="labelKlienciSearchKodPocztowy" VerticalAlignment="Top" />
+								<TextBox FontSize="10" Height="20" HorizontalAlignment="Left" Margin="253,59,0,0" Name="textBoxKlienciSearchTelefon" VerticalAlignment="Top" Width="120" />
+								<Label Content="Telefon:" FontSize="10" Height="28" HorizontalAlignment="Left" Margin="179,57,0,0" Name="labelKlienciSearchTelefon" VerticalAlignment="Top" />
+								<TextBox FontSize="10" Height="20" HorizontalAlignment="Left" Margin="450,59,0,0" Name="textBoxKlienciSearchMail" VerticalAlignment="Top" Width="120" />
+								<Label Content="E-mail:" FontSize="10" Height="28" HorizontalAlignment="Left" Margin="386,57,0,0" Name="labelKlienciSearchMail" VerticalAlignment="Top" />
+								<TextBox FontSize="10" Height="20" HorizontalAlignment="Left" Margin="253,85,0,0" Name="textBoxKlienciSearchFirma" VerticalAlignment="Top" Width="120" />
+								<Label Content="Nazwa:" FontSize="10" Height="28" HorizontalAlignment="Left" Margin="179,83,0,0" Name="labelKlienciSearchFirma" VerticalAlignment="Top" />
+								<TextBox FontSize="10" Height="20" HorizontalAlignment="Left" Margin="450,85,0,0" Name="textBoxKlienciSearchNip" VerticalAlignment="Top" Width="120" />
+								<Label Content="NIP:" FontSize="10" Height="28" HorizontalAlignment="Left" Margin="386,83,0,0" Name="labelKlienciSearchNip" VerticalAlignment="Top" />
+								<Label Content="Firma" Height="28" HorizontalAlignment="Left" Margin="132,82,0,0" Name="labelKlienciSearchFirmaGroup" VerticalAlignment="Top" FontWeight="Bold" FontSize="11" />
+								<Label Content="Kontakt" FontSize="11" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="120,56,0,0" Name="labelKlienciSearchKontaktGroup" VerticalAlignment="Top" />
+							</Grid>
+							<DataGrid Name="dataGridKlienci" DataContext="{Binding}" IsEnabled="True" MinColumnWidth="30" IsVisibleChanged="dataGridKlienci_IsVisibleChanged" AutoGenerateColumns="False" HorizontalGridLinesBrush="#FFD5D5D5" VerticalGridLinesBrush="#FFD5D5D5" IsReadOnly="True" SelectionChanged="dataGridKlienci_SelectionChanged" SelectedIndex="-1" SelectionMode="Single" Width="581">
+								<DataGrid.Columns>
+									<DataGridTextColumn Header="Id" Binding="{Binding Path=id_klienta}" />
+									<DataGridTextColumn Header="Imię" Binding="{Binding Path=imie}" />
+									<DataGridTextColumn Header="Nazwisko" Binding="{Binding Path=nazwisko}" />
+									<DataGridTextColumn Header="PESEL" Binding="{Binding Path=pesel}" />
+									<DataGridTextColumn Header="Email" Binding="{Binding Path=email}" />
+									<DataGridTextColumn Header="Telefon" Binding="{Binding Path=nr_telefonu}" />
+									<DataGridTextColumn Header="Miejscowość" Binding="{Binding Path=miejscowosc}" />
+									<DataGridTextColumn Header="Firma" Binding="{Binding Path=nazwa}" />
+								</DataGrid.Columns>
+							</DataGrid>
+						</StackPanel>
+					</Grid>
+                    <Grid Height="21" Name="gridKlienciEdit" Opacity="1" ShowGridLines="True" Visibility="Visible">
                         <Label Content="Edycja klienta:" FontSize="15" FontWeight="Normal" HorizontalAlignment="Left" Margin="10,10,0,0" Name="label75" Padding="2" VerticalAlignment="Top" />
 						<Label Content="Label" Height="28" HorizontalAlignment="Left" Margin="105,8,0,0" Name="labelKlienciEdytujId" VerticalAlignment="Top" IsEnabled="False" Visibility="Hidden" />
 						<StackPanel Height="340" HorizontalAlignment="Left" Margin="8,52,0,0" Name="stackPanel16" VerticalAlignment="Top" Width="342">
