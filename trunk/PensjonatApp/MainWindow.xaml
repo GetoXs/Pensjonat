@@ -791,7 +791,7 @@
                                     <Label Content="Powrót" FontWeight="Normal" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="0" Name="label145" Padding="0" VerticalAlignment="Center" VerticalContentAlignment="Center" Width="55" FontSize="13" />
                                 </StackPanel>
                             </Button>
-                            <Button BorderBrush="#FFBAD0DC" FlowDirection="LeftToRight" Foreground="{x:Null}" Height="35" Name="buttonPokojeSzczegoly" Padding="0" TabIndex="5" Width="95" Margin="2">
+                            <Button BorderBrush="#FFBAD0DC" FlowDirection="LeftToRight" Foreground="{x:Null}" Height="35" Name="buttonPokojeSzczegoly" Padding="0" TabIndex="5" Width="95" Margin="2" Click="buttonPokojeSzczegoly_Click">
                                 <StackPanel Orientation="Horizontal">
                                     <Image Height="24" HorizontalAlignment="Left" Margin="2" Name="image86" Source="/PensjonatApp;component/Images/edit_find.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="24" />
                                     <Label Content="Szczegóły" FontSize="13" FontWeight="Normal" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="0" Name="label231" Padding="0" VerticalAlignment="Center" VerticalContentAlignment="Center" Width="60" />
@@ -799,11 +799,25 @@
                             </Button>
                         </StackPanel>
                     </Grid>
-                    <Grid Height="202" Name="gridPokojeSzczegoly">
+                    <Grid Height="354" Name="gridPokojeSzczegoly">
                         <Label Content="Szczegóły pokoju:" FontSize="15" FontWeight="Normal" HorizontalAlignment="Left" Margin="10,12,0,0" Name="label27" Padding="2" VerticalAlignment="Top" />
-                        <Label Content="Nr pokoju:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,40,0,0" Name="label28" Padding="2" VerticalAlignment="Top" />
+                        <Label Content="Nr pokoju:" FontWeight="Normal" HorizontalAlignment="Left" Margin="35,42,0,0" Name="label28" Padding="2" VerticalAlignment="Top" FontSize="14" />
                         <Label Content="Label" Height="28" HorizontalAlignment="Left" IsEnabled="False" Margin="139,9,0,0" Name="label29" VerticalAlignment="Top" Visibility="Hidden" />
-                        <Label Content="Standard:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,69,0,0" Name="label74" Padding="2" VerticalAlignment="Top" />
+                        <Label Content="Standard:" FontWeight="Bold" HorizontalAlignment="Left" Margin="51,70,0,0" Name="label74" Padding="2" VerticalAlignment="Top" />
+                        <Label Content="Cena:" FontWeight="Bold" HorizontalAlignment="Left" Margin="51,93,0,0" Name="label254" Padding="2" VerticalAlignment="Top" />
+                        <Label Content="Liczba osób:" FontWeight="Bold" HorizontalAlignment="Left" Margin="51,120,0,0" Name="label255" Padding="2" VerticalAlignment="Top" />
+                        <Label Content="Wyposażenie:" FontWeight="Bold" HorizontalAlignment="Left" Margin="53,151,0,0" Name="label256" Padding="2" VerticalAlignment="Top" />
+                        <DataGrid AutoGenerateColumns="False" HorizontalGridLinesBrush="#FFD5D5D5" IsEnabled="True" IsReadOnly="True" Margin="53,172,16,20" Name="dataGridPokojeSzczegolyWyposazenie" SelectionMode="Single" VerticalGridLinesBrush="#FFD5D5D5" Width="514">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding Path=id_wyposazenia}" Header="Id" />
+                                <DataGridTextColumn Binding="{Binding Path=opis}" Header="Opis" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <Label Content="Cena:" FontWeight="Normal" HorizontalAlignment="Left" Margin="136,93,0,0" Name="labelPokojeSzczegolyCena" Padding="2" VerticalAlignment="Top" />
+                        <Label Content="Cena:" FontWeight="Normal" HorizontalAlignment="Left" Margin="136,120,0,0" Name="labelPokojeSzczegolyLosob" Padding="2" VerticalAlignment="Top" />
+                        <Label Content="Cena:" FontWeight="Normal" HorizontalAlignment="Left" Margin="134,42,0,0" Name="labelPokojeSzczegolyNr" Padding="2" VerticalAlignment="Top" FontSize="14" />
+                        <Label Content="Cena:" FontWeight="Normal" HorizontalAlignment="Left" Margin="136,70,0,0" Name="labelPokojeSzczegolyStandard" Padding="2" VerticalAlignment="Top" />
+                        <Separator Height="5" HorizontalAlignment="Left" Margin="36,61,0,0" Name="separator16" VerticalAlignment="Top" Width="166" />
                     </Grid>
                     <Grid Name="gridPokojeEdycja" Height="27">
                         <Label Content="Edycja pokoju:" FontSize="15" FontWeight="Normal" HorizontalAlignment="Left" Margin="10,12,0,0" Name="label142" Padding="2" VerticalAlignment="Top" />
