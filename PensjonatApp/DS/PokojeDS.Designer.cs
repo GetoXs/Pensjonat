@@ -2023,7 +2023,7 @@ WHERE        Pokoje.id_slownikowe_pokoju = Pokoje_slownik.id_slownikowe_pokoju A
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.Odbc.OdbcCommand[11];
+            this._commandCollection = new global::System.Data.Odbc.OdbcCommand[10];
             this._commandCollection[0] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT id_slownikowe_pokoju, cena, dodatkowy_opis, ilosc_osob FROM Pokoje_slownik" +
@@ -2042,52 +2042,46 @@ WHERE        Pokoje.id_slownikowe_pokoju = Pokoje_slownik.id_slownikowe_pokoju A
             this._commandCollection[2].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_slownikowe_pokoju", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_slownikowe_pokoju", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[3] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = "SELECT ws.id_wyposazenia, ws.opis FROM Wyposazenia_slownik ws, Wyposazenia w\r\nWHE" +
-                "RE ws.id_wyposazenia = w.id_wyposazenia AND w.id_slownikowe_pokoju=?";
+            this._commandCollection[3].CommandText = "SELECT MAX(id_slownikowe_pokoju) FROM Pokoje_slownik";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[3].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_slownikowe_pokoju", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_slownikowe_pokoju", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[4] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[4].Connection = this.Connection;
-            this._commandCollection[4].CommandText = "SELECT MAX(id_slownikowe_pokoju) FROM Pokoje_slownik";
-            this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[5] = new global::System.Data.Odbc.OdbcCommand();
-            this._commandCollection[5].Connection = this.Connection;
-            this._commandCollection[5].CommandText = "SELECT ps.cena, ps.ilosc_osob, ps.dodatkowy_opis, ps.id_slownikowe_pokoju\r\nFROM P" +
+            this._commandCollection[4].CommandText = "SELECT ps.cena, ps.ilosc_osob, ps.dodatkowy_opis, ps.id_slownikowe_pokoju\r\nFROM P" +
                 "okoje p, Pokoje_slownik ps\r\nWHERE p.id_slownikowe_pokoju=ps.id_slownikowe_pokoju" +
                 " AND id_pokoju =?";
+            this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[4].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_pokoju", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_pokoju", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[5] = new global::System.Data.Odbc.OdbcCommand();
+            this._commandCollection[5].Connection = this.Connection;
+            this._commandCollection[5].CommandText = "SELECT dodatkowy_opis\r\nFROM Pokoje_slownik\r\nWHERE (id_slownikowe_pokoju = ?)";
             this._commandCollection[5].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[5].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_pokoju", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_pokoju", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[5].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_slownikowe_pokoju", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_slownikowe_pokoju", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[6] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[6].Connection = this.Connection;
-            this._commandCollection[6].CommandText = "SELECT dodatkowy_opis\r\nFROM Pokoje_slownik\r\nWHERE (id_slownikowe_pokoju = ?)";
+            this._commandCollection[6].CommandText = "SELECT ilosc_osob\r\nFROM Pokoje_slownik\r\nWHERE (id_slownikowe_pokoju = ?)";
             this._commandCollection[6].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[6].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_slownikowe_pokoju", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_slownikowe_pokoju", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[7] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[7].Connection = this.Connection;
-            this._commandCollection[7].CommandText = "SELECT ilosc_osob\r\nFROM Pokoje_slownik\r\nWHERE (id_slownikowe_pokoju = ?)";
+            this._commandCollection[7].CommandText = "SELECT        cena\r\nFROM            Pokoje_slownik\r\nWHERE        (id_slownikowe_p" +
+                "okoju = ?)";
             this._commandCollection[7].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[7].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_slownikowe_pokoju", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_slownikowe_pokoju", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[8] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[8].Connection = this.Connection;
-            this._commandCollection[8].CommandText = "SELECT        cena\r\nFROM            Pokoje_slownik\r\nWHERE        (id_slownikowe_p" +
-                "okoju = ?)";
+            this._commandCollection[8].CommandText = "SELECT        ilosc_osob\r\nFROM            Pokoje_slownik\r\nWHERE        (id_slowni" +
+                "kowe_pokoju = ?)";
             this._commandCollection[8].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[8].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_slownikowe_pokoju", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_slownikowe_pokoju", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[9] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[9].Connection = this.Connection;
-            this._commandCollection[9].CommandText = "SELECT        ilosc_osob\r\nFROM            Pokoje_slownik\r\nWHERE        (id_slowni" +
-                "kowe_pokoju = ?)";
-            this._commandCollection[9].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[9].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_slownikowe_pokoju", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_slownikowe_pokoju", global::System.Data.DataRowVersion.Current, false, null));
-            this._commandCollection[10] = new global::System.Data.Odbc.OdbcCommand();
-            this._commandCollection[10].Connection = this.Connection;
-            this._commandCollection[10].CommandText = "UPDATE       Pokoje_slownik\r\nSET                cena = ?, dodatkowy_opis = ?, ilo" +
+            this._commandCollection[9].CommandText = "UPDATE       Pokoje_slownik\r\nSET                cena = ?, dodatkowy_opis = ?, ilo" +
                 "sc_osob = ?\r\nWHERE        (id_slownikowe_pokoju = ?)";
-            this._commandCollection[10].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[10].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("cena", global::System.Data.Odbc.OdbcType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(19)), ((byte)(4)), "cena", global::System.Data.DataRowVersion.Current, false, null));
-            this._commandCollection[10].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("dodatkowy_opis", global::System.Data.Odbc.OdbcType.NVarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "dodatkowy_opis", global::System.Data.DataRowVersion.Current, false, null));
-            this._commandCollection[10].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("ilosc_osob", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ilosc_osob", global::System.Data.DataRowVersion.Current, false, null));
-            this._commandCollection[10].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_id_slownikowe_pokoju", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_slownikowe_pokoju", global::System.Data.DataRowVersion.Original, false, null));
+            this._commandCollection[9].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[9].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("cena", global::System.Data.Odbc.OdbcType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(19)), ((byte)(4)), "cena", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[9].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("dodatkowy_opis", global::System.Data.Odbc.OdbcType.NVarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "dodatkowy_opis", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[9].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("ilosc_osob", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ilosc_osob", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[9].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_id_slownikowe_pokoju", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_slownikowe_pokoju", global::System.Data.DataRowVersion.Original, false, null));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2130,25 +2124,8 @@ WHERE        Pokoje.id_slownikowe_pokoju = Pokoje_slownik.id_slownikowe_pokoju A
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual PokojeDS.Pokoje_slownikDataTable GetDataListaWyposazenByID(global::System.Nullable<int> id_slownikowe_pokoju) {
-            this.Adapter.SelectCommand = this.CommandCollection[3];
-            if ((id_slownikowe_pokoju.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[0].Value = ((int)(id_slownikowe_pokoju.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
-            }
-            PokojeDS.Pokoje_slownikDataTable dataTable = new PokojeDS.Pokoje_slownikDataTable();
-            this.Adapter.Fill(dataTable);
-            return dataTable;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
         public virtual PokojeDS.Pokoje_slownikDataTable GetDataStandardByIDPokoju(int id_pokoju) {
-            this.Adapter.SelectCommand = this.CommandCollection[5];
+            this.Adapter.SelectCommand = this.CommandCollection[4];
             this.Adapter.SelectCommand.Parameters[0].Value = ((int)(id_pokoju));
             PokojeDS.Pokoje_slownikDataTable dataTable = new PokojeDS.Pokoje_slownikDataTable();
             this.Adapter.Fill(dataTable);
@@ -2361,7 +2338,7 @@ WHERE        Pokoje.id_slownikowe_pokoju = Pokoje_slownik.id_slownikowe_pokoju A
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         public virtual global::System.Nullable<int> GetDataMaxID() {
-            global::System.Data.Odbc.OdbcCommand command = this.CommandCollection[4];
+            global::System.Data.Odbc.OdbcCommand command = this.CommandCollection[3];
             global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -2389,7 +2366,7 @@ WHERE        Pokoje.id_slownikowe_pokoju = Pokoje_slownik.id_slownikowe_pokoju A
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         public virtual string GetDodatkowyOpisById(int id_slownikowe_pokoju) {
-            global::System.Data.Odbc.OdbcCommand command = this.CommandCollection[6];
+            global::System.Data.Odbc.OdbcCommand command = this.CommandCollection[5];
             command.Parameters[0].Value = ((int)(id_slownikowe_pokoju));
             global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -2418,7 +2395,7 @@ WHERE        Pokoje.id_slownikowe_pokoju = Pokoje_slownik.id_slownikowe_pokoju A
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         public virtual global::System.Nullable<int> GetIloscOsobById(int id_slownikowe_pokoju) {
-            global::System.Data.Odbc.OdbcCommand command = this.CommandCollection[7];
+            global::System.Data.Odbc.OdbcCommand command = this.CommandCollection[6];
             command.Parameters[0].Value = ((int)(id_slownikowe_pokoju));
             global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -2447,7 +2424,7 @@ WHERE        Pokoje.id_slownikowe_pokoju = Pokoje_slownik.id_slownikowe_pokoju A
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         public virtual object ScalarQuery(int id_slownikowe_pokoju) {
-            global::System.Data.Odbc.OdbcCommand command = this.CommandCollection[8];
+            global::System.Data.Odbc.OdbcCommand command = this.CommandCollection[7];
             command.Parameters[0].Value = ((int)(id_slownikowe_pokoju));
             global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -2476,7 +2453,7 @@ WHERE        Pokoje.id_slownikowe_pokoju = Pokoje_slownik.id_slownikowe_pokoju A
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         public virtual global::System.Nullable<int> ScalarQueryIloscOsobById(int id_slownikowe_pokoju) {
-            global::System.Data.Odbc.OdbcCommand command = this.CommandCollection[9];
+            global::System.Data.Odbc.OdbcCommand command = this.CommandCollection[8];
             command.Parameters[0].Value = ((int)(id_slownikowe_pokoju));
             global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -2506,7 +2483,7 @@ WHERE        Pokoje.id_slownikowe_pokoju = Pokoje_slownik.id_slownikowe_pokoju A
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
         public virtual int UpdateQuery(global::System.Nullable<decimal> cena, string dodatkowy_opis, global::System.Nullable<int> ilosc_osob, int Original_id_slownikowe_pokoju) {
-            global::System.Data.Odbc.OdbcCommand command = this.CommandCollection[10];
+            global::System.Data.Odbc.OdbcCommand command = this.CommandCollection[9];
             if ((cena.HasValue == true)) {
                 command.Parameters[0].Value = ((decimal)(cena.Value));
             }
