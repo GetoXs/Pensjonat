@@ -1568,27 +1568,27 @@ namespace PensjonatApp
         }
         private void klienciSearch()
         {
-            if (textBoxKlienciSzukaj.Text == "")
+            if (textBoxKlienciSearch.Text == "")
                 dataGridKlienci.ItemsSource = TablesManager.Manager.KlienciTableAdapter.GetKlienciMiejscowosci();
             else
             {
-                if ((bool)rbKlienciId.IsChecked)
+                if ((bool)radioButtonKlienciSearchIdKlienta.IsChecked)
                 {
                     int id;
-                    if (int.TryParse(textBoxKlienciSzukaj.Text, out id))
+					if (int.TryParse(textBoxKlienciSearch.Text, out id))
                         dataGridKlienci.ItemsSource = TablesManager.Manager.KlienciTableAdapter.GetDataKlienciMiejsconowsciByIdKlienta(id);
                     else
                         System.Windows.MessageBox.Show("Niepoprawne ID klienta.\nNumer identyfikacyjny klienta może zawierać tylko cyfry.", "Wyszukiwanie klienta", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
-                else if ((bool)rbKlienciKlient.IsChecked)
+				else if ((bool)radioButtonKlienciSearchKlient.IsChecked)
                 {
-                    if (textBoxKlienciSzukaj.Text.Contains(' '))
+					if (textBoxKlienciSearch.Text.Contains(' '))
                     {
-                        string[] szukaj = textBoxKlienciSzukaj.Text.Split(' ');
+                        string[] szukaj = textBoxKlienciSearch.Text.Split(' ');
                         dataGridKlienci.ItemsSource = TablesManager.Manager.KlienciTableAdapter.GetDataByKlienciMiejscowosciByImieNazwiskoKlienta(szukaj[0],szukaj[1]);
                     }
                     else
-                        dataGridKlienci.ItemsSource = TablesManager.Manager.KlienciTableAdapter.GetDataByKlienciMiejscowosciByNazwiskoKlienta(textBoxKlienciSzukaj.Text);                 
+                        dataGridKlienci.ItemsSource = TablesManager.Manager.KlienciTableAdapter.GetDataByKlienciMiejscowosciByNazwiskoKlienta(textBoxKlienciSearch.Text);                 
                 }
             }
         }
@@ -1596,6 +1596,29 @@ namespace PensjonatApp
         {
             klienciSearch();
         }
+
+		private void toggleButtonKlienciSearchExtend_Checked(object sender, RoutedEventArgs e)
+		{
+			if (toggleButtonKlienciSearchExtend.IsChecked == true)
+			{
+				//wyłączanie pol do wyszukiwania prostego
+				textBoxKlienciSearch.IsEnabled = false;
+				radioButtonKlienciSearchIdKlienta.IsEnabled = false;
+				radioButtonKlienciSearchKlient.IsEnabled = false;
+
+				gridKlienciSearchExtend.Visibility = System.Windows.Visibility.Visible;
+			}
+			else
+			{
+				//włączanie pol do wyszukiwania prostego
+				textBoxKlienciSearch.IsEnabled = true;
+				radioButtonKlienciSearchIdKlienta.IsEnabled = true;
+				radioButtonKlienciSearchKlient.IsEnabled = true;
+
+				gridKlienciSearchExtend.Visibility = System.Windows.Visibility.Collapsed;
+			}
+		}
+
 
         //----------------------------------------------KLIENCI->DODAJ----------------------------------------------
         private void buttonKlienciAdd_Click(object sender, RoutedEventArgs e)
@@ -2840,16 +2863,6 @@ namespace PensjonatApp
         }
 
  
-
-
-
-
-
-
-
-
-
-
 
 
 
