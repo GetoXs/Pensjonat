@@ -108,5 +108,18 @@ namespace PensjonatApp.Helpers
 				((cenaPosilku - rabatPosilku < 0) ? 0 : (cenaPosilku - rabatPosilku)) + 
 				((cenaUslug - rabatUslug < 0) ? 0 : (cenaUslug - rabatUslug));
 		}
+
+        public static int liczZaliczke(List<PokojeStandardy> pokoje,int iloscDni, double wspolczynnik)
+        {
+            double suma = 0;
+            foreach (PokojeStandardy p in pokoje)
+                suma += (double)p.Cena * iloscDni * wspolczynnik;
+
+            int wynik = ((int)Math.Round(suma) )/ 50;
+            if (((int)Math.Round(suma)) % 50 >= 25)
+                wynik += 50;
+
+            return wynik;
+        }
 	}
 }
