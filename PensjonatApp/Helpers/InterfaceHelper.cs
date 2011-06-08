@@ -55,5 +55,26 @@ namespace PensjonatApp.Helpers
             this.cena = cena;
         }
     }
+    class Pokoje
+    {
+        string nr_pokoju;
+        int l_osob;
+        int id_pokoju;
+        int pozostalo;
+
+
+        public string Nr_pokoju { get { return nr_pokoju; } set { nr_pokoju = value; } }
+        public int Losob { get { return l_osob; } set { l_osob = value; } }
+        public int Id_pokoju { get { return id_pokoju; } set { id_pokoju = value; } }
+        public int Pozostalo { get { return pozostalo; } set { pozostalo = value; } }
+        public Pokoje(int id_pokoju, string nr_pokoju, int l_osob)
+        {
+            this.nr_pokoju = nr_pokoju;
+            this.l_osob = l_osob;
+            this.id_pokoju = id_pokoju;
+            this.pozostalo = l_osob-1;
+        }
+    }
+
 
 }
