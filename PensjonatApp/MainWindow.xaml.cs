@@ -2722,11 +2722,11 @@ namespace PensjonatApp
             zwinPracownicy();
             showWindow(gridPracownicyDodaj, buttonPracownicyBackOkList);
             przypiszStanowiskaDoComboBoxa(ref comboBoxPracownicyDodajStanowisko);
-            textBoxPracownicyDodajImie.Text = "";
-            textBoxPracownicyDodajNazwisko.Text = "";
-            textBoxPracownicyDodajLogin.Text = "";
-            textBoxPracownicyDodajPESEL.Text = "";
-            textBoxPracownicyDodajTelefon.Text = "";
+            textBoxPracownicyDodajImie.Clear();
+            textBoxPracownicyDodajNazwisko.Clear();
+            textBoxPracownicyDodajLogin.Clear();
+            textBoxPracownicyDodajPESEL.Clear();
+            textBoxPracownicyDodajTelefon.Clear();
             
         }
 
@@ -2924,9 +2924,9 @@ namespace PensjonatApp
             {
                 PracownicyHelper.dodajStanowisko(textBoxStanowiskaNazwa.Text, textBoxStanowiskaOpis.Text);
                 dataGridStanowiskaDeafult.ItemsSource = TablesManager.Manager.Pracownicy_slownikTableAdapter.GetData();
-               
-                textBoxStanowiskaNazwa.Text = "";
-                textBoxStanowiskaOpis.Text = ""; 
+
+                textBoxStanowiskaNazwa.Clear();
+                textBoxStanowiskaOpis.Clear(); 
             }
             else
             {
@@ -3048,6 +3048,19 @@ namespace PensjonatApp
             }
             else
                 System.Windows.MessageBox.Show("Obecne hasło jest niepoprawne.", "Zmiana hasła", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+
+        private void buttonZmianaHasla_Checked(object sender, RoutedEventArgs e)
+        {
+            if (buttonZmianaHasla.IsChecked == true)
+            {
+                obecneHaslo.Clear();
+                noweHaslo.Clear();
+                powtorzHaslo.Clear();
+                groupBoxZmianaHasla.Visibility = Visibility.Visible;
+            }
+            else
+                groupBoxZmianaHasla.Visibility = Visibility.Hidden;
         }
 
     }
