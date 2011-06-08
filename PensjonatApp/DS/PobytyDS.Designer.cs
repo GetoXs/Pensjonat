@@ -1075,9 +1075,9 @@ namespace PensjonatApp.DS.PobytyDSTableAdapters {
             this._commandCollection[4].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_rezerwacji", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_rezerwacji", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[5] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[5].Connection = this.Connection;
-            this._commandCollection[5].CommandText = "SELECT Pobyty.id_pobytu\r\nFROM     Pobyty, Rezerwacje\r\nWHERE  Pobyty.id_rezerwacji" +
-                " = Rezerwacje.id_rezerwacji AND (Pobyty.id_rachunku IS NULL) AND (Rezerwacje.id_" +
-                "rezerwacji = ?)";
+            this._commandCollection[5].CommandText = "SELECT id_pobytu, id_pokoju, id_rezerwacji, termin_start, termin_koniec, id_rachu" +
+                "nku, id_klienta\r\nFROM     Pobyty\r\nWHERE  (id_rachunku IS NULL) AND (id_rezerwacj" +
+                "i = ?)";
             this._commandCollection[5].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[5].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_rezerwacji", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_rezerwacji", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[6] = new global::System.Data.Odbc.OdbcCommand();
@@ -1327,9 +1327,14 @@ WHERE        r.id_rezerwacji = p.id_rezerwacji AND r.id_klienta = p.id_klienta A
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual PobytyDS.PobytyDataTable GetDataPobytyByIdRezerwacjiNierozliczone(int id_rezerwacji) {
+        public virtual PobytyDS.PobytyDataTable GetDataPobytyByIdRezerwacjiNierozliczone(global::System.Nullable<int> id_rezerwacji) {
             this.Adapter.SelectCommand = this.CommandCollection[5];
-            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(id_rezerwacji));
+            if ((id_rezerwacji.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((int)(id_rezerwacji.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
             PobytyDS.PobytyDataTable dataTable = new PobytyDS.PobytyDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
