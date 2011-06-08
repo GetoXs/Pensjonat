@@ -1417,7 +1417,7 @@ WHERE        Pokoje.id_slownikowe_pokoju = Pokoje_slownik.id_slownikowe_pokoju A
                 "WHERE        (id_pokoju = ?)";
             this._commandCollection[9].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[9].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_slownikowe_pokoju", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_slownikowe_pokoju", global::System.Data.DataRowVersion.Current, false, null));
-            this._commandCollection[9].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("nr_pokoju", global::System.Data.Odbc.OdbcType.NVarChar, 1024, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "nr_pokoju", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[9].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("nr_pokoju", global::System.Data.Odbc.OdbcType.NVarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "nr_pokoju", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[9].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_id_pokoju", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_pokoju", global::System.Data.DataRowVersion.Original, false, null));
             this._commandCollection[10] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[10].Connection = this.Connection;
