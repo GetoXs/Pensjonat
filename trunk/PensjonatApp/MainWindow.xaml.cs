@@ -2985,9 +2985,33 @@ namespace PensjonatApp
             }
         }
 
- 
 
+        //-----------------------------------ZMIANA HASŁA---------------------------------------------
 
+        private void button1_Click(object sender, RoutedEventArgs e)
+        {
+            if (LogowanieHelper.sprawdzHaslo(this.id, obecneHaslo.Password))
+            {
+                if (noweHaslo.Password != "")
+                {
+                    if (noweHaslo.Password == powtorzHaslo.Password)
+                    {
+                        LogowanieHelper.zmienHaslo(this.id, noweHaslo.Password);
+                        System.Windows.MessageBox.Show("Hasło zostało zmienione.", "Zmiana hasła", MessageBoxButton.OK, MessageBoxImage.Information);
+                        obecneHaslo.Clear();
+                        noweHaslo.Clear();
+                        powtorzHaslo.Clear();
+                    }
+                    else
+                        System.Windows.MessageBox.Show("Powtórzone hasło jest niepoprawne.", "Zmiana hasła", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                else
+                    System.Windows.MessageBox.Show("Nowe hasło jest niepoprawne.", "Zmiana hasła", MessageBoxButton.OK, MessageBoxImage.Error);
+
+            }
+            else
+                System.Windows.MessageBox.Show("Obecne hasło jest niepoprawne.", "Zmiana hasła", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
 
     }
 
