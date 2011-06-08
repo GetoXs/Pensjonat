@@ -390,7 +390,7 @@
                             </Grid>
                         </GroupBox>
                     </Grid>
-                    <Grid Height="49" Name="gridPobytyServices" Opacity="1" ShowGridLines="True" Visibility="Visible">
+                    <Grid Height="458" Name="gridPobytyServices" Opacity="1" ShowGridLines="True" Visibility="Visible">
                         <Label Content="Zarządzanie pobytem:" FontSize="15" FontWeight="Normal" HorizontalAlignment="Left" Margin="10,10,0,0" Name="label42" Padding="2" VerticalAlignment="Top" />
                         <Label Name="labelPobytyServicesId" Content="21452" FontWeight="Normal" HorizontalAlignment="Left" Margin="202,11,0,0" Padding="2" VerticalAlignment="Top" FontSize="14" />
                         <Label Content="ID:" FontSize="14" FontWeight="Normal" HorizontalAlignment="Left" Margin="175,11,0,0" Name="label238" Padding="2" VerticalAlignment="Top" />
@@ -608,10 +608,10 @@
                     </Grid>
                     <Grid Height="574" Name="gridKlienciDeafult" Opacity="1" ShowGridLines="True" Visibility="Visible">
 						<StackPanel Name="stackPanel17" Margin="0,0,0,6" ClipToBounds="False">
-							<Grid Height="41" Name="gridKlienciSearch" Width="579">
+							<Grid Height="41" Name="gridKlienciSearch" Width="579" VerticalAlignment="Top" HorizontalAlignment="Left">
 								<TextBox Name="textBoxKlienciSearch" Height="23" HorizontalAlignment="Left" Margin="12,12,0,0" VerticalAlignment="Top" Width="129" TabIndex="1" />
 								<Button Name="buttonKlienciSearch" Content="Szukaj" Height="23" HorizontalAlignment="Left" Margin="468,11,0,0" VerticalAlignment="Top" Width="75" Click="buttonKlienciSearch_Click" />
-								<RadioButton Name="radioButtonKlienciSearchKlient" Content="Klient" GroupName="klienciSzukaj" Height="16" HorizontalAlignment="Left" IsChecked="True" IsThreeState="False" Margin="147,15,0,0" VerticalAlignment="Top" />
+								<RadioButton Name="radioButtonKlienciSearchKlient" Content="Klient" GroupName="klienciSzukaj" Height="16" IsChecked="True" IsThreeState="False" Margin="147,15,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="46" />
 								<RadioButton Name="radioButtonKlienciSearchIdKlienta" Content="Id klienta" GroupName="klienciSzukaj" Height="16" HorizontalAlignment="Left" IsChecked="False" Margin="204,15,0,0" VerticalAlignment="Top" />
 								<ToggleButton Height="23" HorizontalAlignment="Left" Margin="549,11,0,0" Name="toggleButtonKlienciSearchExtend" VerticalAlignment="Top" Width="24" Content="+" Click="toggleButtonKlienciSearchExtend_Checked" />
 							</Grid>

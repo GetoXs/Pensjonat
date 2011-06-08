@@ -2,6 +2,9 @@
     
     
     public partial class RezerwacjeDS {
+        partial class RezerwacjeDataTable
+        {
+        }
     }
 }
 

@@ -24,7 +24,7 @@ namespace PensjonatApp.Helpers
         /// </summary>
         public static int edytujPokoj(int id_pokoju, int id_slownikowe_pokoju, string nr_pokoju)
         {
-			return TablesManager.Manager.PokojeTableAdapter.UpdateById(id_slownikowe_pokoju, nr_pokoju, id_slownikowe_pokoju);
+			return TablesManager.Manager.PokojeTableAdapter.UpdateById(id_slownikowe_pokoju, nr_pokoju, id_pokoju);
         }
 
         /// <summary>
