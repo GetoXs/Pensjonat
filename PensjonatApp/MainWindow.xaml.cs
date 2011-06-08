@@ -256,7 +256,9 @@ namespace PensjonatApp
        
         private void showWindow(Grid grid,List<Button> buttonList)
         {
-            grid.Height = 580;
+            grid.Height = Double.NaN;
+            grid.MinHeight = 500;
+            grid.MaxHeight = 900;
             grid.Visibility = Visibility.Visible;
             pokazButtonList(buttonList);
             currentGrid = grid;
@@ -266,12 +268,12 @@ namespace PensjonatApp
         }
         private void zwinRezerwacje()
         {
-            gridRezerwacjeDeafult.Height = 0;
-            gridRezerwacjeAdd.Height = 0;
-            gridRezerwacjeAdd2.Height = 0;
-            gridRezerwacjeDel.Height = 0;
-            gridRezerwacjeCheck.Height = 0;
-            gridRezerwacjeAddKlient.Height = 0;
+            gridRezerwacjeDeafult.Visibility = Visibility.Collapsed;
+            gridRezerwacjeAdd.Visibility = Visibility.Collapsed;
+            gridRezerwacjeAdd2.Visibility = Visibility.Collapsed; ;
+            gridRezerwacjeDel.Visibility = Visibility.Collapsed;
+            gridRezerwacjeCheck.Visibility = Visibility.Collapsed;
+            gridRezerwacjeAddKlient.Visibility = Visibility.Collapsed;
             zwinButtonList(buttonRezerwacjeBackForwardList);
             zwinButtonList(buttonRezerwacjeDeafultList);
             zwinButtonList(buttonRezerwacjeBackOkList); 
@@ -286,7 +288,7 @@ namespace PensjonatApp
             gridPobytyUslugi.Visibility = Visibility.Collapsed;
             gridPobytyPosilki.Visibility = Visibility.Collapsed;
             gridPobytyNowy.Visibility = Visibility.Collapsed;
-            gridPobytyWybierzKlienta.Height = 0;
+            gridPobytyWybierzKlienta.Visibility = Visibility.Collapsed;
             zwinButtonList(buttonPobytyBackOkList);
             zwinButtonList(buttonPobytyBackOkPrintList);
             zwinButtonList(buttonPobytyBackPrintList);
@@ -296,9 +298,9 @@ namespace PensjonatApp
 
         private void zwinKlienci()
         {
-            gridKlienciDeafult.Height = 0;
-            gridKlienciAdd.Height = 0;
-            gridKlienciEdit.Height = 0;
+            gridKlienciDeafult.Visibility = Visibility.Collapsed;
+            gridKlienciAdd.Visibility = Visibility.Collapsed;
+            gridKlienciEdit.Visibility = Visibility.Collapsed;
             zwinButtonList(buttonKlienciBackOkList);
             zwinButtonList(buttonKlienciDeafultList);
         }
@@ -571,8 +573,11 @@ namespace PensjonatApp
                     datePickerRezeracjeAddTerminOd.IsEnabled = false;
                     datePickerRezerwacjeAddTerminDo.IsEnabled = false;
                     DodajPokojdeDoComboBoxa();
+                    RezerwacjePokojeDodajList.Clear();
+                    dataGridRezerwacjeAddWybranePokoje.Items.Refresh();
                     rezerwacjePokojeIloscOsob = liczbaOsob;
                     labelRezerwacjeAddPozostaloOsob.Content = rezerwacjePokojeIloscOsob;
+
                 }
                 else
                     System.Windows.MessageBox.Show("Pole liczba osób może zawierać tylko cyfry.", "Nowa rezerwacja", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -589,6 +594,8 @@ namespace PensjonatApp
             labelRezerwacjeAddPozostaloOsob.Content = "";
             rezerwacjePokojeIloscOsob = 0;
             RezerwacjePokojeDodajList.Clear();
+            comboBoxRezerwacjeAddPokoje.ItemsSource = null;
+            dataGridRezerwacjeAddWybranePokoje.Items.Refresh();
         }
         private void datePickerRezeracjeAddTerminOd_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -2105,7 +2112,7 @@ namespace PensjonatApp
 
                 }
             else
-                System.Windows.MessageBox.Show("Najpierw wybierz standard pokoi..", "Podgląd standardu pokoi", MessageBoxButton.OK, MessageBoxImage.Warning);
+                System.Windows.MessageBox.Show("Najpierw wybierz standard pokoi.", "Podgląd standardu pokoi", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
 
         private void buttonStandPokoEdytujWyposazenie_Click(object sender, RoutedEventArgs e)
