@@ -1213,11 +1213,12 @@ WHERE        Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_pokoju = Pokoj
             this._commandCollection[21].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[22] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[22].Connection = this.Connection;
-            this._commandCollection[22].CommandText = @"SELECT        r.id_rezerwacji, r.zaliczka, r.zaplacono_zaliczke, r.ilosc_osob, r.id_klienta, p.id_pobytu, p.id_pokoju, p.id_rezerwacji AS Expr1, p.termin_start, p.termin_koniec, 
-                         p.id_rachunku, p.id_klienta AS Expr2, k.email, k.imie, k.nazwisko, k.id_miejscowosci, k.kod_pocztowy, k.ulica, k.nip, k.pesel, k.id_klienta AS Expr3, k.nr_telefonu, 
-                         k.nazwa
-FROM            Rezerwacje r, Pobyty p, Klienci k
-WHERE        r.id_rezerwacji = p.id_rezerwacji AND r.id_klienta = p.id_klienta AND (p.id_rachunku IS NULL)";
+            this._commandCollection[22].CommandText = @"SELECT Pobyty.id_pobytu, Pobyty.id_pokoju, Pobyty.id_rezerwacji, Pobyty.termin_start, Pobyty.termin_koniec, Pobyty.id_rachunku, Pobyty.id_klienta, Klienci.email, Klienci.imie, 
+                  Klienci.nazwisko, Klienci.id_miejscowosci, Klienci.kod_pocztowy, Klienci.ulica, Klienci.nip, Klienci.pesel, Klienci.nr_telefonu, Klienci.nazwa, Pokoje.id_slownikowe_pokoju, 
+                  Pokoje.nr_pokoju
+FROM     Pobyty, Klienci, Pokoje, Rezerwacje
+WHERE  Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_pokoju = Pokoje.id_pokoju AND Pobyty.id_rezerwacji = Rezerwacje.id_rezerwacji AND 
+                  Pobyty.id_klienta = Rezerwacje.id_klienta AND (Pobyty.id_rachunku IS NULL)";
             this._commandCollection[22].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[23] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[23].Connection = this.Connection;
