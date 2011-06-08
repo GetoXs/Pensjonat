@@ -29,5 +29,18 @@ namespace PensjonatApp.Helpers
             Stanowisko = stanowisko[0].nazwa;
             return true;
         }
+
+        public static bool sprawdzHaslo(int id_pracownika, string haslo)
+        {
+            PracownicyDS.PracownicyDataTable pracownik = TablesManager.Manager.PracownicyTableAdapter.GetPracownicyByHaslo(haslo, id_pracownika);
+            if (pracownik.Count > 0)
+                return true;
+            return false;
+        }
+
+        public static int zmienHaslo(int id_pracownika, string haslo)
+        {
+            return TablesManager.Manager.PracownicyTableAdapter.UpdateHaslo(haslo, id_pracownika);
+        }
     }
 }
