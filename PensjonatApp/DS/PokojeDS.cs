@@ -2,6 +2,9 @@
     
     
     public partial class PokojeDS {
+        partial class Pokoje_slownikDataTable
+        {
+        }
     }
 }
 

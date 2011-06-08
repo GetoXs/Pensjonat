@@ -196,7 +196,7 @@ namespace PensjonatApp.Helpers
         /// Dodawanie rezerwacji
         /// pokoje wybrane w procesie rezerwacji przechowywane w typie PokojeDS.PokojeDataTable. jeżeli tak jest źle mogę to zmienić na zwykłą tablicę
         /// </summary>
-        /// <returns></returns>
+        /// <returns>1 - ok, -1 - nie ma takiego pokoju, -2 błąd wewnetrzny</returns>
         public static int dodajRezerwacje(Int32 id_klienta_rezerwujacego, Int32 ilosc_osob, Decimal zaliczka, List<Int32> pokoje, DateTime start_pobytu, DateTime koniec_pobytu)
         {
             int a = TablesManager.Manager.RezerwacjeTableAdapter.InsertQuery(zaliczka, false, ilosc_osob, id_klienta_rezerwujacego);
@@ -204,20 +204,34 @@ namespace PensjonatApp.Helpers
 
             if (tabRez.Count > 0 && tabRez[0].id_klienta == id_klienta_rezerwujacego)
             {
-                //dodaje klienta, który zamówił
-                TablesManager.Manager.PobytyTableAdapter.Insert(pokoje[0], tabRez[0].id_rezerwacji, start_pobytu, koniec_pobytu, null, id_klienta_rezerwujacego);
-                pokoje.RemoveAt(0);
-
+                bool first = true;
                 foreach (int pokoj_id in pokoje)
                 {
-                    TablesManager.Manager.PobytyTableAdapter.Insert(pokoj_id, tabRez[0].id_rezerwacji, start_pobytu, koniec_pobytu, null, null);
+                    PokojeDS.Pokoje_slownikDataTable pokoj_standard = TablesManager.Manager.Pokoje_slownikTableAdapter.GetDataStandardByIDPokoju(pokoj_id);
+                    if (pokoj_standard.Count == 1)
+                    {
+                        for (int y = 0; y < pokoj_standard[0].ilosc_osob; y++)
+                        {
+                            //dodaje rezerwujacego
+                            if (first)
+                            {
+                                TablesManager.Manager.PobytyTableAdapter.Insert(pokoj_id, tabRez[0].id_rezerwacji, start_pobytu, koniec_pobytu, null, id_klienta_rezerwujacego);
+                                first = false;
+                            }else
+                                TablesManager.Manager.PobytyTableAdapter.Insert(pokoj_id, tabRez[0].id_rezerwacji, start_pobytu, koniec_pobytu, null, null);
+                        }
+                    }
+                    else
+                        return -1;
                 }
-            }
+            }else 
+                return -2;
+
 
             return 1;
         }
 
-        /// <summary>
+        /*/// <summary>
         /// Dodawanie rezerwacji, dodatkowo dodawane posilki, tak jak pokoje
         /// </summary>
         /// <returns></returns>
@@ -239,7 +253,7 @@ namespace PensjonatApp.Helpers
 
             return 1;
         }
-
+        */
         /// <summary>
         /// Usuwanie rezerwacji na podstawie id_rezerwacji
         /// </summary>
