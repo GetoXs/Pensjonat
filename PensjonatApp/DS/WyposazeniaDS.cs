@@ -15,6 +15,9 @@ namespace PensjonatApp.DS {
 }
 
 namespace PensjonatApp.DS.WyposazeniaDSTableAdapters {
+    partial class WyposazeniaTableAdapter
+    {
+    }
     
     
     public partial class Wyposazenia_slownikTableAdapter {
