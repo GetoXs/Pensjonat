@@ -318,6 +318,8 @@ namespace PensjonatApp.DS {
             
             private global::System.Data.DataColumn columnid_wyposazenia;
             
+            private global::System.Data.DataColumn columnid_w;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public WyposazeniaDataTable() {
@@ -369,6 +371,14 @@ namespace PensjonatApp.DS {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn id_wColumn {
+                get {
+                    return this.columnid_w;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -404,14 +414,22 @@ namespace PensjonatApp.DS {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public WyposazeniaRow AddWyposazeniaRow(int id_slownikowe_pokoju, int id_wyposazenia) {
+            public WyposazeniaRow AddWyposazeniaRow(int id_slownikowe_pokoju, int id_wyposazenia, string id_w) {
                 WyposazeniaRow rowWyposazeniaRow = ((WyposazeniaRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         id_slownikowe_pokoju,
-                        id_wyposazenia};
+                        id_wyposazenia,
+                        id_w};
                 rowWyposazeniaRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowWyposazeniaRow);
                 return rowWyposazeniaRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public WyposazeniaRow FindByid_w(string id_w) {
+                return ((WyposazeniaRow)(this.Rows.Find(new object[] {
+                            id_w})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -433,6 +451,7 @@ namespace PensjonatApp.DS {
             internal void InitVars() {
                 this.columnid_slownikowe_pokoju = base.Columns["id_slownikowe_pokoju"];
                 this.columnid_wyposazenia = base.Columns["id_wyposazenia"];
+                this.columnid_w = base.Columns["id_w"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -442,6 +461,12 @@ namespace PensjonatApp.DS {
                 base.Columns.Add(this.columnid_slownikowe_pokoju);
                 this.columnid_wyposazenia = new global::System.Data.DataColumn("id_wyposazenia", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnid_wyposazenia);
+                this.columnid_w = new global::System.Data.DataColumn("id_w", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnid_w);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("WyposazeniaKey1", new global::System.Data.DataColumn[] {
+                                this.columnid_w}, true));
+                this.columnid_w.AllowDBNull = false;
+                this.columnid_w.Unique = true;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -893,6 +918,17 @@ namespace PensjonatApp.DS {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string id_w {
+                get {
+                    return ((string)(this[this.tableWyposazenia.id_wColumn]));
+                }
+                set {
+                    this[this.tableWyposazenia.id_wColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool Isid_slownikowe_pokojuNull() {
                 return this.IsNull(this.tableWyposazenia.id_slownikowe_pokojuColumn);
             }
@@ -1185,7 +1221,7 @@ namespace PensjonatApp.DS.WyposazeniaDSTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.Odbc.OdbcCommand[2];
+            this._commandCollection = new global::System.Data.Odbc.OdbcCommand[3];
             this._commandCollection[0] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT id_slownikowe_pokoju, id_wyposazenia FROM Wyposazenia";
@@ -1195,6 +1231,13 @@ namespace PensjonatApp.DS.WyposazeniaDSTableAdapters {
             this._commandCollection[1].CommandText = "DELETE FROM Wyposazenia\r\nWHERE (id_slownikowe_pokoju = ?)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_slownikowe_pokoju", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_slownikowe_pokoju", global::System.Data.DataRowVersion.Original, false, null));
+            this._commandCollection[2] = new global::System.Data.Odbc.OdbcCommand();
+            this._commandCollection[2].Connection = this.Connection;
+            this._commandCollection[2].CommandText = "SELECT ws.id_wyposazenia, ws.opis, w.id_w\r\nFROM     Wyposazenia_slownik ws, Wypos" +
+                "azenia w\r\nWHERE  ws.id_wyposazenia = w.id_wyposazenia AND (w.id_slownikowe_pokoj" +
+                "u = ?)";
+            this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[2].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_slownikowe_pokoju", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_slownikowe_pokoju", global::System.Data.DataRowVersion.Current, false, null));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1216,6 +1259,23 @@ namespace PensjonatApp.DS.WyposazeniaDSTableAdapters {
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
         public virtual WyposazeniaDS.WyposazeniaDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
+            WyposazeniaDS.WyposazeniaDataTable dataTable = new WyposazeniaDS.WyposazeniaDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual WyposazeniaDS.WyposazeniaDataTable GetDataListaWyposazenByID(global::System.Nullable<int> id_slownikowe_pokoju) {
+            this.Adapter.SelectCommand = this.CommandCollection[2];
+            if ((id_slownikowe_pokoju.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((int)(id_slownikowe_pokoju.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
             WyposazeniaDS.WyposazeniaDataTable dataTable = new WyposazeniaDS.WyposazeniaDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
@@ -1489,8 +1549,9 @@ namespace PensjonatApp.DS.WyposazeniaDSTableAdapters {
             this._commandCollection[2].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_wyposazenia", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_wyposazenia", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[3] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = "SELECT ws.id_wyposazenia, ws.opis FROM Wyposazenia_slownik ws, Wyposazenia w\r\nWHE" +
-                "RE ws.id_wyposazenia = w.id_wyposazenia AND w.id_slownikowe_pokoju=?";
+            this._commandCollection[3].CommandText = "SELECT ws.id_wyposazenia, ws.opis, w.id_w\r\nFROM     Wyposazenia_slownik ws, Wypos" +
+                "azenia w\r\nWHERE  ws.id_wyposazenia = w.id_wyposazenia AND (w.id_slownikowe_pokoj" +
+                "u = ?)";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[3].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_slownikowe_pokoju", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_slownikowe_pokoju", global::System.Data.DataRowVersion.Current, false, null));
         }
