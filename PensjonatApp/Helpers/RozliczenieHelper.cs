@@ -88,21 +88,27 @@ namespace PensjonatApp.Helpers
 
 			foreach (RachunkiDS.RabatyRow row in rabaty)
 			{
-				if (row.na_pobyt == true)
-					if (row.procentowy == true)
-						rabatPobytu += (row.wartosc * cenaPobytu) / 100;
-					else
-						rabatPobytu += row.wartosc;
-				else if (row.na_posilki == true)
-					if (row.procentowy == true)
-						rabatPosilku += (row.wartosc * cenaPosilku) / 100;
-					else
-						rabatPosilku += row.wartosc;
-				else if (row.na_uslugi == true)
-					if (row.procentowy == true)
-						rabatUslug += (row.wartosc * cenaUslug) / 100;
-					else
-						rabatUslug += row.wartosc;
+                if (row.na_pobyt == true)
+                {
+                    if (row.procentowy == true)
+                        rabatPobytu += (row.wartosc * cenaPobytu) / 100;
+                    else
+                        rabatPobytu += row.wartosc;
+                }
+                if (row.na_posilki == true)
+                {
+                    if (row.procentowy == true)
+                        rabatPosilku += (row.wartosc * cenaPosilku) / 100;
+                    else
+                        rabatPosilku += row.wartosc;
+                }
+                if (row.na_uslugi == true)
+                {
+                    if (row.procentowy == true)
+                        rabatUslug += (row.wartosc * cenaUslug) / 100;
+                    else
+                        rabatUslug += row.wartosc;
+                }
 			}
             Decimal suma=((cenaPobytu - rabatPobytu < 0) ? 0 : (cenaPobytu - rabatPobytu)) + 
 				((cenaPosilku - rabatPosilku < 0) ? 0 : (cenaPosilku - rabatPosilku)) + 
