@@ -104,9 +104,14 @@ namespace PensjonatApp.Helpers
 					else
 						rabatUslug += row.wartosc;
 			}
-			return ((cenaPobytu - rabatPobytu < 0) ? 0 : (cenaPobytu - rabatPobytu)) + 
+            Decimal suma=((cenaPobytu - rabatPobytu < 0) ? 0 : (cenaPobytu - rabatPobytu)) + 
 				((cenaPosilku - rabatPosilku < 0) ? 0 : (cenaPosilku - rabatPosilku)) + 
 				((cenaUslug - rabatUslug < 0) ? 0 : (cenaUslug - rabatUslug));
+
+            PobytyDS.PobytyDataTable pobyt = TablesManager.Manager.PobytyTableAdapter.GetDataPobytyKlienciPokojeStandardByIdPobytu(idPobytu);
+            RezerwacjeDS.RezerwacjeDataTable rezerwacja = TablesManager.Manager.RezerwacjeTableAdapter.GetDataRezerwacjeByID(pobyt[0].id_rezerwacji);
+
+            return suma; 
 		}
 
         public static int liczZaliczke(List<PokojeStandardy> pokoje,int iloscDni, double wspolczynnik)
@@ -116,6 +121,7 @@ namespace PensjonatApp.Helpers
                 suma += (double)p.Cena * iloscDni * wspolczynnik;
 
             int wynik = ((int)Math.Round(suma) )/ 50;
+            wynik *= 50;
             if (((int)Math.Round(suma)) % 50 >= 25)
                 wynik += 50;
 
