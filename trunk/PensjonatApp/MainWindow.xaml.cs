@@ -157,6 +157,7 @@ namespace PensjonatApp
 
             buttonPokojeDeafultList.Add(buttonPokojeUsun);
             buttonPokojeDeafultList.Add(buttonPokojeEdytuj);
+            buttonPokojeDeafultList.Add(buttonPokojeSzczegoly);
             buttonPokojeBackOkList.Add(buttonPokojeOk);
             buttonPokojeBackOkList.Add(buttonPokojePowrot);
 
@@ -183,6 +184,7 @@ namespace PensjonatApp
             buttonStandPokoiDeafultList.Add(buttonStandPokoiDodaj);
             buttonStandPokoiDeafultList.Add(buttonStandPokoiUsun);
             buttonStandPokoiDeafultList.Add(buttonStandPokoiEdytuj);
+            buttonStandPokoiDeafultList.Add(buttonStandPokoiSzczegoly);
             buttonStandPokoiBackOkList.Add(buttonStandPokoiOk);
             buttonStandPokoiBackOkList.Add(buttonStandPokoiPowrot);
 
@@ -304,6 +306,7 @@ namespace PensjonatApp
         {
             gridPokojeDeafult.Visibility = Visibility.Collapsed;
             gridPokojeEdycja.Visibility = Visibility.Collapsed;
+            gridPokojeSzczegoly.Visibility = Visibility.Collapsed;
             zwinButtonList(buttonPokojeDeafultList);
             zwinButtonList(buttonPokojeBackOkList);
         }
@@ -340,6 +343,7 @@ namespace PensjonatApp
             gridStandPokoiDeafult.Visibility = Visibility.Collapsed;
             gridStandPokoiDodaj.Visibility = Visibility.Collapsed;
             gridStandPokoiEdycja.Visibility = Visibility.Collapsed;
+            gridStandPokoiSzczegoly.Visibility = Visibility.Collapsed;
             zwinButtonList(buttonStandPokoiDeafultList);
             zwinButtonList(buttonStandPokoiBackOkList);
         }
@@ -1981,7 +1985,25 @@ namespace PensjonatApp
                 }
             }
             dataGridStandPokoiDodajWyposazenie.Items.Refresh();
+        }
 
+        private void buttonStandPokoiSzczegoly_Click(object sender, RoutedEventArgs e)
+        {
+            if (dataGridStandPokoiDeafult.SelectedItem != null)
+            {
+                zwinStandPokoi();
+                showWindow(gridStandPokoiSzczegoly, buttonStandPokoiBackOkList);
+
+                PokojeDS.Pokoje_slownikRow selectedRow = (PokojeDS.Pokoje_slownikRow)((DataRowView)dataGridStandPokoiDeafult.SelectedItem).Row;
+                labelStandPokoiSzczegolyCena.Content = selectedRow.cena;
+                labelStandPokoiSzczegolyLosob.Content = selectedRow.ilosc_osob;
+                labelStandPokoiSzczegolyOpis.Content = selectedRow.dodatkowy_opis;
+
+                dataGridStandPokoiSzczegWyp.ItemsSource = TablesManager.Manager.Wyposazenia_slownikTableAdapter.GetDataListaWyposazenByID(selectedRow.id_slownikowe_pokoju);
+
+                }
+            else
+                System.Windows.MessageBox.Show("Najpierw wybierz standard pokoi..", "Podgląd standardu pokoi", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
 
         private void buttonStandPokoEdytujWyposazenie_Click(object sender, RoutedEventArgs e)
@@ -2795,6 +2817,8 @@ namespace PensjonatApp
                 dataGridKucharz5day.Items.Add(PosilkiHelper.getPosilkiPoTerminie(DateTime.Today.AddDays(4.0)));
             }
         }
+
+ 
 
 
 
