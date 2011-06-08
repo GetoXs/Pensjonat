@@ -139,7 +139,7 @@ namespace PensjonatApp.Helpers
             return wynik;
         }
 
-        public static Decimal rozliczRezerwacje(int idRezerwacji, IEnumerable<RachunkiDS.RabatyRow> rabaty)
+        public static Decimal pobierzRabatowaCenaRezerwacji(int idRezerwacji, IEnumerable<RachunkiDS.RabatyRow> rabaty)
         {
             Decimal wynik = 0;
 
@@ -150,5 +150,26 @@ namespace PensjonatApp.Helpers
             
             return wynik;
         }
+		/// <summary>
+		/// Zapisuje podaną ceną do bazy danych oraz przypisuje ją do pobytu
+		/// </summary>
+		/// <param name="idPobytu"></param>
+		/// <param name="cena"></param>
+		/// <returns>Zwraca null jeśli wszystko jest ok, bądź opis bledu jesli jest nie okej</returns>
+		public static String rozliczPobyt(int idPobytu, decimal cena)
+		{
+			int lastId=-1;
+			PobytyDS.PobytyDataTable tab = TablesManager.Manager.PobytyTableAdapter.GetDataPobytyByID(idPobytu);
+			if(tab.Count==0 || !tab[0].Isid_rachunkuNull())
+				return "Dane id rachunku, albo nie istnieje, albo już posiada rachunek";
+			else
+			{
+
+				RachunkiHelper.dodajRachunek(true, cena);
+				lastId = RachunkiHelper.lastIdRachunek();
+				TablesManager.Manager.PobytyTableAdapter.UpdateIdRachunek(lastId, idPobytu);
+				return null;
+			}
+		}
 	}
 }
