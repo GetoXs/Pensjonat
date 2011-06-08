@@ -1487,10 +1487,11 @@ Pracownicy.id_stanowiska = Uslugi_slownik.id_stanowiska AND
             this._commandCollection[5] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[5].Connection = this.Connection;
             this._commandCollection[5].CommandText = "SELECT        Pracownicy.imie, Pracownicy.nazwisko, Pracownicy.id_pracownika, Pra" +
-                "cownicy.id_stanowiska\r\nFROM           Pracownicy\r\nWHERE         UCASE(Pracownicy" +
-                ".haslo) LIKE UCASE(?)";
+                "cownicy.id_stanowiska\r\nFROM           Pracownicy\r\nWHERE         (UCASE(Pracownic" +
+                "y.haslo) LIKE UCASE(?))\r\nAND             Pracownicy.id_pracownika = ?";
             this._commandCollection[5].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[5].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Param1", global::System.Data.Odbc.OdbcType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[5].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_pracownika", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_pracownika", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[6] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[6].Connection = this.Connection;
             this._commandCollection[6].CommandText = "SELECT        Pracownicy.imie, Pracownicy.nazwisko, Pracownicy.id_pracownika, Pra" +
@@ -1650,7 +1651,7 @@ WHERE  Pracownicy.id_stanowiska = Pracownicy_slownik.id_stanowiska AND (UCASE(Pr
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual PracownicyDS.PracownicyDataTable GetPracownicyByHaslo(string Param1) {
+        public virtual PracownicyDS.PracownicyDataTable GetPracownicyByHaslo(string Param1, int id_pracownika) {
             this.Adapter.SelectCommand = this.CommandCollection[5];
             if ((Param1 == null)) {
                 throw new global::System.ArgumentNullException("Param1");
@@ -1658,6 +1659,7 @@ WHERE  Pracownicy.id_stanowiska = Pracownicy_slownik.id_stanowiska AND (UCASE(Pr
             else {
                 this.Adapter.SelectCommand.Parameters[0].Value = ((string)(Param1));
             }
+            this.Adapter.SelectCommand.Parameters[1].Value = ((int)(id_pracownika));
             PracownicyDS.PracownicyDataTable dataTable = new PracownicyDS.PracownicyDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
