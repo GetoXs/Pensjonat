@@ -791,6 +791,10 @@ namespace PensjonatApp
             if (currentGrid == gridPobytyPosilki || currentGrid == gridPobytyUslugi)
             {
                 showWindow(gridPobytyServices, buttonPobytyZarzadzajList);
+                dataGridPobytyPosilki.ItemsSource =
+                TablesManager.Manager.PosilkiTableAdapter.GetDataWithPosilkiSlownikById(((int)labelPobytyServicesId.Content));
+                dataGridPobytyUslugi.ItemsSource =
+                TablesManager.Manager.UslugiTableAdapter.GetDataUslugiUslugi_slownikByID_pobytu(((int)labelPobytyServicesId.Content));
             }
             else if (currentGrid == gridPobytyWybierzKlienta)
             {
@@ -964,8 +968,8 @@ namespace PensjonatApp
                 labelPobytyZarzadzajPESEL.Content = (string)selectedRow["pesel"];
                 labelPobytyZarzadzajTelefon.Content = selectedRow["nr_telefonu"].ToString();
                 labelPobytyZarzadzajPokoj.Content = selectedRow["nr_pokoju"].ToString();
-                
-                //labelPobytyZarzadzajLOsob.Content = (string)selectedRow["
+
+                labelPobytyZarzadzajLOsob.Content = TablesManager.Manager.RezerwacjeTableAdapter.ScalarQueryIloscOsobByIdPobytu(selectedRow.id_pobytu);
                 labelPobytyServicesId.Content = selectedRow.id_pobytu;
                 labelPobytyZarzadzajTermin.Content = selectedRow.termin_start.ToLongDateString() + " - " + selectedRow.termin_koniec.ToLongDateString();
                 labelPobtyZarzadzajRezerwacja.Content = selectedRow.id_rezerwacji;
@@ -1044,7 +1048,8 @@ namespace PensjonatApp
                         }
                     }
                 }
-                dataGridPobytyZarzadzaniePosilki.Items.Refresh();
+                dataGridPobytyZarzadzaniePosilki.ItemsSource =
+                TablesManager.Manager.PosilkiTableAdapter.GetDataWithPosilkiSlownikById(((int)labelPobytyServicesId.Content));
             }
             else
                 System.Windows.MessageBox.Show("Wypełnij wszystkie pola.", "Dodawanie posiłku", MessageBoxButton.OK, MessageBoxImage.Warning);
