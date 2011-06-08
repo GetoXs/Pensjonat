@@ -798,13 +798,17 @@ namespace PensjonatApp
                     if (textBoxPobytyNowyKlient.Text != null && textBoxPobytyNowyIlOsob != null && comboBoxPobytyNowyPokoj.SelectedItem != null
                         && datePickerPobytyNowyTerminDo.SelectedDate != null && datePickerPobytyNowyTerminOd.SelectedDate != null)
                     {
+                        List<int> idKlientowList = new List<int>();
+                        List<int> idPokoiList = new List<int>();
                         foreach (var pozycja in PobytyNowyPokojeKlienciList)
                         {
-                            RezerwacjeHelper. dodajRezerwacjeIZakwaterowanieOdRazu(pozycja.Id_osoby,
-                            pozycja.Id_pokoju, (DateTime)datePickerPobytyNowyTerminOd.SelectedDate,
-                            (DateTime)datePickerPobytyNowyTerminDo.SelectedDate);
+                            idKlientowList.Add(pozycja.Id_osoby);
+                            idPokoiList.Add(pozycja.Id_pokoju);
                         }
 
+                         RezerwacjeHelper.dodajNowyPobyt( idKlientowList,
+                            idPokoiList, (DateTime)datePickerPobytyNowyTerminOd.SelectedDate,
+                            (DateTime)datePickerPobytyNowyTerminDo.SelectedDate);
                         zwinPobyty();
                         showWindow(gridPobytyDeafult, buttonPobytyDeafultList);
                         dataGridPobytySzukaj.ItemsSource = TablesManager.Manager.PobytyTableAdapter.GetDataPobytyKlienciPokoje();
