@@ -21,5 +21,9 @@ namespace PensjonatApp.Helpers
 		{
 			return TablesManager.Manager.RachunkiTableAdapter.DeleteById(id_rachunku);
 		}
+		public static int lastIdRachunek()
+		{
+			return (int)TablesManager.Manager.RachunkiTableAdapter.ScalarQueryLastId();
+		}
 	}
 }
