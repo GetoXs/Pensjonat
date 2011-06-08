@@ -2656,24 +2656,25 @@ namespace PensjonatApp
         }
         List<int> stanowiskaIdList = new List<int>();
         List<string> stanowiskaStringList = new List<string>();
-        private void comboBoxPracownicyDodajStanowisko_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
+        private void przypiszStanowiskaDoComboBoxa(ref ComboBox comboBox){
             stanowiskaIdList.Clear();
             stanowiskaStringList.Clear();
-            PracownicyDS.Pracownicy_slownikDataTable uslugiTable = TablesManager.Manager.Pracownicy_slownikTableAdapter.GetData();
-            foreach (PracownicyDS.Pracownicy_slownikRow row in uslugiTable)
+            PracownicyDS.Pracownicy_slownikDataTable stanowiskaTable = TablesManager.Manager.Pracownicy_slownikTableAdapter.GetData();
+            foreach (PracownicyDS.Pracownicy_slownikRow row in stanowiskaTable)
             {
-                stanowiskaStringList.Add(row.nazwa + " (" + row.opis +")");
+                stanowiskaStringList.Add(row.nazwa + " (" + row.opis + ")");
                 stanowiskaIdList.Add(row.id_stanowiska);
             }
-            comboBoxPracownicyDodajStanowisko.ItemsSource = stanowiskaStringList;
-            comboBoxPracownicyEdycjaStanowisko.ItemsSource = stanowiskaStringList;
+            comboBox.ItemsSource = stanowiskaStringList;
+        }
+        private void comboBoxPracownicyDodajStanowisko_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            przypiszStanowiskaDoComboBoxa(ref comboBoxPracownicyDodajStanowisko);
         }
 
         private void comboBoxPracownicyEdycjaStanowisko_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-
-            comboBoxPracownicyEdycjaStanowisko.ItemsSource = stanowiskaStringList;
+            przypiszStanowiskaDoComboBoxa(ref comboBoxPracownicyEdycjaStanowisko);
         }
 
         //----------------------------------------------PRACOWNICY->MENU
@@ -2687,6 +2688,7 @@ namespace PensjonatApp
         {
             zwinPracownicy();
             showWindow(gridPracownicyDodaj, buttonPracownicyBackOkList);
+            przypiszStanowiskaDoComboBoxa(ref comboBoxPracownicyDodajStanowisko);
         }
 
         private void buttonPracownicyOk_Click(object sender, RoutedEventArgs e)
@@ -2716,15 +2718,19 @@ namespace PensjonatApp
                 if (textBoxPracownicyEdycjaImie.Text != "" && textBoxPracownicyEdycjaNazwisko.Text != "" && textBoxPracownicyEdycjaLogin.Text != ""
                      && comboBoxPracownicyEdycjaStanowisko.SelectedItem != null)
                 {
+                    string haslo;
+                    if (textBoxPracownicyEdycjaHaslo.Password == "")
+                        haslo = textBoxPracownicyEdycjaLogin.Text;
+                    else
+                        haslo = textBoxPracownicyEdycjaHaslo.Password;
+                    PracownicyHelper.edytujPracownikaByIdPr(textBoxPracownicyEdycjaImie.Text,textBoxPracownicyEdycjaNazwisko.Text,
+                        textBoxPracownicyEdycjaLogin.Text,haslo, (int)labelPracownicyEdycjaId.Content, stanowiskaIdList[comboBoxPracownicyEdycjaStanowisko.SelectedIndex]);    
 
-                PracownicyHelper.edytujPracownikaByIdPr(textBoxPracownicyEdycjaImie.Text,textBoxPracownicyEdycjaNazwisko.Text,
-                    textBoxPracownicyEdycjaLogin.Text, textBoxPracownicyEdycjaLogin.Text, 1, stanowiskaIdList[comboBoxPracownicyEdycjaStanowisko.SelectedIndex]);    
-
-                dataGridPracownicyDeafult.ItemsSource = TablesManager.Manager.PracownicyTableAdapter.GetPracownicyStanowiska(); 
+                    dataGridPracownicyDeafult.ItemsSource = TablesManager.Manager.PracownicyTableAdapter.GetPracownicyStanowiska(); 
                    
-                zwinPracownicy();
-                showWindow(gridPracownicyDeafult, buttonPracownicyDeafultList);
-            }
+                    zwinPracownicy();
+                    showWindow(gridPracownicyDeafult, buttonPracownicyDeafultList);
+                }
             else
             {
                 System.Windows.MessageBox.Show("Wypełnij wszystkie pola.", "Edycja usługi", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -2744,10 +2750,14 @@ namespace PensjonatApp
             {
                 zwinPracownicy();
                 showWindow(gridPracownicyEdycja, buttonPracownicyBackOkList);
+                przypiszStanowiskaDoComboBoxa(ref comboBoxPracownicyEdycjaStanowisko); 
+
                 PracownicyDS.PracownicyRow selectedRow = (PracownicyDS.PracownicyRow)((DataRowView)dataGridPracownicyDeafult.SelectedItem).Row;
+                comboBoxPracownicyEdycjaStanowisko.SelectedIndex = stanowiskaIdList.IndexOf(selectedRow.id_stanowiska);
                 textBoxPracownicyEdycjaImie.Text = selectedRow.imie;
                 textBoxPracownicyEdycjaNazwisko.Text = selectedRow.nazwisko;
                 textBoxPracownicyEdycjaLogin.Text = selectedRow.login;
+                labelPracownicyEdycjaId.Content = selectedRow.id_pracownika;
                 /*
                 textBoxPracownicyEdycjaPESEL.Text = selectedRow.Pesel;
                 textBoxPracownicyEdycjaNIP.Text = selectedRow.Nip;
@@ -2756,6 +2766,7 @@ namespace PensjonatApp
                 textBoxPracownicyEdycjaKodPocztowy.Text = selectedRow.KodPocztowy;
                 textBoxPracownicyEdycjaTelefon.Text = selectedRow.Telefon;
                 */
+                comboBoxPracownicyEdycjaStanowisko.ItemsSource = stanowiskaStringList;
             }
             else
                 System.Windows.MessageBox.Show("Najpierw wybierz pracownika.", "Edycja pracownika", MessageBoxButton.OK, MessageBoxImage.Warning);
