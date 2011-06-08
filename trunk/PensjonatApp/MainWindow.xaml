@@ -273,7 +273,7 @@
                         <Image Height="40" HorizontalAlignment="Left" Margin="132,12,0,0" Name="image4" Source="/PensjonatApp;component/Images/separator.png" Stretch="Fill" VerticalAlignment="Top" Width="2" />
                        
                     </Grid>
-                    <Grid Height="578" Name="gridPobytyServices" Opacity="1" ShowGridLines="True" Visibility="Visible">
+                    <Grid Height="48" Name="gridPobytyServices" Opacity="1" ShowGridLines="True" Visibility="Visible">
                         <Label Content="Zarządzanie pobytem:" FontSize="15" FontWeight="Normal" HorizontalAlignment="Left" Margin="10,10,0,0" Name="label42" Padding="2" VerticalAlignment="Top" />
                         <Label Name="labelPobytyServicesId" Content="21452" FontWeight="Normal" HorizontalAlignment="Left" Margin="202,11,0,0" Padding="2" VerticalAlignment="Top" FontSize="14" />
                         <Label Content="ID:" FontSize="14" FontWeight="Normal" HorizontalAlignment="Left" Margin="175,11,0,0" Name="label238" Padding="2" VerticalAlignment="Top" />
@@ -449,8 +449,8 @@
                             </DataGrid.Columns>
                         </DataGrid>
                         <CheckBox Name="checkBoxPobytyAktualne" Content="Aktualne" Height="16" HorizontalAlignment="Left" Margin="331,51,0,0" VerticalAlignment="Top" IsChecked="True" TabIndex="5" />
-                        <RadioButton Content="indywidualny" Height="16" HorizontalAlignment="Right" Margin="0,11,86,0" Name="radioButtonPobytyIndywidualne" VerticalAlignment="Top" GroupName="PobytyGrupowe" IsChecked="True" />
-                        <RadioButton Content="grupowy" Height="16" HorizontalAlignment="Right" Margin="0,11,15,0" Name="radioButtonPobytyGrupowe" VerticalAlignment="Top" GroupName="PobytyGrupowe" />
+                        <RadioButton Content="indywidualny" Height="16" HorizontalAlignment="Right" Margin="0,11,86,0" Name="radioButtonPobytyIndywidualne" VerticalAlignment="Top" GroupName="PobytyGrupowe" IsChecked="True" Checked="radioButtonPobytyIndywidualne_Checked" />
+                        <RadioButton Content="grupowy" Height="16" HorizontalAlignment="Right" Margin="0,11,15,0" Name="radioButtonPobytyGrupowe" VerticalAlignment="Top" GroupName="PobytyGrupowe" Checked="radioButtonPobytyGrupowe_Checked" />
                         <Label Content="Kontekst:" Height="28" Margin="0,5,180,0" Name="label45" VerticalAlignment="Top" FontSize="13" HorizontalAlignment="Right" Width="63" />
                         <Separator Height="5" Margin="0,27,7,0" Name="separator5" VerticalAlignment="Top" HorizontalAlignment="Right" Width="235" />
                     </Grid>
@@ -484,7 +484,7 @@
                             </Grid>
                         </GroupBox>
                     </Grid>
-                    <Grid Height="23" Name="gridPobytyWybierzKlienta" Opacity="1" ShowGridLines="True" Visibility="Visible">
+                    <Grid Height="90" Name="gridPobytyWybierzKlienta" Opacity="1" ShowGridLines="True" Visibility="Visible">
                         <Label Content="Wybierz klienta:" FontSize="15" FontWeight="Normal" HorizontalAlignment="Left" Margin="10,10,0,0" Name="label84" Padding="2" VerticalAlignment="Top" />
                         <DataGrid AutoGenerateColumns="False" DataContext="{Binding}" HorizontalAlignment="Stretch" HorizontalGridLinesBrush="#FFD5D5D5" IsReadOnly="True" Margin="15,40,15,15" Name="dataGridPobytyNowyKlienci" SelectionMode="Single" VerticalAlignment="Stretch" VerticalGridLinesBrush="#FFD5D5D5" IsVisibleChanged="dataGridPobytyNowyKlienci_IsVisibleChanged">
                             <DataGrid.Columns>

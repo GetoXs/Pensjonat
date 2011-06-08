@@ -843,6 +843,15 @@ namespace PensjonatApp
                 dataGridPobytySzukaj.ItemsSource = TablesManager.Manager.PobytyTableAdapter.GetDataPobytyKlienciPokoje();
             }
         }
+        private void radioButtonPobytyIndywidualne_Checked(object sender, RoutedEventArgs e)
+        {
+            dataGridPobytySzukaj.ItemsSource = TablesManager.Manager.PobytyTableAdapter.GetDataPobytyKlienciPokoje();
+        }
+
+        private void radioButtonPobytyGrupowe_Checked(object sender, RoutedEventArgs e)
+        {
+            dataGridPobytySzukaj.ItemsSource = TablesManager.Manager.PobytyTableAdapter.GetDataPobytyUnikalneAktualne();
+        }
         private void dataGridPobytySzukaj_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (dataGridPobytySzukaj.SelectedItem != null)
@@ -2727,6 +2736,8 @@ namespace PensjonatApp
                 dataGridKucharz5day.Items.Add(PosilkiHelper.getPosilkiPoTerminie(DateTime.Today.AddDays(4.0)));
             }
         }
+
+
 
 
 
