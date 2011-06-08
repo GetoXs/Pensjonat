@@ -110,6 +110,8 @@ namespace PensjonatApp.Helpers
 
             PobytyDS.PobytyDataTable pobyt = TablesManager.Manager.PobytyTableAdapter.GetDataPobytyKlienciPokojeStandardByIdPobytu(idPobytu);
             RezerwacjeDS.RezerwacjeDataTable rezerwacja = TablesManager.Manager.RezerwacjeTableAdapter.GetDataRezerwacjeByID(pobyt[0].id_rezerwacji);
+            if (pobyt[0].id_klienta == rezerwacja[0].id_klienta)
+                suma -= rezerwacja[0].zaliczka;
 
             return suma; 
 		}
@@ -125,6 +127,18 @@ namespace PensjonatApp.Helpers
             if (((int)Math.Round(suma)) % 50 >= 25)
                 wynik += 50;
 
+            return wynik;
+        }
+
+        public static Decimal rozliczRezerwacje(int idRezerwacji, IEnumerable<RachunkiDS.RabatyRow> rabaty)
+        {
+            Decimal wynik = 0;
+
+            PobytyDS.PobytyDataTable pobyty = TablesManager.Manager.PobytyTableAdapter.GetDataPobytyByIdRezerwacjiNierozliczone(idRezerwacji);
+
+            foreach (PobytyDS.PobytyRow p in pobyty)
+                wynik += pobierzRabatowaCena(p.id_pobytu, rabaty);
+            
             return wynik;
         }
 	}
