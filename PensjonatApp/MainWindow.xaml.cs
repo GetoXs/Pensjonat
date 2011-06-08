@@ -2766,12 +2766,15 @@ namespace PensjonatApp
                 zwinPracownicy();
                 showWindow(gridPracownicyZadania, buttonPracownicyBackList);
                 PracownicyDS.PracownicyRow selectedRow = (PracownicyDS.PracownicyRow)((DataRowView)dataGridPracownicyDeafult.SelectedItem).Row;
-                dataGridPracownicyZadania.ItemsSource = 
-                TablesManager.Manager.UslugiTableAdapter.GetDataByIdPracownikaPrzedzialCzasu(selectedRow.id_pracownika, DateTime.Now, DateTime.Now);
-               
+                DateTime czasObecny = DateTime.Now;
+                int rok = czasObecny.Year;
+                int miesiac = czasObecny.Month;
+                int dzien = czasObecny.Day;
+                DateTime czasStop = new DateTime(rok, miesiac, dzien, 23, 59, 59);
+                dataGridPracownicyZadania.ItemsSource = UslugiHelper.znajdzZadaniaDlaPracownikaWCzasie(selectedRow.id_pracownika, DateTime.Now, czasStop);
             }
             else
-                System.Windows.MessageBox.Show("Najpierw wybierz pracownika.", "Usuwanie pracownika", MessageBoxButton.OK, MessageBoxImage.Warning);       
+                System.Windows.MessageBox.Show("Najpierw wybierz pracownika.", "Zadania pracownika", MessageBoxButton.OK, MessageBoxImage.Warning);       
         }
        
 //----------------------------------------------STANOWISKA----------------------------------------------
