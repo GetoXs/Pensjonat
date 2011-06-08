@@ -1657,7 +1657,39 @@ namespace PensjonatApp
 			}
 			else
 			{
+				//KlienciDS.KlienciDataTable k = TablesManager.Manager.KlienciTableAdapter.GetDataByAllCriteria(null, "Mateusz", null, null, null, null, null, null, null, null);
+				//Tworzenie warunków zapytania
+				StringBuilder sb = new StringBuilder();
+				sb.Append((textBoxKlienciSearchExtendImie.Text != "") ? (" AND UCASE(Klienci.imie) LIKE UCASE('%" + textBoxKlienciSearchExtendImie.Text + "%')") : "");
+				sb.Append((textBoxKlienciSearchExtendNazwisko.Text != "") ? (" AND UCASE(Klienci.nazwisko) LIKE UCASE('%" + textBoxKlienciSearchExtendNazwisko.Text + "%')") : "");
+				sb.Append((textBoxKlienciSearchExtendPesel.Text != "") ? (" AND UCASE(Klienci.pesel) LIKE UCASE('%" + textBoxKlienciSearchExtendPesel.Text + "%')") : "");
+				sb.Append((textBoxKlienciSearchExtendAdres.Text != "") ? (" AND UCASE(Klienci.ulica) LIKE UCASE('%" + textBoxKlienciSearchExtendAdres.Text + "%')") : "");
+				sb.Append((textBoxKlienciSearchExtendMiejscowosc.Text != "") ? (" AND UCASE(Miejscowosci_slownik.nazwa) LIKE UCASE('%" + textBoxKlienciSearchExtendMiejscowosc.Text + "%')") : "");
+				sb.Append((textBoxKlienciSearchExtendKodPocztowy.Text != "") ? (" AND UCASE(Klienci.kod_pocztowy) LIKE UCASE('%" + textBoxKlienciSearchExtendKodPocztowy.Text + "%')") : "");
+				sb.Append((textBoxKlienciSearchExtendTelefon.Text != "") ? (" AND UCASE(Klienci.nr_telefonu) LIKE UCASE('%" + textBoxKlienciSearchExtendTelefon.Text + "%')") : "");
+				sb.Append((textBoxKlienciSearchExtendMail.Text != "") ? (" AND UCASE(Klienci.email) LIKE UCASE('%" + textBoxKlienciSearchExtendMail.Text + "%')") : "");
+				sb.Append((textBoxKlienciSearchExtendFirma.Text != "") ? (" AND UCASE(Klienci.nazwa) LIKE UCASE('%" + textBoxKlienciSearchExtendFirma.Text + "%')") : "");
+				sb.Append((textBoxKlienciSearchExtendNip.Text != "") ? (" AND UCASE(Klienci.nip) LIKE UCASE('%" + textBoxKlienciSearchExtendNip.Text + "%')") : "");
 
+				//tworzenie komendy
+				System.Data.Odbc.OdbcCommand cmd = TablesManager.Manager.KlienciTableAdapter.Connection.CreateCommand();
+				//otwarcie połączenie
+				TablesManager.Manager.KlienciTableAdapter.Connection.Open();
+				cmd.CommandText = "SELECT Klienci.email, Klienci.imie, Klienci.nazwisko, Klienci.id_miejscowosci, Klienci.ulica, Klienci.nip, Klienci.pesel, Klienci.id_klienta, Klienci.nr_telefonu, Klienci.nazwa, " +
+							" Miejscowosci_slownik.nazwa AS miejscowosc, Klienci.kod_pocztowy " +
+							"FROM Klienci, Miejscowosci_slownik " +
+							"WHERE Klienci.id_miejscowosci = Miejscowosci_slownik.id_miejscowosci " +
+							sb.ToString();	//dodanie warunkow
+				//pobranie readera
+				System.Data.Odbc.OdbcDataReader rd = cmd.ExecuteReader();
+				KlienciDS.KlienciDataTable tab = new KlienciDS.KlienciDataTable();
+				//wypenienie DataTable za pomoca readera
+				tab.Load(rd);
+				//wypelnienie DGrida
+				dataGridKlienci.ItemsSource = tab;
+				dataGridKlienci.Items.Refresh();
+				//zamkniecie polaczenia
+				TablesManager.Manager.KlienciTableAdapter.Connection.Close();
 
 			}
         }
