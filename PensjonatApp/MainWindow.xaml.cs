@@ -1891,17 +1891,24 @@ namespace PensjonatApp
 
         private void buttonPokojeOk_Click(object sender, RoutedEventArgs e)
         {
-            if (textBoxPokojeEdycjaNrPokoju.Text != "" && comboBoxPokojeEdycjaStandard.SelectedItem != null)
+            if (currentGrid == gridPokojeEdycja)
             {
-                PokojeHelper.edytujPokoj((int)labelPokojeEdycjaId.Content,PokojeIdLst[comboBoxPokojeEdycjaStandard.SelectedIndex], textBoxPokojeEdycjaNrPokoju.Text);
-                dataGridPokojeDeafult.ItemsSource = TablesManager.Manager.PokojeTableAdapter.GetDataPokojeStandardy();
-                zwinPokoje();
-                showWindow(gridPokojeDeafult, buttonPokojeDeafultList);
+                if (textBoxPokojeEdycjaNrPokoju.Text != "" && comboBoxPokojeEdycjaStandard.SelectedItem != null)
+                {
+                    PokojeHelper.edytujPokoj((int)labelPokojeEdycjaId.Content, PokojeIdLst[comboBoxPokojeEdycjaStandard.SelectedIndex], textBoxPokojeEdycjaNrPokoju.Text);
+                    dataGridPokojeDeafult.ItemsSource = TablesManager.Manager.PokojeTableAdapter.GetDataPokojeStandardy();
+                    zwinPokoje();
+                    showWindow(gridPokojeDeafult, buttonPokojeDeafultList);
+                }
+                else
+                {
+                    System.Windows.MessageBox.Show("Wypełnij wszystkie pola.", "Edycja pokoju", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
             else
-            {
-                System.Windows.MessageBox.Show("Wypełnij wszystkie pola.", "Edycja pokoju", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+                zwinPokoje();
+                showWindow(gridPokojeDeafult, buttonPokojeDeafultList);
+
         }
 
         private void buttonPokojeDodaj_Click(object sender, RoutedEventArgs e)
@@ -2115,7 +2122,7 @@ namespace PensjonatApp
 
                 dataGridStandPokoiSzczegWyp.ItemsSource = TablesManager.Manager.Wyposazenia_slownikTableAdapter.GetDataListaWyposazenByID(selectedRow.id_slownikowe_pokoju);
 
-                }
+            }
             else
                 System.Windows.MessageBox.Show("Najpierw wybierz standard pokoi.", "Podgląd standardu pokoi", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
