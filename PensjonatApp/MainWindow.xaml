@@ -1552,7 +1552,7 @@
                                 <DataGridTextColumn Binding="{Binding Path=nazwisko}" Header="Nazwisko" />
                                 <DataGridTextColumn Binding="{Binding Path=opis}" Header="Opis" />
                                 <DataGridTextColumn Binding="{Binding Path=dodatkowy_opis}" Header="Dod. opis" />
-                                <DataGridTextColumn Binding="{Binding Path=termin_start}" Header="Godz. rozpączecia" />
+                                <DataGridTextColumn Binding="{Binding Path=termin_start}" Header="Godz. rozpoczęcia" />
                                 <DataGridTextColumn Binding="{Binding Path=termin_koniec}" Header="Godz. zakończenia" />
                             </DataGrid.Columns>
                         </DataGrid>
@@ -1567,7 +1567,7 @@
                                 <DataGridTextColumn Binding="{Binding Path=nazwisko}" Header="Nazwisko" />
                                 <DataGridTextColumn Binding="{Binding Path=opis}" Header="Opis" />
                                 <DataGridTextColumn Binding="{Binding Path=dodatkowy_opis}" Header="Dod. opis" />
-                                <DataGridTextColumn Binding="{Binding Path=termin_start}" Header="Godz. rozpączecia" />
+                                <DataGridTextColumn Binding="{Binding Path=termin_start}" Header="Godz. rozpoczęcia" />
                                 <DataGridTextColumn Binding="{Binding Path=termin_koniec}" Header="Godz. zakończenia" />
                             </DataGrid.Columns>
                         </DataGrid>
