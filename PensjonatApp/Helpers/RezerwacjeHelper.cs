@@ -322,8 +322,45 @@ namespace PensjonatApp.Helpers
             return 1;
         }
 
+        /// <summary>
+        /// Nowe pobyty z rezerwacji, pierwszy element w id_klientow - szef grupy
+        /// </summary>
+        /// <returns>-2: błędne id_rezerwacji, -1:błąd tablic id_klientow i id_pokojow, 1:udało się</returns>
+        public static int dodajNowyPobytZRezerwacji(List<int> id_klientow, List<int> id_pokojow, int id_rezerwacji, DateTime termin_start, DateTime termin_koniec)
+        {
+            try
+            {
+                PobytyDS.PobytyDataTable tabPo = TablesManager.Manager.PobytyTableAdapter.GetDataPobytyByIdRezerwacji(id_rezerwacji);
+
+                if (tabPo.Count > 0)
+                {
+                    for (int i = 0; i < id_klientow.Count; i++)
+                    {
+                        foreach (PobytyDS.PobytyRow pobyt in tabPo)
+                        {
+                            //znaleziono pobyt dla danego pokoju
+                            if (pobyt.id_pokoju == id_pokojow[i])
+                            {
+                                TablesManager.Manager.PobytyTableAdapter.UpdateIdKlientaInPobytyQuery(id_klientow[i], pobyt.id_pobytu);
+                                break;
+                            }
+
+                        }
+                    }
+                }
+                else
+                    return -2;
+            }
+            catch (Exception ex)
+            {
+                return -1;
+            }
+
+            return 1;
+        }
 
 
+    /*
         /// <summary>
         /// Tworzy kompletne dodanie klienta który przychodzi z ulicy i chce się zakwaterować, pobiera id_klinta, id_pokokju oraz termin zakwaterowania
         /// </summary>
@@ -339,20 +376,21 @@ namespace PensjonatApp.Helpers
 
                 return 1;
 
-                /*int tmp = tabRez[0].id_klienta;
+                int tmp = tabRez[0].id_klienta;
                 if(tabRez[0].id_klienta == id_klienta)
                 {
                     RezerwacjeHelper.dodajKlientaDoPobytuNaPodstawieRezerwacji(tabRez[0].id_rezerwacji, id_klienta, id_pokoju);
                     return 1;
                 }
                 else
-                    return -2;*/
+                    return -2;
 
             }else
                 return -1;
         }
         
-
+*/
+        ///*
         /// <summary>
         /// Na podstawie isniejącej rezerwacji(id_rezerwacji), w której zostały stworzone rekody dla pobytów, z id zarezerwowanych pokojów, przydziela klienta(id_klienta) do danego pokoju(id_pokoju).
         /// </summary>
@@ -372,6 +410,6 @@ namespace PensjonatApp.Helpers
                 }
 
         }
-
+//        */
     }
 }
