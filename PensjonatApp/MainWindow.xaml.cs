@@ -961,12 +961,24 @@ namespace PensjonatApp
                 //labelPobytyZarzadzajLOsob.Content = (string)selectedRow["
                 labelPobytyServicesId.Content = selectedRow.id_pobytu;
                 labelPobytyZarzadzajTermin.Content = selectedRow.termin_start.ToLongDateString() + " - " + selectedRow.termin_koniec.ToLongDateString();
-
+                labelPobtyZarzadzajRezerwacja.Content = selectedRow.id_rezerwacji;
                 dataGridPobytyPosilki.ItemsSource = TablesManager.Manager.PosilkiTableAdapter.GetDataWithPosilkiSlownikById(((int)labelPobytyServicesId.Content));
                 dataGridPobytyUslugi.ItemsSource = TablesManager.Manager.UslugiTableAdapter.GetDataUslugiUslugi_slownikByID_pobytu(selectedRow.id_pobytu);
-
                 dataGridPobytyZarzadzajOsoby.ItemsSource = TablesManager.Manager.KlienciTableAdapter.GetDataKlienciNierozliczoneByIdRezerwacji(selectedRow.id_rezerwacji);
-            
+                if (radioButtonPobytyGrupowe.IsChecked == true)
+                {
+                    labelPobytyZarzadzajGrupowy.Visibility = Visibility.Visible;
+                    groupBoxPobytyUslugi.IsEnabled = false;
+                    groupBoxPobytyUslugi.Opacity = 0.5;
+                    buttonPobytyZarzadzajUslugi.IsEnabled = false;
+                }
+                else
+                {
+                    labelPobytyZarzadzajGrupowy.Visibility = Visibility.Hidden;
+                    groupBoxPobytyUslugi.IsEnabled = true;
+                    groupBoxPobytyUslugi.Opacity = 1;
+                    buttonPobytyZarzadzajUslugi.IsEnabled = true;
+                }
             }
             else
                 System.Windows.MessageBox.Show("Najpierw wybierz pobyt.", "Dodawanie usługi.", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -986,7 +998,8 @@ namespace PensjonatApp
                 PobytyPosilkiIdList.Add(row.id_slownikowe_posilku);
             }
             comboBoxPobytyZarzadzaniePosilki.ItemsSource = lst;
-            dataGridPobytyZarzadzaniePosilki.ItemsSource = TablesManager.Manager.PosilkiTableAdapter.GetDataWithPosilkiSlownikById(((int)labelPobytyServicesId.Content));
+            dataGridPobytyZarzadzaniePosilki.ItemsSource = 
+                TablesManager.Manager.PosilkiTableAdapter.GetDataWithPosilkiSlownikById(((int)labelPobytyServicesId.Content));
             PobytyDS.PobytyRow selectedRow = (PobytyDS.PobytyRow)((DataRowView)dataGridPobytySzukaj.SelectedItem).Row;
             datePickerPobytyZarzadzaniePosilkiTerminOd.SelectedDate = selectedRow.termin_start;
             datePickerPobytyZarzadzaniePosilkiTerminDo.SelectedDate = selectedRow.termin_koniec;            
@@ -996,12 +1009,35 @@ namespace PensjonatApp
             if (comboBoxPobytyZarzadzaniePosilki.SelectedItem != null && datePickerPobytyZarzadzaniePosilkiTerminOd.SelectedDate != null
                 && datePickerPobytyZarzadzaniePosilkiTerminDo.SelectedDate != null)
             {
-                DateTime data = (DateTime)datePickerPobytyZarzadzaniePosilkiTerminOd.SelectedDate;
-                while(data <= (DateTime)datePickerPobytyZarzadzaniePosilkiTerminDo.SelectedDate)
+                if (radioButtonPobytyIndywidualne.IsChecked == true)
                 {
-                    PosilkiHelper.dodajPosilek((int)labelPobytyServicesId.Content,PobytyPosilkiIdList[comboBoxPobytyZarzadzaniePosilki.SelectedIndex],data);
-                    data = data.AddDays(1.0); 
-                }               
+                    DateTime data = (DateTime)datePickerPobytyZarzadzaniePosilkiTerminOd.SelectedDate;
+                    while (data <= (DateTime)datePickerPobytyZarzadzaniePosilkiTerminDo.SelectedDate)
+                    {
+                        PosilkiHelper.dodajPosilek((int)labelPobytyServicesId.Content, PobytyPosilkiIdList[comboBoxPobytyZarzadzaniePosilki.SelectedIndex], data);
+                        data = data.AddDays(1.0);
+                    }
+                }
+                else
+                {
+                    MessageBoxResult result = System.Windows.MessageBox.Show("Posiłki w wybranym terminie zostaną przydzielone wszystkim osobom powiązanym z pobytem. Czy chcesz kontynuować?"
+                        , "Dodawanie posiłku", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        PobytyDS.PobytyDataTable pobytyTable =
+                            TablesManager.Manager.PobytyTableAdapter.GetDataPobytyByIdRezerwacjiNierozliczone((int)labelPobtyZarzadzajRezerwacja.Content);
+                        foreach (PobytyDS.PobytyRow row in pobytyTable)
+                        {
+                            DateTime data = (DateTime)datePickerPobytyZarzadzaniePosilkiTerminOd.SelectedDate;
+                            while (data <= (DateTime)datePickerPobytyZarzadzaniePosilkiTerminDo.SelectedDate)
+                            {
+                                PosilkiHelper.dodajPosilek(row.id_pobytu, PobytyPosilkiIdList[comboBoxPobytyZarzadzaniePosilki.SelectedIndex], data);
+                                data = data.AddDays(1.0);
+                            }
+                        }
+                    }
+                }
+                dataGridPobytyZarzadzaniePosilki.Items.Refresh();
             }
             else
                 System.Windows.MessageBox.Show("Wypełnij wszystkie pola.", "Dodawanie posiłku", MessageBoxButton.OK, MessageBoxImage.Warning);

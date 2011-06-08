@@ -273,11 +273,11 @@
                         <Image Height="40" HorizontalAlignment="Left" Margin="132,12,0,0" Name="image4" Source="/PensjonatApp;component/Images/separator.png" Stretch="Fill" VerticalAlignment="Top" Width="2" />
                        
                     </Grid>
-                    <Grid Height="52" Name="gridPobytyServices" Opacity="1" ShowGridLines="True" Visibility="Visible">
+                    <Grid Height="488" Name="gridPobytyServices" Opacity="1" ShowGridLines="True" Visibility="Visible">
                         <Label Content="Zarządzanie pobytem:" FontSize="15" FontWeight="Normal" HorizontalAlignment="Left" Margin="10,10,0,0" Name="label42" Padding="2" VerticalAlignment="Top" />
                         <Label Name="labelPobytyServicesId" Content="21452" FontWeight="Normal" HorizontalAlignment="Left" Margin="202,11,0,0" Padding="2" VerticalAlignment="Top" FontSize="14" />
                         <Label Content="ID:" FontSize="14" FontWeight="Normal" HorizontalAlignment="Left" Margin="175,11,0,0" Name="label238" Padding="2" VerticalAlignment="Top" />
-                        <GroupBox Header="Klient:" Height="96" HorizontalAlignment="Left" Margin="25,37,0,0" Name="groupBox9" VerticalAlignment="Top" Width="255">
+                        <GroupBox Header="Klient:" Height="96" HorizontalAlignment="Left" Margin="25,37,0,0" Name="groupBox9" VerticalAlignment="Top" Width="266">
                             <Grid>
                                 <Label Content="Adam Malański" FontWeight="Normal" HorizontalAlignment="Left" Margin="64,6,0,0" Name="labelPobytyServicesKlient" Padding="2" VerticalAlignment="Top" />
                                 <Label Content="Osoba:" FontWeight="Bold" HorizontalAlignment="Left" Margin="8,6,0,0" Name="label40" Padding="2" VerticalAlignment="Top" />
@@ -287,7 +287,7 @@
                                 <Label Content="Telefon:" FontWeight="Bold" HorizontalAlignment="Left" Margin="8,42,0,0" Name="label241" Padding="2" VerticalAlignment="Top" />
                             </Grid>
                         </GroupBox>
-                        <GroupBox Header="Pobyt" Height="96" HorizontalAlignment="Left" Margin="25,138,0,0" Name="groupBox10" VerticalAlignment="Top" Width="255">
+                        <GroupBox Header="Pobyt" Height="96" HorizontalAlignment="Left" Margin="25,138,0,0" Name="groupBox10" VerticalAlignment="Top" Width="266">
                             <Grid>
                                 <Label Content="12/02/2001 - 2/03/2001" FontWeight="Normal" HorizontalAlignment="Left" Margin="64,6,0,0" Name="labelPobytyZarzadzajTermin" Padding="2" VerticalAlignment="Top" />
                                 <Label Content="Termin:" FontWeight="Bold" HorizontalAlignment="Left" Margin="8,6,0,0" Name="label240" Padding="2" VerticalAlignment="Top" />
@@ -297,7 +297,7 @@
                                 <Label Content="L. osób:" FontWeight="Bold" HorizontalAlignment="Left" Margin="8,42,0,0" Name="label245" Padding="2" VerticalAlignment="Top" />
                             </Grid>
                         </GroupBox>
-                        <GroupBox Header="Usługi:" Height="163" HorizontalAlignment="Left" Margin="24,246,0,0" Name="groupBox11" VerticalAlignment="Top" Width="542" IsEnabled="True" Opacity="1">
+                        <GroupBox Header="Usługi:" Height="163" HorizontalAlignment="Left" Margin="24,246,0,0" Name="groupBoxPobytyUslugi" VerticalAlignment="Top" Width="542" IsEnabled="True" Opacity="1">
                             <Grid>
                                 <DataGrid AutoGenerateColumns="False" Height="120" HorizontalGridLinesBrush="#FFD5D5D5" IsEnabled="True" IsReadOnly="True" Margin="10,11,10,0" Name="dataGridPobytyUslugi" SelectionMode="Single" VerticalAlignment="Top" VerticalGridLinesBrush="#FFD5D5D5">
                                     <DataGrid.Columns>
@@ -340,6 +340,8 @@
                                 </DataGrid>
                             </Grid>
                         </GroupBox>
+                        <Label Content="Niedostępne w kontekście grupowym." Height="80" HorizontalAlignment="Center" Margin="0,300,0,0" Name="labelPobytyZarzadzajGrupowy" VerticalAlignment="Top" Width="450" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#C5FFFFFF" BorderBrush="#E6E5E5E5" BorderThickness="2" FontSize="15" Foreground="#FF7D7D7D" Visibility="Hidden" />
+                        <Label Content="21452" FontSize="14" FontWeight="Normal" HorizontalAlignment="Left" Margin="513,14,0,0" Name="labelPobtyZarzadzajRezerwacja" Padding="2" VerticalAlignment="Top" IsEnabled="False" Visibility="Hidden" />
                     </Grid>
                     <Grid Height="65" Name="gridPobytyNowy" Opacity="1" ShowGridLines="False" Visibility="Visible">
                         <Label Content="Nowy pobyt:" FontSize="15" FontWeight="Normal" HorizontalAlignment="Left" Margin="10,10,0,0" Name="label228" Padding="2" VerticalAlignment="Top" />
@@ -404,7 +406,7 @@
                         <RadioButton Content="Nowy" GroupName="NowyPobyt" Height="16" HorizontalAlignment="Right" Margin="0,16,123,0" Name="radioButtonPobytyNowyNowy" VerticalAlignment="Top" FontSize="13" IsChecked="True" Checked="radioButtonPobytyNowyNowy_Checked" />
                         <Label Height="28" HorizontalAlignment="Left" IsEnabled="False" Margin="349,12,0,0" Name="labelPobytyNowyIdKlienta" VerticalAlignment="Top" Visibility="Collapsed" />
                     </Grid>
-                    <Grid Height="31" Name="gridPobytyUslugi" Opacity="1" ShowGridLines="True" Visibility="Visible">
+                    <Grid Height="43" Name="gridPobytyUslugi" Opacity="1" ShowGridLines="True" Visibility="Visible">
                         <Label Content="Usługi:" FontSize="15" FontWeight="Normal" HorizontalAlignment="Left" Margin="10,10,0,0" Name="label50" Padding="2" VerticalAlignment="Top" FontStretch="Normal" />
                         <DataGrid AutoGenerateColumns="False" HorizontalGridLinesBrush="#FFD5D5D5" IsEnabled="True" IsReadOnly="True" Margin="27,346,23,47" Name="dataGridPobytyZarzadzajUslug" SelectionMode="Single" VerticalGridLinesBrush="#FFD5D5D5" Width="533">
                             <DataGrid.Columns>
