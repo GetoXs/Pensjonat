@@ -1645,7 +1645,7 @@ namespace PensjonatApp.DS.KlienciDSTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.Odbc.OdbcCommand[9];
+            this._commandCollection = new global::System.Data.Odbc.OdbcCommand[10];
             this._commandCollection[0] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT        email, imie, nazwisko, id_miejscowosci, ulica, nip, pesel, id_klien" +
@@ -1710,11 +1710,19 @@ WHERE        Klienci.id_miejscowosci = Miejscowosci_slownik.id_miejscowosci AND 
             this._commandCollection[7].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_klienta", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_klienta", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[8] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[8].Connection = this.Connection;
-            this._commandCollection[8].CommandText = @"SELECT        Klienci.email, Klienci.imie, Klienci.nazwisko, Klienci.id_miejscowosci, Klienci.ulica, Klienci.nip, Klienci.pesel, Klienci.id_klienta, Klienci.nr_telefonu, Klienci.nazwa, 
+            this._commandCollection[8].CommandText = "SELECT        Klienci.imie, Klienci.nazwisko, Klienci.id_klienta, Pobyty.id_pobyt" +
+                "u, Klienci.pesel\r\nFROM            Pobyty, Klienci\r\nWHERE        Pobyty.id_klient" +
+                "a = Klienci.id_klienta AND (Pobyty.id_rachunku IS NULL) AND (Pobyty.id_rezerwacj" +
+                "i = ?)";
+            this._commandCollection[8].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[8].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_rezerwacji", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_rezerwacji", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[9] = new global::System.Data.Odbc.OdbcCommand();
+            this._commandCollection[9].Connection = this.Connection;
+            this._commandCollection[9].CommandText = @"SELECT        Klienci.email, Klienci.imie, Klienci.nazwisko, Klienci.id_miejscowosci, Klienci.ulica, Klienci.nip, Klienci.pesel, Klienci.id_klienta, Klienci.nr_telefonu, Klienci.nazwa, 
                          Miejscowosci_slownik.nazwa AS miejscowosc, Klienci.kod_pocztowy
 FROM            Klienci, Miejscowosci_slownik
 WHERE        Klienci.id_miejscowosci = Miejscowosci_slownik.id_miejscowosci";
-            this._commandCollection[8].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[9].CommandType = global::System.Data.CommandType.Text;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1860,8 +1868,25 @@ WHERE        Klienci.id_miejscowosci = Miejscowosci_slownik.id_miejscowosci";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual KlienciDS.KlienciDataTable GetKlienciMiejscowosci() {
+        public virtual KlienciDS.KlienciDataTable GetDataKlienciNierozliczoneByIdRezerwacji(global::System.Nullable<int> id_rezerwacji) {
             this.Adapter.SelectCommand = this.CommandCollection[8];
+            if ((id_rezerwacji.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((int)(id_rezerwacji.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            KlienciDS.KlienciDataTable dataTable = new KlienciDS.KlienciDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual KlienciDS.KlienciDataTable GetKlienciMiejscowosci() {
+            this.Adapter.SelectCommand = this.CommandCollection[9];
             KlienciDS.KlienciDataTable dataTable = new KlienciDS.KlienciDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
