@@ -1611,21 +1611,53 @@ namespace PensjonatApp
             showWindow(gridKlienciDeafult, buttonKlienciDeafultList);
         }
         private void buttonKlienciOk_Click(object sender, RoutedEventArgs e)
-        {
-            if (currentGrid == gridKlienciEdit)
-            {
-                KlienciHelper.edytujKlienta(int.Parse(labelKlienciEdytujId.Content.ToString()), textBoxKlienciEdycjaImie.Text, textBoxKlienciEdycjaNazwisko.Text, textBoxKlienciEdycjaFirma.Text,
-                    textBoxKlienciEdycjaMiejscowoscAuto.Text, textBoxKlienciEdycjaAdres.Text, textBoxKlienciEdycjaKodPocztowy.Text, int.Parse(textBoxKlienciEdycjaNIP.Text),
-                       textBoxKlienciEdycjaPESEL.Text, int.Parse(textBoxKlienciEdycjaTelefon.Text), textBoxKlienciEdycjaMail.Text);
-                dataGridKlienci.ItemsSource = TablesManager.Manager.KlienciTableAdapter.GetKlienciMiejscowosci();
-                System.Windows.MessageBox.Show("Wyedytowano pomyślnie.", "Edycja klienta", MessageBoxButton.OK, MessageBoxImage.Information);
+		{
+			if (currentGrid == gridKlienciEdit)
+			{
+				KlienciHelper.edytujKlienta(int.Parse(labelKlienciEdytujId.Content.ToString()), textBoxKlienciEdycjaImie.Text, textBoxKlienciEdycjaNazwisko.Text, textBoxKlienciEdycjaFirma.Text,
+					textBoxKlienciEdycjaMiejscowoscAuto.Text, textBoxKlienciEdycjaAdres.Text, textBoxKlienciEdycjaKodPocztowy.Text, int.Parse(textBoxKlienciEdycjaNIP.Text),
+					   textBoxKlienciEdycjaPESEL.Text, int.Parse(textBoxKlienciEdycjaTelefon.Text), textBoxKlienciEdycjaMail.Text);
+				dataGridKlienci.ItemsSource = TablesManager.Manager.KlienciTableAdapter.GetKlienciMiejscowosci();
+				System.Windows.MessageBox.Show("Wyedytowano pomyślnie.", "Edycja klienta", MessageBoxButton.OK, MessageBoxImage.Information);
 
 				textBoxKlienciEdycjaMiejscowoscAuto.Visibility = System.Windows.Visibility.Hidden;
-                zwinKlienci();
-                showWindow(gridKlienciDeafult, buttonKlienciDeafultList);
-            }
+				zwinKlienci();
+				showWindow(gridKlienciDeafult, buttonKlienciDeafultList);
+			}
+			else if (currentGrid == gridKlienciAdd)
+			{
+				int nip, tel;
+				if (radioButtonKlientAddFirma.IsChecked == false)
+				{
+					textBoxKlienciAddFirma.Text = "";
+					textBoxKlienciAddNIP.Text = "0";
+				}
+				if (int.TryParse(textBoxKlienciAddNIP.Text, out nip) && int.TryParse(textBoxKlienciAddTelefon.Text, out tel))
+				{
+					//dodawanie klienta
+					if (KlienciHelper.dodajKlienta(
+						textBoxKlienciAddImie.Text,
+						textBoxKlienciAddNazwisko.Text,
+						textBoxKlienciAddFirma.Text,
+						textBoxKlienciAddMiejscowoscAuto.Text,
+						textBoxKlienciAddAdres.Text,
+						textBoxKlienciAddKodPocztowy.Text,
+						nip,
+						textBoxKlienciAddPESEL.Text,
+						tel,
+						textBoxKlienciAddMail.Text) != 0)
+					{
+						MessageBox.Show("Pomyślnie dodano klienta do bazy", "Dodawanie klienta", MessageBoxButton.OK, MessageBoxImage.Information);
+					}
+					zwinKlienci();
+					showWindow(gridKlienciDeafult, buttonKlienciDeafultList);
+				}
+				else
+					MessageBox.Show("Błąd, wypełnij pola NIPu oraz telefonu liczbą", "Dodawanie klienta", MessageBoxButton.OK, MessageBoxImage.Error);
+			}
 
-        }
+
+		}
         //----------------------------------------------KLIENCI->DEAFULT----------------------------------------------
         private void dataGridKlienci_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
@@ -1762,63 +1794,37 @@ namespace PensjonatApp
 			textBoxKlienciAddPESEL.Text = "";
 			textBoxKlienciAddTelefon.Text = "";
             textBoxKlienciAddKodPocztowy.Text = "";
-            buttonKlienciAddDodaj.IsEnabled = false;
         }
 
 		private void buttonKlienciAddDodaj_Click(object sender, RoutedEventArgs e)
 		{
-			//dodawanie klienta
-			/*if (KlienciHelper.addKlient(
-				textBoxKlienciAddMail.Text,
-				textBoxKlienciAddImie.Text,
-				textBoxKlienciAddNazwisko.Text,
-				textBoxKlienciAddMiejscowosc.Text,
-				textBoxKlienciAddAdres.Text,
-				textBoxKlienciAddNIP.Text,
-				textBoxKlienciAddPESEL.Text,
-				textBoxKlienciAddTelefon.Text,
-				textBoxKlienciAddKodPocztowy.Text) == true)
+			int nip, tel;
+			if (radioButtonKlientAddFirma.IsChecked == false)
 			{
-				MessageBox.Show("Pomyślnie dodano klienta do bazy", "Informacja", MessageBoxButton.OK, MessageBoxImage.Information);
+				textBoxKlienciAddFirma.Text = "";
+				textBoxKlienciAddNIP.Text = "0";
+			}
+			if(int.TryParse(textBoxKlienciAddNIP.Text, out nip) && int.TryParse(textBoxKlienciAddTelefon.Text, out tel))
+			{
+				//dodawanie klienta
+				if (KlienciHelper.dodajKlienta(
+					textBoxKlienciAddImie.Text,
+					textBoxKlienciAddNazwisko.Text,
+					textBoxKlienciAddFirma.Text,
+					textBoxKlienciAddMiejscowoscAuto.Text,
+					textBoxKlienciAddAdres.Text,
+					textBoxKlienciAddKodPocztowy.Text,
+					nip,
+					textBoxKlienciAddPESEL.Text,
+					tel,
+					textBoxKlienciAddMail.Text)!=0)
+				{
+					MessageBox.Show("Pomyślnie dodano klienta do bazy", "Dodawanie klienta", MessageBoxButton.OK, MessageBoxImage.Information);
+				}
 			}
 			else
-				MessageBox.Show("Błąd: " + KlienciHelper.lastMsg, "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
-            */
-		}
-
-		/// <summary>
-		/// Sprawdzanie na bieżąco czy 
-		/// </summary>
-		private void textBoxKlienciAdd_TextChanged(object sender, TextChangedEventArgs e)
-		{
-			int nip;
-			int tel;
-			bool sprawdzic=true;
-
-			buttonKlienciAddDodaj.IsEnabled = false;
-			this.labelKlienciAddStatus.Content = "";
-
-			if (!int.TryParse(textBoxKlienciAddNIP.Text, out nip))
-			{
-				if (textBoxKlienciAddNIP.Text != "")
-				{
-					this.labelKlienciAddStatus.Content = "W polu NIP może być tylko liczba";
-					sprawdzic = false;
-				}
-			}
-			if (!int.TryParse(textBoxKlienciAddTelefon.Text, out tel))
-			{
-				if (textBoxKlienciAddTelefon.Text != "")
-				{
-					this.labelKlienciAddStatus.Content = "W polu telefon może być tylko liczba";
-					sprawdzic = false;
-				}
-			}
-			if (sprawdzic == true)
-			{
-				buttonKlienciAddDodaj.IsEnabled = true;
-			}
-			
+				MessageBox.Show("Błąd, wypełnij pola NIPu oraz telefonu liczbą", "Dodawanie klienta", MessageBoxButton.OK, MessageBoxImage.Error);
+            
 		}
 		/// <summary>
 		/// Ustawia pola w Gridzie add klienta odpowiednio dla "osoby prytwantej"/firmy
