@@ -218,7 +218,7 @@
                             </LinearGradientBrush>
                         </Grid.Background>
                         <Label Content="Pobyty" FontSize="20" FontWeight="Normal" Height="40" HorizontalAlignment="Left" Margin="53,11,0,0" Name="labelPobytyBelka" Padding="0" VerticalAlignment="Top" VerticalContentAlignment="Center" />
-                        <StackPanel Height="47" HorizontalAlignment="Right" Margin="0,5,5,0" Name="stackPanel2" VerticalAlignment="Top" Width="542" Orientation="Horizontal" FlowDirection="RightToLeft" ClipToBounds="False" CanHorizontallyScroll="True">
+                        <StackPanel Height="47" HorizontalAlignment="Right" Margin="0,5,5,0" Name="stackPanel2" VerticalAlignment="Top" Width="772" Orientation="Horizontal" FlowDirection="RightToLeft" ClipToBounds="False" CanHorizontallyScroll="True">
 
                             <Button BorderBrush="#FFBAD0DC" Canvas.Left="199" Canvas.Top="103" Foreground="{x:Null}" Height="35" Margin="2" Name="buttonPobytySum" Padding="0" VerticalAlignment="Stretch" Click="buttonPobytySum_Click" ClickMode="Press" Width="95">
                             <StackPanel Orientation="Horizontal">
