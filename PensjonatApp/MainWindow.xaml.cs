@@ -886,10 +886,13 @@ namespace PensjonatApp
 			else if (currentGrid == gridPobytySum)
 			{
 				decimal cena=-1;
-				int id;
 				if (Decimal.TryParse((string)labelPobytySumDoZaplaty.Content, out cena) && cena>=0)
 				{
-					RozliczenieHelper.rozliczPobyt((int)labelPobytySumId.Content, cena); 
+
+					if ((bool)radioButtonPobytyIndywidualne.IsChecked == true)
+						RozliczenieHelper.rozliczPobyt((int)labelPobytySumId.Content, cena);
+					else
+						RozliczenieHelper.rozliczRezerwacje((int)labelPobytySumIdRezerwacji.Content, cena);
 					zwinPobyty();
 					showWindow(gridPobytyDeafult, buttonPobytyDeafultList);
 				}else
@@ -1222,8 +1225,7 @@ namespace PensjonatApp
 				PobytyDS.PobytyRow selectedRow = (PobytyDS.PobytyRow)((DataRowView)dataGridPobytySzukaj.SelectedItem).Row;
 				if (selectedRow.Isid_rachunkuNull())
 				{
-					zwinPobyty();
-					showWindow(gridPobytySum, buttonPobytyBackOkPrintList);
+					//rzeczy niezalezne od rodzaju rozliczenia
 					List<string> lst = new List<string>();
 					DS.RachunkiDS.RabatyDataTable rabatyTable = TablesManager.Manager.RabatyTableAdapter.GetDataByAktywne();
 					foreach (DS.RachunkiDS.RabatyRow row in rabatyTable)
@@ -1232,33 +1234,126 @@ namespace PensjonatApp
 						PobytyRabatyList.Add(row);
 					}
 					comboBoxPobytySumRabat.ItemsSource = lst;
-
-					labelPobytySumKlient.Content = (string)selectedRow["imie"] + ' ' + (string)selectedRow["nazwisko"];
-					labelPobytySumPokoj.Content = (string)selectedRow["nr_pokoju"];
-					labelPobytySumId.Content = selectedRow.id_pobytu;
-					labelPobytySumTermin.Content = selectedRow.termin_start.ToLongDateString() + " - " + selectedRow.termin_koniec.ToLongDateString();
-					//zerowanie listy rabatow
+					//dataGrid rabatów
 					PobytyRabatyDodajList = new List<RachunkiDS.RabatyRow>();
 					dataGridPobytySumRabaty.ItemsSource = PobytyRabatyDodajList;
 
-					//wypenienie labeli i przyciskow związanych z ceną
-					decimal cenaTmp;
-					cenaTmp = RozliczenieHelper.pobierzPodstawowaCenaUslug(selectedRow.id_pobytu);
-					labelPobytySumCenaUslugi.Content = cenaTmp.ToString("0.00");
-					buttonPobytySumRozwinUslugi.Content = "+";
-					buttonPobytySumRozwinUslugi.IsEnabled = (cenaTmp == 0) ? false : true;
-					cenaTmp = RozliczenieHelper.pobierzPodstawowaCenaPosilkow(selectedRow.id_pobytu);
-					labelPobytySumCenaPosilki.Content = cenaTmp.ToString("0.00");
-					buttonPobytySumRozwinPosilki.Content = "+";
-					buttonPobytySumRozwinPosilki.IsEnabled = (cenaTmp == 0) ? false : true;
-					labelPobytySumCenaPobyt.Content = RozliczenieHelper.pobierzPodstawowaCenaPobytu(selectedRow.id_pobytu).ToString("0.00");
-					labelPobytySumCena.Content = RozliczenieHelper.pobierzPodstawowaCenaLaczna(selectedRow.id_pobytu).ToString("0.00");
-					labelPobytySumDoZaplaty.Content = RozliczenieHelper.pobierzRabatowaCena(selectedRow.id_pobytu, PobytyRabatyDodajList).ToString("0.00");
+					//czyszczenie
+					comboBoxPobytySumId.Visibility = System.Windows.Visibility.Hidden;
+					comboBoxPobytySumKlient.Visibility = System.Windows.Visibility.Hidden;
+					comboBoxPobytySumPokoj.Visibility = System.Windows.Visibility.Hidden;
+					labelPobytySumId.Visibility = System.Windows.Visibility.Visible;
+					labelPobytySumKlient.Visibility = System.Windows.Visibility.Visible;
+					labelPobytySumPokoj.Visibility = System.Windows.Visibility.Visible;
+
+					//dataGrid dodatkowy
 					dataGridPobytySumLista.Visibility = System.Windows.Visibility.Collapsed;
 					dataGridPobytySumLista.ItemsSource = null;
 					dataGridPobytySumLista.Columns.Clear();
 
-					//dataGridPobytyUslugi.ItemsSource = TablesManager.Manager.UslugiTableAdapter.GetDataUslugiUslugi_slownikByID_pobytu(selectedRow.id_pobytu);
+					//id rezerwacji
+					labelPobytySumIdRezerwacji.Content = selectedRow.id_rezerwacji;
+
+					if (radioButtonPobytyIndywidualne.IsChecked == true)	//indywidualne
+					{
+						labelPobytySumKlient.Content = (string)selectedRow["imie"] + ' ' + (string)selectedRow["nazwisko"];
+						labelPobytySumPokoj.Content = (string)selectedRow["nr_pokoju"];
+						labelPobytySumId.Content = selectedRow.id_pobytu; 
+						labelPobytySumTermin.Content = selectedRow.termin_start.ToLongDateString() + " - " + selectedRow.termin_koniec.ToLongDateString();
+					
+
+						//wypenienie labeli i przyciskow związanych z ceną
+						decimal cenaTmp;
+						cenaTmp = RozliczenieHelper.pobierzPodstawowaCenaUslug(selectedRow.id_pobytu);
+						labelPobytySumCenaUslugi.Content = cenaTmp.ToString("0.00");
+						buttonPobytySumRozwinUslugi.Content = "+";
+						buttonPobytySumRozwinUslugi.IsEnabled = (cenaTmp == 0) ? false : true;
+						cenaTmp = RozliczenieHelper.pobierzPodstawowaCenaPosilkow(selectedRow.id_pobytu);
+						labelPobytySumCenaPosilki.Content = cenaTmp.ToString("0.00");
+						buttonPobytySumRozwinPosilki.Content = "+";
+						buttonPobytySumRozwinPosilki.IsEnabled = (cenaTmp == 0) ? false : true;
+						labelPobytySumCenaPobyt.Content = RozliczenieHelper.pobierzPodstawowaCenaPobytu(selectedRow.id_pobytu).ToString("0.00");
+						labelPobytySumCena.Content = RozliczenieHelper.pobierzPodstawowaCenaLaczna(selectedRow.id_pobytu).ToString("0.00");
+						labelPobytySumDoZaplaty.Content = RozliczenieHelper.pobierzRabatowaCena(selectedRow.id_pobytu, PobytyRabatyDodajList).ToString("0.00");
+						
+					}
+					else
+					{
+						comboBoxPobytySumId.Visibility = System.Windows.Visibility.Visible;
+						comboBoxPobytySumKlient.Visibility = System.Windows.Visibility.Visible;
+						comboBoxPobytySumPokoj.Visibility = System.Windows.Visibility.Visible;
+						labelPobytySumId.Visibility = System.Windows.Visibility.Hidden;
+						labelPobytySumKlient.Visibility = System.Windows.Visibility.Hidden;
+						labelPobytySumPokoj.Visibility = System.Windows.Visibility.Hidden;
+
+						List<string> lst1 = new List<string>();
+						List<string> lst2 = new List<string>();
+						List<string> lst3 = new List<string>();
+						bool koniec = false;
+						decimal cenaTmp, tmpCenaUslugi = 0, tmpCenaPobyt = 0, tmpCenaPosilki = 0;
+						PobytyDS.PobytyDataTable tab = TablesManager.Manager.PobytyTableAdapter.GetDataPobytyKlienciPokojeByIdRezerwacjiNierozliczone(selectedRow.id_rezerwacji);
+						foreach (var row in tab)
+						{
+							//lista z pobytem
+							foreach(var rowL in lst1)
+								if (rowL.Equals(row["id_pobytu"].ToString()))
+								{
+									koniec = true;
+									break;
+								}
+							if(koniec==false)
+								lst1.Add(row["id_pobytu"].ToString());
+
+							koniec=false;
+							foreach (var rowL in lst2)
+								if (rowL.Equals((string)row["imie"]+" "+(string)row["nazwisko"]))
+								{
+									koniec = true;
+									break;
+								}
+							if (koniec == false)
+								lst2.Add((string)row["imie"]+" "+(string)row["nazwisko"]);
+
+							koniec=false;
+							foreach (var rowL in lst3)
+								if (rowL.Equals(row["nr_pokoju"]))
+								{
+									koniec = true;
+									break;
+								}
+							if (koniec == false)
+								lst3.Add(row["nr_pokoju"].ToString());
+
+
+							tmpCenaUslugi += RozliczenieHelper.pobierzPodstawowaCenaUslug(row.id_pobytu);
+							tmpCenaPosilki += RozliczenieHelper.pobierzPodstawowaCenaPosilkow(row.id_pobytu);
+							tmpCenaPobyt += RozliczenieHelper.pobierzPodstawowaCenaPobytu(row.id_pobytu);
+							
+							
+
+						}
+						labelPobytySumCenaUslugi.Content = tmpCenaUslugi.ToString("0.00");
+						labelPobytySumCenaPosilki.Content = tmpCenaPosilki.ToString("0.00");
+						labelPobytySumCenaPobyt.Content = tmpCenaPobyt.ToString("0.00");
+						buttonPobytySumRozwinUslugi.Content = "+";
+						buttonPobytySumRozwinUslugi.IsEnabled = (tmpCenaUslugi == 0) ? false : true;
+						buttonPobytySumRozwinPosilki.Content = "+";
+						buttonPobytySumRozwinPosilki.IsEnabled = (tmpCenaPosilki == 0) ? false : true;
+						labelPobytySumCena.Content = (tmpCenaUslugi + tmpCenaPosilki + tmpCenaPobyt).ToString("0.00");
+						labelPobytySumDoZaplaty.Content = RozliczenieHelper.pobierzRabatowaCenaRezerwacji(selectedRow.id_rezerwacji, PobytyRabatyDodajList).ToString("0.00");
+
+
+						comboBoxPobytySumId.ItemsSource = lst1;
+						comboBoxPobytySumKlient.ItemsSource = lst2;
+						comboBoxPobytySumPokoj.ItemsSource = lst3;
+						comboBoxPobytySumId.SelectedIndex = 0;
+						comboBoxPobytySumKlient.SelectedIndex = 0;
+						comboBoxPobytySumPokoj.SelectedIndex = 0;
+
+
+					}
+					zwinPobyty();
+					showWindow(gridPobytySum, buttonPobytyBackOkPrintList);
 				}else
 					System.Windows.MessageBox.Show("Próbujesz rozliczać pobyt, który ma już naliczony rachunek.", "Rozliczanie pobytu.", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
@@ -1271,8 +1366,10 @@ namespace PensjonatApp
 			if (comboBoxPobytySumRabat.SelectedItem != null && !PobytyRabatyDodajList.Contains(PobytyRabatyList[comboBoxPobytySumRabat.SelectedIndex]))
 			{
 				PobytyRabatyDodajList.Add(PobytyRabatyList[comboBoxPobytySumRabat.SelectedIndex]);
-
-				labelPobytySumDoZaplaty.Content = RozliczenieHelper.pobierzRabatowaCena((int)labelPobytySumId.Content, PobytyRabatyDodajList).ToString("0.00");
+				if (radioButtonPobytyIndywidualne.IsChecked == true)
+					labelPobytySumDoZaplaty.Content = RozliczenieHelper.pobierzRabatowaCena((int)labelPobytySumId.Content, PobytyRabatyDodajList).ToString("0.00");
+				else
+					labelPobytySumDoZaplaty.Content = RozliczenieHelper.pobierzRabatowaCenaRezerwacji((int)labelPobytySumIdRezerwacji.Content, PobytyRabatyDodajList).ToString("0.00");
 			}
             dataGridPobytySumRabaty.Items.Refresh();
 
@@ -1286,8 +1383,11 @@ namespace PensjonatApp
 					if (row.id_rabatu == PobytyRabatyList[comboBoxPobytySumRabat.SelectedIndex].id_rabatu)
                     {
 						PobytyRabatyDodajList.Remove(row);
-						labelPobytySumDoZaplaty.Content = RozliczenieHelper.pobierzRabatowaCena((int)labelPobytySumId.Content, PobytyRabatyDodajList).ToString("0.00");
-                        break;
+						if (radioButtonPobytyIndywidualne.IsChecked == true)
+							labelPobytySumDoZaplaty.Content = RozliczenieHelper.pobierzRabatowaCena((int)labelPobytySumId.Content, PobytyRabatyDodajList).ToString("0.00");
+						else
+							labelPobytySumDoZaplaty.Content = RozliczenieHelper.pobierzRabatowaCenaRezerwacji((int)labelPobytySumIdRezerwacji.Content, PobytyRabatyDodajList).ToString("0.00");
+						break;
                     }
                 }
             }
@@ -1311,7 +1411,11 @@ namespace PensjonatApp
 				column.Header = "Początek"; column.Binding = new Binding("termin_start"); dataGridPobytySumLista.Columns.Add(column);
 				column = new DataGridTextColumn(); column.Header = "Koniec"; column.Binding = new Binding("termin_koniec"); dataGridPobytySumLista.Columns.Add(column);
 				column = new DataGridTextColumn(); column.Header = "Nazwa usługi"; column.Binding = new Binding("nazwa"); dataGridPobytySumLista.Columns.Add(column);
-				dataGridPobytySumLista.ItemsSource = TablesManager.Manager.UslugiTableAdapter.GetDataUslugiUslugi_slownikByID_pobytu((int)labelPobytySumId.Content);
+
+				if (radioButtonPobytyIndywidualne.IsChecked == true) 
+					dataGridPobytySumLista.ItemsSource = TablesManager.Manager.UslugiTableAdapter.GetDataUslugiUslugi_slownikByID_pobytu((int)labelPobytySumId.Content);
+				else
+					dataGridPobytySumLista.ItemsSource = TablesManager.Manager.UslugiTableAdapter.GetDataUslugiUslugiSlownikPobytyByIdRezerwacji((int)labelPobytySumIdRezerwacji.Content);
 				dataGridPobytySumLista.Visibility = System.Windows.Visibility.Visible;
 			}
 			else
@@ -1338,7 +1442,12 @@ namespace PensjonatApp
 				column.Header = "Data"; column.Binding = new Binding("data"); dataGridPobytySumLista.Columns.Add(column);
 				column = new DataGridTextColumn(); column.Header = "Nazwa"; column.Binding = new Binding("nazwa_opcji"); dataGridPobytySumLista.Columns.Add(column);
 				column = new DataGridTextColumn(); column.Header = "Cena"; column.Binding = new Binding("cena"); dataGridPobytySumLista.Columns.Add(column);
-				dataGridPobytySumLista.ItemsSource = TablesManager.Manager.PosilkiTableAdapter.GetDataWithPosilkiSlownikById((int)labelPobytySumId.Content);
+				
+				if (radioButtonPobytyIndywidualne.IsChecked == true) 
+					dataGridPobytySumLista.ItemsSource = TablesManager.Manager.PosilkiTableAdapter.GetDataWithPosilkiSlownikById((int)labelPobytySumId.Content);
+				else 
+					dataGridPobytySumLista.ItemsSource = TablesManager.Manager.PosilkiTableAdapter.GetDataPosilkiSlownikPobytyByIdRezerwacji((int)labelPobytySumIdRezerwacji.Content);
+				
 				dataGridPobytySumLista.Visibility = System.Windows.Visibility.Visible;
 			}
 			else

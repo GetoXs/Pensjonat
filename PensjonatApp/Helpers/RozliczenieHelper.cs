@@ -95,14 +95,14 @@ namespace PensjonatApp.Helpers
                     else
                         rabatPobytu += row.wartosc;
                 }
-                if (row.na_posilki == true)
+                else if (row.na_posilki == true)
                 {
                     if (row.procentowy == true)
                         rabatPosilku += (row.wartosc * cenaPosilku) / 100;
                     else
                         rabatPosilku += row.wartosc;
                 }
-                if (row.na_uslugi == true)
+                else if (row.na_uslugi == true)
                 {
                     if (row.procentowy == true)
                         rabatUslug += (row.wartosc * cenaUslug) / 100;
@@ -168,6 +168,29 @@ namespace PensjonatApp.Helpers
 				RachunkiHelper.dodajRachunek(true, cena);
 				lastId = RachunkiHelper.lastIdRachunek();
 				TablesManager.Manager.PobytyTableAdapter.UpdateIdRachunek(lastId, idPobytu);
+				return null;
+			}
+		}		
+		/// <summary>
+		/// Zapisuje podaną ceną do bazy danych oraz przypisuje ją do pobytów określonych id rezerwacji
+		/// </summary>
+		/// <param name="idPobytu"></param>
+		/// <param name="cena"></param>
+		/// <returns>Zwraca null jeśli wszystko jest ok, bądź opis bledu jesli jest nie okej</returns>
+		public static String rozliczRezerwacje(int idRezerwacji, decimal cena)
+		{
+			int lastId = -1;
+			PobytyDS.PobytyDataTable tab = TablesManager.Manager.PobytyTableAdapter.GetDataPobytyByIdRezerwacjiNierozliczone(idRezerwacji);
+			if (tab.Count == 0)
+				return "Nie ma pobytów o poanym id rezerwacji";
+			else
+			{
+				RachunkiHelper.dodajRachunek(true, cena);
+				lastId = RachunkiHelper.lastIdRachunek();
+				foreach (var row in tab)
+				{
+					TablesManager.Manager.PobytyTableAdapter.UpdateIdRachunek(lastId, row.id_pobytu);
+				}
 				return null;
 			}
 		}
