@@ -204,7 +204,7 @@ namespace PensjonatApp.Helpers
 
             if (tabRez.Count > 0 && tabRez[0].id_klienta == id_klienta_rezerwujacego)
             {
-                bool first = true;
+             //   bool first = true;
                 foreach (int pokoj_id in pokoje)
                 {
                     PokojeDS.Pokoje_slownikDataTable pokoj_standard = TablesManager.Manager.Pokoje_slownikTableAdapter.GetDataStandardByIDPokoju(pokoj_id);
@@ -213,11 +213,11 @@ namespace PensjonatApp.Helpers
                         for (int y = 0; y < pokoj_standard[0].ilosc_osob; y++)
                         {
                             //dodaje rezerwujacego
-                            if (first)
-                            {
-                                TablesManager.Manager.PobytyTableAdapter.Insert(pokoj_id, tabRez[0].id_rezerwacji, start_pobytu, koniec_pobytu, null, id_klienta_rezerwujacego);
-                                first = false;
-                            }else
+                            //if (first)
+                            //{
+                            //    TablesManager.Manager.PobytyTableAdapter.Insert(pokoj_id, tabRez[0].id_rezerwacji, start_pobytu, koniec_pobytu, null, id_klienta_rezerwujacego);
+                            //    first = false;
+                            //}else
                                 TablesManager.Manager.PobytyTableAdapter.Insert(pokoj_id, tabRez[0].id_rezerwacji, start_pobytu, koniec_pobytu, null, null);
                         }
                     }
