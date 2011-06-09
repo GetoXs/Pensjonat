@@ -1570,7 +1570,7 @@ namespace PensjonatApp.DS.UslugiDSTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.Odbc.OdbcCommand[9];
+            this._commandCollection = new global::System.Data.Odbc.OdbcCommand[10];
             this._commandCollection[0] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT id_uslugi, id_pobytu, id_pracownika, dodatkowy_opis, termin_start, termin_" +
@@ -1615,30 +1615,39 @@ WHERE  Uslugi.id_slownikowe_uslugi = Uslugi_slownik.id_slownikowe_uslugi AND Usl
             this._commandCollection[5].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_pobytu", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_pobytu", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[6] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[6].Connection = this.Connection;
-            this._commandCollection[6].CommandText = @"SELECT Klienci.imie, Klienci.nazwisko, Pokoje.nr_pokoju, Uslugi_slownik.nazwa, Uslugi_slownik.opis, Uslugi.dodatkowy_opis, Uslugi.termin
+            this._commandCollection[6].CommandText = @"SELECT        Uslugi_slownik.cena, Uslugi_slownik.nazwa, Uslugi_slownik.opis, Uslugi_slownik.id_stanowiska, Uslugi.id_uslugi, Uslugi.id_pobytu, Uslugi.id_pracownika, 
+                         Uslugi.dodatkowy_opis, Uslugi.termin_start, Uslugi.termin_koniec, Uslugi.id_slownikowe_uslugi, Uslugi.zrealizowane, Pobyty.id_pokoju, Pobyty.id_rezerwacji, 
+                         Pobyty.id_rachunku, Pobyty.id_klienta
+FROM            Uslugi, Uslugi_slownik, Pobyty
+WHERE        Uslugi.id_slownikowe_uslugi = Uslugi_slownik.id_slownikowe_uslugi AND Uslugi.id_pobytu = Pobyty.id_pobytu AND (Pobyty.id_rezerwacji = ?)";
+            this._commandCollection[6].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[6].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_rezerwacji", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_rezerwacji", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[7] = new global::System.Data.Odbc.OdbcCommand();
+            this._commandCollection[7].Connection = this.Connection;
+            this._commandCollection[7].CommandText = @"SELECT Klienci.imie, Klienci.nazwisko, Pokoje.nr_pokoju, Uslugi_slownik.nazwa, Uslugi_slownik.opis, Uslugi.dodatkowy_opis, Uslugi.termin
 FROM     Uslugi, Uslugi_slownik, Pobyty, Klienci, Pokoje
 WHERE  Uslugi.id_slownikowe_uslugi = Uslugi_slownik.id_slownikowe_uslugi AND Uslugi.id_pobytu = Pobyty.id_pobytu AND Pobyty.id_klienta = Klienci.id_klienta AND 
                   Pobyty.id_pokoju = Pokoje.id_pokoju AND (Uslugi.id_pracownika = ?)";
-            this._commandCollection[6].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[6].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_pracownika", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_pracownika", global::System.Data.DataRowVersion.Current, false, null));
-            this._commandCollection[7] = new global::System.Data.Odbc.OdbcCommand();
-            this._commandCollection[7].Connection = this.Connection;
-            this._commandCollection[7].CommandText = "UPDATE       Uslugi\r\nSET                id_pracownika = ?\r\nWHERE        (id_uslug" +
-                "i = ?)";
             this._commandCollection[7].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[7].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_pracownika", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_pracownika", global::System.Data.DataRowVersion.Current, false, null));
-            this._commandCollection[7].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_id_uslugi", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_uslugi", global::System.Data.DataRowVersion.Original, false, null));
             this._commandCollection[8] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[8].Connection = this.Connection;
-            this._commandCollection[8].CommandText = "UPDATE Uslugi\r\nSET          id_pobytu = ?, dodatkowy_opis = ?, id_slownikowe_uslu" +
-                "gi = ?, termin_start = ?, termin_koniec = ?\r\nWHERE  (id_uslugi = ?)";
+            this._commandCollection[8].CommandText = "UPDATE       Uslugi\r\nSET                id_pracownika = ?\r\nWHERE        (id_uslug" +
+                "i = ?)";
             this._commandCollection[8].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[8].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_pobytu", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_pobytu", global::System.Data.DataRowVersion.Current, false, null));
-            this._commandCollection[8].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("dodatkowy_opis", global::System.Data.Odbc.OdbcType.NVarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "dodatkowy_opis", global::System.Data.DataRowVersion.Current, false, null));
-            this._commandCollection[8].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_slownikowe_uslugi", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_slownikowe_uslugi", global::System.Data.DataRowVersion.Current, false, null));
-            this._commandCollection[8].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("termin_start", global::System.Data.Odbc.OdbcType.DateTime, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "termin_start", global::System.Data.DataRowVersion.Current, false, null));
-            this._commandCollection[8].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("termin_koniec", global::System.Data.Odbc.OdbcType.DateTime, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "termin_koniec", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[8].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_pracownika", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_pracownika", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[8].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_id_uslugi", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_uslugi", global::System.Data.DataRowVersion.Original, false, null));
+            this._commandCollection[9] = new global::System.Data.Odbc.OdbcCommand();
+            this._commandCollection[9].Connection = this.Connection;
+            this._commandCollection[9].CommandText = "UPDATE Uslugi\r\nSET          id_pobytu = ?, dodatkowy_opis = ?, id_slownikowe_uslu" +
+                "gi = ?, termin_start = ?, termin_koniec = ?\r\nWHERE  (id_uslugi = ?)";
+            this._commandCollection[9].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[9].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_pobytu", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_pobytu", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[9].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("dodatkowy_opis", global::System.Data.Odbc.OdbcType.NVarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "dodatkowy_opis", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[9].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_slownikowe_uslugi", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_slownikowe_uslugi", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[9].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("termin_start", global::System.Data.Odbc.OdbcType.DateTime, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "termin_start", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[9].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("termin_koniec", global::System.Data.Odbc.OdbcType.DateTime, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "termin_koniec", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[9].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_id_uslugi", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_uslugi", global::System.Data.DataRowVersion.Original, false, null));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1750,8 +1759,25 @@ WHERE  Uslugi.id_slownikowe_uslugi = Uslugi_slownik.id_slownikowe_uslugi AND Usl
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual UslugiDS.UslugiDataTable GetZadaniaDlaPracownikaByID(global::System.Nullable<int> id_pracownika) {
+        public virtual UslugiDS.UslugiDataTable GetDataUslugiUslugiSlownikPobytyByIdRezerwacji(global::System.Nullable<int> id_rezerwacji) {
             this.Adapter.SelectCommand = this.CommandCollection[6];
+            if ((id_rezerwacji.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((int)(id_rezerwacji.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            UslugiDS.UslugiDataTable dataTable = new UslugiDS.UslugiDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual UslugiDS.UslugiDataTable GetZadaniaDlaPracownikaByID(global::System.Nullable<int> id_pracownika) {
+            this.Adapter.SelectCommand = this.CommandCollection[7];
             if ((id_pracownika.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = ((int)(id_pracownika.Value));
             }
@@ -2054,7 +2080,7 @@ WHERE  Uslugi.id_slownikowe_uslugi = Uslugi_slownik.id_slownikowe_uslugi AND Usl
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
         public virtual int UpdateIdPracownika(global::System.Nullable<int> id_pracownika, int Original_id_uslugi) {
-            global::System.Data.Odbc.OdbcCommand command = this.CommandCollection[7];
+            global::System.Data.Odbc.OdbcCommand command = this.CommandCollection[8];
             if ((id_pracownika.HasValue == true)) {
                 command.Parameters[0].Value = ((int)(id_pracownika.Value));
             }
@@ -2084,7 +2110,7 @@ WHERE  Uslugi.id_slownikowe_uslugi = Uslugi_slownik.id_slownikowe_uslugi AND Usl
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
         public virtual int UpdateQuery(global::System.Nullable<int> id_pobytu, string dodatkowy_opis, global::System.Nullable<int> id_slownikowe_uslugi, global::System.Nullable<global::System.DateTime> termin_start, global::System.Nullable<global::System.DateTime> termin_koniec, int Original_id_uslugi) {
-            global::System.Data.Odbc.OdbcCommand command = this.CommandCollection[8];
+            global::System.Data.Odbc.OdbcCommand command = this.CommandCollection[9];
             if ((id_pobytu.HasValue == true)) {
                 command.Parameters[0].Value = ((int)(id_pobytu.Value));
             }
