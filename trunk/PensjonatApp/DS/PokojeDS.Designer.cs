@@ -1365,10 +1365,10 @@ namespace PensjonatApp.DS.PokojeDSTableAdapters {
             this._commandCollection[4].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_pokoju", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_pokoju", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[5] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[5].Connection = this.Connection;
-            this._commandCollection[5].CommandText = @"SELECT        Pokoje.id_pokoju, Pokoje.id_slownikowe_pokoju, Pokoje.nr_pokoju, ps.dodatkowy_opis, ps.cena, ps.ilosc_osob, Pobyty.id_pokoju AS Expr1
-FROM            Rezerwacje, Pobyty, Pokoje, Pokoje_slownik ps
-WHERE        Rezerwacje.id_rezerwacji = Pobyty.id_rezerwacji AND Pobyty.id_pokoju = Pokoje.id_pokoju AND Pokoje.id_slownikowe_pokoju = ps.id_slownikowe_pokoju AND 
-                         (Rezerwacje.id_rezerwacji = ?)";
+            this._commandCollection[5].CommandText = @"SELECT DISTINCT Pokoje.id_pokoju, Pokoje.id_slownikowe_pokoju, Pokoje.nr_pokoju, ps.dodatkowy_opis, ps.cena, ps.ilosc_osob
+FROM     Rezerwacje, Pobyty, Pokoje, Pokoje_slownik ps
+WHERE  Rezerwacje.id_rezerwacji = Pobyty.id_rezerwacji AND Pobyty.id_pokoju = Pokoje.id_pokoju AND Pokoje.id_slownikowe_pokoju = ps.id_slownikowe_pokoju AND 
+                  (Rezerwacje.id_rezerwacji = ?)";
             this._commandCollection[5].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[5].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_rezerwacji", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_rezerwacji", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[6] = new global::System.Data.Odbc.OdbcCommand();

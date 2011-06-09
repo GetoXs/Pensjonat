@@ -18,7 +18,7 @@ namespace PensjonatASP
         String pesel;
         List<int> wybranePokoje;
 
-        const String baza = @"C:\Users\ttt\Documents\pensjonat\baza.mdb";
+        const String baza = @"C:\__informatyka\bd\_projekt\Pensjonat_akt\baza.mdb";
         const String login = "Administrator";
         const String haslo = "";
 

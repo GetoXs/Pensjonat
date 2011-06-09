@@ -934,25 +934,24 @@ namespace PensjonatApp.DS.RezerwacjeDSTableAdapters {
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = @"SELECT        r.id_rezerwacji, r.zaliczka, r.zaplacono_zaliczke, r.ilosc_osob, r.id_klienta, k.email, k.imie, k.nazwisko, k.id_miejscowosci, k.kod_pocztowy, k.ulica, k.nip, k.pesel, 
+            this._commandCollection[1].CommandText = @"SELECT DISTINCT       r.id_rezerwacji, r.zaliczka, r.zaplacono_zaliczke, r.ilosc_osob, r.id_klienta, k.email, k.imie, k.nazwisko, k.id_miejscowosci, k.kod_pocztowy, k.ulica, k.nip, k.pesel, 
                          k.nr_telefonu, k.nazwa, p.termin_start, p.termin_koniec
 FROM            Rezerwacje r, Klienci k, Pobyty p
-WHERE        r.id_klienta = k.id_klienta AND r.id_rezerwacji = p.id_rezerwacji AND r.id_klienta = p.id_klienta AND (UCASE(k.nazwisko) LIKE UCASE('%' + ? + '%'))";
+WHERE        r.id_klienta = k.id_klienta AND r.id_rezerwacji = p.id_rezerwacji AND (UCASE(k.nazwisko) LIKE UCASE('%' + ? + '%'))";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Param1", global::System.Data.Odbc.OdbcType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[2] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "SELECT        r.id_rezerwacji, r.zaliczka, r.zaplacono_zaliczke, r.ilosc_osob, r." +
-                "id_klienta, p.termin_start, p.termin_koniec\r\nFROM            Rezerwacje r, Pobyt" +
-                "y p\r\nWHERE        r.id_rezerwacji = p.id_rezerwacji AND r.id_klienta = p.id_klie" +
-                "nta";
+            this._commandCollection[2].CommandText = "SELECT DISTINCT r.id_rezerwacji, r.zaliczka, r.zaplacono_zaliczke, r.ilosc_osob, " +
+                "r.id_klienta, p.termin_start, p.termin_koniec\r\nFROM     Rezerwacje r, Pobyty p\r\n" +
+                "WHERE  r.id_rezerwacji = p.id_rezerwacji";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[3] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = @"SELECT        r.id_rezerwacji, r.zaliczka, r.zaplacono_zaliczke, r.ilosc_osob, r.id_klienta, k.email, k.imie, k.nazwisko, k.id_miejscowosci, k.kod_pocztowy, k.ulica, k.nip, k.pesel, 
+            this._commandCollection[3].CommandText = @"SELECT DISTINCT       r.id_rezerwacji, r.zaliczka, r.zaplacono_zaliczke, r.ilosc_osob, r.id_klienta, k.email, k.imie, k.nazwisko, k.id_miejscowosci, k.kod_pocztowy, k.ulica, k.nip, k.pesel, 
                          k.nr_telefonu, k.nazwa, p.termin_start, p.termin_koniec
 FROM            Rezerwacje r, Klienci k, Pobyty p
-WHERE        r.id_klienta = k.id_klienta AND r.id_rezerwacji = p.id_rezerwacji AND r.id_klienta = p.id_klienta AND r.id_rezerwacji = ?";
+WHERE        r.id_klienta = k.id_klienta AND r.id_rezerwacji = p.id_rezerwacji AND r.id_rezerwacji = ?";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[3].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_rezerwacji", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_rezerwacji", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[4] = new global::System.Data.Odbc.OdbcCommand();
@@ -966,17 +965,18 @@ WHERE        r.id_klienta = k.id_klienta AND r.id_rezerwacji = p.id_rezerwacji A
             this._commandCollection[4].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("termin_koniec", global::System.Data.Odbc.OdbcType.DateTime, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "termin_koniec", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[5] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[5].Connection = this.Connection;
-            this._commandCollection[5].CommandText = @"SELECT        r.id_rezerwacji, r.zaliczka, r.zaplacono_zaliczke, r.ilosc_osob, r.id_klienta, k.email, k.imie, k.nazwisko, k.id_miejscowosci, k.kod_pocztowy, k.ulica, k.nip, k.pesel, 
-                         k.nr_telefonu, k.nazwa, p.termin_start, p.termin_koniec
-FROM            Rezerwacje r, Klienci k, Pobyty p
-WHERE        r.id_klienta = k.id_klienta AND r.id_rezerwacji = p.id_rezerwacji AND r.id_klienta = p.id_klienta";
+            this._commandCollection[5].CommandText = @"SELECT DISTINCT r.id_rezerwacji, r.zaliczka, r.zaplacono_zaliczke, r.ilosc_osob, r.id_klienta, k.email, k.imie, k.nazwisko, k.id_miejscowosci, k.kod_pocztowy, k.ulica, k.nip, k.pesel, k.nr_telefonu, 
+                  k.nazwa, p.termin_start, p.termin_koniec
+FROM     Rezerwacje r, Klienci k, Pobyty p
+WHERE  r.id_klienta = k.id_klienta AND r.id_rezerwacji = p.id_rezerwacji";
             this._commandCollection[5].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[6] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[6].Connection = this.Connection;
-            this._commandCollection[6].CommandText = @"SELECT        r.id_rezerwacji, r.zaliczka, r.zaplacono_zaliczke, r.ilosc_osob, r.id_klienta, k.email, k.imie, k.nazwisko, k.id_miejscowosci, k.kod_pocztowy, k.ulica, k.nip, k.pesel, 
-                         k.nr_telefonu, k.nazwa, p.termin_start, p.termin_koniec, p2.id_pokoju, p2.id_slownikowe_pokoju, p2.nr_pokoju
-FROM            Rezerwacje r, Klienci k, Pobyty p, Pokoje p2
-WHERE        r.id_klienta = k.id_klienta AND r.id_rezerwacji = p.id_rezerwacji AND r.id_klienta = p.id_klienta AND p.id_pokoju = p2.id_pokoju";
+            this._commandCollection[6].CommandText = @"SELECT DISTINCT 
+                  r.id_rezerwacji, r.zaliczka, r.zaplacono_zaliczke, r.ilosc_osob, r.id_klienta, k.email, k.imie, k.nazwisko, k.id_miejscowosci, k.kod_pocztowy, k.ulica, k.nip, k.pesel, k.nr_telefonu, 
+                  k.nazwa, p.termin_start, p.termin_koniec, p2.id_pokoju, p2.id_slownikowe_pokoju, p2.nr_pokoju
+FROM     Rezerwacje r, Klienci k, Pobyty p, Pokoje p2
+WHERE  r.id_klienta = k.id_klienta AND r.id_rezerwacji = p.id_rezerwacji AND r.id_klienta = p.id_klienta AND p.id_pokoju = p2.id_pokoju";
             this._commandCollection[6].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[7] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[7].Connection = this.Connection;
