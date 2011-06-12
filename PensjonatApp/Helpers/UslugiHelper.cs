@@ -51,8 +51,34 @@ namespace PensjonatApp.Helpers
 
         public static PensjonatApp.DS.PracownicyDS.PracownicyDataTable znajdzWolnegoPracownika(DateTime? terminStart, DateTime? terminKoniec, int id_slownikoweUslugi)
         {
-            //return TablesManager.Manager.UslugiTableAdapter.GetIdPracownikaWolnyWPodanymTerminieWykonujacyPodanyTypUslug(id_slownikoweUslugi, terminKoniec, terminStart);
             return TablesManager.Manager.PracownicyTableAdapter.GetIdPracownikaWolny(id_slownikoweUslugi, terminKoniec, terminStart);
+        }
+
+
+        /// <summary>
+        /// Znajdzs the pierwszy wolny termin.
+        /// </summary>
+        /// <param name="terminStart">The termin start.</param>
+        /// <param name="terminKoniec">The termin koniec.</param>
+        /// <param name="id_slownikoweUslugi">The id_slownikowe uslugi.</param>
+        /// <returns>zwraca liste pracownikow i termin w argumentach(referencje)</returns>
+        public static PensjonatApp.DS.PracownicyDS.PracownicyDataTable znajdzPierwszyWolnyTermin(ref DateTime? terminStart, ref DateTime?  terminKoniec, int id_slownikoweUslugi)
+        {
+            PensjonatApp.DS.PracownicyDS.PracownicyDataTable tabela;
+            DateTime start = terminStart.Value;
+            DateTime koniec = terminKoniec.Value;
+            TimeSpan krok = new TimeSpan(0,5,0); //sprawdzane terminy z dokladnoscia do 5min
+            while (true)
+            {
+                tabela=TablesManager.Manager.PracownicyTableAdapter.GetIdPracownikaWolny(id_slownikoweUslugi, koniec, start);
+                if (tabela.Count != 0)
+                    break;
+                koniec += krok;
+                start += krok;
+            }
+            terminStart = (DateTime?)start;
+            terminKoniec = (DateTime?)koniec;
+            return tabela;
         }
 
         public static PensjonatApp.DS.UslugiDS.UslugiDataTable znajdzZadaniaDlaPracownikaWCzasie(int? id_pracownika, DateTime? poczatekCzasu, DateTime? koniecCZasu)
