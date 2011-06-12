@@ -1141,9 +1141,9 @@ namespace PensjonatApp
                 {
                     List<string> lst = new List<string>();
                     PobytyUslugiIdPracownikaList.Clear();
-                    DateTime koniec = (DateTime)datePickerPobytyServicesTermin.Value.Value.Date;
+                    DateTime koniec = (DateTime)datePickerPobytyServicesTermin.Value.Value;
                     koniec = koniec.AddMinutes(czasTrwania);
-                    PracownicyDS.PracownicyDataTable pracownicyTable = UslugiHelper.znajdzWolnegoPracownika(datePickerPobytyServicesTermin.Value.Value.Date, koniec, PobytyUslugiIdList[comboBoxPobytyUslugi.SelectedIndex]);//TablesManager.Manager.PracownicyTableAdapter.
+                    PracownicyDS.PracownicyDataTable pracownicyTable = UslugiHelper.znajdzWolnegoPracownika(datePickerPobytyServicesTermin.Value.Value, koniec, PobytyUslugiIdList[comboBoxPobytyUslugi.SelectedIndex]);//TablesManager.Manager.PracownicyTableAdapter.
 
                     foreach (PracownicyDS.PracownicyRow row in pracownicyTable)
                     {
@@ -1172,9 +1172,9 @@ namespace PensjonatApp
             {
                 List<string> lst = new List<string>();
                 PobytyUslugiIdPracownikaList.Clear();
-                DateTime koniec = (DateTime)datePickerPobytyServicesTermin.Value.Value.Date;
+                DateTime koniec = (DateTime)datePickerPobytyServicesTermin.Value.Value;
                 koniec = koniec.AddMinutes(czasTrwania);
-                PracownicyDS.PracownicyDataTable pracownicyTable = UslugiHelper.znajdzWolnegoPracownika(datePickerPobytyServicesTermin.Value.Value.Date, koniec, PobytyUslugiIdList[comboBoxPobytyUslugi.SelectedIndex]);//TablesManager.Manager.PracownicyTableAdapter.
+                PracownicyDS.PracownicyDataTable pracownicyTable = UslugiHelper.znajdzWolnegoPracownika(datePickerPobytyServicesTermin.Value.Value, koniec, PobytyUslugiIdList[comboBoxPobytyUslugi.SelectedIndex]);//TablesManager.Manager.PracownicyTableAdapter.
                 // GetDataPracownicyWykonujacyUslugeWPodanymTerminie(PobytyUslugiIdList[comboBoxPobytyUslugi.SelectedIndex], koniec, datePickerPobytyServicesTerminOd.SelectedDate);
 
                 foreach (PracownicyDS.PracownicyRow row in pracownicyTable)
