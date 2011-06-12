@@ -25,6 +25,9 @@ namespace PensjonatApp.Helpers
 
         public static int edytujPracownikaByIdPr(string imie, string nazwisko, string login, string haslo, int id_p, int? id_s)
         {
+            if (haslo.Equals(""))
+                return TablesManager.Manager.PracownicyTableAdapter.UpdateQuerybyIdPrBezHasla(id_s, imie, nazwisko, login, id_p);
+
             return TablesManager.Manager.PracownicyTableAdapter.UpdateQuerybyIdPr(id_s, imie, nazwisko, login, haslo, id_p);
         }
 
