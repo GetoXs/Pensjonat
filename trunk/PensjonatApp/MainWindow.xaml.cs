@@ -577,7 +577,8 @@ namespace PensjonatApp
                     dataGridRezerwacjeAddWybranePokoje.Items.Refresh();
                     rezerwacjePokojeIloscOsob = liczbaOsob;
                     labelRezerwacjeAddPozostaloOsob.Content = rezerwacjePokojeIloscOsob;
-
+                    System.Windows.MessageBox.Show("Liczba znalezionych wolnych pokoi w podanym terminie: " + comboBoxRezerwacjeAddPokoje.Items.Count, "Wyszukiwanie wolnych pokoi", MessageBoxButton.OK, MessageBoxImage.Information);
+                    comboBoxRezerwacjeAddPokoje.IsDropDownOpen = true;
                 }
                 else
                     System.Windows.MessageBox.Show("Pole liczba osób może zawierać tylko cyfry.", "Nowa rezerwacja", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -1116,6 +1117,8 @@ namespace PensjonatApp
             comboBoxPobytyPracownicy.IsEnabled = false;
             textBoxPobytyUslugiCzas.IsEnabled = true;
             comboBoxPobytyPracownicy.SelectedItem = null;
+            textBoxPobytyUslugiUwagi.Clear();
+            textBoxPobytyUslugiCzas.Clear();
 
 
         }
@@ -1136,25 +1139,45 @@ namespace PensjonatApp
         {
             if (comboBoxPobytyUslugi.SelectedItem != null && datePickerPobytyServicesTermin.Value != null)
             {
-                int czasTrwania;     
+                int czasTrwania;   
+                bool szukaj;
                 if(int.TryParse(textBoxPobytyUslugiCzas.Text,out czasTrwania))
                 {
-                    List<string> lst = new List<string>();
-                    PobytyUslugiIdPracownikaList.Clear();
-                    DateTime koniec = (DateTime)datePickerPobytyServicesTermin.Value.Value;
-                    koniec = koniec.AddMinutes(czasTrwania);
-                    PracownicyDS.PracownicyDataTable pracownicyTable = UslugiHelper.znajdzWolnegoPracownika(datePickerPobytyServicesTermin.Value.Value, koniec, PobytyUslugiIdList[comboBoxPobytyUslugi.SelectedIndex]);//TablesManager.Manager.PracownicyTableAdapter.
-
-                    foreach (PracownicyDS.PracownicyRow row in pracownicyTable)
+                    if (czasTrwania == 0)
                     {
-                        lst.Add(row.imie + " " + row.nazwisko);
-                        PobytyUslugiIdPracownikaList.Add(row.id_pracownika);
+                        MessageBoxResult result = System.Windows.MessageBox.Show("Czas trwania usługi ustawiony na 0 minut. Czy chcesz kontynuować?",
+                            "Znajdowanie wolnego pracownika", MessageBoxButton.YesNo, MessageBoxImage.Information);
+
+                        if (result == MessageBoxResult.Yes)
+                            szukaj = true;
+                        else
+                            szukaj = false;
                     }
-                    comboBoxPobytyPracownicy.ItemsSource = lst;
-                    comboBoxPobytyPracownicy.IsEnabled = true;
-                    comboBoxPobytyUslugi.IsEnabled = false;
-                    datePickerPobytyServicesTermin.IsEnabled = false;
-                    textBoxPobytyUslugiCzas.IsEnabled = false;
+                    else
+                    {
+                        szukaj = true;
+                    }
+                    if (szukaj)
+                    {
+                        List<string> lst = new List<string>();
+                        PobytyUslugiIdPracownikaList.Clear();
+                        DateTime koniec = (DateTime)datePickerPobytyServicesTermin.Value.Value;
+                        koniec = koniec.AddMinutes(czasTrwania);
+                        PracownicyDS.PracownicyDataTable pracownicyTable = UslugiHelper.znajdzWolnegoPracownika(datePickerPobytyServicesTermin.Value.Value, koniec, PobytyUslugiIdList[comboBoxPobytyUslugi.SelectedIndex]);//TablesManager.Manager.PracownicyTableAdapter.
+
+                        foreach (PracownicyDS.PracownicyRow row in pracownicyTable)
+                        {
+                            lst.Add(row.imie + " " + row.nazwisko);
+                            PobytyUslugiIdPracownikaList.Add(row.id_pracownika);
+                        }
+                        comboBoxPobytyPracownicy.ItemsSource = lst;
+                        comboBoxPobytyPracownicy.IsEnabled = true;
+                        comboBoxPobytyUslugi.IsEnabled = false;
+                        datePickerPobytyServicesTermin.IsEnabled = false;
+                        textBoxPobytyUslugiCzas.IsEnabled = false;
+                        System.Windows.MessageBox.Show("Liczba znalezionych wolnych pracowników w podanym terminie: " + comboBoxPobytyPracownicy.Items.Count, "Wyszukiwanie wolnych pracowników", MessageBoxButton.OK, MessageBoxImage.Information);
+                        comboBoxPobytyPracownicy.IsDropDownOpen = true;
+                    }
                 }
                 else
                     System.Windows.MessageBox.Show("Pole czas trwania może zawierać tylko cyfry", "Znajdowanie wolnego pracownika", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -1596,6 +1619,8 @@ namespace PensjonatApp
                 datePickerPobytyNowyTerminOd.IsEnabled = false;
                 datePickerPobytyNowyTerminDo.IsEnabled = false;
                 PrzypiszWolnePokoje();
+                System.Windows.MessageBox.Show("Liczba znalezionych wolnych pokoi w podanym terminie: " + comboBoxPobytyNowyPokoj.Items.Count, "Wyszukiwanie wolnych pokoi", MessageBoxButton.OK, MessageBoxImage.Information);
+                comboBoxPobytyNowyPokoj.IsDropDownOpen = true;
             }
             else
                 System.Windows.MessageBox.Show("Uzupełnij wszystkie pola", "Nowy pobyt", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -2885,13 +2910,8 @@ namespace PensjonatApp
                 if (textBoxPracownicyEdycjaImie.Text != "" && textBoxPracownicyEdycjaNazwisko.Text != "" && textBoxPracownicyEdycjaLogin.Text != ""
                      && comboBoxPracownicyEdycjaStanowisko.SelectedItem != null)
                 {
-                    string haslo;
-                    if (textBoxPracownicyEdycjaHaslo.Password == "")
-                        haslo = textBoxPracownicyEdycjaLogin.Text;
-                    else
-                        haslo = textBoxPracownicyEdycjaHaslo.Password;
                     PracownicyHelper.edytujPracownikaByIdPr(textBoxPracownicyEdycjaImie.Text,textBoxPracownicyEdycjaNazwisko.Text,
-                        textBoxPracownicyEdycjaLogin.Text,haslo, (int)labelPracownicyEdycjaId.Content, stanowiskaIdList[comboBoxPracownicyEdycjaStanowisko.SelectedIndex]);    
+                        textBoxPracownicyEdycjaLogin.Text,textBoxPracownicyEdycjaHaslo.Password, (int)labelPracownicyEdycjaId.Content, stanowiskaIdList[comboBoxPracownicyEdycjaStanowisko.SelectedIndex]);    
 
                     dataGridPracownicyDeafult.ItemsSource = TablesManager.Manager.PracownicyTableAdapter.GetPracownicyStanowiska(); 
                    
@@ -2925,6 +2945,7 @@ namespace PensjonatApp
                 textBoxPracownicyEdycjaNazwisko.Text = selectedRow.nazwisko;
                 textBoxPracownicyEdycjaLogin.Text = selectedRow.login;
                 labelPracownicyEdycjaId.Content = selectedRow.id_pracownika;
+                textBoxPracownicyEdycjaHaslo.Password = "";
                 /*
                 textBoxPracownicyEdycjaPESEL.Text = selectedRow.Pesel;
                 textBoxPracownicyEdycjaNIP.Text = selectedRow.Nip;

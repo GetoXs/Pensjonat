@@ -273,7 +273,7 @@
                         <Image Height="40" HorizontalAlignment="Left" Margin="132,12,0,0" Name="image4" Source="/PensjonatApp;component/Images/separator.png" Stretch="Fill" VerticalAlignment="Top" Width="2" />
                        
                     </Grid>
-                    <Grid Height="612" Name="gridPobytyNowy" Opacity="1" ShowGridLines="False" Visibility="Visible">
+                    <Grid Height="133" Name="gridPobytyNowy" Opacity="1" ShowGridLines="False" Visibility="Visible">
                         <Label Content="Nowy pobyt:" FontSize="15" FontWeight="Normal" HorizontalAlignment="Left" Margin="10,10,0,0" Name="label228" Padding="2" VerticalAlignment="Top" />
                         <Grid Margin="25,50,25,0" Height="455" VerticalAlignment="Top" Name="gridPobytyNowyNowy">
                             <Label Content="Termin:" FontWeight="Bold" HorizontalAlignment="Left" Margin="15,10,0,0" Name="label230" Padding="2" VerticalAlignment="Top" />
@@ -365,7 +365,7 @@
                             </Grid>
                         </GroupBox>
                     </Grid>
-                    <Grid Height="443" Name="gridPobytySum" Opacity="1" ShowGridLines="True" Visibility="Visible">
+                    <Grid Height="46" Name="gridPobytySum" Opacity="1" ShowGridLines="True" Visibility="Visible">
                         <Border BorderBrush="#FF2F82C1" BorderThickness="2" Height="75" Margin="0,75,55,0" Name="border1" VerticalAlignment="Top" FlowDirection="LeftToRight" CornerRadius="10" HorizontalAlignment="Right" Width="118">
                             <Border BorderBrush="Silver" BorderThickness="1" Height="24" Name="border2" VerticalAlignment="Top" CornerRadius="8">
                                 <Border.Background>
@@ -421,7 +421,7 @@
 						<Label Content="Id rezerwacji:" FontWeight="Bold" HorizontalAlignment="Left" Margin="297,39,0,0" Name="labelPobytySumIdRezerwacjiLabel" Padding="2" VerticalAlignment="Top" />
 						<Label Content="21452" FontWeight="Normal" HorizontalAlignment="Left" Margin="405,39,0,0" Name="labelPobytySumIdRezerwacji" Padding="2" VerticalAlignment="Top" />
 					</Grid>
-                    <Grid Height="44" Name="gridPobytyUslugi" Opacity="1" ShowGridLines="True" Visibility="Visible">
+                    <Grid Height="325" Name="gridPobytyUslugi" Opacity="1" ShowGridLines="True" Visibility="Visible">
                         <Label Content="Usługi:" FontSize="15" FontWeight="Normal" HorizontalAlignment="Left" Margin="10,10,0,0" Name="label50" Padding="2" VerticalAlignment="Top" FontStretch="Normal" />
                         <DataGrid AutoGenerateColumns="False" HorizontalGridLinesBrush="#FFD5D5D5" IsEnabled="True" IsReadOnly="True" Margin="27,346,17,14" Name="dataGridPobytyZarzadzajUslug" SelectionMode="Single" VerticalGridLinesBrush="#FFD5D5D5">
                             <DataGrid.Columns>
