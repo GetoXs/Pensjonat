@@ -894,8 +894,9 @@ namespace PensjonatApp
 						RozliczenieHelper.rozliczPobyt((int)labelPobytySumId.Content, cena);
 					else
 						RozliczenieHelper.rozliczRezerwacje((int)labelPobytySumIdRezerwacji.Content, cena);
-					zwinPobyty();
-					showWindow(gridPobytyDeafult, buttonPobytyDeafultList);
+					System.Windows.MessageBox.Show("Rozliczono poprawnie.", "Rozliczanie pobytu", MessageBoxButton.OK, MessageBoxImage.Information);
+                    zwinPobyty();
+					showWindow(gridPobytyDeafult, buttonPobytyDeafultList);			
 				}else
 					System.Windows.MessageBox.Show("Wystąpił błąd w rozliczeniu (ujemna cena, bądź program nie potrafi pobrać id, ceny)", "Rozliczanie pobytu", MessageBoxButton.OK, MessageBoxImage.Error);
 			}
