@@ -20,7 +20,7 @@ namespace PensjonatApp.Helpers
         /// <returns></returns>
         public static int dodajPracownika(string imie, string nazwisko, string login, string haslo, int? id_s)
         {
-            return TablesManager.Manager.PracownicyTableAdapter.InsertQuery(id_s, imie, nazwisko, login, haslo);
+            return TablesManager.Manager.PracownicyTableAdapter.InsertQuery(id_s, imie, nazwisko, login, LogowanieHelper.haszujHaslo(haslo));
         }
 
         public static int edytujPracownikaByIdPr(string imie, string nazwisko, string login, string haslo, int id_p, int? id_s)
@@ -28,7 +28,7 @@ namespace PensjonatApp.Helpers
             if (haslo.Equals(""))
                 return TablesManager.Manager.PracownicyTableAdapter.UpdateQuerybyIdPrBezHasla(id_s, imie, nazwisko, login, id_p);
 
-            return TablesManager.Manager.PracownicyTableAdapter.UpdateQuerybyIdPr(id_s, imie, nazwisko, login, haslo, id_p);
+            return TablesManager.Manager.PracownicyTableAdapter.UpdateQuerybyIdPr(id_s, imie, nazwisko, login, LogowanieHelper.haszujHaslo(haslo), id_p);
         }
 
         public static int usunPracownika(int id_p)
