@@ -55,18 +55,19 @@ namespace PensjonatApp.Helpers
         }
 
 
+
         /// <summary>
         /// Znajdzs the pierwszy wolny termin.
         /// </summary>
         /// <param name="terminStart">The termin start.</param>
-        /// <param name="terminKoniec">The termin koniec.</param>
+        /// <param name="czasTrwania">The czas trwania.</param>
         /// <param name="id_slownikoweUslugi">The id_slownikowe uslugi.</param>
-        /// <returns>zwraca liste pracownikow i termin w argumentach(referencje)</returns>
-        public static PensjonatApp.DS.PracownicyDS.PracownicyDataTable znajdzPierwszyWolnyTermin(ref DateTime? terminStart, ref DateTime?  terminKoniec, int id_slownikoweUslugi)
+        /// <returns></returns>
+        public static DateTime znajdzPierwszyWolnyTermin(DateTime terminStart, int czasTrwania, int id_slownikoweUslugi)
         {
             PensjonatApp.DS.PracownicyDS.PracownicyDataTable tabela;
-            DateTime start = terminStart.Value;
-            DateTime koniec = terminKoniec.Value;
+            DateTime start = terminStart;
+            DateTime koniec = terminStart.AddMinutes(czasTrwania);
             TimeSpan krok = new TimeSpan(0,5,0); //sprawdzane terminy z dokladnoscia do 5min
             while (true)
             {
@@ -76,9 +77,7 @@ namespace PensjonatApp.Helpers
                 koniec += krok;
                 start += krok;
             }
-            terminStart = (DateTime?)start;
-            terminKoniec = (DateTime?)koniec;
-            return tabela;
+            return start;
         }
 
         public static PensjonatApp.DS.UslugiDS.UslugiDataTable znajdzZadaniaDlaPracownikaWCzasie(int? id_pracownika, DateTime? poczatekCzasu, DateTime? koniecCZasu)
