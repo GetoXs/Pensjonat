@@ -31,7 +31,6 @@ namespace PensjonatApp
         private List<Button> buttonPobytyZarzadzajList = new List<Button>();
         private List<Button> buttonPobytyBackOkList = new List<Button>();
         private List<Button> buttonPobytyBackPrintList = new List<Button>();
-        private List<Button> buttonPobytyBackOkPrintList = new List<Button>();
         private List<Button> buttonKlienciDeafultList = new List<Button>();
         private List<Button> buttonKlienciBackOkList = new List<Button>();
         private List<Button> buttonPokojeDeafultList = new List<Button>();
@@ -142,11 +141,9 @@ namespace PensjonatApp
             buttonPobytyZarzadzajList.Add(buttonPobytyZarzadzajUslugi);
             buttonPobytyDeafultList.Add(buttonPobytySum);
             buttonPobytyDeafultList.Add(buttonPobytyNowy);
+            buttonPobytyDeafultList.Add(buttonPobytyDrukuj);
             buttonPobytyBackOkList.Add(buttonPobytyPowrot);
             buttonPobytyBackOkList.Add(buttonPobytyOk);
-            buttonPobytyBackOkPrintList.Add(buttonPobytyPowrot);
-            buttonPobytyBackOkPrintList.Add(buttonPobytyOk);
-            buttonPobytyBackOkPrintList.Add(buttonPobytyDrukuj);
             buttonPobytyBackPrintList.Add(buttonPobytyPowrot);
             buttonPobytyBackPrintList.Add(buttonPobytyDrukuj);
 
@@ -290,7 +287,7 @@ namespace PensjonatApp
             gridPobytyNowy.Visibility = Visibility.Collapsed;
             gridPobytyWybierzKlienta.Visibility = Visibility.Collapsed;
             zwinButtonList(buttonPobytyBackOkList);
-            zwinButtonList(buttonPobytyBackOkPrintList);
+            zwinButtonList(buttonPobytyBackOkList);
             zwinButtonList(buttonPobytyBackPrintList);
             zwinButtonList(buttonPobytyDeafultList);
             zwinButtonList(buttonPobytyZarzadzajList);
@@ -1398,7 +1395,7 @@ namespace PensjonatApp
 
 					}
 					zwinPobyty();
-					showWindow(gridPobytySum, buttonPobytyBackOkPrintList);
+					showWindow(gridPobytySum, buttonPobytyBackOkList);
 				}else
 					System.Windows.MessageBox.Show("Próbujesz rozliczać pobyt, który ma już naliczony rachunek.", "Rozliczanie pobytu.", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
@@ -1503,6 +1500,22 @@ namespace PensjonatApp
 
 			}
 		}
+        //----------------------------------------------POBYTY->DRUKUJ FAKTURE ----------------------------------------------
+        private void buttonPobytyDrukuj_Click(object sender, RoutedEventArgs e)
+        {
+            if (dataGridPobytySzukaj.SelectedItem != null)
+            {
+                PobytyDS.PobytyRow selectedRow = (PobytyDS.PobytyRow)((DataRowView)dataGridPobytySzukaj.SelectedItem).Row;
+                if (selectedRow.Isid_rachunkuNull())
+                {
+                    System.Windows.MessageBox.Show("Wybrany pobyt nie ma jeszcze wystawionego rachunku. Aby wydrukować fakturę, rozlicz najpierw pobyt.", "Rozliczanie pobytu.", MessageBoxButton.OK, MessageBoxImage.Warning);       
+                }
+                else
+                {
+                   //Superfunkcja drukowania faktury
+                }
+            }
+        }
         //----------------------------------------------POBYTY->NOWY----------------------------------------------
         string pobytyNowyKlientImie;
         string pobytyNowyKlientNazwisko;
@@ -3235,6 +3248,8 @@ namespace PensjonatApp
             else
                 groupBoxZmianaHasla.Visibility = Visibility.Hidden;
         }
+
+
 
     }
 
