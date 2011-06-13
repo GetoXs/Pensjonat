@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Security.Cryptography;
 using PensjonatApp.DS;
 using PensjonatApp.Tools;
 
@@ -17,7 +18,7 @@ namespace PensjonatApp.Helpers
         public static bool zalogujPracownika(string login, string haslo)
         {
             int id_stanowiska;
-            PracownicyDS.PracownicyDataTable pracownik = TablesManager.Manager.PracownicyTableAdapter.GetPracownicyByLoginHaslo(login, haslo);
+            PracownicyDS.PracownicyDataTable pracownik = TablesManager.Manager.PracownicyTableAdapter.GetPracownicyByLoginHaslo(login, haszujHaslo(haslo));
             if (pracownik.Count > 0)
                 id_stanowiska = pracownik[0].id_stanowiska;
             else
@@ -32,7 +33,7 @@ namespace PensjonatApp.Helpers
 
         public static bool sprawdzHaslo(int id_pracownika, string haslo)
         {
-            PracownicyDS.PracownicyDataTable pracownik = TablesManager.Manager.PracownicyTableAdapter.GetPracownicyByHaslo(haslo, id_pracownika);
+            PracownicyDS.PracownicyDataTable pracownik = TablesManager.Manager.PracownicyTableAdapter.GetPracownicyByHaslo(haszujHaslo(haslo), id_pracownika);
             if (pracownik.Count > 0)
                 return true;
             return false;
@@ -40,7 +41,12 @@ namespace PensjonatApp.Helpers
 
         public static int zmienHaslo(int id_pracownika, string haslo)
         {
-            return TablesManager.Manager.PracownicyTableAdapter.UpdateHaslo(haslo, id_pracownika);
+            return TablesManager.Manager.PracownicyTableAdapter.UpdateHaslo(haszujHaslo(haslo), id_pracownika);
+        }
+
+        public static string haszujHaslo(string haslo)
+        {
+            return BitConverter.ToString(SHA1Managed.Create().ComputeHash(Encoding.Default.GetBytes(haslo))).Replace("-", "");
         }
     }
 }
