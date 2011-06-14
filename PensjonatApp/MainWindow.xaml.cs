@@ -30,6 +30,7 @@ namespace PensjonatApp
         private List<Button> buttonPobytyDeafultList = new List<Button>();
         private List<Button> buttonPobytyZarzadzajList = new List<Button>();
         private List<Button> buttonPobytyBackOkList = new List<Button>();
+        private List<Button> buttonPobytyOkList = new List<Button>();
         private List<Button> buttonPobytyBackPrintList = new List<Button>();
         private List<Button> buttonKlienciDeafultList = new List<Button>();
         private List<Button> buttonKlienciBackOkList = new List<Button>();
@@ -145,6 +146,7 @@ namespace PensjonatApp
             buttonPobytyDeafultList.Add(buttonPobytyDrukuj);
             buttonPobytyBackOkList.Add(buttonPobytyPowrot);
             buttonPobytyBackOkList.Add(buttonPobytyOk);
+            buttonPobytyOkList.Add(buttonPobytyOk);
             buttonPobytyBackPrintList.Add(buttonPobytyPowrot);
             buttonPobytyBackPrintList.Add(buttonPobytyDrukuj);
 
@@ -901,6 +903,15 @@ namespace PensjonatApp
 				}else
 					System.Windows.MessageBox.Show("Wystąpił błąd w rozliczeniu (ujemna cena, bądź program nie potrafi pobrać id, ceny)", "Rozliczanie pobytu", MessageBoxButton.OK, MessageBoxImage.Error);
 			}
+            else if (currentGrid == gridPobytyUslugi || currentGrid == gridPobytyPosilki)
+            {
+                zwinPobyty();
+                showWindow(gridPobytyServices, buttonPobytyZarzadzajList);
+                dataGridPobytyPosilki.ItemsSource =
+                    TablesManager.Manager.PosilkiTableAdapter.GetDataWithPosilkiSlownikById(((int)labelPobytyServicesId.Content));
+                dataGridPobytyUslugi.ItemsSource =
+                    TablesManager.Manager.UslugiTableAdapter.GetDataUslugiUslugi_slownikByID_pobytu(((int)labelPobytyServicesId.Content));
+            }
         }
         //----------------------------------------------POBYTY->DEAFULT----------------------------------------------
         private void dataGridPobytySzukaj_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
@@ -982,14 +993,7 @@ namespace PensjonatApp
                 {
                     zwinPobyty();
                     showWindow(gridPobytyServices, buttonPobytyZarzadzajList);
-                    List<string> lst = new List<string>();
-                    DS.UslugiDS.Uslugi_slownikDataTable rabatyTable = TablesManager.Manager.Uslugi_slownikTableAdapter.GetData();
-                    foreach (DS.UslugiDS.Uslugi_slownikRow row in rabatyTable)
-                    {
-                        lst.Add(row.nazwa + " -" + row.cena + "zł");
-                        PobytyUslugiIdList.Add(row.id_slownikowe_uslugi);
-                    }
-                    comboBoxPobytyUslugi.ItemsSource = lst;
+                    
                     labelPobytyServicesKlient.Content = (string)selectedRow["imie"] + ' ' + (string)selectedRow["nazwisko"];
                     labelPobytyZarzadzajPESEL.Content = (string)selectedRow["pesel"];
                     labelPobytyZarzadzajTelefon.Content = selectedRow["nr_telefonu"].ToString();
@@ -1029,8 +1033,9 @@ namespace PensjonatApp
         private void buttonPobytyZarzadzajPosilki_Click(object sender, RoutedEventArgs e)
         {
             zwinPobyty();
-            showWindow(gridPobytyPosilki, buttonPobytyBackOkList);
+            showWindow(gridPobytyPosilki, buttonPobytyOkList);
             List<string> lst = new List<string>();
+            PobytyPosilkiIdList.Clear();
             DS.PosilkiDS.Posilki_slownikDataTable posilkiTable = TablesManager.Manager.Posilki_slownikTableAdapter.GetData();
             foreach (DS.PosilkiDS.Posilki_slownikRow row in posilkiTable)
             {
@@ -1117,9 +1122,18 @@ namespace PensjonatApp
         private void buttonPobytyZarzadzajUslugi_Click(object sender, RoutedEventArgs e)
         {
             zwinPobyty();
-            showWindow(gridPobytyUslugi, buttonPobytyBackOkList);
+            showWindow(gridPobytyUslugi, buttonPobytyOkList);
             //datePickerPobytyServicesTermin.Set = DateTime.Today;
-            dataGridPobytyZarzadzajUslug.ItemsSource = TablesManager.Manager.UslugiTableAdapter.GetDataUslugiUslugi_slownikByID_pobytu((int)labelPobytyServicesId.Content); 
+            dataGridPobytyZarzadzajUslug.ItemsSource = TablesManager.Manager.UslugiTableAdapter.GetDataUslugiUslugi_slownikByID_pobytu((int)labelPobytyServicesId.Content);
+            PobytyUslugiIdList.Clear();
+            List<string> lst = new List<string>();
+            DS.UslugiDS.Uslugi_slownikDataTable rabatyTable = TablesManager.Manager.Uslugi_slownikTableAdapter.GetData();
+            foreach (DS.UslugiDS.Uslugi_slownikRow row in rabatyTable)
+            {
+                lst.Add(row.nazwa + " -" + row.cena + "zł");
+                PobytyUslugiIdList.Add(row.id_slownikowe_uslugi);
+            }
+            comboBoxPobytyUslugi.ItemsSource = lst;
         }
 
         
@@ -1220,26 +1234,7 @@ namespace PensjonatApp
         }
 
 
-        private void datePickerPobytyServicesTerminOd_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
-        {
-            int czasTrwania;
-            if (int.TryParse(textBoxPobytyUslugiCzas.Text, out czasTrwania))
-            {
-                List<string> lst = new List<string>();
-                PobytyUslugiIdPracownikaList.Clear();
-                DateTime koniec = (DateTime)datePickerPobytyServicesTermin.Value.Value;
-                koniec = koniec.AddMinutes(czasTrwania);
-                PracownicyDS.PracownicyDataTable pracownicyTable = UslugiHelper.znajdzWolnegoPracownika(datePickerPobytyServicesTermin.Value.Value, koniec, PobytyUslugiIdList[comboBoxPobytyUslugi.SelectedIndex]);//TablesManager.Manager.PracownicyTableAdapter.
-                // GetDataPracownicyWykonujacyUslugeWPodanymTerminie(PobytyUslugiIdList[comboBoxPobytyUslugi.SelectedIndex], koniec, datePickerPobytyServicesTerminOd.SelectedDate);
 
-                foreach (PracownicyDS.PracownicyRow row in pracownicyTable)
-                {
-                    lst.Add(row.imie + " " + row.nazwisko);
-                    PobytyUslugiIdPracownikaList.Add(row.id_pracownika);
-                }
-                comboBoxPobytyPracownicy.ItemsSource = lst;
-            }
-        }
 
 
         
