@@ -53,6 +53,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="itextsharp">
+      <HintPath>dll\itextsharp.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -155,6 +158,7 @@
     <Compile Include="Helpers\PosilkiSlownikHelper.cs" />
     <Compile Include="Helpers\PracownicyHelper.cs" />
     <Compile Include="Helpers\RabatyHelper.cs" />
+    <Compile Include="Helpers\RachunekPDFHelper.cs" />
     <Compile Include="Helpers\RachunkiHelper.cs" />
     <Compile Include="Helpers\RezerwacjeHelper.cs" />
     <Compile Include="Helpers\RozliczenieHelper.cs" />
