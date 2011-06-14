@@ -421,7 +421,7 @@
 						<Label Content="Id rezerwacji:" FontWeight="Bold" HorizontalAlignment="Left" Margin="297,39,0,0" Name="labelPobytySumIdRezerwacjiLabel" Padding="2" VerticalAlignment="Top" />
 						<Label Content="21452" FontWeight="Normal" HorizontalAlignment="Left" Margin="405,39,0,0" Name="labelPobytySumIdRezerwacji" Padding="2" VerticalAlignment="Top" />
 					</Grid>
-                    <Grid Height="54" Name="gridPobytyUslugi" Opacity="1" ShowGridLines="True" Visibility="Visible">
+                    <Grid Height="191" Name="gridPobytyUslugi" Opacity="1" ShowGridLines="True" Visibility="Visible">
                         <Label Content="Usługi:" FontSize="15" FontWeight="Normal" HorizontalAlignment="Left" Margin="10,10,0,0" Name="label50" Padding="2" VerticalAlignment="Top" FontStretch="Normal" />
                         <DataGrid AutoGenerateColumns="False" HorizontalGridLinesBrush="#FFD5D5D5" IsEnabled="True" IsReadOnly="True" Margin="27,346,17,14" Name="dataGridPobytyZarzadzajUslug" SelectionMode="Single" VerticalGridLinesBrush="#FFD5D5D5">
                             <DataGrid.Columns>
