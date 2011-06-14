@@ -273,6 +273,46 @@
                         <Image Height="40" HorizontalAlignment="Left" Margin="132,12,0,0" Name="image4" Source="/PensjonatApp;component/Images/separator.png" Stretch="Fill" VerticalAlignment="Top" Width="2" />
                        
                     </Grid>
+                    <Grid Height="581" Name="gridPobytyUslugi" Opacity="1" ShowGridLines="True" Visibility="Visible">
+                        <Label Content="Usługi:" FontSize="15" FontWeight="Normal" HorizontalAlignment="Left" Margin="10,10,0,0" Name="label50" Padding="2" VerticalAlignment="Top" FontStretch="Normal" />
+                        <DataGrid AutoGenerateColumns="False" HorizontalGridLinesBrush="#FFD5D5D5" IsEnabled="True" IsReadOnly="True" Margin="27,352,17,0" Name="dataGridPobytyZarzadzajUslug" SelectionMode="Single" VerticalGridLinesBrush="#FFD5D5D5" MaxHeight="200" Height="200" VerticalAlignment="Top">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding Path=id_uslugi}" Header="Id" />
+                                <DataGridTextColumn Binding="{Binding Path=nazwa}" Header="Nazwa" />
+                                <DataGridTextColumn Binding="{Binding Path=cena}" Header="Cena" />
+                                <DataGridTextColumn Binding="{Binding Path=termin_start}" Header="Termin od" />
+                                <DataGridTextColumn Binding="{Binding Path=termin_koniec}" Header="Termin do" />
+                                <DataGridTextColumn Binding="{Binding Path=opis}" Header="Opis" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <Button Content="Usuń" Height="20" HorizontalAlignment="Right" Margin="0,324,17,0" Name="buttonPobytyUslugiUsun" VerticalAlignment="Top" Width="50" Padding="0" Click="buttonPobytyUslugiUsun_Click" />
+                        <Label Content="Lista aktywnych usług:" FontWeight="Bold" HorizontalAlignment="Left" Margin="27,324,0,0" Name="label9" Padding="2" VerticalAlignment="Top" />
+                        <GroupBox Header="Dodaj usługę" Margin="21,42,17,0" Name="groupBox1" VerticalAlignment="Top" Height="276">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="217*" />
+                                    <RowDefinition Height="36*" />
+                                </Grid.RowDefinitions>
+                                <Label Content="Usługa:" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,13,0,0" Name="label48" Padding="2" VerticalAlignment="Top" />
+                                <ComboBox Name="comboBoxPobytyUslugi" Height="23" ItemsSource="{Binding}" Margin="100,6,187,0" VerticalAlignment="Top"></ComboBox>
+                                <Label Content="Pracownik:" FontWeight="Bold" HorizontalAlignment="Left" Margin="9,131,0,0" Name="label81" Padding="2" VerticalAlignment="Top" />
+                                <ComboBox Name="comboBoxPobytyPracownicy" Height="23" ItemsSource="{Binding}" Margin="99,131,187,0" VerticalAlignment="Top" IsEnabled="False"></ComboBox>
+                                <Button Name="buttonPobytyServicesAdd" Content="Dodaj" Height="23" Margin="0,215,81,0" VerticalAlignment="Top" Click="buttonPobytyServicesAdd_Click" HorizontalAlignment="Right" Width="65" Grid.RowSpan="2" />
+                                <Label Content="Termin:" FontWeight="Bold" HorizontalAlignment="Left" Margin="9,41,0,0" Name="label247" Padding="2" VerticalAlignment="Top" />
+                                <StackPanel Margin="100,40,186,0" Name="stackPanel14" VerticalAlignment="Top">
+                                    <Toolkit:DateTimePicker Background="White" ShowButtonSpinner="False" Watermark="Wybierz datę i godzinę" Value="{Binding DueDate}" Format="Custom" FormatString="dd/MM/yyyy hh:mm tt" Height="25" Name="datePickerPobytyServicesTermin" />
+                                </StackPanel>
+                                <Button Content="Znajdź pracownika" Height="23" Margin="0,29,20,0" Name="buttonPobytyZarzadzajSzukaj" VerticalAlignment="Top" Padding="1" Click="buttonPobytyZarzadzajSzukaj_Click" HorizontalAlignment="Right" Width="125" />
+                                <Button Content="Czyść" Height="23" Margin="0,215,7,0" Name="buttonPobytyZarzadzajCzysc" VerticalAlignment="Top" Click="buttonPobytyZarzadzajCzysc_Click" HorizontalAlignment="Right" Width="65" Grid.RowSpan="2" />
+                                <Label Content="Czas trwania:" FontWeight="Bold" HorizontalAlignment="Left" Margin="9,75,0,0" Name="label227" Padding="2" VerticalAlignment="Top" />
+                                <TextBox Height="23" HorizontalAlignment="Left" Margin="99,75,0,0" Name="textBoxPobytyUslugiCzas" Text="0" VerticalAlignment="Top" Width="63" />
+                                <Separator Height="5" Margin="21,109,12,0" Name="separator13" VerticalAlignment="Top" />
+                                <Label Content="min." FontWeight="Bold" HorizontalAlignment="Left" Margin="169,75,0,0" Name="label248" Padding="2" VerticalAlignment="Top" />
+                                <Label Content="Uwagi:" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,169,0,0" Name="label250" Padding="2" VerticalAlignment="Top" />
+                                <TextBox Height="23" Margin="100,169,187,0" Name="textBoxPobytyUslugiUwagi" Text="" VerticalAlignment="Top" />
+                            </Grid>
+                        </GroupBox>
+                    </Grid>
                     <Grid Height="35" Name="gridPobytyNowy" Opacity="1" ShowGridLines="False" Visibility="Visible">
                         <Label Content="Nowy pobyt:" FontSize="15" FontWeight="Normal" HorizontalAlignment="Left" Margin="10,10,0,0" Name="label228" Padding="2" VerticalAlignment="Top" />
                         <Grid Margin="25,50,25,0" Height="455" VerticalAlignment="Top" Name="gridPobytyNowyNowy">
@@ -421,42 +461,6 @@
 						<Label Content="Id rezerwacji:" FontWeight="Bold" HorizontalAlignment="Left" Margin="297,39,0,0" Name="labelPobytySumIdRezerwacjiLabel" Padding="2" VerticalAlignment="Top" />
 						<Label Content="21452" FontWeight="Normal" HorizontalAlignment="Left" Margin="405,39,0,0" Name="labelPobytySumIdRezerwacji" Padding="2" VerticalAlignment="Top" />
 					</Grid>
-                    <Grid Height="191" Name="gridPobytyUslugi" Opacity="1" ShowGridLines="True" Visibility="Visible">
-                        <Label Content="Usługi:" FontSize="15" FontWeight="Normal" HorizontalAlignment="Left" Margin="10,10,0,0" Name="label50" Padding="2" VerticalAlignment="Top" FontStretch="Normal" />
-                        <DataGrid AutoGenerateColumns="False" HorizontalGridLinesBrush="#FFD5D5D5" IsEnabled="True" IsReadOnly="True" Margin="27,346,17,14" Name="dataGridPobytyZarzadzajUslug" SelectionMode="Single" VerticalGridLinesBrush="#FFD5D5D5">
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Binding="{Binding Path=id_uslugi}" Header="Id" />
-                                <DataGridTextColumn Binding="{Binding Path=nazwa}" Header="Nazwa" />
-                                <DataGridTextColumn Binding="{Binding Path=cena}" Header="Cena" />
-                                <DataGridTextColumn Binding="{Binding Path=termin_start}" Header="Termin od" />
-                                <DataGridTextColumn Binding="{Binding Path=termin_koniec}" Header="Termin do" />
-                                <DataGridTextColumn Binding="{Binding Path=opis}" Header="Opis" />
-                            </DataGrid.Columns>
-                        </DataGrid>
-                        <Button Content="Usuń" Height="20" HorizontalAlignment="Right" Margin="0,324,17,0" Name="buttonPobytyUslugiUsun" VerticalAlignment="Top" Width="50" Padding="0" Click="buttonPobytyUslugiUsun_Click" />
-                        <Label Content="Lista aktywnych usług:" FontWeight="Bold" HorizontalAlignment="Left" Margin="27,324,0,0" Name="label9" Padding="2" VerticalAlignment="Top" />
-                        <GroupBox Header="Dodaj usługę" Margin="21,42,17,0" Name="groupBox1" VerticalAlignment="Top" Height="276">
-                            <Grid>
-                                <Label Content="Usługa:" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,13,0,0" Name="label48" Padding="2" VerticalAlignment="Top" />
-                                <ComboBox Name="comboBoxPobytyUslugi" Height="23" ItemsSource="{Binding}" Margin="100,6,187,0" VerticalAlignment="Top"></ComboBox>
-                                <Label Content="Pracownik:" FontWeight="Bold" HorizontalAlignment="Left" Margin="9,131,0,0" Name="label81" Padding="2" VerticalAlignment="Top" />
-                                <ComboBox Name="comboBoxPobytyPracownicy" Height="23" ItemsSource="{Binding}" Margin="99,131,187,0" VerticalAlignment="Top" IsEnabled="False"></ComboBox>
-                                <Button Name="buttonPobytyServicesAdd" Content="Dodaj" Height="23" Margin="0,215,81,0" VerticalAlignment="Top" Click="buttonPobytyServicesAdd_Click" HorizontalAlignment="Right" Width="65" />
-                                <Label Content="Termin:" FontWeight="Bold" HorizontalAlignment="Left" Margin="9,41,0,0" Name="label247" Padding="2" VerticalAlignment="Top" />
-                                <StackPanel Margin="100,40,186,0" Name="stackPanel14" VerticalAlignment="Top">
-                                    <Toolkit:DateTimePicker Background="White" ShowButtonSpinner="False" Watermark="Wybierz datę i godzinę" Value="{Binding DueDate}" Format="Custom" FormatString="dd/MM/yyyy hh:mm tt" Height="25" Name="datePickerPobytyServicesTermin" />
-                                </StackPanel>
-                                <Button Content="Znajdź pracownika" Height="23" Margin="0,29,20,0" Name="buttonPobytyZarzadzajSzukaj" VerticalAlignment="Top" Padding="1" Click="buttonPobytyZarzadzajSzukaj_Click" HorizontalAlignment="Right" Width="125" />
-                                <Button Content="Czyść" Height="23" Margin="0,215,7,0" Name="buttonPobytyZarzadzajCzysc" VerticalAlignment="Top" Click="buttonPobytyZarzadzajCzysc_Click" HorizontalAlignment="Right" Width="65" />
-                                <Label Content="Czas trwania:" FontWeight="Bold" HorizontalAlignment="Left" Margin="9,75,0,0" Name="label227" Padding="2" VerticalAlignment="Top" />
-                                <TextBox Height="23" HorizontalAlignment="Left" Margin="99,75,0,0" Name="textBoxPobytyUslugiCzas" Text="0" VerticalAlignment="Top" Width="63" />
-                                <Separator Height="5" Margin="21,109,12,0" Name="separator13" VerticalAlignment="Top" />
-                                <Label Content="min." FontWeight="Bold" HorizontalAlignment="Left" Margin="169,75,0,0" Name="label248" Padding="2" VerticalAlignment="Top" />
-                                <Label Content="Uwagi:" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,169,0,0" Name="label250" Padding="2" VerticalAlignment="Top" />
-                                <TextBox Height="23" Margin="100,169,187,0" Name="textBoxPobytyUslugiUwagi" Text="" VerticalAlignment="Top" />
-                            </Grid>
-                        </GroupBox>
-                    </Grid>
                     <Grid Height="40" Name="gridPobytyServices" Opacity="1" ShowGridLines="True" Visibility="Visible">
                         <Label Content="Zarządzanie pobytem:" FontSize="15" FontWeight="Normal" HorizontalAlignment="Left" Margin="10,10,0,0" Name="label42" Padding="2" VerticalAlignment="Top" />
                         <Label Name="labelPobytyServicesId" Content="21452" FontWeight="Normal" HorizontalAlignment="Left" Margin="202,11,0,0" Padding="2" VerticalAlignment="Top" FontSize="14" />
