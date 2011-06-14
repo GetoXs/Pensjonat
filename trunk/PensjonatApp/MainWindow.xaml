@@ -273,7 +273,7 @@
                         <Image Height="40" HorizontalAlignment="Left" Margin="132,12,0,0" Name="image4" Source="/PensjonatApp;component/Images/separator.png" Stretch="Fill" VerticalAlignment="Top" Width="2" />
                        
                     </Grid>
-                    <Grid Height="404" Name="gridPobytyDeafult" Opacity="1" ShowGridLines="True" Visibility="Visible">
+                    <Grid Height="229" Name="gridPobytyDeafult" Opacity="1" ShowGridLines="True" Visibility="Visible">
                         <TextBox Name="textBoxPobytySzukaj" Height="23" HorizontalAlignment="Left" Margin="12,44,0,0" VerticalAlignment="Top" Width="129" TabIndex="1" />
                         <RadioButton Name="rbPobytyId" Content="ID" GroupName="pobytySzukaj" Height="16" HorizontalAlignment="Left" Margin="297,51,0,0" VerticalAlignment="Top" TabIndex="4" />
                         <RadioButton Name="rbPobytyKlient" Content="Klient" GroupName="pobytySzukaj" Height="16" HorizontalAlignment="Left" IsChecked="True" Margin="245,51,0,0" VerticalAlignment="Top" TabIndex="3" />
@@ -296,7 +296,7 @@
                         <Label Content="Kontekst:" Height="28" Margin="0,5,180,0" Name="label45" VerticalAlignment="Top" FontSize="13" HorizontalAlignment="Right" Width="63" />
                         <Separator Height="5" Margin="0,27,7,0" Name="separator5" VerticalAlignment="Top" HorizontalAlignment="Right" Width="235" />
                     </Grid>
-                    <Grid Height="31" Name="gridPobytyUslugi" Opacity="1" ShowGridLines="True" Visibility="Visible">
+                    <Grid Height="42" Name="gridPobytyUslugi" Opacity="1" ShowGridLines="True" Visibility="Visible">
                         <Label Content="Usługi:" FontSize="15" FontWeight="Normal" HorizontalAlignment="Left" Margin="10,10,0,0" Name="label50" Padding="2" VerticalAlignment="Top" FontStretch="Normal" />
                         <DataGrid AutoGenerateColumns="False" HorizontalGridLinesBrush="#FFD5D5D5" IsEnabled="True" IsReadOnly="True" Margin="27,352,17,0" Name="dataGridPobytyZarzadzajUslug" SelectionMode="Single" VerticalGridLinesBrush="#FFD5D5D5" MaxHeight="200" Height="200" VerticalAlignment="Top">
                             <DataGrid.Columns>
