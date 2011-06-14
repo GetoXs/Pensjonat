@@ -24,12 +24,18 @@ namespace PensjonatApp.Helpers
             PdfWriter.GetInstance(doc, new FileStream(sciezka, FileMode.Create));
             doc.Open();
 
-            Paragraph naglowek = new Paragraph();
-            naglowek.Add("Rachunek\n");
-            Paragraph naglowek2 = new Paragraph();
-            naglowek2.Add("Id rachunku: "+id_rachunku.ToString()+"\n");
-            naglowek2.Add(DateTime.Now.Date.ToString()+"\n\n");
+            FontFactory.RegisterDirectory("C:\\WINDOWS\\Fonts");
 
+            Font duzy = FontFactory.GetFont("Calibri",BaseFont.CP1250,16);
+            Font sredni = FontFactory.GetFont("Calibri", BaseFont.CP1250, 12);
+            Font maly = FontFactory.GetFont("Calibri", BaseFont.CP1250, 10);
+
+            Paragraph naglowek = new Paragraph("",duzy);
+            naglowek.Add("Rachunek\n\n");
+            Paragraph naglowek2 = new Paragraph("",maly);
+            naglowek2.Add("Id rachunku: "+id_rachunku.ToString()+"\n");
+            naglowek2.Add("Data: "+DateTime.Now.Date.ToString("d-MM-yyyy")+"\n\n");
+             
             doc.Add(naglowek);
             doc.Add(naglowek2);
 
@@ -37,11 +43,11 @@ namespace PensjonatApp.Helpers
 
             foreach (PobytyDS.PobytyRow p in pobyty)
             {
-                Paragraph par = new Paragraph();
+                Paragraph par = new Paragraph("",sredni);
                 KlienciDS.KlienciRow klient=TablesManager.Manager.KlienciTableAdapter.GetDataByIdKlienta(p.id_klienta)[0];
                 par.Add(klient.imie + " " + klient.nazwisko + "\n");
-                if (!(klient.nazwa.Equals("")))
-                    par.Add(klient.nazwa+"\n");
+               // if (klient.nazwa!=null)
+               //     par.Add(klient.nazwa+"\n");
                 par.Add("Pokój: " + RozliczenieHelper.pobierzPodstawowaCenaPobytu(p.id_pobytu).ToString("0.00") + " PLN\n");
                 par.Add("Posiłki: " + RozliczenieHelper.pobierzPodstawowaCenaPosilkow(p.id_pobytu).ToString("0.00") + " PLN\n");
                 par.Add("Usługi: " + RozliczenieHelper.pobierzPodstawowaCenaUslug(p.id_pobytu).ToString("0.00") + " PLN\n\n");
@@ -49,7 +55,9 @@ namespace PensjonatApp.Helpers
                 doc.Add(par);
             }
 
-            Paragraph doZaplaty = new Paragraph();
+            sredni.SetStyle(Font.BOLD);
+
+            Paragraph doZaplaty = new Paragraph("",sredni);
             RachunkiDS.RachunkiRow r=TablesManager.Manager.RachunkiTableAdapter.GetDataById(id_rachunku)[0];
             doZaplaty.Add("Do zapłacenia po uwzględnieniu rabatów i zaliczki: "+r.wartosc.ToString("0.00")+" PLN\n");
             doc.Add(doZaplaty);
