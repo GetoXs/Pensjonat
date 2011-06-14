@@ -1521,9 +1521,21 @@ namespace PensjonatApp
                 }
                 else
                 {
+                    Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
+                    dlg.DefaultExt = ".pdf";
+                    dlg.Filter = "Portable Document Format (.pdf)|*.pdf";
+                    if (dlg.ShowDialog() == true)
+                    {
+                        string filename = dlg.FileName;
+                        if(RachunekPDFHelper.stworzWydruk(selectedRow.id_rachunku, filename))
+                            System.Windows.MessageBox.Show("Dokument pdf z rachunkiem wygenerowano pomyślnie.", "Generowanie PDF.", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
                    //Superfunkcja drukowania faktury
                 }
             }
+            else
+                System.Windows.MessageBox.Show("Aby wygenerować pdf z rachunkiem, najpierw wybierz pobyt.", "Generowanie PDF.", MessageBoxButton.OK, MessageBoxImage.Warning);
+ 
         }
         //----------------------------------------------POBYTY->NOWY----------------------------------------------
         string pobytyNowyKlientImie;
