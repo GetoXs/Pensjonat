@@ -1129,6 +1129,7 @@ namespace PensjonatApp
             comboBoxPobytyPracownicy.IsEnabled = false;
             textBoxPobytyUslugiCzas.IsEnabled = true;
             comboBoxPobytyPracownicy.SelectedItem = null;
+            comboBoxPobytyPracownicy.IsDropDownOpen = false;
             textBoxPobytyUslugiUwagi.Clear();
             textBoxPobytyUslugiCzas.Clear();
         }
@@ -1188,19 +1189,21 @@ namespace PensjonatApp
                             PobytyUslugiIdPracownikaList.Add(row.id_pracownika);
                         }
                         comboBoxPobytyPracownicy.ItemsSource = lst;
-                        comboBoxPobytyPracownicy.IsEnabled = true;
-                        comboBoxPobytyUslugi.IsEnabled = false;
-                        datePickerPobytyServicesTermin.IsEnabled = false;
-                        textBoxPobytyUslugiCzas.IsEnabled = false;
+
                         if (comboBoxPobytyPracownicy.Items.Count == 0)
                         {
-                            //.DateTime termin = UslugiHelper.znajdzPierwszyWolnyTermin
-                            System.Windows.MessageBox.Show("W podanym terminie nie znaleziono wolnych pracowników. Pierwszy wolny termin dla wybranej usługi i czasu trwania to: xx/xx/xxxx xx:xx","Wyszukiwanie wolnych pracowników", MessageBoxButton.OK, MessageBoxImage.Information); 
+                            DateTime termin = UslugiHelper.znajdzPierwszyWolnyTermin(datePickerPobytyServicesTermin.Value.Value, czasTrwania, PobytyUslugiIdList[comboBoxPobytyUslugi.SelectedIndex]);
+                            System.Windows.MessageBox.Show("W podanym terminie nie znaleziono wolnych pracowników.\nPierwszy wolny termin dla wybranej usługi i czasu trwania to: "+ termin,"Wyszukiwanie wolnych pracowników", MessageBoxButton.OK, MessageBoxImage.Information);
+                            datePickerPobytyServicesTermin.Value = termin;
                         }
                         else
                         {
                             System.Windows.MessageBox.Show("Liczba znalezionych wolnych pracowników w podanym terminie: " + comboBoxPobytyPracownicy.Items.Count, "Wyszukiwanie wolnych pracowników", MessageBoxButton.OK, MessageBoxImage.Information);
                             comboBoxPobytyPracownicy.IsDropDownOpen = true;
+                            comboBoxPobytyPracownicy.IsEnabled = true;
+                            comboBoxPobytyUslugi.IsEnabled = false;
+                            datePickerPobytyServicesTermin.IsEnabled = false;
+                            textBoxPobytyUslugiCzas.IsEnabled = false; 
                         }
                     }
                 }
@@ -1249,8 +1252,8 @@ namespace PensjonatApp
                     //UslugiHelper.przydzielPracownika((int)PobytyUslugiIdList[comboBoxPobytyUslugi.SelectedIndex], (int)PobytyUslugiIdPracownikaList[comboBoxPobytyPracownicy.SelectedIndex]);
                     UslugiHelper.dodajUsluge((int)labelPobytyServicesId.Content, (int)PobytyUslugiIdPracownikaList[comboBoxPobytyPracownicy.SelectedIndex], datePickerPobytyServicesTermin.Value.Value, koniec, textBoxPobytyUslugiUwagi.Text, PobytyUslugiIdList[comboBoxPobytyUslugi.SelectedIndex]);
                     dataGridPobytyUslugi.ItemsSource = TablesManager.Manager.UslugiTableAdapter.GetDataUslugiUslugi_slownikByID_pobytu((int)labelPobytyServicesId.Content);
-                    dataGridPobytyZarzadzajUslug.ItemsSource = TablesManager.Manager.UslugiTableAdapter.GetDataUslugiUslugi_slownikByID_pobytu((int)labelPobytyServicesId.Content); 
-       
+                    dataGridPobytyZarzadzajUslug.ItemsSource = TablesManager.Manager.UslugiTableAdapter.GetDataUslugiUslugi_slownikByID_pobytu((int)labelPobytyServicesId.Content);
+                    buttonPobytyZarzadzajCzysc_Click(sender, e);
                  }
                  else
                      System.Windows.MessageBox.Show("Pole czas trwania może zawierać tylko cyfry", "Znajdowanie wolnego pracownika", MessageBoxButton.OK, MessageBoxImage.Warning);
