@@ -33,6 +33,7 @@ namespace PensjonatApp
         private List<Button> buttonPobytyBackPrintList = new List<Button>();
         private List<Button> buttonKlienciDeafultList = new List<Button>();
         private List<Button> buttonKlienciBackOkList = new List<Button>();
+        private List<Button> buttonKlienciBackList = new List<Button>();
         private List<Button> buttonPokojeDeafultList = new List<Button>();
         private List<Button> buttonPokojeBackOkList = new List<Button>();
         private List<Button> buttonWyposazenieDeafultList = new List<Button>();
@@ -149,7 +150,9 @@ namespace PensjonatApp
 
             buttonKlienciDeafultList.Add(buttonKlienciAdd);
             buttonKlienciDeafultList.Add(buttonKlienciEdit);
+            buttonKlienciDeafultList.Add(buttonKlienciSzczegoly);
             buttonKlienciBackOkList.Add(buttonKlienciPowrot);
+            buttonKlienciBackList.Add(buttonKlienciPowrot);
             buttonKlienciBackOkList.Add(buttonKlienciOk);
 
             buttonPokojeDeafultList.Add(buttonPokojeUsun);
@@ -306,6 +309,7 @@ namespace PensjonatApp
             gridPokojeDeafult.Visibility = Visibility.Collapsed;
             gridPokojeEdycja.Visibility = Visibility.Collapsed;
             gridPokojeSzczegoly.Visibility = Visibility.Collapsed;
+            gridKlienciSzczegoly.Visibility = Visibility.Collapsed;
             zwinButtonList(buttonPokojeDeafultList);
             zwinButtonList(buttonPokojeBackOkList);
         }
@@ -2069,9 +2073,9 @@ namespace PensjonatApp
 		/// <summary>
 		/// Ustawia pola w Gridzie edycji klienta odpowiednio dla "osoby prytwantej"/firmy
 		/// </summary>
-		private void klienciEditUstawPola()
+		private void klienciEditUstawPola(RadioButton rb)
 		{
-			if (radioButtonKlientEdycjaOsoba.IsChecked == true)
+			if (rb.IsChecked == true)
 			{
 				groupBoxKlienciEdycja1.Header = "Dane klienta";
 				groupBoxKlienciEdycja2.Visibility = System.Windows.Visibility.Collapsed;
@@ -2084,9 +2088,42 @@ namespace PensjonatApp
 		}
 		private void radioButtonKlientEdycja_Checked(object sender, RoutedEventArgs e)
 		{
-			this.klienciEditUstawPola();
+            this.klienciEditUstawPola(radioButtonKlientEdycjaOsoba);
 		}
-
+        //----------------------------------------------KLIENCI->SZCZEGOLY----------------------------------------------
+        private void buttonKlienciSzczegoly_Click(object sender, RoutedEventArgs e)
+        {
+            if (dataGridKlienci.SelectedItem != null)
+            {
+                zwinKlienci();
+                showWindow(gridKlienciSzczegoly, buttonKlienciBackList);
+     
+                KlienciDS.KlienciRow selectedRow = (KlienciDS.KlienciRow)((DataRowView)dataGridKlienci.SelectedItem).Row;
+                //dataGridKlienci.ItemsSource = TablesManager.Manager.KlienciTableAdapter.GetDataKlienciMiejsconowsciByIdKlienta(selectedRow.id_klienta);
+                if (!selectedRow.IsnazwaNull() && !selectedRow.nazwa.Equals(""))
+                {
+                    groupBoxKlienciSzczegolyFirma.Visibility = Visibility.Visible;
+                    radioButtonKlienciSzczegolyFirma.IsChecked = true;
+                }
+                else
+                {
+                    groupBoxKlienciSzczegolyFirma.Visibility = Visibility.Collapsed;
+                    radioButtonKlienciSzczegolyPrywatna.IsChecked = true;
+                }
+                labelKlienciSzczegolyImie.Content = selectedRow.imie;
+                labelKlienciSzczegolyNazwisko.Content = selectedRow.nazwisko;
+                labelKlienciSzczegolyPesel.Content = selectedRow.pesel;
+                labelKlienciSzczegolyNip.Content = selectedRow.nip.ToString();
+                labelKlienciSzczegolyTelefon.Content = selectedRow.nr_telefonu.ToString();
+                labelKlienciSzczegolyMail.Content = selectedRow.email;
+                labelKlienciSzczegolyMiejscowosc.Content = (string)selectedRow["miejscowosc"];
+                labelKlienciSzczegolyKodPocztowy.Content = selectedRow.kod_pocztowy;
+                labelKlienciSzczegolyAdres.Content = selectedRow.ulica;
+                labelKlienciSzczegolyFirma.Content = selectedRow.IsnazwaNull() ? "" : selectedRow.nazwa;
+            }
+            else  
+                System.Windows.MessageBox.Show("Najpierw wybierz klienta.", "Szczegóły klienta", MessageBoxButton.OK, MessageBoxImage.Warning);
+        }
 //----------------------------------------------NEWSLETTER----------------------------------------------
         private void buttonNewsletterNew_Click(object sender, RoutedEventArgs e)
         {
@@ -3269,6 +3306,8 @@ namespace PensjonatApp
             else
                 groupBoxZmianaHasla.Visibility = Visibility.Hidden;
         }
+
+
 
 
 
