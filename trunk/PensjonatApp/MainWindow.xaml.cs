@@ -1131,8 +1131,6 @@ namespace PensjonatApp
             comboBoxPobytyPracownicy.SelectedItem = null;
             textBoxPobytyUslugiUwagi.Clear();
             textBoxPobytyUslugiCzas.Clear();
-
-
         }
 
         private void buttonPobytyUslugiUsun_Click(object sender, RoutedEventArgs e)
@@ -1194,8 +1192,16 @@ namespace PensjonatApp
                         comboBoxPobytyUslugi.IsEnabled = false;
                         datePickerPobytyServicesTermin.IsEnabled = false;
                         textBoxPobytyUslugiCzas.IsEnabled = false;
-                        System.Windows.MessageBox.Show("Liczba znalezionych wolnych pracowników w podanym terminie: " + comboBoxPobytyPracownicy.Items.Count, "Wyszukiwanie wolnych pracowników", MessageBoxButton.OK, MessageBoxImage.Information);
-                        comboBoxPobytyPracownicy.IsDropDownOpen = true;
+                        if (comboBoxPobytyPracownicy.Items.Count == 0)
+                        {
+                            //.DateTime termin = UslugiHelper.znajdzPierwszyWolnyTermin
+                            System.Windows.MessageBox.Show("W podanym terminie nie znaleziono wolnych pracowników. Pierwszy wolny termin dla wybranej usługi i czasu trwania to: xx/xx/xxxx xx:xx","Wyszukiwanie wolnych pracowników", MessageBoxButton.OK, MessageBoxImage.Information); 
+                        }
+                        else
+                        {
+                            System.Windows.MessageBox.Show("Liczba znalezionych wolnych pracowników w podanym terminie: " + comboBoxPobytyPracownicy.Items.Count, "Wyszukiwanie wolnych pracowników", MessageBoxButton.OK, MessageBoxImage.Information);
+                            comboBoxPobytyPracownicy.IsDropDownOpen = true;
+                        }
                     }
                 }
                 else
