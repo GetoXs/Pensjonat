@@ -233,9 +233,9 @@
                                 </StackPanel>
                         </Button>
                             <Button BorderBrush="#FFBAD0DC" Foreground="{x:Null}" Height="35" Name="buttonPobytyDrukuj" Padding="0" Margin="2" Click="buttonPobytyDrukuj_Click">
-                                <StackPanel FlowDirection="LeftToRight" Orientation="Horizontal" Width="108">
+                                <StackPanel FlowDirection="LeftToRight" Orientation="Horizontal" Width="101" HorizontalAlignment="Center">
                                     <Image Grid.RowSpan="2" Height="24" HorizontalAlignment="Left" Margin="2,3,0,3" Name="image15" Source="/PensjonatApp;component/Images/Print-icon.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="24" />
-                                    <Label Content="Drukuj fakturę" FlowDirection="LeftToRight" FontWeight="Normal" HorizontalContentAlignment="Center" Margin="0" Name="label18" Padding="0" VerticalContentAlignment="Center" FontSize="12" VerticalAlignment="Center" />
+                                    <Label Content="Generuj PDF" FlowDirection="LeftToRight" FontWeight="Normal" HorizontalContentAlignment="Center" Margin="0" Name="label18" Padding="0" VerticalContentAlignment="Center" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Center" Width="71" />
                                 </StackPanel>
                             </Button>
                             <Button BorderBrush="#FFBAD0DC" Foreground="{x:Null}" Height="35" Name="buttonPobytyNowy" Padding="0" Width="95" Margin="2" Click="buttonPobytyNowy_Click">
