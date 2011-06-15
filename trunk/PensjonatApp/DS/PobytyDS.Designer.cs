@@ -1228,12 +1228,14 @@ WHERE        Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_pokoju = Pokoj
             this._commandCollection[23].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[24] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[24].Connection = this.Connection;
-            this._commandCollection[24].CommandText = @"SELECT Pobyty.id_pobytu, Pobyty.id_pokoju, Pobyty.id_rezerwacji, Pobyty.termin_start, Pobyty.termin_koniec, Pobyty.id_rachunku, Pobyty.id_klienta, Klienci.email, Klienci.imie, 
-                  Klienci.nazwisko, Klienci.id_miejscowosci, Klienci.kod_pocztowy, Klienci.ulica, Klienci.nip, Klienci.pesel, Klienci.nr_telefonu, Klienci.nazwa, Pokoje.id_slownikowe_pokoju, 
-                  Pokoje.nr_pokoju
-FROM     Pobyty, Klienci, Pokoje, Rezerwacje
-WHERE  Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_pokoju = Pokoje.id_pokoju AND Pobyty.id_rezerwacji = Rezerwacje.id_rezerwacji AND 
-                  Pobyty.id_klienta = Rezerwacje.id_klienta AND (Pobyty.id_rachunku IS NULL)";
+            this._commandCollection[24].CommandText = @"SELECT        Pobyty.id_pobytu, Pobyty.id_pokoju, Pobyty.id_rezerwacji, Pobyty.termin_start, Pobyty.termin_koniec, Pobyty.id_rachunku, Pobyty.id_klienta, Klienci.email, 
+                         Klienci.imie, Klienci.nazwisko, Klienci.id_miejscowosci, Klienci.kod_pocztowy, Klienci.ulica, Klienci.nip, Klienci.pesel, Klienci.nr_telefonu, Klienci.nazwa, 
+                         Pokoje.id_slownikowe_pokoju, Pokoje.nr_pokoju
+FROM            Pobyty, Klienci, Pokoje
+WHERE        Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_pokoju = Pokoje.id_pokoju AND (Pobyty.id_rachunku IS NULL) AND (Pobyty.id_pobytu IN
+                             (SELECT        TOP 1 id_pobytu
+                               FROM            Pobyty p1
+                               WHERE        (id_rachunku IS NULL) AND (id_klienta IS NOT NULL) AND (id_rezerwacji = Pobyty.id_rezerwacji)))";
             this._commandCollection[24].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[25] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[25].Connection = this.Connection;
