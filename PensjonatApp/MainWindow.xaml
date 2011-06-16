@@ -28,8 +28,7 @@
                     <SolidColorBrush />
                 </TabItem.Foreground>
             </TabItem>
-            <TabItem Name="tabRezerwacje" BorderBrush="#FF2B4865" IsSelected="True" Height="40">
-            <TabItem Name="tabRezerwacje" BorderBrush="#FF2B4865" IsSelected="True" Height="40">
+            <TabItem Name="tabRezerwacje" BorderBrush="#FF2B4865" IsSelected="True" Height="40" GotFocus="tabRezerwacje_GotFocus">
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal" Width="120" Height="32">
                         <Image Name="imgRezerwacjeMenu"  Source="/PensjonatApp;component/Images/rezerwacje.png" HorizontalAlignment="Left" VerticalAlignment="Top" Width="30" Height="30" />
@@ -86,21 +85,6 @@
                             </Button>
                         </StackPanel>
                     </Grid>
-                    <Grid Height="348" Name="gridRezerwacjeDel" Opacity="1" ShowGridLines="True" Visibility="Visible">
-                        <Label Content="Usuwanie rezerwacji:" FontSize="15" FontWeight="Normal" HorizontalAlignment="Left" Margin="10,10,0,0" Name="label20" Padding="2" VerticalAlignment="Top" />
-                        <Label Content="Klient:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,38,0,0" Name="label21" Padding="2" VerticalAlignment="Top" />
-                        <Label Content="Termin:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,86,0,0" Name="label22" Padding="2" VerticalAlignment="Top" />
-                        <Label Content="Liczba osób:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,138,0,0" Name="label23" Padding="2" VerticalAlignment="Top" />
-                        <Label Content="Zaliczka:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,164,0,0" Name="label25" Padding="2" VerticalAlignment="Top" />
-                        <Label Name="labelRezerwacjeDelKlient" Content="Adam Malański" FontWeight="Normal" HorizontalAlignment="Left" Margin="160,38,0,0" Padding="2" VerticalAlignment="Top" />
-                        <Label Name="labelRezerwacjeDelTermin" Content="15.07.11 - 22.07.11" FontWeight="Normal" HorizontalAlignment="Left" Margin="160,86,0,0" Padding="2" VerticalAlignment="Top" />
-                        <Label Name="labelRezerwacjeDelIlOsob" Content="3" FontWeight="Normal" HorizontalAlignment="Left" Margin="160,138,0,0" Padding="2" VerticalAlignment="Top" />
-                        <CheckBox Name="checkBoxRezerwacjeDelZaliczka" Margin="160,168,0,0" IsEnabled="False" HorizontalAlignment="Left" Width="13" Height="16" VerticalAlignment="Top" />
-                        <Label Name="label68" Content="PESEL:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,61,0,0" Padding="2" VerticalAlignment="Top" />
-                        <Label Content="Adam Malański" FontWeight="Normal" HorizontalAlignment="Left" Margin="160,61,0,0" Name="labelRezerwacjeDelPesel" Padding="2" VerticalAlignment="Top" />
-                        <Label Content="ID rezerwacji:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,112,0,0" Name="label36" Padding="2" VerticalAlignment="Top" />
-                        <Label Name="labelRezerwacjeDelId" Content="15.07.11 - 22.07.11" FontWeight="Normal" HorizontalAlignment="Left" Margin="160,112,0,0" Padding="2" VerticalAlignment="Top" />
-                    </Grid>
                     <Grid Name="gridRezerwacjeCheck" Height="50" Opacity="1" ShowGridLines="False" Visibility="Visible">
                         <Label Content="Potwierdzenie wpłaty zaliczki:" FontSize="15" FontWeight="Normal" HorizontalAlignment="Left" Margin="10,10,0,0" Name="label24" Padding="2" VerticalAlignment="Top" />
                         <Label Content="Klient:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,38,0,0" Name="label30" Padding="2" VerticalAlignment="Top" />
@@ -117,7 +101,6 @@
                         <Label FontWeight="Normal" Margin="158,166,0,0" Name="labelRezerwacjeCheckWysokosc" Padding="2" VerticalAlignment="Top" FontStyle="Normal" Width="47" Height="26" Content="150" HorizontalAlignment="Left" FontSize="13" />
                     </Grid>
                     <Grid Name="gridRezerwacjeAdd" Height="274" Visibility="Visible" ShowGridLines="True" Opacity="1">
-                    <Grid Name="gridRezerwacjeAdd" Height="34" Visibility="Visible" ShowGridLines="True" Opacity="1">
                         <Label Content="Klient:" HorizontalAlignment="Left" Margin="35,43,0,0" Name="label3" VerticalAlignment="Top" Padding="2" FontWeight="Bold" />
                         <TextBox Name="textBoxRezerwacjeAddKlient" Height="23" HorizontalAlignment="Left" Margin="127,42,0,0" VerticalAlignment="Top" Width="312" Text="" IsReadOnly="True" IsEnabled="True" />
                         <Label Content="Termin:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,71,0,0" Name="label4" Padding="2" VerticalAlignment="Top" />
@@ -168,7 +151,7 @@
                         </DataGrid>
                         <Label Content="zł." FontWeight="Bold" HorizontalAlignment="Left" Margin="216,116,0,0" Name="label5" Padding="2" VerticalAlignment="Top" />
                     </Grid>
-
+                    <Grid Name="gridRezerwacjeDeafult" Visibility="Visible" ShowGridLines="False" Opacity="1" Height="186" IsVisibleChanged="gridRezerwacjeDeafult_IsVisibleChanged">
                         <DataGrid  Name="dataGridRezerwacjeSzukaj" AutoGenerateColumns="False" Margin="10,57,13,21" MinColumnWidth="30" IsReadOnly="True" HorizontalGridLinesBrush="#FFD5D5D5" VerticalGridLinesBrush="#FFD5D5D5" SelectionChanged="dataGrid1_SelectionChanged" SelectedIndex="0" SelectionMode="Single">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Id" Binding="{Binding Path=id_rezerwacji}" />
@@ -189,7 +172,6 @@
                         <CheckBox Content="Aktualne" Height="16" HorizontalAlignment="Left" IsChecked="True" Margin="336,23,0,0" Name="checkBoxRezerwacjeAkutalne" TabIndex="5" VerticalAlignment="Top" />
                     </Grid>
                     <Grid Height="125" Name="gridRezerwacjeAddKlient" Opacity="1" ShowGridLines="True" Visibility="Visible">
-                    <Grid Height="56" Name="gridRezerwacjeAddKlient" Opacity="1" ShowGridLines="True" Visibility="Visible">
                         <Label Content="Wybierz klienta:" FontSize="15" FontWeight="Normal" HorizontalAlignment="Left" Margin="10,10,0,0" Name="label93" Padding="2" VerticalAlignment="Top" />
                         <DataGrid Name="dataGridRezerwacjeAddKlienci" AutoGenerateColumns="False" DataContext="{Binding}" HorizontalAlignment="Stretch" Margin="15,40,15,15"  VerticalAlignment="Stretch" IsVisibleChanged="dataGridRezerwacjeAddKlienci_IsVisibleChanged" IsReadOnly="True" SelectionMode="Single" HorizontalGridLinesBrush="#FFD5D5D5" VerticalGridLinesBrush="#FFD5D5D5">
                             <DataGrid.Columns>
@@ -203,7 +185,7 @@
                             </DataGrid.Columns>
                         </DataGrid>
                     </Grid>
-                    <Grid Height="22" Name="gridRezerwacjeDel" Opacity="1" ShowGridLines="True" Visibility="Visible">
+                    <Grid Height="23" Name="gridRezerwacjeDel" Opacity="1" ShowGridLines="True" Visibility="Visible">
                         <Label Content="Usuwanie rezerwacji:" FontSize="15" FontWeight="Normal" HorizontalAlignment="Left" Margin="10,10,0,0" Name="label20" Padding="2" VerticalAlignment="Top" />
                         <Label Content="Klient:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,38,0,0" Name="label21" Padding="2" VerticalAlignment="Top" />
                         <Label Content="Termin:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,86,0,0" Name="label22" Padding="2" VerticalAlignment="Top" />
@@ -220,7 +202,7 @@
                     </Grid>
                 </StackPanel>
             </TabItem>
-            <TabItem Name="tabPobyty" BorderBrush="#FF2B4865" Height="40">
+            <TabItem Name="tabPobyty" BorderBrush="#FF2B4865" Height="40" GotFocus="tabPobyty_GotFocus">
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal" Width="120">
                         <Image Height="30" Name="imgPobytyMenu" Stretch="Fill" Width="30" Source="/PensjonatApp;component/Images/PobytyS.png" />
@@ -291,8 +273,7 @@
                         <Image Height="40" HorizontalAlignment="Left" Margin="132,12,0,0" Name="image4" Source="/PensjonatApp;component/Images/separator.png" Stretch="Fill" VerticalAlignment="Top" Width="2" />
                        
                     </Grid>
-<<<<<<< .mine                    <Grid Height="548" Name="gridPobytyNowy" Opacity="1" ShowGridLines="False" Visibility="Visible">
-=======                    <Grid Height="390" Name="gridPobytyDeafult" Opacity="1" ShowGridLines="True" Visibility="Visible">
+                    <Grid Height="390" Name="gridPobytyDeafult" Opacity="1" ShowGridLines="True" Visibility="Visible">
                         <StackPanel HorizontalAlignment="Left" Margin="0,80,0,5" Name="stackPanelPobytySzukaj" Width="583">
 							<Grid Height="181" Name="gridPobytySearchExtend" Visibility="Collapsed">
 								<TextBox FontSize="10" Height="20" HorizontalAlignment="Left" Margin="51,7,0,0" Name="textBoxPobytySearchExtendImie" VerticalAlignment="Top" Width="120" />
@@ -351,7 +332,7 @@
 						<Separator Height="5" Margin="0,27,7,0" Name="separator5" VerticalAlignment="Top" HorizontalAlignment="Right" Width="235" />
 					</Grid>
                     <Grid Height="35" Name="gridPobytyNowy" Opacity="1" ShowGridLines="False" Visibility="Visible">
->>>>>>> .theirs                        <Label Content="Nowy pobyt:" FontSize="15" FontWeight="Normal" HorizontalAlignment="Left" Margin="10,10,0,0" Name="label228" Padding="2" VerticalAlignment="Top" />
+                        <Label Content="Nowy pobyt:" FontSize="15" FontWeight="Normal" HorizontalAlignment="Left" Margin="10,10,0,0" Name="label228" Padding="2" VerticalAlignment="Top" />
                         <Grid Margin="25,50,25,0" Height="455" VerticalAlignment="Top" Name="gridPobytyNowyNowy">
                             <Label Content="Termin:" FontWeight="Bold" HorizontalAlignment="Left" Margin="15,10,0,0" Name="label230" Padding="2" VerticalAlignment="Top" />
                             <DatePicker Height="25" HorizontalAlignment="Left" Margin="99,6,0,0" Name="datePickerPobytyNowyTerminOd" SelectedDateChanged="datePickerPobytyNowyTerminOd_SelectedDateChanged" VerticalAlignment="Top" Width="160" />
@@ -608,7 +589,7 @@
                         <Label Content="Niedostępne w kontekście grupowym." Height="80" HorizontalAlignment="Center" Margin="66,300,66,0" Name="labelPobytyZarzadzajGrupowy" VerticalAlignment="Top" Width="450" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#C5FFFFFF" BorderBrush="#E6E5E5E5" BorderThickness="2" FontSize="15" Foreground="#FF7D7D7D" Visibility="Hidden" />
                         <Label Content="21452" FontSize="14" FontWeight="Normal" HorizontalAlignment="Left" Margin="513,14,0,0" Name="labelPobtyZarzadzajRezerwacja" Padding="2" VerticalAlignment="Top" IsEnabled="False" Visibility="Hidden" />
                     </Grid>
-                    <Grid Height="274" Name="gridPobytyWybierzKlienta" Opacity="1" ShowGridLines="True" Visibility="Visible">
+                    <Grid Height="128" Name="gridPobytyWybierzKlienta" Opacity="1" ShowGridLines="True" Visibility="Visible">
                         <Label Content="Wybierz klienta:" FontSize="15" FontWeight="Normal" HorizontalAlignment="Left" Margin="10,10,0,0" Name="label84" Padding="2" VerticalAlignment="Top" />
                         <DataGrid AutoGenerateColumns="False" DataContext="{Binding}" HorizontalGridLinesBrush="#FFD5D5D5" IsReadOnly="True" Margin="15,40,15,15" Name="dataGridPobytyNowyKlienci" SelectionMode="Single" VerticalGridLinesBrush="#FFD5D5D5" IsVisibleChanged="dataGridPobytyNowyKlienci_IsVisibleChanged">
                             <DataGrid.Columns>
@@ -624,7 +605,7 @@
                     </Grid>
                 </StackPanel>
             </TabItem>
-            <TabItem  Name="tabKlienci" BorderBrush="#FF2B4865" Height="40">
+            <TabItem  Name="tabKlienci" BorderBrush="#FF2B4865" Height="40" GotFocus="tabKlienci_GotFocus">
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal" Width="120">
                         <Image Height="30" Name="imgKlienciMenu" Stretch="Fill" Width="30" Source="/PensjonatApp;component/Images/klienci.png" />
@@ -1552,7 +1533,7 @@
                             </DataGrid.Columns>
                         </DataGrid>
                     </Grid>
-                    <Grid Height="40" Name="gridPracownicyDodaj" Opacity="1" ShowGridLines="True" Visibility="Visible">
+                    <Grid Height="252" Name="gridPracownicyDodaj" Opacity="1" ShowGridLines="True" Visibility="Visible">
                         <Label Content="Dodawanie pracownika:" FontSize="15" FontWeight="Normal" HorizontalAlignment="Left" Margin="10,10,0,0" Name="label188" Padding="2" VerticalAlignment="Top" />
                         <Label Content="Imię:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,39,0,0" Name="label196" Padding="2" VerticalAlignment="Top" />
                         <Label Content="Nazwisko:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,66,0,0" Name="label198" Padding="2" VerticalAlignment="Top" />
@@ -1567,7 +1548,7 @@
                         <Label Content="Stanowisko:" FontWeight="Bold" HorizontalAlignment="Left" Margin="36,178,0,0" Name="label217" Padding="2" Height="20" VerticalAlignment="Top" />
                         <ComboBox Height="23" HorizontalAlignment="Left" Margin="161,175,0,0" Name="comboBoxPracownicyDodajStanowisko" VerticalAlignment="Top" Width="201" IsVisibleChanged="comboBoxPracownicyDodajStanowisko_IsVisibleChanged" TabIndex="10" />
                     </Grid>
-                    <Grid Name="gridPracownicyEdycja" Opacity="1" ShowGridLines="True" Visibility="Visible" Height="67">
+                    <Grid Name="gridPracownicyEdycja" Opacity="1" ShowGridLines="True" Visibility="Visible" Height="374">
                         <Label Content="Edycja pracownika:" FontSize="15" FontWeight="Normal" HorizontalAlignment="Left" Margin="10,10,0,0" Name="label201" Padding="2" VerticalAlignment="Top" />
                         <Label Content="Imię:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,39,0,0" Name="label206" Padding="2" VerticalAlignment="Top" />
                         <Label Content="Nazwisko:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,66,0,0" Name="label208" Padding="2" VerticalAlignment="Top" />
