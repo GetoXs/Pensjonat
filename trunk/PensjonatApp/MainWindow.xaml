@@ -28,7 +28,7 @@
                     <SolidColorBrush />
                 </TabItem.Foreground>
             </TabItem>
-            <TabItem Name="tabRezerwacje" BorderBrush="#FF2B4865" IsSelected="True" Height="40" GotFocus="tabRezerwacje_GotFocus">
+            <TabItem Name="tabRezerwacje" BorderBrush="#FF2B4865" IsSelected="True" Height="40">
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal" Width="120" Height="32">
                         <Image Name="imgRezerwacjeMenu"  Source="/PensjonatApp;component/Images/rezerwacje.png" HorizontalAlignment="Left" VerticalAlignment="Top" Width="30" Height="30" />
@@ -202,7 +202,7 @@
                     </Grid>
                 </StackPanel>
             </TabItem>
-            <TabItem Name="tabPobyty" BorderBrush="#FF2B4865" Height="40" GotFocus="tabPobyty_GotFocus">
+            <TabItem Name="tabPobyty" BorderBrush="#FF2B4865" Height="40">
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal" Width="120">
                         <Image Height="30" Name="imgPobytyMenu" Stretch="Fill" Width="30" Source="/PensjonatApp;component/Images/PobytyS.png" />
@@ -605,7 +605,7 @@
                     </Grid>
                 </StackPanel>
             </TabItem>
-            <TabItem  Name="tabKlienci" BorderBrush="#FF2B4865" Height="40" GotFocus="tabKlienci_GotFocus">
+            <TabItem  Name="tabKlienci" BorderBrush="#FF2B4865" Height="40">
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal" Width="120">
                         <Image Height="30" Name="imgKlienciMenu" Stretch="Fill" Width="30" Source="/PensjonatApp;component/Images/klienci.png" />
