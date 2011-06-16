@@ -1538,9 +1538,10 @@
                                 <DataGridTextColumn Binding="{Binding Path=nr_pokoju}" Header="Nr pokoju" />
                                 <DataGridTextColumn Binding="{Binding Path=imie}" Header="Imię" />
                                 <DataGridTextColumn Binding="{Binding Path=nazwisko}" Header="Nazwisko" />
-                                <DataGridTextColumn Binding="{Binding Path=nazwa}" Header="Nazwa" />
                                 <DataGridTextColumn Binding="{Binding Path=opis}" Header="Opis" />
-                                <DataGridTextColumn Binding="{Binding Path=dodatkowy_opis}" Header="Dodatkowy opis" />
+                                <DataGridTextColumn Binding="{Binding Path=dodatkowy_opis}" Header="Dod. opis" />
+                                <DataGridTextColumn Binding="{Binding Path=termin_start}" Header="Godz. rozpoczęcia" />
+                                <DataGridTextColumn Binding="{Binding Path=termin_koniec}" Header="Godz. zakończenia" />
                             </DataGrid.Columns>
                         </DataGrid>
                         <Label Content="Zadania pracownika:" FontSize="15" FontWeight="Normal" HorizontalAlignment="Left" Margin="10,10,0,0" Name="label221" Padding="2" VerticalAlignment="Top" />
