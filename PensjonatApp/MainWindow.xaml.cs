@@ -715,6 +715,11 @@ namespace PensjonatApp
 
             }
         }
+        private void RefreshRezerwacjeNowaPokoje()
+        {
+            DodajPokojdeDoComboBoxa();
+            comboBoxRezerwacjeAddPokoje.Items.Refresh();
+        }
         //----------------------------------------------REZERWACJE->DODAJ->KLIENCI----------------------------------------------
         private void buttonRezerwacjeAddKlient_Click(object sender, RoutedEventArgs e)
         {
@@ -1120,13 +1125,10 @@ namespace PensjonatApp
                 }
             }
         }
+
         //-----ZARZADZANIE->USŁUGI
-        private void buttonPobytyZarzadzajUslugi_Click(object sender, RoutedEventArgs e)
+        private void RefreshPobytyUslugi()
         {
-            zwinPobyty();
-            showWindow(gridPobytyUslugi, buttonPobytyOkList);
-            //datePickerPobytyServicesTermin.Set = DateTime.Today;
-            dataGridPobytyZarzadzajUslug.ItemsSource = TablesManager.Manager.UslugiTableAdapter.GetDataUslugiUslugi_slownikByID_pobytu((int)labelPobytyServicesId.Content);
             PobytyUslugiIdList.Clear();
             List<string> lst = new List<string>();
             DS.UslugiDS.Uslugi_slownikDataTable rabatyTable = TablesManager.Manager.Uslugi_slownikTableAdapter.GetData();
@@ -1136,10 +1138,17 @@ namespace PensjonatApp
                 PobytyUslugiIdList.Add(row.id_slownikowe_uslugi);
             }
             comboBoxPobytyUslugi.ItemsSource = lst;
+            comboBoxPobytyUslugi.Items.Refresh();
         }
-
+        private void buttonPobytyZarzadzajUslugi_Click(object sender, RoutedEventArgs e)
+        {
+            zwinPobyty();
+            showWindow(gridPobytyUslugi, buttonPobytyOkList);
+            //datePickerPobytyServicesTermin.Set = DateTime.Today;
+            dataGridPobytyZarzadzajUslug.ItemsSource = TablesManager.Manager.UslugiTableAdapter.GetDataUslugiUslugi_slownikByID_pobytu((int)labelPobytyServicesId.Content);
+            RefreshPobytyUslugi();
+        }
         
-
         private void buttonPobytyZarzadzajCzysc_Click(object sender, RoutedEventArgs e)
         {
             comboBoxPobytyUslugi.IsEnabled = true;
@@ -1234,12 +1243,6 @@ namespace PensjonatApp
                 System.Windows.MessageBox.Show("Wypełnij wszystkie pola.", "Znajdowanie wolnego pracownika", MessageBoxButton.OK, MessageBoxImage.Warning);
       
         }
-
-
-
-
-
-        
 
         private void buttonPobytyServicesAdd_Click(object sender, RoutedEventArgs e)
         {
@@ -1539,6 +1542,10 @@ namespace PensjonatApp
  
         }
         //----------------------------------------------POBYTY->NOWY----------------------------------------------
+        private void RefreshPobytyNowyPokoje()
+        {
+            PrzypiszWolnePokoje();
+        }
         string pobytyNowyKlientImie;
         string pobytyNowyKlientNazwisko;
         string pobytyNowyKlientPesel;
@@ -2813,6 +2820,21 @@ namespace PensjonatApp
                 dataGridUslugiDeafult.ItemsSource = TablesManager.Manager.Uslugi_slownikTableAdapter.GetDataPlusSlownikPracownicy();
             }
         }
+        private void RefreshUslugi()
+        {
+            uslugiStanowiskaIdLst.Clear();
+            uslugiStanowiskaStringLst.Clear();
+            PracownicyDS.Pracownicy_slownikDataTable uslugiTable = TablesManager.Manager.Pracownicy_slownikTableAdapter.GetData();
+            foreach (PracownicyDS.Pracownicy_slownikRow row in uslugiTable)
+            {
+                uslugiStanowiskaStringLst.Add(row.nazwa + " (" + row.opis + ")");
+                uslugiStanowiskaIdLst.Add(row.id_stanowiska);
+            }
+            comboBoxUslugiWykonawca.ItemsSource = uslugiStanowiskaStringLst;
+            comboBoxUslugiEdycjaWykonawca.ItemsSource = uslugiStanowiskaStringLst;
+            comboBoxUslugiWykonawca.Items.Refresh();
+            comboBoxUslugiEdycjaWykonawca.Items.Refresh();
+        }
         List<int> uslugiStanowiskaIdLst = new List<int>();
         List<string> uslugiStanowiskaStringLst = new List<string>();
         private void comboBoxUslugiWykonawca_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
@@ -2956,6 +2978,20 @@ namespace PensjonatApp
         }
 
         //----------------------------------------------PRACOWNICY->MENU
+        private void RefreshConnectionsPracownicy()
+        {
+            RefreshPobytyUslugi();
+        }
+        private void RefreshPracownicyDodaj()
+        {
+            przypiszStanowiskaDoComboBoxa(ref comboBoxPracownicyDodajStanowisko);
+            comboBoxPracownicyDodajStanowisko.Items.Refresh();
+        }
+        private void RefreshPracownicyEdytuj()
+        {
+            przypiszStanowiskaDoComboBoxa(ref comboBoxPracownicyEdycjaStanowisko);
+            comboBoxPracownicyEdycjaStanowisko.Items.Refresh();
+        }
         private void buttonPracownicySzukaj_Click(object sender, RoutedEventArgs e)
         {
             SzukajPracownika();
@@ -2984,11 +3020,11 @@ namespace PensjonatApp
                 {
                     PracownicyHelper.dodajPracownika(textBoxPracownicyDodajImie.Text, textBoxPracownicyDodajNazwisko.Text,
                         textBoxPracownicyDodajLogin.Text, textBoxPracownicyDodajLogin.Text, stanowiskaIdList[comboBoxPracownicyDodajStanowisko.SelectedIndex]);
-                    dataGridPracownicyDeafult.ItemsSource = TablesManager.Manager.PracownicyTableAdapter.GetPracownicyStanowiska(); 
-
+                    dataGridPracownicyDeafult.ItemsSource = TablesManager.Manager.PracownicyTableAdapter.GetPracownicyStanowiska();
+                    RefreshConnectionsPracownicy();
                     zwinPracownicy();
                     showWindow(gridPracownicyDeafult, buttonPracownicyDeafultList);
-               
+                    
                 }
                 else
                 {
@@ -3003,8 +3039,8 @@ namespace PensjonatApp
                     PracownicyHelper.edytujPracownikaByIdPr(textBoxPracownicyEdycjaImie.Text,textBoxPracownicyEdycjaNazwisko.Text,
                         textBoxPracownicyEdycjaLogin.Text,textBoxPracownicyEdycjaHaslo.Password, (int)labelPracownicyEdycjaId.Content, stanowiskaIdList[comboBoxPracownicyEdycjaStanowisko.SelectedIndex]);    
 
-                    dataGridPracownicyDeafult.ItemsSource = TablesManager.Manager.PracownicyTableAdapter.GetPracownicyStanowiska(); 
-                   
+                    dataGridPracownicyDeafult.ItemsSource = TablesManager.Manager.PracownicyTableAdapter.GetPracownicyStanowiska();
+                    RefreshConnectionsPracownicy();
                     zwinPracownicy();
                     showWindow(gridPracownicyDeafult, buttonPracownicyDeafultList);
                 }
@@ -3112,6 +3148,13 @@ namespace PensjonatApp
         }
        
 //----------------------------------------------STANOWISKA----------------------------------------------
+        private void RefreshConnectionsStanowiska()
+        {
+            RefreshUslugi();
+            RefreshPracownicyDodaj();
+            RefreshPracownicyEdytuj();
+        }
+
         private void dataGridStanowiskaDeafult_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             if ((bool)(e.NewValue) == true)
@@ -3136,7 +3179,7 @@ namespace PensjonatApp
             else
                 System.Windows.MessageBox.Show("Najpierw wybierz stanowisko.", "Edycja stanowiska", MessageBoxButton.OK, MessageBoxImage.Warning);
 
-
+            
         }
 
         private void buttonStanowiskaPowrot_Click(object sender, RoutedEventArgs e)
@@ -3153,6 +3196,7 @@ namespace PensjonatApp
                 dataGridStanowiskaDeafult.ItemsSource = TablesManager.Manager.Pracownicy_slownikTableAdapter.GetData();
                 zwinStanowiska();
                 showWindow(gridStanowiskaDeafult, buttonStanowiskaDeafultList);
+                RefreshConnectionsStanowiska();
             }
             else
             {
@@ -3166,7 +3210,7 @@ namespace PensjonatApp
             {
                 PracownicyHelper.dodajStanowisko(textBoxStanowiskaNazwa.Text, textBoxStanowiskaOpis.Text);
                 dataGridStanowiskaDeafult.ItemsSource = TablesManager.Manager.Pracownicy_slownikTableAdapter.GetData();
-
+                RefreshConnectionsStanowiska();
                 textBoxStanowiskaNazwa.Clear();
                 textBoxStanowiskaOpis.Clear(); 
             }

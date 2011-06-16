@@ -336,7 +336,7 @@
                             </Grid>
                         </GroupBox>
                     </Grid>
-                    <Grid Height="35" Name="gridPobytyNowy" Opacity="1" ShowGridLines="False" Visibility="Visible">
+                    <Grid Height="135" Name="gridPobytyNowy" Opacity="1" ShowGridLines="False" Visibility="Visible">
                         <Label Content="Nowy pobyt:" FontSize="15" FontWeight="Normal" HorizontalAlignment="Left" Margin="10,10,0,0" Name="label228" Padding="2" VerticalAlignment="Top" />
                         <Grid Margin="25,50,25,0" Height="455" VerticalAlignment="Top" Name="gridPobytyNowyNowy">
                             <Label Content="Termin:" FontWeight="Bold" HorizontalAlignment="Left" Margin="15,10,0,0" Name="label230" Padding="2" VerticalAlignment="Top" />
