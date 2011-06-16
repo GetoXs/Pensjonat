@@ -948,8 +948,12 @@ WHERE        r.id_klienta = k.id_klienta AND r.id_rezerwacji = p.id_rezerwacji A
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[3] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = "SELECT id_rezerwacji, zaliczka, zaplacono_zaliczke, ilosc_osob, id_klienta FROM R" +
-                "ezerwacje";
+            this._commandCollection[3].CommandText = @"SELECT        Rezerwacje.id_rezerwacji, Rezerwacje.zaliczka, Rezerwacje.zaplacono_zaliczke, Rezerwacje.ilosc_osob, Rezerwacje.id_klienta, Pobyty.termin_start, Pobyty.termin_koniec
+FROM            Rezerwacje, Pobyty, Klienci
+WHERE        Rezerwacje.id_rezerwacji = Pobyty.id_rezerwacji AND (Pobyty.id_pobytu IN
+                             (SELECT        TOP 1 id_pobytu
+                               FROM            Pobyty p1
+                               WHERE        (id_klienta IS NULL) AND (id_rezerwacji = Pobyty.id_rezerwacji)))";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[4] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[4].Connection = this.Connection;
