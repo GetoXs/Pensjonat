@@ -304,6 +304,7 @@ namespace PensjonatApp
             gridKlienciDeafult.Visibility = Visibility.Collapsed;
             gridKlienciAdd.Visibility = Visibility.Collapsed;
             gridKlienciEdit.Visibility = Visibility.Collapsed;
+            gridKlienciSzczegoly.Visibility = Visibility.Collapsed;
             zwinButtonList(buttonKlienciBackOkList);
             zwinButtonList(buttonKlienciDeafultList);
         }
