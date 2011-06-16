@@ -1542,6 +1542,7 @@
                                 <DataGridTextColumn Binding="{Binding Path=dodatkowy_opis}" Header="Dod. opis" />
                                 <DataGridTextColumn Binding="{Binding Path=termin_start}" Header="Godz. rozpoczęcia" />
                                 <DataGridTextColumn Binding="{Binding Path=termin_koniec}" Header="Godz. zakończenia" />
+                                <DataGridCheckBoxColumn Binding="{Binding Path=zrealizowane}" Header="Zrealizowano" />
                             </DataGrid.Columns>
                         </DataGrid>
                         <Label Content="Zadania pracownika:" FontSize="15" FontWeight="Normal" HorizontalAlignment="Left" Margin="10,10,0,0" Name="label221" Padding="2" VerticalAlignment="Top" />
@@ -1670,9 +1671,10 @@
                                 <DataGridTextColumn Binding="{Binding Path=dodatkowy_opis}" Header="Dod. opis" />
                                 <DataGridTextColumn Binding="{Binding Path=termin_start}" Header="Godz. rozpoczęcia" />
                                 <DataGridTextColumn Binding="{Binding Path=termin_koniec}" Header="Godz. zakończenia" />
+                                <DataGridCheckBoxColumn Binding="{Binding Path=zrealizowane}" Header="Zrealizowano" />
                             </DataGrid.Columns>
                         </DataGrid>
-                        <Label Content="Dzisiejsze zadania" FontSize="15" FontWeight="Normal" HorizontalAlignment="Left" Margin="10,10,0,0" Name="label223" Padding="2" VerticalAlignment="Top" />
+                        <Label Content="Aktualne zadania" FontSize="15" FontWeight="Normal" HorizontalAlignment="Left" Margin="10,10,0,0" Name="label223" Padding="2" VerticalAlignment="Top" />
                     </Grid>
                     <Grid Height="266" Name="gridZadaniaArchiwum" Opacity="1" ShowGridLines="True" Visibility="Visible">
                         <Label Content="Archiwum zadań" FontSize="15" FontWeight="Normal" HorizontalAlignment="Left" Margin="10,10,0,0" Name="label220" Padding="2" VerticalAlignment="Top" />
@@ -1685,6 +1687,7 @@
                                 <DataGridTextColumn Binding="{Binding Path=dodatkowy_opis}" Header="Dod. opis" />
                                 <DataGridTextColumn Binding="{Binding Path=termin_start}" Header="Godz. rozpoczęcia" />
                                 <DataGridTextColumn Binding="{Binding Path=termin_koniec}" Header="Godz. zakończenia" />
+                                <DataGridCheckBoxColumn Binding="{Binding Path=zrealizowane}" Header="Zrealizowano" />
                             </DataGrid.Columns>
                         </DataGrid>
                     </Grid>
