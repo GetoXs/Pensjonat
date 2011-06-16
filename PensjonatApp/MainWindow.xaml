@@ -151,7 +151,7 @@
                         </DataGrid>
                         <Label Content="zł." FontWeight="Bold" HorizontalAlignment="Left" Margin="216,116,0,0" Name="label5" Padding="2" VerticalAlignment="Top" />
                     </Grid>
-                    <Grid Name="gridRezerwacjeDeafult" Visibility="Visible" ShowGridLines="False" Opacity="1" Height="47" IsVisibleChanged="gridRezerwacjeDeafult_IsVisibleChanged">
+                    <Grid Name="gridRezerwacjeDeafult" Visibility="Visible" ShowGridLines="False" Opacity="1" Height="186" IsVisibleChanged="gridRezerwacjeDeafult_IsVisibleChanged">
                         <DataGrid  Name="dataGridRezerwacjeSzukaj" AutoGenerateColumns="False" Margin="10,57,13,21" MinColumnWidth="30" IsReadOnly="True" HorizontalGridLinesBrush="#FFD5D5D5" VerticalGridLinesBrush="#FFD5D5D5" SelectionChanged="dataGrid1_SelectionChanged" SelectedIndex="0" SelectionMode="Single">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Id" Binding="{Binding Path=id_rezerwacji}" />
@@ -185,7 +185,7 @@
                             </DataGrid.Columns>
                         </DataGrid>
                     </Grid>
-                    <Grid Height="22" Name="gridRezerwacjeDel" Opacity="1" ShowGridLines="True" Visibility="Visible">
+                    <Grid Height="23" Name="gridRezerwacjeDel" Opacity="1" ShowGridLines="True" Visibility="Visible">
                         <Label Content="Usuwanie rezerwacji:" FontSize="15" FontWeight="Normal" HorizontalAlignment="Left" Margin="10,10,0,0" Name="label20" Padding="2" VerticalAlignment="Top" />
                         <Label Content="Klient:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,38,0,0" Name="label21" Padding="2" VerticalAlignment="Top" />
                         <Label Content="Termin:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,86,0,0" Name="label22" Padding="2" VerticalAlignment="Top" />
@@ -273,7 +273,65 @@
                         <Image Height="40" HorizontalAlignment="Left" Margin="132,12,0,0" Name="image4" Source="/PensjonatApp;component/Images/separator.png" Stretch="Fill" VerticalAlignment="Top" Width="2" />
                        
                     </Grid>
-                    <Grid Height="595" Name="gridPobytyNowy" Opacity="1" ShowGridLines="False" Visibility="Visible">
+                    <Grid Height="390" Name="gridPobytyDeafult" Opacity="1" ShowGridLines="True" Visibility="Visible">
+                        <StackPanel HorizontalAlignment="Left" Margin="0,80,0,5" Name="stackPanelPobytySzukaj" Width="583">
+							<Grid Height="181" Name="gridPobytySearchExtend" Visibility="Collapsed">
+								<TextBox FontSize="10" Height="20" HorizontalAlignment="Left" Margin="51,7,0,0" Name="textBoxPobytySearchExtendImie" VerticalAlignment="Top" Width="120" />
+								<Label Content="Imię:" FontSize="10" Height="28" HorizontalAlignment="Left" Margin="5,5,0,0" Name="labelPobytySearchExtendImie" VerticalAlignment="Top" />
+								<TextBox FontSize="10" Height="20" HorizontalAlignment="Left" Margin="253,7,0,0" Name="textBoxPobytySearchExtendNazwisko" VerticalAlignment="Top" Width="120" />
+								<Label Content="Nazwisko:" FontSize="10" Height="28" HorizontalAlignment="Left" Margin="179,5,0,0" Name="labelPobytySearchExtendNazwisko" VerticalAlignment="Top" />
+								<TextBox FontSize="10" Height="20" HorizontalAlignment="Left" Margin="466,7,0,0" Name="textBoxPobytySearchExtendPesel" VerticalAlignment="Top" Width="104" />
+								<Label Content="PESEL:" FontSize="10" Height="28" HorizontalAlignment="Left" Margin="386,5,0,0" Name="labelPobytySearchExtendPesel" VerticalAlignment="Top" />
+								<TextBox FontSize="10" Height="20" HorizontalAlignment="Left" Margin="253,31,0,0" Name="textBoxPobytySearchExtendFirma" VerticalAlignment="Top" Width="120" />
+								<Label Content="Nazwa:" FontSize="10" Height="28" HorizontalAlignment="Left" Margin="179,29,0,0" Name="labelPobytySearchExtendFirma" VerticalAlignment="Top" />
+								<TextBox FontSize="10" Height="20" HorizontalAlignment="Left" Margin="466,31,0,0" Name="textBoxPobytySearchExtendNip" VerticalAlignment="Top" Width="104" />
+								<Label Content="NIP:" FontSize="10" Height="28" HorizontalAlignment="Left" Margin="386,29,0,0" Name="labelPobytySearchNip" VerticalAlignment="Top" />
+								<Label Content="Firma" FontSize="11" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="113,28,0,0" Name="labelPobytySearchExtendFirmaName" VerticalAlignment="Top" />
+								<Separator Margin="5,0,5,5" Name="separator20" Height="5" VerticalAlignment="Bottom" />
+								<Separator Background="#FFCFCFCF" Height="5" HorizontalAlignment="Stretch" Margin="100,55,13,0" Name="separator22" VerticalAlignment="Top" />
+								<TextBox FontSize="10" Height="20" HorizontalAlignment="Left" Margin="253,64,0,0" Name="textBoxPobytySearchExtendPokoj" VerticalAlignment="Top" Width="120" />
+								<Label Content="Nr pokoju:" FontSize="10" Height="28" HorizontalAlignment="Left" Margin="180,62,0,0" Name="labelPobytySearchExtendNr" VerticalAlignment="Top" />
+								<Label Content="Pokój" FontSize="11" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="113,61,0,0" Name="labelPobytySearchExtendPokojName" VerticalAlignment="Top" />
+								<Separator Background="#FFCFCFCF" Height="5" HorizontalAlignment="Stretch" Margin="100,87,13,0" Name="separator21" VerticalAlignment="Top" />
+								<Label Content="Termin od:" FontSize="10" Height="28" HorizontalAlignment="Left" Margin="179,94,0,0" Name="labelPobytySearchExtendTerminOd" VerticalAlignment="Top" />
+								<Label Content="Termin do:" FontSize="10" Height="28" HorizontalAlignment="Left" Margin="386,94,0,0" Name="labelPobytySearchExtendTerminDo" VerticalAlignment="Top" />
+								<Label Content="Pobyt" FontSize="11" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="113,93,0,0" Name="labelPobytySearchExtendPobytName" VerticalAlignment="Top" />
+								<Separator Background="#FFCFCFCF" Height="5" HorizontalAlignment="Stretch" Margin="100,119,13,0" Name="separator23" VerticalAlignment="Top" />
+								<TextBox FontSize="10" Height="20" HorizontalAlignment="Left" Margin="394,127,0,0" Name="textBoxPobytySearchExtendKwotaOd" VerticalAlignment="Top" Width="79" TextChanged="textBoxPobytySearchExtendKwotaOd_TextChanged" />
+								<Label Content="Kwota (zł):" FontSize="10" Height="28" HorizontalAlignment="Left" Margin="338,125,0,0" Name="labelPobytySearchExtendKwotaOd" VerticalAlignment="Top" />
+								<Label Content="Rachunek" FontSize="11" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="113,124,0,0" Name="labelPobytySearchExtendRachunekName" VerticalAlignment="Top" />
+								<Separator Background="#FFCFCFCF" Height="5" HorizontalAlignment="Stretch" Name="separator24" VerticalAlignment="Top" />
+								<TextBox FontSize="10" Height="20" HorizontalAlignment="Left" Margin="491,127,0,0" Name="textBoxPobytySearchExtendKwotaDo" VerticalAlignment="Top" Width="79" />
+								<Label Content="-" FontSize="10" Height="28" HorizontalAlignment="Left" Margin="474,125,0,0" Name="labelPobytySearchExtendKwotaDo" VerticalAlignment="Top" />
+								<CheckBox Content="Tylko nierozliczone" Height="16" HorizontalAlignment="Left" IsChecked="True" Margin="185,130,0,0" Name="checkBoxPobytySearchExtendRozliczenie" TabIndex="5" VerticalAlignment="Top" IsThreeState="False" FlowDirection="RightToLeft" VerticalContentAlignment="Top" HorizontalContentAlignment="Left" Checked="checkBoxPobytySearchExtendRozliczenie_Checked" FontSize="10" Click="checkBoxPobytySearchExtendRozliczenie_Checked" />
+								<DatePicker Height="24" HorizontalAlignment="Left" Margin="253,93,0,0" Name="datePickerPobytySearchExtendTerminOd" VerticalAlignment="Top" Width="120" FontSize="10" />
+								<DatePicker FontSize="10" Height="24" HorizontalAlignment="Left" Margin="466,93,0,0" Name="datePickerPobytySearchExtendTerminDo" VerticalAlignment="Top" Width="120" />
+							</Grid>
+							<DataGrid Name="dataGridPobytySzukaj" DataContext="{Binding}" IsEnabled="True" MinColumnWidth="30" AutoGenerateColumns="False" IsVisibleChanged="dataGridPobytySzukaj_IsVisibleChanged" IsReadOnly="True" HorizontalGridLinesBrush="#FFD5D5D5" VerticalGridLinesBrush="#FFD5D5D5" SelectionMode="Single" Margin="15">
+								<DataGrid.Columns>
+									<DataGridTextColumn Header="Id" Binding="{Binding Path=id_pobytu}" />
+									<DataGridTextColumn Header="Imię" Binding="{Binding Path=imie}" />
+									<DataGridTextColumn Header="Nazwisko" Binding="{Binding Path=nazwisko}" />
+									<DataGridTextColumn Header="Termin od " Binding="{Binding Path=termin_start}" MinWidth="30" Width="65" />
+									<DataGridTextColumn Header="Termin do " Binding="{Binding Path=termin_koniec}" Width="65" />
+									<DataGridTextColumn Header="Nr pokoju" Binding="{Binding Path=nr_pokoju}" Width="45" />
+									<DataGridTextColumn Header="Id rachunku" Binding="{Binding Path=id_rachunku}" Width="45" />
+									<DataGridCheckBoxColumn Header="Rozliczono" Binding="{Binding Path=id_rachunku}" Width="45" />
+								</DataGrid.Columns>
+							</DataGrid>
+						</StackPanel>
+						<ToggleButton Content="+" HorizontalAlignment="Left" Margin="552,44,0,0" Name="toggleButtonPobytySearchExtend" Width="24" Height="23" VerticalAlignment="Top" FontSize="11" Checked="toggleButtonPobytySearchExtend_Checked" />
+						<TextBox Name="textBoxPobytySearch" Height="23" HorizontalAlignment="Left" Margin="12,44,0,0" VerticalAlignment="Top" Width="129" TabIndex="1" />
+						<RadioButton Name="radioButtonPobytySearchIdKlienta" Content="Id klienta" GroupName="pobytySzukaj" Height="16" HorizontalAlignment="Left" Margin="202,47,0,0" VerticalAlignment="Top" TabIndex="4" />
+						<RadioButton Name="radioButtonPobytySearchKlient" Content="Klient" GroupName="pobytySzukaj" Height="16" HorizontalAlignment="Left" IsChecked="True" Margin="150,47,0,0" VerticalAlignment="Top" TabIndex="3" />
+						<Button Name="buttonPobytySzukaj" Content="Szukaj" Height="23" HorizontalAlignment="Left" Margin="471,44,0,0" VerticalAlignment="Top" Width="75" Click="buttonPobytySzukaj_Click" TabIndex="2" />
+						<CheckBox Name="checkBoxPobytySearchNierozliczone" Content="Tylko nierozliczone" Height="16" HorizontalAlignment="Left" Margin="273,47,0,0" VerticalAlignment="Top" IsChecked="True" TabIndex="5" />
+						<RadioButton Content="grupowy" Height="16" HorizontalAlignment="Right" Margin="0,11,15,0" Name="radioButtonPobytyGrupowe" VerticalAlignment="Top" GroupName="PobytyGrupowe" Checked="radioButtonPobytyGrupowe_Checked" />
+						<RadioButton Content="indywidualny" Height="16" HorizontalAlignment="Right" Margin="0,11,86,0" Name="radioButtonPobytyIndywidualne" VerticalAlignment="Top" GroupName="PobytyGrupowe" IsChecked="True" Checked="radioButtonPobytyIndywidualne_Checked" />
+						<Label Content="Kontekst:" Height="28" Margin="0,5,180,0" Name="label45" VerticalAlignment="Top" FontSize="13" HorizontalAlignment="Right" Width="63" />
+						<Separator Height="5" Margin="0,27,7,0" Name="separator5" VerticalAlignment="Top" HorizontalAlignment="Right" Width="235" />
+					</Grid>
+                    <Grid Height="35" Name="gridPobytyNowy" Opacity="1" ShowGridLines="False" Visibility="Visible">
                         <Label Content="Nowy pobyt:" FontSize="15" FontWeight="Normal" HorizontalAlignment="Left" Margin="10,10,0,0" Name="label228" Padding="2" VerticalAlignment="Top" />
                         <Grid Margin="25,50,25,0" Height="455" VerticalAlignment="Top" Name="gridPobytyNowyNowy">
                             <Label Content="Termin:" FontWeight="Bold" HorizontalAlignment="Left" Margin="15,10,0,0" Name="label230" Padding="2" VerticalAlignment="Top" />
@@ -334,29 +392,7 @@
                         <RadioButton Content="Nowy" GroupName="NowyPobyt" Height="16" HorizontalAlignment="Right" Margin="0,16,123,0" Name="radioButtonPobytyNowyNowy" VerticalAlignment="Top" FontSize="13" IsChecked="True" Checked="radioButtonPobytyNowyNowy_Checked" />
                         <Label Height="28" HorizontalAlignment="Left" IsEnabled="False" Margin="349,12,0,0" Name="labelPobytyNowyIdKlienta" VerticalAlignment="Top" Visibility="Collapsed" />
                     </Grid>
-                    <Grid Height="229" Name="gridPobytyDeafult" Opacity="1" ShowGridLines="True" Visibility="Visible">
-                        <TextBox Name="textBoxPobytySzukaj" Height="23" HorizontalAlignment="Left" Margin="12,44,0,0" VerticalAlignment="Top" Width="129" TabIndex="1" />
-                        <RadioButton Name="rbPobytyId" Content="ID" GroupName="pobytySzukaj" Height="16" HorizontalAlignment="Left" Margin="297,51,0,0" VerticalAlignment="Top" TabIndex="4" />
-                        <RadioButton Name="rbPobytyKlient" Content="Klient" GroupName="pobytySzukaj" Height="16" HorizontalAlignment="Left" IsChecked="True" Margin="245,51,0,0" VerticalAlignment="Top" TabIndex="3" />
-                        <Button Name="buttonPobytySzukaj" Content="Szukaj" Height="23" HorizontalAlignment="Left" Margin="158,44,0,0" VerticalAlignment="Top" Width="75" Click="buttonPobytySzukaj_Click" TabIndex="2" />
-                        <DataGrid Name="dataGridPobytySzukaj" DataContext="{Binding}" IsEnabled="True" Margin="10,79,13,10" MinColumnWidth="30" AutoGenerateColumns="False" IsVisibleChanged="dataGridPobytySzukaj_IsVisibleChanged" SelectionChanged="dataGridPobytySzukaj_SelectionChanged" IsReadOnly="True" HorizontalGridLinesBrush="#FFD5D5D5" VerticalGridLinesBrush="#FFD5D5D5" SelectionMode="Single">
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Header="Id" Binding="{Binding Path=id_pobytu}" />
-                                <DataGridTextColumn Header="Imię" Binding="{Binding Path=imie}" />
-                                <DataGridTextColumn Header="Nazwisko" Binding="{Binding Path=nazwisko}" />
-                                <DataGridTextColumn Header="Termin od " Binding="{Binding Path=termin_start}" MinWidth="30" Width="65" />
-                                <DataGridTextColumn Header="Termin do " Binding="{Binding Path=termin_koniec}" Width="65" />
-                                <DataGridTextColumn Header="Nr pokoju" Binding="{Binding Path=nr_pokoju}" Width="45" />
-                                <DataGridTextColumn Header="Id rachunku" Binding="{Binding Path=id_rachunku}" Width="45" />
-                                <DataGridCheckBoxColumn Header="Rozliczono" Binding="{Binding Path=id_rachunku}" Width="45" />
-                            </DataGrid.Columns>
-                        </DataGrid>
-                        <CheckBox Name="checkBoxPobytyAktualne" Content="Aktualne" Height="16" HorizontalAlignment="Left" Margin="331,51,0,0" VerticalAlignment="Top" IsChecked="True" TabIndex="5" />
-                        <RadioButton Content="indywidualny" Height="16" HorizontalAlignment="Right" Margin="0,11,86,0" Name="radioButtonPobytyIndywidualne" VerticalAlignment="Top" GroupName="PobytyGrupowe" IsChecked="True" Checked="radioButtonPobytyIndywidualne_Checked" />
-                        <RadioButton Content="grupowy" Height="16" HorizontalAlignment="Right" Margin="0,11,15,0" Name="radioButtonPobytyGrupowe" VerticalAlignment="Top" GroupName="PobytyGrupowe" Checked="radioButtonPobytyGrupowe_Checked" />
-                        <Label Content="Kontekst:" Height="28" Margin="0,5,180,0" Name="label45" VerticalAlignment="Top" FontSize="13" HorizontalAlignment="Right" Width="63" />
-                        <Separator Height="5" Margin="0,27,7,0" Name="separator5" VerticalAlignment="Top" HorizontalAlignment="Right" Width="235" />
-                    </Grid>
+                    
                     <Grid Height="39" Name="gridPobytySum" Opacity="1" ShowGridLines="True" Visibility="Visible">
                         <Border BorderBrush="#FF2F82C1" BorderThickness="2" Height="75" Margin="0,70,57,0" Name="border1" VerticalAlignment="Top" FlowDirection="LeftToRight" CornerRadius="10" HorizontalAlignment="Right" Width="133">
                             <Border BorderBrush="Silver" BorderThickness="1" Height="24" Name="border2" VerticalAlignment="Top" CornerRadius="8">
@@ -620,14 +656,14 @@
                         <Label Content="Klienci" FontSize="20" FontWeight="Normal" Height="40" HorizontalAlignment="Left" Margin="53,11,0,0" Name="label73" Padding="0" VerticalAlignment="Top" VerticalContentAlignment="Center" />
                         <Image Height="40" HorizontalAlignment="Left" Margin="165,12,0,0" Name="image9" Source="/PensjonatApp;component/Images/separator.png" Stretch="Fill" VerticalAlignment="Top" Width="2" />
                     </Grid>
-                    <Grid Height="30" Name="gridKlienciDeafult" Opacity="1" ShowGridLines="True" Visibility="Visible">
+                    <Grid Height="312" Name="gridKlienciDeafult" Opacity="1" ShowGridLines="True" Visibility="Visible">
 						<StackPanel Name="stackPanel17" Margin="0,0,0,6" ClipToBounds="False">
 							<Grid Height="41" Name="gridKlienciSearch" Width="579" VerticalAlignment="Top" HorizontalAlignment="Left">
 								<TextBox Name="textBoxKlienciSearch" Height="23" HorizontalAlignment="Left" Margin="12,12,0,0" VerticalAlignment="Top" Width="129" TabIndex="1" />
 								<Button Name="buttonKlienciSearch" Content="Szukaj" Height="23" HorizontalAlignment="Left" Margin="468,11,0,0" VerticalAlignment="Top" Width="75" Click="buttonKlienciSearch_Click" />
 								<RadioButton Name="radioButtonKlienciSearchKlient" Content="Klient" GroupName="klienciSzukaj" Height="16" IsChecked="True" IsThreeState="False" Margin="147,15,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="46" />
 								<RadioButton Name="radioButtonKlienciSearchIdKlienta" Content="Id klienta" GroupName="klienciSzukaj" Height="16" HorizontalAlignment="Left" IsChecked="False" Margin="204,15,0,0" VerticalAlignment="Top" />
-								<ToggleButton Height="23" HorizontalAlignment="Left" Margin="549,11,0,0" Name="toggleButtonKlienciSearchExtend" VerticalAlignment="Top" Width="24" Content="+" Click="toggleButtonKlienciSearchExtend_Checked" />
+								<ToggleButton Height="23" HorizontalAlignment="Left" Margin="549,11,0,0" Name="toggleButtonKlienciSearchExtend" VerticalAlignment="Top" Width="24" Content="+" Click="toggleButtonKlienciSearchExtend_Checked" Checked="toggleButtonKlienciSearchExtend_Checked" />
 							</Grid>
 							<Grid Height="126" Name="gridKlienciSearchExtend" Visibility="Collapsed">
 								<TextBox Height="20" Margin="51,7,0,0" Name="textBoxKlienciSearchExtendImie" VerticalAlignment="Top" HorizontalAlignment="Left" Width="120" FontSize="10" />
@@ -670,7 +706,7 @@
 							</DataGrid>
 						</StackPanel>
 					</Grid>
-                    <Grid Height="48" Name="gridKlienciEdit" Opacity="1" ShowGridLines="True" Visibility="Visible">
+                    <Grid Height="30" Name="gridKlienciEdit" Opacity="1" ShowGridLines="True" Visibility="Visible">
                         <Label Content="Edycja klienta:" FontSize="15" FontWeight="Normal" HorizontalAlignment="Left" Margin="10,10,0,0" Name="label75" Padding="2" VerticalAlignment="Top" />
 						<Label Content="Label" Height="28" HorizontalAlignment="Left" Margin="105,8,0,0" Name="labelKlienciEdytujId" VerticalAlignment="Top" IsEnabled="False" Visibility="Hidden" />
 						<StackPanel Height="340" HorizontalAlignment="Left" Margin="8,52,0,0" Name="stackPanel16" VerticalAlignment="Top" Width="342">

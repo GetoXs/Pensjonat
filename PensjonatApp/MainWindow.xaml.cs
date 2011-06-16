@@ -925,63 +925,183 @@ namespace PensjonatApp
         {
             if ((bool)(e.NewValue) == true)
             {//pojawienie sie pola
-                dataGridPobytySzukaj.ItemsSource = TablesManager.Manager.PobytyTableAdapter.GetDataPobytyKlienciPokoje();
+				pobytySearch();
             }
         }
+		/// <summary>
+		/// Przełączanie miedzy zaawansowanym, a normalnym wyszukiwaniem
+		/// </summary>
+		private void toggleButtonPobytySearchExtend_Checked(object sender, RoutedEventArgs e)
+		{
+			if (toggleButtonPobytySearchExtend.IsChecked == true)
+			{
+				textBoxPobytySearch.IsEnabled = false;
+				radioButtonPobytySearchIdKlienta.IsEnabled = false;
+				radioButtonPobytySearchKlient.IsEnabled = false;
+				checkBoxPobytySearchNierozliczone.IsEnabled = false;
+				gridPobytySearchExtend.Visibility = System.Windows.Visibility.Visible;
+			}
+			else
+			{
+				textBoxPobytySearch.IsEnabled = true;
+				radioButtonKlienciSearchIdKlienta.IsEnabled = true;
+				radioButtonKlienciSearchKlient.IsEnabled = true;
+				checkBoxPobytySearchNierozliczone.IsEnabled = true;
+				gridPobytySearchExtend.Visibility = System.Windows.Visibility.Collapsed;
+			}
+
+		}
         private void radioButtonPobytyIndywidualne_Checked(object sender, RoutedEventArgs e)
         {
-            dataGridPobytySzukaj.ItemsSource = TablesManager.Manager.PobytyTableAdapter.GetDataPobytyKlienciPokoje();
+			pobytySearch();
+            //dataGridPobytySzukaj.ItemsSource = TablesManager.Manager.PobytyTableAdapter.GetDataPobytyKlienciPokoje();
         }
 
         private void radioButtonPobytyGrupowe_Checked(object sender, RoutedEventArgs e)
         {
-            dataGridPobytySzukaj.ItemsSource = TablesManager.Manager.PobytyTableAdapter.GetDataPobytyUnikalneAktualne();
-        }
-        private void dataGridPobytySzukaj_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (dataGridPobytySzukaj.SelectedItem != null)
-            {
-                PobytyDS.PobytyRow t = (PobytyDS.PobytyRow)((DataRowView)dataGridPobytySzukaj.SelectedItem).Row;
-            }
+			pobytySearch();
+            //dataGridPobytySzukaj.ItemsSource = TablesManager.Manager.PobytyTableAdapter.GetDataPobytyUnikalneAktualne();
         }
         private void pobytySearch()
-        {
-            if (textBoxPobytySzukaj.Text == "")
-				if ((bool)checkBoxPobytyAktualne.IsChecked)
-					dataGridPobytySzukaj.ItemsSource = TablesManager.Manager.PobytyTableAdapter.GetDataPobytyKlienciPokojeAktualne();
-				else
-                dataGridPobytySzukaj.ItemsSource = TablesManager.Manager.PobytyTableAdapter.GetDataPobytyKlienciPokoje();
-            else
-            {
-                if ((bool)rbPobytyId.IsChecked)
-                {
-                    int id;
-                    if (int.TryParse(textBoxPobytySzukaj.Text, out id))
-                        if ((bool)checkBoxPobytyAktualne.IsChecked)
-                           dataGridPobytySzukaj.ItemsSource = TablesManager.Manager.PobytyTableAdapter.GetDataPobytyKlienciPokojeAktualneByIDPobytu(id);
-                        else
-                            dataGridPobytySzukaj.ItemsSource = TablesManager.Manager.PobytyTableAdapter.GetDataPobytyKlienciPokojeByIDPobytu(id);
-                    else
-                        System.Windows.MessageBox.Show("Niepoprawne ID pobytu.\nNumer identyfikacyjny pobytu może zawierać tylko cyfry.", "Wyszukiwanie pobytu", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-                else if ((bool)rbPobytyKlient.IsChecked)
-                {
-                    if (textBoxPobytySzukaj.Text.Contains(' '))
-                    {
+		{
+			StringBuilder sb = new StringBuilder();
+			StringBuilder sbFrom = new StringBuilder("");
 
-                        string[] szukaj = textBoxPobytySzukaj.Text.Split(' ');
-                        //dataGridPobytySzukaj.ItemsSource = TablesManager.Manager.PobytyTableAdapter.GetDataPobytyKlienciPokojeAktualneByNazwiskoKlienta(szukaj[0], szukaj[1]);
-                    }
-                    else
-                    {
-                        if ((bool)checkBoxPobytyAktualne.IsChecked)
-							dataGridPobytySzukaj.ItemsSource = TablesManager.Manager.PobytyTableAdapter.GetDataPobytyKlienciPokojeAktualneByNazwiskoKlienta(textBoxPobytySzukaj.Text);
-                        else
-                            dataGridPobytySzukaj.ItemsSource = TablesManager.Manager.PobytyTableAdapter.GetDataPobytyKlienciPokojeByNazwisko(textBoxPobytySzukaj.Text);                  
-                    }
-                }           
-            }
+			if (toggleButtonPobytySearchExtend.IsChecked == false)
+			{
+				int intTmp;
+				//wpisany text
+				if(radioButtonPobytySearchKlient.IsChecked==true)
+					sb.Append((textBoxPobytySearch.Text != "") ? (" AND (UCASE(Klienci.imie) LIKE UCASE('%" + textBoxPobytySearch.Text + "%') OR UCASE(Klienci.nazwisko) LIKE UCASE('%" + textBoxPobytySearch.Text + "%'))") : "");
+				else
+					if (int.TryParse(textBoxPobytySearch.Text, out intTmp))
+						sb.Append((textBoxPobytySearch.Text != "") ? (" AND Klienci.id_klienta=" + intTmp + "") : "");
+
+				//bez rachunku / nierozliczone
+				sb.Append((checkBoxPobytySearchNierozliczone.IsChecked == true) ? (" AND (Pobyty.id_rachunku IS NULL)") : "");
+				
+				
+				/* stary sposób, za dużo spamu, wywaliłem
+				 * if (textBoxPobytySearch.Text == "")
+					if ((bool)checkBoxPobytySearchNierozliczone.IsChecked)
+						dataGridPobytySzukaj.ItemsSource = TablesManager.Manager.PobytyTableAdapter.GetDataPobytyKlienciPokojeAktualne();
+					else
+						dataGridPobytySzukaj.ItemsSource = TablesManager.Manager.PobytyTableAdapter.GetDataPobytyKlienciPokoje();
+				else
+				{
+					if ((bool)radioButtonPobytySearchIdKlienta.IsChecked)
+					{
+						int id;
+						if (int.TryParse(textBoxPobytySearch.Text, out id))
+							if ((bool)checkBoxPobytySearchNierozliczone.IsChecked)
+								dataGridPobytySzukaj.ItemsSource = TablesManager.Manager.PobytyTableAdapter.GetDataPobytyKlienciPokojeAktualneByIDKlienta(id);
+							else
+								dataGridPobytySzukaj.ItemsSource = TablesManager.Manager.PobytyTableAdapter.GetDataPobytyKlienciPokojeByIDKlienta(id);
+						else
+							System.Windows.MessageBox.Show("Niepoprawne ID pobytu.\nNumer identyfikacyjny pobytu może zawierać tylko cyfry.", "Wyszukiwanie pobytu", MessageBoxButton.OK, MessageBoxImage.Error);
+					}
+					else if ((bool)radioButtonPobytySearchKlient.IsChecked)
+					{
+
+						if ((bool)checkBoxPobytySearchNierozliczone.IsChecked)
+							dataGridPobytySzukaj.ItemsSource = TablesManager.Manager.PobytyTableAdapter.GetDataPobytyKlienciPokojeAktualneByNazwiskoKlienta(textBoxPobytySearch.Text);
+						else
+							dataGridPobytySzukaj.ItemsSource = TablesManager.Manager.PobytyTableAdapter.GetDataPobytyKlienciPokojeByNazwisko(textBoxPobytySearch.Text);
+					}
+				}*/
+			}
+			else
+			{
+				//Tworzenie warunków zapytania
+				sb.Append((textBoxPobytySearchExtendImie.Text != "") ? (" AND UCASE(Klienci.imie) LIKE UCASE('%" + textBoxPobytySearchExtendImie.Text + "%')") : "");
+				sb.Append((textBoxPobytySearchExtendNazwisko.Text != "") ? (" AND UCASE(Klienci.nazwisko) LIKE UCASE('%" + textBoxPobytySearchExtendNazwisko.Text + "%')") : "");
+				sb.Append((textBoxPobytySearchExtendPesel.Text != "") ? (" AND UCASE(Klienci.pesel) LIKE UCASE('%" + textBoxPobytySearchExtendPesel.Text + "%')") : "");
+				sb.Append((textBoxPobytySearchExtendFirma.Text != "") ? (" AND UCASE(Klienci.nazwa) LIKE UCASE('%" + textBoxPobytySearchExtendFirma.Text + "%')") : "");
+				sb.Append((textBoxPobytySearchExtendNip.Text != "") ? (" AND UCASE(Klienci.nip) LIKE UCASE('%" + textBoxPobytySearchExtendNip.Text + "%')") : "");
+				sb.Append((textBoxPobytySearchExtendPokoj.Text != "") ? (" AND UCASE(Pokoje.nr_pokoju) LIKE UCASE('%" + textBoxPobytySearchExtendPokoj.Text + "%')") : "");
+				
+				sb.Append((textBoxPobytySearchExtendImie.Text != "") ? (" AND UCASE(Klienci.imie) LIKE UCASE('%" + textBoxPobytySearchExtendImie.Text + "%')") : "");
+				sb.Append((textBoxPobytySearchExtendImie.Text != "") ? (" AND UCASE(Klienci.imie) LIKE UCASE('%" + textBoxPobytySearchExtendImie.Text + "%')") : "");
+				
+				sb.Append((datePickerPobytySearchExtendTerminOd.SelectedDate!=null) ? (" AND Pobyty.termin_start >= #" + datePickerPobytySearchExtendTerminOd.SelectedDate.Value.ToShortDateString()) + "#" : "");
+				sb.Append((datePickerPobytySearchExtendTerminDo.SelectedDate != null) ? (" AND Pobyty.termin_koniec <= #" + datePickerPobytySearchExtendTerminDo.SelectedDate.Value.ToShortDateString()) + "#" : "");
+
+				//przyklad zapytania z data. 1h pracy nad tym
+				//"(Pobyty.termin_start > #2011-06-16#)";
+				
+
+				//tylko nierozliczone
+				if (checkBoxPobytySearchExtendRozliczenie.IsChecked == true)
+				{
+					sb.Append(" AND Pobyty.id_rachunku IS NULL");
+				}
+				else
+				{
+					decimal tmp;
+					bool saRachunki = false;
+					if(textBoxPobytySearchExtendKwotaOd.Text != "" && decimal.TryParse(textBoxPobytySearchExtendKwotaOd.Text, out tmp))
+					{
+						saRachunki = true;
+						sb.Append(" AND Rachunki.wartosc >= " + tmp);
+					}
+					if(textBoxPobytySearchExtendKwotaDo.Text != "" && decimal.TryParse(textBoxPobytySearchExtendKwotaDo.Text, out tmp))
+					{
+						sb.Append(" AND Rachunki.wartosc <= " + tmp);
+						saRachunki = true;
+					}
+					if (saRachunki)
+					{
+						sb.Append(" AND Pobyty.id_rachunku = Rachunki.id_rachunku");
+						sbFrom.Append(", Rachunki");
+					}
+				}
+			}
+
+			//grupowe, wspólne na obu
+			if (radioButtonPobytyGrupowe.IsChecked == true)
+			{
+				sb.Append(" AND (Pobyty.id_pobytu IN " +
+							"(SELECT TOP 1 id_pobytu FROM Pobyty p1 " +
+							"WHERE (id_klienta IS NOT NULL) AND (id_rezerwacji = Pobyty.id_rezerwacji)))");
+			}
+
+			//tworzenie komendy
+			System.Data.Odbc.OdbcCommand cmd = TablesManager.Manager.KlienciTableAdapter.Connection.CreateCommand();
+			//otwarcie połączenie
+			TablesManager.Manager.KlienciTableAdapter.Connection.Open();
+			cmd.CommandText = "SELECT Pobyty.id_pobytu, Pobyty.id_pokoju, Pobyty.id_rezerwacji, Pobyty.termin_start, Pobyty.termin_koniec, Pobyty.id_rachunku, Pobyty.id_klienta, Klienci.email, " +
+									 "Klienci.imie, Klienci.nazwisko, Klienci.id_miejscowosci, Klienci.kod_pocztowy, Klienci.ulica, Klienci.nip, Klienci.pesel, Klienci.nr_telefonu, Klienci.nazwa, " +
+									 "Pokoje.id_slownikowe_pokoju, Pokoje.nr_pokoju " +
+								" FROM Pobyty, Klienci, Pokoje" +
+								sbFrom.ToString() +
+								" WHERE Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_pokoju = Pokoje.id_pokoju " +
+								sb.ToString();
+			//pobranie readera
+			System.Data.Odbc.OdbcDataReader rd = cmd.ExecuteReader();
+			PobytyDS.PobytyDataTable tab = new PobytyDS.PobytyDataTable();
+			//wypenienie DataTable za pomoca readera
+			tab.Load(rd);
+			//wypelnienie DGrida
+			dataGridPobytySzukaj.ItemsSource = tab;
+			dataGridPobytySzukaj.Items.Refresh();
+			//zamkniecie polaczenia
+			TablesManager.Manager.KlienciTableAdapter.Connection.Close();
+
         }
+
+		private void checkBoxPobytySearchExtendRozliczenie_Checked(object sender, RoutedEventArgs e)
+		{
+			if (checkBoxPobytySearchExtendRozliczenie.IsChecked == true)
+			{
+				textBoxPobytySearchExtendKwotaOd.IsEnabled = false;
+				textBoxPobytySearchExtendKwotaDo.IsEnabled = false;
+			}
+			else
+			{
+				textBoxPobytySearchExtendKwotaOd.IsEnabled = true;
+				textBoxPobytySearchExtendKwotaDo.IsEnabled = true;
+			}
+		}
         private void buttonPobytySzukaj_Click(object sender, RoutedEventArgs e)
         {
             pobytySearch();
@@ -3406,6 +3526,11 @@ namespace PensjonatApp
             else
                 groupBoxZmianaHasla.Visibility = Visibility.Hidden;
         }
+
+		private void textBoxPobytySearchExtendKwotaOd_TextChanged(object sender, TextChangedEventArgs e)
+		{
+
+		}
 
 
 
