@@ -1659,6 +1659,12 @@
                                     <Label Content="Powrót" FontWeight="Normal" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="0" Name="label222" Padding="0" VerticalAlignment="Center" VerticalContentAlignment="Center" Width="55" FontSize="13" />
                                 </StackPanel>
                             </Button>
+                            <Button BorderBrush="#FFBAD0DC" Foreground="{x:Null}" Height="35" Name="buttonZadaniaZrealizuj" Padding="0" Margin="2" TabIndex="7" Width="95" Click="buttonZadaniaZrealizuj_Click">
+                                <StackPanel FlowDirection="LeftToRight" Orientation="Horizontal">
+                                    <Image Grid.RowSpan="2" Height="24" HorizontalAlignment="Left" Margin="2,3,0,3" Name="image91" Source="/PensjonatApp;component/Images/Check-icon2.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="24" />
+                                    <Label Content="Zrealizuj" FontSize="13" FontWeight="Normal" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="0" Name="label213" Padding="0" VerticalAlignment="Center" VerticalContentAlignment="Center" Width="55" />
+                                </StackPanel>
+                            </Button>
                         </StackPanel>
                     </Grid>
                     <Grid Margin="0" Name="gridZadaniaDeafult" Opacity="1" ShowGridLines="True" Visibility="Visible" Height="266">
@@ -1687,7 +1693,7 @@
                                 <DataGridTextColumn Binding="{Binding Path=dodatkowy_opis}" Header="Dod. opis" />
                                 <DataGridTextColumn Binding="{Binding Path=termin_start}" Header="Godz. rozpoczęcia" />
                                 <DataGridTextColumn Binding="{Binding Path=termin_koniec}" Header="Godz. zakończenia" />
-                                <DataGridCheckBoxColumn Binding="{Binding Path=zrealizowane}" Header="Zrealizowano" />
+                                <DataGridCheckBoxColumn Binding="{Binding Path=zrealizowane}" Header="Zrealizowano" HeaderStringFormat="bool" />
                             </DataGrid.Columns>
                         </DataGrid>
                     </Grid>
