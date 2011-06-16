@@ -26,40 +26,70 @@ namespace PensjonatApp.Helpers
 
             FontFactory.RegisterDirectory("C:\\WINDOWS\\Fonts");
 
-            Font duzy = FontFactory.GetFont("Calibri",BaseFont.CP1250,16);
-            Font sredni = FontFactory.GetFont("Calibri", BaseFont.CP1250, 12);
-            Font maly = FontFactory.GetFont("Calibri", BaseFont.CP1250, 10);
+            Font duzy = FontFactory.GetFont("Verdana",BaseFont.CP1250,16);
+            Font sredni = FontFactory.GetFont("Verdana", BaseFont.CP1250, 12);
+            Font sredniB = FontFactory.GetFont("Verdana", BaseFont.CP1250, 12);
+            Font maly = FontFactory.GetFont("Verdana", BaseFont.CP1250, 10);
+            duzy.SetStyle(Font.BOLD);
+            sredniB.SetStyle(Font.BOLD);
 
             Paragraph naglowek = new Paragraph("",duzy);
-            naglowek.Add("Rachunek\n\n");
+            naglowek.Add("\nRachunek\n\n");
+            naglowek.Alignment = Element.ALIGN_CENTER;
+            doc.Add(naglowek);
+
             Paragraph naglowek2 = new Paragraph("",maly);
             naglowek2.Add("Id rachunku: "+id_rachunku.ToString()+"\n");
             naglowek2.Add("Data: "+DateTime.Now.Date.ToString("d-MM-yyyy")+"\n\n");
-             
-            doc.Add(naglowek);
             doc.Add(naglowek2);
 
             PobytyDS.PobytyDataTable pobyty = TablesManager.Manager.PobytyTableAdapter.GetDataPobytyByIdRachunku(id_rachunku);
 
+            PdfPTable tabela = new PdfPTable(5);
+            tabela.SpacingBefore=40;
+            tabela.SpacingAfter=40;
+            tabela.AddCell(new Phrase("Klient:",sredniB));
+            tabela.AddCell(new Phrase("Opłata za pokój:",sredniB));
+            tabela.AddCell(new Phrase("Opłata za posiłki:",sredniB));
+            tabela.AddCell(new Phrase("Opłata za usługi:",sredniB));
+            tabela.AddCell(new Phrase("Suma:", sredniB));
+
+            decimal sumAll = 0;
             foreach (PobytyDS.PobytyRow p in pobyty)
             {
-                Paragraph par = new Paragraph("",sredni);
                 KlienciDS.KlienciRow klient=TablesManager.Manager.KlienciTableAdapter.GetDataByIdKlienta(p.id_klienta)[0];
-                par.Add(klient.imie + " " + klient.nazwisko + "\n");
-               // if (klient.nazwa!=null)
-               //     par.Add(klient.nazwa+"\n");
-                par.Add("Pokój: " + RozliczenieHelper.pobierzPodstawowaCenaPobytu(p.id_pobytu).ToString("0.00") + " PLN\n");
-                par.Add("Posiłki: " + RozliczenieHelper.pobierzPodstawowaCenaPosilkow(p.id_pobytu).ToString("0.00") + " PLN\n");
-                par.Add("Usługi: " + RozliczenieHelper.pobierzPodstawowaCenaUslug(p.id_pobytu).ToString("0.00") + " PLN\n\n");
 
-                doc.Add(par);
+                decimal suma = 0;
+                decimal koszt = 0;
+                tabela.AddCell(new Phrase(klient.imie + " " + klient.nazwisko,sredniB));
+               
+                koszt = RozliczenieHelper.pobierzPodstawowaCenaPobytu(p.id_pobytu);
+                suma += koszt;
+                tabela.AddCell(koszt.ToString("0.00") + " PLN");
+
+                koszt = RozliczenieHelper.pobierzPodstawowaCenaPosilkow(p.id_pobytu);
+                suma += koszt;
+                tabela.AddCell(koszt.ToString("0.00") + " PLN");
+
+                koszt = RozliczenieHelper.pobierzPodstawowaCenaUslug(p.id_pobytu);
+                suma += koszt;
+                tabela.AddCell(koszt.ToString("0.00") + " PLN");
+
+                sumAll += suma;
+                tabela.AddCell(suma.ToString("0.00") + " PLN");
+
             }
+            
+            PdfPCell c = new PdfPCell(new Phrase("Suma całkowita "+sumAll.ToString("0.00") + " PLN",sredniB));
+            c.HorizontalAlignment = Element.ALIGN_RIGHT;
+            c.Colspan = 5;
+            tabela.AddCell(c);
 
-            sredni.SetStyle(Font.BOLD);
+            doc.Add(tabela);
 
-            Paragraph doZaplaty = new Paragraph("",sredni);
+            Paragraph doZaplaty = new Paragraph("",sredniB);
             RachunkiDS.RachunkiRow r=TablesManager.Manager.RachunkiTableAdapter.GetDataById(id_rachunku)[0];
-            doZaplaty.Add("Do zapłacenia po uwzględnieniu rabatów i zaliczki: "+r.wartosc.ToString("0.00")+" PLN\n");
+            doZaplaty.Add("\nDo zapłacenia po uwzględnieniu rabatów i zaliczki:\n"+r.wartosc.ToString("0.00")+" PLN\n");
             doc.Add(doZaplaty);
 
             doc.Close();
