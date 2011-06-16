@@ -328,6 +328,8 @@ namespace PensjonatApp.DS {
             
             private global::System.Data.DataColumn columntermin_koniec;
             
+            private global::System.Data.DataColumn columnzrealizowane;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public UslugiDataTable() {
@@ -419,6 +421,14 @@ namespace PensjonatApp.DS {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn zrealizowaneColumn {
+                get {
+                    return this.columnzrealizowane;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -454,7 +464,7 @@ namespace PensjonatApp.DS {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public UslugiRow AddUslugiRow(int id_pobytu, int id_pracownika, string dodatkowy_opis, int id_slownikowe_uslugi, System.DateTime termin_start, System.DateTime termin_koniec) {
+            public UslugiRow AddUslugiRow(int id_pobytu, int id_pracownika, string dodatkowy_opis, int id_slownikowe_uslugi, System.DateTime termin_start, System.DateTime termin_koniec, bool zrealizowane) {
                 UslugiRow rowUslugiRow = ((UslugiRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -463,7 +473,8 @@ namespace PensjonatApp.DS {
                         dodatkowy_opis,
                         id_slownikowe_uslugi,
                         termin_start,
-                        termin_koniec};
+                        termin_koniec,
+                        zrealizowane};
                 rowUslugiRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowUslugiRow);
                 return rowUslugiRow;
@@ -500,6 +511,7 @@ namespace PensjonatApp.DS {
                 this.columnid_slownikowe_uslugi = base.Columns["id_slownikowe_uslugi"];
                 this.columntermin_start = base.Columns["termin_start"];
                 this.columntermin_koniec = base.Columns["termin_koniec"];
+                this.columnzrealizowane = base.Columns["zrealizowane"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -519,6 +531,8 @@ namespace PensjonatApp.DS {
                 base.Columns.Add(this.columntermin_start);
                 this.columntermin_koniec = new global::System.Data.DataColumn("termin_koniec", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columntermin_koniec);
+                this.columnzrealizowane = new global::System.Data.DataColumn("zrealizowane", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnzrealizowane);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnid_uslugi}, true));
                 this.columnid_uslugi.AutoIncrement = true;
@@ -1097,6 +1111,22 @@ namespace PensjonatApp.DS {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool zrealizowane {
+                get {
+                    try {
+                        return ((bool)(this[this.tableUslugi.zrealizowaneColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'zrealizowane\' in table \'Uslugi\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableUslugi.zrealizowaneColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool Isid_pobytuNull() {
                 return this.IsNull(this.tableUslugi.id_pobytuColumn);
             }
@@ -1165,6 +1195,18 @@ namespace PensjonatApp.DS {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void Settermin_koniecNull() {
                 this[this.tableUslugi.termin_koniecColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IszrealizowaneNull() {
+                return this.IsNull(this.tableUslugi.zrealizowaneColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetzrealizowaneNull() {
+                this[this.tableUslugi.zrealizowaneColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -1506,6 +1548,7 @@ namespace PensjonatApp.DS.UslugiDSTableAdapters {
             tableMapping.ColumnMappings.Add("id_slownikowe_uslugi", "id_slownikowe_uslugi");
             tableMapping.ColumnMappings.Add("termin_start", "termin_start");
             tableMapping.ColumnMappings.Add("termin_koniec", "termin_koniec");
+            tableMapping.ColumnMappings.Add("zrealizowane", "zrealizowane");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.Odbc.OdbcCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
@@ -1570,7 +1613,7 @@ namespace PensjonatApp.DS.UslugiDSTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.Odbc.OdbcCommand[10];
+            this._commandCollection = new global::System.Data.Odbc.OdbcCommand[11];
             this._commandCollection[0] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT id_uslugi, id_pobytu, id_pracownika, dodatkowy_opis, termin_start, termin_" +
@@ -1583,7 +1626,7 @@ namespace PensjonatApp.DS.UslugiDSTableAdapters {
             this._commandCollection[1].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_uslugi", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_uslugi", global::System.Data.DataRowVersion.Original, false, null));
             this._commandCollection[2] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = @"SELECT Klienci.imie, Klienci.nazwisko, Pokoje.nr_pokoju, Uslugi_slownik.nazwa, Uslugi_slownik.opis, Uslugi.dodatkowy_opis, Uslugi.termin_start, Uslugi.termin_koniec, Uslugi.zrealizowane
+            this._commandCollection[2].CommandText = @"SELECT Klienci.imie, Klienci.nazwisko, Pokoje.nr_pokoju, Uslugi_slownik.nazwa, Uslugi_slownik.opis, Uslugi.dodatkowy_opis, Uslugi.termin_start, Uslugi.termin_koniec, Uslugi.zrealizowane, Uslugi.id_uslugi
 FROM     Uslugi, Uslugi_slownik, Pobyty, Klienci, Pokoje
 WHERE  Uslugi.id_slownikowe_uslugi = Uslugi_slownik.id_slownikowe_uslugi AND Uslugi.id_pobytu = Pobyty.id_pobytu AND Pobyty.id_klienta = Klienci.id_klienta AND 
                   Pobyty.id_pokoju = Pokoje.id_pokoju AND (Uslugi.id_pracownika = ?) AND (Uslugi.termin_koniec <= ?)";
@@ -1648,6 +1691,12 @@ WHERE  Uslugi.id_slownikowe_uslugi = Uslugi_slownik.id_slownikowe_uslugi AND Usl
             this._commandCollection[9].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("termin_start", global::System.Data.Odbc.OdbcType.DateTime, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "termin_start", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[9].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("termin_koniec", global::System.Data.Odbc.OdbcType.DateTime, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "termin_koniec", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[9].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_id_uslugi", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_uslugi", global::System.Data.DataRowVersion.Original, false, null));
+            this._commandCollection[10] = new global::System.Data.Odbc.OdbcCommand();
+            this._commandCollection[10].Connection = this.Connection;
+            this._commandCollection[10].CommandText = "UPDATE       Uslugi\r\nSET                zrealizowane = True\r\nWHERE        (id_usl" +
+                "ugi = ?)";
+            this._commandCollection[10].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[10].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_id_uslugi", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_uslugi", global::System.Data.DataRowVersion.Original, false, null));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2142,6 +2191,30 @@ WHERE  Uslugi.id_slownikowe_uslugi = Uslugi_slownik.id_slownikowe_uslugi AND Usl
                 command.Parameters[4].Value = global::System.DBNull.Value;
             }
             command.Parameters[5].Value = ((int)(Original_id_uslugi));
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            int returnValue;
+            try {
+                returnValue = command.ExecuteNonQuery();
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
+        public virtual int UpdateZrealizowano(int Original_id_uslugi) {
+            global::System.Data.Odbc.OdbcCommand command = this.CommandCollection[10];
+            command.Parameters[0].Value = ((int)(Original_id_uslugi));
             global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {

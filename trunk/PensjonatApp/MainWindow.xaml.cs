@@ -205,6 +205,7 @@ namespace PensjonatApp
 
             buttonZadaniaDeafultList.Add(buttonZadaniaArchiwum);
             buttonZadaniaBackList.Add(buttonZadaniaPowrot);
+            buttonZadaniaBackList.Add(buttonZadaniaZrealizuj);
 
 
             zwinRezerwacje();
@@ -3231,6 +3232,29 @@ namespace PensjonatApp
         {
             zwinZadania();
             showWindow(gridZadaniaArchiwum, buttonZadaniaBackList);
+        }
+
+        private void buttonZadaniaZrealizuj_Click(object sender, RoutedEventArgs e)
+        {
+            if (dataGridArchiwumDeafult.SelectedItem != null)
+            {
+                UslugiDS.UslugiRow selectedRow = (UslugiDS.UslugiRow)
+                ((DataRowView)dataGridArchiwumDeafult.SelectedItem).Row;
+
+                if (selectedRow.zrealizowane == false)
+                {
+                    MessageBoxResult result = System.Windows.MessageBox.Show("Czy napewno zrealizować: " + (string)selectedRow["opis"], "Realizacja zadania", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        TablesManager.Manager.UslugiTableAdapter.UpdateZrealizowano(selectedRow.id_uslugi);
+                        dataGridArchiwumDeafult.ItemsSource = UslugiHelper.znajdzZadaniaPracownikaDoCzasu(this.id, DateTime.Now);
+                    }
+                }
+                else
+                    System.Windows.MessageBox.Show("Zadanie zostało już zrealizowane.", "Realizacja zadania", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            else
+                System.Windows.MessageBox.Show("Najpierw wybierz zadanie.", "Realizacja zadania", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
 
         private void buttonWyloguj_Click(object sender, RoutedEventArgs e)
