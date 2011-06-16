@@ -1532,7 +1532,7 @@
                         <Label Content="1" FontSize="15" FontWeight="Normal" HorizontalAlignment="Left" Margin="145,10,0,0" Name="labelPracownicyEdycjaId" Padding="2" VerticalAlignment="Top" Visibility="Hidden" />
                     </Grid>
                     <Grid Name="gridPracownicyZadania" Opacity="1" ShowGridLines="True" Visibility="Visible" Height="137">
-                        <Label Content="Lista aktualnych zadań:" FontWeight="Bold" HorizontalAlignment="Left" Margin="14,52,0,0" Name="label224" Padding="2" VerticalAlignment="Top" />
+                        <Label Content="Lista dzisiejszych zadań:" FontWeight="Bold" HorizontalAlignment="Left" Margin="14,52,0,0" Name="label224" Padding="2" VerticalAlignment="Top" />
                         <DataGrid AutoGenerateColumns="False" HorizontalGridLinesBrush="#FFD5D5D5" IsEnabled="True" IsReadOnly="True" Margin="19,81,17,15" Name="dataGridPracownicyZadania" SelectionMode="Single" VerticalGridLinesBrush="#FFD5D5D5">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding Path=nr_pokoju}" Header="Nr pokoju" />

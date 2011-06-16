@@ -3102,8 +3102,9 @@ namespace PensjonatApp
                 int rok = czasObecny.Year;
                 int miesiac = czasObecny.Month;
                 int dzien = czasObecny.Day;
+                DateTime czasStart = new DateTime(rok, miesiac, dzien, 0, 0, 0);
                 DateTime czasStop = new DateTime(rok, miesiac, dzien, 23, 59, 59);
-                dataGridPracownicyZadania.ItemsSource = UslugiHelper.znajdzZadaniaDlaPracownikaWCzasie(selectedRow.id_pracownika, DateTime.Now, czasStop);
+                dataGridPracownicyZadania.ItemsSource = UslugiHelper.znajdzZadaniaDlaPracownikaWCzasie(selectedRow.id_pracownika, czasStart, czasStop);
             }
             else
                 System.Windows.MessageBox.Show("Najpierw wybierz pracownika.", "Zadania pracownika", MessageBoxButton.OK, MessageBoxImage.Warning);       
