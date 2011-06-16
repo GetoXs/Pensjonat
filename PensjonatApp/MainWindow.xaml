@@ -28,7 +28,7 @@
                     <SolidColorBrush />
                 </TabItem.Foreground>
             </TabItem>
-            <TabItem Name="tabRezerwacje" BorderBrush="#FF2B4865" IsSelected="True" Height="40" GotFocus="tabRezerwacje_GotFocus">
+            <TabItem Name="tabRezerwacje" BorderBrush="#FF2B4865" IsSelected="True" Height="40">
             <TabItem Name="tabRezerwacje" BorderBrush="#FF2B4865" IsSelected="True" Height="40">
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal" Width="120" Height="32">
