@@ -1036,20 +1036,25 @@ namespace PensjonatApp
         }
         
         //-----ZARZADZANIE->POSIŁKI
-        List<int> PobytyPosilkiIdList = new List<int>();
-        private void buttonPobytyZarzadzajPosilki_Click(object sender, RoutedEventArgs e)
+        private void RefreshPobytyPosilkiSlownik()
         {
-            zwinPobyty();
-            showWindow(gridPobytyPosilki, buttonPobytyOkList);
             List<string> lst = new List<string>();
             PobytyPosilkiIdList.Clear();
             DS.PosilkiDS.Posilki_slownikDataTable posilkiTable = TablesManager.Manager.Posilki_slownikTableAdapter.GetData();
             foreach (DS.PosilkiDS.Posilki_slownikRow row in posilkiTable)
             {
-                lst.Add(row.nazwa_opcji + ":" +row.cena+ "zł");
+                lst.Add(row.nazwa_opcji + ":" + row.cena + "zł");
                 PobytyPosilkiIdList.Add(row.id_slownikowe_posilku);
             }
             comboBoxPobytyZarzadzaniePosilki.ItemsSource = lst;
+            comboBoxPobytyZarzadzaniePosilki.Items.Refresh();
+        }
+        List<int> PobytyPosilkiIdList = new List<int>();
+        private void buttonPobytyZarzadzajPosilki_Click(object sender, RoutedEventArgs e)
+        {
+            zwinPobyty();
+            showWindow(gridPobytyPosilki, buttonPobytyOkList);
+            RefreshPobytyPosilkiSlownik();
             dataGridPobytyZarzadzaniePosilki.ItemsSource = 
                 TablesManager.Manager.PosilkiTableAdapter.GetDataWithPosilkiSlownikById(((int)labelPobytyServicesId.Content));
             PobytyDS.PobytyRow selectedRow = (PobytyDS.PobytyRow)((DataRowView)dataGridPobytySzukaj.SelectedItem).Row;
@@ -1127,7 +1132,7 @@ namespace PensjonatApp
         }
 
         //-----ZARZADZANIE->USŁUGI
-        private void RefreshPobytyUslugi()
+        private void RefreshPobytyUslugiSlownik()
         {
             PobytyUslugiIdList.Clear();
             List<string> lst = new List<string>();
@@ -1146,7 +1151,7 @@ namespace PensjonatApp
             showWindow(gridPobytyUslugi, buttonPobytyOkList);
             //datePickerPobytyServicesTermin.Set = DateTime.Today;
             dataGridPobytyZarzadzajUslug.ItemsSource = TablesManager.Manager.UslugiTableAdapter.GetDataUslugiUslugi_slownikByID_pobytu((int)labelPobytyServicesId.Content);
-            RefreshPobytyUslugi();
+            RefreshPobytyUslugiSlownik();
         }
         
         private void buttonPobytyZarzadzajCzysc_Click(object sender, RoutedEventArgs e)
@@ -2160,6 +2165,18 @@ namespace PensjonatApp
 //----------KIEROWNIK----------
 //---------------------------------------------------------------------------------------
 //----------------------------------------------POKOJE----------------------------------------------
+        private void RefreshConnectionsPokoje()
+        {
+            RefreshRezerwacjeNowaPokoje();
+            RefreshPobytyNowyPokoje();
+        }
+        private void RefreshPokoje()
+        {
+            PokojeWczytajStandardy();
+            comboBoxPokojeEdycjaStandard.Items.Refresh();
+            comboBoxPokojeStandard.Items.Refresh();
+        }
+
         private void dataGridPokojeDeafult_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             if ((bool)(e.NewValue) == true)
@@ -2167,10 +2184,7 @@ namespace PensjonatApp
                 dataGridPokojeDeafult.ItemsSource = TablesManager.Manager.PokojeTableAdapter.GetDataPokojeStandardy();
             }
         }
-        List<int> PokojeIdLst = new List<int>();
-        List<string> PokojeStringLst = new List<string>();
-
-        private void comboBoxPokojeStandard_Loaded(object sender, RoutedEventArgs e)
+        private void PokojeWczytajStandardy()
         {
             PokojeIdLst.Clear();
             PokojeStringLst.Clear();
@@ -2181,6 +2195,14 @@ namespace PensjonatApp
                 PokojeIdLst.Add(row.id_slownikowe_pokoju);
             }
             comboBoxPokojeStandard.ItemsSource = PokojeStringLst;
+            comboBoxPokojeEdycjaStandard.ItemsSource = PokojeStringLst;
+        }
+        List<int> PokojeIdLst = new List<int>();
+        List<string> PokojeStringLst = new List<string>();
+
+        private void comboBoxPokojeStandard_Loaded(object sender, RoutedEventArgs e)
+        {
+            PokojeWczytajStandardy();
         }
         private void comboBoxPokojeEdycjaStandard_Loaded(object sender, RoutedEventArgs e)
         {
@@ -2201,6 +2223,7 @@ namespace PensjonatApp
                 {
                     PokojeHelper.edytujPokoj((int)labelPokojeEdycjaId.Content, PokojeIdLst[comboBoxPokojeEdycjaStandard.SelectedIndex], textBoxPokojeEdycjaNrPokoju.Text);
                     dataGridPokojeDeafult.ItemsSource = TablesManager.Manager.PokojeTableAdapter.GetDataPokojeStandardy();
+                    RefreshConnectionsPokoje();
                     zwinPokoje();
                     showWindow(gridPokojeDeafult, buttonPokojeDeafultList);
                 }
@@ -2223,6 +2246,7 @@ namespace PensjonatApp
                 dataGridPokojeDeafult.ItemsSource = TablesManager.Manager.PokojeTableAdapter.GetDataPokojeStandardy();
                 textBoxPokojeNrPokoju.Text = "";
                 comboBoxPokojeStandard.SelectedItem = null;
+                RefreshConnectionsPokoje();
             }
             else
             {
@@ -2286,7 +2310,10 @@ namespace PensjonatApp
         }
 
 //----------------------------------------------STANDARDY POKOI----------------------------------------------
-
+        private void RefreshConnectionsStandPokoi()
+        {
+            RefreshPokoje();
+        }
         private void dataGridStandPokoiDeafult_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             if ((bool)(e.NewValue) == true)
@@ -2701,6 +2728,10 @@ namespace PensjonatApp
         }
 
 //----------------------------------------------POSIŁKI----------------------------------------------
+        private void RefreshConnectionsPosilki()
+        {
+            RefreshPobytyPosilkiSlownik();
+        }
         private void dataGridPosilkiDeafult_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             if ((bool)(e.NewValue) == true)
@@ -2813,6 +2844,10 @@ namespace PensjonatApp
         }
 
 //----------------------------------------------USŁUGI----------------------------------------------
+        private void RefreshConnectionsUslugi()
+        {
+            RefreshPobytyUslugiSlownik();
+        }
         private void dataGridUslugiDeafult_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             if ((bool)(e.NewValue) == true)
@@ -2980,7 +3015,7 @@ namespace PensjonatApp
         //----------------------------------------------PRACOWNICY->MENU
         private void RefreshConnectionsPracownicy()
         {
-            RefreshPobytyUslugi();
+            //RefreshPobytyUslugi();
         }
         private void RefreshPracownicyDodaj()
         {
