@@ -382,13 +382,9 @@ namespace PensjonatApp
 
 //----------------------------------------------REZERWACJE----------------------------------------------
 
-        private void tabRezerwacje_GotFocus(object sender, RoutedEventArgs e)
+        private void RefreshConnectionsRezerwacje()
         {
-            if (tabRezerwacje.IsFocused)
-            {
-                zwinRezerwacje();
-                showWindow(gridRezerwacjeDeafult,buttonRezerwacjeDeafultList);
-            }
+            RefreshPobytyNowyRezerwacje();
         }
         //----------------------------------------------REZERWACJE->BELKA----------------------------------------------
         private void buttonRezerwacjePowrot_Click(object sender, RoutedEventArgs e)
@@ -554,6 +550,11 @@ namespace PensjonatApp
         }
 
         //----------------------------------------------REZERWACJE->DODAJ---------------------------------------------- 
+        private void RefreshRezerwacjeNowaKlienci()
+        {
+            dataGridRezerwacjeAddKlienci.ItemsSource = TablesManager.Manager.KlienciTableAdapter.GetKlienciMiejscowosci();
+            dataGridRezerwacjeAddKlienci.Items.Refresh();
+        }
         List<string> RezerwacjePokojeStringList = new List<string>();
         List<PokojeStandardy> RezerwacjePokojeList = new List<PokojeStandardy>();
         List<PokojeStandardy> RezerwacjePokojeDodajList = new List<PokojeStandardy>();
@@ -786,16 +787,6 @@ namespace PensjonatApp
         }
 
 //----------------------------------------------POBYTY----------------------------------------------
-        private void tabPobyty_GotFocus(object sender, RoutedEventArgs e)
-        {
-            if (tabPobyty.IsFocused)
-            {
-                zwinPobyty();
-                showWindow(gridPobytyDeafult, buttonPobytyDeafultList);
-
-            }
-        }
-
         private void deafultGridRefresh()
         {
             if(radioButtonPobytyIndywidualne.IsChecked == true)
@@ -1671,6 +1662,16 @@ namespace PensjonatApp
         {
             PrzypiszWolnePokoje();
         }
+        private void RefreshPobytyNowyKlienci()
+        {
+            dataGridPobytyNowyKlienci.ItemsSource = TablesManager.Manager.KlienciTableAdapter.GetKlienciMiejscowosci();
+            dataGridPobytyNowyKlienci.Items.Refresh();
+        }
+        private void RefreshPobytyNowyRezerwacje()
+        {
+            dataGridPobytyNowyRezerwacje.ItemsSource = TablesManager.Manager.RezerwacjeTableAdapter.GetDataRezerwacjeKlienciPokoje();
+            dataGridPobytyNowyRezerwacje.Items.Refresh();
+        }
         string pobytyNowyKlientImie;
         string pobytyNowyKlientNazwisko;
         string pobytyNowyKlientPesel;
@@ -1778,11 +1779,12 @@ namespace PensjonatApp
                 System.Windows.MessageBox.Show("Uzupełnij wszystkie pola", "Dodawanie osoby do pobytu", MessageBoxButton.OK, MessageBoxImage.Warning);
     
         }
-
+        
         private void buttonPobytyNowyKlient_Click(object sender, RoutedEventArgs e)
         {
             zwinPobyty();
             showWindow(gridPobytyWybierzKlienta, buttonPobytyBackOkList);
+            RefreshPobytyNowyKlienci();
         }
         private void pobytyNowyClear()
         {
@@ -1874,7 +1876,7 @@ namespace PensjonatApp
         {
             if ((bool)(e.NewValue) == true)
             {//pojawienie sie pola
-                dataGridPobytyNowyRezerwacje.ItemsSource = TablesManager.Manager.RezerwacjeTableAdapter.GetDataRezerwacjeKlienciPokoje();
+                RefreshPobytyNowyRezerwacje();
             }
         }
         List<int> PobytyNowyIdPokoje = new List<int>();
@@ -1919,14 +1921,12 @@ namespace PensjonatApp
 
 
 // ----------------------------------------------KLIENCI----------------------------------------------
-        private void tabKlienci_GotFocus(object sender, RoutedEventArgs e)
+        private void RefreshConnectionsKlienci()
         {
-            if (tabKlienci.IsFocused)
-            {
-                zwinKlienci();
-                showWindow(gridKlienciDeafult, buttonKlienciDeafultList);
-            }
+            RefreshPobytyNowyKlienci();
+            RefreshRezerwacjeNowaKlienci();
         }
+
         private void buttonKlienciPowrot_Click(object sender, RoutedEventArgs e)
         {
 			textBoxKlienciEdycjaMiejscowoscAuto.Visibility = System.Windows.Visibility.Hidden;
@@ -1942,7 +1942,7 @@ namespace PensjonatApp
 					   textBoxKlienciEdycjaPESEL.Text, int.Parse(textBoxKlienciEdycjaTelefon.Text), textBoxKlienciEdycjaMail.Text);
 				dataGridKlienci.ItemsSource = TablesManager.Manager.KlienciTableAdapter.GetKlienciMiejscowosci();
 				System.Windows.MessageBox.Show("Wyedytowano pomyślnie.", "Edycja klienta", MessageBoxButton.OK, MessageBoxImage.Information);
-
+                RefreshConnectionsKlienci();
 				textBoxKlienciEdycjaMiejscowoscAuto.Visibility = System.Windows.Visibility.Hidden;
 				zwinKlienci();
 				showWindow(gridKlienciDeafult, buttonKlienciDeafultList);
@@ -1972,6 +1972,7 @@ namespace PensjonatApp
 					{
 						MessageBox.Show("Pomyślnie dodano klienta do bazy", "Dodawanie klienta", MessageBoxButton.OK, MessageBoxImage.Information);
 					}
+                    RefreshConnectionsKlienci();
 					zwinKlienci();
 					showWindow(gridKlienciDeafult, buttonKlienciDeafultList);
 				}
@@ -2434,6 +2435,14 @@ namespace PensjonatApp
         {
             RefreshPokoje();
         }
+        private void RefreshStandPokoi()
+        {
+            przypiszWyposazeniaDoComboBoxa();
+            comboBoxStandPokoiDodajWyposazenie.ItemsSource = StandPokoiLabelLst;
+            comboBoxStandPokoiDodajWyposazenie.Items.Refresh();
+            comboBoxStandPokoiEdycjaWyposazenie.ItemsSource = StandPokoiLabelLst;
+            comboBoxStandPokoiEdycjaWyposazenie.Items.Refresh();
+        }
         private void dataGridStandPokoiDeafult_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             if ((bool)(e.NewValue) == true)
@@ -2475,6 +2484,7 @@ namespace PensjonatApp
                 StandPokoiList.Add(row);
                 StandPokoiLabelLst.Add(row.opis);
             }
+
         }
 
         private void comboBoxStandPokoiDodajWyposazenie_Loaded(object sender, RoutedEventArgs e)
@@ -2663,7 +2673,10 @@ namespace PensjonatApp
         }
 
 //----------------------------------------------WYPOSAZENIE----------------------------------------------
-
+        private void RefreshConnectionsWyposazenia()
+        {
+            RefreshStandPokoi();
+        }
         private void dataGridWyposazenieDeafult_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             if ((bool)(e.NewValue) == true)
