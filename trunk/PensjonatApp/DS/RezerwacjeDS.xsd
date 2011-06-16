@@ -94,6 +94,14 @@ WHERE  r.id_rezerwacji = p.id_rezerwacji</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
+              <DbSource ConnectionRef="DB (Settings)" DbObjectName="[C:\Users\ttt\Documents\pensjonat\baza].Rezerwacje" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetDataRezerwacjeAktualne" GetMethodModifier="Public" GetMethodName="GetDataRezerwacjeAktualne" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataRezerwacjeAktualne" UserSourceName="GetDataRezerwacjeAktualne">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT id_rezerwacji, zaliczka, zaplacono_zaliczke, ilosc_osob, id_klienta FROM Rezerwacje</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
               <DbSource ConnectionRef="DB (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetDataRezerwacjeByID" GetMethodModifier="Public" GetMethodName="GetDataRezerwacjeByID" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataRezerwacjeByID" UserSourceName="GetDataRezerwacjeByID">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
@@ -136,10 +144,10 @@ WHERE  r.id_klienta = k.id_klienta AND r.id_rezerwacji = p.id_rezerwacji</Comman
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT DISTINCT 
-                  r.id_rezerwacji, r.zaliczka, r.zaplacono_zaliczke, r.ilosc_osob, r.id_klienta, k.email, k.imie, k.nazwisko, k.id_miejscowosci, k.kod_pocztowy, k.ulica, k.nip, k.pesel, k.nr_telefonu, 
-                  k.nazwa, p.termin_start, p.termin_koniec, p2.id_pokoju, p2.id_slownikowe_pokoju, p2.nr_pokoju
-FROM     Rezerwacje r, Klienci k, Pobyty p, Pokoje p2
-WHERE  r.id_klienta = k.id_klienta AND r.id_rezerwacji = p.id_rezerwacji AND r.id_klienta = p.id_klienta AND p.id_pokoju = p2.id_pokoju</CommandText>
+                         r.id_rezerwacji, r.zaliczka, r.zaplacono_zaliczke, r.ilosc_osob, r.id_klienta, k.email, k.imie, k.nazwisko, k.id_miejscowosci, k.kod_pocztowy, k.ulica, k.nip, k.pesel, 
+                         k.nr_telefonu, k.nazwa, p.termin_start, p.termin_koniec, p2.id_pokoju, p2.id_slownikowe_pokoju, p2.nr_pokoju
+FROM            Rezerwacje r, Klienci k, Pobyty p, Pokoje p2
+WHERE        r.id_klienta = k.id_klienta AND r.id_rezerwacji = p.id_rezerwacji AND r.id_klienta = p.id_klienta AND p.id_pokoju = p2.id_pokoju</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
