@@ -2544,7 +2544,8 @@ namespace PensjonatApp
         private void buttonStandPokoiDodajWyposazenie_Click(object sender, RoutedEventArgs e)
         {
             if(comboBoxStandPokoiDodajWyposazenie.SelectedItem != null)
-                StandPokoiDodajList.Add(StandPokoiList[comboBoxStandPokoiDodajWyposazenie.SelectedIndex]);
+                if(!StandPokoiDodajList.Contains(StandPokoiList[comboBoxStandPokoiDodajWyposazenie.SelectedIndex]))
+                    StandPokoiDodajList.Add(StandPokoiList[comboBoxStandPokoiDodajWyposazenie.SelectedIndex]);
             dataGridStandPokoiDodajWyposazenie.Items.Refresh();
         }
         private void buttonStandPokoiDodajWyposazenieUsun_Click(object sender, RoutedEventArgs e)
@@ -2584,10 +2585,22 @@ namespace PensjonatApp
 
         private void buttonStandPokoEdytujWyposazenie_Click(object sender, RoutedEventArgs e)
         {
-            if (comboBoxStandPokoiEdycjaWyposazenie.SelectedItem != null)
-                StandPokoiEdytujList.Add(StandPokoiList[comboBoxStandPokoiEdycjaWyposazenie.SelectedIndex]);
-            dataGridStandPokoiEdycjaWyposazenie.Items.Refresh();
-
+            if (comboBoxStandPokoiEdycjaWyposazenie.SelectedItem != null){
+                bool istnieje = false;
+                if (!StandPokoiEdytujList.Contains(StandPokoiList[comboBoxStandPokoiEdycjaWyposazenie.SelectedIndex]))
+                {
+                    foreach (var elem in StandPokoiEdytujList)
+                    {
+                        if (elem.id_wyposazenia == StandPokoiList[comboBoxStandPokoiEdycjaWyposazenie.SelectedIndex].id_wyposazenia)
+                        {
+                            istnieje = true;
+                        }
+                    }
+                    if (!istnieje)
+                        StandPokoiEdytujList.Add(StandPokoiList[comboBoxStandPokoiEdycjaWyposazenie.SelectedIndex]);
+                    dataGridStandPokoiEdycjaWyposazenie.Items.Refresh();
+                }
+            }
         }
 
         private void buttonStandPokoiEdytujWyposazenieUsun_Click(object sender, RoutedEventArgs e)
@@ -2600,12 +2613,10 @@ namespace PensjonatApp
                     {
                         StandPokoiEdytujList.Remove(row);
                         break;
-                    }
-                    
+                    } 
                 }
             }
             dataGridStandPokoiEdycjaWyposazenie.Items.Refresh();
-
         } 
 
 

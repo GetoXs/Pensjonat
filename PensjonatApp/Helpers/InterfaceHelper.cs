@@ -55,6 +55,19 @@ namespace PensjonatApp.Helpers
             this.cena = cena;
         }
     }
+    class Wyposazenie
+    {
+        int id_wyposazenia;
+        string opis;
+
+        public string Opis{ get { return opis; } set { opis = value; } }
+        public int Id_wyposazenia { get { return id_wyposazenia; } set { id_wyposazenia = value; } }
+        public Wyposazenie(int id_wyposazenia,string opis)
+        {
+            this.opis = opis;
+            this.id_wyposazenia = id_wyposazenia;
+        }
+    }
     class Pokoje
     {
         string nr_pokoju;
@@ -72,7 +85,7 @@ namespace PensjonatApp.Helpers
             this.nr_pokoju = nr_pokoju;
             this.l_osob = l_osob;
             this.id_pokoju = id_pokoju;
-            this.pozostalo = l_osob-1;
+            this.pozostalo = l_osob - 1;
         }
     }
 

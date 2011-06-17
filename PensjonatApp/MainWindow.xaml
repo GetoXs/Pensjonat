@@ -1044,29 +1044,25 @@
                         <Label Content="Cena:" FontWeight="Normal" HorizontalAlignment="Left" Margin="114,69,0,0" Name="labelStandPokoiSzczegolyCena" Padding="2" VerticalAlignment="Top" />
                         <Label Content="Cena:" FontWeight="Normal" HorizontalAlignment="Left" Margin="114,98,0,0" Name="labelStandPokoiSzczegolyLosob" Padding="2" VerticalAlignment="Top" />
                     </Grid>
-                    <Grid Height="68" Name="gridStandPokoiDodaj">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="300" />
-                            <ColumnDefinition Width="283" />
-                        </Grid.ColumnDefinitions>
+                    <Grid Height="311" Name="gridStandPokoiDodaj">
                         <Label Content="Dodawanie standardu pokoi:" FontSize="15" FontWeight="Normal" HorizontalAlignment="Left" Margin="10,12,0,0" Name="label165" Padding="2" VerticalAlignment="Top" />
                         <Label Content="Opis:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,40,0,0" Name="label166" Padding="2" VerticalAlignment="Top" />
-                        <ComboBox Height="23" IsEnabled="True" Text="Binding Path=opis" ItemsSource="{Binding}" Margin="47,158,92,0" Name="comboBoxStandPokoiDodajWyposazenie" TabIndex="13" VerticalAlignment="Top" Loaded="comboBoxStandPokoiDodajWyposazenie_Loaded" Grid.ColumnSpan="2">
+                        <ComboBox Height="23" IsEnabled="True" Text="Binding Path=opis" ItemsSource="{Binding}" Margin="47,158,92,0" Name="comboBoxStandPokoiDodajWyposazenie" TabIndex="13" VerticalAlignment="Top" Loaded="comboBoxStandPokoiDodajWyposazenie_Loaded">
                         </ComboBox>
-                        <TextBox Height="23" Margin="114,37,0,0" Name="textBoxStandPokoiDodajOpis" TabIndex="10" VerticalAlignment="Top" Width="449" HorizontalAlignment="Left" Grid.ColumnSpan="2" />
+                        <TextBox Height="23" Margin="114,37,0,0" Name="textBoxStandPokoiDodajOpis" TabIndex="10" VerticalAlignment="Top" Width="449" HorizontalAlignment="Left" />
                         <Label Content="Cena:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,69,0,0" Name="label167" Padding="2" VerticalAlignment="Top" />
                         <TextBox Height="23" Margin="114,68,0,0" Name="textBoxStandPokoiDodajCena" TabIndex="11" VerticalAlignment="Top" Width="83" HorizontalAlignment="Left" />
                         <Label Content="Liczba osób:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,98,0,0" Name="label170" Padding="2" VerticalAlignment="Top" />
                         <TextBox Height="23" Margin="114,97,0,0" Name="textBoxStandPokoiDodajIlOsob" TabIndex="12" VerticalAlignment="Top" Width="83" HorizontalAlignment="Left" />
                         <Label Content="Wyposażenie:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,132,0,0" Name="label174" Padding="2" VerticalAlignment="Top" />
-                        <Button Content="+" Height="23" HorizontalAlignment="Right" Margin="0,158,54,0" Name="buttonStandPokoiDodajWyposazenie" VerticalAlignment="Top" Width="22" Click="buttonStandPokoiDodajWyposazenie_Click" TabIndex="14" Grid.Column="1" />
-                        <DataGrid AutoGenerateColumns="False" HorizontalGridLinesBrush="#FFD5D5D5" IsEnabled="True" IsReadOnly="True" Margin="47,191,22,19" Name="dataGridStandPokoiDodajWyposazenie" VerticalGridLinesBrush="#FFD5D5D5" SelectionMode="Single" Grid.ColumnSpan="2">
+                        <Button Content="+" Height="23" HorizontalAlignment="Right" Margin="0,158,54,0" Name="buttonStandPokoiDodajWyposazenie" VerticalAlignment="Top" Width="22" Click="buttonStandPokoiDodajWyposazenie_Click" TabIndex="14" />
+                        <DataGrid AutoGenerateColumns="False" HorizontalGridLinesBrush="#FFD5D5D5" IsEnabled="True" IsReadOnly="True" Margin="47,191,22,19" Name="dataGridStandPokoiDodajWyposazenie" VerticalGridLinesBrush="#FFD5D5D5" SelectionMode="Single">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding Path=id_wyposazenia}" Header="Id" />
                                 <DataGridTextColumn Binding="{Binding Path=opis}" Header="Opis" />
                             </DataGrid.Columns>
                         </DataGrid>
-                        <Button Content="-" Height="23" HorizontalAlignment="Right" Margin="0,158,22,0" Name="buttonStandPokoiDodajWyposazenieUsun" VerticalAlignment="Top" Width="22" Click="buttonStandPokoiDodajWyposazenieUsun_Click" TabIndex="15" Grid.Column="1" />
+                        <Button Content="-" Height="23" HorizontalAlignment="Right" Margin="0,158,22,0" Name="buttonStandPokoiDodajWyposazenieUsun" VerticalAlignment="Top" Width="22" Click="buttonStandPokoiDodajWyposazenieUsun_Click" TabIndex="15" />
                     </Grid>
                     <Grid Height="340" Name="gridStandPokoiEdycja">
                         <Label Content="Edycja standardu pokoi:" FontSize="15" FontWeight="Normal" HorizontalAlignment="Left" Margin="10,12,0,0" Name="label176" Padding="2" VerticalAlignment="Top" />
