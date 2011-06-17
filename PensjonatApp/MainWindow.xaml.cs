@@ -874,6 +874,8 @@ namespace PensjonatApp
                         }
                         zwinPobyty();
                         showWindow(gridPobytyDeafult, buttonPobytyDeafultList, ref currentGridPobyty);
+                        radioButtonPobytyNowyNowy.IsChecked = true;
+                        System.Windows.MessageBox.Show("Nowy pobyt dodany pomyślnie.", "Dodawanie pobytu", MessageBoxButton.OK, MessageBoxImage.Information);
                         dataGridPobytySzukaj.ItemsSource = TablesManager.Manager.PobytyTableAdapter.GetDataPobytyKlienciPokoje();
                     }
                     else
