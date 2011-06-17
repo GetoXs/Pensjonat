@@ -330,7 +330,8 @@ namespace PensjonatApp.Helpers
         {
             try
             {
-                PobytyDS.PobytyDataTable tabPo = TablesManager.Manager.PobytyTableAdapter.GetDataPobytyByIdRezerwacji(id_rezerwacji);
+                PobytyDS.PobytyDataTable tabPo;
+                tabPo = TablesManager.Manager.PobytyTableAdapter.GetDataPobytyByIdRezerwacji(id_rezerwacji);
 
                 if (tabPo.Count > 0)
                 {
@@ -342,6 +343,7 @@ namespace PensjonatApp.Helpers
                             if (pobyt.id_pokoju == id_pokojow[i] && pobyt.Isid_klientaNull())
                             {
                                 TablesManager.Manager.PobytyTableAdapter.UpdateIdKlientaInPobytyQuery(id_klientow[i], pobyt.id_pobytu);
+                                tabPo = TablesManager.Manager.PobytyTableAdapter.GetDataPobytyByIdRezerwacji(id_rezerwacji);
                                 break;
                             }
                         }                      
