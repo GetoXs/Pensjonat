@@ -621,31 +621,31 @@
                             </LinearGradientBrush>
                         </Grid.Background>
                         <StackPanel Height="47" HorizontalAlignment="Right" Margin="0,5,5,0" Name="stackPanel3" VerticalAlignment="Top" Width="590" Orientation="Horizontal" FlowDirection="RightToLeft" ClipToBounds="False" CanHorizontallyScroll="True">
-                            <Button BorderBrush="#FFBAD0DC" Canvas.Left="199" Canvas.Top="103" Foreground="{x:Null}" Height="35" HorizontalAlignment="Stretch" Margin="2" Name="buttonKlienciEdit" Padding="0" VerticalAlignment="Stretch" Width="95" Click="buttonKlienciEdit_Click">
+                            <Button BorderBrush="#FFBAD0DC" Canvas.Left="199" Canvas.Top="103" Foreground="{x:Null}" Height="35" HorizontalAlignment="Stretch" Margin="2" Name="buttonKlienciEdit" Padding="0" VerticalAlignment="Stretch" Width="95" Click="buttonKlienciEdit_Click" TabIndex="5">
                                 <StackPanel Orientation="Horizontal">
                                     <Label Content="Edytuj" FontWeight="Normal" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Name="label72" Padding="0" VerticalAlignment="Center" VerticalContentAlignment="Center" Width="42" FontSize="13" />
                                     <Image Height="24" Margin="2" Name="image7" Source="/PensjonatApp;component/Images/document_edit.png" Stretch="Fill" StretchDirection="Both" Width="24" />
                                 </StackPanel>
                             </Button>
-                            <Button BorderBrush="#FFBAD0DC" Canvas.Left="199" Canvas.Top="103" Foreground="{x:Null}" Height="35" Margin="2" Name="buttonKlienciAdd" Padding="0" Width="95" Click="buttonKlienciAdd_Click">
+                            <Button BorderBrush="#FFBAD0DC" Canvas.Left="199" Canvas.Top="103" Foreground="{x:Null}" Height="35" Margin="2" Name="buttonKlienciAdd" Padding="0" Width="95" Click="buttonKlienciAdd_Click" TabIndex="4">
                                 <StackPanel Orientation="Horizontal">
                                     <Label Content="Dodaj" FontWeight="Normal" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="0" Name="label71" Padding="0" VerticalAlignment="Center" VerticalContentAlignment="Center" Width="42" FontSize="13" />
                                     <Image Height="24" Margin="2" Name="image3" Source="/PensjonatApp;component/Images/Add-icon1.png" Stretch="Fill" StretchDirection="Both" Width="24" />
                                 </StackPanel>
                             </Button>
-                            <Button BorderBrush="#FFBAD0DC" Foreground="{x:Null}" Height="35" Name="buttonKlienciOk" Padding="0" Width="95" Click="buttonKlienciOk_Click" Margin="2">
+                            <Button BorderBrush="#FFBAD0DC" Foreground="{x:Null}" Height="35" Name="buttonKlienciOk" Padding="0" Width="95" Click="buttonKlienciOk_Click" Margin="2" TabIndex="3">
                                 <StackPanel FlowDirection="LeftToRight" Orientation="Horizontal">
                                     <Image Grid.RowSpan="2" Height="24" HorizontalAlignment="Left" Margin="2,3,0,3" Name="image16" Source="/PensjonatApp;component/Images/Check-icon2.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="24" />
                                     <Label Content="OK" FlowDirection="LeftToRight" FontWeight="Normal" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="0" Name="label94" Padding="0" VerticalAlignment="Center" VerticalContentAlignment="Center" Width="55" FontSize="13" />
                                 </StackPanel>
                             </Button>
-                            <Button BorderBrush="#FFBAD0DC" Foreground="{x:Null}" Height="35" Name="buttonKlienciPowrot" Padding="0" Width="95" Click="buttonKlienciPowrot_Click" Margin="2">
+                            <Button BorderBrush="#FFBAD0DC" Foreground="{x:Null}" Height="35" Name="buttonKlienciPowrot" Padding="0" Width="95" Click="buttonKlienciPowrot_Click" Margin="2" TabIndex="2">
                                 <StackPanel FlowDirection="LeftToRight" Orientation="Horizontal">
                                     <Image Grid.RowSpan="2" Height="24" HorizontalAlignment="Left" Margin="2,3,0,3" Name="image17" Source="/PensjonatApp;component/Images/wstecz.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="24" />
                                     <Label Content="Powrót" FontWeight="Normal" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="0" Name="label95" Padding="0" VerticalAlignment="Center" VerticalContentAlignment="Center" Width="55" FontSize="13" />
                                 </StackPanel>
                             </Button>
-                            <Button BorderBrush="#FFBAD0DC" FlowDirection="LeftToRight" Foreground="{x:Null}" Height="35" Name="buttonKlienciSzczegoly" Padding="0" TabIndex="5" Width="95" Margin="2" Click="buttonKlienciSzczegoly_Click">
+                            <Button BorderBrush="#FFBAD0DC" FlowDirection="LeftToRight" Foreground="{x:Null}" Height="35" Name="buttonKlienciSzczegoly" Padding="0" TabIndex="1" Width="95" Margin="2" Click="buttonKlienciSzczegoly_Click">
                                 <StackPanel Orientation="Horizontal">
                                     <Image Height="24" HorizontalAlignment="Left" Margin="2" Name="image90" Source="/PensjonatApp;component/Images/edit_find.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="24" />
                                     <Label Content="Szczegóły" FontSize="13" FontWeight="Normal" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="0" Name="label207" Padding="0" VerticalAlignment="Center" VerticalContentAlignment="Center" Width="60" />
@@ -656,14 +656,14 @@
                         <Label Content="Klienci" FontSize="20" FontWeight="Normal" Height="40" HorizontalAlignment="Left" Margin="53,11,0,0" Name="label73" Padding="0" VerticalAlignment="Top" VerticalContentAlignment="Center" />
                         <Image Height="40" HorizontalAlignment="Left" Margin="165,12,0,0" Name="image9" Source="/PensjonatApp;component/Images/separator.png" Stretch="Fill" VerticalAlignment="Top" Width="2" />
                     </Grid>
-                    <Grid Height="312" Name="gridKlienciDeafult" Opacity="1" ShowGridLines="True" Visibility="Visible">
+                    <Grid Height="160" Name="gridKlienciDeafult" Opacity="1" ShowGridLines="True" Visibility="Visible">
 						<StackPanel Name="stackPanel17" Margin="0,0,0,6" ClipToBounds="False">
 							<Grid Height="41" Name="gridKlienciSearch" Width="579" VerticalAlignment="Top" HorizontalAlignment="Left">
-								<TextBox Name="textBoxKlienciSearch" Height="23" HorizontalAlignment="Left" Margin="12,12,0,0" VerticalAlignment="Top" Width="129" TabIndex="1" />
-								<Button Name="buttonKlienciSearch" Content="Szukaj" Height="23" HorizontalAlignment="Left" Margin="468,11,0,0" VerticalAlignment="Top" Width="75" Click="buttonKlienciSearch_Click" />
-								<RadioButton Name="radioButtonKlienciSearchKlient" Content="Klient" GroupName="klienciSzukaj" Height="16" IsChecked="True" IsThreeState="False" Margin="147,15,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="46" />
-								<RadioButton Name="radioButtonKlienciSearchIdKlienta" Content="Id klienta" GroupName="klienciSzukaj" Height="16" HorizontalAlignment="Left" IsChecked="False" Margin="204,15,0,0" VerticalAlignment="Top" />
-								<ToggleButton Height="23" HorizontalAlignment="Left" Margin="549,11,0,0" Name="toggleButtonKlienciSearchExtend" VerticalAlignment="Top" Width="24" Content="+" Click="toggleButtonKlienciSearchExtend_Checked" Checked="toggleButtonKlienciSearchExtend_Checked" />
+								<TextBox Name="textBoxKlienciSearch" Height="23" HorizontalAlignment="Left" Margin="12,12,0,0" VerticalAlignment="Top" Width="129" TabIndex="10" />
+								<Button Name="buttonKlienciSearch" Content="Szukaj" Height="23" HorizontalAlignment="Left" Margin="468,11,0,0" VerticalAlignment="Top" Width="75" Click="buttonKlienciSearch_Click" TabIndex="13" />
+								<RadioButton Name="radioButtonKlienciSearchKlient" Content="Klient" GroupName="klienciSzukaj" Height="16" IsChecked="True" IsThreeState="False" Margin="147,15,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="46" TabIndex="11" />
+								<RadioButton Name="radioButtonKlienciSearchIdKlienta" Content="Id klienta" GroupName="klienciSzukaj" Height="16" HorizontalAlignment="Left" IsChecked="False" Margin="204,15,0,0" VerticalAlignment="Top" TabIndex="12" />
+								<ToggleButton Height="23" HorizontalAlignment="Left" Margin="549,11,0,0" Name="toggleButtonKlienciSearchExtend" VerticalAlignment="Top" Width="24" Content="+" Click="toggleButtonKlienciSearchExtend_Checked" Checked="toggleButtonKlienciSearchExtend_Checked" TabIndex="14" />
 							</Grid>
 							<Grid Height="126" Name="gridKlienciSearchExtend" Visibility="Collapsed">
 								<TextBox Height="20" Margin="51,7,0,0" Name="textBoxKlienciSearchExtendImie" VerticalAlignment="Top" HorizontalAlignment="Left" Width="120" FontSize="10" />
@@ -706,7 +706,7 @@
 							</DataGrid>
 						</StackPanel>
 					</Grid>
-                    <Grid Height="30" Name="gridKlienciEdit" Opacity="1" ShowGridLines="True" Visibility="Visible">
+                    <Grid Height="16" Name="gridKlienciEdit" Opacity="1" ShowGridLines="True" Visibility="Visible">
                         <Label Content="Edycja klienta:" FontSize="15" FontWeight="Normal" HorizontalAlignment="Left" Margin="10,10,0,0" Name="label75" Padding="2" VerticalAlignment="Top" />
 						<Label Content="Label" Height="28" HorizontalAlignment="Left" Margin="105,8,0,0" Name="labelKlienciEdytujId" VerticalAlignment="Top" IsEnabled="False" Visibility="Hidden" />
 						<StackPanel Height="340" HorizontalAlignment="Left" Margin="8,52,0,0" Name="stackPanel16" VerticalAlignment="Top" Width="342">
@@ -714,69 +714,69 @@
 								<Grid>
 									<Label Content="Imię:" FontWeight="Bold" HorizontalAlignment="Left" Margin="8,9,0,0" Name="label44" Padding="2" VerticalAlignment="Top" />
 									<Label Content="Nazwisko:" FontWeight="Bold" HorizontalAlignment="Left" Margin="8,36,0,0" Name="label47" Padding="2" VerticalAlignment="Top" />
-									<TextBox Height="23" HorizontalAlignment="Left" Margin="192,9,0,0" Name="textBoxKlienciEdycjaImie" Text="" VerticalAlignment="Top" Width="120" />
-									<TextBox Height="23" HorizontalAlignment="Left" Margin="192,36,0,0" Name="textBoxKlienciEdycjaNazwisko" Text="" VerticalAlignment="Top" Width="120" />
+									<TextBox Height="23" HorizontalAlignment="Left" Margin="192,9,0,0" Name="textBoxKlienciEdycjaImie" Text="" VerticalAlignment="Top" Width="120" TabIndex="12" />
+									<TextBox Height="23" HorizontalAlignment="Left" Margin="192,36,0,0" Name="textBoxKlienciEdycjaNazwisko" Text="" VerticalAlignment="Top" Width="120" TabIndex="13" />
 									<Label Content="PESEL:" FontWeight="Bold" HorizontalAlignment="Left" Margin="8,63,0,0" Name="label49" Padding="2" VerticalAlignment="Top" />
-									<TextBox Height="23" HorizontalAlignment="Left" Margin="192,63,0,0" Name="textBoxKlienciEdycjaPESEL" Text="" VerticalAlignment="Top" Width="120" />
+									<TextBox Height="23" HorizontalAlignment="Left" Margin="192,63,0,0" Name="textBoxKlienciEdycjaPESEL" Text="" VerticalAlignment="Top" Width="120" TabIndex="14" />
 									<Label Content="Miejscowość:" FontWeight="Bold" HorizontalAlignment="Left" Margin="8,119,0,0" Name="label55" Padding="2" VerticalAlignment="Top" />
 									<Label Content="Adres:" FontWeight="Bold" HorizontalAlignment="Left" Margin="8,91,0,0" Name="label56" Padding="2" VerticalAlignment="Top" />
-									<TextBox Height="23" HorizontalAlignment="Left" Margin="192,91,0,0" Name="textBoxKlienciEdycjaAdres" Text="" VerticalAlignment="Top" Width="120" />
+									<TextBox Height="23" HorizontalAlignment="Left" Margin="192,91,0,0" Name="textBoxKlienciEdycjaAdres" Text="" VerticalAlignment="Top" Width="120" TabIndex="15" />
 									<Label Content="Telefon:" FontWeight="Bold" HorizontalAlignment="Left" Margin="8,200,0,0" Name="label57" Padding="2" VerticalAlignment="Top" />
-									<TextBox Height="23" HorizontalAlignment="Left" Margin="192,200,0,0" Name="textBoxKlienciEdycjaTelefon" Text="" VerticalAlignment="Top" Width="120" />
+									<TextBox Height="23" HorizontalAlignment="Left" Margin="192,200,0,0" Name="textBoxKlienciEdycjaTelefon" Text="" VerticalAlignment="Top" Width="120" TabIndex="18" />
 									<Label Content="Mail:" FontWeight="Bold" HorizontalAlignment="Left" Margin="8,173,0,0" Name="label58" Padding="2" VerticalAlignment="Top" />
-									<TextBox Height="23" HorizontalAlignment="Left" Margin="192,173,0,0" Name="textBoxKlienciEdycjaMail" Text="" VerticalAlignment="Top" Width="120" />
+									<TextBox Height="23" HorizontalAlignment="Left" Margin="192,173,0,0" Name="textBoxKlienciEdycjaMail" Text="" VerticalAlignment="Top" Width="120" TabIndex="17" />
 									<Label Content="Kod Pocztowy:" FontWeight="Bold" HorizontalAlignment="Left" Margin="8,146,0,0" Name="label62" Padding="2" VerticalAlignment="Top" />
-									<TextBox Height="23" HorizontalAlignment="Left" Margin="192,146,0,0" Name="textBoxKlienciEdycjaKodPocztowy" VerticalAlignment="Top" Width="120" />
+									<TextBox HorizontalAlignment="Left" Margin="192,146,0,58" Name="textBoxKlienciEdycjaKodPocztowy" Width="120" TabIndex="16" />
 									<local:AutoCompleteTextBox DelayTime="500" Height="23" Margin="192,118,0,0" x:Name="textBoxKlienciEdycjaMiejscowoscAuto" Threshold="3" VerticalAlignment="Top" HorizontalAlignment="Left" Width="120" AllowDrop="True" Focusable="True" />
 								</Grid>
 							</GroupBox>
 							<GroupBox Header="Dane firmy" Height="86" Name="groupBoxKlienciEdycja2" Width="326">
 								<Grid>
 									<Label Content="NIP:" FontWeight="Bold" HorizontalAlignment="Left" Margin="6,35,0,0" Name="label63" Padding="2" VerticalAlignment="Top" />
-									<TextBox Height="23" HorizontalAlignment="Left" Margin="190,35,0,0" Name="textBoxKlienciEdycjaNIP" Text="" VerticalAlignment="Top" Width="120" />
+									<TextBox Height="23" HorizontalAlignment="Left" Margin="190,35,0,0" Name="textBoxKlienciEdycjaNIP" Text="" VerticalAlignment="Top" Width="120" TabIndex="20" />
 									<Label Content="Firma:" FontWeight="Bold" HorizontalAlignment="Left" Margin="6,6,0,0" Name="label65" Padding="2" VerticalAlignment="Top" />
-									<TextBox Height="23" HorizontalAlignment="Left" Margin="190,6,0,0" Name="textBoxKlienciEdycjaFirma" Text="" VerticalAlignment="Top" Width="120" />
+									<TextBox Height="23" HorizontalAlignment="Left" Margin="190,6,0,0" Name="textBoxKlienciEdycjaFirma" Text="" VerticalAlignment="Top" Width="120" TabIndex="19" />
 								</Grid>
 							</GroupBox>
 						</StackPanel>
-						<RadioButton Content="Osoba prywatna" GroupName="radioGroupKlienciEdycja" Height="16" HorizontalAlignment="Left" IsChecked="True" Margin="14,34,0,0" Name="radioButtonKlientEdycjaOsoba" VerticalAlignment="Top" IsEnabled="False" Checked="radioButtonKlientEdycja_Checked" />
-						<RadioButton Content="Firma" GroupName="radioGroupKlienciEdycja" Height="16" Margin="201,34,0,0" Name="radioButtonKlientEdycjaFirma" VerticalAlignment="Top" HorizontalAlignment="Left" Width="45" IsEnabled="False" Checked="radioButtonKlientEdycja_Checked" />
+						<RadioButton Content="Osoba prywatna" GroupName="radioGroupKlienciEdycja" Height="16" HorizontalAlignment="Left" IsChecked="True" Margin="14,34,0,0" Name="radioButtonKlientEdycjaOsoba" VerticalAlignment="Top" IsEnabled="False" Checked="radioButtonKlientEdycja_Checked" TabIndex="10" />
+						<RadioButton Content="Firma" GroupName="radioGroupKlienciEdycja" Height="16" Margin="201,34,0,0" Name="radioButtonKlientEdycjaFirma" VerticalAlignment="Top" HorizontalAlignment="Left" Width="45" IsEnabled="False" Checked="radioButtonKlientEdycja_Checked" TabIndex="11" />
 
 					</Grid>
-                    <Grid Height="89" Name="gridKlienciAdd" Opacity="1" ShowGridLines="True" Visibility="Visible">
+                    <Grid Height="62" Name="gridKlienciAdd" Opacity="1" ShowGridLines="True" Visibility="Visible">
                         <Label Content="Dodawanie klienta:" FontSize="15" FontWeight="Normal" HorizontalAlignment="Left" Margin="10,10,0,0" Name="label92" Padding="2" VerticalAlignment="Top" />
 						<StackPanel Height="411" HorizontalAlignment="Left" Margin="21,63,0,0" Name="stackPanel15" VerticalAlignment="Top" Width="342">
 							<GroupBox Header="Dane klienta:" Height="250" Name="groupBoxKlienciAdd1" Width="328">
 								<Grid>
 									<Label Content="Imię:" FontWeight="Bold" HorizontalAlignment="Left" Margin="8,9,0,0" Name="labelKlienciAddImie" Padding="2" VerticalAlignment="Top" />
 									<Label Content="Nazwisko:" FontWeight="Bold" HorizontalAlignment="Left" Margin="8,36,0,0" Name="labelKlienciAddNazwisko" Padding="2" VerticalAlignment="Top" />
-									<TextBox Name="textBoxKlienciAddImie" Height="23" HorizontalAlignment="Left" Margin="192,9,0,0" Text="" VerticalAlignment="Top" Width="120" />
-									<TextBox Name="textBoxKlienciAddNazwisko" Height="23" HorizontalAlignment="Left" Margin="192,36,0,0" Text="" VerticalAlignment="Top" Width="120" />
+									<TextBox Name="textBoxKlienciAddImie" Height="23" HorizontalAlignment="Left" Margin="192,9,0,0" Text="" VerticalAlignment="Top" Width="120" TabIndex="12" />
+									<TextBox Name="textBoxKlienciAddNazwisko" Height="23" HorizontalAlignment="Left" Margin="192,36,0,0" Text="" VerticalAlignment="Top" Width="120" TabIndex="13" />
 									<Label Content="PESEL:" FontWeight="Bold" HorizontalAlignment="Left" Margin="8,63,0,0" Name="labelKlienciAddPESEL" Padding="2" VerticalAlignment="Top" />
-									<TextBox Name="textBoxKlienciAddPESEL" Height="23" HorizontalAlignment="Left" Margin="192,63,0,0" Text="" VerticalAlignment="Top" Width="120" />
+									<TextBox Name="textBoxKlienciAddPESEL" Height="23" HorizontalAlignment="Left" Margin="192,63,0,0" Text="" VerticalAlignment="Top" Width="120" TabIndex="14" />
 									<Label Content="Miejscowość:" FontWeight="Bold" HorizontalAlignment="Left" Margin="8,119,0,0" Name="labelKlienciAddMiejscowoscAuto" Padding="2" VerticalAlignment="Top" />
 									<local:AutoCompleteTextBox Height="23" Width="120" DelayTime="500" x:Name="textBoxKlienciAddMiejscowoscAuto" Threshold="3" Margin="192,120,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" AllowDrop="True" Focusable="True" />
 									<Label Content="Adres:" FontWeight="Bold" HorizontalAlignment="Left" Margin="8,91,0,0" Name="labelKlienciAddAdres" Padding="2" VerticalAlignment="Top" />
-									<TextBox Name="textBoxKlienciAddAdres" Height="23" HorizontalAlignment="Left" Margin="192,91,0,0" Text="" VerticalAlignment="Top" Width="120" />
+									<TextBox Name="textBoxKlienciAddAdres" Height="23" HorizontalAlignment="Left" Margin="192,91,0,0" Text="" VerticalAlignment="Top" Width="120" TabIndex="15" />
 									<Label Content="Telefon:" FontWeight="Bold" HorizontalAlignment="Left" Margin="8,200,0,0" Name="labelKlienciAddTelefon" Padding="2" VerticalAlignment="Top" />
-									<TextBox Name="textBoxKlienciAddTelefon" Height="23" HorizontalAlignment="Left" Margin="192,200,0,0" Text="" VerticalAlignment="Top" Width="120" />
+									<TextBox Name="textBoxKlienciAddTelefon" Height="23" HorizontalAlignment="Left" Margin="192,200,0,0" Text="" VerticalAlignment="Top" Width="120" TabIndex="18" />
 									<Label Content="Mail:" FontWeight="Bold" HorizontalAlignment="Left" Margin="8,173,0,0" Name="labelKlienciAddMail" Padding="2" VerticalAlignment="Top" />
-									<TextBox Name="textBoxKlienciAddMail" Height="23" HorizontalAlignment="Left" Margin="192,173,0,0" Text="" VerticalAlignment="Top" Width="120" />
+									<TextBox Name="textBoxKlienciAddMail" Height="23" HorizontalAlignment="Left" Margin="192,173,0,0" Text="" VerticalAlignment="Top" Width="120" TabIndex="17" />
 									<Label Content="Kod Pocztowy:" FontWeight="Bold" HorizontalAlignment="Left" Margin="8,146,0,0" Name="labelKlienciAddKodPocztowy" VerticalAlignment="Top" Padding="2" />
-									<TextBox Height="23" HorizontalAlignment="Left" Margin="192,146,0,0" Name="textBoxKlienciAddKodPocztowy" VerticalAlignment="Top" Width="120" />
+									<TextBox Height="23" HorizontalAlignment="Left" Margin="192,146,0,0" Name="textBoxKlienciAddKodPocztowy" VerticalAlignment="Top" Width="120" TabIndex="16" />
 								</Grid>
 							</GroupBox>
 							<GroupBox Header="Dane firmy" Name="groupBoxKlienciAdd2" Width="326" Height="86">
 								<Grid>
 									<Label Content="NIP:" FontWeight="Bold" HorizontalAlignment="Left" Margin="6,35,0,0" Name="labelKlienciAddNIP" Padding="2" VerticalAlignment="Top" />
-									<TextBox Name="textBoxKlienciAddNIP" Height="23" HorizontalAlignment="Left" Margin="190,35,0,0" Text="" VerticalAlignment="Top" Width="120" />
+									<TextBox Name="textBoxKlienciAddNIP" Height="23" HorizontalAlignment="Left" Margin="190,35,0,0" Text="" VerticalAlignment="Top" Width="120" TabIndex="20" />
 									<Label Content="Firma:" FontWeight="Bold" HorizontalAlignment="Left" Margin="6,6,0,0" Name="labelKlienciAddFirma" Padding="2" VerticalAlignment="Top" />
-									<TextBox Name="textBoxKlienciAddFirma" Height="23" HorizontalAlignment="Left" Margin="190,6,0,0" Text="" VerticalAlignment="Top" Width="120" />
+									<TextBox Name="textBoxKlienciAddFirma" Height="23" HorizontalAlignment="Left" Margin="190,6,0,0" Text="" VerticalAlignment="Top" Width="120" TabIndex="19" />
 								</Grid>
 							</GroupBox>
 						</StackPanel>
-						<RadioButton Content="Osoba prywatna" Height="16" HorizontalAlignment="Left" Margin="35,44,0,0" Name="radioButtonKlientAddOsoba" VerticalAlignment="Top" IsChecked="True" Checked="radioButtonKlientAdd_Checked" GroupName="radioGroupKlienciAdd" />
-						<RadioButton Content="Firma" Height="16" Margin="222,44,0,0" Name="radioButtonKlientAddFirma" VerticalAlignment="Top" HorizontalAlignment="Left" Width="45" Checked="radioButtonKlientAdd_Checked" GroupName="radioGroupKlienciAdd" />
+						<RadioButton Content="Osoba prywatna" Height="16" HorizontalAlignment="Left" Margin="35,44,0,0" Name="radioButtonKlientAddOsoba" VerticalAlignment="Top" IsChecked="True" Checked="radioButtonKlientAdd_Checked" GroupName="radioGroupKlienciAdd" TabIndex="10" />
+						<RadioButton Content="Firma" Height="16" Margin="222,44,0,0" Name="radioButtonKlientAddFirma" VerticalAlignment="Top" HorizontalAlignment="Left" Width="45" Checked="radioButtonKlientAdd_Checked" GroupName="radioGroupKlienciAdd" TabIndex="11" />
 
 					</Grid>
                     <Grid Height="369" Name="gridKlienciSzczegoly" Opacity="1" ShowGridLines="True" Visibility="Visible">
@@ -811,8 +811,8 @@
                                 </Grid>
                             </GroupBox>
                         </StackPanel>
-                        <RadioButton Checked="radioButtonKlientEdycja_Checked" Content="Osoba prywatna" GroupName="radioGroupKlienciSzczegoly" Height="16" HorizontalAlignment="Left" IsChecked="True" IsEnabled="False" Margin="14,34,0,0" Name="radioButtonKlienciSzczegolyPrywatna" VerticalAlignment="Top" />
-                        <RadioButton Checked="radioButtonKlientEdycja_Checked" Content="Firma" GroupName="radioGroupKlienciSzczegoly" Height="16" HorizontalAlignment="Left" IsEnabled="False" Margin="201,34,0,0" Name="radioButtonKlienciSzczegolyFirma" VerticalAlignment="Top" Width="45" />
+                        <RadioButton Checked="radioButtonKlientEdycja_Checked" Content="Osoba prywatna" GroupName="radioGroupKlienciSzczegoly" Height="16" HorizontalAlignment="Left" IsChecked="True" IsEnabled="False" Margin="14,34,0,0" Name="radioButtonKlienciSzczegolyPrywatna" VerticalAlignment="Top" TabIndex="10" />
+                        <RadioButton Checked="radioButtonKlientEdycja_Checked" Content="Firma" GroupName="radioGroupKlienciSzczegoly" Height="16" HorizontalAlignment="Left" IsEnabled="False" Margin="201,34,0,0" Name="radioButtonKlienciSzczegolyFirma" VerticalAlignment="Top" Width="45" TabIndex="11" />
                     </Grid>
                 </StackPanel>
             </TabItem>
