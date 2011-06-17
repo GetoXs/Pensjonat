@@ -320,7 +320,7 @@
 								</DataGrid.Columns>
 							</DataGrid>
 						</StackPanel>
-						<ToggleButton Content="+" HorizontalAlignment="Left" Margin="552,44,0,0" Name="toggleButtonPobytySearchExtend" Width="24" Height="23" VerticalAlignment="Top" FontSize="11" Checked="toggleButtonPobytySearchExtend_Checked" TabIndex="17" />
+						<ToggleButton Content="+" HorizontalAlignment="Left" Margin="552,44,0,0" Name="toggleButtonPobytySearchExtend" Width="24" Height="23" VerticalAlignment="Top" FontSize="11" Checked="toggleButtonPobytySearchExtend_Checked" TabIndex="17" Click="toggleButtonPobytySearchExtend_Checked" />
 						<TextBox Name="textBoxPobytySearch" Height="23" HorizontalAlignment="Left" Margin="12,44,0,0" VerticalAlignment="Top" Width="129" TabIndex="12" />
 						<RadioButton Name="radioButtonPobytySearchIdKlienta" Content="Id pobytu" GroupName="pobytySzukaj" Height="16" HorizontalAlignment="Left" Margin="202,47,0,0" VerticalAlignment="Top" TabIndex="14" />
 						<RadioButton Name="radioButtonPobytySearchKlient" Content="Klient" GroupName="pobytySzukaj" Height="16" HorizontalAlignment="Left" IsChecked="True" Margin="150,47,0,0" VerticalAlignment="Top" TabIndex="13" />
