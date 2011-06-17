@@ -887,19 +887,26 @@ namespace PensjonatApp
 			else if (currentGridPobyty == gridPobytySum)
 			{
 				decimal cena=-1;
-				if (Decimal.TryParse((string)labelPobytySumDoZaplaty.Content, out cena) && cena>=0)
-				{
+                PobytyDS.PobytyRow selectedRow = (PobytyDS.PobytyRow)((DataRowView)dataGridPobytySzukaj.SelectedItem).Row;
+                if (selectedRow.Isid_rachunkuNull())
+                {     
+				    if (Decimal.TryParse((string)labelPobytySumDoZaplaty.Content, out cena) && cena>=0)
+				    {
 
-					if ((bool)radioButtonPobytyIndywidualne.IsChecked == true)
-						RozliczenieHelper.rozliczPobyt((int)labelPobytySumId.Content, cena);
-					else
-						RozliczenieHelper.rozliczRezerwacje((int)labelPobytySumIdRezerwacji.Content, cena);
-					System.Windows.MessageBox.Show("Rozliczono poprawnie.", "Rozliczanie pobytu", MessageBoxButton.OK, MessageBoxImage.Information);
-                    zwinPobyty();
-                    showWindow(gridPobytyDeafult, buttonPobytyDeafultList, ref currentGridPobyty);			
-				}else
-					System.Windows.MessageBox.Show("Wystąpił błąd w rozliczeniu (ujemna cena, bądź program nie potrafi pobrać id, ceny)", "Rozliczanie pobytu", MessageBoxButton.OK, MessageBoxImage.Error);
-			}
+					    if ((bool)radioButtonPobytyIndywidualne.IsChecked == true)
+						    RozliczenieHelper.rozliczPobyt((int)labelPobytySumId.Content, cena);
+					    else
+						    RozliczenieHelper.rozliczRezerwacje((int)labelPobytySumIdRezerwacji.Content, cena);
+					    System.Windows.MessageBox.Show("Rozliczono poprawnie.", "Rozliczanie pobytu", MessageBoxButton.OK, MessageBoxImage.Information);
+                        zwinPobyty();
+                        showWindow(gridPobytyDeafult, buttonPobytyDeafultList, ref currentGridPobyty);			
+				    }else
+					    System.Windows.MessageBox.Show("Wystąpił błąd w rozliczeniu (ujemna cena, bądź program nie potrafi pobrać id, ceny)", "Rozliczanie pobytu", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                else
+                    System.Windows.MessageBox.Show("Próbujesz rozliczać pobyt, który ma już naliczony rachunek.", "Rozliczanie pobytu.", MessageBoxButton.OK, MessageBoxImage.Warning);
+     
+            }
             else if (currentGridPobyty == gridPobytyUslugi || currentGridPobyty == gridPobytyPosilki)
             {
                 zwinPobyty();
@@ -1392,9 +1399,8 @@ namespace PensjonatApp
         {
             if (dataGridPobytySzukaj.SelectedItem != null)
             {
-				PobytyDS.PobytyRow selectedRow = (PobytyDS.PobytyRow)((DataRowView)dataGridPobytySzukaj.SelectedItem).Row;
-				if (selectedRow.Isid_rachunkuNull())
-				{
+                    PobytyDS.PobytyRow selectedRow = (PobytyDS.PobytyRow)((DataRowView)dataGridPobytySzukaj.SelectedItem).Row;
+                
 					//rzeczy niezalezne od rodzaju rozliczenia
 					List<string> lst = new List<string>();
 					DS.RachunkiDS.RabatyDataTable rabatyTable = TablesManager.Manager.RabatyTableAdapter.GetDataByAktywne();
@@ -1524,8 +1530,6 @@ namespace PensjonatApp
 					}
 					zwinPobyty();
                     showWindow(gridPobytySum, buttonPobytyBackOkList, ref currentGridPobyty);
-				}else
-					System.Windows.MessageBox.Show("Próbujesz rozliczać pobyt, który ma już naliczony rachunek.", "Rozliczanie pobytu.", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
             else
                 System.Windows.MessageBox.Show("Najpierw wybierz pobyt.", "Rozliczanie pobytu.", MessageBoxButton.OK, MessageBoxImage.Warning);
