@@ -322,10 +322,10 @@
 						</StackPanel>
 						<ToggleButton Content="+" HorizontalAlignment="Left" Margin="552,44,0,0" Name="toggleButtonPobytySearchExtend" Width="24" Height="23" VerticalAlignment="Top" FontSize="11" Checked="toggleButtonPobytySearchExtend_Checked" />
 						<TextBox Name="textBoxPobytySearch" Height="23" HorizontalAlignment="Left" Margin="12,44,0,0" VerticalAlignment="Top" Width="129" TabIndex="1" />
-						<RadioButton Name="radioButtonPobytySearchIdKlienta" Content="Id klienta" GroupName="pobytySzukaj" Height="16" HorizontalAlignment="Left" Margin="202,47,0,0" VerticalAlignment="Top" TabIndex="4" />
+						<RadioButton Name="radioButtonPobytySearchIdKlienta" Content="Id pobytu" GroupName="pobytySzukaj" Height="16" HorizontalAlignment="Left" Margin="202,47,0,0" VerticalAlignment="Top" TabIndex="4" />
 						<RadioButton Name="radioButtonPobytySearchKlient" Content="Klient" GroupName="pobytySzukaj" Height="16" HorizontalAlignment="Left" IsChecked="True" Margin="150,47,0,0" VerticalAlignment="Top" TabIndex="3" />
 						<Button Name="buttonPobytySzukaj" Content="Szukaj" Height="23" HorizontalAlignment="Left" Margin="471,44,0,0" VerticalAlignment="Top" Width="75" Click="buttonPobytySzukaj_Click" TabIndex="2" />
-						<CheckBox Name="checkBoxPobytySearchNierozliczone" Content="Tylko nierozliczone" Height="16" HorizontalAlignment="Left" Margin="273,47,0,0" VerticalAlignment="Top" IsChecked="True" TabIndex="5" />
+						<CheckBox Name="checkBoxPobytySearchNierozliczone" Content="Tylko nierozliczone" Height="16" HorizontalAlignment="Left" Margin="275,47,0,0" VerticalAlignment="Top" IsChecked="True" TabIndex="5" />
 						<RadioButton Content="grupowy" Height="16" HorizontalAlignment="Right" Margin="0,11,15,0" Name="radioButtonPobytyGrupowe" VerticalAlignment="Top" GroupName="PobytyGrupowe" Checked="radioButtonPobytyGrupowe_Checked" />
 						<RadioButton Content="indywidualny" Height="16" HorizontalAlignment="Right" Margin="0,11,86,0" Name="radioButtonPobytyIndywidualne" VerticalAlignment="Top" GroupName="PobytyGrupowe" IsChecked="True" Checked="radioButtonPobytyIndywidualne_Checked" />
 						<Label Content="Kontekst:" Height="28" Margin="0,5,180,0" Name="label45" VerticalAlignment="Top" FontSize="13" HorizontalAlignment="Right" Width="63" />

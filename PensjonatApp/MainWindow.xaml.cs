@@ -966,7 +966,7 @@ namespace PensjonatApp
 					sb.Append((textBoxPobytySearch.Text != "") ? (" AND (UCASE(Klienci.imie) LIKE UCASE('%" + textBoxPobytySearch.Text + "%') OR UCASE(Klienci.nazwisko) LIKE UCASE('%" + textBoxPobytySearch.Text + "%'))") : "");
 				else
 					if (int.TryParse(textBoxPobytySearch.Text, out intTmp))
-						sb.Append((textBoxPobytySearch.Text != "") ? (" AND Klienci.id_klienta=" + intTmp + "") : "");
+						sb.Append((textBoxPobytySearch.Text != "") ? (" AND Pobyty.id_pobytu=" + intTmp + "") : "");
 
 				//bez rachunku / nierozliczone
 				sb.Append((checkBoxPobytySearchNierozliczone.IsChecked == true) ? (" AND (Pobyty.id_rachunku IS NULL)") : "");
