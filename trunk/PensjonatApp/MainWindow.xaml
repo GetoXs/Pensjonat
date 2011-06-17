@@ -1390,25 +1390,25 @@
                         <Label Content="Usługi" FontSize="20" FontWeight="Normal" Height="40" HorizontalAlignment="Left" Margin="53,11,0,0" Name="label121" Padding="0" VerticalAlignment="Top" VerticalContentAlignment="Center" />
                         <Image Height="40" HorizontalAlignment="Left" Margin="165,12,0,0" Name="image39" Source="/PensjonatApp;component/Images/separator.png" Stretch="Fill" VerticalAlignment="Top" Width="2" />
                         <StackPanel CanHorizontallyScroll="True" ClipToBounds="False" FlowDirection="RightToLeft" HorizontalAlignment="Right" Margin="172,-1,5,0" Name="stackPanel8" Orientation="Horizontal" VerticalAlignment="Stretch" Width="416">
-                            <Button BorderBrush="#FFBAD0DC" FlowDirection="LeftToRight" Foreground="{x:Null}" Height="35" Margin="2" Name="buttonUslugiUsun" Padding="0" Width="95" Click="buttonUslugiUsun_Click">
+                            <Button BorderBrush="#FFBAD0DC" FlowDirection="LeftToRight" Foreground="{x:Null}" Height="35" Margin="2" Name="buttonUslugiUsun" Padding="0" Width="95" Click="buttonUslugiUsun_Click" TabIndex="4">
                                 <StackPanel Orientation="Horizontal">
                                     <Image Height="24" HorizontalAlignment="Left" Margin="2" Name="image40" Source="/PensjonatApp;component/Images/Delete-icon1.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="24" />
                                     <Label Content="Usuń" FontWeight="Normal" HorizontalContentAlignment="Center" Name="label122" Padding="0" VerticalContentAlignment="Center" Width="42" FontSize="13" />
                                 </StackPanel>
                             </Button>
-                            <Button BorderBrush="#FFBAD0DC" FlowDirection="LeftToRight" Foreground="{x:Null}" Height="35" Margin="2" Name="buttonUslugiEdytuj" Padding="0" Width="95" Click="buttonUslugiEdytuj_Click">
+                            <Button BorderBrush="#FFBAD0DC" FlowDirection="LeftToRight" Foreground="{x:Null}" Height="35" Margin="2" Name="buttonUslugiEdytuj" Padding="0" Width="95" Click="buttonUslugiEdytuj_Click" TabIndex="3">
                                 <StackPanel Orientation="Horizontal">
                                     <Image Height="24" HorizontalAlignment="Left" Margin="2" Name="image41" Source="/PensjonatApp;component/Images/document_edit.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="24" />
                                     <Label Content="Edytuj" FontWeight="Normal" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="0" Name="label123" Padding="0" VerticalAlignment="Center" VerticalContentAlignment="Center" Width="42" FontSize="13" />
                                 </StackPanel>
                             </Button>
-                            <Button BorderBrush="#FFBAD0DC" Foreground="{x:Null}" Height="35" Name="buttonUslugiOk" Padding="0" TabIndex="6" Width="95" Margin="2" Click="buttonUslugiOk_Click">
+                            <Button BorderBrush="#FFBAD0DC" Foreground="{x:Null}" Height="35" Name="buttonUslugiOk" Padding="0" TabIndex="2" Width="95" Margin="2" Click="buttonUslugiOk_Click">
                                 <StackPanel FlowDirection="LeftToRight" Orientation="Horizontal">
                                     <Image Grid.RowSpan="2" Height="24" HorizontalAlignment="Left" Margin="2,3,0,3" Name="image61" Source="/PensjonatApp;component/Images/Check-icon2.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="24" />
                                     <Label Content="OK" FlowDirection="LeftToRight" FontWeight="Normal" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="0" Name="label155" Padding="0" VerticalAlignment="Center" VerticalContentAlignment="Center" Width="55" FontSize="13" />
                                 </StackPanel>
                             </Button>
-                            <Button BorderBrush="#FFBAD0DC" Foreground="{x:Null}" Height="35" Name="buttonUslugiPowrot" Padding="0" TabIndex="7" Width="95" Margin="2" Click="buttonUslugiPowrot_Click">
+                            <Button BorderBrush="#FFBAD0DC" Foreground="{x:Null}" Height="35" Name="buttonUslugiPowrot" Padding="0" TabIndex="1" Width="95" Margin="2" Click="buttonUslugiPowrot_Click">
                                 <StackPanel FlowDirection="LeftToRight" Orientation="Horizontal">
                                     <Image Grid.RowSpan="2" Height="24" HorizontalAlignment="Left" Margin="2,3,0,3" Name="image62" Source="/PensjonatApp;component/Images/wstecz.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="24" />
                                     <Label Content="Powrót" FontWeight="Normal" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="0" Name="label156" Padding="0" VerticalAlignment="Center" VerticalContentAlignment="Center" Width="55" FontSize="13" />
@@ -1420,31 +1420,31 @@
                         <Label Content="Edycja usługi:" FontSize="15" FontWeight="Normal" HorizontalAlignment="Left" Margin="10,12,0,0" Name="label164" Padding="2" VerticalAlignment="Top" />
                         <Label Content="Label" Height="28" HorizontalAlignment="Left" IsEnabled="False" Margin="105,10,0,0" Name="labelUslugiEdycjaId" VerticalAlignment="Top" Visibility="Hidden" />
                         <Label Content="Nazwa:" FontWeight="Bold" HorizontalAlignment="Left" Margin="37,48,0,0" Name="label169" Padding="2" VerticalAlignment="Top" />
-                        <TextBox Height="23" Margin="128,45,224,0" Name="textBoxUslugiEdycjaNazwa" VerticalAlignment="Top" />
+                        <TextBox Height="23" Margin="128,45,224,0" Name="textBoxUslugiEdycjaNazwa" VerticalAlignment="Top" TabIndex="10" />
                         <Label Content="Opis:" FontWeight="Bold" HorizontalAlignment="Left" Margin="37,76,0,0" Name="label171" Padding="2" VerticalAlignment="Top" />
-                        <TextBox Height="23" Margin="128,75,224,0" Name="textBoxUslugiEdycjaOpis" VerticalAlignment="Top" />
+                        <TextBox Height="23" Margin="128,75,224,0" Name="textBoxUslugiEdycjaOpis" VerticalAlignment="Top" TabIndex="11" />
                         <Label Content="Cena:" FontWeight="Bold" HorizontalAlignment="Left" Margin="37,106,0,0" Name="label172" Padding="2" VerticalAlignment="Top" />
-                        <TextBox Height="23" Margin="128,105,224,0" Name="textBoxUslugiEdycjaCena" VerticalAlignment="Top" />
+                        <TextBox Height="23" Margin="128,105,224,0" Name="textBoxUslugiEdycjaCena" VerticalAlignment="Top" TabIndex="12" />
                         <Label Content="Wykonawca:" FontWeight="Bold" HorizontalAlignment="Left" Margin="37,144,0,0" Name="label173" Padding="2" VerticalAlignment="Top" />
-                        <ComboBox Height="23" IsEnabled="True" ItemsSource="{Binding}" Margin="128,141,224,0" Name="comboBoxUslugiEdycjaWykonawca" VerticalAlignment="Top" IsVisibleChanged="comboBoxUslugiEdycjaWykonawca_IsVisibleChanged" />
+                        <ComboBox Height="23" IsEnabled="True" ItemsSource="{Binding}" Margin="128,141,224,0" Name="comboBoxUslugiEdycjaWykonawca" VerticalAlignment="Top" IsVisibleChanged="comboBoxUslugiEdycjaWykonawca_IsVisibleChanged" TabIndex="13" />
                     </Grid>
                     <Grid Margin="0" MinHeight="580" Name="gridUslugiDeafult" Opacity="1" ShowGridLines="True" Visibility="Visible">
                         <GroupBox Header="Dodaj usługę:" Height="184" Margin="14,19,10,0" Name="groupBox6" VerticalAlignment="Top">
                             <Grid>
                                 <Label Content="Nazwa:" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,6,0,0" Name="label124" Padding="2" VerticalAlignment="Top" />
-                                <TextBox Height="23" Margin="101,3,159,0" Name="textBoxUslugiNazwa" VerticalAlignment="Top" />
-                                <Button BorderBrush="#FFBAD0DC" FlowDirection="LeftToRight" Foreground="{x:Null}" HorizontalAlignment="Right" Margin="0,133,157,4" Name="buttonUslugiDodaj" Padding="0" Height="25" Click="buttonUslugiDodaj_Click">
+                                <TextBox Height="23" Margin="101,3,159,0" Name="textBoxUslugiNazwa" VerticalAlignment="Top" TabIndex="10" />
+                                <Button BorderBrush="#FFBAD0DC" FlowDirection="LeftToRight" Foreground="{x:Null}" HorizontalAlignment="Right" Margin="0,133,157,4" Name="buttonUslugiDodaj" Padding="0" Height="25" Click="buttonUslugiDodaj_Click" TabIndex="14">
                                     <StackPanel Orientation="Horizontal">
                                         <Image Height="16" HorizontalAlignment="Left" Margin="2" Name="image42" Source="/PensjonatApp;component/Images/addSmall.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="16" />
                                         <Label Content="Dodaj" FontWeight="Normal" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Margin="0" Name="label126" Padding="0" VerticalAlignment="Stretch" VerticalContentAlignment="Center" Width="42" />
                                     </StackPanel>
                                 </Button>
                                 <Label Content="Opis:" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,34,0,0" Name="label125" Padding="2" VerticalAlignment="Top" />
-                                <TextBox Height="23" Margin="101,33,159,0" Name="textBoxUslugiOpis" VerticalAlignment="Top" />
+                                <TextBox Height="23" Margin="101,33,159,0" Name="textBoxUslugiOpis" VerticalAlignment="Top" TabIndex="11" />
                                 <Label Content="Cena:" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,64,0,0" Name="label129" Padding="2" VerticalAlignment="Top" />
-                                <TextBox Height="23" Margin="101,63,0,0" Name="textBoxUslugiCena" VerticalAlignment="Top" HorizontalAlignment="Left" Width="83" />
+                                <TextBox Height="23" Margin="101,63,0,0" Name="textBoxUslugiCena" VerticalAlignment="Top" HorizontalAlignment="Left" Width="83" TabIndex="12" />
                                 <Label Content="Wykonawca:" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,102,0,0" Name="label130" Padding="2" VerticalAlignment="Top" />
-                                <ComboBox Height="23" IsEnabled="True" ItemsSource="{Binding}" Margin="101,99,159,0" Name="comboBoxUslugiWykonawca" VerticalAlignment="Top" IsVisibleChanged="comboBoxUslugiWykonawca_IsVisibleChanged" Width="287" />
+                                <ComboBox Height="23" IsEnabled="True" ItemsSource="{Binding}" Margin="101,99,159,0" Name="comboBoxUslugiWykonawca" VerticalAlignment="Top" IsVisibleChanged="comboBoxUslugiWykonawca_IsVisibleChanged" Width="287" TabIndex="13" />
                             </Grid>
                         </GroupBox>
                         <DataGrid AutoGenerateColumns="False" HorizontalGridLinesBrush="#FFD5D5D5" IsEnabled="True" IsReadOnly="True" Margin="20,232,16,15" Name="dataGridUslugiDeafult" VerticalGridLinesBrush="#FFD5D5D5" IsVisibleChanged="dataGridUslugiDeafult_IsVisibleChanged" SelectionMode="Single">
