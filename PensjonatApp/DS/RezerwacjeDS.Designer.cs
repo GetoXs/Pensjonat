@@ -949,7 +949,7 @@ WHERE        r.id_klienta = k.id_klienta AND r.id_rezerwacji = p.id_rezerwacji A
             this._commandCollection[3] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[3].Connection = this.Connection;
             this._commandCollection[3].CommandText = @"SELECT        Rezerwacje.id_rezerwacji, Rezerwacje.zaliczka, Rezerwacje.zaplacono_zaliczke, Rezerwacje.ilosc_osob, Rezerwacje.id_klienta, Pobyty.termin_start, Pobyty.termin_koniec
-FROM            Rezerwacje, Pobyty, Klienci
+FROM            Rezerwacje, Pobyty
 WHERE        Rezerwacje.id_rezerwacji = Pobyty.id_rezerwacji AND (Pobyty.id_pobytu IN
                              (SELECT        TOP 1 id_pobytu
                                FROM            Pobyty p1
