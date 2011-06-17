@@ -307,7 +307,7 @@
 								<DatePicker Height="24" HorizontalAlignment="Left" Margin="253,93,0,0" Name="datePickerPobytySearchExtendTerminOd" VerticalAlignment="Top" Width="120" FontSize="10" TabIndex="26" />
 								<DatePicker FontSize="10" Height="24" HorizontalAlignment="Left" Margin="466,93,0,0" Name="datePickerPobytySearchExtendTerminDo" VerticalAlignment="Top" Width="120" TabIndex="27" />
 							</Grid>
-							<DataGrid Name="dataGridPobytySzukaj" DataContext="{Binding}" IsEnabled="True" MinColumnWidth="30" AutoGenerateColumns="False" IsVisibleChanged="dataGridPobytySzukaj_IsVisibleChanged" IsReadOnly="True" HorizontalGridLinesBrush="#FFD5D5D5" VerticalGridLinesBrush="#FFD5D5D5" SelectionMode="Single" Margin="15">
+							<DataGrid Name="dataGridPobytySzukaj" DataContext="{Binding}" IsEnabled="True" MinColumnWidth="30" AutoGenerateColumns="False" IsVisibleChanged="dataGridPobytySzukaj_IsVisibleChanged" IsReadOnly="True" HorizontalGridLinesBrush="#FFD5D5D5" VerticalGridLinesBrush="#FFD5D5D5" SelectionMode="Single" Margin="15" MinWidth="290">
 								<DataGrid.Columns>
 									<DataGridTextColumn Header="Id" Binding="{Binding Path=id_pobytu}" />
 									<DataGridTextColumn Header="Imię" Binding="{Binding Path=imie}" />
