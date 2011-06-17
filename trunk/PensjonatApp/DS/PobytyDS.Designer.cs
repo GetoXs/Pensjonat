@@ -1042,7 +1042,7 @@ namespace PensjonatApp.DS.PobytyDSTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.Odbc.OdbcCommand[35];
+            this._commandCollection = new global::System.Data.Odbc.OdbcCommand[36];
             this._commandCollection[0] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT id_pobytu, id_pokoju, id_rezerwacji, termin_start, termin_koniec, id_rachu" +
@@ -1050,77 +1050,74 @@ namespace PensjonatApp.DS.PobytyDSTableAdapters {
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT id_pobytu, id_pokoju, id_rezerwacji, termin_start, termin_koniec, id_rachu" +
-                "nku, id_klienta FROM Pobyty";
+            this._commandCollection[1].CommandText = "DELETE FROM Pobyty\r\nWHERE        (id_rezerwacji = ?) AND (id_klienta IS NULL)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_rezerwacji", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_rezerwacji", global::System.Data.DataRowVersion.Original, false, null));
             this._commandCollection[2] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[2].Connection = this.Connection;
             this._commandCollection[2].CommandText = "SELECT id_pobytu, id_pokoju, id_rezerwacji, termin_start, termin_koniec, id_rachu" +
-                "nku, id_klienta FROM Pobyty WHERE id_pobytu = ?";
+                "nku, id_klienta FROM Pobyty";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[2].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_pobytu", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_pobytu", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[3] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = "SELECT        Pobyty.id_pobytu, Pobyty.id_pokoju, Pobyty.id_rezerwacji, Pobyty.te" +
-                "rmin_start, Pobyty.termin_koniec, Pobyty.id_rachunku, Pobyty.id_klienta\r\nFROM   " +
-                "         Pobyty\r\nWHERE        Pobyty.id_pokoju = ? AND Pobyty.id_rezerwacji = ?";
+            this._commandCollection[3].CommandText = "SELECT id_pobytu, id_pokoju, id_rezerwacji, termin_start, termin_koniec, id_rachu" +
+                "nku, id_klienta FROM Pobyty WHERE id_pobytu = ?";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[3].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_pokoju", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_pokoju", global::System.Data.DataRowVersion.Current, false, null));
-            this._commandCollection[3].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_rezerwacji", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_rezerwacji", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[3].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_pobytu", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_pobytu", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[4] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[4].Connection = this.Connection;
-            this._commandCollection[4].CommandText = "SELECT id_pobytu, id_pokoju, id_rezerwacji, termin_start, termin_koniec, id_rachu" +
-                "nku, id_klienta\r\nFROM     Pobyty\r\nWHERE  (id_rachunku = ?)";
+            this._commandCollection[4].CommandText = "SELECT        Pobyty.id_pobytu, Pobyty.id_pokoju, Pobyty.id_rezerwacji, Pobyty.te" +
+                "rmin_start, Pobyty.termin_koniec, Pobyty.id_rachunku, Pobyty.id_klienta\r\nFROM   " +
+                "         Pobyty\r\nWHERE        Pobyty.id_pokoju = ? AND Pobyty.id_rezerwacji = ?";
             this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[4].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_rachunku", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_rachunku", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[4].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_pokoju", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_pokoju", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[4].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_rezerwacji", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_rezerwacji", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[5] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[5].Connection = this.Connection;
             this._commandCollection[5].CommandText = "SELECT id_pobytu, id_pokoju, id_rezerwacji, termin_start, termin_koniec, id_rachu" +
-                "nku, id_klienta FROM Pobyty WHERE id_rezerwacji = ?";
+                "nku, id_klienta\r\nFROM     Pobyty\r\nWHERE  (id_rachunku = ?)";
             this._commandCollection[5].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[5].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_rezerwacji", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_rezerwacji", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[5].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_rachunku", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_rachunku", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[6] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[6].Connection = this.Connection;
             this._commandCollection[6].CommandText = "SELECT id_pobytu, id_pokoju, id_rezerwacji, termin_start, termin_koniec, id_rachu" +
-                "nku, id_klienta\r\nFROM     Pobyty\r\nWHERE  (id_rachunku IS NULL) AND (id_rezerwacj" +
-                "i = ?)";
+                "nku, id_klienta FROM Pobyty WHERE id_rezerwacji = ?";
             this._commandCollection[6].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[6].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_rezerwacji", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_rezerwacji", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[7] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[7].Connection = this.Connection;
-            this._commandCollection[7].CommandText = @"SELECT        Pobyty.id_pobytu, Pobyty.id_pokoju, Pobyty.id_rezerwacji, Pobyty.termin_start, Pobyty.termin_koniec, Pobyty.id_rachunku, Pobyty.id_klienta
-FROM            Pobyty, Klienci
-WHERE        Pobyty.id_klienta = Klienci.id_klienta AND (UCASE(Klienci.nazwisko) LIKE UCASE('%' + ? + '%'))";
+            this._commandCollection[7].CommandText = "SELECT id_pobytu, id_pokoju, id_rezerwacji, termin_start, termin_koniec, id_rachu" +
+                "nku, id_klienta\r\nFROM     Pobyty\r\nWHERE  (id_rachunku IS NULL) AND (id_rezerwacj" +
+                "i = ?)";
             this._commandCollection[7].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[7].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Param1", global::System.Data.Odbc.OdbcType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[7].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_rezerwacji", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_rezerwacji", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[8] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[8].Connection = this.Connection;
-            this._commandCollection[8].CommandText = "SELECT        *\r\nFROM            Pobyty\r\nWHERE        (id_pobytu = ?)";
+            this._commandCollection[8].CommandText = @"SELECT        Pobyty.id_pobytu, Pobyty.id_pokoju, Pobyty.id_rezerwacji, Pobyty.termin_start, Pobyty.termin_koniec, Pobyty.id_rachunku, Pobyty.id_klienta
+FROM            Pobyty, Klienci
+WHERE        Pobyty.id_klienta = Klienci.id_klienta AND (UCASE(Klienci.nazwisko) LIKE UCASE('%' + ? + '%'))";
             this._commandCollection[8].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[8].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_pobytu", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_pobytu", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[8].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Param1", global::System.Data.Odbc.OdbcType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[9] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[9].Connection = this.Connection;
-            this._commandCollection[9].CommandText = @"SELECT        p.id_pobytu, p.id_pokoju, p.id_rezerwacji, p.termin_start, p.termin_koniec, p.id_rachunku, p.id_klienta, k.email, k.imie, k.nazwisko, k.id_miejscowosci, 
+            this._commandCollection[9].CommandText = "SELECT        *\r\nFROM            Pobyty\r\nWHERE        (id_pobytu = ?)";
+            this._commandCollection[9].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[9].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_pobytu", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_pobytu", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[10] = new global::System.Data.Odbc.OdbcCommand();
+            this._commandCollection[10].Connection = this.Connection;
+            this._commandCollection[10].CommandText = @"SELECT        p.id_pobytu, p.id_pokoju, p.id_rezerwacji, p.termin_start, p.termin_koniec, p.id_rachunku, p.id_klienta, k.email, k.imie, k.nazwisko, k.id_miejscowosci, 
                          k.kod_pocztowy, k.ulica, k.nip, k.pesel, k.nr_telefonu, k.nazwa
 FROM            Pobyty p, Klienci k
 WHERE        p.id_klienta = k.id_klienta AND (p.id_rezerwacji = ?)";
-            this._commandCollection[9].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[9].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_rezerwacji", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_rezerwacji", global::System.Data.DataRowVersion.Current, false, null));
-            this._commandCollection[10] = new global::System.Data.Odbc.OdbcCommand();
-            this._commandCollection[10].Connection = this.Connection;
-            this._commandCollection[10].CommandText = @"SELECT        Pobyty.id_pobytu, Pobyty.id_pokoju, Pobyty.id_rezerwacji, Pobyty.termin_start, Pobyty.termin_koniec, Pobyty.id_rachunku, Pobyty.id_klienta, Klienci.email, 
-                         Klienci.imie, Klienci.nazwisko, Klienci.id_miejscowosci, Klienci.kod_pocztowy, Klienci.ulica, Klienci.nip, Klienci.pesel, Klienci.nr_telefonu, Klienci.nazwa, 
-                         Pokoje.id_slownikowe_pokoju, Pokoje.nr_pokoju
-FROM            Pobyty, Klienci, Pokoje
-WHERE        Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_pokoju = Pokoje.id_pokoju";
             this._commandCollection[10].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[10].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_rezerwacji", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_rezerwacji", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[11] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[11].Connection = this.Connection;
             this._commandCollection[11].CommandText = @"SELECT        Pobyty.id_pobytu, Pobyty.id_pokoju, Pobyty.id_rezerwacji, Pobyty.termin_start, Pobyty.termin_koniec, Pobyty.id_rachunku, Pobyty.id_klienta, Klienci.email, 
                          Klienci.imie, Klienci.nazwisko, Klienci.id_miejscowosci, Klienci.kod_pocztowy, Klienci.ulica, Klienci.nip, Klienci.pesel, Klienci.nr_telefonu, Klienci.nazwa, 
                          Pokoje.id_slownikowe_pokoju, Pokoje.nr_pokoju
 FROM            Pobyty, Klienci, Pokoje
-WHERE        Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_pokoju = Pokoje.id_pokoju AND (Pobyty.id_klienta IS NOT NULL) AND (Pobyty.id_rachunku IS NULL)";
+WHERE        Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_pokoju = Pokoje.id_pokoju";
             this._commandCollection[11].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[12] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[12].Connection = this.Connection;
@@ -1128,132 +1125,129 @@ WHERE        Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_pokoju = Pokoj
                          Klienci.imie, Klienci.nazwisko, Klienci.id_miejscowosci, Klienci.kod_pocztowy, Klienci.ulica, Klienci.nip, Klienci.pesel, Klienci.nr_telefonu, Klienci.nazwa, 
                          Pokoje.id_slownikowe_pokoju, Pokoje.nr_pokoju
 FROM            Pobyty, Klienci, Pokoje
-WHERE        Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_pokoju = Pokoje.id_pokoju AND (Pobyty.id_rachunku IS NULL) AND (Pobyty.id_klienta IS NOT NULL AND   Pobyty.id_klienta = ?)";
+WHERE        Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_pokoju = Pokoje.id_pokoju AND (Pobyty.id_klienta IS NOT NULL) AND (Pobyty.id_rachunku IS NULL)";
             this._commandCollection[12].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[12].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_klienta", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_klienta", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[13] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[13].Connection = this.Connection;
             this._commandCollection[13].CommandText = @"SELECT        Pobyty.id_pobytu, Pobyty.id_pokoju, Pobyty.id_rezerwacji, Pobyty.termin_start, Pobyty.termin_koniec, Pobyty.id_rachunku, Pobyty.id_klienta, Klienci.email, 
                          Klienci.imie, Klienci.nazwisko, Klienci.id_miejscowosci, Klienci.kod_pocztowy, Klienci.ulica, Klienci.nip, Klienci.pesel, Klienci.nr_telefonu, Klienci.nazwa, 
                          Pokoje.id_slownikowe_pokoju, Pokoje.nr_pokoju
 FROM            Pobyty, Klienci, Pokoje
-WHERE        Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_pokoju = Pokoje.id_pokoju AND (Pobyty.id_rachunku IS NULL) AND (Pobyty.id_klienta IS NOT NULL AND   Pobyty.id_pobytu = ?)";
+WHERE        Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_pokoju = Pokoje.id_pokoju AND (Pobyty.id_rachunku IS NULL) AND (Pobyty.id_klienta IS NOT NULL AND   Pobyty.id_klienta = ?)";
             this._commandCollection[13].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[13].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_pobytu", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_pobytu", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[13].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_klienta", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_klienta", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[14] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[14].Connection = this.Connection;
             this._commandCollection[14].CommandText = @"SELECT        Pobyty.id_pobytu, Pobyty.id_pokoju, Pobyty.id_rezerwacji, Pobyty.termin_start, Pobyty.termin_koniec, Pobyty.id_rachunku, Pobyty.id_klienta, Klienci.email, 
                          Klienci.imie, Klienci.nazwisko, Klienci.id_miejscowosci, Klienci.kod_pocztowy, Klienci.ulica, Klienci.nip, Klienci.pesel, Klienci.nr_telefonu, Klienci.nazwa, 
                          Pokoje.id_slownikowe_pokoju, Pokoje.nr_pokoju
 FROM            Pobyty, Klienci, Pokoje
-WHERE        Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_pokoju = Pokoje.id_pokoju AND (UCASE(Klienci.nazwisko) LIKE UCASE('%' + ? + '%')) AND 
-                         (Pobyty.id_rachunku IS NULL) AND (Pobyty.id_klienta IS NOT NULL)";
+WHERE        Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_pokoju = Pokoje.id_pokoju AND (Pobyty.id_rachunku IS NULL) AND (Pobyty.id_klienta IS NOT NULL AND   Pobyty.id_pobytu = ?)";
             this._commandCollection[14].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[14].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Param1", global::System.Data.Odbc.OdbcType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[14].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_pobytu", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_pobytu", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[15] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[15].Connection = this.Connection;
             this._commandCollection[15].CommandText = @"SELECT        Pobyty.id_pobytu, Pobyty.id_pokoju, Pobyty.id_rezerwacji, Pobyty.termin_start, Pobyty.termin_koniec, Pobyty.id_rachunku, Pobyty.id_klienta, Klienci.email, 
                          Klienci.imie, Klienci.nazwisko, Klienci.id_miejscowosci, Klienci.kod_pocztowy, Klienci.ulica, Klienci.nip, Klienci.pesel, Klienci.nr_telefonu, Klienci.nazwa, 
                          Pokoje.id_slownikowe_pokoju, Pokoje.nr_pokoju
 FROM            Pobyty, Klienci, Pokoje
-WHERE        Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_pokoju = Pokoje.id_pokoju AND Klienci.id_klienta = ?";
+WHERE        Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_pokoju = Pokoje.id_pokoju AND (UCASE(Klienci.nazwisko) LIKE UCASE('%' + ? + '%')) AND 
+                         (Pobyty.id_rachunku IS NULL) AND (Pobyty.id_klienta IS NOT NULL)";
             this._commandCollection[15].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[15].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_klienta", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_klienta", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[15].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Param1", global::System.Data.Odbc.OdbcType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[16] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[16].Connection = this.Connection;
             this._commandCollection[16].CommandText = @"SELECT        Pobyty.id_pobytu, Pobyty.id_pokoju, Pobyty.id_rezerwacji, Pobyty.termin_start, Pobyty.termin_koniec, Pobyty.id_rachunku, Pobyty.id_klienta, Klienci.email, 
                          Klienci.imie, Klienci.nazwisko, Klienci.id_miejscowosci, Klienci.kod_pocztowy, Klienci.ulica, Klienci.nip, Klienci.pesel, Klienci.nr_telefonu, Klienci.nazwa, 
                          Pokoje.id_slownikowe_pokoju, Pokoje.nr_pokoju
 FROM            Pobyty, Klienci, Pokoje
-WHERE        Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_pokoju = Pokoje.id_pokoju AND Pobyty.id_pobytu = ?";
+WHERE        Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_pokoju = Pokoje.id_pokoju AND Klienci.id_klienta = ?";
             this._commandCollection[16].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[16].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_pobytu", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_pobytu", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[16].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_klienta", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_klienta", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[17] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[17].Connection = this.Connection;
             this._commandCollection[17].CommandText = @"SELECT        Pobyty.id_pobytu, Pobyty.id_pokoju, Pobyty.id_rezerwacji, Pobyty.termin_start, Pobyty.termin_koniec, Pobyty.id_rachunku, Pobyty.id_klienta, Klienci.email, 
                          Klienci.imie, Klienci.nazwisko, Klienci.id_miejscowosci, Klienci.kod_pocztowy, Klienci.ulica, Klienci.nip, Klienci.pesel, Klienci.nr_telefonu, Klienci.nazwa, 
                          Pokoje.id_slownikowe_pokoju, Pokoje.nr_pokoju
+FROM            Pobyty, Klienci, Pokoje
+WHERE        Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_pokoju = Pokoje.id_pokoju AND Pobyty.id_pobytu = ?";
+            this._commandCollection[17].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[17].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_pobytu", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_pobytu", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[18] = new global::System.Data.Odbc.OdbcCommand();
+            this._commandCollection[18].Connection = this.Connection;
+            this._commandCollection[18].CommandText = @"SELECT        Pobyty.id_pobytu, Pobyty.id_pokoju, Pobyty.id_rezerwacji, Pobyty.termin_start, Pobyty.termin_koniec, Pobyty.id_rachunku, Pobyty.id_klienta, Klienci.email, 
+                         Klienci.imie, Klienci.nazwisko, Klienci.id_miejscowosci, Klienci.kod_pocztowy, Klienci.ulica, Klienci.nip, Klienci.pesel, Klienci.nr_telefonu, Klienci.nazwa, 
+                         Pokoje.id_slownikowe_pokoju, Pokoje.nr_pokoju
 FROM            Pobyty, Klienci, Rezerwacje, Pokoje
 WHERE        Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_rezerwacji = Rezerwacje.id_rezerwacji AND Pobyty.id_pokoju = Pokoje.id_pokoju AND 
                          (Rezerwacje.id_rezerwacji = ?)";
-            this._commandCollection[17].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[17].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_rezerwacji", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_rezerwacji", global::System.Data.DataRowVersion.Current, false, null));
-            this._commandCollection[18] = new global::System.Data.Odbc.OdbcCommand();
-            this._commandCollection[18].Connection = this.Connection;
-            this._commandCollection[18].CommandText = @"SELECT        Pobyty.id_pobytu, Pobyty.id_pokoju, Pobyty.id_rezerwacji, Pobyty.termin_start, Pobyty.termin_koniec, Pobyty.id_rachunku, Pobyty.id_klienta, Pokoje.nr_pokoju, 
-                         Pokoje.id_slownikowe_pokoju, Klienci.email, Klienci.imie, Klienci.nazwisko, Klienci.id_miejscowosci, Klienci.kod_pocztowy, Klienci.ulica, Klienci.nip, Klienci.pesel, 
-                         Klienci.nr_telefonu, Klienci.nazwa
-FROM            Pobyty, Pokoje, Klienci
-WHERE        Pobyty.id_pokoju = Pokoje.id_pokoju AND Pobyty.id_klienta = Klienci.id_klienta AND (Pobyty.id_rachunku IS NULL) AND (Pobyty.id_rezerwacji = ?)";
             this._commandCollection[18].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[18].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_rezerwacji", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_rezerwacji", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[19] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[19].Connection = this.Connection;
-            this._commandCollection[19].CommandText = @"SELECT        Pobyty.id_pobytu, Pobyty.id_pokoju, Pobyty.id_rezerwacji, Pobyty.termin_start, Pobyty.termin_koniec, Pobyty.id_rachunku, Pobyty.id_klienta, Klienci.email, 
-                         Klienci.imie, Klienci.nazwisko, Klienci.id_miejscowosci, Klienci.kod_pocztowy, Klienci.ulica, Klienci.nip, Klienci.pesel, Klienci.nr_telefonu, Klienci.nazwa, 
-                         Pokoje.id_slownikowe_pokoju, Pokoje.nr_pokoju
-FROM            Pobyty, Klienci, Pokoje
-WHERE        Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_pokoju = Pokoje.id_pokoju AND (UCASE(Klienci.nazwisko) LIKE UCASE('%' + ? + '%'))";
+            this._commandCollection[19].CommandText = @"SELECT        Pobyty.id_pobytu, Pobyty.id_pokoju, Pobyty.id_rezerwacji, Pobyty.termin_start, Pobyty.termin_koniec, Pobyty.id_rachunku, Pobyty.id_klienta, Pokoje.nr_pokoju, 
+                         Pokoje.id_slownikowe_pokoju, Klienci.email, Klienci.imie, Klienci.nazwisko, Klienci.id_miejscowosci, Klienci.kod_pocztowy, Klienci.ulica, Klienci.nip, Klienci.pesel, 
+                         Klienci.nr_telefonu, Klienci.nazwa
+FROM            Pobyty, Pokoje, Klienci
+WHERE        Pobyty.id_pokoju = Pokoje.id_pokoju AND Pobyty.id_klienta = Klienci.id_klienta AND (Pobyty.id_rachunku IS NULL) AND (Pobyty.id_rezerwacji = ?)";
             this._commandCollection[19].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[19].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Param1", global::System.Data.Odbc.OdbcType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[19].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_rezerwacji", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_rezerwacji", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[20] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[20].Connection = this.Connection;
             this._commandCollection[20].CommandText = @"SELECT        Pobyty.id_pobytu, Pobyty.id_pokoju, Pobyty.id_rezerwacji, Pobyty.termin_start, Pobyty.termin_koniec, Pobyty.id_rachunku, Pobyty.id_klienta, Klienci.email, 
                          Klienci.imie, Klienci.nazwisko, Klienci.id_miejscowosci, Klienci.kod_pocztowy, Klienci.ulica, Klienci.nip, Klienci.pesel, Klienci.nr_telefonu, Klienci.nazwa, 
-                         Pokoje.id_slownikowe_pokoju, Pokoje.nr_pokoju, Pokoje_slownik.cena, Pokoje_slownik.dodatkowy_opis, Pokoje_slownik.ilosc_osob
-FROM            Pobyty, Klienci, Pokoje, Pokoje_slownik
-WHERE        Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_pokoju = Pokoje.id_pokoju AND Pokoje.id_slownikowe_pokoju = Pokoje_slownik.id_slownikowe_pokoju";
+                         Pokoje.id_slownikowe_pokoju, Pokoje.nr_pokoju
+FROM            Pobyty, Klienci, Pokoje
+WHERE        Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_pokoju = Pokoje.id_pokoju AND (UCASE(Klienci.nazwisko) LIKE UCASE('%' + ? + '%'))";
             this._commandCollection[20].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[20].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Param1", global::System.Data.Odbc.OdbcType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[21] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[21].Connection = this.Connection;
             this._commandCollection[21].CommandText = @"SELECT        Pobyty.id_pobytu, Pobyty.id_pokoju, Pobyty.id_rezerwacji, Pobyty.termin_start, Pobyty.termin_koniec, Pobyty.id_rachunku, Pobyty.id_klienta, Klienci.email, 
                          Klienci.imie, Klienci.nazwisko, Klienci.id_miejscowosci, Klienci.kod_pocztowy, Klienci.ulica, Klienci.nip, Klienci.pesel, Klienci.nr_telefonu, Klienci.nazwa, 
                          Pokoje.id_slownikowe_pokoju, Pokoje.nr_pokoju, Pokoje_slownik.cena, Pokoje_slownik.dodatkowy_opis, Pokoje_slownik.ilosc_osob
 FROM            Pobyty, Klienci, Pokoje, Pokoje_slownik
-WHERE        Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_pokoju = Pokoje.id_pokoju AND Pokoje.id_slownikowe_pokoju = Pokoje_slownik.id_slownikowe_pokoju AND Klienci.id_klienta =?";
+WHERE        Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_pokoju = Pokoje.id_pokoju AND Pokoje.id_slownikowe_pokoju = Pokoje_slownik.id_slownikowe_pokoju";
             this._commandCollection[21].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[21].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_klienta", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_klienta", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[22] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[22].Connection = this.Connection;
-            this._commandCollection[22].CommandText = @"SELECT        Pobyty.id_pobytu, Pobyty.id_pokoju, Pobyty.id_rezerwacji, Pobyty.termin_start, Pobyty.termin_koniec, Pobyty.id_rachunku, Pobyty.id_klienta, 
-                         Pokoje.id_slownikowe_pokoju, Pokoje.nr_pokoju, Pokoje_slownik.cena, Pokoje_slownik.dodatkowy_opis, Pokoje_slownik.ilosc_osob
-FROM            Pobyty, Pokoje, Pokoje_slownik
-WHERE        Pobyty.id_pokoju = Pokoje.id_pokoju AND Pokoje.id_slownikowe_pokoju = Pokoje_slownik.id_slownikowe_pokoju AND (Pobyty.id_pobytu = ?)";
-            this._commandCollection[22].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[22].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_pobytu", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_pobytu", global::System.Data.DataRowVersion.Current, false, null));
-            this._commandCollection[23] = new global::System.Data.Odbc.OdbcCommand();
-            this._commandCollection[23].Connection = this.Connection;
-            this._commandCollection[23].CommandText = @"SELECT        Pobyty.id_pobytu, Pobyty.id_pokoju, Pobyty.id_rezerwacji, Pobyty.termin_start, Pobyty.termin_koniec, Pobyty.id_rachunku, Pobyty.id_klienta, Klienci.email, 
+            this._commandCollection[22].CommandText = @"SELECT        Pobyty.id_pobytu, Pobyty.id_pokoju, Pobyty.id_rezerwacji, Pobyty.termin_start, Pobyty.termin_koniec, Pobyty.id_rachunku, Pobyty.id_klienta, Klienci.email, 
                          Klienci.imie, Klienci.nazwisko, Klienci.id_miejscowosci, Klienci.kod_pocztowy, Klienci.ulica, Klienci.nip, Klienci.pesel, Klienci.nr_telefonu, Klienci.nazwa, 
                          Pokoje.id_slownikowe_pokoju, Pokoje.nr_pokoju, Pokoje_slownik.cena, Pokoje_slownik.dodatkowy_opis, Pokoje_slownik.ilosc_osob
 FROM            Pobyty, Klienci, Pokoje, Pokoje_slownik
-WHERE        Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_pokoju = Pokoje.id_pokoju AND Pokoje.id_slownikowe_pokoju = Pokoje_slownik.id_slownikowe_pokoju AND Pobyty.id_rezerwacji =?";
+WHERE        Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_pokoju = Pokoje.id_pokoju AND Pokoje.id_slownikowe_pokoju = Pokoje_slownik.id_slownikowe_pokoju AND Klienci.id_klienta =?";
+            this._commandCollection[22].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[22].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_klienta", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_klienta", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[23] = new global::System.Data.Odbc.OdbcCommand();
+            this._commandCollection[23].Connection = this.Connection;
+            this._commandCollection[23].CommandText = @"SELECT        Pobyty.id_pobytu, Pobyty.id_pokoju, Pobyty.id_rezerwacji, Pobyty.termin_start, Pobyty.termin_koniec, Pobyty.id_rachunku, Pobyty.id_klienta, 
+                         Pokoje.id_slownikowe_pokoju, Pokoje.nr_pokoju, Pokoje_slownik.cena, Pokoje_slownik.dodatkowy_opis, Pokoje_slownik.ilosc_osob
+FROM            Pobyty, Pokoje, Pokoje_slownik
+WHERE        Pobyty.id_pokoju = Pokoje.id_pokoju AND Pokoje.id_slownikowe_pokoju = Pokoje_slownik.id_slownikowe_pokoju AND (Pobyty.id_pobytu = ?)";
             this._commandCollection[23].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[23].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_rezerwacji", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_rezerwacji", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[23].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_pobytu", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_pobytu", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[24] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[24].Connection = this.Connection;
             this._commandCollection[24].CommandText = @"SELECT        Pobyty.id_pobytu, Pobyty.id_pokoju, Pobyty.id_rezerwacji, Pobyty.termin_start, Pobyty.termin_koniec, Pobyty.id_rachunku, Pobyty.id_klienta, Klienci.email, 
                          Klienci.imie, Klienci.nazwisko, Klienci.id_miejscowosci, Klienci.kod_pocztowy, Klienci.ulica, Klienci.nip, Klienci.pesel, Klienci.nr_telefonu, Klienci.nazwa, 
                          Pokoje.id_slownikowe_pokoju, Pokoje.nr_pokoju, Pokoje_slownik.cena, Pokoje_slownik.dodatkowy_opis, Pokoje_slownik.ilosc_osob
 FROM            Pobyty, Klienci, Pokoje, Pokoje_slownik
-WHERE        Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_pokoju = Pokoje.id_pokoju AND Pokoje.id_slownikowe_pokoju = Pokoje_slownik.id_slownikowe_pokoju AND (UCASE(Klienci.nazwisko) = UCASE('%' + ? + '%'))";
+WHERE        Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_pokoju = Pokoje.id_pokoju AND Pokoje.id_slownikowe_pokoju = Pokoje_slownik.id_slownikowe_pokoju AND Pobyty.id_rezerwacji =?";
             this._commandCollection[24].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[24].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Param1", global::System.Data.Odbc.OdbcType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[24].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_rezerwacji", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_rezerwacji", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[25] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[25].Connection = this.Connection;
-            this._commandCollection[25].CommandText = "SELECT id_pobytu, id_pokoju, id_rezerwacji, termin_start, termin_koniec, id_rachu" +
-                "nku, id_klienta FROM Pobyty ORDER BY id_pobytu DESC";
+            this._commandCollection[25].CommandText = @"SELECT        Pobyty.id_pobytu, Pobyty.id_pokoju, Pobyty.id_rezerwacji, Pobyty.termin_start, Pobyty.termin_koniec, Pobyty.id_rachunku, Pobyty.id_klienta, Klienci.email, 
+                         Klienci.imie, Klienci.nazwisko, Klienci.id_miejscowosci, Klienci.kod_pocztowy, Klienci.ulica, Klienci.nip, Klienci.pesel, Klienci.nr_telefonu, Klienci.nazwa, 
+                         Pokoje.id_slownikowe_pokoju, Pokoje.nr_pokoju, Pokoje_slownik.cena, Pokoje_slownik.dodatkowy_opis, Pokoje_slownik.ilosc_osob
+FROM            Pobyty, Klienci, Pokoje, Pokoje_slownik
+WHERE        Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_pokoju = Pokoje.id_pokoju AND Pokoje.id_slownikowe_pokoju = Pokoje_slownik.id_slownikowe_pokoju AND (UCASE(Klienci.nazwisko) = UCASE('%' + ? + '%'))";
             this._commandCollection[25].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[25].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Param1", global::System.Data.Odbc.OdbcType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[26] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[26].Connection = this.Connection;
-            this._commandCollection[26].CommandText = @"SELECT        Pobyty.id_pobytu, Pobyty.id_pokoju, Pobyty.id_rezerwacji, Pobyty.termin_start, Pobyty.termin_koniec, Pobyty.id_rachunku, Pobyty.id_klienta, Klienci.email, 
-                         Klienci.imie, Klienci.nazwisko, Klienci.id_miejscowosci, Klienci.kod_pocztowy, Klienci.ulica, Klienci.nip, Klienci.pesel, Klienci.nr_telefonu, Klienci.nazwa, 
-                         Pokoje.id_slownikowe_pokoju, Pokoje.nr_pokoju
-FROM            Pobyty, Klienci, Pokoje
-WHERE        Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_pokoju = Pokoje.id_pokoju AND (Pobyty.id_pobytu IN
-                             (SELECT        TOP 1 id_pobytu
-                               FROM            Pobyty p1
-                               WHERE        (id_rachunku IS NULL) AND (id_klienta IS NOT NULL) AND (id_rezerwacji = Pobyty.id_rezerwacji)))";
+            this._commandCollection[26].CommandText = "SELECT id_pobytu, id_pokoju, id_rezerwacji, termin_start, termin_koniec, id_rachu" +
+                "nku, id_klienta FROM Pobyty ORDER BY id_pobytu DESC";
             this._commandCollection[26].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[27] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[27].Connection = this.Connection;
@@ -1261,7 +1255,7 @@ WHERE        Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_pokoju = Pokoj
                          Klienci.imie, Klienci.nazwisko, Klienci.id_miejscowosci, Klienci.kod_pocztowy, Klienci.ulica, Klienci.nip, Klienci.pesel, Klienci.nr_telefonu, Klienci.nazwa, 
                          Pokoje.id_slownikowe_pokoju, Pokoje.nr_pokoju
 FROM            Pobyty, Klienci, Pokoje
-WHERE        Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_pokoju = Pokoje.id_pokoju AND  (Pobyty.id_rachunku IS NULL ) AND (Pobyty.id_pobytu IN
+WHERE        Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_pokoju = Pokoje.id_pokoju AND (Pobyty.id_pobytu IN
                              (SELECT        TOP 1 id_pobytu
                                FROM            Pobyty p1
                                WHERE        (id_rachunku IS NULL) AND (id_klienta IS NOT NULL) AND (id_rezerwacji = Pobyty.id_rezerwacji)))";
@@ -1272,15 +1266,26 @@ WHERE        Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_pokoju = Pokoj
                          Klienci.imie, Klienci.nazwisko, Klienci.id_miejscowosci, Klienci.kod_pocztowy, Klienci.ulica, Klienci.nip, Klienci.pesel, Klienci.nr_telefonu, Klienci.nazwa, 
                          Pokoje.id_slownikowe_pokoju, Pokoje.nr_pokoju
 FROM            Pobyty, Klienci, Pokoje
-WHERE        Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_pokoju = Pokoje.id_pokoju AND (Klienci.id_klienta = ?) AND  (Pobyty.id_rachunku IS NULL ) AND (Pobyty.id_pobytu IN
+WHERE        Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_pokoju = Pokoje.id_pokoju AND  (Pobyty.id_rachunku IS NULL ) AND (Pobyty.id_pobytu IN
                              (SELECT        TOP 1 id_pobytu
                                FROM            Pobyty p1
                                WHERE        (id_rachunku IS NULL) AND (id_klienta IS NOT NULL) AND (id_rezerwacji = Pobyty.id_rezerwacji)))";
             this._commandCollection[28].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[28].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_klienta", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_klienta", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[29] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[29].Connection = this.Connection;
             this._commandCollection[29].CommandText = @"SELECT        Pobyty.id_pobytu, Pobyty.id_pokoju, Pobyty.id_rezerwacji, Pobyty.termin_start, Pobyty.termin_koniec, Pobyty.id_rachunku, Pobyty.id_klienta, Klienci.email, 
+                         Klienci.imie, Klienci.nazwisko, Klienci.id_miejscowosci, Klienci.kod_pocztowy, Klienci.ulica, Klienci.nip, Klienci.pesel, Klienci.nr_telefonu, Klienci.nazwa, 
+                         Pokoje.id_slownikowe_pokoju, Pokoje.nr_pokoju
+FROM            Pobyty, Klienci, Pokoje
+WHERE        Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_pokoju = Pokoje.id_pokoju AND (Klienci.id_klienta = ?) AND  (Pobyty.id_rachunku IS NULL ) AND (Pobyty.id_pobytu IN
+                             (SELECT        TOP 1 id_pobytu
+                               FROM            Pobyty p1
+                               WHERE        (id_rachunku IS NULL) AND (id_klienta IS NOT NULL) AND (id_rezerwacji = Pobyty.id_rezerwacji)))";
+            this._commandCollection[29].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[29].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_klienta", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_klienta", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[30] = new global::System.Data.Odbc.OdbcCommand();
+            this._commandCollection[30].Connection = this.Connection;
+            this._commandCollection[30].CommandText = @"SELECT        Pobyty.id_pobytu, Pobyty.id_pokoju, Pobyty.id_rezerwacji, Pobyty.termin_start, Pobyty.termin_koniec, Pobyty.id_rachunku, Pobyty.id_klienta, Klienci.email, 
                          Klienci.imie, Klienci.nazwisko, Klienci.id_miejscowosci, Klienci.kod_pocztowy, Klienci.ulica, Klienci.nip, Klienci.pesel, Klienci.nr_telefonu, Klienci.nazwa, 
                          Pokoje.id_slownikowe_pokoju, Pokoje.nr_pokoju
 FROM            Pobyty, Klienci, Pokoje
@@ -1288,11 +1293,11 @@ WHERE        Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_pokoju = Pokoj
                              (SELECT        TOP 1 id_pobytu
                                FROM            Pobyty p1
                                WHERE        (id_rachunku IS NULL) AND (id_klienta IS NOT NULL) AND (id_rezerwacji = Pobyty.id_rezerwacji)))";
-            this._commandCollection[29].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[29].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Param1", global::System.Data.Odbc.OdbcType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "", global::System.Data.DataRowVersion.Current, false, null));
-            this._commandCollection[30] = new global::System.Data.Odbc.OdbcCommand();
-            this._commandCollection[30].Connection = this.Connection;
-            this._commandCollection[30].CommandText = @"SELECT        Pobyty.id_pobytu, Pobyty.id_pokoju, Pobyty.id_rezerwacji, Pobyty.termin_start, Pobyty.termin_koniec, Pobyty.id_rachunku, Pobyty.id_klienta, Klienci.email, 
+            this._commandCollection[30].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[30].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Param1", global::System.Data.Odbc.OdbcType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[31] = new global::System.Data.Odbc.OdbcCommand();
+            this._commandCollection[31].Connection = this.Connection;
+            this._commandCollection[31].CommandText = @"SELECT        Pobyty.id_pobytu, Pobyty.id_pokoju, Pobyty.id_rezerwacji, Pobyty.termin_start, Pobyty.termin_koniec, Pobyty.id_rachunku, Pobyty.id_klienta, Klienci.email, 
                          Klienci.imie, Klienci.nazwisko, Klienci.id_miejscowosci, Klienci.kod_pocztowy, Klienci.ulica, Klienci.nip, Klienci.pesel, Klienci.nr_telefonu, Klienci.nazwa, 
                          Pokoje.id_slownikowe_pokoju, Pokoje.nr_pokoju
 FROM            Pobyty, Klienci, Pokoje
@@ -1300,11 +1305,11 @@ WHERE        Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_pokoju = Pokoj
                              (SELECT        TOP 1 id_pobytu
                                FROM            Pobyty p1
                                WHERE        (id_rachunku IS NULL) AND (id_klienta IS NOT NULL) AND (id_rezerwacji = Pobyty.id_rezerwacji)))";
-            this._commandCollection[30].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[30].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_klienta", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_klienta", global::System.Data.DataRowVersion.Current, false, null));
-            this._commandCollection[31] = new global::System.Data.Odbc.OdbcCommand();
-            this._commandCollection[31].Connection = this.Connection;
-            this._commandCollection[31].CommandText = @"SELECT        Pobyty.id_pobytu, Pobyty.id_pokoju, Pobyty.id_rezerwacji, Pobyty.termin_start, Pobyty.termin_koniec, Pobyty.id_rachunku, Pobyty.id_klienta, Klienci.email, 
+            this._commandCollection[31].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[31].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_klienta", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_klienta", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[32] = new global::System.Data.Odbc.OdbcCommand();
+            this._commandCollection[32].Connection = this.Connection;
+            this._commandCollection[32].CommandText = @"SELECT        Pobyty.id_pobytu, Pobyty.id_pokoju, Pobyty.id_rezerwacji, Pobyty.termin_start, Pobyty.termin_koniec, Pobyty.id_rachunku, Pobyty.id_klienta, Klienci.email, 
                          Klienci.imie, Klienci.nazwisko, Klienci.id_miejscowosci, Klienci.kod_pocztowy, Klienci.ulica, Klienci.nip, Klienci.pesel, Klienci.nr_telefonu, Klienci.nazwa, 
                          Pokoje.id_slownikowe_pokoju, Pokoje.nr_pokoju
 FROM            Pobyty, Klienci, Pokoje
@@ -1312,30 +1317,30 @@ WHERE        Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_pokoju = Pokoj
                              (SELECT        TOP 1 id_pobytu
                                FROM            Pobyty p1
                                WHERE        (id_rachunku IS NULL) AND (id_klienta IS NOT NULL) AND (id_rezerwacji = Pobyty.id_rezerwacji)))";
-            this._commandCollection[31].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[31].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Param1", global::System.Data.Odbc.OdbcType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "", global::System.Data.DataRowVersion.Current, false, null));
-            this._commandCollection[32] = new global::System.Data.Odbc.OdbcCommand();
-            this._commandCollection[32].Connection = this.Connection;
-            this._commandCollection[32].CommandText = "UPDATE       Pobyty\r\nSET                id_klienta = ?\r\nWHERE        (id_pobytu =" +
-                " ?)";
             this._commandCollection[32].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[32].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_klienta", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_klienta", global::System.Data.DataRowVersion.Current, false, null));
-            this._commandCollection[32].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_id_pobytu", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_pobytu", global::System.Data.DataRowVersion.Original, false, null));
+            this._commandCollection[32].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Param1", global::System.Data.Odbc.OdbcType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[33] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[33].Connection = this.Connection;
-            this._commandCollection[33].CommandText = "UPDATE       Pobyty\r\nSET                id_rachunku = ?\r\nWHERE        (id_pobytu " +
-                "= ?)";
+            this._commandCollection[33].CommandText = "UPDATE       Pobyty\r\nSET                id_klienta = ?\r\nWHERE        (id_pobytu =" +
+                " ?)";
             this._commandCollection[33].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[33].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_rachunku", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_rachunku", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[33].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_klienta", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_klienta", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[33].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_id_pobytu", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_pobytu", global::System.Data.DataRowVersion.Original, false, null));
             this._commandCollection[34] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[34].Connection = this.Connection;
-            this._commandCollection[34].CommandText = "UPDATE       Pobyty\r\nSET                id_klienta = ?\r\nWHERE        (id_rezerwac" +
-                "ji = ?) AND (id_pokoju = ?)";
+            this._commandCollection[34].CommandText = "UPDATE       Pobyty\r\nSET                id_rachunku = ?\r\nWHERE        (id_pobytu " +
+                "= ?)";
             this._commandCollection[34].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[34].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_klienta", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_klienta", global::System.Data.DataRowVersion.Current, false, null));
-            this._commandCollection[34].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_id_rezerwacji", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_rezerwacji", global::System.Data.DataRowVersion.Original, false, null));
-            this._commandCollection[34].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_id_pokoju", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_pokoju", global::System.Data.DataRowVersion.Original, false, null));
+            this._commandCollection[34].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_rachunku", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_rachunku", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[34].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_id_pobytu", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_pobytu", global::System.Data.DataRowVersion.Original, false, null));
+            this._commandCollection[35] = new global::System.Data.Odbc.OdbcCommand();
+            this._commandCollection[35].Connection = this.Connection;
+            this._commandCollection[35].CommandText = "UPDATE       Pobyty\r\nSET                id_klienta = ?\r\nWHERE        (id_rezerwac" +
+                "ji = ?) AND (id_pokoju = ?)";
+            this._commandCollection[35].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[35].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_klienta", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_klienta", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[35].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_id_rezerwacji", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_rezerwacji", global::System.Data.DataRowVersion.Original, false, null));
+            this._commandCollection[35].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_id_pokoju", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_pokoju", global::System.Data.DataRowVersion.Original, false, null));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1367,7 +1372,7 @@ WHERE        Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_pokoju = Pokoj
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
         public virtual PobytyDS.PobytyDataTable GetDataPobyty() {
-            this.Adapter.SelectCommand = this.CommandCollection[1];
+            this.Adapter.SelectCommand = this.CommandCollection[2];
             PobytyDS.PobytyDataTable dataTable = new PobytyDS.PobytyDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
@@ -1378,7 +1383,7 @@ WHERE        Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_pokoju = Pokoj
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
         public virtual PobytyDS.PobytyDataTable GetDataPobytyByID(int id_pobytu) {
-            this.Adapter.SelectCommand = this.CommandCollection[2];
+            this.Adapter.SelectCommand = this.CommandCollection[3];
             this.Adapter.SelectCommand.Parameters[0].Value = ((int)(id_pobytu));
             PobytyDS.PobytyDataTable dataTable = new PobytyDS.PobytyDataTable();
             this.Adapter.Fill(dataTable);
@@ -1390,7 +1395,7 @@ WHERE        Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_pokoju = Pokoj
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
         public virtual PobytyDS.PobytyDataTable GetDataPobytyByIdPokojuIdRezerwacji(global::System.Nullable<int> id_pokoju, global::System.Nullable<int> id_rezerwacji) {
-            this.Adapter.SelectCommand = this.CommandCollection[3];
+            this.Adapter.SelectCommand = this.CommandCollection[4];
             if ((id_pokoju.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = ((int)(id_pokoju.Value));
             }
@@ -1413,7 +1418,7 @@ WHERE        Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_pokoju = Pokoj
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
         public virtual PobytyDS.PobytyDataTable GetDataPobytyByIdRachunku(global::System.Nullable<int> id_rachunku) {
-            this.Adapter.SelectCommand = this.CommandCollection[4];
+            this.Adapter.SelectCommand = this.CommandCollection[5];
             if ((id_rachunku.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = ((int)(id_rachunku.Value));
             }
@@ -1430,23 +1435,6 @@ WHERE        Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_pokoju = Pokoj
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
         public virtual PobytyDS.PobytyDataTable GetDataPobytyByIdRezerwacji(global::System.Nullable<int> id_rezerwacji) {
-            this.Adapter.SelectCommand = this.CommandCollection[5];
-            if ((id_rezerwacji.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[0].Value = ((int)(id_rezerwacji.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
-            }
-            PobytyDS.PobytyDataTable dataTable = new PobytyDS.PobytyDataTable();
-            this.Adapter.Fill(dataTable);
-            return dataTable;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual PobytyDS.PobytyDataTable GetDataPobytyByIdRezerwacjiNierozliczone(global::System.Nullable<int> id_rezerwacji) {
             this.Adapter.SelectCommand = this.CommandCollection[6];
             if ((id_rezerwacji.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = ((int)(id_rezerwacji.Value));
@@ -1463,8 +1451,25 @@ WHERE        Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_pokoju = Pokoj
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual PobytyDS.PobytyDataTable GetDataPobytyByNazwiskoKlienta(string Param1) {
+        public virtual PobytyDS.PobytyDataTable GetDataPobytyByIdRezerwacjiNierozliczone(global::System.Nullable<int> id_rezerwacji) {
             this.Adapter.SelectCommand = this.CommandCollection[7];
+            if ((id_rezerwacji.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((int)(id_rezerwacji.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            PobytyDS.PobytyDataTable dataTable = new PobytyDS.PobytyDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual PobytyDS.PobytyDataTable GetDataPobytyByNazwiskoKlienta(string Param1) {
+            this.Adapter.SelectCommand = this.CommandCollection[8];
             if ((Param1 == null)) {
                 throw new global::System.ArgumentNullException("Param1");
             }
@@ -1481,7 +1486,7 @@ WHERE        Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_pokoju = Pokoj
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
         public virtual PobytyDS.PobytyDataTable GetDataPobytyCzyJestRachunek(int id_pobytu) {
-            this.Adapter.SelectCommand = this.CommandCollection[8];
+            this.Adapter.SelectCommand = this.CommandCollection[9];
             this.Adapter.SelectCommand.Parameters[0].Value = ((int)(id_pobytu));
             PobytyDS.PobytyDataTable dataTable = new PobytyDS.PobytyDataTable();
             this.Adapter.Fill(dataTable);
@@ -1493,7 +1498,7 @@ WHERE        Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_pokoju = Pokoj
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
         public virtual PobytyDS.PobytyDataTable GetDataPobytyKlienciByIdRezerwacji(global::System.Nullable<int> id_rezerwacji) {
-            this.Adapter.SelectCommand = this.CommandCollection[9];
+            this.Adapter.SelectCommand = this.CommandCollection[10];
             if ((id_rezerwacji.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = ((int)(id_rezerwacji.Value));
             }
@@ -1510,17 +1515,6 @@ WHERE        Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_pokoju = Pokoj
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
         public virtual PobytyDS.PobytyDataTable GetDataPobytyKlienciPokoje() {
-            this.Adapter.SelectCommand = this.CommandCollection[10];
-            PobytyDS.PobytyDataTable dataTable = new PobytyDS.PobytyDataTable();
-            this.Adapter.Fill(dataTable);
-            return dataTable;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual PobytyDS.PobytyDataTable GetDataPobytyKlienciPokojeAktualne() {
             this.Adapter.SelectCommand = this.CommandCollection[11];
             PobytyDS.PobytyDataTable dataTable = new PobytyDS.PobytyDataTable();
             this.Adapter.Fill(dataTable);
@@ -1531,8 +1525,19 @@ WHERE        Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_pokoju = Pokoj
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual PobytyDS.PobytyDataTable GetDataPobytyKlienciPokojeAktualneByIDKlienta(global::System.Nullable<int> id_klienta) {
+        public virtual PobytyDS.PobytyDataTable GetDataPobytyKlienciPokojeAktualne() {
             this.Adapter.SelectCommand = this.CommandCollection[12];
+            PobytyDS.PobytyDataTable dataTable = new PobytyDS.PobytyDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual PobytyDS.PobytyDataTable GetDataPobytyKlienciPokojeAktualneByIDKlienta(global::System.Nullable<int> id_klienta) {
+            this.Adapter.SelectCommand = this.CommandCollection[13];
             if ((id_klienta.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = ((int)(id_klienta.Value));
             }
@@ -1549,7 +1554,7 @@ WHERE        Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_pokoju = Pokoj
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
         public virtual PobytyDS.PobytyDataTable GetDataPobytyKlienciPokojeAktualneByIDPobytu(int id_pobytu) {
-            this.Adapter.SelectCommand = this.CommandCollection[13];
+            this.Adapter.SelectCommand = this.CommandCollection[14];
             this.Adapter.SelectCommand.Parameters[0].Value = ((int)(id_pobytu));
             PobytyDS.PobytyDataTable dataTable = new PobytyDS.PobytyDataTable();
             this.Adapter.Fill(dataTable);
@@ -1561,7 +1566,7 @@ WHERE        Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_pokoju = Pokoj
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
         public virtual PobytyDS.PobytyDataTable GetDataPobytyKlienciPokojeAktualneByNazwiskoKlienta(string Param1) {
-            this.Adapter.SelectCommand = this.CommandCollection[14];
+            this.Adapter.SelectCommand = this.CommandCollection[15];
             if ((Param1 == null)) {
                 throw new global::System.ArgumentNullException("Param1");
             }
@@ -1578,7 +1583,7 @@ WHERE        Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_pokoju = Pokoj
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
         public virtual PobytyDS.PobytyDataTable GetDataPobytyKlienciPokojeByIDKlienta(int id_klienta) {
-            this.Adapter.SelectCommand = this.CommandCollection[15];
+            this.Adapter.SelectCommand = this.CommandCollection[16];
             this.Adapter.SelectCommand.Parameters[0].Value = ((int)(id_klienta));
             PobytyDS.PobytyDataTable dataTable = new PobytyDS.PobytyDataTable();
             this.Adapter.Fill(dataTable);
@@ -1590,7 +1595,7 @@ WHERE        Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_pokoju = Pokoj
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
         public virtual PobytyDS.PobytyDataTable GetDataPobytyKlienciPokojeByIDPobytu(int id_pobytu) {
-            this.Adapter.SelectCommand = this.CommandCollection[16];
+            this.Adapter.SelectCommand = this.CommandCollection[17];
             this.Adapter.SelectCommand.Parameters[0].Value = ((int)(id_pobytu));
             PobytyDS.PobytyDataTable dataTable = new PobytyDS.PobytyDataTable();
             this.Adapter.Fill(dataTable);
@@ -1602,7 +1607,7 @@ WHERE        Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_pokoju = Pokoj
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
         public virtual PobytyDS.PobytyDataTable GetDataPobytyKlienciPokojeByIDRejestracji(int id_rezerwacji) {
-            this.Adapter.SelectCommand = this.CommandCollection[17];
+            this.Adapter.SelectCommand = this.CommandCollection[18];
             this.Adapter.SelectCommand.Parameters[0].Value = ((int)(id_rezerwacji));
             PobytyDS.PobytyDataTable dataTable = new PobytyDS.PobytyDataTable();
             this.Adapter.Fill(dataTable);
@@ -1614,7 +1619,7 @@ WHERE        Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_pokoju = Pokoj
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
         public virtual PobytyDS.PobytyDataTable GetDataPobytyKlienciPokojeByIdRezerwacjiNierozliczone(global::System.Nullable<int> id_rezerwacji) {
-            this.Adapter.SelectCommand = this.CommandCollection[18];
+            this.Adapter.SelectCommand = this.CommandCollection[19];
             if ((id_rezerwacji.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = ((int)(id_rezerwacji.Value));
             }
@@ -1631,7 +1636,7 @@ WHERE        Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_pokoju = Pokoj
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
         public virtual PobytyDS.PobytyDataTable GetDataPobytyKlienciPokojeByNazwisko(string Param1) {
-            this.Adapter.SelectCommand = this.CommandCollection[19];
+            this.Adapter.SelectCommand = this.CommandCollection[20];
             if ((Param1 == null)) {
                 throw new global::System.ArgumentNullException("Param1");
             }
@@ -1648,7 +1653,7 @@ WHERE        Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_pokoju = Pokoj
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
         public virtual PobytyDS.PobytyDataTable GetDataPobytyKlienciPokojeStandard() {
-            this.Adapter.SelectCommand = this.CommandCollection[20];
+            this.Adapter.SelectCommand = this.CommandCollection[21];
             PobytyDS.PobytyDataTable dataTable = new PobytyDS.PobytyDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
@@ -1659,7 +1664,7 @@ WHERE        Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_pokoju = Pokoj
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
         public virtual PobytyDS.PobytyDataTable GetDataPobytyKlienciPokojeStandardByIDKlienta(int id_klienta) {
-            this.Adapter.SelectCommand = this.CommandCollection[21];
+            this.Adapter.SelectCommand = this.CommandCollection[22];
             this.Adapter.SelectCommand.Parameters[0].Value = ((int)(id_klienta));
             PobytyDS.PobytyDataTable dataTable = new PobytyDS.PobytyDataTable();
             this.Adapter.Fill(dataTable);
@@ -1671,7 +1676,7 @@ WHERE        Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_pokoju = Pokoj
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
         public virtual PobytyDS.PobytyDataTable GetDataPobytyKlienciPokojeStandardByIdPobytu(int id_pobytu) {
-            this.Adapter.SelectCommand = this.CommandCollection[22];
+            this.Adapter.SelectCommand = this.CommandCollection[23];
             this.Adapter.SelectCommand.Parameters[0].Value = ((int)(id_pobytu));
             PobytyDS.PobytyDataTable dataTable = new PobytyDS.PobytyDataTable();
             this.Adapter.Fill(dataTable);
@@ -1683,7 +1688,7 @@ WHERE        Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_pokoju = Pokoj
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
         public virtual PobytyDS.PobytyDataTable GetDataPobytyKliencjiPokojeStandardByIDRezerwacji(global::System.Nullable<int> id_rezerwacji) {
-            this.Adapter.SelectCommand = this.CommandCollection[23];
+            this.Adapter.SelectCommand = this.CommandCollection[24];
             if ((id_rezerwacji.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = ((int)(id_rezerwacji.Value));
             }
@@ -1700,7 +1705,7 @@ WHERE        Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_pokoju = Pokoj
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
         public virtual PobytyDS.PobytyDataTable GetDataPobytyKliencjiPokojeStandardByNazwisko(string Param1) {
-            this.Adapter.SelectCommand = this.CommandCollection[24];
+            this.Adapter.SelectCommand = this.CommandCollection[25];
             if ((Param1 == null)) {
                 throw new global::System.ArgumentNullException("Param1");
             }
@@ -1717,17 +1722,6 @@ WHERE        Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_pokoju = Pokoj
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
         public virtual PobytyDS.PobytyDataTable GetDataPobytyOstatni() {
-            this.Adapter.SelectCommand = this.CommandCollection[25];
-            PobytyDS.PobytyDataTable dataTable = new PobytyDS.PobytyDataTable();
-            this.Adapter.Fill(dataTable);
-            return dataTable;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual PobytyDS.PobytyDataTable GetDataPobytyUnikalne() {
             this.Adapter.SelectCommand = this.CommandCollection[26];
             PobytyDS.PobytyDataTable dataTable = new PobytyDS.PobytyDataTable();
             this.Adapter.Fill(dataTable);
@@ -1738,7 +1732,7 @@ WHERE        Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_pokoju = Pokoj
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual PobytyDS.PobytyDataTable GetDataPobytyUnikalneAktualne() {
+        public virtual PobytyDS.PobytyDataTable GetDataPobytyUnikalne() {
             this.Adapter.SelectCommand = this.CommandCollection[27];
             PobytyDS.PobytyDataTable dataTable = new PobytyDS.PobytyDataTable();
             this.Adapter.Fill(dataTable);
@@ -1749,8 +1743,19 @@ WHERE        Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_pokoju = Pokoj
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual PobytyDS.PobytyDataTable GetDataPobytyUnikalneAktualneByIDKlienta(int id_klienta) {
+        public virtual PobytyDS.PobytyDataTable GetDataPobytyUnikalneAktualne() {
             this.Adapter.SelectCommand = this.CommandCollection[28];
+            PobytyDS.PobytyDataTable dataTable = new PobytyDS.PobytyDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual PobytyDS.PobytyDataTable GetDataPobytyUnikalneAktualneByIDKlienta(int id_klienta) {
+            this.Adapter.SelectCommand = this.CommandCollection[29];
             this.Adapter.SelectCommand.Parameters[0].Value = ((int)(id_klienta));
             PobytyDS.PobytyDataTable dataTable = new PobytyDS.PobytyDataTable();
             this.Adapter.Fill(dataTable);
@@ -1762,7 +1767,7 @@ WHERE        Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_pokoju = Pokoj
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
         public virtual PobytyDS.PobytyDataTable GetDataPobytyUnikalneAktualneByNazwiskoKlienta(string Param1) {
-            this.Adapter.SelectCommand = this.CommandCollection[29];
+            this.Adapter.SelectCommand = this.CommandCollection[30];
             if ((Param1 == null)) {
                 throw new global::System.ArgumentNullException("Param1");
             }
@@ -1779,7 +1784,7 @@ WHERE        Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_pokoju = Pokoj
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
         public virtual PobytyDS.PobytyDataTable GetDataPobytyUnikalneByIDKlienta(int id_klienta) {
-            this.Adapter.SelectCommand = this.CommandCollection[30];
+            this.Adapter.SelectCommand = this.CommandCollection[31];
             this.Adapter.SelectCommand.Parameters[0].Value = ((int)(id_klienta));
             PobytyDS.PobytyDataTable dataTable = new PobytyDS.PobytyDataTable();
             this.Adapter.Fill(dataTable);
@@ -1791,7 +1796,7 @@ WHERE        Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_pokoju = Pokoj
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
         public virtual PobytyDS.PobytyDataTable GetDataPobytyUnikalneByNazwiskoKlienta(string Param1) {
-            this.Adapter.SelectCommand = this.CommandCollection[31];
+            this.Adapter.SelectCommand = this.CommandCollection[32];
             if ((Param1 == null)) {
                 throw new global::System.ArgumentNullException("Param1");
             }
@@ -2068,9 +2073,38 @@ WHERE        Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_pokoju = Pokoj
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, false)]
+        public virtual int DeletePobytyKlientNULLByIdRezerwacji(global::System.Nullable<int> id_rezerwacji) {
+            global::System.Data.Odbc.OdbcCommand command = this.CommandCollection[1];
+            if ((id_rezerwacji.HasValue == true)) {
+                command.Parameters[0].Value = ((int)(id_rezerwacji.Value));
+            }
+            else {
+                command.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            int returnValue;
+            try {
+                returnValue = command.ExecuteNonQuery();
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
         public virtual int UpdateIdKlientaInPobytyQuery(global::System.Nullable<int> id_klienta, int Original_id_pobytu) {
-            global::System.Data.Odbc.OdbcCommand command = this.CommandCollection[32];
+            global::System.Data.Odbc.OdbcCommand command = this.CommandCollection[33];
             if ((id_klienta.HasValue == true)) {
                 command.Parameters[0].Value = ((int)(id_klienta.Value));
             }
@@ -2100,7 +2134,7 @@ WHERE        Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_pokoju = Pokoj
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
         public virtual int UpdateIdRachunek(global::System.Nullable<int> id_rachunku, int Original_id_pobytu) {
-            global::System.Data.Odbc.OdbcCommand command = this.CommandCollection[33];
+            global::System.Data.Odbc.OdbcCommand command = this.CommandCollection[34];
             if ((id_rachunku.HasValue == true)) {
                 command.Parameters[0].Value = ((int)(id_rachunku.Value));
             }
@@ -2130,7 +2164,7 @@ WHERE        Pobyty.id_klienta = Klienci.id_klienta AND Pobyty.id_pokoju = Pokoj
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
         public virtual int UpdatePobytyIdKlientaByIdRezerwacjiIdPokoju(global::System.Nullable<int> id_klienta, global::System.Nullable<int> Original_id_rezerwacji, global::System.Nullable<int> Original_id_pokoju) {
-            global::System.Data.Odbc.OdbcCommand command = this.CommandCollection[34];
+            global::System.Data.Odbc.OdbcCommand command = this.CommandCollection[35];
             if ((id_klienta.HasValue == true)) {
                 command.Parameters[0].Value = ((int)(id_klienta.Value));
             }

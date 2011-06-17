@@ -339,14 +339,14 @@ namespace PensjonatApp.Helpers
                         foreach (PobytyDS.PobytyRow pobyt in tabPo)
                         {
                             //znaleziono pobyt dla danego pokoju
-                            if (pobyt.id_pokoju == id_pokojow[i])
+                            if (pobyt.id_pokoju == id_pokojow[i] && pobyt.Isid_klientaNull())
                             {
                                 TablesManager.Manager.PobytyTableAdapter.UpdateIdKlientaInPobytyQuery(id_klientow[i], pobyt.id_pobytu);
                                 break;
                             }
-
-                        }
+                        }                      
                     }
+                    TablesManager.Manager.PobytyTableAdapter.DeletePobytyKlientNULLByIdRezerwacji(id_rezerwacji);                    
                 }
                 else
                     return -2;
@@ -389,7 +389,7 @@ namespace PensjonatApp.Helpers
                 return -1;
         }
         
-*/
+        */
         ///*
         /// <summary>
         /// Na podstawie isniejącej rezerwacji(id_rezerwacji), w której zostały stworzone rekody dla pobytów, z id zarezerwowanych pokojów, przydziela klienta(id_klienta) do danego pokoju(id_pokoju).
