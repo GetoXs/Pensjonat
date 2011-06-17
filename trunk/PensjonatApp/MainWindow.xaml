@@ -882,31 +882,31 @@
                         <Label Content="Pokoje" FontSize="20" FontWeight="Normal" Height="40" HorizontalAlignment="Left" Margin="53,11,0,0" Name="label295" Padding="0" VerticalAlignment="Top" VerticalContentAlignment="Center" />
                         <Image Height="40" HorizontalAlignment="Left" Margin="165,12,0,0" Name="image231" Source="/PensjonatApp;component/Images/separator.png" Stretch="Fill" VerticalAlignment="Top" Width="2" />
                         <StackPanel CanHorizontallyScroll="True" ClipToBounds="False" FlowDirection="RightToLeft" HorizontalAlignment="Right" Margin="172,-1,5,0" Name="stackPanel4" Orientation="Horizontal" VerticalAlignment="Stretch" Width="416">
-                            <Button BorderBrush="#FFBAD0DC" FlowDirection="LeftToRight" Foreground="{x:Null}" Height="35" Margin="2" Name="buttonPokojeUsun" Padding="0" Width="95" Click="buttonPokojeUsun_Click">
+                            <Button BorderBrush="#FFBAD0DC" FlowDirection="LeftToRight" Foreground="{x:Null}" Height="35" Margin="2" Name="buttonPokojeUsun" Padding="0" Width="95" Click="buttonPokojeUsun_Click" TabIndex="5">
                                 <StackPanel Orientation="Horizontal">
                                     <Image Height="24" HorizontalAlignment="Left" Margin="2" Name="image18" Source="/PensjonatApp;component/Images/Delete-icon1.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="24" />
                                     <Label Content="Usuń" FontWeight="Normal" HorizontalContentAlignment="Center" Name="label79" Padding="0" VerticalContentAlignment="Center" Width="42" FontSize="13" VerticalAlignment="Center" />
                                 </StackPanel>
                             </Button>
-                            <Button BorderBrush="#FFBAD0DC" FlowDirection="LeftToRight" Foreground="{x:Null}" Height="35" Margin="2" Name="buttonPokojeEdytuj" Padding="0" Width="95" Click="buttonPokojeEdytuj_Click" TabIndex="5">
+                            <Button BorderBrush="#FFBAD0DC" FlowDirection="LeftToRight" Foreground="{x:Null}" Height="35" Margin="2" Name="buttonPokojeEdytuj" Padding="0" Width="95" Click="buttonPokojeEdytuj_Click" TabIndex="4">
                                 <StackPanel Orientation="Horizontal">
                                     <Image Height="24" HorizontalAlignment="Left" Margin="2" Name="image19" Source="/PensjonatApp;component/Images/document_edit.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="24" />
                                     <Label Content="Edytuj" FontWeight="Normal" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="0" Name="label80" Padding="0" VerticalAlignment="Center" VerticalContentAlignment="Center" Width="42" FontSize="13" />
                                 </StackPanel>
                             </Button>
-                            <Button BorderBrush="#FFBAD0DC" Foreground="{x:Null}" Height="35" Name="buttonPokojeOk" Padding="0" Width="95" Click="buttonPokojeOk_Click" Margin="2">
+                            <Button BorderBrush="#FFBAD0DC" Foreground="{x:Null}" Height="35" Name="buttonPokojeOk" Padding="0" Width="95" Click="buttonPokojeOk_Click" Margin="2" TabIndex="3">
                                 <StackPanel FlowDirection="LeftToRight" Orientation="Horizontal">
                                     <Image Grid.RowSpan="2" Height="24" HorizontalAlignment="Left" Margin="2,3,0,3" Name="image53" Source="/PensjonatApp;component/Images/Check-icon2.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="24" />
                                     <Label Content="OK" FlowDirection="LeftToRight" FontWeight="Normal" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="0" Name="label144" Padding="0" VerticalAlignment="Center" VerticalContentAlignment="Center" Width="55" FontSize="13" />
                                 </StackPanel>
                             </Button>
-                            <Button BorderBrush="#FFBAD0DC" Foreground="{x:Null}" Height="35" Name="buttonPokojePowrot" Padding="0" Width="95" Click="buttonPokojePowrot_Click" Margin="2">
+                            <Button BorderBrush="#FFBAD0DC" Foreground="{x:Null}" Height="35" Name="buttonPokojePowrot" Padding="0" Width="95" Click="buttonPokojePowrot_Click" Margin="2" TabIndex="2">
                                 <StackPanel FlowDirection="LeftToRight" Orientation="Horizontal">
                                     <Image Grid.RowSpan="2" Height="24" HorizontalAlignment="Left" Margin="2,3,0,3" Name="image54" Source="/PensjonatApp;component/Images/wstecz.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="24" />
                                     <Label Content="Powrót" FontWeight="Normal" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="0" Name="label145" Padding="0" VerticalAlignment="Center" VerticalContentAlignment="Center" Width="55" FontSize="13" />
                                 </StackPanel>
                             </Button>
-                            <Button BorderBrush="#FFBAD0DC" FlowDirection="LeftToRight" Foreground="{x:Null}" Height="35" Name="buttonPokojeSzczegoly" Padding="0" TabIndex="5" Width="95" Margin="2" Click="buttonPokojeSzczegoly_Click">
+                            <Button BorderBrush="#FFBAD0DC" FlowDirection="LeftToRight" Foreground="{x:Null}" Height="35" Name="buttonPokojeSzczegoly" Padding="0" TabIndex="1" Width="95" Margin="2" Click="buttonPokojeSzczegoly_Click">
                                 <StackPanel Orientation="Horizontal">
                                     <Image Height="24" HorizontalAlignment="Left" Margin="2" Name="image86" Source="/PensjonatApp;component/Images/edit_find.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="24" />
                                     <Label Content="Szczegóły" FontSize="13" FontWeight="Normal" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="0" Name="label231" Padding="0" VerticalAlignment="Center" VerticalContentAlignment="Center" Width="60" />
@@ -914,7 +914,7 @@
                             </Button>
                         </StackPanel>
                     </Grid>
-                    <Grid Height="45" Name="gridPokojeSzczegoly">
+                    <Grid Height="49" Name="gridPokojeSzczegoly">
                         <Label Content="Szczegóły pokoju:" FontSize="15" FontWeight="Normal" HorizontalAlignment="Left" Margin="10,12,0,0" Name="label27" Padding="2" VerticalAlignment="Top" />
                         <Label Content="Nr pokoju:" FontWeight="Normal" HorizontalAlignment="Left" Margin="35,42,0,0" Name="label28" Padding="2" VerticalAlignment="Top" FontSize="14" />
                         <Label Content="Label" Height="28" HorizontalAlignment="Left" IsEnabled="False" Margin="139,9,0,0" Name="label29" VerticalAlignment="Top" Visibility="Hidden" />
@@ -934,22 +934,22 @@
                         <Label Content="Cena:" FontWeight="Normal" HorizontalAlignment="Left" Margin="136,70,0,0" Name="labelPokojeSzczegolyStandard" Padding="2" VerticalAlignment="Top" />
                         <Separator Height="5" HorizontalAlignment="Left" Margin="36,61,0,0" Name="separator16" VerticalAlignment="Top" Width="166" />
                     </Grid>
-                    <Grid Name="gridPokojeEdycja" Height="37">
+                    <Grid Name="gridPokojeEdycja" Height="39">
                         <Label Content="Edycja pokoju:" FontSize="15" FontWeight="Normal" HorizontalAlignment="Left" Margin="10,12,0,0" Name="label142" Padding="2" VerticalAlignment="Top" />
                         <Label Content="Nr pokoju:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,40,0,0" Name="label143" Padding="2" VerticalAlignment="Top" />
                         <Label Content="Label" Height="28" HorizontalAlignment="Left" IsEnabled="False" Margin="105,10,0,0" Name="labelPokojeEdycjaId" VerticalAlignment="Top" Visibility="Hidden" />
                         <Label Content="Wybierz standard:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,69,0,0" Name="label149" Padding="2" VerticalAlignment="Top" />
-                        <ComboBox Height="23" IsEnabled="True" ItemsSource="{Binding}" Margin="160,66,192,0" Name="comboBoxPokojeEdycjaStandard" VerticalAlignment="Top" TabIndex="2" Loaded="comboBoxPokojeEdycjaStandard_Loaded" />
-                        <TextBox Height="23" Margin="160,39,192,0" Name="textBoxPokojeEdycjaNrPokoju" VerticalAlignment="Top" TabIndex="1" />
+                        <ComboBox Height="23" IsEnabled="True" ItemsSource="{Binding}" Margin="160,66,192,0" Name="comboBoxPokojeEdycjaStandard" VerticalAlignment="Top" TabIndex="11" Loaded="comboBoxPokojeEdycjaStandard_Loaded" />
+                        <TextBox Height="23" Margin="160,39,192,0" Name="textBoxPokojeEdycjaNrPokoju" VerticalAlignment="Top" TabIndex="10" />
                     </Grid>
                     <Grid Name="gridPokojeDeafult" Margin="0" Opacity="1" ShowGridLines="True" Visibility="Visible" Height="312">
                         <GroupBox Header="Dodaj pokój" Height="108" Margin="14,19,10,0" Name="groupBox2" VerticalAlignment="Top">
                             <Grid>
                                 <Label Content="Nr pokoju:" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,6,0,0" Name="label99" Padding="2" VerticalAlignment="Top" />
                                 <Label Content="Wybierz standard:" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,44,0,0" Name="label100" Padding="2" VerticalAlignment="Top" />
-                                <ComboBox Height="23" IsEnabled="True" ItemsSource="{Binding}" Margin="140,41,112,0" Name="comboBoxPokojeStandard" VerticalAlignment="Top" TabIndex="2" Loaded="comboBoxPokojeStandard_Loaded"></ComboBox>
-                                <TextBox Height="23" Margin="140,6,112,0" Name="textBoxPokojeNrPokoju" VerticalAlignment="Top" TabIndex="1" />
-                                <Button BorderBrush="#FFBAD0DC" FlowDirection="LeftToRight" Foreground="{x:Null}" Margin="0,32,26,0" Name="buttonPokojeDodaj" Padding="0" HorizontalAlignment="Right" Click="buttonPokojeDodaj_Click" TabIndex="3" Height="23" VerticalAlignment="Top">
+                                <ComboBox Height="23" IsEnabled="True" ItemsSource="{Binding}" Margin="140,41,112,0" Name="comboBoxPokojeStandard" VerticalAlignment="Top" TabIndex="11" Loaded="comboBoxPokojeStandard_Loaded"></ComboBox>
+                                <TextBox Height="23" Margin="140,6,112,0" Name="textBoxPokojeNrPokoju" VerticalAlignment="Top" TabIndex="10" />
+                                <Button BorderBrush="#FFBAD0DC" FlowDirection="LeftToRight" Foreground="{x:Null}" Margin="0,32,26,0" Name="buttonPokojeDodaj" Padding="0" HorizontalAlignment="Right" Click="buttonPokojeDodaj_Click" TabIndex="12" Height="23" VerticalAlignment="Top">
                                     <StackPanel Orientation="Horizontal">
                                         <Image Height="16" HorizontalAlignment="Left" Margin="2" Name="image20" Source="/PensjonatApp;component/Images/addSmall.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="16" />
                                         <Label Content="Dodaj" FontWeight="Normal" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Margin="0" Name="label96" Padding="0" VerticalAlignment="Stretch" VerticalContentAlignment="Center" Width="42" />
@@ -990,37 +990,37 @@
                         <Label Content="Standardy pokoi" FontSize="18" FontWeight="Normal" Height="40" HorizontalAlignment="Left" Margin="53,11,0,0" Name="label98" Padding="0" VerticalAlignment="Top" VerticalContentAlignment="Center" />
                         <Image Height="40" HorizontalAlignment="Left" Margin="186,12,0,0" Name="image22" Source="/PensjonatApp;component/Images/separator.png" Stretch="Fill" VerticalAlignment="Top" Width="2" />
                         <StackPanel CanHorizontallyScroll="True" ClipToBounds="False" FlowDirection="RightToLeft" Margin="0,-1,5,0" Name="stackPanel5" Orientation="Horizontal" HorizontalAlignment="Right" Width="473">
-                            <Button BorderBrush="#FFBAD0DC" FlowDirection="LeftToRight" Foreground="{x:Null}" Height="35" Margin="2" Name="buttonStandPokoiUsun" Padding="0" Width="95" Click="buttonStandPokoiUsun_Click">
+                            <Button BorderBrush="#FFBAD0DC" FlowDirection="LeftToRight" Foreground="{x:Null}" Height="35" Margin="2" Name="buttonStandPokoiUsun" Padding="0" Width="95" Click="buttonStandPokoiUsun_Click" TabIndex="6">
                                 <StackPanel Orientation="Horizontal">
                                     <Image Height="24" HorizontalAlignment="Left" Margin="2" Name="image23" Source="/PensjonatApp;component/Images/Delete-icon1.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="24" />
                                     <Label Content="Usuń" FontWeight="Normal" HorizontalContentAlignment="Center" Name="label101" Padding="0" VerticalContentAlignment="Center" Width="42" FontSize="13" VerticalAlignment="Center" />
                                 </StackPanel>
                             </Button>
-                            <Button BorderBrush="#FFBAD0DC" FlowDirection="LeftToRight" Foreground="{x:Null}" Height="35" Margin="2" Name="buttonStandPokoiEdytuj" Padding="0" Width="95" Click="buttonStandPokoiEdytuj_Click">
+                            <Button BorderBrush="#FFBAD0DC" FlowDirection="LeftToRight" Foreground="{x:Null}" Height="35" Margin="2" Name="buttonStandPokoiEdytuj" Padding="0" Width="95" Click="buttonStandPokoiEdytuj_Click" TabIndex="5">
                                 <StackPanel Orientation="Horizontal">
                                     <Image Height="24" HorizontalAlignment="Left" Margin="2" Name="image24" Source="/PensjonatApp;component/Images/document_edit.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="24" />
                                     <Label Content="Edytuj" FontWeight="Normal" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="0" Name="label102" Padding="0" VerticalAlignment="Center" VerticalContentAlignment="Center" Width="42" FontSize="13" />
                                 </StackPanel>
                             </Button>
-                            <Button BorderBrush="#FFBAD0DC" Canvas.Left="199" Canvas.Top="103" Foreground="{x:Null}" Height="35" Name="buttonStandPokoiDodaj" Padding="0" Width="95" Margin="2" Click="buttonStandPokoiDodaj_Click">
+                            <Button BorderBrush="#FFBAD0DC" Canvas.Left="199" Canvas.Top="103" Foreground="{x:Null}" Height="35" Name="buttonStandPokoiDodaj" Padding="0" Width="95" Margin="2" Click="buttonStandPokoiDodaj_Click" TabIndex="4">
                                 <StackPanel Orientation="Horizontal">
                                     <Label Content="Dodaj" FontWeight="Normal" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="0" Name="label103" Padding="0" VerticalAlignment="Center" VerticalContentAlignment="Center" Width="42" FontSize="13" />
                                     <Image Height="24" Margin="2" Name="image25" Source="/PensjonatApp;component/Images/Add-icon1.png" Stretch="Fill" StretchDirection="Both" Width="24" />
                                 </StackPanel>
                             </Button>
-                            <Button BorderBrush="#FFBAD0DC" Foreground="{x:Null}" Height="35" Name="buttonStandPokoiOk" Padding="0" Width="95" Margin="2" Click="buttonStandPokoiOk_Click">
+                            <Button BorderBrush="#FFBAD0DC" Foreground="{x:Null}" Height="35" Name="buttonStandPokoiOk" Padding="0" Width="95" Margin="2" Click="buttonStandPokoiOk_Click" TabIndex="3">
                                 <StackPanel FlowDirection="LeftToRight" Orientation="Horizontal">
                                     <Image Grid.RowSpan="2" Height="24" HorizontalAlignment="Left" Margin="2,3,0,3" Name="image63" Source="/PensjonatApp;component/Images/Check-icon2.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="24" />
                                     <Label Content="OK" FlowDirection="LeftToRight" FontWeight="Normal" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="0" Name="label168" Padding="0" VerticalAlignment="Center" VerticalContentAlignment="Center" Width="55" FontSize="13" />
                                 </StackPanel>
                             </Button>
-                            <Button BorderBrush="#FFBAD0DC" Foreground="{x:Null}" Height="35" Name="buttonStandPokoiPowrot" Padding="0" Width="95" Margin="2" Click="buttonStandPokoiPowrot_Click">
+                            <Button BorderBrush="#FFBAD0DC" Foreground="{x:Null}" Height="35" Name="buttonStandPokoiPowrot" Padding="0" Width="95" Margin="2" Click="buttonStandPokoiPowrot_Click" TabIndex="2">
                                 <StackPanel FlowDirection="LeftToRight" Orientation="Horizontal">
                                     <Image Grid.RowSpan="2" Height="24" HorizontalAlignment="Left" Margin="2,3,0,3" Name="image64" Source="/PensjonatApp;component/Images/wstecz.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="24" />
                                     <Label Content="Powrót" FontWeight="Normal" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="0" Name="label175" Padding="0" VerticalAlignment="Center" VerticalContentAlignment="Center" Width="55" FontSize="13" />
                                 </StackPanel>
                             </Button>
-                            <Button BorderBrush="#FFBAD0DC" FlowDirection="LeftToRight" Foreground="{x:Null}" Height="35" Name="buttonStandPokoiSzczegoly" Padding="0" TabIndex="5" Width="95" Margin="2" Click="buttonStandPokoiSzczegoly_Click">
+                            <Button BorderBrush="#FFBAD0DC" FlowDirection="LeftToRight" Foreground="{x:Null}" Height="35" Name="buttonStandPokoiSzczegoly" Padding="0" TabIndex="1" Width="95" Margin="2" Click="buttonStandPokoiSzczegoly_Click">
                                 <StackPanel Orientation="Horizontal">
                                     <Image Height="24" HorizontalAlignment="Left" Margin="2" Name="image87" Source="/PensjonatApp;component/Images/edit_find.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="24" />
                                     <Label Content="Szczegóły" FontSize="13" FontWeight="Normal" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="0" Name="label252" Padding="0" VerticalAlignment="Center" VerticalContentAlignment="Center" Width="60" />
@@ -1028,7 +1028,7 @@
                             </Button>
                         </StackPanel>
                     </Grid>
-                    <Grid Height="44" Name="gridStandPokoiSzczegoly">
+                    <Grid Height="49" Name="gridStandPokoiSzczegoly">
                         <Label Content="Szczegóły standardu pokoi:" FontSize="15" FontWeight="Normal" HorizontalAlignment="Left" Margin="10,12,0,0" Name="label76" Padding="2" VerticalAlignment="Top" />
                         <Label Content="Opis:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,40,0,0" Name="label77" Padding="2" VerticalAlignment="Top" />
                         <Label Content="Cena:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,69,0,0" Name="label87" Padding="2" VerticalAlignment="Top" />
@@ -1044,35 +1044,39 @@
                         <Label Content="Cena:" FontWeight="Normal" HorizontalAlignment="Left" Margin="114,69,0,0" Name="labelStandPokoiSzczegolyCena" Padding="2" VerticalAlignment="Top" />
                         <Label Content="Cena:" FontWeight="Normal" HorizontalAlignment="Left" Margin="114,98,0,0" Name="labelStandPokoiSzczegolyLosob" Padding="2" VerticalAlignment="Top" />
                     </Grid>
-                    <Grid Height="44" Name="gridStandPokoiDodaj">
+                    <Grid Height="68" Name="gridStandPokoiDodaj">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="300" />
+                            <ColumnDefinition Width="283" />
+                        </Grid.ColumnDefinitions>
                         <Label Content="Dodawanie standardu pokoi:" FontSize="15" FontWeight="Normal" HorizontalAlignment="Left" Margin="10,12,0,0" Name="label165" Padding="2" VerticalAlignment="Top" />
                         <Label Content="Opis:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,40,0,0" Name="label166" Padding="2" VerticalAlignment="Top" />
-                        <ComboBox Height="23" IsEnabled="True" Text="Binding Path=opis" ItemsSource="{Binding}" Margin="47,158,92,0" Name="comboBoxStandPokoiDodajWyposazenie" TabIndex="2" VerticalAlignment="Top" Loaded="comboBoxStandPokoiDodajWyposazenie_Loaded">
+                        <ComboBox Height="23" IsEnabled="True" Text="Binding Path=opis" ItemsSource="{Binding}" Margin="47,158,92,0" Name="comboBoxStandPokoiDodajWyposazenie" TabIndex="13" VerticalAlignment="Top" Loaded="comboBoxStandPokoiDodajWyposazenie_Loaded" Grid.ColumnSpan="2">
                         </ComboBox>
-                        <TextBox Height="23" Margin="114,37,0,0" Name="textBoxStandPokoiDodajOpis" TabIndex="1" VerticalAlignment="Top" Width="449" HorizontalAlignment="Left" />
+                        <TextBox Height="23" Margin="114,37,0,0" Name="textBoxStandPokoiDodajOpis" TabIndex="10" VerticalAlignment="Top" Width="449" HorizontalAlignment="Left" Grid.ColumnSpan="2" />
                         <Label Content="Cena:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,69,0,0" Name="label167" Padding="2" VerticalAlignment="Top" />
-                        <TextBox Height="23" Margin="114,68,0,0" Name="textBoxStandPokoiDodajCena" TabIndex="1" VerticalAlignment="Top" Width="83" HorizontalAlignment="Left" />
+                        <TextBox Height="23" Margin="114,68,0,0" Name="textBoxStandPokoiDodajCena" TabIndex="11" VerticalAlignment="Top" Width="83" HorizontalAlignment="Left" />
                         <Label Content="Liczba osób:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,98,0,0" Name="label170" Padding="2" VerticalAlignment="Top" />
-                        <TextBox Height="23" Margin="114,97,0,0" Name="textBoxStandPokoiDodajIlOsob" TabIndex="1" VerticalAlignment="Top" Width="83" HorizontalAlignment="Left" />
+                        <TextBox Height="23" Margin="114,97,0,0" Name="textBoxStandPokoiDodajIlOsob" TabIndex="12" VerticalAlignment="Top" Width="83" HorizontalAlignment="Left" />
                         <Label Content="Wyposażenie:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,132,0,0" Name="label174" Padding="2" VerticalAlignment="Top" />
-                        <Button Content="+" Height="23" HorizontalAlignment="Right" Margin="0,158,54,0" Name="buttonStandPokoiDodajWyposazenie" VerticalAlignment="Top" Width="22" Click="buttonStandPokoiDodajWyposazenie_Click" />
-                        <DataGrid AutoGenerateColumns="False" HorizontalGridLinesBrush="#FFD5D5D5" IsEnabled="True" IsReadOnly="True" Margin="47,191,22,19" Name="dataGridStandPokoiDodajWyposazenie" VerticalGridLinesBrush="#FFD5D5D5" SelectionMode="Single">
+                        <Button Content="+" Height="23" HorizontalAlignment="Right" Margin="0,158,54,0" Name="buttonStandPokoiDodajWyposazenie" VerticalAlignment="Top" Width="22" Click="buttonStandPokoiDodajWyposazenie_Click" TabIndex="14" Grid.Column="1" />
+                        <DataGrid AutoGenerateColumns="False" HorizontalGridLinesBrush="#FFD5D5D5" IsEnabled="True" IsReadOnly="True" Margin="47,191,22,19" Name="dataGridStandPokoiDodajWyposazenie" VerticalGridLinesBrush="#FFD5D5D5" SelectionMode="Single" Grid.ColumnSpan="2">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding Path=id_wyposazenia}" Header="Id" />
                                 <DataGridTextColumn Binding="{Binding Path=opis}" Header="Opis" />
                             </DataGrid.Columns>
                         </DataGrid>
-                        <Button Content="-" Height="23" HorizontalAlignment="Right" Margin="0,158,22,0" Name="buttonStandPokoiDodajWyposazenieUsun" VerticalAlignment="Top" Width="22" Click="buttonStandPokoiDodajWyposazenieUsun_Click" />
+                        <Button Content="-" Height="23" HorizontalAlignment="Right" Margin="0,158,22,0" Name="buttonStandPokoiDodajWyposazenieUsun" VerticalAlignment="Top" Width="22" Click="buttonStandPokoiDodajWyposazenieUsun_Click" TabIndex="15" Grid.Column="1" />
                     </Grid>
                     <Grid Height="340" Name="gridStandPokoiEdycja">
                         <Label Content="Edycja standardu pokoi:" FontSize="15" FontWeight="Normal" HorizontalAlignment="Left" Margin="10,12,0,0" Name="label176" Padding="2" VerticalAlignment="Top" />
                         <Label Content="Opis:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,40,0,0" Name="label177" Padding="2" VerticalAlignment="Top" />
-                        <ComboBox Height="23" IsEnabled="True" ItemsSource="{Binding}" Margin="47,158,101,0" Name="comboBoxStandPokoiEdycjaWyposazenie" TabIndex="2" VerticalAlignment="Top" Width="435" Loaded="comboBoxStandPokoiEdycjaWyposazenie_Loaded" />
-                        <TextBox Height="23" Margin="114,37,20,0" Name="textBoxStandPokoiEdycjaOpis" TabIndex="1" VerticalAlignment="Top" Width="449" />
+                        <ComboBox Height="23" IsEnabled="True" ItemsSource="{Binding}" Margin="47,158,101,0" Name="comboBoxStandPokoiEdycjaWyposazenie" TabIndex="13" VerticalAlignment="Top" Width="435" Loaded="comboBoxStandPokoiEdycjaWyposazenie_Loaded" />
+                        <TextBox Height="23" Margin="114,37,20,0" Name="textBoxStandPokoiEdycjaOpis" TabIndex="10" VerticalAlignment="Top" Width="449" />
                         <Label Content="Cena:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,69,0,0" Name="label178" Padding="2" VerticalAlignment="Top" />
-                        <TextBox Height="23" HorizontalAlignment="Left" Margin="114,68,0,0" Name="textBoxStandPokoiEdycjaCena" TabIndex="1" VerticalAlignment="Top" Width="83" />
+                        <TextBox Height="23" HorizontalAlignment="Left" Margin="114,68,0,0" Name="textBoxStandPokoiEdycjaCena" TabIndex="11" VerticalAlignment="Top" Width="83" />
                         <Label Content="Liczba osób:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,98,0,0" Name="label179" Padding="2" VerticalAlignment="Top" />
-                        <TextBox Height="23" HorizontalAlignment="Left" Margin="114,97,0,0" Name="textBoxStandPokoiEdycjaIlOsob" TabIndex="1" VerticalAlignment="Top" Width="83" />
+                        <TextBox Height="23" HorizontalAlignment="Left" Margin="114,97,0,0" Name="textBoxStandPokoiEdycjaIlOsob" TabIndex="12" VerticalAlignment="Top" Width="83" />
                         <Label Content="Wyposażenie:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,132,0,0" Name="label180" Padding="2" VerticalAlignment="Top" />
                         <DataGrid AutoGenerateColumns="False" HorizontalGridLinesBrush="#FFD5D5D5" IsEnabled="True" IsReadOnly="True" Margin="47,191,22,19" Name="dataGridStandPokoiEdycjaWyposazenie" VerticalGridLinesBrush="#FFD5D5D5" SelectionMode="Single">
                             <DataGrid.Columns>
@@ -1081,8 +1085,8 @@
                             </DataGrid.Columns>
                         </DataGrid>
                         <Label Content="Label" Height="28" HorizontalAlignment="Left" Margin="177,8,0,0" Name="labelStandPokoiEdycjaId" VerticalAlignment="Top" Visibility="Hidden" />
-                        <Button Content="+" Height="23" HorizontalAlignment="Right" Margin="0,158,54,0" Name="buttonStandPokoEdytujWyposazenie" VerticalAlignment="Top" Width="22" Click="buttonStandPokoEdytujWyposazenie_Click" />
-                        <Button Content="-" Height="23" HorizontalAlignment="Right" Margin="0,158,22,0" Name="buttonStandPokoiEdytujWyposazenieUsun" VerticalAlignment="Top" Width="22" Click="buttonStandPokoiEdytujWyposazenieUsun_Click" />
+                        <Button Content="+" Height="23" HorizontalAlignment="Right" Margin="0,158,54,0" Name="buttonStandPokoEdytujWyposazenie" VerticalAlignment="Top" Width="22" Click="buttonStandPokoEdytujWyposazenie_Click" TabIndex="14" />
+                        <Button Content="-" Height="23" HorizontalAlignment="Right" Margin="0,158,22,0" Name="buttonStandPokoiEdytujWyposazenieUsun" VerticalAlignment="Top" Width="22" Click="buttonStandPokoiEdytujWyposazenieUsun_Click" TabIndex="15" />
                     </Grid>
                     <Grid Margin="0" Name="gridStandPokoiDeafult" Opacity="1" ShowGridLines="True" Visibility="Visible" Height="96">
                         <DataGrid AutoGenerateColumns="False" HorizontalGridLinesBrush="#FFD5D5D5" IsEnabled="True" IsReadOnly="True" Margin="17,39,19,19" Name="dataGridStandPokoiDeafult" VerticalGridLinesBrush="#FFD5D5D5" IsVisibleChanged="dataGridStandPokoiDeafult_IsVisibleChanged" SelectionMode="Single">
@@ -1128,13 +1132,13 @@
                                     <Label Content="Edytuj" FontWeight="Normal" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="0" Name="label131" Padding="0" VerticalAlignment="Center" VerticalContentAlignment="Center" Width="42" FontSize="13" />
                                 </StackPanel>
                             </Button>
-                            <Button BorderBrush="#FFBAD0DC" Foreground="{x:Null}" Height="35" Name="buttonWyposazenieOk" Padding="0" Width="95" Margin="2" Click="buttonWyposazenieOk_Click" TabIndex="6">
+                            <Button BorderBrush="#FFBAD0DC" Foreground="{x:Null}" Height="35" Name="buttonWyposazenieOk" Padding="0" Width="95" Margin="2" Click="buttonWyposazenieOk_Click" TabIndex="2">
                                 <StackPanel FlowDirection="LeftToRight" Orientation="Horizontal">
                                     <Image Grid.RowSpan="2" Height="24" HorizontalAlignment="Left" Margin="2,3,0,3" Name="image55" Source="/PensjonatApp;component/Images/Check-icon2.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="24" />
                                     <Label Content="OK" FlowDirection="LeftToRight" FontWeight="Normal" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="0" Name="label146" Padding="0" VerticalAlignment="Center" VerticalContentAlignment="Center" Width="55" FontSize="13" />
                                 </StackPanel>
                             </Button>
-                            <Button BorderBrush="#FFBAD0DC" Foreground="{x:Null}" Height="35" Name="buttonWyposazeniePowrot" Padding="0" Width="95" Margin="2" Click="buttonWyposazeniePowrot_Click" TabIndex="7">
+                            <Button BorderBrush="#FFBAD0DC" Foreground="{x:Null}" Height="35" Name="buttonWyposazeniePowrot" Padding="0" Width="95" Margin="2" Click="buttonWyposazeniePowrot_Click" TabIndex="1">
                                 <StackPanel FlowDirection="LeftToRight" Orientation="Horizontal">
                                     <Image Grid.RowSpan="2" Height="24" HorizontalAlignment="Left" Margin="2,3,0,3" Name="image56" Source="/PensjonatApp;component/Images/wstecz.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="24" />
                                     <Label Content="Powrót" FontWeight="Normal" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="0" Name="label147" Padding="0" VerticalAlignment="Center" VerticalContentAlignment="Center" Width="55" FontSize="13" />
@@ -1142,18 +1146,18 @@
                             </Button>
                         </StackPanel>
                     </Grid>
-                    <Grid Height="263" Name="gridWyposazenieEdytuj">
+                    <Grid Height="97" Name="gridWyposazenieEdytuj">
                         <Label Content="Edycja wyposazenia" FontSize="15" FontWeight="Normal" HorizontalAlignment="Left" Margin="10,12,0,0" Name="label148" Padding="2" VerticalAlignment="Top" />
                         <Label Content="Opis:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,40,0,0" Name="label150" Padding="2" VerticalAlignment="Top" />
                         <Label Content="Label" Height="28" HorizontalAlignment="Left" IsEnabled="False" Margin="105,10,0,0" Name="labelWyposazenieId" VerticalAlignment="Top" Visibility="Hidden" />
-                        <TextBox Height="23" Margin="73,39,22,0" Name="textBoxWyposazenieEdycjaOpis" VerticalAlignment="Top" TabIndex="5" />
+                        <TextBox Height="23" Margin="73,39,22,0" Name="textBoxWyposazenieEdycjaOpis" VerticalAlignment="Top" TabIndex="10" />
                     </Grid>
                     <Grid Margin="0" MinHeight="580" Name="gridWyposazenieDeafult" Opacity="1" ShowGridLines="True" Visibility="Visible">
                         <GroupBox Header="Dodaj wyposażenie" Height="59" Margin="14,19,10,0" Name="groupBox3" VerticalAlignment="Top">
                             <Grid>
                                 <Label Content="Opis:" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,6,0,0" Name="label132" Padding="2" VerticalAlignment="Top" />
-                                <TextBox Height="23" Margin="48,6,86,0" Name="textBoxWyposazenieOpis" VerticalAlignment="Top" TabIndex="1" />
-                                <Button BorderBrush="#FFBAD0DC" FlowDirection="LeftToRight" Foreground="{x:Null}" HorizontalAlignment="Right" Margin="0,5,4,0" Name="buttonWyposazenieDodaj" Padding="0" Height="24" VerticalAlignment="Top" Click="buttonWyposazenieDodaj_Click" TabIndex="2">
+                                <TextBox Height="23" Margin="48,6,86,0" Name="textBoxWyposazenieOpis" VerticalAlignment="Top" TabIndex="10" />
+                                <Button BorderBrush="#FFBAD0DC" FlowDirection="LeftToRight" Foreground="{x:Null}" HorizontalAlignment="Right" Margin="0,5,4,0" Name="buttonWyposazenieDodaj" Padding="0" Height="24" VerticalAlignment="Top" Click="buttonWyposazenieDodaj_Click" TabIndex="11">
                                     <StackPanel Orientation="Horizontal">
                                         <Image Height="16" HorizontalAlignment="Left" Margin="2" Name="image47" Source="/PensjonatApp;component/Images/addSmall.png" Stretch="Fill" StretchDirection="Both" VerticalAlignment="Center" Width="16" />
                                         <Label Content="Dodaj" FontWeight="Normal" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Margin="0" Name="label134" Padding="0" VerticalAlignment="Stretch" VerticalContentAlignment="Center" Width="42" />
