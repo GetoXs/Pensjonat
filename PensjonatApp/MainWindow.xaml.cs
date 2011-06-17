@@ -838,8 +838,7 @@ namespace PensjonatApp
             }
             else if (currentGrid == gridPobytyNowy)
             {
-                if ((bool)radioButtonPobytyNowyNowy.IsChecked == true)
-                {
+
                     if (textBoxPobytyNowyKlient.Text != null  && comboBoxPobytyNowyPokoj.SelectedItem != null
                         && datePickerPobytyNowyTerminDo.SelectedDate != null && datePickerPobytyNowyTerminOd.SelectedDate != null)
                     {
@@ -870,26 +869,6 @@ namespace PensjonatApp
                     {
                         System.Windows.MessageBox.Show("Wypełnij wszytkie pola", "Dodawanie pobytu", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
-                }
-                if (radioButtonPobytyNowyZRez.IsChecked == true)
-                {
-                    if (dataGridPobytyNowyRezerwacje.SelectedItem != null)
-                    {
-						/* Do poprawy, dlaczego pobiera id_pokoju z rezerwacji która jeszcze nie jest zameldowana? (która dopiero ma mieć przypisane id_pokoju)
-                        RezerwacjeDS.RezerwacjeRow selectedRow = (RezerwacjeDS.RezerwacjeRow)((DataRowView)dataGridPobytyNowyRezerwacje.SelectedItem).Row;
-						int kod = RezerwacjeHelper.dodajKlientaDoPobytuNaPodstawieRezerwacji(selectedRow.id_rezerwacji, selectedRow.id_klienta, (int)selectedRow["id_pokoju"]);
-						if (kod == -1)
-							System.Windows.MessageBox.Show("Wystąpił błąd: Nie ma takiej rezerwacji, lub dany pokój nie jest zarazerwowany dla tej rezerwacji", "Dodawanie pobytu", MessageBoxButton.OK, MessageBoxImage.Error);
-						if (kod == -2)
-							System.Windows.MessageBox.Show("Wystąpił błąd: ten pokoj ma już przydzielonego klienta w ramach danej rezerwacji", "Dodawanie pobytu", MessageBoxButton.OK, MessageBoxImage.Error);
-						 */
-						System.Windows.MessageBox.Show("Niezaimplementowano sprawdz KOD! i Bugs Doc", "Dodawanie pobytu", MessageBoxButton.OK, MessageBoxImage.Error);
-
-                    }
-                    else
-                        System.Windows.MessageBox.Show("Wybierz rezerwację", "Dodawanie pobytu", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-
 
 			}
 			else if (currentGrid == gridPobytySum)
