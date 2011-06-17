@@ -3545,6 +3545,12 @@ namespace PensjonatApp
 
 		}
 
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.F1)
+                System.Diagnostics.Process.Start(@"..\..\help.chm");
+        }
+
 
 
 

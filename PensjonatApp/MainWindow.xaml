@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:Toolkit="clr-namespace:Microsoft.Windows.Controls;assembly=WPFToolkit.Extended"
         Title="Pensjonat" Height="700" Width="1000" Icon="/PensjonatApp;component/Images/fButon_bed.png" Topmost="False" MinWidth="1000" MinHeight="700" xmlns:my="clr-namespace:PensjonatApp" WindowStartupLocation="CenterScreen"
-		xmlns:local="clr-namespace:WPFAutoCompleteTextbox">
+		xmlns:local="clr-namespace:WPFAutoCompleteTextbox" KeyDown="Window_KeyDown">
 	<Window.Resources>
 	</Window.Resources>
     <Grid>
