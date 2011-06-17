@@ -942,8 +942,8 @@ namespace PensjonatApp
 			else
 			{
 				textBoxPobytySearch.IsEnabled = true;
-				radioButtonKlienciSearchIdKlienta.IsEnabled = true;
-				radioButtonKlienciSearchKlient.IsEnabled = true;
+				radioButtonPobytySearchIdKlienta.IsEnabled = true;
+				radioButtonPobytySearchKlient.IsEnabled = true;
 				checkBoxPobytySearchNierozliczone.IsEnabled = true;
 				gridPobytySearchExtend.Visibility = System.Windows.Visibility.Collapsed;
 			}
