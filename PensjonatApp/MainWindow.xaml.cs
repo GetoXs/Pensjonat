@@ -876,7 +876,11 @@ namespace PensjonatApp
                     if (dataGridPobytyNowyRezerwacje.SelectedItem != null)
                     {
                         RezerwacjeDS.RezerwacjeRow selectedRow = (RezerwacjeDS.RezerwacjeRow)((DataRowView)dataGridPobytyNowyRezerwacje.SelectedItem).Row;
-                        RezerwacjeHelper.dodajKlientaDoPobytuNaPodstawieRezerwacji(selectedRow.id_rezerwacji, selectedRow.id_klienta, (int)selectedRow["id_pokoju"]);
+						int kod = RezerwacjeHelper.dodajKlientaDoPobytuNaPodstawieRezerwacji(selectedRow.id_rezerwacji, selectedRow.id_klienta, (int)selectedRow["id_pokoju"]);
+						if (kod == -1)
+							System.Windows.MessageBox.Show("Wystąpił błąd: Nie ma takiej rezerwacji, lub dany pokój nie jest zarazerwowany dla tej rezerwacji", "Dodawanie pobytu", MessageBoxButton.OK, MessageBoxImage.Error);
+						if (kod == -2)
+							System.Windows.MessageBox.Show("Wystąpił błąd: ten pokoj ma już przydzielonego klienta w ramach danej rezerwacji", "Dodawanie pobytu", MessageBoxButton.OK, MessageBoxImage.Error);
 
                     }
                     else
