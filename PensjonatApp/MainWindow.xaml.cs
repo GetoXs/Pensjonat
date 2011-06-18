@@ -3180,7 +3180,26 @@ namespace PensjonatApp
         {
             SzukajPracownika();
         }
-       
+
+        private void toggleButtonPracownicySearchExtend_Checked(object sender, RoutedEventArgs e)
+        {
+            if (toggleButtonPracownicySearchExtend.IsChecked == true)
+            {
+                textBoxPracownicySzukaj.IsEnabled = false;
+                radioButtonPracownicyId.IsEnabled = false;
+                radioButtonPracownicyNazwisko.IsEnabled = false;
+
+                gridPracownicySearchExtend.Visibility = System.Windows.Visibility.Visible;
+            }
+            else
+            {
+                textBoxPracownicySzukaj.IsEnabled = true;
+                radioButtonPracownicyId.IsEnabled = true;
+                radioButtonPracownicyNazwisko.IsEnabled = true;
+
+                gridPracownicySearchExtend.Visibility = System.Windows.Visibility.Collapsed;
+            }
+        }
 
         private void buttonPracownicyDodaj_Click(object sender, RoutedEventArgs e)
         {
