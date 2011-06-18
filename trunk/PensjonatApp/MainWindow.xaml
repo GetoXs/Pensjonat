@@ -1522,7 +1522,7 @@
                         <StackPanel Name="stackPanel169" Margin="0,0,0,6" ClipToBounds="False">
                             <Grid Height="41" Name="gridPracownicySearch" Width="579" VerticalAlignment="Top" HorizontalAlignment="Left">
                                 <TextBox Height="23" HorizontalAlignment="Left" Margin="13,17,0,0" Name="textBoxPracownicySzukaj" TabIndex="10" VerticalAlignment="Top" Width="158" />
-                                <RadioButton Content="ID" GroupName="PracownicySzukaj" Height="16" HorizontalAlignment="Left" IsChecked="False" Margin="262,20,0,0" Name="radioButtonPracownicyId" VerticalAlignment="Top" TabIndex="13" />
+                                <RadioButton Content="ID pracownika" GroupName="PracownicySzukaj" Height="16" HorizontalAlignment="Left" IsChecked="False" Margin="262,20,0,0" Name="radioButtonPracownicyId" VerticalAlignment="Top" TabIndex="13" />
                                 <RadioButton Content="Pracownik" GroupName="PracownicySzukaj" Height="16" HorizontalAlignment="Left" IsChecked="True" IsThreeState="False" Margin="180,20,0,0" Name="radioButtonPracownicyNazwisko" VerticalAlignment="Top" TabIndex="12" />
                                 <Button Content="Szukaj" Height="23" HorizontalAlignment="Left" Margin="467,17,0,0" Name="buttonPracownicySzukaj" VerticalAlignment="Top" Width="75" Click="buttonPracownicySzukaj_Click" TabIndex="11" />
                                 <ToggleButton Height="23" HorizontalAlignment="Left" Margin="548,17,0,0" Name="toggleButtonPracownicySearchExtend" VerticalAlignment="Top" Width="24" Content="+" TabIndex="14" Click="toggleButtonPracownicySearchExtend_Checked" Checked="toggleButtonPracownicySearchExtend_Checked" />

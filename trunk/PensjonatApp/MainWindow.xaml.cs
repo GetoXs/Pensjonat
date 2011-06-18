@@ -3313,22 +3313,35 @@ namespace PensjonatApp
 
         private void SzukajPracownika()
         {
-            if (textBoxPracownicySzukaj.Text == "")
-                dataGridPracownicyDeafult.ItemsSource = TablesManager.Manager.PracownicyTableAdapter.GetPracownicyStanowiska();
+            if (toggleButtonPracownicySearchExtend.IsChecked == false)
+            {
+                if (textBoxPracownicySzukaj.Text == "")
+                    dataGridPracownicyDeafult.ItemsSource = TablesManager.Manager.PracownicyTableAdapter.GetPracownicyStanowiska();
+                else
+                {
+                    if ((bool)radioButtonPracownicyId.IsChecked)
+                    {
+                        int id;
+                        if (int.TryParse(textBoxPracownicySzukaj.Text, out id))
+                            dataGridPracownicyDeafult.ItemsSource = TablesManager.Manager.PracownicyTableAdapter.GetPracownicyStanowiskaById(id);
+                        else
+                            System.Windows.MessageBox.Show("Niepoprawne ID pracownika.\nNumer identyfikacyjny pracownika może zawierać tylko cyfry.", "Wyszukiwanie pracownika", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    else if ((bool)radioButtonPracownicyNazwisko.IsChecked)
+                    {
+                        if (textBoxPracownicySzukaj.Text.Contains(' '))
+                        {
+                            string[] szukaj = textBoxPracownicySzukaj.Text.Split(' ');
+                            dataGridPracownicyDeafult.ItemsSource = TablesManager.Manager.PracownicyTableAdapter.GetPracownicyStanowiskaByImieNazwisko(szukaj[1], szukaj[0]);
+                        }
+                        else
+                            dataGridPracownicyDeafult.ItemsSource = TablesManager.Manager.PracownicyTableAdapter.GetPracownicyStanowiskaByNazwisko(textBoxPracownicySzukaj.Text);
+                    }
+                }
+            }
             else
             {
-                if ((bool)radioButtonPracownicyId.IsChecked)
-                {
-                    int id;
-                    if (int.TryParse(textBoxPracownicySzukaj.Text, out id))
-                        dataGridPracownicyDeafult.ItemsSource = TablesManager.Manager.PracownicyTableAdapter.GetPracownicyStanowiskaById(id);
-                    else
-                        System.Windows.MessageBox.Show("Niepoprawne ID pracownika.\nNumer identyfikacyjny pracownika może zawierać tylko cyfry.", "Wyszukiwanie pracownika", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-                else if ((bool)radioButtonPracownicyNazwisko.IsChecked)
-                {
-                    dataGridPracownicyDeafult.ItemsSource = TablesManager.Manager.PracownicyTableAdapter.GetPracownicyStanowiskaByNazwisko(textBoxPracownicySzukaj.Text);
-                }
+                // tu hardkor
             }
         }
         private void buttonPracownicyZadania_Click(object sender, RoutedEventArgs e)
