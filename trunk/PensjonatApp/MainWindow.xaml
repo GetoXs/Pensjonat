@@ -1518,20 +1518,35 @@
                             </Button>
                         </StackPanel>
                     </Grid>
-                    <Grid Margin="0" Name="gridPracownicyDeafult" Opacity="1" ShowGridLines="True" Visibility="Visible" Height="101">
-                        <TextBox Height="23" HorizontalAlignment="Left" Margin="13,17,0,0" Name="textBoxPracownicySzukaj" TabIndex="10" VerticalAlignment="Top" Width="348" />
-                        <RadioButton Content="ID" GroupName="PracownicySzukaj" Height="16" HorizontalAlignment="Left" IsChecked="False" Margin="538,21,0,0" Name="radioButtonPracownicyId" VerticalAlignment="Top" TabIndex="13" />
-                        <RadioButton Content="Nazwisko" GroupName="PracownicySzukaj" Height="16" HorizontalAlignment="Left" IsChecked="True" IsThreeState="False" Margin="466,20,0,0" Name="radioButtonPracownicyNazwisko" VerticalAlignment="Top" TabIndex="12" />
-                        <Button Content="Szukaj" Height="23" HorizontalAlignment="Left" Margin="377,16,0,0" Name="buttonPracownicySzukaj" VerticalAlignment="Top" Width="75" Click="buttonPracownicySzukaj_Click" TabIndex="11" />
-                        <DataGrid AutoGenerateColumns="False" DataContext="{Binding}" HorizontalGridLinesBrush="#FFD5D5D5" IsEnabled="True" IsReadOnly="True" Margin="10,60,13,13" MinColumnWidth="30" Name="dataGridPracownicyDeafult" SelectedIndex="-1" VerticalGridLinesBrush="#FFD5D5D5" SelectionMode="Single" IsVisibleChanged="dataGridPracownicyDeafult_IsVisibleChanged">
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Binding="{Binding Path=id_pracownika}" Header="Id" />
-                                <DataGridTextColumn Binding="{Binding Path=imie}" Header="Imię" />
-                                <DataGridTextColumn Binding="{Binding Path=nazwisko}" Header="Nazwisko" />
-                                <DataGridTextColumn Binding="{Binding Path=login}" Header="Login" />
-                                <DataGridTextColumn Binding="{Binding Path=nazwa}" Header="Stanowisko" />
-                            </DataGrid.Columns>
-                        </DataGrid>
+                    <Grid Height="291" Name="gridPracownicyDeafult" Opacity="1" ShowGridLines="True" Visibility="Visible">
+                        <StackPanel Name="stackPanel169" Margin="0,0,0,6" ClipToBounds="False">
+                            <Grid Height="41" Name="gridPracownicySearch" Width="579" VerticalAlignment="Top" HorizontalAlignment="Left">
+                                <TextBox Height="23" HorizontalAlignment="Left" Margin="13,17,0,0" Name="textBoxPracownicySzukaj" TabIndex="10" VerticalAlignment="Top" Width="158" />
+                                <RadioButton Content="ID" GroupName="PracownicySzukaj" Height="16" HorizontalAlignment="Left" IsChecked="False" Margin="262,20,0,0" Name="radioButtonPracownicyId" VerticalAlignment="Top" TabIndex="13" />
+                                <RadioButton Content="Pracownik" GroupName="PracownicySzukaj" Height="16" HorizontalAlignment="Left" IsChecked="True" IsThreeState="False" Margin="180,20,0,0" Name="radioButtonPracownicyNazwisko" VerticalAlignment="Top" TabIndex="12" />
+                                <Button Content="Szukaj" Height="23" HorizontalAlignment="Left" Margin="467,17,0,0" Name="buttonPracownicySzukaj" VerticalAlignment="Top" Width="75" Click="buttonPracownicySzukaj_Click" TabIndex="11" />
+                                <ToggleButton Height="23" HorizontalAlignment="Left" Margin="548,17,0,0" Name="toggleButtonPracownicySearchExtend" VerticalAlignment="Top" Width="24" Content="+" TabIndex="14" Click="toggleButtonPracownicySearchExtend_Checked" Checked="toggleButtonPracownicySearchExtend_Checked" />
+                            </Grid>
+                            <Grid Height="69" Name="gridPracownicySearchExtend" Visibility="Collapsed">
+                                <TextBox Height="20" Margin="54,24,0,0" Name="textBoxPracownicySearchExtendImie" VerticalAlignment="Top" HorizontalAlignment="Left" Width="120" FontSize="10" />
+                                <Label Content="Imię:" Height="28" HorizontalAlignment="Left" Margin="20,22,0,0" Name="labelPracownicySearchExtendImie" VerticalAlignment="Top" FontSize="10" />
+                                <TextBox Height="20" HorizontalAlignment="Left" Margin="269,24,0,0" Name="textBoxPracownicySearchExtendNazwisko" VerticalAlignment="Top" Width="120" FontSize="10" />
+                                <Label Content="Nazwisko:" Height="28" HorizontalAlignment="Left" Margin="212,21,0,0" Name="labelPracownicySearchExtendNazwisko" VerticalAlignment="Top" FontSize="10" />
+                                <TextBox FontSize="10" Height="20" HorizontalAlignment="Left" Margin="466,24,0,0" Name="textBoxPracownicySearchExtendPesel" VerticalAlignment="Top" Width="104" />
+                                <Label Content="Login:" FontSize="10" Height="28" HorizontalAlignment="Left" Margin="426,21,0,0" Name="labelPracownicySearchExtendPesel" VerticalAlignment="Top" />
+                                <Separator Height="5" HorizontalAlignment="Stretch" Margin="9,54,1,0" Name="separator176" VerticalAlignment="Top" Background="#FFD6D6D6" />
+                                <Separator Height="5" HorizontalAlignment="Stretch" Margin="10,8,0,0" Name="separator25" VerticalAlignment="Top" Background="#FFD6D6D6" />
+                            </Grid>
+                            <DataGrid AutoGenerateColumns="False" DataContext="{Binding}" HorizontalGridLinesBrush="#FFD5D5D5" IsEnabled="True" IsReadOnly="True" Margin="10,10,13,13" MinColumnWidth="30" Name="dataGridPracownicyDeafult" SelectedIndex="-1" VerticalGridLinesBrush="#FFD5D5D5" SelectionMode="Single" IsVisibleChanged="dataGridPracownicyDeafult_IsVisibleChanged">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Binding="{Binding Path=id_pracownika}" Header="Id" />
+                                    <DataGridTextColumn Binding="{Binding Path=imie}" Header="Imię" />
+                                    <DataGridTextColumn Binding="{Binding Path=nazwisko}" Header="Nazwisko" />
+                                    <DataGridTextColumn Binding="{Binding Path=login}" Header="Login" />
+                                    <DataGridTextColumn Binding="{Binding Path=nazwa}" Header="Stanowisko" />
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </StackPanel>
                     </Grid>
                     <Grid Height="252" Name="gridPracownicyDodaj" Opacity="1" ShowGridLines="True" Visibility="Visible">
                         <Label Content="Dodawanie pracownika:" FontSize="15" FontWeight="Normal" HorizontalAlignment="Left" Margin="10,10,0,0" Name="label188" Padding="2" VerticalAlignment="Top" />
