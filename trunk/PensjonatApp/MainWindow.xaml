@@ -2,9 +2,31 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:Toolkit="clr-namespace:Microsoft.Windows.Controls;assembly=WPFToolkit.Extended"
-        Title="Pensjonat" Height="700" Width="1000" Icon="/PensjonatApp;component/Images/fButon_bed.png" Topmost="False" MinWidth="1000" MinHeight="700" xmlns:my="clr-namespace:PensjonatApp" WindowStartupLocation="CenterScreen"
-		xmlns:local="clr-namespace:WPFAutoCompleteTextbox" KeyDown="Window_KeyDown">
+        Title="Pensjonat" Height="700" Width="1000" Icon="/PensjonatApp;component/Images/fButon_bed.png" Topmost="False" MinWidth="1000" MinHeight="700" 
+		xmlns:local="clr-namespace:PensjonatApp" WindowStartupLocation="CenterScreen"
+		KeyDown="Window_KeyDown">
 	<Window.Resources>
+		<Style TargetType="{x:Type TextBox}">
+			<Setter Property="Validation.ErrorTemplate">
+				<Setter.Value>
+					<ControlTemplate>
+						<DockPanel LastChildFill="True">
+							<Border BorderBrush="Red" BorderThickness="1" Margin="-1">
+								<AdornedElementPlaceholder Name="MyAdorner" />
+							</Border>
+							<TextBlock DockPanel.Dock="Right"
+								Foreground="Red"
+								Margin="5,2,0,0" 
+								FontSize="10pt"
+								Focusable="False"
+								Text="{Binding ElementName=MyAdorner, 
+                               Path=AdornedElement.(Validation.Errors)[0].ErrorContent}">
+							</TextBlock>
+						</DockPanel>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
 	</Window.Resources>
     <Grid>
         <Grid.Background>
@@ -747,31 +769,105 @@
                         <Label Content="Dodawanie klienta:" FontSize="15" FontWeight="Normal" HorizontalAlignment="Left" Margin="10,10,0,0" Name="label92" Padding="2" VerticalAlignment="Top" />
 						<StackPanel Height="411" HorizontalAlignment="Left" Margin="21,63,0,0" Name="stackPanel15" VerticalAlignment="Top" Width="342">
 							<GroupBox Header="Dane klienta:" Height="250" Name="groupBoxKlienciAdd1" Width="328">
-								<Grid>
+								<Grid Name="gridKlienciAddOsoba">
 									<Label Content="Imię:" FontWeight="Bold" HorizontalAlignment="Left" Margin="8,9,0,0" Name="labelKlienciAddImie" Padding="2" VerticalAlignment="Top" />
+									<TextBox Name="textBoxKlienciAddImie" Height="23" HorizontalAlignment="Left" Margin="192,9,0,0" VerticalAlignment="Top" Width="120" TabIndex="12">
+										<TextBox.Text>
+											<Binding Path="Imie">
+												<Binding.ValidationRules>
+													<local:NotNullValidationRule />
+												</Binding.ValidationRules>
+											</Binding>
+										</TextBox.Text>
+									</TextBox>
 									<Label Content="Nazwisko:" FontWeight="Bold" HorizontalAlignment="Left" Margin="8,36,0,0" Name="labelKlienciAddNazwisko" Padding="2" VerticalAlignment="Top" />
-									<TextBox Name="textBoxKlienciAddImie" Height="23" HorizontalAlignment="Left" Margin="192,9,0,0" Text="" VerticalAlignment="Top" Width="120" TabIndex="12" />
-									<TextBox Name="textBoxKlienciAddNazwisko" Height="23" HorizontalAlignment="Left" Margin="192,36,0,0" Text="" VerticalAlignment="Top" Width="120" TabIndex="13" />
+									<TextBox Name="textBoxKlienciAddNazwisko" Height="23" HorizontalAlignment="Left" Margin="192,36,0,0" VerticalAlignment="Top" Width="120" TabIndex="13">
+										<TextBox.Text>
+											<Binding Path="Nazwisko">
+												<Binding.ValidationRules>
+													<local:NotNullValidationRule />
+												</Binding.ValidationRules>
+											</Binding>
+										</TextBox.Text>
+									</TextBox>
 									<Label Content="PESEL:" FontWeight="Bold" HorizontalAlignment="Left" Margin="8,63,0,0" Name="labelKlienciAddPESEL" Padding="2" VerticalAlignment="Top" />
-									<TextBox Name="textBoxKlienciAddPESEL" Height="23" HorizontalAlignment="Left" Margin="192,63,0,0" Text="" VerticalAlignment="Top" Width="120" TabIndex="14" />
+									<TextBox Name="textBoxKlienciAddPESEL" Height="23" HorizontalAlignment="Left" Margin="192,63,0,0" VerticalAlignment="Top" Width="120" TabIndex="14">
+										<TextBox.Text>
+											<Binding Path="Pesel">
+												<Binding.ValidationRules>
+													<local:NotNullValidationRule />
+												</Binding.ValidationRules>
+											</Binding>
+										</TextBox.Text>
+									</TextBox>
 									<Label Content="Miejscowość:" FontWeight="Bold" HorizontalAlignment="Left" Margin="8,119,0,0" Name="labelKlienciAddMiejscowoscAuto" Padding="2" VerticalAlignment="Top" />
-									<local:AutoCompleteTextBox Height="23" Width="120" DelayTime="500" x:Name="textBoxKlienciAddMiejscowoscAuto" Threshold="3" Margin="192,120,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" AllowDrop="True" Focusable="True" />
+									<local:AutoCompleteTextBox Height="23" Width="120" DelayTime="500" x:Name="textBoxKlienciAddMiejscowoscAuto" Threshold="3" Margin="192,120,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" AllowDrop="True" Focusable="True" LostFocus="textBoxKlienciAddMiejscowoscAuto_LostFocus" />
 									<Label Content="Adres:" FontWeight="Bold" HorizontalAlignment="Left" Margin="8,91,0,0" Name="labelKlienciAddAdres" Padding="2" VerticalAlignment="Top" />
-									<TextBox Name="textBoxKlienciAddAdres" Height="23" HorizontalAlignment="Left" Margin="192,91,0,0" Text="" VerticalAlignment="Top" Width="120" TabIndex="15" />
+									<TextBox Name="textBoxKlienciAddAdres" Height="23" HorizontalAlignment="Left" Margin="192,91,0,0" VerticalAlignment="Top" Width="120" TabIndex="15">
+										<TextBox.Text>
+											<Binding Path="Adres">
+												<Binding.ValidationRules>
+													<local:NotNullValidationRule />
+												</Binding.ValidationRules>
+											</Binding>
+										</TextBox.Text>
+									</TextBox>
 									<Label Content="Telefon:" FontWeight="Bold" HorizontalAlignment="Left" Margin="8,200,0,0" Name="labelKlienciAddTelefon" Padding="2" VerticalAlignment="Top" />
-									<TextBox Name="textBoxKlienciAddTelefon" Height="23" HorizontalAlignment="Left" Margin="192,200,0,0" Text="" VerticalAlignment="Top" Width="120" TabIndex="18" />
+									<TextBox Name="textBoxKlienciAddTelefon" Height="23" HorizontalAlignment="Left" Margin="192,200,0,0" VerticalAlignment="Top" Width="120" TabIndex="18">
+										<TextBox.Text>
+											<Binding Path="Telefon">
+												<Binding.ValidationRules>
+													<local:NotNullValidationRule />
+													<local:OnlyDigitsValidationRule />
+												</Binding.ValidationRules>
+											</Binding>
+										</TextBox.Text>
+									</TextBox>
 									<Label Content="Mail:" FontWeight="Bold" HorizontalAlignment="Left" Margin="8,173,0,0" Name="labelKlienciAddMail" Padding="2" VerticalAlignment="Top" />
-									<TextBox Name="textBoxKlienciAddMail" Height="23" HorizontalAlignment="Left" Margin="192,173,0,0" Text="" VerticalAlignment="Top" Width="120" TabIndex="17" />
+									<TextBox Name="textBoxKlienciAddMail" Height="23" HorizontalAlignment="Left" Margin="192,173,0,0" VerticalAlignment="Top" Width="120" TabIndex="17">
+										<TextBox.Text>
+											<Binding Path="Mail">
+												<Binding.ValidationRules>
+													<local:NotNullValidationRule />
+												</Binding.ValidationRules>
+											</Binding>
+										</TextBox.Text>
+									</TextBox>
 									<Label Content="Kod Pocztowy:" FontWeight="Bold" HorizontalAlignment="Left" Margin="8,146,0,0" Name="labelKlienciAddKodPocztowy" VerticalAlignment="Top" Padding="2" />
-									<TextBox Height="23" HorizontalAlignment="Left" Margin="192,146,0,0" Name="textBoxKlienciAddKodPocztowy" VerticalAlignment="Top" Width="120" TabIndex="16" />
+									<TextBox Height="23" HorizontalAlignment="Left" Margin="192,146,0,0" Name="textBoxKlienciAddKodPocztowy" VerticalAlignment="Top" Width="120" TabIndex="16">
+										<TextBox.Text>
+											<Binding Path="KodPocztowy">
+												<Binding.ValidationRules>
+													<local:NotNullValidationRule />
+												</Binding.ValidationRules>
+											</Binding>
+										</TextBox.Text>
+									</TextBox>
 								</Grid>
 							</GroupBox>
 							<GroupBox Header="Dane firmy" Name="groupBoxKlienciAdd2" Width="326" Height="86">
-								<Grid>
+								<Grid Name="gridKlienciAddFirma">
 									<Label Content="NIP:" FontWeight="Bold" HorizontalAlignment="Left" Margin="6,35,0,0" Name="labelKlienciAddNIP" Padding="2" VerticalAlignment="Top" />
-									<TextBox Name="textBoxKlienciAddNIP" Height="23" HorizontalAlignment="Left" Margin="190,35,0,0" Text="" VerticalAlignment="Top" Width="120" TabIndex="20" />
+									<TextBox Name="textBoxKlienciAddNIP" Height="23" HorizontalAlignment="Left" Margin="190,35,0,0" VerticalAlignment="Top" Width="120" TabIndex="20">
+										<TextBox.Text>
+											<Binding Path="Nip">
+												<Binding.ValidationRules>
+													<local:NotNullValidationRule />
+													<local:OnlyDigitsValidationRule />
+												</Binding.ValidationRules>
+											</Binding>
+										</TextBox.Text>
+									</TextBox>
 									<Label Content="Firma:" FontWeight="Bold" HorizontalAlignment="Left" Margin="6,6,0,0" Name="labelKlienciAddFirma" Padding="2" VerticalAlignment="Top" />
-									<TextBox Name="textBoxKlienciAddFirma" Height="23" HorizontalAlignment="Left" Margin="190,6,0,0" Text="" VerticalAlignment="Top" Width="120" TabIndex="19" />
+									<TextBox Name="textBoxKlienciAddFirma" Height="23" HorizontalAlignment="Left" Margin="190,6,0,0" VerticalAlignment="Top" Width="120" TabIndex="19">
+										<TextBox.Text>
+											<Binding Path="Firma">
+												<Binding.ValidationRules>
+													<local:NotNullValidationRule />
+												</Binding.ValidationRules>
+											</Binding>
+										</TextBox.Text>
+									</TextBox>
 								</Grid>
 							</GroupBox>
 						</StackPanel>

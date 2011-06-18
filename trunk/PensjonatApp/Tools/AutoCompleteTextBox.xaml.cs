@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WPFAutoCompleteTextbox
+namespace PensjonatApp
 {
     /// <summary>
     /// Interaction logic for AutoCompleteTextBox.xaml
@@ -23,7 +23,7 @@ namespace WPFAutoCompleteTextbox
     {
         #region Members
         private VisualCollection controls;
-        private TextBox textBox;
+		private TextBox textBox;
         private ComboBox comboBox;
         private ObservableCollection<AutoCompleteEntry> autoCompletionList;
         private System.Timers.Timer keypressTimer;
@@ -62,6 +62,12 @@ namespace WPFAutoCompleteTextbox
         #endregion
 
         #region Methods
+		public TextBox TextBox
+		{
+			get { return textBox; }
+			set { textBox = value; }
+		}
+
         public string Text
         {
             get { return textBox.Text; }
