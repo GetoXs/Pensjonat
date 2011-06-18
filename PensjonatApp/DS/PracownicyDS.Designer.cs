@@ -1440,7 +1440,7 @@ namespace PensjonatApp.DS.PracownicyDSTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.Odbc.OdbcCommand[15];
+            this._commandCollection = new global::System.Data.Odbc.OdbcCommand[16];
             this._commandCollection[0] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT id_pracownika, id_stanowiska, imie, nazwisko, login, haslo FROM Pracownicy" +
@@ -1516,56 +1516,65 @@ WHERE  Pracownicy.id_stanowiska = Pracownicy_slownik.id_stanowiska AND (Pracowni
             this._commandCollection[8].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_pracownika", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_pracownika", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[9] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[9].Connection = this.Connection;
-            this._commandCollection[9].CommandText = @"SELECT Pracownicy.id_pracownika, Pracownicy.id_stanowiska, Pracownicy.imie, Pracownicy.nazwisko, Pracownicy_slownik.nazwa, Pracownicy_slownik.opis, 
+            this._commandCollection[9].CommandText = @"SELECT Pracownicy.id_pracownika, Pracownicy.id_stanowiska, Pracownicy.imie, Pracownicy.nazwisko, Pracownicy_slownik.nazwa, Pracownicy_slownik.opis, Pracownicy.login
+FROM     Pracownicy, Pracownicy_slownik
+WHERE  Pracownicy.id_stanowiska = Pracownicy_slownik.id_stanowiska AND (UCASE(Pracownicy.nazwisko) LIKE UCASE('%' + ? + '%'))
+AND (UCASE(Pracownicy.imie) LIKE UCASE('%' + ? + '%'))";
+            this._commandCollection[9].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[9].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Param1", global::System.Data.Odbc.OdbcType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[9].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Param2", global::System.Data.Odbc.OdbcType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[10] = new global::System.Data.Odbc.OdbcCommand();
+            this._commandCollection[10].Connection = this.Connection;
+            this._commandCollection[10].CommandText = @"SELECT Pracownicy.id_pracownika, Pracownicy.id_stanowiska, Pracownicy.imie, Pracownicy.nazwisko, Pracownicy_slownik.nazwa, Pracownicy_slownik.opis, 
                   UCASE(Pracownicy.login) AS Expr1
 FROM     Pracownicy, Pracownicy_slownik
 WHERE  Pracownicy.id_stanowiska = Pracownicy_slownik.id_stanowiska AND (UCASE(Pracownicy.login) LIKE UCASE(?))";
-            this._commandCollection[9].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[9].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Param1", global::System.Data.Odbc.OdbcType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "", global::System.Data.DataRowVersion.Current, false, null));
-            this._commandCollection[10] = new global::System.Data.Odbc.OdbcCommand();
-            this._commandCollection[10].Connection = this.Connection;
-            this._commandCollection[10].CommandText = @"SELECT Pracownicy.id_pracownika, Pracownicy.id_stanowiska, Pracownicy.imie, Pracownicy.nazwisko, Pracownicy_slownik.nazwa, Pracownicy_slownik.opis, Pracownicy.login
-FROM     Pracownicy, Pracownicy_slownik
-WHERE  Pracownicy.id_stanowiska = Pracownicy_slownik.id_stanowiska AND (UCASE(Pracownicy.nazwisko) LIKE UCASE('%' + ? + '%'))";
             this._commandCollection[10].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[10].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Param1", global::System.Data.Odbc.OdbcType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[11] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[11].Connection = this.Connection;
-            this._commandCollection[11].CommandText = "INSERT INTO [Pracownicy] ([id_stanowiska], [imie], [nazwisko], [login], [haslo]) " +
-                "VALUES (?, ?, ?, ?, ?)";
+            this._commandCollection[11].CommandText = @"SELECT Pracownicy.id_pracownika, Pracownicy.id_stanowiska, Pracownicy.imie, Pracownicy.nazwisko, Pracownicy_slownik.nazwa, Pracownicy_slownik.opis, Pracownicy.login
+FROM     Pracownicy, Pracownicy_slownik
+WHERE  Pracownicy.id_stanowiska = Pracownicy_slownik.id_stanowiska AND (UCASE(Pracownicy.nazwisko) LIKE UCASE('%' + ? + '%'))";
             this._commandCollection[11].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[11].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_stanowiska", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_stanowiska", global::System.Data.DataRowVersion.Current, false, null));
-            this._commandCollection[11].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("imie", global::System.Data.Odbc.OdbcType.NVarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "imie", global::System.Data.DataRowVersion.Current, false, null));
-            this._commandCollection[11].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("nazwisko", global::System.Data.Odbc.OdbcType.NVarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "nazwisko", global::System.Data.DataRowVersion.Current, false, null));
-            this._commandCollection[11].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("login", global::System.Data.Odbc.OdbcType.NVarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "login", global::System.Data.DataRowVersion.Current, false, null));
-            this._commandCollection[11].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("haslo", global::System.Data.Odbc.OdbcType.NVarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "haslo", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[11].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Param1", global::System.Data.Odbc.OdbcType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[12] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[12].Connection = this.Connection;
-            this._commandCollection[12].CommandText = "UPDATE Pracownicy\r\nSET          haslo = ?\r\nWHERE  (id_pracownika = ?)";
+            this._commandCollection[12].CommandText = "INSERT INTO [Pracownicy] ([id_stanowiska], [imie], [nazwisko], [login], [haslo]) " +
+                "VALUES (?, ?, ?, ?, ?)";
             this._commandCollection[12].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[12].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_stanowiska", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_stanowiska", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[12].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("imie", global::System.Data.Odbc.OdbcType.NVarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "imie", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[12].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("nazwisko", global::System.Data.Odbc.OdbcType.NVarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "nazwisko", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[12].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("login", global::System.Data.Odbc.OdbcType.NVarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "login", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[12].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("haslo", global::System.Data.Odbc.OdbcType.NVarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "haslo", global::System.Data.DataRowVersion.Current, false, null));
-            this._commandCollection[12].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_id_pracownika", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_pracownika", global::System.Data.DataRowVersion.Original, false, null));
             this._commandCollection[13] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[13].Connection = this.Connection;
-            this._commandCollection[13].CommandText = "UPDATE Pracownicy\r\nSET          id_stanowiska = ?, imie = ?, nazwisko = ?, login " +
-                "= ?, haslo = ?\r\nWHERE  (id_pracownika = ?)";
+            this._commandCollection[13].CommandText = "UPDATE Pracownicy\r\nSET          haslo = ?\r\nWHERE  (id_pracownika = ?)";
             this._commandCollection[13].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[13].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_stanowiska", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_stanowiska", global::System.Data.DataRowVersion.Current, false, null));
-            this._commandCollection[13].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("imie", global::System.Data.Odbc.OdbcType.NVarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "imie", global::System.Data.DataRowVersion.Current, false, null));
-            this._commandCollection[13].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("nazwisko", global::System.Data.Odbc.OdbcType.NVarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "nazwisko", global::System.Data.DataRowVersion.Current, false, null));
-            this._commandCollection[13].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("login", global::System.Data.Odbc.OdbcType.NVarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "login", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[13].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("haslo", global::System.Data.Odbc.OdbcType.NVarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "haslo", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[13].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_id_pracownika", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_pracownika", global::System.Data.DataRowVersion.Original, false, null));
             this._commandCollection[14] = new global::System.Data.Odbc.OdbcCommand();
             this._commandCollection[14].Connection = this.Connection;
             this._commandCollection[14].CommandText = "UPDATE Pracownicy\r\nSET          id_stanowiska = ?, imie = ?, nazwisko = ?, login " +
-                "= ?\r\nWHERE  (id_pracownika = ?)";
+                "= ?, haslo = ?\r\nWHERE  (id_pracownika = ?)";
             this._commandCollection[14].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[14].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_stanowiska", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_stanowiska", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[14].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("imie", global::System.Data.Odbc.OdbcType.NVarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "imie", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[14].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("nazwisko", global::System.Data.Odbc.OdbcType.NVarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "nazwisko", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[14].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("login", global::System.Data.Odbc.OdbcType.NVarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "login", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[14].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("haslo", global::System.Data.Odbc.OdbcType.NVarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "haslo", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[14].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_id_pracownika", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_pracownika", global::System.Data.DataRowVersion.Original, false, null));
+            this._commandCollection[15] = new global::System.Data.Odbc.OdbcCommand();
+            this._commandCollection[15].Connection = this.Connection;
+            this._commandCollection[15].CommandText = "UPDATE Pracownicy\r\nSET          id_stanowiska = ?, imie = ?, nazwisko = ?, login " +
+                "= ?\r\nWHERE  (id_pracownika = ?)";
+            this._commandCollection[15].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[15].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("id_stanowiska", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_stanowiska", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[15].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("imie", global::System.Data.Odbc.OdbcType.NVarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "imie", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[15].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("nazwisko", global::System.Data.Odbc.OdbcType.NVarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "nazwisko", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[15].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("login", global::System.Data.Odbc.OdbcType.NVarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "login", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[15].Parameters.Add(new global::System.Data.Odbc.OdbcParameter("Original_id_pracownika", global::System.Data.Odbc.OdbcType.Int, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "id_pracownika", global::System.Data.DataRowVersion.Original, false, null));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1725,8 +1734,31 @@ WHERE  Pracownicy.id_stanowiska = Pracownicy_slownik.id_stanowiska AND (UCASE(Pr
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual PracownicyDS.PracownicyDataTable GetPracownicyStanowiskaByLogin(string Param1) {
+        public virtual PracownicyDS.PracownicyDataTable GetPracownicyStanowiskaByImieNazwisko(string Param1, string Param2) {
             this.Adapter.SelectCommand = this.CommandCollection[9];
+            if ((Param1 == null)) {
+                throw new global::System.ArgumentNullException("Param1");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(Param1));
+            }
+            if ((Param2 == null)) {
+                throw new global::System.ArgumentNullException("Param2");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(Param2));
+            }
+            PracownicyDS.PracownicyDataTable dataTable = new PracownicyDS.PracownicyDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual PracownicyDS.PracownicyDataTable GetPracownicyStanowiskaByLogin(string Param1) {
+            this.Adapter.SelectCommand = this.CommandCollection[10];
             if ((Param1 == null)) {
                 throw new global::System.ArgumentNullException("Param1");
             }
@@ -1743,7 +1775,7 @@ WHERE  Pracownicy.id_stanowiska = Pracownicy_slownik.id_stanowiska AND (UCASE(Pr
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
         public virtual PracownicyDS.PracownicyDataTable GetPracownicyStanowiskaByNazwisko(string Param1) {
-            this.Adapter.SelectCommand = this.CommandCollection[10];
+            this.Adapter.SelectCommand = this.CommandCollection[11];
             if ((Param1 == null)) {
                 throw new global::System.ArgumentNullException("Param1");
             }
@@ -2018,7 +2050,7 @@ WHERE  Pracownicy.id_stanowiska = Pracownicy_slownik.id_stanowiska AND (UCASE(Pr
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, false)]
         public virtual int InsertQuery(global::System.Nullable<int> id_stanowiska, string imie, string nazwisko, string login, string haslo) {
-            global::System.Data.Odbc.OdbcCommand command = this.CommandCollection[11];
+            global::System.Data.Odbc.OdbcCommand command = this.CommandCollection[12];
             if ((id_stanowiska.HasValue == true)) {
                 command.Parameters[0].Value = ((int)(id_stanowiska.Value));
             }
@@ -2071,7 +2103,7 @@ WHERE  Pracownicy.id_stanowiska = Pracownicy_slownik.id_stanowiska AND (UCASE(Pr
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
         public virtual int UpdateHaslo(string haslo, int Original_id_pracownika) {
-            global::System.Data.Odbc.OdbcCommand command = this.CommandCollection[12];
+            global::System.Data.Odbc.OdbcCommand command = this.CommandCollection[13];
             if ((haslo == null)) {
                 command.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -2101,7 +2133,7 @@ WHERE  Pracownicy.id_stanowiska = Pracownicy_slownik.id_stanowiska AND (UCASE(Pr
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
         public virtual int UpdateQuerybyIdPr(global::System.Nullable<int> id_stanowiska, string imie, string nazwisko, string login, string haslo, int Original_id_pracownika) {
-            global::System.Data.Odbc.OdbcCommand command = this.CommandCollection[13];
+            global::System.Data.Odbc.OdbcCommand command = this.CommandCollection[14];
             if ((id_stanowiska.HasValue == true)) {
                 command.Parameters[0].Value = ((int)(id_stanowiska.Value));
             }
@@ -2155,7 +2187,7 @@ WHERE  Pracownicy.id_stanowiska = Pracownicy_slownik.id_stanowiska AND (UCASE(Pr
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
         public virtual int UpdateQuerybyIdPrBezHasla(global::System.Nullable<int> id_stanowiska, string imie, string nazwisko, string login, int Original_id_pracownika) {
-            global::System.Data.Odbc.OdbcCommand command = this.CommandCollection[14];
+            global::System.Data.Odbc.OdbcCommand command = this.CommandCollection[15];
             if ((id_stanowiska.HasValue == true)) {
                 command.Parameters[0].Value = ((int)(id_stanowiska.Value));
             }
