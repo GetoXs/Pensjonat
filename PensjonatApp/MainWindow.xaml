@@ -1522,20 +1522,23 @@
                         <StackPanel Name="stackPanel169" Margin="0,0,0,6" ClipToBounds="False">
                             <Grid Height="41" Name="gridPracownicySearch" Width="579" VerticalAlignment="Top" HorizontalAlignment="Left">
                                 <TextBox Height="23" HorizontalAlignment="Left" Margin="13,17,0,0" Name="textBoxPracownicySzukaj" TabIndex="10" VerticalAlignment="Top" Width="158" />
-                                <RadioButton Content="ID pracownika" GroupName="PracownicySzukaj" Height="16" HorizontalAlignment="Left" IsChecked="False" Margin="262,20,0,0" Name="radioButtonPracownicyId" VerticalAlignment="Top" TabIndex="13" />
-                                <RadioButton Content="Pracownik" GroupName="PracownicySzukaj" Height="16" HorizontalAlignment="Left" IsChecked="True" IsThreeState="False" Margin="180,20,0,0" Name="radioButtonPracownicyNazwisko" VerticalAlignment="Top" TabIndex="12" />
-                                <Button Content="Szukaj" Height="23" HorizontalAlignment="Left" Margin="467,17,0,0" Name="buttonPracownicySzukaj" VerticalAlignment="Top" Width="75" Click="buttonPracownicySzukaj_Click" TabIndex="11" />
+                                <RadioButton Content="ID pracownika" GroupName="PracownicySzukaj" Height="16" HorizontalAlignment="Left" IsChecked="False" Margin="262,20,0,0" Name="radioButtonPracownicyId" VerticalAlignment="Top" TabIndex="12" />
+                                <RadioButton Content="Pracownik" GroupName="PracownicySzukaj" Height="16" HorizontalAlignment="Left" IsChecked="True" IsThreeState="False" Margin="180,20,0,0" Name="radioButtonPracownicyNazwisko" VerticalAlignment="Top" TabIndex="11" />
+                                <Button Content="Szukaj" Height="23" HorizontalAlignment="Left" Margin="467,17,0,0" Name="buttonPracownicySzukaj" VerticalAlignment="Top" Width="75" Click="buttonPracownicySzukaj_Click" TabIndex="13" />
                                 <ToggleButton Height="23" HorizontalAlignment="Left" Margin="548,17,0,0" Name="toggleButtonPracownicySearchExtend" VerticalAlignment="Top" Width="24" Content="+" TabIndex="14" Click="toggleButtonPracownicySearchExtend_Checked" Checked="toggleButtonPracownicySearchExtend_Checked" />
                             </Grid>
-                            <Grid Height="69" Name="gridPracownicySearchExtend" Visibility="Collapsed">
-                                <TextBox Height="20" Margin="54,24,0,0" Name="textBoxPracownicySearchExtendImie" VerticalAlignment="Top" HorizontalAlignment="Left" Width="120" FontSize="10" />
+                            <Grid Height="108" Name="gridPracownicySearchExtend" Visibility="Collapsed">
+                                <TextBox Height="20" Margin="54,22,0,0" Name="textBoxPracownicySearchExtendImie" VerticalAlignment="Top" HorizontalAlignment="Left" Width="120" FontSize="10" TabIndex="20" />
                                 <Label Content="Imię:" Height="28" HorizontalAlignment="Left" Margin="20,22,0,0" Name="labelPracownicySearchExtendImie" VerticalAlignment="Top" FontSize="10" />
-                                <TextBox Height="20" HorizontalAlignment="Left" Margin="269,24,0,0" Name="textBoxPracownicySearchExtendNazwisko" VerticalAlignment="Top" Width="120" FontSize="10" />
-                                <Label Content="Nazwisko:" Height="28" HorizontalAlignment="Left" Margin="212,21,0,0" Name="labelPracownicySearchExtendNazwisko" VerticalAlignment="Top" FontSize="10" />
-                                <TextBox FontSize="10" Height="20" HorizontalAlignment="Left" Margin="466,24,0,0" Name="textBoxPracownicySearchExtendPesel" VerticalAlignment="Top" Width="104" />
-                                <Label Content="Login:" FontSize="10" Height="28" HorizontalAlignment="Left" Margin="426,21,0,0" Name="labelPracownicySearchExtendPesel" VerticalAlignment="Top" />
-                                <Separator Height="5" HorizontalAlignment="Stretch" Margin="9,54,1,0" Name="separator176" VerticalAlignment="Top" Background="#FFD6D6D6" />
+                                <TextBox Height="20" HorizontalAlignment="Left" Margin="269,22,0,0" Name="textBoxPracownicySearchExtendNazwisko" VerticalAlignment="Top" Width="120" FontSize="10" TabIndex="21" />
+                                <Label Content="Nazwisko:" Height="28" HorizontalAlignment="Left" Margin="212,19,0,0" Name="labelPracownicySearchExtendNazwisko" VerticalAlignment="Top" FontSize="10" />
+                                <TextBox FontSize="10" Height="20" HorizontalAlignment="Left" Margin="466,22,0,0" Name="textBoxPracownicySearchExtendLogin" VerticalAlignment="Top" Width="104" TabIndex="22" />
+                                <Label Content="Login:" FontSize="10" Height="28" HorizontalAlignment="Left" Margin="428,19,0,0" Name="labelPracownicySearchExtendPesel" VerticalAlignment="Top" />
+                                <Separator Width="230" Height="5" HorizontalAlignment="Stretch" Margin="355,52,-2,0" Name="separator176" VerticalAlignment="Top" Background="#FFD6D6D6" />
                                 <Separator Height="5" HorizontalAlignment="Stretch" Margin="10,8,0,0" Name="separator25" VerticalAlignment="Top" Background="#FFD6D6D6" />
+                                <ComboBox FontSize="10" Height="22" HorizontalAlignment="Left" Margin="428,65,0,0" Name="comboBoxPracownicySzukajStanowisko" VerticalAlignment="Top" Width="142" IsVisibleChanged="comboBoxPracownicySzukajStanowisko_IsVisibleChanged" TabIndex="23" />
+                                <Label Content="Stanowisko:" FontSize="10" Height="28" HorizontalAlignment="Left" Margin="361,63,0,0" Name="label265" VerticalAlignment="Top" />
+                                <Separator Background="#FFD6D6D6" Height="5" HorizontalAlignment="Stretch" Margin="10,96,0,0" Name="separator26" VerticalAlignment="Top" />
                             </Grid>
                             <DataGrid AutoGenerateColumns="False" DataContext="{Binding}" HorizontalGridLinesBrush="#FFD5D5D5" IsEnabled="True" IsReadOnly="True" Margin="10,10,13,13" MinColumnWidth="30" Name="dataGridPracownicyDeafult" SelectedIndex="-1" VerticalGridLinesBrush="#FFD5D5D5" SelectionMode="Single" IsVisibleChanged="dataGridPracownicyDeafult_IsVisibleChanged">
                                 <DataGrid.Columns>
