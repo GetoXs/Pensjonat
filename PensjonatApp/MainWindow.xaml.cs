@@ -15,6 +15,7 @@ using PensjonatApp.DS;
 using PensjonatApp.Tools;
 using System.Data;
 using PensjonatApp.Helpers;
+using System.Globalization;
 
 
 namespace PensjonatApp
@@ -1952,38 +1953,89 @@ namespace PensjonatApp
 			}
 			else if (currentGridKlienci == gridKlienciAdd)
 			{
-				int nip, tel;
-				if (radioButtonKlientAddFirma.IsChecked == false)
+				bool valid = false;
+				
+				if(radioButtonKlientAddFirma.IsChecked == true)
+					valid = KlientVerification.isValid(gridKlienciAdd, textBoxKlienciAddMiejscowoscAuto);	//dodatkowa walidacja dla firmy
+				else
+					valid = KlientVerification.isValid(gridKlienciAddOsoba, textBoxKlienciAddMiejscowoscAuto);	//walidacja dla osoby
+
+				if(valid)
 				{
-					textBoxKlienciAddFirma.Text = "";
-					textBoxKlienciAddNIP.Text = "0";
-				}
-				if (int.TryParse(textBoxKlienciAddNIP.Text, out nip) && int.TryParse(textBoxKlienciAddTelefon.Text, out tel))
-				{
-					//dodawanie klienta
-					if (KlienciHelper.dodajKlienta(
-						textBoxKlienciAddImie.Text,
-						textBoxKlienciAddNazwisko.Text,
-						textBoxKlienciAddFirma.Text,
-						textBoxKlienciAddMiejscowoscAuto.Text,
-						textBoxKlienciAddAdres.Text,
-						textBoxKlienciAddKodPocztowy.Text,
-						nip,
-						textBoxKlienciAddPESEL.Text,
-						tel,
-						textBoxKlienciAddMail.Text) != 0)
+					int nip, tel;
+					if (radioButtonKlientAddFirma.IsChecked == false)
 					{
-						MessageBox.Show("Pomyślnie dodano klienta do bazy", "Dodawanie klienta", MessageBoxButton.OK, MessageBoxImage.Information);
+						textBoxKlienciAddFirma.Text = "";
+						textBoxKlienciAddNIP.Text = "0";
 					}
-                    RefreshConnectionsKlienci();
-					zwinKlienci();
-                    showWindow(gridKlienciDeafult, buttonKlienciDeafultList, ref currentGridKlienci);
+					if (int.TryParse(textBoxKlienciAddNIP.Text, out nip) && int.TryParse(textBoxKlienciAddTelefon.Text, out tel))
+					{
+						//dodawanie klienta
+						if (KlienciHelper.dodajKlienta(
+							textBoxKlienciAddImie.Text,
+							textBoxKlienciAddNazwisko.Text,
+							textBoxKlienciAddFirma.Text,
+							textBoxKlienciAddMiejscowoscAuto.Text,
+							textBoxKlienciAddAdres.Text,
+							textBoxKlienciAddKodPocztowy.Text,
+							nip,
+							textBoxKlienciAddPESEL.Text,
+							tel,
+							textBoxKlienciAddMail.Text) != 0)
+						{
+							MessageBox.Show("Pomyślnie dodano klienta do bazy", "Dodawanie klienta", MessageBoxButton.OK, MessageBoxImage.Information);
+						}
+						RefreshConnectionsKlienci();
+						zwinKlienci();
+						showWindow(gridKlienciDeafult, buttonKlienciDeafultList, ref currentGridKlienci);
+					}
+					else
+						MessageBox.Show("Błąd, wypełnij pola NIPu oraz telefonu liczbą", "Dodawanie klienta", MessageBoxButton.OK, MessageBoxImage.Error);
+			
+				}
+			}
+		}
+
+
+		private void textBoxKlienciAddMiejscowoscAuto_LostFocus(object sender, RoutedEventArgs e)
+		{
+			if (sender is AutoCompleteTextBox)
+			{
+				AutoCompleteTextBox tb = (AutoCompleteTextBox)sender;
+				if (string.IsNullOrWhiteSpace(tb.Text))
+				{
+					tb.TextBox.BorderThickness = new Thickness(2);
+					tb.TextBox.BorderBrush = Brushes.Red;
+					tb.TextBox.UpdateLayout();
 				}
 				else
-					MessageBox.Show("Błąd, wypełnij pola NIPu oraz telefonu liczbą", "Dodawanie klienta", MessageBoxButton.OK, MessageBoxImage.Error);
+				{
+					tb.TextBox.BorderThickness = new Thickness(1);
+					tb.TextBox.BorderBrush = Brushes.Gray;
+					tb.TextBox.UpdateLayout();
+				}
 			}
 
+		}
 
+		private void textBoxKlienciAddImie_TextChanged(object sender, TextChangedEventArgs e)
+		{
+			if (sender is TextBox)
+			{
+				TextBox tb = (TextBox)sender;
+				if (string.IsNullOrWhiteSpace(tb.Text))
+				{
+					tb.BorderThickness = new Thickness(2);
+					tb.BorderBrush = Brushes.Red;
+					tb.UpdateLayout();
+				}
+				else
+				{
+					tb.BorderThickness = new Thickness(1);
+					tb.BorderBrush = Brushes.Gray;
+					tb.UpdateLayout();
+				}
+			}
 		}
         //----------------------------------------------KLIENCI->DEAFULT----------------------------------------------
         private void dataGridKlienci_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
@@ -1998,11 +2050,17 @@ namespace PensjonatApp
 				textBoxKlienciEdycjaMiejscowoscAuto.clearItems();
 				foreach (KlienciDS.Miejscowosci_slownikRow row in tab)
 				{
-					textBoxKlienciAddMiejscowoscAuto.AddItem(new WPFAutoCompleteTextbox.AutoCompleteEntry(row.nazwa, row.nazwa));
-					textBoxKlienciEdycjaMiejscowoscAuto.AddItem(new WPFAutoCompleteTextbox.AutoCompleteEntry(row.nazwa, row.nazwa));
+					textBoxKlienciAddMiejscowoscAuto.AddItem(new AutoCompleteEntry(row.nazwa, row.nazwa));
+					textBoxKlienciEdycjaMiejscowoscAuto.AddItem(new AutoCompleteEntry(row.nazwa, row.nazwa));
 				}
 				//chowanie kontrolki edycji 
 				textBoxKlienciEdycjaMiejscowoscAuto.Visibility = System.Windows.Visibility.Hidden;
+
+				//Przypisanie klienta do kontrolek tworzenia oraz edycji klienta 
+
+				//dopisac jakies wywalanie errora
+				KlientVerification klient = new KlientVerification();
+				gridKlienciAdd.DataContext = klient;
             }
         }
         private void dataGridKlienci_SelectionChanged(object sender, SelectionChangedEventArgs e)
