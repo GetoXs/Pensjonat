@@ -3161,6 +3161,11 @@ namespace PensjonatApp
             przypiszStanowiskaDoComboBoxa(ref comboBoxPracownicyEdycjaStanowisko);
         }
 
+        private void comboBoxPracownicySzukajStanowisko_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            przypiszStanowiskaDoComboBoxa(ref comboBoxPracownicySzukajStanowisko);
+        }
+
         //----------------------------------------------PRACOWNICY->MENU
         private void RefreshConnectionsPracownicy()
         {
@@ -3341,7 +3346,24 @@ namespace PensjonatApp
             }
             else
             {
-                // tu hardkor
+                StringBuilder sb = new StringBuilder();
+                sb.Append((textBoxPracownicySearchExtendImie.Text != "") ? (" AND UCASE(Pracownicy.imie) LIKE UCASE('%" + textBoxPracownicySearchExtendImie.Text + "%')") : "");
+                sb.Append((textBoxPracownicySearchExtendNazwisko.Text != "") ? (" AND UCASE(Pracownicy.nazwisko) LIKE UCASE('%" + textBoxPracownicySearchExtendNazwisko.Text + "%')") : "");
+                sb.Append((textBoxPracownicySearchExtendLogin.Text != "") ? (" AND UCASE(Pracownicy.login) LIKE UCASE('%" + textBoxPracownicySearchExtendLogin.Text + "%')") : "");
+                sb.Append((comboBoxPracownicySzukajStanowisko.SelectedItem != null) ? (" AND Pracownicy.id_stanowiska=" + stanowiskaIdList[comboBoxPracownicySzukajStanowisko.SelectedIndex]) : "");
+
+                System.Data.Odbc.OdbcCommand cmd = TablesManager.Manager.PracownicyTableAdapter.Connection.CreateCommand();
+
+                TablesManager.Manager.PracownicyTableAdapter.Connection.Open();
+                cmd.CommandText = "SELECT Pracownicy.id_pracownika, Pracownicy.id_stanowiska, Pracownicy.imie, Pracownicy.nazwisko, Pracownicy.login, Pracownicy.haslo, Pracownicy_slownik.nazwa, Pracownicy_slownik.opis FROM     Pracownicy, Pracownicy_slownik WHERE  Pracownicy.id_stanowiska = Pracownicy_slownik.id_stanowiska" + sb.ToString();
+
+                System.Data.Odbc.OdbcDataReader rd = cmd.ExecuteReader();
+                PracownicyDS.PracownicyDataTable tab = new PracownicyDS.PracownicyDataTable();
+                tab.Load(rd);
+                dataGridPracownicyDeafult.ItemsSource = tab;
+                dataGridPracownicyDeafult.Items.Refresh();
+
+                TablesManager.Manager.PracownicyTableAdapter.Connection.Close();
             }
         }
         private void buttonPracownicyZadania_Click(object sender, RoutedEventArgs e)
