@@ -198,11 +198,11 @@
                                 <Label Content="NIP:" FontSize="10" Height="28" HorizontalAlignment="Left" Margin="434,52,0,0" Name="label267" VerticalAlignment="Top" />
                                 <Separator Background="#FFD6D6D6" Height="5" HorizontalAlignment="Stretch" Margin="5,125,0,0" Name="separator27" VerticalAlignment="Top" />
                                 <Label Content="Firma" FontSize="11" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="161,51,0,0" Name="label268" VerticalAlignment="Top" />
-                                <CheckBox Content="Aktualne" FlowDirection="RightToLeft" FontSize="10" Height="16" HorizontalAlignment="Left" HorizontalContentAlignment="Left" IsChecked="True" IsThreeState="False" Margin="514,101,0,0" Name="checkBox1" TabIndex="28" VerticalAlignment="Top" VerticalContentAlignment="Top" />
+                                <CheckBox Content="Aktualne" FlowDirection="RightToLeft" FontSize="10" Height="16" HorizontalAlignment="Left" HorizontalContentAlignment="Left" IsChecked="True" IsThreeState="False" Margin="514,101,0,0" Name="checkBoxRezerwacjeSearchExtendAkutalne" TabIndex="28" VerticalAlignment="Top" VerticalContentAlignment="Top" />
                                 <Label Content="Termin od:" FontSize="10" Height="28" HorizontalAlignment="Left" Margin="17,96,0,0" Name="label269" VerticalAlignment="Top" />
                                 <Label Content="Termin do:" FontSize="10" Height="28" HorizontalAlignment="Left" Margin="224,96,0,0" Name="label270" VerticalAlignment="Top" />
-                                <DatePicker FontSize="10" Height="24" HorizontalAlignment="Left" Margin="83,96,0,0" Name="datePicker1" TabIndex="26" VerticalAlignment="Top" Width="120" />
-                                <DatePicker FontSize="10" Height="24" HorizontalAlignment="Left" Margin="292,96,0,0" Name="datePicker2" TabIndex="27" VerticalAlignment="Top" Width="120" />
+                                <DatePicker FontSize="10" Height="24" HorizontalAlignment="Left" Margin="83,96,0,0" Name="datePickerRezerwacjeSearchExtendTerminOd" TabIndex="26" VerticalAlignment="Top" Width="120" />
+                                <DatePicker FontSize="10" Height="24" HorizontalAlignment="Left" Margin="292,96,0,0" Name="datePickerRezerwacjeSearchExtendTerminDo" TabIndex="27" VerticalAlignment="Top" Width="120" />
                             </Grid>
                             <DataGrid  Name="dataGridRezerwacjeSzukaj" AutoGenerateColumns="False" Margin="10,10,13,21" MinColumnWidth="30" IsReadOnly="True" HorizontalGridLinesBrush="#FFD5D5D5" VerticalGridLinesBrush="#FFD5D5D5" SelectionChanged="dataGrid1_SelectionChanged" SelectedIndex="0" SelectionMode="Single">
                                 <DataGrid.Columns>
