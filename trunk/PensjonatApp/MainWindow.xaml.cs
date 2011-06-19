@@ -315,7 +315,7 @@ namespace PensjonatApp
         {
             gridKlienciDeafult.Visibility = Visibility.Collapsed;
             gridKlienciAdd.Visibility = Visibility.Collapsed;
-            gridKlienciEdit.Visibility = Visibility.Collapsed;
+            gridKlienciEdycja.Visibility = Visibility.Collapsed;
             gridKlienciSzczegoly.Visibility = Visibility.Collapsed;
             zwinButtonList(buttonKlienciBackOkList);
             zwinButtonList(buttonKlienciDeafultList);
@@ -1939,17 +1939,27 @@ namespace PensjonatApp
         }
         private void buttonKlienciOk_Click(object sender, RoutedEventArgs e)
 		{
-			if (currentGridKlienci == gridKlienciEdit)
+			if (currentGridKlienci == gridKlienciEdycja)
 			{
-				KlienciHelper.edytujKlienta(int.Parse(labelKlienciEdytujId.Content.ToString()), textBoxKlienciEdycjaImie.Text, textBoxKlienciEdycjaNazwisko.Text, textBoxKlienciEdycjaFirma.Text,
-					textBoxKlienciEdycjaMiejscowoscAuto.Text, textBoxKlienciEdycjaAdres.Text, textBoxKlienciEdycjaKodPocztowy.Text, int.Parse(textBoxKlienciEdycjaNIP.Text),
-					   textBoxKlienciEdycjaPESEL.Text, int.Parse(textBoxKlienciEdycjaTelefon.Text), textBoxKlienciEdycjaMail.Text);
-				dataGridKlienci.ItemsSource = TablesManager.Manager.KlienciTableAdapter.GetKlienciMiejscowosci();
-				System.Windows.MessageBox.Show("Wyedytowano pomyślnie.", "Edycja klienta", MessageBoxButton.OK, MessageBoxImage.Information);
-                RefreshConnectionsKlienci();
-				textBoxKlienciEdycjaMiejscowoscAuto.Visibility = System.Windows.Visibility.Hidden;
-				zwinKlienci();
-                showWindow(gridKlienciDeafult, buttonKlienciDeafultList, ref currentGridKlienci);
+				bool valid = false;
+
+				if (radioButtonKlientEdycjaFirma.IsChecked == true)
+					valid = KlientVerification.isValid(gridKlienciEdycja, textBoxKlienciEdycjaMiejscowoscAuto);	//dodatkowa walidacja dla firmy
+				else
+					valid = KlientVerification.isValid(gridKlienciEdycjaOsoba, textBoxKlienciEdycjaMiejscowoscAuto);	//walidacja dla osoby
+
+				if (valid)
+				{
+					KlienciHelper.edytujKlienta(int.Parse(labelKlienciEdytujId.Content.ToString()), textBoxKlienciEdycjaImie.Text, textBoxKlienciEdycjaNazwisko.Text, textBoxKlienciEdycjaFirma.Text,
+						textBoxKlienciEdycjaMiejscowoscAuto.Text, textBoxKlienciEdycjaAdres.Text, textBoxKlienciEdycjaKodPocztowy.Text, int.Parse(textBoxKlienciEdycjaNIP.Text),
+						   textBoxKlienciEdycjaPESEL.Text, int.Parse(textBoxKlienciEdycjaTelefon.Text), textBoxKlienciEdycjaMail.Text);
+					dataGridKlienci.ItemsSource = TablesManager.Manager.KlienciTableAdapter.GetKlienciMiejscowosci();
+					System.Windows.MessageBox.Show("Wyedytowano pomyślnie.", "Edycja klienta", MessageBoxButton.OK, MessageBoxImage.Information);
+					RefreshConnectionsKlienci();
+					textBoxKlienciEdycjaMiejscowoscAuto.Visibility = System.Windows.Visibility.Hidden;
+					zwinKlienci();
+					showWindow(gridKlienciDeafult, buttonKlienciDeafultList, ref currentGridKlienci);
+				}
 			}
 			else if (currentGridKlienci == gridKlienciAdd)
 			{
@@ -2057,10 +2067,9 @@ namespace PensjonatApp
 				textBoxKlienciEdycjaMiejscowoscAuto.Visibility = System.Windows.Visibility.Hidden;
 
 				//Przypisanie klienta do kontrolek tworzenia oraz edycji klienta 
+				gridKlienciAdd.DataContext = new KlientVerification();
+				gridKlienciEdycja.DataContext = new KlientVerification();
 
-				//dopisac jakies wywalanie errora
-				KlientVerification klient = new KlientVerification();
-				gridKlienciAdd.DataContext = klient;
             }
         }
         private void dataGridKlienci_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -2237,7 +2246,7 @@ namespace PensjonatApp
             if (dataGridKlienci.SelectedItem != null)
             {
                 zwinKlienci();
-                showWindow(gridKlienciEdit, buttonKlienciBackOkList, ref currentGridKlienci);
+                showWindow(gridKlienciEdycja, buttonKlienciBackOkList, ref currentGridKlienci);
      
                 KlienciDS.KlienciRow selectedRow = (KlienciDS.KlienciRow)((DataRowView)dataGridKlienci.SelectedItem).Row;
                 //dataGridKlienci.ItemsSource = TablesManager.Manager.KlienciTableAdapter.GetDataKlienciMiejsconowsciByIdKlienta(selectedRow.id_klienta);
