@@ -166,6 +166,8 @@ namespace PensjonatApp.Helpers
             tabela.AddCell(kom);
             doc.Add(tabela);
 
+            sredniB.Color = BaseColor.RED;
+            sredniB.Size = 13;
             Paragraph doZaplaty = new Paragraph("",sredniB);
             RachunkiDS.RachunkiRow r=TablesManager.Manager.RachunkiTableAdapter.GetDataById(id_rachunku)[0];
             doZaplaty.Add("\n\n\nDo zapłacenia po uwzględnieniu rabatów i zaliczki: "+r.wartosc.ToString("0.00")+" PLN\n");
