@@ -18,7 +18,7 @@ namespace PensjonatASP
         String pesel;
         List<int> wybranePokoje;
 
-        const String baza = @"C:\__informatyka\bd\_projekt\Pensjonat_akt\baza.mdb";
+        const String baza = @"C:\Users\ttt\Documents\pensjonat\baza.mdb";
         const String login = "Administrator";
         const String haslo = "";
 
@@ -37,6 +37,7 @@ namespace PensjonatASP
 
             String start = Calendar1.SelectedDate.ToString("#MM/dd/yy#");
             String koniec = Calendar2.SelectedDate.ToString("#MM/dd/yy#");
+           
             if (Calendar1.SelectedDate >= Calendar2.SelectedDate || Calendar1.SelectedDate < Calendar1.TodaysDate)
             {
                 blad = true;
@@ -131,7 +132,7 @@ namespace PensjonatASP
                 if (reader.HasRows)
                 {
                     reader.Read();
-                    Label2.Text = "Zaliczka: " + reader.GetFloat(1).ToString() + " - " + (reader.GetBoolean(0) ? "wpłacono" : "nie wpłacono");
+                    Label2.Text = "Zaliczka: " + reader.GetFloat(1).ToString() + "zł - " + (reader.GetBoolean(0) ? "wpłacono" : "nie wpłacono");
                 }
                 else
                 {
