@@ -733,31 +733,105 @@
 						<Label Content="Label" Height="28" HorizontalAlignment="Left" Margin="105,8,0,0" Name="labelKlienciEdytujId" VerticalAlignment="Top" IsEnabled="False" Visibility="Hidden" />
 						<StackPanel Height="340" HorizontalAlignment="Left" Margin="8,52,0,0" Name="stackPanel16" VerticalAlignment="Top" Width="342">
 							<GroupBox Header="Dane klienta:" Height="250" Name="groupBoxKlienciEdycja1" Width="328">
-								<Grid>
+								<Grid Name="gridKlienciEdycjaOsoba">
 									<Label Content="Imię:" FontWeight="Bold" HorizontalAlignment="Left" Margin="8,9,0,0" Name="label44" Padding="2" VerticalAlignment="Top" />
+									<TextBox Height="23" HorizontalAlignment="Left" Margin="192,9,0,0" Name="textBoxKlienciEdycjaImie" VerticalAlignment="Top" Width="120" TabIndex="12">
+										<TextBox.Text>
+											<Binding Path="Imie">
+												<Binding.ValidationRules>
+													<local:NotNullValidationRule />
+												</Binding.ValidationRules>
+											</Binding>
+										</TextBox.Text>
+									</TextBox>
 									<Label Content="Nazwisko:" FontWeight="Bold" HorizontalAlignment="Left" Margin="8,36,0,0" Name="label47" Padding="2" VerticalAlignment="Top" />
-									<TextBox Height="23" HorizontalAlignment="Left" Margin="192,9,0,0" Name="textBoxKlienciEdycjaImie" Text="" VerticalAlignment="Top" Width="120" TabIndex="12" />
-									<TextBox Height="23" HorizontalAlignment="Left" Margin="192,36,0,0" Name="textBoxKlienciEdycjaNazwisko" Text="" VerticalAlignment="Top" Width="120" TabIndex="13" />
+									<TextBox Height="23" HorizontalAlignment="Left" Margin="192,36,0,0" Name="textBoxKlienciEdycjaNazwisko" VerticalAlignment="Top" Width="120" TabIndex="13">
+										<TextBox.Text>
+											<Binding Path="Nazwisko">
+												<Binding.ValidationRules>
+													<local:NotNullValidationRule />
+												</Binding.ValidationRules>
+											</Binding>
+										</TextBox.Text>
+									</TextBox>
 									<Label Content="PESEL:" FontWeight="Bold" HorizontalAlignment="Left" Margin="8,63,0,0" Name="label49" Padding="2" VerticalAlignment="Top" />
-									<TextBox Height="23" HorizontalAlignment="Left" Margin="192,63,0,0" Name="textBoxKlienciEdycjaPESEL" Text="" VerticalAlignment="Top" Width="120" TabIndex="14" />
-									<Label Content="Miejscowość:" FontWeight="Bold" HorizontalAlignment="Left" Margin="8,119,0,0" Name="label55" Padding="2" VerticalAlignment="Top" />
+									<TextBox Height="23" HorizontalAlignment="Left" Margin="192,63,0,0" Name="textBoxKlienciEdycjaPESEL" VerticalAlignment="Top" Width="120" TabIndex="14">
+										<TextBox.Text>
+											<Binding Path="Pesel">
+												<Binding.ValidationRules>
+													<local:NotNullValidationRule />
+												</Binding.ValidationRules>
+											</Binding>
+										</TextBox.Text>
+									</TextBox>
 									<Label Content="Adres:" FontWeight="Bold" HorizontalAlignment="Left" Margin="8,91,0,0" Name="label56" Padding="2" VerticalAlignment="Top" />
-									<TextBox Height="23" HorizontalAlignment="Left" Margin="192,91,0,0" Name="textBoxKlienciEdycjaAdres" Text="" VerticalAlignment="Top" Width="120" TabIndex="15" />
-									<Label Content="Telefon:" FontWeight="Bold" HorizontalAlignment="Left" Margin="8,200,0,0" Name="label57" Padding="2" VerticalAlignment="Top" />
-									<TextBox Height="23" HorizontalAlignment="Left" Margin="192,200,0,0" Name="textBoxKlienciEdycjaTelefon" Text="" VerticalAlignment="Top" Width="120" TabIndex="18" />
-									<Label Content="Mail:" FontWeight="Bold" HorizontalAlignment="Left" Margin="8,173,0,0" Name="label58" Padding="2" VerticalAlignment="Top" />
-									<TextBox Height="23" HorizontalAlignment="Left" Margin="192,173,0,0" Name="textBoxKlienciEdycjaMail" Text="" VerticalAlignment="Top" Width="120" TabIndex="17" />
-									<Label Content="Kod Pocztowy:" FontWeight="Bold" HorizontalAlignment="Left" Margin="8,146,0,0" Name="label62" Padding="2" VerticalAlignment="Top" />
-									<TextBox HorizontalAlignment="Left" Margin="192,146,0,58" Name="textBoxKlienciEdycjaKodPocztowy" Width="120" TabIndex="16" />
+									<TextBox Height="23" HorizontalAlignment="Left" Margin="192,91,0,0" Name="textBoxKlienciEdycjaAdres" VerticalAlignment="Top" Width="120" TabIndex="15">
+										<TextBox.Text>
+											<Binding Path="Adres">
+												<Binding.ValidationRules>
+													<local:NotNullValidationRule />
+												</Binding.ValidationRules>
+											</Binding>
+										</TextBox.Text>
+									</TextBox>
+									<Label Content="Miejscowość:" FontWeight="Bold" HorizontalAlignment="Left" Margin="8,119,0,0" Name="label55" Padding="2" VerticalAlignment="Top" />
 									<local:AutoCompleteTextBox DelayTime="500" Height="23" Margin="192,118,0,0" x:Name="textBoxKlienciEdycjaMiejscowoscAuto" Threshold="3" VerticalAlignment="Top" HorizontalAlignment="Left" Width="120" AllowDrop="True" Focusable="True" />
+									<Label Content="Kod Pocztowy:" FontWeight="Bold" HorizontalAlignment="Left" Margin="8,146,0,0" Name="label62" Padding="2" VerticalAlignment="Top" />
+									<TextBox HorizontalAlignment="Left" Margin="192,146,0,58" Name="textBoxKlienciEdycjaKodPocztowy" Width="120" TabIndex="16">
+										<TextBox.Text>
+											<Binding Path="KodPocztowy">
+												<Binding.ValidationRules>
+													<local:NotNullValidationRule />
+												</Binding.ValidationRules>
+											</Binding>
+										</TextBox.Text>
+									</TextBox>
+									<Label Content="Mail:" FontWeight="Bold" HorizontalAlignment="Left" Margin="8,173,0,0" Name="label58" Padding="2" VerticalAlignment="Top" />
+									<TextBox Height="23" HorizontalAlignment="Left" Margin="192,173,0,0" Name="textBoxKlienciEdycjaMail" VerticalAlignment="Top" Width="120" TabIndex="17">
+										<TextBox.Text>
+											<Binding Path="Mail">
+												<Binding.ValidationRules>
+													<local:NotNullValidationRule />
+												</Binding.ValidationRules>
+											</Binding>
+										</TextBox.Text>
+									</TextBox>
+									<Label Content="Telefon:" FontWeight="Bold" HorizontalAlignment="Left" Margin="8,200,0,0" Name="label57" Padding="2" VerticalAlignment="Top" />
+									<TextBox Height="23" HorizontalAlignment="Left" Margin="192,200,0,0" Name="textBoxKlienciEdycjaTelefon" VerticalAlignment="Top" Width="120" TabIndex="18">
+										<TextBox.Text>
+											<Binding Path="Telefon">
+												<Binding.ValidationRules>
+													<local:NotNullValidationRule />
+													<local:OnlyDigitsValidationRule />
+												</Binding.ValidationRules>
+											</Binding>
+										</TextBox.Text>
+									</TextBox>
 								</Grid>
 							</GroupBox>
 							<GroupBox Header="Dane firmy" Height="86" Name="groupBoxKlienciEdycja2" Width="326">
-								<Grid>
-									<Label Content="NIP:" FontWeight="Bold" HorizontalAlignment="Left" Margin="6,35,0,0" Name="label63" Padding="2" VerticalAlignment="Top" />
-									<TextBox Height="23" HorizontalAlignment="Left" Margin="190,35,0,0" Name="textBoxKlienciEdycjaNIP" Text="" VerticalAlignment="Top" Width="120" TabIndex="20" />
+								<Grid Name="gridKlienciEdycjaFirma">
 									<Label Content="Firma:" FontWeight="Bold" HorizontalAlignment="Left" Margin="6,6,0,0" Name="label65" Padding="2" VerticalAlignment="Top" />
-									<TextBox Height="23" HorizontalAlignment="Left" Margin="190,6,0,0" Name="textBoxKlienciEdycjaFirma" Text="" VerticalAlignment="Top" Width="120" TabIndex="19" />
+									<TextBox Height="23" HorizontalAlignment="Left" Margin="190,6,0,0" Name="textBoxKlienciEdycjaFirma" VerticalAlignment="Top" Width="120" TabIndex="19">
+										<TextBox.Text>
+											<Binding Path="Firma">
+												<Binding.ValidationRules>
+													<local:NotNullValidationRule />
+												</Binding.ValidationRules>
+											</Binding>
+										</TextBox.Text>
+									</TextBox>
+									<Label Content="NIP:" FontWeight="Bold" HorizontalAlignment="Left" Margin="6,35,0,0" Name="label63" Padding="2" VerticalAlignment="Top" />
+									<TextBox Height="23" HorizontalAlignment="Left" Margin="190,35,0,0" Name="textBoxKlienciEdycjaNIP" VerticalAlignment="Top" Width="120" TabIndex="20">
+										<TextBox.Text>
+											<Binding Path="Nip">
+												<Binding.ValidationRules>
+													<local:NotNullValidationRule />
+													<local:OnlyDigitsValidationRule />
+												</Binding.ValidationRules>
+											</Binding>
+										</TextBox.Text>
+									</TextBox>
 								</Grid>
 							</GroupBox>
 						</StackPanel>
@@ -847,6 +921,16 @@
 							</GroupBox>
 							<GroupBox Header="Dane firmy" Name="groupBoxKlienciAdd2" Width="326" Height="86">
 								<Grid Name="gridKlienciAddFirma">
+									<Label Content="Firma:" FontWeight="Bold" HorizontalAlignment="Left" Margin="6,6,0,0" Name="labelKlienciAddFirma" Padding="2" VerticalAlignment="Top" />
+									<TextBox Name="textBoxKlienciAddFirma" Height="23" HorizontalAlignment="Left" Margin="190,6,0,0" VerticalAlignment="Top" Width="120" TabIndex="19">
+										<TextBox.Text>
+											<Binding Path="Firma">
+												<Binding.ValidationRules>
+													<local:NotNullValidationRule />
+												</Binding.ValidationRules>
+											</Binding>
+										</TextBox.Text>
+									</TextBox>
 									<Label Content="NIP:" FontWeight="Bold" HorizontalAlignment="Left" Margin="6,35,0,0" Name="labelKlienciAddNIP" Padding="2" VerticalAlignment="Top" />
 									<TextBox Name="textBoxKlienciAddNIP" Height="23" HorizontalAlignment="Left" Margin="190,35,0,0" VerticalAlignment="Top" Width="120" TabIndex="20">
 										<TextBox.Text>
@@ -854,16 +938,6 @@
 												<Binding.ValidationRules>
 													<local:NotNullValidationRule />
 													<local:OnlyDigitsValidationRule />
-												</Binding.ValidationRules>
-											</Binding>
-										</TextBox.Text>
-									</TextBox>
-									<Label Content="Firma:" FontWeight="Bold" HorizontalAlignment="Left" Margin="6,6,0,0" Name="labelKlienciAddFirma" Padding="2" VerticalAlignment="Top" />
-									<TextBox Name="textBoxKlienciAddFirma" Height="23" HorizontalAlignment="Left" Margin="190,6,0,0" VerticalAlignment="Top" Width="120" TabIndex="19">
-										<TextBox.Text>
-											<Binding Path="Firma">
-												<Binding.ValidationRules>
-													<local:NotNullValidationRule />
 												</Binding.ValidationRules>
 											</Binding>
 										</TextBox.Text>
