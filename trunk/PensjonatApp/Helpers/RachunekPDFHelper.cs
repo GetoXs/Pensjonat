@@ -55,19 +55,19 @@ namespace PensjonatApp.Helpers
                 BaseColor kolor=new BaseColor(133,203,118);
                 PdfPCell komorka;
 
-                komorka = new PdfPCell(new Phrase("Imię:", sredniB));
+                komorka = new PdfPCell(new Phrase("Imię:", sredni));
                 komorka.BackgroundColor = kolor;
                 tabk.AddCell(komorka);
-                komorka = new PdfPCell(new Phrase("Nazwisko:", sredniB));
+                komorka = new PdfPCell(new Phrase("Nazwisko:", sredni));
                 komorka.BackgroundColor = kolor;
                 tabk.AddCell(komorka);
-                komorka = new PdfPCell(new Phrase("PESEL:", sredniB));
+                komorka = new PdfPCell(new Phrase("PESEL:", sredni));
                 komorka.BackgroundColor = kolor;
                 tabk.AddCell(komorka);
-                komorka = new PdfPCell(new Phrase("Adres:", sredniB));
+                komorka = new PdfPCell(new Phrase("Adres:", sredni));
                 komorka.BackgroundColor = kolor;
                 tabk.AddCell(komorka);
-                komorka = new PdfPCell(new Phrase("Miejscowość:", sredniB));
+                komorka = new PdfPCell(new Phrase("Miejscowość:", sredni));
                 komorka.BackgroundColor = kolor;
                 tabk.AddCell(komorka);
      
@@ -77,19 +77,19 @@ namespace PensjonatApp.Helpers
 
                 kolor = new BaseColor(182,224,173);
 
-                komorka=new PdfPCell(new Phrase(klient.imie, sredni));
+                komorka=new PdfPCell(new Phrase(klient.imie, sredniB));
                 komorka.BackgroundColor = kolor;
                 tabk.AddCell(komorka);
-                komorka = new PdfPCell(new Phrase(klient.nazwisko, sredni));
+                komorka = new PdfPCell(new Phrase(klient.nazwisko, sredniB));
                 komorka.BackgroundColor = kolor;
                 tabk.AddCell(komorka);
-                komorka = new PdfPCell(new Phrase(klient.pesel, sredni));
+                komorka = new PdfPCell(new Phrase(klient.pesel, sredniB));
                 komorka.BackgroundColor = kolor;
                 tabk.AddCell(komorka);
-                komorka = new PdfPCell(new Phrase(klient.ulica, sredni));
+                komorka = new PdfPCell(new Phrase(klient.ulica, sredniB));
                 komorka.BackgroundColor = kolor;
                 tabk.AddCell(komorka);
-                komorka = new PdfPCell(new Phrase(msc.nazwa, sredni));
+                komorka = new PdfPCell(new Phrase(msc.nazwa, sredniB));
                                 komorka.BackgroundColor = kolor;
                 tabk.AddCell(komorka);
                 
@@ -102,19 +102,19 @@ namespace PensjonatApp.Helpers
 
                 kolor=new BaseColor(239,233,112);
 
-                komorka = new PdfPCell(new Phrase("Początek pobytu:", sredniB));
+                komorka = new PdfPCell(new Phrase("Początek pobytu:", sredni));
                 komorka.BackgroundColor = kolor;
                 tabp.AddCell(komorka);
-                komorka = new PdfPCell(new Phrase("Koniec pobytu:", sredniB));
+                komorka = new PdfPCell(new Phrase("Koniec pobytu:", sredni));
                 komorka.BackgroundColor = kolor;
                 tabp.AddCell(komorka);
-                komorka = new PdfPCell(new Phrase("Opłata za pokój:", sredniB));
+                komorka = new PdfPCell(new Phrase("Opłata za pokój:", sredni));
                 komorka.BackgroundColor = kolor;
                 tabp.AddCell(komorka);
-                komorka = new PdfPCell(new Phrase("Opłata za posiłki:", sredniB));
+                komorka = new PdfPCell(new Phrase("Opłata za posiłki:", sredni));
                 komorka.BackgroundColor = kolor;
                 tabp.AddCell(komorka);
-                komorka = new PdfPCell(new Phrase("Opłata za usługi:", sredniB));
+                komorka = new PdfPCell(new Phrase("Opłata za usługi:", sredni));
                 komorka.BackgroundColor = kolor;
                 tabp.AddCell(komorka);
 
@@ -123,28 +123,28 @@ namespace PensjonatApp.Helpers
 
                 kolor = new BaseColor(244, 240, 162);
 
-                komorka = new PdfPCell(new Phrase(p.termin_start.Date.ToString("d-MM-yyyy"), sredni));
+                komorka = new PdfPCell(new Phrase(p.termin_start.Date.ToString("d-MM-yyyy"), sredniB));
                 komorka.BackgroundColor = kolor;
                 tabp.AddCell(komorka);
-                komorka = new PdfPCell(new Phrase(p.termin_koniec.Date.ToString("d-MM-yyyy"), sredni));
+                komorka = new PdfPCell(new Phrase(p.termin_koniec.Date.ToString("d-MM-yyyy"), sredniB));
                 komorka.BackgroundColor = kolor;
                 tabp.AddCell(komorka);
                
                 koszt = RozliczenieHelper.pobierzPodstawowaCenaPobytu(p.id_pobytu);
                 suma += koszt;
-                komorka = new PdfPCell(new Phrase(koszt.ToString("0.00") + " PLN"));
+                komorka = new PdfPCell(new Phrase(koszt.ToString("0.00") + " PLN", sredniB));
                 komorka.BackgroundColor = kolor;
                 tabp.AddCell(komorka);
                 
                 koszt = RozliczenieHelper.pobierzPodstawowaCenaPosilkow(p.id_pobytu);
                 suma += koszt;
-                komorka = new PdfPCell(new Phrase(koszt.ToString("0.00") + " PLN"));
+                komorka = new PdfPCell(new Phrase(koszt.ToString("0.00") + " PLN", sredniB));
                 komorka.BackgroundColor = kolor;
                 tabp.AddCell(komorka);
 
                 koszt = RozliczenieHelper.pobierzPodstawowaCenaUslug(p.id_pobytu);
                 suma += koszt;
-                komorka = new PdfPCell(new Phrase(koszt.ToString("0.00") + " PLN"));
+                komorka = new PdfPCell(new Phrase(koszt.ToString("0.00") + " PLN", sredniB));
                 komorka.BackgroundColor = kolor;
                 tabp.AddCell(komorka);
 
