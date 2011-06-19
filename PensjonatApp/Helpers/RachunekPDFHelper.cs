@@ -88,7 +88,7 @@ namespace PensjonatApp.Helpers
             
             PdfPCell c = new PdfPCell(new Phrase("Suma całkowita "+sumAll.ToString("0.00") + " PLN",sredniB));
             c.HorizontalAlignment = Element.ALIGN_RIGHT;
-            c.Colspan = 5;
+            c.Colspan = 7;
             tabela.AddCell(c);
 
             doc.Add(tabela);
