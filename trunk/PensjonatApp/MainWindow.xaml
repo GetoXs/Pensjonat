@@ -27,6 +27,27 @@
 				</Setter.Value>
 			</Setter>
 		</Style>
+		<Style TargetType="{x:Type ComboBox}">
+			<Setter Property="Validation.ErrorTemplate">
+				<Setter.Value>
+					<ControlTemplate>
+						<DockPanel LastChildFill="True">
+							<Border BorderBrush="Red" BorderThickness="1" Margin="-1">
+								<AdornedElementPlaceholder Name="MyAdorner" />
+							</Border>
+							<TextBlock DockPanel.Dock="Right"
+								Foreground="Red"
+								Margin="5,2,0,0" 
+								FontSize="10pt"
+								Focusable="False"
+								Text="{Binding ElementName=MyAdorner, 
+                               Path=AdornedElement.(Validation.Errors)[0].ErrorContent}">
+							</TextBlock>
+						</DockPanel>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
 	</Window.Resources>
     <Grid>
         <Grid.Background>
@@ -1715,7 +1736,7 @@
                             </Button>
                         </StackPanel>
                     </Grid>
-                    <Grid Height="291" Name="gridPracownicyDeafult" Opacity="1" ShowGridLines="True" Visibility="Visible">
+                    <Grid Height="55" Name="gridPracownicyDeafult" Opacity="1" ShowGridLines="True" Visibility="Visible">
                         <StackPanel Name="stackPanel169" Margin="0,0,0,6" ClipToBounds="False">
                             <Grid Height="41" Name="gridPracownicySearch" Width="579" VerticalAlignment="Top" HorizontalAlignment="Left">
                                 <TextBox Height="23" HorizontalAlignment="Left" Margin="13,17,0,0" Name="textBoxPracownicySzukaj" TabIndex="10" VerticalAlignment="Top" Width="158" />
@@ -1751,35 +1772,91 @@
                     <Grid Height="252" Name="gridPracownicyDodaj" Opacity="1" ShowGridLines="True" Visibility="Visible">
                         <Label Content="Dodawanie pracownika:" FontSize="15" FontWeight="Normal" HorizontalAlignment="Left" Margin="10,10,0,0" Name="label188" Padding="2" VerticalAlignment="Top" />
                         <Label Content="Imię:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,39,0,0" Name="label196" Padding="2" VerticalAlignment="Top" />
-                        <Label Content="Nazwisko:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,66,0,0" Name="label198" Padding="2" VerticalAlignment="Top" />
-                        <Label Content="PESEL:" FontWeight="Bold" HorizontalAlignment="Left" Margin="34,121,0,0" Name="label199" Padding="2" VerticalAlignment="Top" />
-                        <Label Content="Telefon:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,148,0,0" Name="label200" Padding="2" VerticalAlignment="Top" />
-                        <TextBox Height="23" HorizontalAlignment="Left" Margin="160,38,0,0" Name="textBoxPracownicyDodajImie" Text="" VerticalAlignment="Top" Width="202" TabIndex="10" />
-                        <TextBox Height="23" HorizontalAlignment="Left" Margin="160,65,0,0" Name="textBoxPracownicyDodajNazwisko" Text="" VerticalAlignment="Top" Width="202" TabIndex="11" />
-                        <TextBox Height="23" HorizontalAlignment="Left" Margin="159,120,0,0" Name="textBoxPracownicyDodajPESEL" Text="" VerticalAlignment="Top" Width="202" TabIndex="13" />
-                        <TextBox Height="23" Margin="160,147,0,0" Name="textBoxPracownicyDodajTelefon" Text="" VerticalAlignment="Top" MaxLines="9" Width="202" HorizontalAlignment="Left" TabIndex="14" />
-                        <Label Content="Login:" FontWeight="Bold" HorizontalAlignment="Left" Margin="34,93,0,0" Name="label205" Padding="2" VerticalAlignment="Top" />
-                        <TextBox Height="23" HorizontalAlignment="Left" Margin="159,92,0,0" Name="textBoxPracownicyDodajLogin" Text="" VerticalAlignment="Top" Width="203" TabIndex="12" />
-                        <Label Content="Stanowisko:" FontWeight="Bold" HorizontalAlignment="Left" Margin="36,178,0,0" Name="label217" Padding="2" Height="20" VerticalAlignment="Top" />
-                        <ComboBox Height="23" HorizontalAlignment="Left" Margin="161,175,0,0" Name="comboBoxPracownicyDodajStanowisko" VerticalAlignment="Top" Width="201" IsVisibleChanged="comboBoxPracownicyDodajStanowisko_IsVisibleChanged" TabIndex="15" />
-                    </Grid>
+						<TextBox Height="23" HorizontalAlignment="Left" Margin="160,38,0,0" Name="textBoxPracownicyDodajImie" VerticalAlignment="Top" Width="202" TabIndex="10">
+							<TextBox.Text>
+								<Binding Path="Imie">
+									<Binding.ValidationRules>
+										<local:NotNullValidationRule />
+									</Binding.ValidationRules>
+								</Binding>
+							</TextBox.Text>
+						</TextBox>
+						<Label Content="Nazwisko:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,66,0,0" Name="label198" Padding="2" VerticalAlignment="Top" />
+						<TextBox Height="23" HorizontalAlignment="Left" Margin="160,65,0,0" Name="textBoxPracownicyDodajNazwisko" VerticalAlignment="Top" Width="202" TabIndex="11">
+							<TextBox.Text>
+								<Binding Path="Nazwisko">
+									<Binding.ValidationRules>
+										<local:NotNullValidationRule />
+									</Binding.ValidationRules>
+								</Binding>
+							</TextBox.Text>
+						</TextBox>
+						<Label Content="Login:" FontWeight="Bold" HorizontalAlignment="Left" Margin="34,93,0,0" Name="label205" Padding="2" VerticalAlignment="Top" />
+						<TextBox Height="23" HorizontalAlignment="Left" Margin="159,92,0,0" Name="textBoxPracownicyDodajLogin" VerticalAlignment="Top" Width="203" TabIndex="12">
+							<TextBox.Text>
+								<Binding Path="Login">
+									<Binding.ValidationRules>
+										<local:NotNullValidationRule />
+									</Binding.ValidationRules>
+								</Binding>
+							</TextBox.Text>
+						</TextBox>
+						<Label Content="Stanowisko:" FontWeight="Bold" HorizontalAlignment="Left" Margin="34,124,0,0" Name="label217" Padding="2" Height="20" VerticalAlignment="Top" />
+						<ComboBox Height="23" HorizontalAlignment="Left" Margin="159,121,0,0" Name="comboBoxPracownicyDodajStanowisko" VerticalAlignment="Top" Width="201" IsVisibleChanged="comboBoxPracownicyDodajStanowisko_IsVisibleChanged" TabIndex="15">
+							<ComboBox.Text>
+								<Binding Path="Stanowisko" UpdateSourceTrigger="LostFocus">
+									<Binding.ValidationRules>
+										<local:NotNullValidationRule />
+									</Binding.ValidationRules>
+								</Binding>
+							</ComboBox.Text>
+						</ComboBox>
+					</Grid>
                     <Grid Name="gridPracownicyEdycja" Opacity="1" ShowGridLines="True" Visibility="Visible" Height="374">
                         <Label Content="Edycja pracownika:" FontSize="15" FontWeight="Normal" HorizontalAlignment="Left" Margin="10,10,0,0" Name="label201" Padding="2" VerticalAlignment="Top" />
                         <Label Content="Imię:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,39,0,0" Name="label206" Padding="2" VerticalAlignment="Top" />
-                        <Label Content="Nazwisko:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,66,0,0" Name="label208" Padding="2" VerticalAlignment="Top" />
-                        <Label Content="PESEL:" FontWeight="Bold" HorizontalAlignment="Left" Margin="34,149,0,0" Name="label209" Padding="2" VerticalAlignment="Top" />
-                        <Label Content="Telefon:" FontWeight="Bold" HorizontalAlignment="Left" Margin="34,178,0,0" Name="label210" Padding="2" VerticalAlignment="Top" />
-                        <TextBox Height="23" HorizontalAlignment="Left" Margin="160,38,0,0" Name="textBoxPracownicyEdycjaImie" Text=""  VerticalAlignment="Top" Width="201" TabIndex="10" />
-                        <TextBox Height="23" HorizontalAlignment="Left" Margin="160,65,0,0" Name="textBoxPracownicyEdycjaNazwisko" Text=""  VerticalAlignment="Top" Width="200" TabIndex="11" />
-                        <TextBox Height="23" HorizontalAlignment="Left" Margin="159,148,0,0" Name="textBoxPracownicyEdycjaPESEL" Text=""  VerticalAlignment="Top" Width="202" TabIndex="14" />
-                        <TextBox Height="23" HorizontalAlignment="Left" Margin="159,177,0,0" Name="textBoxPracownicyEdycjaTelefon" Text="" VerticalAlignment="Top" Width="202" TabIndex="15" />
-                        <Label Content="Hasło:" FontWeight="Bold" HorizontalAlignment="Left" Margin="34,121,0,0" Name="label211" Padding="2" VerticalAlignment="Top" />
+						<TextBox Height="23" HorizontalAlignment="Left" Margin="160,38,0,0" Name="textBoxPracownicyEdycjaImie" VerticalAlignment="Top" Width="201" TabIndex="10">
+							<TextBox.Text>
+								<Binding Path="Imie">
+									<Binding.ValidationRules>
+										<local:NotNullValidationRule />
+									</Binding.ValidationRules>
+								</Binding>
+							</TextBox.Text>
+						</TextBox>
+						<Label Content="Nazwisko:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,66,0,0" Name="label208" Padding="2" VerticalAlignment="Top" />
+						<TextBox Height="23" HorizontalAlignment="Left" Margin="160,65,0,0" Name="textBoxPracownicyEdycjaNazwisko" VerticalAlignment="Top" Width="200" TabIndex="11">
+							<TextBox.Text>
+								<Binding Path="Nazwisko">
+									<Binding.ValidationRules>
+										<local:NotNullValidationRule />
+									</Binding.ValidationRules>
+								</Binding>
+							</TextBox.Text>
+						</TextBox>
+						<Label Content="Login:" FontWeight="Bold" HorizontalAlignment="Left" Margin="34,93,0,0" Name="label214" Padding="2" VerticalAlignment="Top" />
+						<TextBox Height="23" Margin="159,92,0,0" Name="textBoxPracownicyEdycjaLogin" VerticalAlignment="Top" TabIndex="12" HorizontalAlignment="Left" Width="204">
+							<TextBox.Text>
+								<Binding Path="Login">
+									<Binding.ValidationRules>
+										<local:NotNullValidationRule />
+									</Binding.ValidationRules>
+								</Binding>
+							</TextBox.Text>
+						</TextBox>
+						<Label Content="Hasło:" FontWeight="Bold" HorizontalAlignment="Left" Margin="34,121,0,0" Name="label211" Padding="2" VerticalAlignment="Top" />
                         <PasswordBox Height="23" HorizontalAlignment="Left" Margin="159,120,0,0" Name="textBoxPracownicyEdycjaHaslo"   VerticalAlignment="Top" Width="203" TabIndex="13" />
-                        <Label Content="Login:" FontWeight="Bold" HorizontalAlignment="Left" Margin="34,93,0,0" Name="label214" Padding="2" VerticalAlignment="Top" />
-                        <TextBox Height="23" Margin="159,92,0,0" Name="textBoxPracownicyEdycjaLogin" Text="" VerticalAlignment="Top" TabIndex="12" HorizontalAlignment="Left" Width="204" />
-                        <Label Content="Stanowisko:" FontWeight="Bold" HorizontalAlignment="Left" Margin="34,207,0,0" Name="label218" Padding="2" Height="20" VerticalAlignment="Top" />
-                        <ComboBox Height="23" HorizontalAlignment="Left" Margin="159,206,0,0" Name="comboBoxPracownicyEdycjaStanowisko" VerticalAlignment="Top" Width="201" IsVisibleChanged="comboBoxPracownicyEdycjaStanowisko_IsVisibleChanged" TabIndex="16" />
-                        <Label Content="1" FontSize="15" FontWeight="Normal" HorizontalAlignment="Left" Margin="145,10,0,0" Name="labelPracownicyEdycjaId" Padding="2" VerticalAlignment="Top" Visibility="Hidden" />
+						<Label Content="Stanowisko:" FontWeight="Bold" HorizontalAlignment="Left" Margin="35,149,0,0" Name="label218" Padding="2" Height="20" VerticalAlignment="Top" />
+                        <ComboBox Height="23" HorizontalAlignment="Left" Margin="160,148,0,0" Name="comboBoxPracownicyEdycjaStanowisko" VerticalAlignment="Top" Width="201" IsVisibleChanged="comboBoxPracownicyEdycjaStanowisko_IsVisibleChanged" TabIndex="16">
+							<ComboBox.Text>
+								<Binding Path="Stanowisko" UpdateSourceTrigger="LostFocus">
+									<Binding.ValidationRules>
+										<local:NotNullValidationRule />
+									</Binding.ValidationRules>
+								</Binding>
+							</ComboBox.Text>
+						</ComboBox>
+						<Label Content="1" FontSize="15" FontWeight="Normal" HorizontalAlignment="Left" Margin="145,10,0,0" Name="labelPracownicyEdycjaId" Padding="2" VerticalAlignment="Top" Visibility="Hidden" />
                     </Grid>
                     <Grid Name="gridPracownicyZadania" Opacity="1" ShowGridLines="True" Visibility="Visible" Height="137">
                         <Label Content="Lista dzisiejszych zadań:" FontWeight="Bold" HorizontalAlignment="Left" Margin="14,52,0,0" Name="label224" Padding="2" VerticalAlignment="Top" />

@@ -165,6 +165,7 @@
     <Compile Include="Helpers\RozliczenieHelper.cs" />
     <Compile Include="Helpers\UslugiHelper.cs" />
     <Compile Include="Helpers\UslugiSlownikHelper.cs" />
+    <Compile Include="Helpers\Validation\ValidationHelper.cs" />
     <Compile Include="Helpers\WyposazeniaHelper.cs" />
     <Compile Include="Helpers\WyposazeniaSlownikHelper.cs" />
     <Compile Include="Logowanie.xaml.cs">
@@ -189,8 +190,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Tools\ValidationRules.cs" />
-    <Compile Include="Tools\VerificationKlient.cs" />
+    <Compile Include="Helpers\Validation\ValidationRules.cs" />
+    <Compile Include="Helpers\Validation\ValidationPracownik.cs" />
+    <Compile Include="Helpers\Validation\ValidationKlient.cs" />
     <Page Include="Logowanie.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
