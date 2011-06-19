@@ -519,7 +519,7 @@ namespace PensjonatApp
         {
             if ((bool)(e.NewValue) == true)
             {//pojawienie sie pola
-                dataGridRezerwacjeSzukaj.ItemsSource = TablesManager.Manager.RezerwacjeTableAdapter.GetDataRezerwacjeKlienci();
+                dataGridRezerwacjeSzukaj.ItemsSource = TablesManager.Manager.RezerwacjeTableAdapter.GetDataRezerwacjeKlienciNiezameldowane();
             }
         }
         private void dataGrid1_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -559,29 +559,40 @@ namespace PensjonatApp
 
         private void rezerwacjeSearch()
         {
-            if (textBoxRezerwacjeSzukaj.Text == "")
-                dataGridRezerwacjeSzukaj.ItemsSource = TablesManager.Manager.RezerwacjeTableAdapter.GetDataRezerwacjeKlienci();
+            StringBuilder sb = new StringBuilder();
+
+            if (toggleButtonRezerwacjeSearchExtend.IsChecked == false)
+            {
+                int intTmp;
+                if (rbRezerwacjeName.IsChecked == true)
+                    sb.Append((textBoxRezerwacjeSzukaj.Text != "") ? (" AND (UCASE(Klienci.imie) LIKE UCASE('%" + textBoxRezerwacjeSzukaj.Text + "%') OR UCASE(Klienci.nazwisko) LIKE UCASE('%" + textBoxRezerwacjeSzukaj.Text + "%'))") : "");
+                else
+                    if (int.TryParse(textBoxRezerwacjeSzukaj.Text, out intTmp))
+                        sb.Append((textBoxRezerwacjeSzukaj.Text != "") ? (" AND Rezerwacje.id_rezerwacji=" + intTmp + "") : "");
+
+                sb.Append((checkBoxRezerwacjeAkutalne.IsChecked == true) ? (" AND (Pobyty.id_pobytu IN (SELECT        TOP 1 id_pobytu FROM            Pobyty p1 WHERE        (id_klienta IS NULL) AND (id_rezerwacji = Pobyty.id_rezerwacji)))") : "");
+            }
             else
             {
-                if ((bool)rbRezerwacjeId.IsChecked)
-                {
-                    int id;
-                    if (int.TryParse(textBoxRezerwacjeSzukaj.Text, out id))
-                        dataGridRezerwacjeSzukaj.ItemsSource = TablesManager.Manager.RezerwacjeTableAdapter.GetDataRezerwacjeByID(id);
-                    else
-                        System.Windows.MessageBox.Show("Niepoprawne ID rezerwacji.\nNumer identyfikacyjny rezerwacji może zawierać tylko cyfry.", "Wyszukiwanie rezerwacji", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-                else if ((bool)rbRezerwacjeName.IsChecked)
-                {
-                    if (textBoxRezerwacjeSzukaj.Text.Contains(' '))
-                    {
-                        string[] szukaj = textBoxRezerwacjeSzukaj.Text.Split(' ');
-                        //dataGridRezerwacjeSzukaj.ItemsSource = TablesManager.Manager.RezerwacjeTableAdapter.GetDataByRezerwacjeMiejscowosciByImieNazwiskoKlienta(szukaj[0], szukaj[1]);
-                    }
-                    else
-                        dataGridRezerwacjeSzukaj.ItemsSource = TablesManager.Manager.RezerwacjeTableAdapter.GetDataRezerwacjaKlienciByNazwiskoRejestrujacego(textBoxRezerwacjeSzukaj.Text);
-                }
+                sb.Append((textBoxRezerwacjeSearchExtendImie.Text != "") ? (" AND UCASE(Klienci.imie) LIKE UCASE('%" + textBoxRezerwacjeSearchExtendImie.Text + "%')") : "");
+                sb.Append((textBoxRezerwacjeSearchExtendNazwisko.Text != "") ? (" AND UCASE(Klienci.nazwisko) LIKE UCASE('%" + textBoxRezerwacjeSearchExtendNazwisko.Text + "%')") : "");
+                sb.Append((textBoxRezerwacjeSearchExtendPesel.Text != "") ? (" AND UCASE(Klienci.pesel) LIKE UCASE('%" + textBoxRezerwacjeSearchExtendPesel.Text + "%')") : "");
+                sb.Append((textBoxRezerwacjeSearchExtendNazwa.Text != "") ? (" AND UCASE(Klienci.nazwa) LIKE UCASE('%" + textBoxRezerwacjeSearchExtendNazwa.Text + "%')") : "");
+                sb.Append((textBoxRezerwacjeSearchExtendNip.Text != "") ? (" AND UCASE(Klienci.nip) LIKE UCASE('%" + textBoxRezerwacjeSearchExtendNip.Text + "%')") : "");
             }
+
+            System.Data.Odbc.OdbcCommand cmd = TablesManager.Manager.RezerwacjeTableAdapter.Connection.CreateCommand();
+
+            TablesManager.Manager.RezerwacjeTableAdapter.Connection.Open();
+            cmd.CommandText = "SELECT        Rezerwacje.id_rezerwacji, Rezerwacje.zaliczka, Rezerwacje.zaplacono_zaliczke, Rezerwacje.ilosc_osob, Rezerwacje.id_klienta, Pobyty.termin_start,     Pobyty.termin_koniec, Klienci.email, Klienci.imie, Klienci.nazwisko, Klienci.id_miejscowosci, Klienci.kod_pocztowy, Klienci.ulica, Klienci.nip, Klienci.pesel FROM            Rezerwacje, Pobyty, Klienci WHERE        Rezerwacje.id_rezerwacji = Pobyty.id_rezerwacji AND Rezerwacje.id_klienta = Klienci.id_klienta" + sb.ToString();
+
+            System.Data.Odbc.OdbcDataReader rd = cmd.ExecuteReader();
+            RezerwacjeDS.RezerwacjeDataTable tab = new RezerwacjeDS.RezerwacjeDataTable();
+            tab.Load(rd);
+            dataGridRezerwacjeSzukaj.ItemsSource = tab;
+            dataGridRezerwacjeSzukaj.Items.Refresh();
+
+            TablesManager.Manager.RezerwacjeTableAdapter.Connection.Close();
         }
 
         //----------------------------------------------REZERWACJE->DODAJ---------------------------------------------- 
