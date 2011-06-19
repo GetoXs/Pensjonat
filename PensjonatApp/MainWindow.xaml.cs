@@ -534,6 +534,29 @@ namespace PensjonatApp
         {
             rezerwacjeSearch();
         }
+
+        private void toggleButtonRezerwacjeSearchExtend_Checked(object sender, RoutedEventArgs e)
+        {
+            if (toggleButtonRezerwacjeSearchExtend.IsChecked == true)
+            {
+                textBoxRezerwacjeSzukaj.IsEnabled = false;
+                rbRezerwacjeId.IsEnabled = false;
+                rbRezerwacjeName.IsEnabled = false;
+                checkBoxRezerwacjeAkutalne.IsEnabled = false;
+
+                gridRezerwacjeSearchExtend.Visibility = System.Windows.Visibility.Visible;
+            }
+            else
+            {
+                textBoxRezerwacjeSzukaj.IsEnabled = true;
+                rbRezerwacjeId.IsEnabled = true;
+                rbRezerwacjeName.IsEnabled = true;
+                checkBoxRezerwacjeAkutalne.IsEnabled = true;
+
+                gridRezerwacjeSearchExtend.Visibility = System.Windows.Visibility.Collapsed;
+            }
+        }
+
         private void rezerwacjeSearch()
         {
             if (textBoxRezerwacjeSzukaj.Text == "")
