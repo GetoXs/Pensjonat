@@ -579,6 +579,11 @@ namespace PensjonatApp
                 sb.Append((textBoxRezerwacjeSearchExtendPesel.Text != "") ? (" AND UCASE(Klienci.pesel) LIKE UCASE('%" + textBoxRezerwacjeSearchExtendPesel.Text + "%')") : "");
                 sb.Append((textBoxRezerwacjeSearchExtendNazwa.Text != "") ? (" AND UCASE(Klienci.nazwa) LIKE UCASE('%" + textBoxRezerwacjeSearchExtendNazwa.Text + "%')") : "");
                 sb.Append((textBoxRezerwacjeSearchExtendNip.Text != "") ? (" AND UCASE(Klienci.nip) LIKE UCASE('%" + textBoxRezerwacjeSearchExtendNip.Text + "%')") : "");
+
+                sb.Append((datePickerRezerwacjeSearchExtendTerminOd.SelectedDate != null) ? (" AND Pobyty.termin_start >= #" + datePickerRezerwacjeSearchExtendTerminOd.SelectedDate.Value.ToShortDateString()) + "#" : "");
+                sb.Append((datePickerRezerwacjeSearchExtendTerminDo.SelectedDate != null) ? (" AND Pobyty.termin_koniec <= #" + datePickerRezerwacjeSearchExtendTerminDo.SelectedDate.Value.ToShortDateString()) + "#" : "");
+
+                sb.Append((checkBoxRezerwacjeSearchExtendAkutalne.IsChecked == true) ? (" AND (Pobyty.id_pobytu IN (SELECT        TOP 1 id_pobytu FROM            Pobyty p1 WHERE        (id_klienta IS NULL) AND (id_rezerwacji = Pobyty.id_rezerwacji)))") : "");
             }
 
             System.Data.Odbc.OdbcCommand cmd = TablesManager.Manager.RezerwacjeTableAdapter.Connection.CreateCommand();
