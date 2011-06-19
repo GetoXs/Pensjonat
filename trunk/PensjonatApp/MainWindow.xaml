@@ -1726,12 +1726,12 @@
                             </Grid>
                             <Grid Height="108" Name="gridPracownicySearchExtend" Visibility="Collapsed">
                                 <TextBox Height="20" Margin="54,22,0,0" Name="textBoxPracownicySearchExtendImie" VerticalAlignment="Top" HorizontalAlignment="Left" Width="120" FontSize="10" TabIndex="20" />
-                                <Label Content="Imię:" Height="28" HorizontalAlignment="Left" Margin="20,22,0,0" Name="labelPracownicySearchExtendImie" VerticalAlignment="Top" FontSize="10" />
+                                <Label Content="Imię:" Height="28" HorizontalAlignment="Left" Margin="20,19,0,0" Name="labelPracownicySearchExtendImie" VerticalAlignment="Top" FontSize="10" />
                                 <TextBox Height="20" HorizontalAlignment="Left" Margin="269,22,0,0" Name="textBoxPracownicySearchExtendNazwisko" VerticalAlignment="Top" Width="120" FontSize="10" TabIndex="21" />
                                 <Label Content="Nazwisko:" Height="28" HorizontalAlignment="Left" Margin="212,19,0,0" Name="labelPracownicySearchExtendNazwisko" VerticalAlignment="Top" FontSize="10" />
                                 <TextBox FontSize="10" Height="20" HorizontalAlignment="Left" Margin="466,22,0,0" Name="textBoxPracownicySearchExtendLogin" VerticalAlignment="Top" Width="104" TabIndex="22" />
                                 <Label Content="Login:" FontSize="10" Height="28" HorizontalAlignment="Left" Margin="428,19,0,0" Name="labelPracownicySearchExtendPesel" VerticalAlignment="Top" />
-                                <Separator Width="230" Height="5" HorizontalAlignment="Stretch" Margin="355,52,-2,0" Name="separator176" VerticalAlignment="Top" Background="#FFD6D6D6" />
+                                <Separator Width="230" Height="5" HorizontalAlignment="Stretch" Margin="350,52,3,0" Name="separator176" VerticalAlignment="Top" Background="#FFD6D6D6" />
                                 <Separator Height="5" HorizontalAlignment="Stretch" Margin="5,8,5,0" Name="separator25" VerticalAlignment="Top" Background="#FFD6D6D6" />
                                 <ComboBox FontSize="10" Height="22" HorizontalAlignment="Left" Margin="428,65,0,0" Name="comboBoxPracownicySzukajStanowisko" VerticalAlignment="Top" Width="142" IsVisibleChanged="comboBoxPracownicySzukajStanowisko_IsVisibleChanged" TabIndex="23" />
                                 <Label Content="Stanowisko:" FontSize="10" Height="28" HorizontalAlignment="Left" Margin="361,63,0,0" Name="label265" VerticalAlignment="Top" />
