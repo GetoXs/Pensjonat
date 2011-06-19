@@ -839,7 +839,7 @@
 										<TextBox.Text>
 											<Binding Path="Mail">
 												<Binding.ValidationRules>
-													<local:NotNullValidationRule />
+													<local:MailValidationRule />
 												</Binding.ValidationRules>
 											</Binding>
 										</TextBox.Text>
@@ -950,7 +950,7 @@
 										<TextBox.Text>
 											<Binding Path="Mail">
 												<Binding.ValidationRules>
-													<local:NotNullValidationRule />
+													<local:MailValidationRule />
 												</Binding.ValidationRules>
 											</Binding>
 										</TextBox.Text>

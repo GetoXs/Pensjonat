@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Controls;
 using System.Globalization;
+using System.Text.RegularExpressions;
 
 namespace PensjonatApp
 {
@@ -37,6 +38,22 @@ namespace PensjonatApp
 			{
 				result = new ValidationResult(false, "Pole musi zawierać tylko liczbę");
 			}
+			return result;
+		}
+	}	
+	/// <summary>
+	/// Zasada sprawdzająca maile
+	/// </summary>
+	public class MailValidationRule : ValidationRule
+	{
+		public override ValidationResult Validate(object value, CultureInfo cultureInfo)
+		{
+			ValidationResult result = new ValidationResult(true, null);
+			string inputString = (value ?? string.Empty).ToString();
+			Regex r = new Regex("^[a-z0-9][a-z0-9_.-]{0,}[a-z0-9]@[a-z0-9][a-z0-9_.-]{0,}[a-z0-9][.][a-z0-9]{2,4}$");
+			if(string.IsNullOrWhiteSpace(inputString) == false)
+				if (r.IsMatch(inputString.ToLower()) == false)
+					result = new ValidationResult(false, "To nie jest adres mail");
 			return result;
 		}
 	}
