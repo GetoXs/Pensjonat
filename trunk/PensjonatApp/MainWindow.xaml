@@ -183,15 +183,26 @@
                                 <CheckBox Content="Aktualne" Height="16" HorizontalAlignment="Left" IsChecked="True" Margin="291,19,0,0" Name="checkBoxRezerwacjeAkutalne" TabIndex="14" VerticalAlignment="Top" />
                                 <ToggleButton Height="23" HorizontalAlignment="Left" Margin="548,16,0,0" Name="toggleButtonRezerwacjeSearchExtend" VerticalAlignment="Top" Width="24" Content="+" TabIndex="14" Click="toggleButtonRezerwacjeSearchExtend_Checked" Checked="toggleButtonRezerwacjeSearchExtend_Checked" />
                             </Grid>
-                            <Grid Height="108" Name="gridRezerwacjeSearchExtend" Visibility="Collapsed">
+                            <Grid Height="144" Name="gridRezerwacjeSearchExtend" Visibility="Collapsed">
                                 <TextBox Height="20" Margin="54,22,0,0" Name="textBoxRezerwacjeSearchExtendImie" VerticalAlignment="Top" HorizontalAlignment="Left" Width="120" FontSize="10" TabIndex="20" />
-                                <Label Content="Imię:" Height="28" HorizontalAlignment="Left" Margin="20,22,0,0" Name="labelRezerwacjeSearchExtendImie" VerticalAlignment="Top" FontSize="10" />
+                                <Label Content="Imię:" Height="28" HorizontalAlignment="Left" Margin="20,19,0,0" Name="labelRezerwacjeSearchExtendImie" VerticalAlignment="Top" FontSize="10" />
                                 <TextBox Height="20" HorizontalAlignment="Left" Margin="269,22,0,0" Name="textBoxRezerwacjeSearchExtendNazwisko" VerticalAlignment="Top" Width="120" FontSize="10" TabIndex="21" />
                                 <Label Content="Nazwisko:" Height="28" HorizontalAlignment="Left" Margin="212,19,0,0" Name="labelRezerwacjeSearchExtendNazwisko" VerticalAlignment="Top" FontSize="10" />
                                 <TextBox FontSize="10" Height="20" HorizontalAlignment="Left" Margin="466,22,0,0" Name="textBoxRezerwacjeSearchExtendLogin" VerticalAlignment="Top" Width="104" TabIndex="22" />
-                                <Label Content="PESEL:" FontSize="10" Height="28" HorizontalAlignment="Left" Margin="428,19,0,0" Name="labelRezerwacjeSearchExtendPesel" VerticalAlignment="Top" />
+                                <Label Content="PESEL:" FontSize="10" Height="28" HorizontalAlignment="Left" Margin="427,19,0,0" Name="labelRezerwacjeSearchExtendPesel" VerticalAlignment="Top" />
                                 <Separator Height="5" HorizontalAlignment="Stretch" Margin="5,8,5,0" Name="separator225" VerticalAlignment="Top" Background="#FFD6D6D6" />
-                                <Separator Background="#FFD6D6D6" Height="5" HorizontalAlignment="Stretch" Margin="5,96,5,0" Name="separator226" VerticalAlignment="Top" />
+                                <Separator Background="#FFD6D6D6" Height="5" HorizontalAlignment="Stretch" Margin="5,85,5,0" Name="separator226" VerticalAlignment="Top" />
+                                <TextBox FontSize="10" Height="20" HorizontalAlignment="Left" Margin="269,55,0,0" Name="textBox1" TabIndex="21" VerticalAlignment="Top" Width="120" />
+                                <Label Content="Nazwa:" FontSize="10" Height="28" HorizontalAlignment="Left" Margin="224,52,0,0" Name="label266" VerticalAlignment="Top" />
+                                <TextBox FontSize="10" Height="20" HorizontalAlignment="Left" Margin="465,55,0,0" Name="textBox2" TabIndex="22" VerticalAlignment="Top" Width="104" />
+                                <Label Content="NIP:" FontSize="10" Height="28" HorizontalAlignment="Left" Margin="434,52,0,0" Name="label267" VerticalAlignment="Top" />
+                                <Separator Background="#FFD6D6D6" Height="5" HorizontalAlignment="Stretch" Margin="5,125,0,0" Name="separator27" VerticalAlignment="Top" />
+                                <Label Content="Firma" FontSize="11" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="161,52,0,0" Name="label268" VerticalAlignment="Top" />
+                                <CheckBox Content="Aktualne" FlowDirection="RightToLeft" FontSize="10" Height="16" HorizontalAlignment="Left" HorizontalContentAlignment="Left" IsChecked="True" IsThreeState="False" Margin="514,101,0,0" Name="checkBox1" TabIndex="28" VerticalAlignment="Top" VerticalContentAlignment="Top" />
+                                <Label Content="Termin od:" FontSize="10" Height="28" HorizontalAlignment="Left" Margin="17,96,0,0" Name="label269" VerticalAlignment="Top" />
+                                <Label Content="Termin do:" FontSize="10" Height="28" HorizontalAlignment="Left" Margin="224,96,0,0" Name="label270" VerticalAlignment="Top" />
+                                <DatePicker FontSize="10" Height="24" HorizontalAlignment="Left" Margin="83,96,0,0" Name="datePicker1" TabIndex="26" VerticalAlignment="Top" Width="120" />
+                                <DatePicker FontSize="10" Height="24" HorizontalAlignment="Left" Margin="292,96,0,0" Name="datePicker2" TabIndex="27" VerticalAlignment="Top" Width="120" />
                             </Grid>
                             <DataGrid  Name="dataGridRezerwacjeSzukaj" AutoGenerateColumns="False" Margin="10,10,13,21" MinColumnWidth="30" IsReadOnly="True" HorizontalGridLinesBrush="#FFD5D5D5" VerticalGridLinesBrush="#FFD5D5D5" SelectionChanged="dataGrid1_SelectionChanged" SelectedIndex="0" SelectionMode="Single">
                                 <DataGrid.Columns>
