@@ -851,10 +851,7 @@ namespace PensjonatApp
 //----------------------------------------------POBYTY----------------------------------------------
         private void deafultGridRefresh()
         {
-            if(radioButtonPobytyIndywidualne.IsChecked == true)
-                dataGridPobytySzukaj.ItemsSource = TablesManager.Manager.PobytyTableAdapter.GetDataPobytyKlienciPokoje();
-            else
-                dataGridPobytySzukaj.ItemsSource = TablesManager.Manager.PobytyTableAdapter.GetDataPobytyUnikalneAktualne();        
+			pobytySearch();
         }
 
         private void buttonPobytyPowrot_Click(object sender, RoutedEventArgs e)
@@ -927,7 +924,7 @@ namespace PensjonatApp
                         showWindow(gridPobytyDeafult, buttonPobytyDeafultList, ref currentGridPobyty);
                         radioButtonPobytyNowyNowy.IsChecked = true;
                         System.Windows.MessageBox.Show("Nowy pobyt dodany pomyślnie.", "Dodawanie pobytu", MessageBoxButton.OK, MessageBoxImage.Information);
-                        dataGridPobytySzukaj.ItemsSource = TablesManager.Manager.PobytyTableAdapter.GetDataPobytyKlienciPokoje();
+						pobytySearch();
                     }
                     else
                     {
@@ -1002,13 +999,11 @@ namespace PensjonatApp
         private void radioButtonPobytyIndywidualne_Checked(object sender, RoutedEventArgs e)
         {
 			pobytySearch();
-            //dataGridPobytySzukaj.ItemsSource = TablesManager.Manager.PobytyTableAdapter.GetDataPobytyKlienciPokoje();
         }
 
         private void radioButtonPobytyGrupowe_Checked(object sender, RoutedEventArgs e)
         {
 			pobytySearch();
-            //dataGridPobytySzukaj.ItemsSource = TablesManager.Manager.PobytyTableAdapter.GetDataPobytyUnikalneAktualne();
         }
         private void pobytySearch()
 		{
@@ -1028,35 +1023,6 @@ namespace PensjonatApp
 				//bez rachunku / nierozliczone
 				sb.Append((checkBoxPobytySearchNierozliczone.IsChecked == true) ? (" AND (Pobyty.id_rachunku IS NULL)") : "");
 				
-				
-				/* stary sposób, za dużo spamu, wywaliłem
-				 * if (textBoxPobytySearch.Text == "")
-					if ((bool)checkBoxPobytySearchNierozliczone.IsChecked)
-						dataGridPobytySzukaj.ItemsSource = TablesManager.Manager.PobytyTableAdapter.GetDataPobytyKlienciPokojeAktualne();
-					else
-						dataGridPobytySzukaj.ItemsSource = TablesManager.Manager.PobytyTableAdapter.GetDataPobytyKlienciPokoje();
-				else
-				{
-					if ((bool)radioButtonPobytySearchIdKlienta.IsChecked)
-					{
-						int id;
-						if (int.TryParse(textBoxPobytySearch.Text, out id))
-							if ((bool)checkBoxPobytySearchNierozliczone.IsChecked)
-								dataGridPobytySzukaj.ItemsSource = TablesManager.Manager.PobytyTableAdapter.GetDataPobytyKlienciPokojeAktualneByIDKlienta(id);
-							else
-								dataGridPobytySzukaj.ItemsSource = TablesManager.Manager.PobytyTableAdapter.GetDataPobytyKlienciPokojeByIDKlienta(id);
-						else
-							System.Windows.MessageBox.Show("Niepoprawne ID pobytu.\nNumer identyfikacyjny pobytu może zawierać tylko cyfry.", "Wyszukiwanie pobytu", MessageBoxButton.OK, MessageBoxImage.Error);
-					}
-					else if ((bool)radioButtonPobytySearchKlient.IsChecked)
-					{
-
-						if ((bool)checkBoxPobytySearchNierozliczone.IsChecked)
-							dataGridPobytySzukaj.ItemsSource = TablesManager.Manager.PobytyTableAdapter.GetDataPobytyKlienciPokojeAktualneByNazwiskoKlienta(textBoxPobytySearch.Text);
-						else
-							dataGridPobytySzukaj.ItemsSource = TablesManager.Manager.PobytyTableAdapter.GetDataPobytyKlienciPokojeByNazwisko(textBoxPobytySearch.Text);
-					}
-				}*/
 			}
 			else
 			{
@@ -1450,20 +1416,32 @@ namespace PensjonatApp
         {
             if (dataGridPobytySzukaj.SelectedItem != null)
             {
-                    PobytyDS.PobytyRow selectedRow = (PobytyDS.PobytyRow)((DataRowView)dataGridPobytySzukaj.SelectedItem).Row;
-                
+                PobytyDS.PobytyRow selectedRow = (PobytyDS.PobytyRow)((DataRowView)dataGridPobytySzukaj.SelectedItem).Row;
+				//if (selectedRow.Isid_rachunkuNull() == true)
+				if(true)
+				{
+					bool isEnabled = selectedRow.Isid_rachunkuNull(); //definiuje tryb edycji
+					comboBoxPobytySumRabat.IsEnabled = isEnabled;
+					dataGridPobytySumRabaty.IsEnabled = isEnabled;
+					buttonPobytySumRabatyDodaj.IsEnabled = isEnabled;
+					buttonPobytySumRabatyUsun.IsEnabled = isEnabled;
+
+					
 					//rzeczy niezalezne od rodzaju rozliczenia
-					List<string> lst = new List<string>();
-					DS.RachunkiDS.RabatyDataTable rabatyTable = TablesManager.Manager.RabatyTableAdapter.GetDataByAktywne();
-					foreach (DS.RachunkiDS.RabatyRow row in rabatyTable)
+					if (isEnabled)	//jesli jest tryb edycji
 					{
-						lst.Add(row.nazwa + " -" + row.wartosc + ((row.procentowy == true) ? "%" : "zł"));
-						PobytyRabatyList.Add(row);
+						List<string> lst = new List<string>();
+						DS.RachunkiDS.RabatyDataTable rabatyTable = TablesManager.Manager.RabatyTableAdapter.GetDataByAktywne();
+						foreach (DS.RachunkiDS.RabatyRow row in rabatyTable)
+						{
+							lst.Add(row.nazwa + " -" + row.wartosc + ((row.procentowy == true) ? "%" : "zł"));
+							PobytyRabatyList.Add(row);
+						}
+						comboBoxPobytySumRabat.ItemsSource = lst;
+						//dataGrid rabatów
+						PobytyRabatyDodajList = new List<RachunkiDS.RabatyRow>();
+						dataGridPobytySumRabaty.ItemsSource = PobytyRabatyDodajList;
 					}
-					comboBoxPobytySumRabat.ItemsSource = lst;
-					//dataGrid rabatów
-					PobytyRabatyDodajList = new List<RachunkiDS.RabatyRow>();
-					dataGridPobytySumRabaty.ItemsSource = PobytyRabatyDodajList;
 
 					//czyszczenie
 					comboBoxPobytySumId.Visibility = System.Windows.Visibility.Hidden;
@@ -1485,9 +1463,9 @@ namespace PensjonatApp
 					{
 						labelPobytySumKlient.Content = (string)selectedRow["imie"] + ' ' + (string)selectedRow["nazwisko"];
 						labelPobytySumPokoj.Content = (string)selectedRow["nr_pokoju"];
-						labelPobytySumId.Content = selectedRow.id_pobytu; 
+						labelPobytySumId.Content = selectedRow.id_pobytu;
 						labelPobytySumTermin.Content = selectedRow.termin_start.ToLongDateString() + " - " + selectedRow.termin_koniec.ToLongDateString();
-					
+
 
 						//wypenienie labeli i przyciskow związanych z ceną
 						decimal cenaTmp;
@@ -1502,7 +1480,7 @@ namespace PensjonatApp
 						labelPobytySumCenaPobyt.Content = RozliczenieHelper.pobierzPodstawowaCenaPobytu(selectedRow.id_pobytu).ToString("0.00");
 						labelPobytySumCena.Content = RozliczenieHelper.pobierzPodstawowaCenaLaczna(selectedRow.id_pobytu).ToString("0.00");
 						labelPobytySumDoZaplaty.Content = RozliczenieHelper.pobierzRabatowaCena(selectedRow.id_pobytu, PobytyRabatyDodajList).ToString("0.00");
-						
+
 					}
 					else
 					{
@@ -1517,31 +1495,31 @@ namespace PensjonatApp
 						List<string> lst2 = new List<string>();
 						List<string> lst3 = new List<string>();
 						bool koniec = false;
-						decimal cenaTmp, tmpCenaUslugi = 0, tmpCenaPobyt = 0, tmpCenaPosilki = 0;
-						PobytyDS.PobytyDataTable tab = TablesManager.Manager.PobytyTableAdapter.GetDataPobytyKlienciPokojeByIdRezerwacjiNierozliczone(selectedRow.id_rezerwacji);
+						decimal tmpCenaUslugi = 0, tmpCenaPobyt = 0, tmpCenaPosilki = 0;
+						PobytyDS.PobytyDataTable tab = TablesManager.Manager.PobytyTableAdapter.GetDataPobytyKlienciPokojeByIDRejestracji(selectedRow.id_rezerwacji);
 						foreach (var row in tab)
 						{
 							//lista z pobytem
-							foreach(var rowL in lst1)
+							foreach (var rowL in lst1)
 								if (rowL.Equals(row["id_pobytu"].ToString()))
 								{
 									koniec = true;
 									break;
 								}
-							if(koniec==false)
+							if (koniec == false)
 								lst1.Add(row["id_pobytu"].ToString());
 
-							koniec=false;
+							koniec = false;
 							foreach (var rowL in lst2)
-								if (rowL.Equals((string)row["imie"]+" "+(string)row["nazwisko"]))
+								if (rowL.Equals((string)row["imie"] + " " + (string)row["nazwisko"]))
 								{
 									koniec = true;
 									break;
 								}
 							if (koniec == false)
-								lst2.Add((string)row["imie"]+" "+(string)row["nazwisko"]);
+								lst2.Add((string)row["imie"] + " " + (string)row["nazwisko"]);
 
-							koniec=false;
+							koniec = false;
 							foreach (var rowL in lst3)
 								if (rowL.Equals(row["nr_pokoju"]))
 								{
@@ -1555,8 +1533,8 @@ namespace PensjonatApp
 							tmpCenaUslugi += RozliczenieHelper.pobierzPodstawowaCenaUslug(row.id_pobytu);
 							tmpCenaPosilki += RozliczenieHelper.pobierzPodstawowaCenaPosilkow(row.id_pobytu);
 							tmpCenaPobyt += RozliczenieHelper.pobierzPodstawowaCenaPobytu(row.id_pobytu);
-							
-							
+
+
 
 						}
 						labelPobytySumCenaUslugi.Content = tmpCenaUslugi.ToString("0.00");
@@ -1580,7 +1558,9 @@ namespace PensjonatApp
 
 					}
 					zwinPobyty();
-                    showWindow(gridPobytySum, buttonPobytyBackOkList, ref currentGridPobyty);
+					showWindow(gridPobytySum, buttonPobytyBackOkList, ref currentGridPobyty);
+				}else
+					System.Windows.MessageBox.Show("Wskazany pobyt jest już rozliczony", "Rozliczanie pobytu.", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             else
                 System.Windows.MessageBox.Show("Najpierw wybierz pobyt.", "Rozliczanie pobytu.", MessageBoxButton.OK, MessageBoxImage.Warning);

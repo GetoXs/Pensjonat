@@ -143,7 +143,7 @@ namespace PensjonatApp.Helpers
         {
             Decimal wynik = 0;
 
-            PobytyDS.PobytyDataTable pobyty = TablesManager.Manager.PobytyTableAdapter.GetDataPobytyByIdRezerwacjiNierozliczone(idRezerwacji);
+            PobytyDS.PobytyDataTable pobyty = TablesManager.Manager.PobytyTableAdapter.GetDataPobytyByIdRezerwacji(idRezerwacji);
 
             foreach (PobytyDS.PobytyRow p in pobyty)
                 wynik += pobierzRabatowaCena(p.id_pobytu, rabaty);
