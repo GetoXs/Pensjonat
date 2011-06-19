@@ -3261,6 +3261,11 @@ namespace PensjonatApp
                 radioButtonPracownicyId.IsEnabled = false;
                 radioButtonPracownicyNazwisko.IsEnabled = false;
 
+                textBoxPracownicySearchExtendImie.Clear();
+                textBoxPracownicySearchExtendNazwisko.Clear();
+                textBoxPracownicySearchExtendLogin.Clear();
+                comboBoxPracownicySzukajStanowisko.SelectedIndex = -1;
+
                 gridPracownicySearchExtend.Visibility = System.Windows.Visibility.Visible;
             }
             else
