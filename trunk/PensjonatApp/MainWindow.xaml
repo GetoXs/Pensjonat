@@ -728,7 +728,7 @@
 							</DataGrid>
 						</StackPanel>
 					</Grid>
-                    <Grid Height="16" Name="gridKlienciEdit" Opacity="1" ShowGridLines="True" Visibility="Visible">
+                    <Grid Height="16" Name="gridKlienciEdycja" Opacity="1" ShowGridLines="True" Visibility="Visible">
                         <Label Content="Edycja klienta:" FontSize="15" FontWeight="Normal" HorizontalAlignment="Left" Margin="10,10,0,0" Name="label75" Padding="2" VerticalAlignment="Top" />
 						<Label Content="Label" Height="28" HorizontalAlignment="Left" Margin="105,8,0,0" Name="labelKlienciEdytujId" VerticalAlignment="Top" IsEnabled="False" Visibility="Hidden" />
 						<StackPanel Height="340" HorizontalAlignment="Left" Margin="8,52,0,0" Name="stackPanel16" VerticalAlignment="Top" Width="342">
