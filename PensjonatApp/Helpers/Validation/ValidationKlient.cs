@@ -6,6 +6,7 @@ using System.Windows.Controls;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Media;
+using PensjonatApp.ValidationEx;
 
 namespace PensjonatApp
 {
@@ -66,7 +67,7 @@ namespace PensjonatApp
 	 * 
 	 */
 
-	public class KlientVerification
+	public class ValidationKlient
 	{
 		private string _imie;
 		private string _nazwisko;
@@ -130,44 +131,13 @@ namespace PensjonatApp
 		/// </summary>
 		public static bool isValid(DependencyObject parent, params AutoCompleteTextBox [] autoTextBoxes)
 		{
-			_forceUpdate(parent);
+			ValidationHelper.forceUpdate(parent);
 			foreach (var atb in autoTextBoxes)
 			{
 				if (string.IsNullOrWhiteSpace(atb.Text))
 					return false;
 			}
-			return _isValid(parent);
-		}
-		private static bool _isValid(DependencyObject parent)
-		{
-			if (Validation.GetHasError(parent))
-				return false;
-
-			DependencyObject child;
-			// Validate all the bindings on the children
-			for (int i = 0; i != VisualTreeHelper.GetChildrenCount(parent); ++i)
-			{
-				child = VisualTreeHelper.GetChild(parent, i);
-				if (!_isValid(child)) { return false; }
-			}
-
-			return true;
-		}
-		private static void _forceUpdate(DependencyObject parent)
-		{
-			DependencyObject child;
-			System.Windows.Data.BindingExpression bind;
-			for (int i = 0; i != VisualTreeHelper.GetChildrenCount(parent); ++i)
-			{
-				child = VisualTreeHelper.GetChild(parent, i);
-				if (child is FrameworkElement)
-				{
-					bind = ((FrameworkElement)child).GetBindingExpression(TextBox.TextProperty);
-					if (bind != null)
-						bind.UpdateSource();
-				}
-				_forceUpdate(child);
-			}
+			return ValidationHelper.isValid(parent);
 		}
 	}
 }

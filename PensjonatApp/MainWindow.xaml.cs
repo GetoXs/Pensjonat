@@ -1994,9 +1994,9 @@ namespace PensjonatApp
 				bool valid = false;
 
 				if (radioButtonKlientEdycjaFirma.IsChecked == true)
-					valid = KlientVerification.isValid(gridKlienciEdycja, textBoxKlienciEdycjaMiejscowoscAuto);	//dodatkowa walidacja dla firmy
+					valid = ValidationKlient.isValid(gridKlienciEdycja, textBoxKlienciEdycjaMiejscowoscAuto);	//dodatkowa walidacja dla firmy
 				else
-					valid = KlientVerification.isValid(gridKlienciEdycjaOsoba, textBoxKlienciEdycjaMiejscowoscAuto);	//walidacja dla osoby
+					valid = ValidationKlient.isValid(gridKlienciEdycjaOsoba, textBoxKlienciEdycjaMiejscowoscAuto);	//walidacja dla osoby
 
 				if (valid)
 				{
@@ -2016,9 +2016,9 @@ namespace PensjonatApp
 				bool valid = false;
 				
 				if(radioButtonKlientAddFirma.IsChecked == true)
-					valid = KlientVerification.isValid(gridKlienciAdd, textBoxKlienciAddMiejscowoscAuto);	//dodatkowa walidacja dla firmy
+					valid = ValidationKlient.isValid(gridKlienciAdd, textBoxKlienciAddMiejscowoscAuto);	//dodatkowa walidacja dla firmy
 				else
-					valid = KlientVerification.isValid(gridKlienciAddOsoba, textBoxKlienciAddMiejscowoscAuto);	//walidacja dla osoby
+					valid = ValidationKlient.isValid(gridKlienciAddOsoba, textBoxKlienciAddMiejscowoscAuto);	//walidacja dla osoby
 
 				if(valid)
 				{
@@ -2116,9 +2116,6 @@ namespace PensjonatApp
 				//chowanie kontrolki edycji 
 				textBoxKlienciEdycjaMiejscowoscAuto.Visibility = System.Windows.Visibility.Hidden;
 
-				//Przypisanie klienta do kontrolek tworzenia oraz edycji klienta 
-				gridKlienciAdd.DataContext = new KlientVerification();
-				gridKlienciEdycja.DataContext = new KlientVerification();
 
             }
         }
@@ -2237,7 +2234,9 @@ namespace PensjonatApp
             textBoxKlienciAddFirma.Text = "";
 			textBoxKlienciAddPESEL.Text = "";
 			textBoxKlienciAddTelefon.Text = "";
-            textBoxKlienciAddKodPocztowy.Text = "";
+			textBoxKlienciAddKodPocztowy.Text = "";
+			//Przypisanie klienta do kontrolek tworzenia klienta 
+			gridKlienciAdd.DataContext = new ValidationKlient();
         }
 
 		private void buttonKlienciAddDodaj_Click(object sender, RoutedEventArgs e)
@@ -2297,6 +2296,9 @@ namespace PensjonatApp
             {
                 zwinKlienci();
                 showWindow(gridKlienciEdycja, buttonKlienciBackOkList, ref currentGridKlienci);
+
+				//Przypisanie klienta do kontrolek tworzenia klienta 
+				gridKlienciEdycja.DataContext = new ValidationKlient();
      
                 KlienciDS.KlienciRow selectedRow = (KlienciDS.KlienciRow)((DataRowView)dataGridKlienci.SelectedItem).Row;
                 //dataGridKlienci.ItemsSource = TablesManager.Manager.KlienciTableAdapter.GetDataKlienciMiejsconowsciByIdKlienta(selectedRow.id_klienta);
@@ -3333,20 +3335,22 @@ namespace PensjonatApp
             zwinPracownicy();
             showWindow(gridPracownicyDodaj, buttonPracownicyBackOkList, ref currentGridPracownicy);
             przypiszStanowiskaDoComboBoxa(ref comboBoxPracownicyDodajStanowisko);
-            textBoxPracownicyDodajImie.Clear();
-            textBoxPracownicyDodajNazwisko.Clear();
-            textBoxPracownicyDodajLogin.Clear();
-            textBoxPracownicyDodajPESEL.Clear();
-            textBoxPracownicyDodajTelefon.Clear();
-            
+            textBoxPracownicyDodajImie.Text = "";
+			textBoxPracownicyDodajNazwisko.Text = "";
+			textBoxPracownicyDodajLogin.Text = "";
+			comboBoxPracownicyDodajStanowisko.Text = "";
+
+			//przypisanie pracownika do kontrolek nowego pracownika
+			gridPracownicyDodaj.DataContext = new ValidationPracownik();
         }
 
         private void buttonPracownicyOk_Click(object sender, RoutedEventArgs e)
         {
             if (currentGridPracownicy == gridPracownicyDodaj)
             {
-                if (textBoxPracownicyDodajImie.Text != "" && textBoxPracownicyDodajNazwisko.Text != "" && textBoxPracownicyDodajLogin.Text != ""
-                    && comboBoxPracownicyDodajStanowisko.SelectedItem != null)
+				if(ValidationPracownik.isValid(gridPracownicyDodaj))	//walidacja
+                //if (textBoxPracownicyDodajImie.Text != "" && textBoxPracownicyDodajNazwisko.Text != "" && textBoxPracownicyDodajLogin.Text != ""
+                //    && comboBoxPracownicyDodajStanowisko.SelectedItem != null)
                 {
                     PracownicyHelper.dodajPracownika(textBoxPracownicyDodajImie.Text, textBoxPracownicyDodajNazwisko.Text,
                         textBoxPracownicyDodajLogin.Text, textBoxPracownicyDodajLogin.Text, stanowiskaIdList[comboBoxPracownicyDodajStanowisko.SelectedIndex]);
@@ -3355,16 +3359,17 @@ namespace PensjonatApp
                     zwinPracownicy();
                     showWindow(gridPracownicyDeafult, buttonPracownicyDeafultList, ref currentGridPracownicy);
                     
-                }
+                }/*
                 else
                 {
                     System.Windows.MessageBox.Show("Uzupełnij wszytstkie pola.", "Dodawanie pracownika", MessageBoxButton.OK, MessageBoxImage.Warning);
-                }
+                }*/
             }
             else if (currentGridPracownicy == gridPracownicyEdycja)
             {
-                if (textBoxPracownicyEdycjaImie.Text != "" && textBoxPracownicyEdycjaNazwisko.Text != "" && textBoxPracownicyEdycjaLogin.Text != ""
-                     && comboBoxPracownicyEdycjaStanowisko.SelectedItem != null)
+				if (ValidationPracownik.isValid(gridPracownicyEdycja))	//walidacja
+                //if (textBoxPracownicyEdycjaImie.Text != "" && textBoxPracownicyEdycjaNazwisko.Text != "" && textBoxPracownicyEdycjaLogin.Text != ""
+                //     && comboBoxPracownicyEdycjaStanowisko.SelectedItem != null)
                 {
                     PracownicyHelper.edytujPracownikaByIdPr(textBoxPracownicyEdycjaImie.Text,textBoxPracownicyEdycjaNazwisko.Text,
                         textBoxPracownicyEdycjaLogin.Text,textBoxPracownicyEdycjaHaslo.Password, (int)labelPracownicyEdycjaId.Content, stanowiskaIdList[comboBoxPracownicyEdycjaStanowisko.SelectedIndex]);    
@@ -3374,10 +3379,6 @@ namespace PensjonatApp
                     zwinPracownicy();
                     showWindow(gridPracownicyDeafult, buttonPracownicyDeafultList, ref currentGridPracownicy);
                 }
-            else
-            {
-                System.Windows.MessageBox.Show("Wypełnij wszystkie pola.", "Edycja usługi", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
             }
         }
 
@@ -3393,24 +3394,23 @@ namespace PensjonatApp
             {
                 zwinPracownicy();
                 showWindow(gridPracownicyEdycja, buttonPracownicyBackOkList, ref currentGridPracownicy);
-                przypiszStanowiskaDoComboBoxa(ref comboBoxPracownicyEdycjaStanowisko); 
+
+				//przypisanie pracownika do kontrolek edycji pracownika
+				gridPracownicyEdycja.DataContext = new ValidationPracownik();
+
+				przypiszStanowiskaDoComboBoxa(ref comboBoxPracownicyEdycjaStanowisko); 
 
                 PracownicyDS.PracownicyRow selectedRow = (PracownicyDS.PracownicyRow)((DataRowView)dataGridPracownicyDeafult.SelectedItem).Row;
                 comboBoxPracownicyEdycjaStanowisko.SelectedIndex = stanowiskaIdList.IndexOf(selectedRow.id_stanowiska);
+				//wypełnianie pól
+				labelPracownicyEdycjaId.Content = selectedRow.id_pracownika;
                 textBoxPracownicyEdycjaImie.Text = selectedRow.imie;
                 textBoxPracownicyEdycjaNazwisko.Text = selectedRow.nazwisko;
-                textBoxPracownicyEdycjaLogin.Text = selectedRow.login;
-                labelPracownicyEdycjaId.Content = selectedRow.id_pracownika;
+				textBoxPracownicyEdycjaLogin.Text = selectedRow.login;
                 textBoxPracownicyEdycjaHaslo.Password = "";
-                /*
-                textBoxPracownicyEdycjaPESEL.Text = selectedRow.Pesel;
-                textBoxPracownicyEdycjaNIP.Text = selectedRow.Nip;
-                textBoxPracownicyEdycjaAdres.Text = selectedRow.Adres;
-                textBoxPracownicyEdycjaMiejscowosc.Text = selectedRow.Miejscowosc;
-                textBoxPracownicyEdycjaKodPocztowy.Text = selectedRow.KodPocztowy;
-                textBoxPracownicyEdycjaTelefon.Text = selectedRow.Telefon;
-                */
-                comboBoxPracownicyEdycjaStanowisko.ItemsSource = stanowiskaStringList;
+
+                //comboBoxPracownicyEdycjaStanowisko.ItemsSource = stanowiskaStringList;
+
             }
             else
                 System.Windows.MessageBox.Show("Najpierw wybierz pracownika.", "Edycja pracownika", MessageBoxButton.OK, MessageBoxImage.Warning);
