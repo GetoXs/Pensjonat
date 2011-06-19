@@ -544,6 +544,16 @@ namespace PensjonatApp
                 rbRezerwacjeName.IsEnabled = false;
                 checkBoxRezerwacjeAkutalne.IsEnabled = false;
 
+                textBoxRezerwacjeSearchExtendImie.Clear();
+                textBoxRezerwacjeSearchExtendNazwisko.Clear();
+                textBoxRezerwacjeSearchExtendPesel.Clear();
+                textBoxRezerwacjeSearchExtendNazwa.Clear();
+                textBoxRezerwacjeSearchExtendNip.Clear();
+                datePickerRezerwacjeSearchExtendTerminOd.SelectedDate = null;
+                datePickerRezerwacjeSearchExtendTerminDo.SelectedDate = null;
+                checkBoxRezerwacjeSearchExtendZaliczka.IsChecked = false;
+                checkBoxRezerwacjeSearchExtendAkutalne.IsChecked = false;
+
                 gridRezerwacjeSearchExtend.Visibility = System.Windows.Visibility.Visible;
             }
             else
@@ -583,6 +593,7 @@ namespace PensjonatApp
                 sb.Append((datePickerRezerwacjeSearchExtendTerminOd.SelectedDate != null) ? (" AND Pobyty.termin_start >= #" + datePickerRezerwacjeSearchExtendTerminOd.SelectedDate.Value.ToShortDateString()) + "#" : "");
                 sb.Append((datePickerRezerwacjeSearchExtendTerminDo.SelectedDate != null) ? (" AND Pobyty.termin_koniec <= #" + datePickerRezerwacjeSearchExtendTerminDo.SelectedDate.Value.ToShortDateString()) + "#" : "");
 
+                sb.Append((checkBoxRezerwacjeSearchExtendZaliczka.IsChecked == true) ? (" AND Rezerwacje.zaplacono_zaliczke=True") : "");
                 sb.Append((checkBoxRezerwacjeSearchExtendAkutalne.IsChecked == true) ? (" AND (Pobyty.id_pobytu IN (SELECT        TOP 1 id_pobytu FROM            Pobyty p1 WHERE        (id_klienta IS NULL) AND (id_rezerwacji = Pobyty.id_rezerwacji)))") : "");
             }
 
