@@ -1914,25 +1914,30 @@ namespace PensjonatApp
         List<string> PobytyNowyStringPokoje = new List<string>();
         private void PrzypiszWolnePokoje()
         {
-            DateTime terminOd = (DateTime)datePickerPobytyNowyTerminOd.SelectedDate;
-            DateTime terminDo = (DateTime)datePickerPobytyNowyTerminDo.SelectedDate;
-            PobytyNowyIdPokoje.Clear();
-            PobytyNowyStringPokoje.Clear();
-            PobytyNowyLOsobList.Clear();
-            PokojeDS.PokojeDataTable pokojeTable;
-            if(radioButtonPobytyNowyNowy.IsChecked == true)
-                 pokojeTable= TablesManager.Manager.PokojeTableAdapter.GetDataWolnePokojeStandardByTermin(terminOd, terminOd, terminDo, terminDo, terminOd, terminDo);
-            else
-                pokojeTable = TablesManager.Manager.PokojeTableAdapter.GetDataRezerwacjeByIdRezerwacji((int)labelPobytyNowyIdRezerwacji.Content); 
-            
-            foreach (PokojeDS.PokojeRow row in pokojeTable)
-            {
-                PobytyNowyIdPokoje.Add(row.id_pokoju);
-                PobytyNowyStringPokoje.Add(row.nr_pokoju + " (" + (string)row["dodatkowy_opis"]+")" + " - " + row["cena"] + " zł.");
-                PobytyNowyLOsobList.Add((int)row["ilosc_osob"]);
-            }
-            comboBoxPobytyNowyPokoj.ItemsSource = PobytyNowyStringPokoje;
-            comboBoxPobytyNowyPokoj.Items.Refresh();
+			//sprawdzenie czy sa wybrane daty, aby nie wywalało przy oswieżaniu z poziomu zakladki pokoi
+			if (datePickerPobytyNowyTerminOd.SelectedDate != null &&
+				datePickerPobytyNowyTerminDo.SelectedDate != null)
+			{
+				DateTime terminOd = (DateTime)datePickerPobytyNowyTerminOd.SelectedDate;
+				DateTime terminDo = (DateTime)datePickerPobytyNowyTerminDo.SelectedDate;
+				PobytyNowyIdPokoje.Clear();
+				PobytyNowyStringPokoje.Clear();
+				PobytyNowyLOsobList.Clear();
+				PokojeDS.PokojeDataTable pokojeTable;
+				if (radioButtonPobytyNowyNowy.IsChecked == true)
+					pokojeTable = TablesManager.Manager.PokojeTableAdapter.GetDataWolnePokojeStandardByTermin(terminOd, terminOd, terminDo, terminDo, terminOd, terminDo);
+				else
+					pokojeTable = TablesManager.Manager.PokojeTableAdapter.GetDataRezerwacjeByIdRezerwacji((int)labelPobytyNowyIdRezerwacji.Content);
+
+				foreach (PokojeDS.PokojeRow row in pokojeTable)
+				{
+					PobytyNowyIdPokoje.Add(row.id_pokoju);
+					PobytyNowyStringPokoje.Add(row.nr_pokoju + " (" + (string)row["dodatkowy_opis"] + ")" + " - " + row["cena"] + " zł.");
+					PobytyNowyLOsobList.Add((int)row["ilosc_osob"]);
+				}
+				comboBoxPobytyNowyPokoj.ItemsSource = PobytyNowyStringPokoje;
+				comboBoxPobytyNowyPokoj.Items.Refresh();
+			}
         }
 
         private void datePickerPobytyNowyTerminDo_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
