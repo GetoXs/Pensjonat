@@ -300,23 +300,16 @@ namespace PensjonatApp.Helpers
         /// <returns>-1:błąd tablic id_klientow i id_pokojow, 1:udało się</returns>
         public static int dodajNowyPobyt(List<int> id_klientow, List<int> id_pokojow, DateTime termin_start, DateTime termin_koniec)
         {
-            try
-            {
-                //dodaje rezerwacje
-                int a = TablesManager.Manager.RezerwacjeTableAdapter.InsertQuery(0, false, id_klientow.Count, id_klientow[0]);
-                RezerwacjeDS.RezerwacjeDataTable tabRez = TablesManager.Manager.RezerwacjeTableAdapter.GetDataRezerwacjeOstatnia();
+            //dodaje rezerwacje
+            int a = TablesManager.Manager.RezerwacjeTableAdapter.InsertQuery(0, false, id_klientow.Count, id_klientow[0]);
+            RezerwacjeDS.RezerwacjeDataTable tabRez = TablesManager.Manager.RezerwacjeTableAdapter.GetDataRezerwacjeOstatnia();
 
-                if (tabRez.Count > 0 && tabRez[0].id_klienta == id_klientow[0])
-                {
-                    for (int i = 0; i < id_klientow.Count; i++)
-                    {
-                        TablesManager.Manager.PobytyTableAdapter.Insert(id_pokojow[i], tabRez[0].id_rezerwacji, termin_start, termin_koniec, null, id_klientow[i]);
-                    }
-                }    
-            }
-            catch (Exception ex)
+            if (tabRez.Count > 0 && tabRez[0].id_klienta == id_klientow[0])
             {
-                return -1;
+                for (int i = 0; i < id_klientow.Count; i++)
+                {
+                    TablesManager.Manager.PobytyTableAdapter.Insert(id_pokojow[i], tabRez[0].id_rezerwacji, termin_start, termin_koniec, null, id_klientow[i]);
+                }
             }
 
             return 1;
@@ -328,35 +321,28 @@ namespace PensjonatApp.Helpers
         /// <returns>-2: błędne id_rezerwacji, -1:błąd tablic id_klientow i id_pokojow, 1:udało się</returns>
         public static int dodajNowyPobytZRezerwacji(List<int> id_klientow, List<int> id_pokojow, int id_rezerwacji, DateTime termin_start, DateTime termin_koniec)
         {
-            try
-            {
-                PobytyDS.PobytyDataTable tabPo;
-                tabPo = TablesManager.Manager.PobytyTableAdapter.GetDataPobytyByIdRezerwacji(id_rezerwacji);
+            PobytyDS.PobytyDataTable tabPo;
+            tabPo = TablesManager.Manager.PobytyTableAdapter.GetDataPobytyByIdRezerwacji(id_rezerwacji);
 
-                if (tabPo.Count > 0)
-                {
-                    for (int i = 0; i < id_klientow.Count; i++)
-                    {
-                        foreach (PobytyDS.PobytyRow pobyt in tabPo)
-                        {
-                            //znaleziono pobyt dla danego pokoju
-                            if (pobyt.id_pokoju == id_pokojow[i] && pobyt.Isid_klientaNull())
-                            {
-                                TablesManager.Manager.PobytyTableAdapter.UpdateIdKlientaInPobytyQuery(id_klientow[i], pobyt.id_pobytu);
-                                tabPo = TablesManager.Manager.PobytyTableAdapter.GetDataPobytyByIdRezerwacji(id_rezerwacji);
-                                break;
-                            }
-                        }                      
-                    }
-                    TablesManager.Manager.PobytyTableAdapter.DeletePobytyKlientNULLByIdRezerwacji(id_rezerwacji);                    
-                }
-                else
-                    return -2;
-            }
-            catch (Exception ex)
+            if (tabPo.Count > 0)
             {
-                return -1;
+                for (int i = 0; i < id_klientow.Count; i++)
+                {
+                    foreach (PobytyDS.PobytyRow pobyt in tabPo)
+                    {
+                        //znaleziono pobyt dla danego pokoju
+                        if (pobyt.id_pokoju == id_pokojow[i] && pobyt.Isid_klientaNull())
+                        {
+                            TablesManager.Manager.PobytyTableAdapter.UpdateIdKlientaInPobytyQuery(id_klientow[i], pobyt.id_pobytu);
+                            tabPo = TablesManager.Manager.PobytyTableAdapter.GetDataPobytyByIdRezerwacji(id_rezerwacji);
+                            break;
+                        }
+                    }                      
+                }
+                TablesManager.Manager.PobytyTableAdapter.DeletePobytyKlientNULLByIdRezerwacji(id_rezerwacji);                    
             }
+            else
+                return -2;
 
             return 1;
         }
