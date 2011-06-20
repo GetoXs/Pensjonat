@@ -52,7 +52,7 @@ namespace PensjonatApp.Helpers
                 tabk.SpacingBefore = 15;
                 tabk.SpacingAfter = 0;
 
-                BaseColor kolor=new BaseColor(133,203,118);
+                BaseColor kolor=new BaseColor(150,200,240);
                 PdfPCell komorka;
 
                 komorka = new PdfPCell(new Phrase("Imię:", sredni));
@@ -75,32 +75,38 @@ namespace PensjonatApp.Helpers
                 KlienciDS.KlienciRow klient=TablesManager.Manager.KlienciTableAdapter.GetDataByIdKlienta(p.id_klienta)[0];
                 KlienciDS.Miejscowosci_slownikRow msc=TablesManager.Manager.Miejscowosci_slownikTableAdapter.GetDataByID(klient.id_miejscowosci)[0];
 
-                kolor = new BaseColor(182,224,173);
+                kolor = new BaseColor(255,255,255);
 
-                komorka=new PdfPCell(new Phrase(klient.imie, sredniB));
+                komorka=new PdfPCell(new Phrase(klient.imie, sredni));
                 komorka.BackgroundColor = kolor;
                 tabk.AddCell(komorka);
-                komorka = new PdfPCell(new Phrase(klient.nazwisko, sredniB));
+                komorka = new PdfPCell(new Phrase(klient.nazwisko, sredni));
                 komorka.BackgroundColor = kolor;
                 tabk.AddCell(komorka);
-                komorka = new PdfPCell(new Phrase(klient.pesel, sredniB));
+                komorka = new PdfPCell(new Phrase(klient.pesel, sredni));
                 komorka.BackgroundColor = kolor;
                 tabk.AddCell(komorka);
-                komorka = new PdfPCell(new Phrase(klient.ulica, sredniB));
+                komorka = new PdfPCell(new Phrase(klient.ulica, sredni));
                 komorka.BackgroundColor = kolor;
                 tabk.AddCell(komorka);
-                komorka = new PdfPCell(new Phrase(msc.nazwa, sredniB));
-                                komorka.BackgroundColor = kolor;
+                komorka = new PdfPCell(new Phrase(msc.nazwa, sredni));
+                komorka.BackgroundColor = kolor;
                 tabk.AddCell(komorka);
-                
+
+                for (int i = 0; i < 5; i++)
+                {
+                    komorka = new PdfPCell(new Phrase("", sredniB));
+                    komorka.BackgroundColor = BaseColor.WHITE;
+                    tabk.AddCell(komorka);
+                }
                 doc.Add(tabk);
-
+                
 
                 PdfPTable tabp = new PdfPTable(5);
                 tabp.SpacingBefore = 0;
                 tabp.SpacingAfter = 15;
 
-                kolor=new BaseColor(239,233,112);
+                kolor = new BaseColor(150, 200, 240);
 
                 komorka = new PdfPCell(new Phrase("Początek pobytu:", sredni));
                 komorka.BackgroundColor = kolor;
@@ -121,52 +127,52 @@ namespace PensjonatApp.Helpers
                 decimal suma = 0;
                 decimal koszt = 0;
 
-                kolor = new BaseColor(244, 240, 162);
+                kolor = new BaseColor(255, 255, 255);
 
-                komorka = new PdfPCell(new Phrase(p.termin_start.Date.ToString("d-MM-yyyy"), sredniB));
+                komorka = new PdfPCell(new Phrase(p.termin_start.Date.ToString("d-MM-yyyy"), sredni));
                 komorka.BackgroundColor = kolor;
                 tabp.AddCell(komorka);
-                komorka = new PdfPCell(new Phrase(p.termin_koniec.Date.ToString("d-MM-yyyy"), sredniB));
+                komorka = new PdfPCell(new Phrase(p.termin_koniec.Date.ToString("d-MM-yyyy"), sredni));
                 komorka.BackgroundColor = kolor;
                 tabp.AddCell(komorka);
                
                 koszt = RozliczenieHelper.pobierzPodstawowaCenaPobytu(p.id_pobytu);
                 suma += koszt;
-                komorka = new PdfPCell(new Phrase(koszt.ToString("0.00") + " PLN", sredniB));
+                komorka = new PdfPCell(new Phrase(koszt.ToString("0.00") + " PLN", sredni));
                 komorka.BackgroundColor = kolor;
                 tabp.AddCell(komorka);
                 
                 koszt = RozliczenieHelper.pobierzPodstawowaCenaPosilkow(p.id_pobytu);
                 suma += koszt;
-                komorka = new PdfPCell(new Phrase(koszt.ToString("0.00") + " PLN", sredniB));
+                komorka = new PdfPCell(new Phrase(koszt.ToString("0.00") + " PLN", sredni));
                 komorka.BackgroundColor = kolor;
                 tabp.AddCell(komorka);
 
                 koszt = RozliczenieHelper.pobierzPodstawowaCenaUslug(p.id_pobytu);
                 suma += koszt;
-                komorka = new PdfPCell(new Phrase(koszt.ToString("0.00") + " PLN", sredniB));
+                komorka = new PdfPCell(new Phrase(koszt.ToString("0.00") + " PLN", sredni));
                 komorka.BackgroundColor = kolor;
                 tabp.AddCell(komorka);
-
+                kolor = new BaseColor(200, 220, 240);
                 sumAll += suma;
-                komorka = new PdfPCell(new Phrase("Suma: "+suma.ToString("0.00") + " PLN",sredniB));
+                komorka = new PdfPCell(new Phrase("Suma: "+suma.ToString("0.00") + " PLN",sredni));
                 komorka.HorizontalAlignment = Element.ALIGN_RIGHT;
                 komorka.Colspan = 5;
-                komorka.BackgroundColor = BaseColor.LIGHT_GRAY;
+                komorka.BackgroundColor = kolor;
                 tabp.AddCell(komorka);
 
                 doc.Add(tabp);
 
             }
-            
+            BaseColor kolor2 = new BaseColor(200, 220, 240);
             PdfPTable tabela= new PdfPTable(1);
             PdfPCell kom = new PdfPCell(new Phrase("Suma całkowita "+sumAll.ToString("0.00") + " PLN",sredniB));
             kom.HorizontalAlignment = Element.ALIGN_RIGHT;
-            kom.BackgroundColor=BaseColor.LIGHT_GRAY;
+            kom.BackgroundColor = kolor2;
             tabela.AddCell(kom);
             doc.Add(tabela);
 
-            sredniB.Color = BaseColor.RED;
+            sredniB.Color = BaseColor.BLACK;
             sredniB.Size = 13;
             Paragraph doZaplaty = new Paragraph("",sredniB);
             RachunkiDS.RachunkiRow r=TablesManager.Manager.RachunkiTableAdapter.GetDataById(id_rachunku)[0];
