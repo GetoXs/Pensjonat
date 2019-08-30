@@ -1,0 +1,632 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{15B9110F-FB85-490A-9AE7-D2EF52DECCAC}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PensjonatApp</RootNamespace>
+    <AssemblyName>PensjonatApp</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="itextsharp">
+      <HintPath>dll\itextsharp.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WPFToolkit.Extended">
+      <HintPath>Service References\WPFToolkit.Extended.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DS\KlienciDS.cs">
+      <DependentUpon>KlienciDS.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DS\KlienciDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>KlienciDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DS\PobytyDS.cs">
+      <DependentUpon>PobytyDS.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DS\PobytyDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PobytyDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DS\PokojeDS.cs">
+      <DependentUpon>PokojeDS.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DS\PokojeDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PokojeDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DS\PosilkiDS.cs">
+      <DependentUpon>PosilkiDS.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DS\PosilkiDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PosilkiDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DS\PracownicyDS.cs">
+      <DependentUpon>PracownicyDS.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DS\PracownicyDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PracownicyDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DS\RachunkiDS.cs">
+      <DependentUpon>RachunkiDS.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DS\RachunkiDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RachunkiDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DS\RezerwacjeDS.cs">
+      <DependentUpon>RezerwacjeDS.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DS\RezerwacjeDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RezerwacjeDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DS\UslugiDS.cs">
+      <DependentUpon>UslugiDS.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DS\WyposazeniaDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WyposazeniaDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\InterfaceHelper.cs" />
+    <Compile Include="Helpers\KlienciHelper.cs" />
+    <Compile Include="Helpers\LogowanieHelper.cs" />
+    <Compile Include="Helpers\PokojeHelper.cs" />
+    <Compile Include="Helpers\PokojeSlownikHelper.cs" />
+    <Compile Include="Helpers\PosilkiHelper.cs" />
+    <Compile Include="Helpers\PosilkiSlownikHelper.cs" />
+    <Compile Include="Helpers\PracownicyHelper.cs" />
+    <Compile Include="Helpers\RabatyHelper.cs" />
+    <Compile Include="Helpers\RachunekPDFHelper.cs" />
+    <Compile Include="Helpers\RachunkiHelper.cs" />
+    <Compile Include="Helpers\RezerwacjeHelper.cs" />
+    <Compile Include="Helpers\RozliczenieHelper.cs" />
+    <Compile Include="Helpers\UslugiHelper.cs" />
+    <Compile Include="Helpers\UslugiSlownikHelper.cs" />
+    <Compile Include="Helpers\Validation\ValidationHelper.cs" />
+    <Compile Include="Helpers\WyposazeniaHelper.cs" />
+    <Compile Include="Helpers\WyposazeniaSlownikHelper.cs" />
+    <Compile Include="Logowanie.xaml.cs">
+      <DependentUpon>Logowanie.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Tools\AutoCompleteEntry.cs" />
+    <Compile Include="Tools\AutoCompleteTextBox.xaml.cs">
+      <DependentUpon>AutoCompleteTextBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Tools\TableAdapetrsManager.cs" />
+    <Compile Include="DS\WyposazeniaDS.cs">
+      <DependentUpon>WyposazeniaDS.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Tools\Db.cs" />
+    <Compile Include="DS\UslugiDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UslugiDS.xsd</DependentUpon>
+    </Compile>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Helpers\Validation\ValidationRules.cs" />
+    <Compile Include="Helpers\Validation\ValidationPracownik.cs" />
+    <Compile Include="Helpers\Validation\ValidationKlient.cs" />
+    <Page Include="Logowanie.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Tools\AutoCompleteTextBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DS\KlienciDS.xsc">
+      <DependentUpon>KlienciDS.xsd</DependentUpon>
+    </None>
+    <None Include="DS\KlienciDS.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>KlienciDS.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DS\KlienciDS.xss">
+      <DependentUpon>KlienciDS.xsd</DependentUpon>
+    </None>
+    <None Include="DS\PobytyDS.xsc">
+      <DependentUpon>PobytyDS.xsd</DependentUpon>
+    </None>
+    <None Include="DS\PobytyDS.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>PobytyDS.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DS\PobytyDS.xss">
+      <DependentUpon>PobytyDS.xsd</DependentUpon>
+    </None>
+    <None Include="DS\PokojeDS.xsc">
+      <DependentUpon>PokojeDS.xsd</DependentUpon>
+    </None>
+    <None Include="DS\PokojeDS.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>PokojeDS.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DS\PokojeDS.xss">
+      <DependentUpon>PokojeDS.xsd</DependentUpon>
+    </None>
+    <None Include="DS\PosilkiDS.xsc">
+      <DependentUpon>PosilkiDS.xsd</DependentUpon>
+    </None>
+    <None Include="DS\PosilkiDS.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>PosilkiDS.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DS\PosilkiDS.xss">
+      <DependentUpon>PosilkiDS.xsd</DependentUpon>
+    </None>
+    <None Include="DS\PracownicyDS.xsc">
+      <DependentUpon>PracownicyDS.xsd</DependentUpon>
+    </None>
+    <None Include="DS\PracownicyDS.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>PracownicyDS.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DS\PracownicyDS.xss">
+      <DependentUpon>PracownicyDS.xsd</DependentUpon>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+    <None Include="DS\RachunkiDS.xsc">
+      <DependentUpon>RachunkiDS.xsd</DependentUpon>
+    </None>
+    <None Include="DS\RachunkiDS.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>RachunkiDS.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DS\RachunkiDS.xss">
+      <DependentUpon>RachunkiDS.xsd</DependentUpon>
+    </None>
+    <None Include="DS\RezerwacjeDS.xsc">
+      <DependentUpon>RezerwacjeDS.xsd</DependentUpon>
+    </None>
+    <None Include="DS\RezerwacjeDS.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>RezerwacjeDS.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DS\RezerwacjeDS.xss">
+      <DependentUpon>RezerwacjeDS.xsd</DependentUpon>
+    </None>
+    <None Include="DS\UslugiDS.xsc">
+      <DependentUpon>UslugiDS.xsd</DependentUpon>
+    </None>
+    <None Include="DS\UslugiDS.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>UslugiDS.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DS\UslugiDS.xss">
+      <DependentUpon>UslugiDS.xsd</DependentUpon>
+    </None>
+    <None Include="DS\WyposazeniaDS.xsc">
+      <DependentUpon>WyposazeniaDS.xsd</DependentUpon>
+    </None>
+    <None Include="DS\WyposazeniaDS.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>WyposazeniaDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DS\WyposazeniaDS.xss">
+      <DependentUpon>WyposazeniaDS.xsd</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ppbg.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Calendar-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\32icontexto_user_web20_furl.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\e_mail.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\logo1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Briefcase-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\help_book_3d.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\logout-ico2n.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\48Calendar-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\separator.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Add-icon1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Delete-icon1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Futon-bed-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Check-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\48Briefcase-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Favorites-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\coins-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Search-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icontexto_user_web20_furl.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\24application.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Edit-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Synchronize-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 Client Profile %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.SQL.Server.Compact.3.5">
+      <Visible>False</Visible>
+      <ProductName>SQL Server Compact 3.5 SP2</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\send322.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\email_app_icon2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\e_mailBig2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\send323.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\tick.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\arrow_left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\wstecz.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Check-icon2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\panel_settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\document_properties.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\currency_dollar_blue2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\dalej.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Print-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\FutonS.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\uslugi.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\stock_alarmS.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\posilki.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\front_row.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\przydzialy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\checkoutS.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\vcard.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\document_edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\standPok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\fButon_bed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\addSmall.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\standPokHead.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\UslugiHeader.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\posilkiHeader.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\stock_alarm.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\front_rowB.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\przydzialyHead.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\klienci.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\klienciHead.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\rezerwacje.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\rezerwacjeHead.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Zadania.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Zadania1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Zadania2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\pracownicy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\pracownicyHead.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\stanowiska.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\stanowiska1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\stanowiskaHead.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\zadaniaS.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Zadania3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\program_group.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\logo2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\PobytyS.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Pobyty.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\PobytyNowy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\format_indent_more.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\pracownik.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\pracownikSmall.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\logo3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\logo4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Mimetypes-x-office-address-book-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\cheff32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\cheff48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\edit_find.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\kexi.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\gnome_preferences_system.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\futon_bed.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
